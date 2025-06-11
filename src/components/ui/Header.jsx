@@ -12,15 +12,15 @@ export default function Header() {
 
     const navItems = [
         {to: '/', label: t('home')},
-        {to: '/about', label: t('about')},
         {to: '/experience', label: t('experience')},
         {to: '/projects', label: t('projects')},
-        {to: '/contact', label: t('contact')}
+        {to: '/courses', label: t('courses')}
     ];
 
     return (
-        <header className="bg-gray-100 text-gray-900 sticky top-0 z-50 shadow-md
-      dark:bg-gray-900 dark:text-white">
+        <header
+            className="bg-gray-200/60 text-gray-900 sticky top-0 z-50 shadow-md backdrop-blur-sm
+                        dark:bg-gray-900 dark:text-white">
             <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
                 <div className="text-xl font-bold">
                     <Link to="/" className="hover:text-blue-600 dark:hover:text-blue-400 transition">Daniele</Link>

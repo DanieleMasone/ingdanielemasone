@@ -3,7 +3,6 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Home from './pages/Home';
 import Experience from './pages/Experience';
 import Projects from './pages/Projects';
-import Contact from './pages/Contact';
 import Header from './components/ui/Header';
 import Footer from './components/ui/Footer';
 import translationEN from "./locales/en/translation.json";
@@ -12,8 +11,8 @@ import {initReactI18next} from "react-i18next";
 import i18n from "i18next";
 import CookieBanner from "./pages/CookieBanner";
 import Privacy from "./pages/Privacy";
-import About from "./pages/About";
 import CookiePolicy from "./pages/CookiePolicy";
+import Courses from "./pages/Courses";
 
 const resources = {
     en: {
@@ -45,9 +44,8 @@ export default function App() {
                     <Routes>
                         <Route path="/" element={<Home/>}/>
                         <Route path="/experience" element={<Experience/>}/>
-                        <Route path="/about" element={<About/>}/>
                         <Route path="/projects" element={<Projects/>}/>
-                        <Route path="/contact" element={<Contact/>}/>
+                        <Route path="/courses" element={<Courses/>}/>
                         <Route path="/privacy" element={<Privacy/>}/>
                         <Route path="/cookie-policy" element={<CookiePolicy/>}/>
                     </Routes>

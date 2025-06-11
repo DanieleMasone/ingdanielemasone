@@ -4,6 +4,7 @@
   "experience": "Experience",
   "projects": "Projects",
   "contact": "Contact",
+  "courses": "Courses",
   "home_title": "Hi, I'm Daniele Masone",
   "home_subtitle": "Full Stack Software Engineer, Front-End Architect and Technical Team Leader.",
   "home_description": "I build scalable, maintainable, and secure applications. I work with modern front-end and back-end technologies, following clean architecture principles and Agile methodologies.",
@@ -19,7 +20,7 @@
     "UI Library": "UI Library",
     "Enterprise Application": "Enterprise Application"
   },
-  "about_title": "About Me",
+  "about_title": "Introducing myself",
   "about_intro": "I am a software engineer with strong experience in both front-end and back-end development, specializing in SPA architectures, microservices, and scalable UIs.",
   "about_experience": "I have worked for companies like RGI Group, Italiaonline, Fastweb, AXA, and others, covering roles from full stack developer to front-end architect. I build web portals, UI libraries, REST APIs, and mobile apps. I also teach programming courses on Udemy (C, JavaScript, PHP, Angular, React...).",
   "contact_title": "Contact Me",
@@ -95,5 +96,30 @@
     "rights_text": "You have the right to access, rectify, delete your data, and withdraw consent at any time.",
     "contact_text": "To exercise your rights, contact us at",
     "last_updated": "Last updated"
+  },
+  "courses_page": {
+    "title": "My Online Courses",
+    "duration": "Duration",
+    "learn_more": "Learn more",
+    "react": {
+      "title": "Advanced React Course",
+      "description": "Deep dive into React with hooks, context, performance, and best practices.",
+      "duration": "8 hours"
+    },
+    "node": {
+      "title": "Node.js & Express - Backend for Beginners",
+      "description": "Learn to create RESTful APIs with Node.js, Express, and MongoDB.",
+      "duration": "6 hours"
+    },
+    "k8s": {
+      "title": "Introduction to Kubernetes",
+      "description": "Fundamentals of container orchestration with Kubernetes, deployment, and scaling.",
+      "duration": "4 hours"
+    },
+    "angular": {
+      "title": "Angular for Developers",
+      "description": "From zero to expert in Angular, managing state and complex modules.",
+      "duration": "7 hours"
+    }
   }
 }
