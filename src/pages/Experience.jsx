@@ -1,39 +1,44 @@
+import {useTranslation} from "react-i18next";
 import {Card} from "../components/ui/Card";
 import {CardContent} from "../components/ui/CardContent";
 import {Disclosure} from '@headlessui/react';
 import {ChevronDown} from 'lucide-react';
 
 export default function Experience() {
+    const {t} = useTranslation();
+
     const experiences = [
         {
-            role: "Front End Architect / Team Leader",
+            role: t("exp_rgi_role"),
             company: "RGI Group",
-            period: "2021 – oggi",
+            period: t("exp_rgi_period"),
             tech: "AngularJS, Angular 8/12, Docker, Kubernetes, Quarkus",
         },
         {
-            role: "Full Stack Software Engineer",
+            role: t("exp_iol_role"),
             company: "Italiaonline",
-            period: "2019 – 2021",
+            period: t("exp_iol_period"),
             tech: "Angular 10, Spring, Microservizi, Docker Swarm",
         },
         {
-            role: "Full Stack Software Engineer",
+            role: t("exp_tecnavia_role"),
             company: "Tecnavia Apps",
-            period: "2018 – 2019",
+            period: t("exp_tecnavia_period"),
             tech: "PHP, React Native, Zend, NodeJS",
         },
         {
-            role: "Junior Software Engineer",
+            role: t("exp_junior_role"),
             company: "Teoresi / Meware / Piksel",
-            period: "2015 – 2018",
+            period: t("exp_junior_period"),
             tech: "JavaEE, Spring, Hibernate, Wildfly",
         }
     ];
 
     return (
         <section className="p-8 max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">Esperienza</h2>
+            <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
+                {t("experience_title")}
+            </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {experiences.map((exp, i) => (
                     <Card
@@ -51,7 +56,7 @@ export default function Experience() {
                                         <Disclosure.Button
                                             className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none"
                                         >
-                                            <span>Mostra stack</span>
+                                            <span>{t("experience_show_stack")}</span>
                                             <ChevronDown
                                                 className={`ml-1 w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}
                                             />

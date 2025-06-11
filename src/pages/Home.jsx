@@ -10,19 +10,13 @@ export default function Home() {
                 {/* Text on the left */}
                 <div className="flex-1">
                     <h1 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">
-                        {t("home_title", "Ciao, sono Daniele Masone")}
+                        {t("home_title")}
                     </h1>
                     <p className="text-xl text-gray-700 dark:text-gray-300 mb-6">
-                        {t(
-                            "home_subtitle",
-                            "Full Stack Software Engineer, Front-End Architect e Technical Team Leader."
-                        )}
+                        {t("home_subtitle")}
                     </p>
                     <p className="text-md text-gray-600 dark:text-gray-400">
-                        {t(
-                            "home_description",
-                            "Realizzo applicazioni scalabili, mantenibili e sicure. Lavoro con tecnologie moderne lato front-end e back-end, seguendo i principi dell'architettura pulita e metodologie Agile."
-                        )}
+                        {t("home_description")}
                     </p>
                 </div>
 

@@ -12,9 +12,10 @@ export default function Header() {
 
     const navItems = [
         {to: '/', label: t('home')},
+        {to: '/about', label: t('about')},
         {to: '/experience', label: t('experience')},
         {to: '/projects', label: t('projects')},
-        {to: '/contact', label: t('contact')},
+        {to: '/contact', label: t('contact')}
     ];
 
     return (

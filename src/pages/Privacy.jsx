@@ -1,117 +1,127 @@
 import React from "react";
+import {useTranslation} from "react-i18next";
 
 export default function Privacy() {
+    const {t} = useTranslation();
+
     return (
         <main className="max-w-4xl mx-auto p-8 bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-300 min-h-screen">
-            <h1 className="text-4xl font-bold mb-6">Privacy Policy</h1>
+            <h1 className="text-4xl font-bold mb-6">{t("privacy.title")}</h1>
 
             <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-2">Introduzione</h2>
+                <h2 className="text-2xl font-semibold mb-2">{t("privacy.intro_title")}</h2>
                 <p>
-                    Questa Privacy Policy descrive come raccogliamo, utilizziamo e proteggiamo i dati personali
-                    degli utenti che visitano il nostro sito web <a href="https://www.tuosito.it"
-                                                                    className="text-blue-600 dark:text-blue-400 underline hover:text-blue-800 dark:hover:text-blue-300">www.tuosito.it</a>.
-                    Il trattamento dei dati è effettuato nel rispetto del Regolamento (UE) 2016/679 (GDPR) e delle
-                    normative italiane.
+                    {t("privacy.intro_text1")}{" "}
+                    <a
+                        href="https://www.ingdanielemasone.com/"
+                        className="text-blue-600 dark:text-blue-400 underline hover:text-blue-800 dark:hover:text-blue-300"
+                    >
+                        https://www.ingdanielemasone.com/
+                    </a>. {t("privacy.intro_text2")}
                 </p>
             </section>
 
             <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-2">Titolare del trattamento</h2>
+                <h2 className="text-2xl font-semibold mb-2">{t("privacy.owner_title")}</h2>
                 <address className="not-italic mb-2">
-                    <strong>Daniele Masone</strong><br/>
-                    Via Esempio 123, 20100 Milano, Italia<br/>
-                    Email: <a href="mailto:info@tuosito.it"
-                              className="text-blue-600 dark:text-blue-400 underline">info@tuosito.it</a>
+                    <strong>Daniele Masone</strong>
+                    <br/>
+                    Via Esempio 123, 20100 Milano, Italia
+                    <br/>
+                    Email:{" "}
+                    <a
+                        href="mailto:masone.daniele@gmail.com"
+                        className="text-blue-600 dark:text-blue-400 underline"
+                    >
+                        masone.daniele@gmail.com
+                    </a>
                 </address>
             </section>
 
             <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-2">Tipologie di dati raccolti</h2>
+                <h2 className="text-2xl font-semibold mb-2">{t("privacy.data_types_title")}</h2>
                 <ul className="list-disc pl-6 space-y-1">
-                    <li><strong>Dati di navigazione:</strong> indirizzi IP, browser, pagine visitate, tempo di
-                        permanenza.
+                    <li>
+                        <strong>{t("privacy.browsing_data")}:</strong> {t("privacy.browsing_data_details")}
                     </li>
-                    <li><strong>Dati forniti volontariamente:</strong> nome, email, messaggi inviati tramite modulo di
-                        contatto.
+                    <li>
+                        <strong>{t("privacy.voluntary_data")}:</strong> {t("privacy.voluntary_data_details")}
                     </li>
                 </ul>
             </section>
 
             <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-2">Finalità del trattamento</h2>
+                <h2 className="text-2xl font-semibold mb-2">{t("privacy.purpose_title")}</h2>
                 <ul className="list-disc pl-6 space-y-1">
-                    <li>Fornire i servizi richiesti (es. rispondere a richieste di contatto).</li>
-                    <li>Analizzare l’uso del sito per migliorare l’esperienza utente.</li>
-                    <li>Inviare comunicazioni relative ai servizi, previo consenso.</li>
+                    <li>{t("privacy.purpose_1")}</li>
+                    <li>{t("privacy.purpose_2")}</li>
+                    <li>{t("privacy.purpose_3")}</li>
                 </ul>
             </section>
 
             <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-2">Base giuridica</h2>
+                <h2 className="text-2xl font-semibold mb-2">{t("privacy.legal_basis_title")}</h2>
                 <ul className="list-disc pl-6 space-y-1">
-                    <li>Esecuzione di un contratto o misure precontrattuali.</li>
-                    <li>Consenso esplicito per finalità di marketing.</li>
-                    <li>Legittimo interesse per analisi e miglioramento.</li>
+                    <li>{t("privacy.legal_1")}</li>
+                    <li>{t("privacy.legal_2")}</li>
+                    <li>{t("privacy.legal_3")}</li>
                 </ul>
             </section>
 
             <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-2">Destinatari dei dati</h2>
-                <p>
-                    I dati possono essere comunicati a fornitori tecnici, consulenti e autorità competenti, sempre nel
-                    rispetto del GDPR.
-                </p>
+                <h2 className="text-2xl font-semibold mb-2">{t("privacy.recipients_title")}</h2>
+                <p>{t("privacy.recipients_text")}</p>
             </section>
 
             <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-2">Trasferimento dati</h2>
-                <p>
-                    I dati non sono trasferiti fuori dall'Unione Europea.
-                </p>
+                <h2 className="text-2xl font-semibold mb-2">{t("privacy.transfer_title")}</h2>
+                <p>{t("privacy.transfer_text")}</p>
             </section>
 
             <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-2">Periodo di conservazione</h2>
-                <p>
-                    Conserviamo i dati solo per il tempo strettamente necessario alle finalità di raccolta.
-                </p>
+                <h2 className="text-2xl font-semibold mb-2">{t("privacy.retention_title")}</h2>
+                <p>{t("privacy.retention_text")}</p>
             </section>
 
             <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-2">Diritti dell’interessato</h2>
+                <h2 className="text-2xl font-semibold mb-2">{t("privacy.rights_title")}</h2>
                 <ul className="list-disc pl-6 space-y-1">
-                    <li>Accesso, rettifica, cancellazione, limitazione, opposizione e portabilità dei dati.</li>
-                    <li>Revoca del consenso in qualsiasi momento.</li>
-                    <li>Reclamo all'autorità di controllo.</li>
+                    <li>{t("privacy.rights_1")}</li>
+                    <li>{t("privacy.rights_2")}</li>
+                    <li>{t("privacy.rights_3")}</li>
                 </ul>
                 <p>
-                    Per esercitare questi diritti, scrivere a: <a href="mailto:info@tuosito.it"
-                                                                  className="text-blue-600 dark:text-blue-400 underline">info@tuosito.it</a>
+                    {t("privacy.rights_exercise")}{" "}
+                    <a
+                        href="mailto:masone.daniele@gmail.com"
+                        className="text-blue-600 dark:text-blue-400 underline"
+                    >
+                        masone.daniele@gmail.com
+                    </a>
                 </p>
             </section>
 
             <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-2">Cookie Policy</h2>
+                <h2 className="text-2xl font-semibold mb-2">{t("privacy.cookie_title")}</h2>
                 <p>
-                    Il sito utilizza cookie per migliorare l’esperienza utente e analizzare il traffico. Per maggiori
-                    informazioni, consulta la nostra <a href="/cookie-policy"
-                                                        className="text-blue-600 dark:text-blue-400 underline">Cookie
-                    Policy</a>.
+                    {t("privacy.cookie_text")}{" "}
+                    <a
+                        href="/cookie-policy"
+                        className="text-blue-600 dark:text-blue-400 underline"
+                    >
+                        {t("privacy.cookie_link")}
+                    </a>.
                 </p>
             </section>
 
             <section className="mb-8">
-                <h2 className="text-2xl font-semibold mb-2">Modifiche alla Privacy Policy</h2>
-                <p>
-                    Potremmo aggiornare questa informativa. Le modifiche saranno pubblicate qui con la data di
-                    aggiornamento.
-                </p>
+                <h2 className="text-2xl font-semibold mb-2">{t("privacy.changes_title")}</h2>
+                <p>{t("privacy.changes_text")}</p>
             </section>
 
             <footer
                 className="border-t border-gray-300 dark:border-gray-700 pt-4 text-sm text-gray-500 dark:text-gray-600 text-center">
-                Ultimo aggiornamento: Giugno 2025
+                {t("privacy.last_updated")}: {t("privacy.last_date_updated")}
             </footer>
         </main>
     );

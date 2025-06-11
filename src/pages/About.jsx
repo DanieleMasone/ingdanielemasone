@@ -1,15 +1,18 @@
+import {useTranslation} from 'react-i18next';
+
 export default function About() {
+    const {t} = useTranslation();
+
     return (
         <section className="p-8 max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold mb-4">Chi sono</h2>
-            <p className="text-gray-300 mb-4">
-                Sono un ingegnere informatico con una forte esperienza nello sviluppo front-end e back-end,
-                specializzato in architetture SPA, microservizi e UI scalabili.
+            <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
+                {t("about_title")}
+            </h2>
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
+                {t("about_intro")}
             </p>
-            <p className="text-gray-400">
-                Ho lavorato per aziende come RGI Group, Italiaonline, Fastweb, AXA e altre, ricoprendo ruoli da
-                sviluppatore full stack a front-end architect. Creo portali web, librerie UI, REST API e app mobile.
-                Insegno anche su Udemy corsi di programmazione (C, JavaScript, PHP, Angular, React...).
+            <p className="text-gray-600 dark:text-gray-400">
+                {t("about_experience")}
             </p>
         </section>
     );
