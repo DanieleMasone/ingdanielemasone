@@ -101,25 +101,65 @@
     "title": "I miei corsi online",
     "duration": "Durata",
     "learn_more": "Scopri di più",
-    "react": {
-      "title": "Corso di React Avanzato",
-      "description": "Approfondisci React con hooks, context, performance e best practice.",
-      "duration": "8 ore"
+    "git": {
+      "title": "Corso Git",
+      "description": "Questo videocorso ti permetterà di apprendere l'utilizzodi Git",
+      "duration": "2,5 ore"
     },
-    "node": {
-      "title": "Node.js & Express - Backend per principianti",
-      "description": "Impara a creare API RESTful con Node.js, Express e MongoDB.",
+    "typescript": {
+      "title": "Corso Typescript",
+      "description": "Questo videocorso ti permetterà di apprendere il linguaggio Typescript",
+      "duration": "1,5 ore"
+    },
+    "jQuery": {
+      "title": "Corso jQuery",
+      "description": "Questo videocorso ti permetterà di apprendere l'utilizzo della libreria jQuery",
+      "duration": "3 ore"
+    },
+    "php": {
+      "title": "Corso di programmazione Php",
+      "description": "Questo videocorso ti permetterà di apprendere la programmazione php",
+      "duration": "11,5 ore"
+    },
+    "cpp": {
+      "title": "Corso di programmazione C++",
+      "description": "Questo videocorso ti permetterà di apprendere la programmazione C++",
+      "duration": "14,5 ore"
+    },
+    "html5": {
+      "title": "Corso di HTML5",
+      "description": "Questo videocorso ti permetterà di apprendere l'utilizzo di HTML5",
+      "duration": "5 ore"
+    },
+    "angularJS": {
+      "title": "Corso AngularJS",
+      "description": "Questo videocorso ti permetterà di apprendere l'utilizzo del framework AngularJS",
+      "duration": "3,5 ore"
+    },
+    "java": {
+      "title": "Corso di programmazione Java",
+      "description": "Questo videocorso ti permetterà di apprendere la base della programmazione Java",
+      "duration": "7,5 ore"
+    },
+    "javascript": {
+      "title": "Corso di programmazione Javascript",
+      "description": "Questo videocorso ti permetterà di apprendere la programmazione Javascript",
+      "duration": "10,5 ore"
+    },
+    "c": {
+      "title": "Corso di programmazione C",
+      "description": "Questo videocorso ti permetterà di apprendere la programmazione C (consigliato per chi parte da 0 in questo mondo)",
+      "duration": "6,5 ore"
+    },
+    "assembler": {
+      "title": "Corso di programmazione assembler 8086",
+      "description": "Questo videocorso ti permetterà di apprendere la programmazione tramite linguaggio assembler per processore 8086",
       "duration": "6 ore"
     },
-    "k8s": {
-      "title": "Introduzione a Kubernetes",
-      "description": "Fondamenti di container orchestration con Kubernetes, deployment e scaling.",
-      "duration": "4 ore"
-    },
-    "angular": {
-      "title": "Angular per sviluppatori",
-      "description": "Da zero a esperto in Angular, gestione stati e moduli complessi.",
-      "duration": "7 ore"
+    "sql": {
+      "title": "Corso sulle basi di dati: dallo schema E/R all'SQL",
+      "description": "Questo videocorso ti permetterà di apprendere come creare una base di dati solida (tramite le 3 fasi fondamentali della progettazione) e ad interrogarla tramite le query base in linguaggio SQL (Structured Query Language) allo scopo di trasformare i dati in informazioni, inserire, modificare ed eliminare i dati dalle tabelle e apprendere i principi teorici e pratici di progettazione e creazione dei database relazionali, delle tabelle e delle viste",
+      "duration": "6 ore"
     }
   }
 }

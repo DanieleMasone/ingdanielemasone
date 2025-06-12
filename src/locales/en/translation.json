@@ -101,25 +101,65 @@
     "title": "My Online Courses",
     "duration": "Duration",
     "learn_more": "Learn more",
-    "react": {
-      "title": "Advanced React Course",
-      "description": "Deep dive into React with hooks, context, performance, and best practices.",
-      "duration": "8 hours"
+    "git": {
+      "title": "Git Course",
+      "description": "This video course will teach you how to use Git.",
+      "duration": "2.5 hours"
     },
-    "node": {
-      "title": "Node.js & Express - Backend for Beginners",
-      "description": "Learn to create RESTful APIs with Node.js, Express, and MongoDB.",
+    "typescript": {
+      "title": "TypeScript Course",
+      "description": "This video course will teach you the TypeScript language.",
+      "duration": "1.5 hours"
+    },
+    "jQuery": {
+      "title": "jQuery Course",
+      "description": "This video course will teach you how to use the jQuery library.",
+      "duration": "3 hours"
+    },
+    "php": {
+      "title": "PHP Programming Course",
+      "description": "This video course will teach you PHP programming.",
+      "duration": "11.5 hours"
+    },
+    "cpp": {
+      "title": "C++ Programming Course",
+      "description": "This video course will teach you C++ programming.",
+      "duration": "14.5 hours"
+    },
+    "html5": {
+      "title": "HTML5 Course",
+      "description": "This video course will teach you how to use HTML5.",
+      "duration": "5 hours"
+    },
+    "angularJS": {
+      "title": "AngularJS Course",
+      "description": "This video course will teach you how to use the AngularJS framework.",
+      "duration": "3.5 hours"
+    },
+    "java": {
+      "title": "Java Programming Course",
+      "description": "This video course will teach you the fundamentals of Java programming.",
+      "duration": "7.5 hours"
+    },
+    "javascript": {
+      "title": "JavaScript Programming Course",
+      "description": "This video course will teach you JavaScript programming.",
+      "duration": "10.5 hours"
+    },
+    "c": {
+      "title": "C Programming Course",
+      "description": "This video course will teach you C programming (recommended for complete beginners).",
+      "duration": "6.5 hours"
+    },
+    "assembler": {
+      "title": "8086 Assembler Programming Course",
+      "description": "This video course will teach you programming using the 8086 assembler language.",
       "duration": "6 hours"
     },
-    "k8s": {
-      "title": "Introduction to Kubernetes",
-      "description": "Fundamentals of container orchestration with Kubernetes, deployment, and scaling.",
-      "duration": "4 hours"
-    },
-    "angular": {
-      "title": "Angular for Developers",
-      "description": "From zero to expert in Angular, managing state and complex modules.",
-      "duration": "7 hours"
+    "sql": {
+      "title": "Database Basics Course: From E/R Diagrams to SQL",
+      "description": "This video course will teach you how to create a solid database (through the 3 fundamental design phases) and query it using basic SQL (Structured Query Language) to transform data into information, insert, update, and delete table data, and understand the theoretical and practical principles of designing and creating relational databases, tables, and views.",
+      "duration": "6 hours"
     }
   }
 }
