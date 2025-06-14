@@ -20,12 +20,9 @@ export default function Header() {
     return (
         <header
             className="bg-gray-200/60 text-gray-900 sticky top-0 z-50 shadow-md backdrop-blur-sm
-                        dark:bg-gray-900 dark:text-white">
+                       dark:bg-gray-900 dark:text-white"
+        >
             <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-                <div className="text-xl font-bold">
-                    <Link to="/" className="hover:text-blue-600 dark:hover:text-blue-400 transition">Daniele</Link>
-                </div>
-
                 {/* Desktop menu */}
                 <nav className="hidden md:flex space-x-6">
                     {navItems.map((item) => (

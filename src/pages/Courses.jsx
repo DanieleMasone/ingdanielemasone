@@ -4,9 +4,12 @@ import {CardContent} from "../components/ui/CardContent";
 import {Disclosure} from '@headlessui/react';
 import {ChevronDown} from 'lucide-react';
 import {Textarea} from "../components/ui/Textarea";
+import {useState} from "react";
 
 export default function Courses() {
     const {t} = useTranslation();
+    const coursesPerPage = 6;
+    const [page, setPage] = useState(1);
 
     const courses = [
         {
@@ -95,6 +98,13 @@ export default function Courses() {
         }
     ];
 
+    const totalPages = Math.ceil(courses.length / coursesPerPage);
+
+    const displayedCourses = courses.slice(
+        (page - 1) * coursesPerPage,
+        page * coursesPerPage
+    );
+
     return (
         <section className="p-8 max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
@@ -102,7 +112,7 @@ export default function Courses() {
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {courses.map((course, idx) => (
+                {displayedCourses.map((course, idx) => (
                     <Card
                         key={idx}
                         className="bg-white border border-gray-200 text-gray-900 dark:bg-gray-900 dark:border-gray-700 dark:text-white transition-colors duration-300"
@@ -149,6 +159,27 @@ export default function Courses() {
                         </CardContent>
                     </Card>
                 ))}
+            </div>
+
+            {/* Pagination Controls */}
+            <div className="flex justify-center space-x-4 mt-8">
+                <button
+                    disabled={page === 1}
+                    onClick={() => setPage(page - 1)}
+                    className="px-3 py-1 rounded disabled:opacity-50 bg-gray-300 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+                >
+                    {t("previous")}
+                </button>
+                <span className="px-3 py-1">
+                    {page} / {totalPages}
+                </span>
+                <button
+                    disabled={page === totalPages}
+                    onClick={() => setPage(page + 1)}
+                    className="px-3 py-1 rounded disabled:opacity-50 bg-gray-300 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+                >
+                    {t("next")}
+                </button>
             </div>
         </section>
     );
