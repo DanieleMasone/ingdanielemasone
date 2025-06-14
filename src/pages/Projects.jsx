@@ -96,9 +96,9 @@ export default function Projects() {
             period: "01/2023 - 03/2023"
         },
         {
-            name: "Frontend Architecture Development",
+            name: "Passportal client",
             tech: "MySQL · REST APIs · SQL · JSON · JBoss Application Server · HTML · Docker · Node.js · HTML5 · JEE · AngularJS · Git · Java · Maven · OOP · JavaScript · CSS · XML",
-            type: "Architect",
+            type: "Enterprise Application",
             company: "RGI",
             period: "03/2023"
         }

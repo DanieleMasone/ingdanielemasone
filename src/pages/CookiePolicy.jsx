@@ -37,14 +37,21 @@ export default function CookiePolicy() {
                 <h2 className="text-2xl font-semibold mb-2">{t("cookie.manage_title")}</h2>
                 <p>{t("cookie.manage_text")}</p>
                 <ul className="list-disc pl-6 space-y-1 mt-2">
-                    <li><a className="underline" href="https://support.google.com/chrome/answer/95647"
+                    <li><a className="underline"
+                           href="https://support.google.com/chrome/answer/95647"
+                           rel="noopener noreferrer"
                            target="_blank">Chrome</a></li>
                     <li><a className="underline"
                            href="https://support.mozilla.org/kb/enable-and-disable-cookies-website-preferences"
+                           rel="noopener noreferrer"
                            target="_blank">Firefox</a></li>
-                    <li><a className="underline" href="https://support.apple.com/en-us/HT201265"
+                    <li><a className="underline"
+                           href="https://support.apple.com/en-us/HT201265"
+                           rel="noopener noreferrer"
                            target="_blank">Safari</a></li>
-                    <li><a className="underline" href="https://support.microsoft.com/help/17442"
+                    <li><a className="underline"
+                           href="https://support.microsoft.com/help/17442"
+                           rel="noopener noreferrer"
                            target="_blank">Edge</a></li>
                 </ul>
             </section>
