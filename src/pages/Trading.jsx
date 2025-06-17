@@ -14,16 +14,15 @@ export default function Trading() {
                     {t("trading_title")}
                 </h2>
                 <p className="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-                    {t(
-                        "trading_intro",
-                        "Parallelamente al mio lavoro tech, mi dedico con metodo e disciplina al trading finanziario."
-                    )}
+                    {t("trading_intro")}
                 </p>
                 <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
-                    {t(
-                        "trading_description",
-                        "Dal 2020 opero sulla piattaforma eToro, con un approccio orientato al lungo termine, analisi fondamentale e gestione del rischio."
-                    )}
+                    {t("trading_description")}
+                </p>
+
+                {/* Disclaimer */}
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-6 leading-relaxed">
+                    {t("disclaimer_text")}
                 </p>
 
                 <a
