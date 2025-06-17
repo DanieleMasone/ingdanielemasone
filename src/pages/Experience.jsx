@@ -1,15 +1,14 @@
 import {useTranslation} from "react-i18next";
+import {useState} from "react";
 import {Card} from "../components/ui/Card";
 import {CardContent} from "../components/ui/CardContent";
-import {Disclosure} from '@headlessui/react';
-import {ChevronDown} from 'lucide-react';
 import {Textarea} from "../components/ui/Textarea";
-import {useState} from "react";
+import {Disclosure} from "@headlessui/react";
+import {ChevronDown} from "lucide-react";
+import {AnimatePresence, motion} from "framer-motion";
 
 export default function Experience() {
     const {t} = useTranslation();
-    const [page, setPage] = useState(1);
-    const itemsPerPage = 3;
 
     const experiences = [
         {
@@ -60,80 +59,111 @@ export default function Experience() {
             period: t("exp_piksel_period"),
             description: t("exp_piksel_description"),
             tech: "Server Windows · Bash · XML · Linux · Tomcat · Active Directory"
+        },
+        {
+            role: t("exp_coach_role"),
+            company: "-",
+            period: t("exp_coach_period"),
+            description: t("exp_coach_description"),
+            tech: "Framework Spring · jQuery · C# · VBA · x86 Assembly · Bash · Matlab · .NET · HTML5 · XML · C · PhpMyAdmin · CSS · HTML · Cisco Technologies · MySQL · PHP · Git · C++"
         }
     ];
 
-    const totalPages = Math.ceil(experiences.length / itemsPerPage);
+    const getUniqueYears = (experiences) => {
+        const yearRegex = /\b(20\d{2}|19\d{2})\b/g;
+        const years = new Set();
+        for (const exp of experiences) {
+            const match = exp.period.match(yearRegex);
+            if (match) match.forEach(y => years.add(y));
+        }
+        return Array.from(years).sort((a, b) => b - a);
+    };
 
-    const displayedExperiences = experiences.slice(
-        (page - 1) * itemsPerPage,
-        page * itemsPerPage
-    );
+    const yearList = getUniqueYears(experiences);
+    const [selectedYear, setSelectedYear] = useState(yearList[0] || null);
+    const filteredExperiences = selectedYear
+        ? experiences.filter(exp => exp.period.includes(selectedYear))
+        : [];
 
     return (
-        <section className="p-8 max-w-7xl mx-auto relative">
+        <section className="p-8 max-w-7xl mx-auto">
             <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
                 {t("experience_title")}
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {displayedExperiences.map((exp, i) => (
-                    <Card key={i} className="h-full">
-                        <CardContent>
-                            <h3 className="text-lg font-semibold">{exp.role}</h3>
-                            <p className="text-gray-700 dark:text-gray-400">{exp.company}</p>
-                            <p className="text-sm mb-2 text-gray-600 dark:text-gray-500">{exp.period}</p>
-
-                            {exp.description && (
-                                <Textarea
-                                    value={exp.description}
-                                    className="mb-2 text-sm"
-                                    readOnly
-                                />
-                            )}
-
-                            <Disclosure>
-                                {({open}) => (
-                                    <div>
-                                        <Disclosure.Button
-                                            className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none"
-                                        >
-                                            <span>{t("experience_show_stack")}</span>
-                                            <ChevronDown
-                                                className={`ml-1 w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}
-                                            />
-                                        </Disclosure.Button>
-                                        <Disclosure.Panel className="mt-2 text-sm text-gray-700 dark:text-gray-300">
-                                            {exp.tech}
-                                        </Disclosure.Panel>
-                                    </div>
-                                )}
-                            </Disclosure>
-                        </CardContent>
-                    </Card>
+            <div className="flex flex-wrap justify-center gap-3 mb-10">
+                {yearList.map((year) => (
+                    <button
+                        key={year}
+                        onClick={() => setSelectedYear(year)}
+                        className={`px-4 py-2 rounded-2xl shadow-sm border transition backdrop-blur-sm
+                            ${
+                            selectedYear === year
+                                ? "ring-2 ring-blue-500 border-blue-500 bg-blue-100 text-blue-800 dark:bg-blue-700 dark:text-white"
+                                : "border-gray-300 dark:border-gray-600 bg-white/30 dark:bg-gray-800/30 text-gray-900 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700"
+                        }
+                            ${
+                            selectedYear === year
+                                ? "bg-blue-100 dark:bg-blue-700 text-blue-800 dark:text-white"
+                                : "bg-white/30 dark:bg-gray-800/30 text-gray-900 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                        }`}
+                    >
+                        {year}
+                    </button>
                 ))}
             </div>
 
-            {/* Pagination Controls */}
-            <div className="flex justify-center space-x-4 mt-8">
-                <button
-                    disabled={page === 1}
-                    onClick={() => setPage(page - 1)}
-                    className="px-3 py-1 rounded disabled:opacity-50 bg-gray-300 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+
+            <AnimatePresence mode="wait">
+                <motion.div
+                    key={selectedYear || "none"}
+                    initial={{opacity: 0, y: 40}}
+                    animate={{opacity: 1, y: 0}}
+                    exit={{opacity: 0, y: -40}}
+                    transition={{duration: 0.4}}
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
                 >
-                    {t("previous")}
-                </button>
-                <span className="px-3 py-1">
-                    {page} / {totalPages}
-                </span>
-                <button
-                    disabled={page === totalPages}
-                    onClick={() => setPage(page + 1)}
-                    className="px-3 py-1 rounded disabled:opacity-50 bg-gray-300 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
-                >
-                    {t("next")}
-                </button>
-            </div>
+                    {filteredExperiences.map((exp, i) => (
+                        <Card
+                            key={i}
+                            className="h-full bg-white/60 dark:bg-gray-900/40 shadow-xl rounded-2xl backdrop-blur-sm"
+                        >
+                            <CardContent>
+                                <h3 className="text-xl font-semibold mb-1">{exp.role}</h3>
+                                <p className="text-gray-700 dark:text-gray-400 font-medium">{exp.company}</p>
+                                <p className="text-sm mb-2 text-gray-600 dark:text-gray-500">{exp.period}</p>
+
+                                {exp.description && (
+                                    <Textarea
+                                        value={exp.description}
+                                        className="mb-2 text-sm bg-transparent text-gray-800 dark:text-gray-200"
+                                        readOnly
+                                    />
+                                )}
+
+                                <Disclosure>
+                                    {({open}) => (
+                                        <div>
+                                            <Disclosure.Button
+                                                className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline">
+                                                <span>{t("experience_show_stack")}</span>
+                                                <ChevronDown
+                                                    className={`ml-1 w-4 h-4 transition-transform ${
+                                                        open ? "rotate-180" : ""
+                                                    }`}
+                                                />
+                                            </Disclosure.Button>
+                                            <Disclosure.Panel className="mt-2 text-sm text-gray-700 dark:text-gray-300">
+                                                {exp.tech}
+                                            </Disclosure.Panel>
+                                        </div>
+                                    )}
+                                </Disclosure>
+                            </CardContent>
+                        </Card>
+                    ))}
+                </motion.div>
+            </AnimatePresence>
         </section>
     );
 }

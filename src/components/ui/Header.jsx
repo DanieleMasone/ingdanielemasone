@@ -14,7 +14,8 @@ export default function Header() {
         {to: '/', label: t('home')},
         {to: '/experience', label: t('experience')},
         {to: '/projects', label: t('projects')},
-        {to: '/courses', label: t('courses')}
+        {to: '/courses', label: t('courses')},
+        {to: '/trading', label: t('trading')}
     ];
 
     return (

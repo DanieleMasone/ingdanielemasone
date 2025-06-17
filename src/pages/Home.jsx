@@ -1,6 +1,6 @@
 import {useTranslation} from 'react-i18next';
 import danielePhoto from '../assets/daniele.jpg';
-import {useEffect, useState} from "react"; // Assicurati che l'immagine esista
+import {useEffect, useState} from "react";
 
 export default function Home() {
     const {t} = useTranslation();
