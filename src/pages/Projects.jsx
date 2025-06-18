@@ -5,6 +5,7 @@ import {Disclosure} from '@headlessui/react';
 import {ChevronDown} from 'lucide-react';
 import {Textarea} from "../components/ui/Textarea";
 import {useState} from "react";
+import PageSection from "../components/ui/PageSection";
 
 export default function Projects() {
     const {t} = useTranslation();
@@ -113,11 +114,7 @@ export default function Projects() {
     }, {});
 
     return (
-        <section className="p-8 max-w-7xl mx-auto">
-            <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
-                {t("projects_title")}
-            </h2>
-
+        <PageSection title={t("projects_title")}>
             <div className="flex flex-col md:flex-row gap-6">
                 {/* Sidebar Tabs */}
                 <div className="md:w-1/4 flex flex-row md:flex-col overflow-x-auto gap-2 md:gap-4">
@@ -177,6 +174,6 @@ export default function Projects() {
                     ))}
                 </div>
             </div>
-        </section>
+        </PageSection>
     );
 }

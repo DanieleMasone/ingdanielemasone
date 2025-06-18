@@ -26,7 +26,7 @@ export default function Privacy() {
                 <address className="not-italic mb-2">
                     <strong>Daniele Masone</strong>
                     <br/>
-                    Via Esempio 123, 20100 Milano, Italia
+                    {t("privacy.address")}
                     <br/>
                     Email:{" "}
                     <a

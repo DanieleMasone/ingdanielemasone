@@ -1,14 +1,12 @@
 import {useTranslation} from "react-i18next";
 import TradingPerformanceChart from "../components/ui/TradingPerformanceChart";
+import PageSection from "../components/ui/PageSection";
 
 export default function Trading() {
     const {t} = useTranslation();
 
     return (
-        <section className="p-8 max-w-7xl mx-auto">
-            <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
-                {t("trading_title")}
-            </h2>
+        <PageSection title={t("trading_title")}>
             {/* Text above */}
             <div className="flex flex-col justify-start mb-8">
                 <p className="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
@@ -37,7 +35,6 @@ export default function Trading() {
             <div className="flex-grow w-full">
                 <TradingPerformanceChart/>
             </div>
-
-        </section>
+        </PageSection>
     );
 }

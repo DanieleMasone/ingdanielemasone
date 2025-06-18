@@ -4,6 +4,7 @@ import {Disclosure} from "@headlessui/react";
 import {ChevronDown} from "lucide-react";
 import {Card} from "../components/ui/Card";
 import {CardContent} from "../components/ui/CardContent";
+import PageSection from "../components/ui/PageSection";
 
 const ITEMS_PER_PAGE = 6;
 
@@ -132,11 +133,7 @@ export default function Testimonials() {
     );
 
     return (
-        <section className="p-8 max-w-7xl mx-auto">
-            <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
-                {t("testimonials_page.title")}
-            </h2>
-
+        <PageSection title={t("testimonials_page.title")}>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {displayedTestimonials.map((testi, idx) => (
                     <Card key={idx}
@@ -192,6 +189,6 @@ export default function Testimonials() {
                     </button>
                 </div>
             )}
-        </section>
+        </PageSection>
     );
 }

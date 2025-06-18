@@ -6,6 +6,7 @@ import {Textarea} from "../components/ui/Textarea";
 import {Disclosure} from "@headlessui/react";
 import {ChevronDown} from "lucide-react";
 import {AnimatePresence, motion} from "framer-motion";
+import PageSection from "../components/ui/PageSection";
 
 export default function Experience() {
     const {t} = useTranslation();
@@ -86,11 +87,7 @@ export default function Experience() {
         : [];
 
     return (
-        <section className="p-8 max-w-7xl mx-auto">
-            <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
-                {t("experience_title")}
-            </h2>
-
+        <PageSection title={t("experience_title")}>
             <div className="flex flex-wrap justify-center gap-3 mb-10">
                 {yearList.map((year) => (
                     <button
@@ -164,6 +161,6 @@ export default function Experience() {
                     ))}
                 </motion.div>
             </AnimatePresence>
-        </section>
+        </PageSection>
     );
 }

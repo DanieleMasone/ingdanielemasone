@@ -5,6 +5,7 @@ import {Disclosure} from '@headlessui/react';
 import {ChevronDown} from 'lucide-react';
 import {Textarea} from "../components/ui/Textarea";
 import {useState} from "react";
+import PageSection from "../components/ui/PageSection";
 
 export default function Courses() {
     const {t} = useTranslation();
@@ -106,11 +107,7 @@ export default function Courses() {
     );
 
     return (
-        <section className="p-8 max-w-7xl mx-auto">
-            <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
-                {t("courses_page.title")}
-            </h2>
-
+        <PageSection title={t("courses_page.title")}>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {displayedCourses.map((course, idx) => (
                     <Card
@@ -189,6 +186,6 @@ export default function Courses() {
                     </button>
                 </div>
             )}
-        </section>
+        </PageSection>
     );
 }
