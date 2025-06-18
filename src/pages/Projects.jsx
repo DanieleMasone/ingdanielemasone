@@ -114,7 +114,9 @@ export default function Projects() {
 
     return (
         <section className="p-8 max-w-7xl mx-auto">
-            <h2 className="text-3xl font-bold mb-8 text-gray-900 dark:text-white">{t("projects_title", "Progetti")}</h2>
+            <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
+                {t("projects_title")}
+            </h2>
 
             <div className="flex flex-col md:flex-row gap-6">
                 {/* Sidebar Tabs */}

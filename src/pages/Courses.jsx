@@ -106,7 +106,7 @@ export default function Courses() {
     );
 
     return (
-        <section className="p-8 max-w-6xl mx-auto">
+        <section className="p-8 max-w-7xl mx-auto">
             <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
                 {t("courses_page.title")}
             </h2>
@@ -162,25 +162,33 @@ export default function Courses() {
             </div>
 
             {/* Pagination Controls */}
-            <div className="flex justify-center space-x-4 mt-8">
-                <button
-                    disabled={page === 1}
-                    onClick={() => setPage(page - 1)}
-                    className="px-3 py-1 rounded disabled:opacity-50 bg-gray-300 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
-                >
-                    {t("previous")}
-                </button>
-                <span className="px-3 py-1">
-                    {page} / {totalPages}
-                </span>
-                <button
-                    disabled={page === totalPages}
-                    onClick={() => setPage(page + 1)}
-                    className="px-3 py-1 rounded disabled:opacity-50 bg-gray-300 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
-                >
-                    {t("next")}
-                </button>
-            </div>
+            {totalPages > 1 && (
+                <div className="flex justify-center mt-8 space-x-4">
+                    <button
+                        onClick={() => setPage(p => Math.max(p - 1, 1))}
+                        disabled={page === 1}
+                        className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
+                               text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
+                               hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
+                    >
+                        ← {t("previous")}
+                    </button>
+
+                    <span className="px-4 py-2 text-sm text-gray-600 dark:text-gray-300">
+                        {page} / {totalPages}
+                    </span>
+
+                    <button
+                        onClick={() => setPage(p => Math.min(p + 1, totalPages))}
+                        disabled={page === totalPages}
+                        className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
+                               text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
+                               hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
+                    >
+                        {t("next")} →
+                    </button>
+                </div>
+            )}
         </section>
     );
 }

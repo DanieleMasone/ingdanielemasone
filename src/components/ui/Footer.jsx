@@ -1,5 +1,6 @@
 import React from 'react';
 import * as icons from 'simple-icons';
+import {useTranslation} from "react-i18next";
 
 function BrandIcon({icon, color, className, size = 24}) {
     if (!icon || !icon.svg) return null;
@@ -19,6 +20,8 @@ function BrandIcon({icon, color, className, size = 24}) {
 }
 
 export default function Footer() {
+    const {t} = useTranslation();
+
     return (
         <footer
             className="sticky bottom-0 z-50 backdrop-blur-sm backdrop-saturate-150
@@ -40,7 +43,7 @@ export default function Footer() {
                         />
                     </a>
                     <a
-                        href="https://www.instagram.com/tuo_username"
+                        href="https://www.instagram.com/ing_daniele_masone/"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="Instagram"
@@ -52,7 +55,7 @@ export default function Footer() {
                         />
                     </a>
                     <a
-                        href="https://www.facebook.com/tuo_username"
+                        href="https://www.facebook.com/danieleMasone"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="Facebook"
@@ -64,7 +67,7 @@ export default function Footer() {
                         />
                     </a>
                     <a
-                        href="https://github.com/tuo_username"
+                        href="https://github.com/DanieleMasone"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="GitHub"
@@ -90,7 +93,7 @@ export default function Footer() {
                 </div>
 
                 <p className="text-sm text-gray-700 dark:text-gray-400 text-center">
-                    © 2025 Daniele Masone. Tutti i diritti riservati.
+                    {t("footer_copyright")}
                 </p>
             </div>
         </footer>

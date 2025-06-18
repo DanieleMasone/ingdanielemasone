@@ -5,14 +5,12 @@ export default function Trading() {
     const {t} = useTranslation();
 
     return (
-        <section
-            className="max-w-6xl mx-auto p-8 flex flex-col min-h-[800px]"
-        >
+        <section className="p-8 max-w-7xl mx-auto">
+            <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
+                {t("trading_title")}
+            </h2>
             {/* Text above */}
             <div className="flex flex-col justify-start mb-8">
-                <h2 className="text-4xl font-extrabold mb-6 text-gray-900 dark:text-white tracking-tight">
-                    {t("trading_title")}
-                </h2>
                 <p className="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                     {t("trading_intro")}
                 </p>

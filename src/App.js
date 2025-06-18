@@ -14,6 +14,7 @@ import Privacy from "./pages/Privacy";
 import CookiePolicy from "./pages/CookiePolicy";
 import Courses from "./pages/Courses";
 import Trading from "./pages/Trading";
+import Testimonials from "./pages/Testimonials";
 
 const resources = {
     en: {
@@ -48,6 +49,7 @@ export default function App() {
                         <Route path="/projects" element={<Projects/>}/>
                         <Route path="/courses" element={<Courses/>}/>
                         <Route path="/trading" element={<Trading/>}/>
+                        <Route path="/testimonials" element={<Testimonials/>}/>
                         <Route path="/privacy" element={<Privacy/>}/>
                         <Route path="/cookie-policy" element={<CookiePolicy/>}/>
                     </Routes>

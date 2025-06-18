@@ -11,7 +11,7 @@ export default function Home() {
     }, []);
 
     return (
-        <section className="max-w-6xl mx-auto p-8">
+        <section className="p-8 max-w-7xl mx-auto">
             <div
                 className={`grid grid-cols-1 md:grid-cols-2 gap-10 bg-gradient-to-br from-blue-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl p-10 shadow-lg transition-opacity duration-700 ${
                     isVisible ? "opacity-100" : "opacity-0"

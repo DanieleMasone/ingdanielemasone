@@ -9,6 +9,9 @@
   "next": "Next",
   "all": "all",
   "trading": "Trading",
+  "testimonials": "Reviews",
+  "portfolio": "Portfolio",
+  "footer_copyright": "© 2025 Daniele Masone. All rights reserved.",
   "home_title": "Hi, I'm Daniele Masone",
   "home_subtitle": "Full Stack Software Engineer, Front-End Architect and Technical Team Leader.",
   "home_description": "I build scalable, maintainable, and secure applications. I work with modern front-end and back-end technologies, following clean architecture principles and Agile methodologies.",
@@ -200,6 +203,128 @@
       "title": "Database Basics Course: From E/R Diagrams to SQL",
       "description": "This video course will teach you how to create a solid database (through the 3 fundamental design phases) and query it using basic SQL (Structured Query Language) to transform data into information, insert, update, and delete table data, and understand the theoretical and practical principles of designing and creating relational databases, tables, and views.",
       "duration": "6 hours"
+    }
+  },
+  "testimonials_page": {
+    "title": "Testimonials",
+    "prev": "Previous",
+    "next": "Next"
+  },
+  "testimonials_people": {
+    "mirko": {
+      "name": "Mirko Buccoliero",
+      "role": "Cyber Security Specialist",
+      "quote": "Daniele is always available to help you and make you understand everything you need in the IT field. Very knowledgeable and kind."
+    },
+    "alessia": {
+      "name": "Alessia Pecoraro",
+      "role": "HR",
+      "quote": "Daniele is a true professional in the field. He has proven to be very helpful."
+    },
+    "federico": {
+      "name": "Federico Selva",
+      "role": "Junior SOC Analyst",
+      "quote": "Always kind in his responses and very knowledgeable about technical topics! Truly great, clear in his course explanations. I highly recommend him!"
+    },
+    "daniela": {
+      "name": "Daniela Tagliavia d'Aragona",
+      "role": "Financial and Economic Expert - Executive and Senior Qualification Area",
+      "quote": "I met Daniele personally and always had the chance to talk to him, asking for advice and opinions about the job market, interviews, and the kind of training to invest in (courses, classroom lessons, etc.). Passionate, consistent, a lover of learning, he is attentive, thorough, competent, and informed. He proactively guided me through my career orientation path, considering my aptitudes and professional aspirations."
+    },
+    "fabio": {
+      "name": "Fabio Lo Guasto",
+      "role": "Junior Software Developer - Junior Java Developer Student",
+      "quote": "Daniele is my teacher with whom I started learning Spring Boot, Maven, Git, and SQL from scratch. I also took his Java and SQL courses on Udemy.\nI’m really satisfied because he’s truly knowledgeable about everything, always punctual and available.\nIn 5 months of lessons, he never missed one.\nI attended two private schools at a high cost with one-on-one lessons, but none compare to him. I also really liked his teaching method.\nI was very lucky because he is truly a guarantee.\nThanks a lot, and let's keep moving toward the next goal!"
+    },
+    "antonio": {
+      "name": "Antonio Signorello",
+      "role": "HR Project Manager / Talent Acquisition / Smart Worker / Blogger",
+      "quote": "Daniele is an excellent coach: motivator, communicator, problem-solver. First met him on LinkedIn, then as a trainer in a Java course—he immediately appeared humble and courteous. Solid know-how completes him as a professional."
+    },
+    "andrea ": {
+      "name": "Andrea Motta",
+      "role": "Cyber Security Soc Analyst",
+      "quote": "Very responsive to students' needs and always ready to answer questions about his course content."
+    },
+    "francescaM": {
+      "name": "Francesca Marasco",
+      "role": "Concept Manager",
+      "quote": "Daniele is a helpful and highly skilled individual. A very positive experience!"
+    },
+    "luca": {
+      "name": "Luca Sartorio",
+      "role": "Software Developer",
+      "quote": "Daniele was my Java instructor. The lessons started from the basics and went into more complex topics. I was very satisfied. Extremely competent and professional individual."
+    },
+    "antonino": {
+      "name": "Antonino De Maio",
+      "role": "Frontend Developer",
+      "quote": "I worked with Daniele on Angular projects—great developer with solid knowledge in the subject, RxJS, and ES6."
+    },
+    "romolo": {
+      "name": "Romolo Velati",
+      "role": "Chief Technology Officer",
+      "quote": "Daniele demonstrated passion and competence as a microservices developer for Italiaonline applications. Always proactive and curious about new technologies."
+    },
+    "riccardo": {
+      "name": "Riccardo Di Chello",
+      "role": "Technical Lead",
+      "quote": "I worked with Daniele on the same development team and from the start, I can say he's a great team player as well as a skilled front-end developer. Always ready to help and contribute to a positive work environment, he's passionate and pragmatic. Happy to have him on board!"
+    },
+    "lucaC": {
+      "name": "Luca Cainarca",
+      "role": "Senior Software Solution Developer",
+      "quote": "I work with Daniele on the same development team. His role is front-end developer, but he is a skilled full-stack developer with excellent skills. I found him to be a collaborative person, passionate about his work, goal-oriented, able to deliver projects on time, and always willing to help. A very professional colleague to work with—and also great to talk and joke with during breaks. I recommend Daniele to anyone looking for a reliable person with strong work skills."
+    },
+    "ivan": {
+      "name": "Ivan Giurato",
+      "role": "Business Manager",
+      "quote": "Daniele worked for us for a year as a full-stack developer in a team. He is collaborative, loves what he does, and is very capable—both professionally and personally."
+    },
+    "andreaM": {
+      "name": "Andrea Montoli",
+      "role": "Practice Principal, Fulfilment and Telco Cloud",
+      "quote": "Daniele worked in my team and provided excellent technical skills. He proved to be competent, hardworking, and passionate about technology. I vouch for his expertise and am available for any further inquiries."
+    },
+    "daniele": {
+      "name": "Daniele Montesano",
+      "role": "Software Engineer | VR Engineer",
+      "quote": "I studied computer engineering with Daniele and during that time we worked on some projects together, one of which was turning a board game into a digital version. What struck me most was his teamwork ability. Even though we weren’t in the same group, he was always open to discussion and idea-sharing about software design and implementation."
+    },
+    "marco": {
+      "name": "Marco Gonella",
+      "role": "Frontend Developer",
+      "quote": "Daniele was my colleague in a development team that worked on an agile project (using the SAFe methodology) for implementing a complex and responsive web GUI with Node.js + AngularJS. We worked together for one year. Daniele is an expert full-stack developer, dedicated and precise, with remarkable ability in dealing with complex and critical situations, always proposing the best solutions. A very professional teammate to work with."
+    },
+    "raffaele": {
+      "name": "Raffaele Calandrella",
+      "role": "Head of Architecture",
+      "quote": "Competent and above all very persistent professional. With special attention to work quality and excellent team-working skills. I had the opportunity to work with Daniele and appreciated both his professional and personal qualities. He quickly integrated and made valuable contributions, standing out in the team for dedication and quality of work."
+    },
+    "francescaR": {
+      "name": "Francesca Romagnoli",
+      "role": "Computer Science Lecturer",
+      "quote": "Daniele was my colleague in a front-end development team. He is kind, very passionate about his work, collaborative within the team, and skilled. A great colleague both professionally and personally."
+    },
+    "mattia": {
+      "name": "Mattia Capitanio",
+      "role": "Software Engineer",
+      "quote": "Daniele is a technically skilled computer engineer, collaborative and dedicated, highly passionate about new technologies. I had the opportunity to work with him in the same team: he was always highly motivated and goal-oriented, capable of delivering his projects on time! A very professional teammate."
+    },
+    "davide": {
+      "name": "Davide Perini",
+      "role": "Enterprise Architect",
+      "quote": "Daniele is a passionate, valuable, and pragmatic computer engineer, whose experience is extremely useful in dynamic and fast-paced environments where a solution must be thought out, implemented, and released quickly to deliver value to the client as soon as possible. He’s a great team player, always open to idea-sharing and knowledge exchange. I recommend Daniele to anyone needing a reliable professional."
+    },
+    "jacopo": {
+      "name": "Jacopo Andrea La Torre",
+      "role": "Senior Technical Consultant",
+      "quote": "Daniele was a member of my development team, working as a front-end developer on an agile project (using SAFe methodology) to implement a complex responsive web GUI with Node.js + Angular. Daniele is a dedicated person, passionate about learning new technologies, languages, and development models. He showed consistent commitment and precision in meeting goals and deadlines, solid technical knowledge, autonomy in problem-solving, and in completing assigned programming tasks. I also recommend Daniele for his consistently positive attitude and his ability to work in a team, always adding value. Well recognized and appreciated by colleagues for his seriousness and dedication."
+    },
+    "yuri": {
+      "name": "Yuri Blanc",
+      "role": "Technical Architect - Frontend Lead - AWS Certified Solutions Architect",
+      "quote": "Daniele is a highly competent developer, detail-oriented, and very passionate. He’s also an excellent teacher who has produced several online courses on Udemy. Working with him, I can say he is very determined in completing tasks, even the most challenging ones, with diligence. When he encounters difficulties, he is very receptive to suggestions and later independently proposes new solutions or improvements."
     }
   }
 }
