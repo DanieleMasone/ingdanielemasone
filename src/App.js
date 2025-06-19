@@ -38,7 +38,7 @@ i18n.use(initReactI18next).init({
 
 export default function App() {
     return (
-        <Router>
+        <Router basename="/ingdanielemasone">
             <div
                 className="min-h-screen flex flex-col bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-white transition-colors duration-300">
                 <Header/>
