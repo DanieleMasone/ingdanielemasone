@@ -127,20 +127,18 @@ export default function TradingPerformanceChart() {
                     {Object.entries(monthlyDataByYear).map(([year, monthsData]) => (
                         <div
                             key={year}
-                            className="grid grid-cols-[auto_repeat(12,minmax(0,1fr))] gap-2 items-center bg-gray-50 dark:bg-gray-800 rounded-xl shadow-md p-4"
+                            className="overflow-x-auto grid grid-cols-1 sm:grid-cols-[auto_repeat(6,minmax(0,1fr))] md:grid-cols-[auto_repeat(12,minmax(0,1fr))] gap-2 items-center bg-gray-50 dark:bg-gray-800 rounded-xl shadow-md p-4"
                         >
-                            {/* Column 1: Year */}
-                            <div className="font-semibold text-lg text-gray-900 dark:text-gray-100 flex items-center justify-center">
+                            <div
+                                className="font-semibold text-lg text-gray-900 dark:text-gray-100 flex items-center justify-center">
                                 {year}
                             </div>
 
-                            {/* Columns 2–13: Months */}
                             {monthsData.map((val, i) => (
                                 <div
                                     key={i}
-                                    className="flex flex-col items-center justify-between bg-white dark:bg-gray-900 rounded-md p-2 shadow-sm"
+                                    className="flex flex-col items-center justify-between bg-white dark:bg-gray-900 rounded-md p-2 shadow-sm min-w-[60px]"
                                 >
-                                    {/* Yield */}
                                     <span
                                         className={`text-sm font-semibold ${
                                             val === null
@@ -152,8 +150,6 @@ export default function TradingPerformanceChart() {
                                     >
                                         {val !== null ? `${val.toFixed(2).replace('.', ',')}%` : 'na'}
                                     </span>
-
-                                    {/* Name of the month */}
                                     <span className="mt-1 text-xs text-gray-600 dark:text-gray-400">
                                         {months[i]}
                                     </span>
@@ -165,10 +161,15 @@ export default function TradingPerformanceChart() {
             );
         } else {
             return (
-                <div className="flex flex-wrap justify-center gap-8 text-center text-sm">
+                <div className="flex flex-wrap justify-center gap-4 text-center text-sm">
                     {annualLabels.map((year, i) => (
-                        <div key={year} className="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md w-40">
-                            <h4 className="mb-2 font-semibold text-lg border-b border-gray-300 dark:border-gray-700 pb-1">{year}</h4>
+                        <div
+                            key={year}
+                            className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md w-full sm:w-40"
+                        >
+                            <h4 className="mb-2 font-semibold text-lg border-b border-gray-300 dark:border-gray-700 pb-1">
+                                {year}
+                            </h4>
                             <p className={annualReturns[i] < 0 ? 'text-red-600 dark:text-red-400' : 'text-green-700 dark:text-green-400'}>
                                 {t('performance_return_label', 'Rendimento')}: {annualReturns[i] > 0 ? '+' : ''}
                                 {annualReturns[i].toFixed(2).replace('.', ',')}%
@@ -180,9 +181,9 @@ export default function TradingPerformanceChart() {
         }
     }
 
-
     return (
-        <section className="max-w-6xl mx-auto p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg flex flex-col gap-6">
+        <section
+            className="max-w-6xl mx-auto px-4 sm:px-6 py-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg flex flex-col gap-6">
             <header className="text-center flex flex-col items-center gap-4">
                 <h3 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
                     {t('performance_title')}
@@ -198,7 +199,7 @@ export default function TradingPerformanceChart() {
                 </select>
             </header>
 
-            <div className="w-full h-[700px]">
+            <div className="w-full h-[300px] sm:h-[500px] md:h-[700px]">
                 <Line data={chartData} options={options}/>
             </div>
 

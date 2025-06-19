@@ -25,43 +25,46 @@ export default function Header() {
     ];
 
     return (
-        <header
-            className="bg-gray-200/60 text-gray-900 sticky top-0 z-50 shadow-md backdrop-blur-sm dark:bg-gray-900 dark:text-white">
-            <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-
-                {/* Desktop Navigation */}
-                <nav className="hidden md:flex space-x-6 items-center">
+        <header className="bg-gray-200/70 dark:bg-gray-900 backdrop-blur-sm sticky top-0 z-50 shadow-md">
+            <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3 md:px-6 md:py-4">
+                {/* Desktop Nav */}
+                <nav className="hidden md:flex items-center space-x-6">
                     {navMain.map(item => (
                         <Link
                             key={item.to}
                             to={item.to}
-                            className={`transition hover:text-blue-600 dark:hover:text-blue-400
-                            ${pathname === item.to ? 'text-blue-600 dark:text-blue-400 font-semibold' : ''}`}
+                            className={`transition font-medium hover:text-blue-600 dark:hover:text-blue-400 ${
+                                pathname === item.to ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'text-gray-900 dark:text-white'
+                            }`}
                         >
                             {item.label}
                         </Link>
                     ))}
 
-                    {/* Dropdown menu */}
+                    {/* Portfolio Dropdown */}
                     <div className="relative group">
                         <button
                             onClick={() => setPortfolioOpen(!portfolioOpen)}
-                            className={`flex items-center space-x-1 hover:text-blue-600 dark:hover:text-blue-400 transition ${portfolioOpen ? 'text-blue-600 dark:text-blue-400 font-semibold' : ''}`}
+                            className={`flex items-center space-x-1 font-medium hover:text-blue-600 dark:hover:text-blue-400 transition ${
+                                portfolioOpen ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'text-gray-900 dark:text-white'
+                            }`}
                         >
                             <span>{t("portfolio")}</span>
-                            <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180"/>
+                            <ChevronDown
+                                className={`w-4 h-4 transition-transform ${portfolioOpen ? 'rotate-180' : ''}`}/>
                         </button>
 
                         {portfolioOpen && (
                             <div
-                                className="absolute left-0 mt-2 w-48 bg-white dark:bg-gray-800 shadow-lg rounded-md border border-gray-200 dark:border-gray-700 z-50">
+                                className="absolute left-0 mt-2 w-52 bg-white dark:bg-gray-800 shadow-lg rounded-lg border dark:border-gray-700 z-50">
                                 {navPortfolio.map(item => (
                                     <Link
                                         key={item.to}
                                         to={item.to}
-                                        className={`block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition
-                                        ${pathname === item.to ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'text-gray-900 dark:text-white'}`}
                                         onClick={() => setPortfolioOpen(false)}
+                                        className={`block px-4 py-2 text-sm rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition ${
+                                            pathname === item.to ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'text-gray-900 dark:text-white'
+                                        }`}
                                     >
                                         {item.label}
                                     </Link>
@@ -71,64 +74,67 @@ export default function Header() {
                     </div>
                 </nav>
 
-                {/* Desktop Extras */}
+                {/* Language/DarkMode (Desktop) */}
                 <div className="hidden md:flex items-center space-x-4">
                     <LanguageSwitcher/>
                     <DarkModeToggle/>
                 </div>
 
-                {/* Mobile Toggle */}
+                {/* Mobile menu toggle */}
                 <button
-                    className="md:hidden focus:outline-none"
+                    className="md:hidden p-2 rounded focus:outline-none hover:bg-gray-300 dark:hover:bg-gray-700 transition"
                     onClick={() => setMenuOpen(!menuOpen)}
-                    aria-label="Toggle menu"
+                    aria-label="Toggle mobile menu"
                 >
                     {menuOpen ? <X className="w-6 h-6"/> : <Menu className="w-6 h-6"/>}
                 </button>
             </div>
 
-            {/* Mobile Dropdown */}
+            {/* Mobile menu */}
             {menuOpen && (
                 <div
-                    className="md:hidden px-4 pb-4 space-y-2 bg-gray-200 border-t border-gray-300 dark:bg-gray-800 dark:border-gray-700">
+                    className="md:hidden px-4 pb-4 space-y-3 bg-gray-100 dark:bg-gray-800 border-t border-gray-300 dark:border-gray-700">
                     {navMain.map(item => (
                         <Link
                             key={item.to}
                             to={item.to}
                             onClick={() => setMenuOpen(false)}
-                            className={`block py-1 text-sm transition
-                            hover:text-blue-600 dark:hover:text-blue-400
-                            ${pathname === item.to ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'text-gray-900 dark:text-white'}`}
+                            className={`block py-2 rounded text-base font-medium transition ${
+                                pathname === item.to
+                                    ? 'text-blue-600 dark:text-blue-400 font-semibold'
+                                    : 'text-gray-900 dark:text-white'
+                            } hover:bg-gray-200 dark:hover:bg-gray-700`}
                         >
                             {item.label}
                         </Link>
                     ))}
 
-                    {/* Disclosure for Portfolio in mobile */}
                     <Disclosure>
                         {({open}) => (
-                            <>
+                            <div>
                                 <Disclosure.Button
-                                    className="flex items-center justify-between w-full text-left text-sm text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">
+                                    className="flex items-center justify-between w-full py-2 text-base font-medium text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">
                                     <span>{t("portfolio")}</span>
                                     <ChevronDown
-                                        className={`w-4 h-4 transition-transform ${open ? 'rotate-180' : ''}`}/>
+                                        className={`w-5 h-5 transition-transform ${open ? 'rotate-180' : ''}`}/>
                                 </Disclosure.Button>
-                                <Disclosure.Panel className="pl-4 pt-2 space-y-1">
+                                <Disclosure.Panel className="pl-4 space-y-1">
                                     {navPortfolio.map(item => (
                                         <Link
                                             key={item.to}
                                             to={item.to}
                                             onClick={() => setMenuOpen(false)}
-                                            className={`block text-sm transition
-                                            hover:text-blue-600 dark:hover:text-blue-400
-                                            ${pathname === item.to ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'text-gray-900 dark:text-white'}`}
+                                            className={`block py-1 text-sm font-normal transition ${
+                                                pathname === item.to
+                                                    ? 'text-blue-600 dark:text-blue-400 font-semibold'
+                                                    : 'text-gray-900 dark:text-white'
+                                            } hover:text-blue-600 dark:hover:text-blue-400`}
                                         >
                                             {item.label}
                                         </Link>
                                     ))}
                                 </Disclosure.Panel>
-                            </>
+                            </div>
                         )}
                     </Disclosure>
 
