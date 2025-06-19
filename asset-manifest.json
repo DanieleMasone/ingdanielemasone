@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/ingdanielemasone/static/css/main.14263604.css",
-    "main.js": "/ingdanielemasone/static/js/main.99c03c3d.js",
+    "main.js": "/ingdanielemasone/static/js/main.e0bd7d02.js",
     "static/media/daniele.jpg": "/ingdanielemasone/static/media/daniele.1537a9835d502627a957.jpg",
     "index.html": "/ingdanielemasone/index.html",
     "main.14263604.css.map": "/ingdanielemasone/static/css/main.14263604.css.map",
-    "main.99c03c3d.js.map": "/ingdanielemasone/static/js/main.99c03c3d.js.map"
+    "main.e0bd7d02.js.map": "/ingdanielemasone/static/js/main.e0bd7d02.js.map"
   },
   "entrypoints": [
     "static/css/main.14263604.css",
-    "static/js/main.99c03c3d.js"
+    "static/js/main.e0bd7d02.js"
   ]
 }
