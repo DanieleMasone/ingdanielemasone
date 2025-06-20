@@ -3,7 +3,7 @@ My Website
 
 - Live site: [https://danielemasone.github.io/ingdanielemasone/](https://danielemasone.github.io/ingdanielemasone/)
 - Documentation: [https://danielemasone.github.io/ingdanielemasone/docs](https://danielemasone.github.io/ingdanielemasone/docs)
-- Test coverage report: [https://danielemasone.github.io/ingdanielemasone/coverage](https://danielemasone.github.io/ingdanielemasone/coverage)
+- Test coverage report: [https://danielemasone.github.io/ingdanielemasone/test-coverage](https://danielemasone.github.io/ingdanielemasone/test-coverage)
 
 ---
 
@@ -54,6 +54,6 @@ npm run deploy:all
 ```
 
 # License & Permissions
-## © 2025 Daniele Masone. All rights reserved.
+### © 2025 Daniele Masone. All rights reserved.
 
 This code may not be copied, modified, or redistributed without explicit permission.
