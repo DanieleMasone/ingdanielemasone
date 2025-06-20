@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/ui/CardContent.jsx</title>
+    <title>JSDoc: Source: index.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/ui/CardContent.jsx</h1>
+    <h1 class="page-title">Source: index.js</h1>
 
     
 
@@ -26,31 +26,34 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React from "react";
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App.js';
+import './index.css';
+import './i18n/i18n';
+import i18n from "i18next";
+import {I18nextProvider} from "react-i18next";
+import {HashRouter} from 'react-router-dom';
+
+i18n.init({
+    interpolation: {escapeValue: false},
+}).catch(error => {
+    console.error('Failed to init i18n:', error);
+});
 
 /**
- * CardContent component for content section inside a card with padding and text styling.
- *
- * @param {object} props - Component properties.
- * @param {React.ReactNode} props.children - Inner content of the CardContent.
- * @param {string} [props.className] - Additional CSS classes to add to the content div.
- * @returns {JSX.Element} Content container with padding and text styles.
+ * @file Entry point of the application.
+ * @description This file initializes the React application and mounts it to the DOM.
  */
-export function CardContent({children, className = "", ...rest}) {
-    return (
-        &lt;div
-            {...rest}
-            className={`
-                p-4 sm:p-6 md:p-8
-                text-sm sm:text-base
-                text-gray-900 dark:text-gray-300
-                ${className}
-            `}
-        >
-            {children}
-        &lt;/div>
-    );
-}
+ReactDOM.createRoot(document.getElementById('root')).render(
+    &lt;React.StrictMode>
+        &lt;I18nextProvider i18n={i18n}>
+            &lt;HashRouter>
+                &lt;App/>
+            &lt;/HashRouter>
+        &lt;/I18nextProvider>
+    &lt;/React.StrictMode>
+);
 </code></pre>
         </article>
     </section>
