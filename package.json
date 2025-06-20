@@ -28,17 +28,7 @@
     "test": "react-scripts test",
     "coverage": "react-scripts test --coverage --watchAll=false",
     "doc": "jsdoc -c jsdoc.json -d docs",
-
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build -b gh-pages",
-
-    "predeploy:doc": "npm run doc",
-    "deploy:doc": "gh-pages -d docs -b gh-pages-docs",
-
-    "predeploy:coverage": "npm run coverage",
-    "deploy:coverage": "gh-pages -d coverage/lcov-report -b gh-pages-coverage",
-
-    "deploy:all": "npm run deploy && npm run deploy:doc && npm run deploy:coverage"
+    "deploy:all": "npm run build && npm run coverage && npm run doc && node scripts/deployAll.js"
   },
   "eslintConfig": {
     "extends": [
@@ -60,6 +50,8 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.21",
+    "docdash": "^2.0.2",
+    "fs-extra": "^11.3.0",
     "gh-pages": "^6.3.0",
     "jsdoc": "^4.0.4",
     "postcss": "^8.5.3",
