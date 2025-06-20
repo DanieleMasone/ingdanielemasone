@@ -16,7 +16,7 @@ i18n.init({
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
         <I18nextProvider i18n={i18n}>
-            <BrowserRouter basename="/ingdanielemasone">  {/* <-- avvolgi qui */}
+            <BrowserRouter basename="/ingdanielemasone">
                 <App/>
             </BrowserRouter>
         </I18nextProvider>
