@@ -1,5 +1,14 @@
 import {useEffect, useRef, useState} from "react";
 
+/**
+ * Read-only textarea component that auto-adjusts its height and allows toggling
+ * between collapsed (3 lines approx.) and expanded view.
+ *
+ * @param {Object} props - React component props.
+ * @param {string} [props.className] - Additional CSS class names to apply.
+ * @param {string} [props.value] - The text content displayed in the textarea.
+ * @returns {JSX.Element} The rendered textarea with optional expand/collapse button.
+ */
 export function Textarea({className = "", value = "", ...props}) {
     const [expanded, setExpanded] = useState(false);
     const [overflowing, setOverflowing] = useState(false);

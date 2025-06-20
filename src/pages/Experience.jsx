@@ -8,6 +8,17 @@ import {ChevronDown} from "lucide-react";
 import {AnimatePresence, motion} from "framer-motion";
 import PageSection from "../components/ui/PageSection";
 
+/**
+ * Experience component renders a list of professional experiences filtered by selected year.
+ *
+ * It displays year buttons to filter experiences by year extracted from experience periods.
+ * Each experience shows role, company, period, description, and a collapsible panel with technologies used.
+ *
+ * Uses i18next for translations.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered experience section with filtering and animated transitions.
+ */
 export default function Experience() {
     const {t} = useTranslation();
 

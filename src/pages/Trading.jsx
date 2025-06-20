@@ -2,6 +2,15 @@ import {useTranslation} from "react-i18next";
 import TradingPerformanceChart from "../components/ui/TradingPerformanceChart";
 import PageSection from "../components/ui/PageSection";
 
+/**
+ * Trading component renders a section with trading introduction text,
+ * description, disclaimer, a call-to-action link, and a trading performance chart.
+ *
+ * Uses translations for all textual content via react-i18next.
+ *
+ * @component
+ * @returns {JSX.Element} The Trading page section with content and chart.
+ */
 export default function Trading() {
     const {t} = useTranslation();
 

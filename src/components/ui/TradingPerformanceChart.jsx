@@ -15,6 +15,21 @@ import {
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend, Filler);
 
+/**
+ * TradingPerformanceChart component renders a line chart showing trading returns performance,
+ * either monthly or annual, with light/dark theme support.
+ *
+ * It listens for changes in the `dark` CSS class on the document element to update colors dynamically.
+ * Users can switch between monthly and annual views via a select dropdown.
+ * The chart is rendered with `react-chartjs-2` and `chart.js`.
+ * Below the chart, a summary section shows detailed monthly returns by year or annual returns,
+ * with color-coded positive/negative values.
+ *
+ * Translations are supported via react-i18next.
+ *
+ * @component
+ * @returns {JSX.Element} The trading performance chart section.
+ */
 export default function TradingPerformanceChart() {
     const {t} = useTranslation();
     const [isDark, setIsDark] = useState(() =>

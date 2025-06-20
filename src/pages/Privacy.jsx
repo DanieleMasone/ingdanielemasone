@@ -1,6 +1,17 @@
 import React from "react";
 import {useTranslation} from "react-i18next";
 
+/**
+ * Privacy component displays the privacy policy page.
+ *
+ * It uses translations from `react-i18next` to render privacy information sections,
+ * including owner details, data types collected, purposes, legal basis, recipients,
+ * data transfer, retention, user rights, cookie policy, and change notifications.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered privacy policy page
+ */
+
 export default function Privacy() {
     const {t} = useTranslation();
 

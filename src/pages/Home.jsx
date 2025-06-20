@@ -2,6 +2,18 @@ import {useTranslation} from 'react-i18next';
 import danielePhoto from '../assets/daniele.jpg';
 import {useEffect, useState} from "react";
 
+/**
+ * Home component displays an about section with a title, introductory text,
+ * experience description, and a photo with name and role.
+ *
+ * It fades in the content on mount by toggling opacity using a local state.
+ *
+ * Uses `react-i18next` for translations.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered Home section
+ */
+
 export default function Home() {
     const {t} = useTranslation();
     const [isVisible, setIsVisible] = useState(false);

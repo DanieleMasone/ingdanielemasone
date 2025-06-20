@@ -1,6 +1,22 @@
 import React from "react";
 import {useTranslation} from "react-i18next";
 
+/**
+ * CookiePolicy component renders the cookie policy page content.
+ *
+ * It uses the i18next translation hook to display localized text sections about:
+ * - What cookies are
+ * - Types of cookies used
+ * - Consent information
+ * - How to manage cookies in different browsers
+ * - User rights related to cookies
+ *
+ * The component also includes external links for cookie management instructions and a contact email.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered cookie policy page.
+ */
+
 export default function CookiePolicy() {
     const {t} = useTranslation();
 

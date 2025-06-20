@@ -6,6 +6,12 @@ import {useTranslation} from 'react-i18next';
 import {ChevronDown, Menu, X} from 'lucide-react';
 import {Disclosure} from '@headlessui/react';
 
+/**
+ * Header component with navigation, language switcher, and dark mode toggle.
+ * Supports desktop and mobile layouts with responsive menus.
+ *
+ * @returns {JSX.Element} The header element with navigation links and controls.
+ */
 export default function Header() {
     const {t} = useTranslation();
     const {pathname} = useLocation();

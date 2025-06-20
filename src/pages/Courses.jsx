@@ -7,6 +7,21 @@ import {Textarea} from "../components/ui/Textarea";
 import {useState} from "react";
 import PageSection from "../components/ui/PageSection";
 
+
+/**
+ * Courses component.
+ *
+ * Displays a paginated list of programming courses, each with title, description,
+ * duration, and technologies used.
+ *
+ * Features:
+ * - Uses i18next for translations of titles, descriptions, and UI texts.
+ * - Shows 6 courses per page with next/previous pagination buttons.
+ * - Each course is displayed inside a Card with expandable technologies section.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered Courses page section.
+ */
 export default function Courses() {
     const {t} = useTranslation();
     const coursesPerPage = 6;

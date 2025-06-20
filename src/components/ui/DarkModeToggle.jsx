@@ -1,5 +1,13 @@
 import React, {useEffect, useState} from 'react';
 
+
+/**
+ * DarkModeToggle component toggles between dark and light theme modes.
+ * It syncs the mode state with localStorage and adds/removes the 'dark' class on the root element.
+ *
+ * @component
+ * @returns {JSX.Element} A button to toggle dark mode.
+ */
 export default function DarkModeToggle() {
     const [darkMode, setDarkMode] = useState(() =>
         localStorage.getItem('theme') === 'dark'

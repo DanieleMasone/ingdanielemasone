@@ -7,23 +7,15 @@ const flags = {
 };
 
 /**
- * LanguageSwitcher component
+ * LanguageSwitcher component provides a dropdown button to switch between supported languages.
  *
- * Renders a button showing the current language with its flag.
- * Clicking the button toggles a dropdown list of available languages.
- * Selecting a language switches the app language using i18next.
+ * Shows current language with corresponding flag and allows user to select a different language
+ * from a dropdown menu. On selection, the language changes via `i18n.changeLanguage`.
  *
- * Uses React state to control dropdown visibility and react-i18next for localization.
+ * Supported languages: English ("en") and Italian ("it").
  *
- * Supported languages and flags are defined in the `flags` object.
- *
- * Behavior:
- * - Button shows current language code (uppercase) and flag.
- * - Dropdown toggles on button click.
- * - Dropdown options display language flag and name.
- * - Clicking an option changes language and closes dropdown.
- *
- * Styling is done with Tailwind CSS classes.
+ * @component
+ * @returns {JSX.Element} The language switcher UI.
  */
 export default function LanguageSwitcher() {
     const {i18n} = useTranslation();

@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 import Home from './pages/Home';
 import Experience from './pages/Experience';
 import Projects from './pages/Projects';
@@ -38,25 +38,23 @@ i18n.use(initReactI18next).init({
 
 export default function App() {
     return (
-        <Router basename="/ingdanielemasone">
-            <div
-                className="min-h-screen flex flex-col bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-white transition-colors duration-300">
-                <Header/>
-                <main className="flex-grow">
-                    <Routes>
-                        <Route path="/" element={<Home/>}/>
-                        <Route path="/experience" element={<Experience/>}/>
-                        <Route path="/projects" element={<Projects/>}/>
-                        <Route path="/courses" element={<Courses/>}/>
-                        <Route path="/trading" element={<Trading/>}/>
-                        <Route path="/testimonials" element={<Testimonials/>}/>
-                        <Route path="/privacy" element={<Privacy/>}/>
-                        <Route path="/cookie-policy" element={<CookiePolicy/>}/>
-                    </Routes>
-                </main>
-                <Footer/>
-                <CookieBanner/>
-            </div>
-        </Router>
+        <div
+            className="min-h-screen flex flex-col bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-white transition-colors duration-300">
+            <Header/>
+            <main className="flex-grow">
+                <Routes>
+                    <Route path="/" element={<Home/>}/>
+                    <Route path="/experience" element={<Experience/>}/>
+                    <Route path="/projects" element={<Projects/>}/>
+                    <Route path="/courses" element={<Courses/>}/>
+                    <Route path="/trading" element={<Trading/>}/>
+                    <Route path="/testimonials" element={<Testimonials/>}/>
+                    <Route path="/privacy" element={<Privacy/>}/>
+                    <Route path="/cookie-policy" element={<CookiePolicy/>}/>
+                </Routes>
+            </main>
+            <Footer/>
+            <CookieBanner/>
+        </div>
     );
 }

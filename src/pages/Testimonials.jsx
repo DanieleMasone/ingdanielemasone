@@ -8,6 +8,16 @@ import PageSection from "../components/ui/PageSection";
 
 const ITEMS_PER_PAGE = 6;
 
+/**
+ * Testimonials component renders a paginated list of testimonial cards.
+ * Each card displays the name, role, and a collapsible quote of a person.
+ * Pagination allows browsing through all testimonials, showing a fixed number per page.
+ *
+ * Uses translations for all textual content via react-i18next.
+ *
+ * @component
+ * @returns {JSX.Element} The Testimonials section with pagination and collapsible testimonial cards.
+ */
 export default function Testimonials() {
     const {t} = useTranslation();
     const [currentPage, setCurrentPage] = useState(1);

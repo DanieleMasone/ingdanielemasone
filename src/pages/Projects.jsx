@@ -7,6 +7,18 @@ import {Textarea} from "../components/ui/Textarea";
 import {useState} from "react";
 import PageSection from "../components/ui/PageSection";
 
+/**
+ * Projects component displays a list of projects grouped by company.
+ *
+ * Features:
+ * - Sidebar with buttons to filter projects by company.
+ * - Shows project details including name, company, period, type, and technologies used.
+ * - Each project has a collapsible panel to toggle visibility of technology stack.
+ * - Uses i18n translation for UI texts and project types.
+ *
+ * @component
+ * @returns {JSX.Element} Rendered Projects section with filtering and collapsible tech details.
+ */
 export default function Projects() {
     const {t} = useTranslation();
     const [selectedCompany, setSelectedCompany] = useState("RGI");

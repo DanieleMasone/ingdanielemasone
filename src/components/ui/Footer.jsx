@@ -2,6 +2,16 @@ import React from 'react';
 import * as icons from 'simple-icons';
 import {useTranslation} from "react-i18next";
 
+/**
+ * BrandIcon renders an SVG icon from the simple-icons set or custom SVG data.
+ *
+ * @param {object} props - Component props.
+ * @param {object} props.icon - Icon object containing `svg` string.
+ * @param {string} props.color - Fill color for the SVG.
+ * @param {string} [props.className] - Additional CSS classes.
+ * @param {number} [props.size=24] - Width and height of the icon.
+ * @returns {JSX.Element|null} SVG element or null if no valid icon.
+ */
 function BrandIcon({icon, color, className, size = 24}) {
     if (!icon || !icon.svg) return null;
 
@@ -19,6 +29,13 @@ function BrandIcon({icon, color, className, size = 24}) {
     );
 }
 
+/**
+ * Footer component with social brand icons and copyright text.
+ * Uses i18next for translations.
+ *
+ * @component
+ * @returns {JSX.Element} Footer element with icon links and copyright.
+ */
 export default function Footer() {
     const {t} = useTranslation();
 
