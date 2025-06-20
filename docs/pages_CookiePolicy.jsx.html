@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: pages/CookiePolicy.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: pages/CookiePolicy.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from "react";
+import {useTranslation} from "react-i18next";
+
+/**
+ * CookiePolicy component renders the cookie policy page content.
+ *
+ * It uses the i18next translation hook to display localized text sections about:
+ * - What cookies are
+ * - Types of cookies used
+ * - Consent information
+ * - How to manage cookies in different browsers
+ * - User rights related to cookies
+ *
+ * The component also includes external links for cookie management instructions and a contact email.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered cookie policy page.
+ */
+export default function CookiePolicy() {
+    const {t} = useTranslation();
+
+    return (
+        &lt;main className="max-w-4xl mx-auto p-8 bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-300 min-h-screen">
+            &lt;h1 className="text-4xl font-bold mb-6">{t("cookie.title")}&lt;/h1>
+
+            &lt;section className="mb-8">
+                &lt;h2 className="text-2xl font-semibold mb-2">{t("cookie.what_title")}&lt;/h2>
+                &lt;p>{t("cookie.what_text")}&lt;/p>
+            &lt;/section>
+
+            &lt;section className="mb-8">
+                &lt;h2 className="text-2xl font-semibold mb-2">{t("cookie.types_title")}&lt;/h2>
+                &lt;ul className="list-disc pl-6 space-y-2">
+                    &lt;li>
+                        &lt;strong>{t("cookie.technical_title")}:&lt;/strong> {t("cookie.technical_text")}
+                    &lt;/li>
+                    &lt;li>
+                        &lt;strong>{t("cookie.analytics_title")}:&lt;/strong> {t("cookie.analytics_text")}
+                    &lt;/li>
+                    &lt;li>
+                        &lt;strong>{t("cookie.profiling_title")}:&lt;/strong> {t("cookie.profiling_text")}
+                    &lt;/li>
+                &lt;/ul>
+            &lt;/section>
+
+            &lt;section className="mb-8">
+                &lt;h2 className="text-2xl font-semibold mb-2">{t("cookie.consent_title")}&lt;/h2>
+                &lt;p>{t("cookie.consent_text")}&lt;/p>
+            &lt;/section>
+
+            &lt;section className="mb-8">
+                &lt;h2 className="text-2xl font-semibold mb-2">{t("cookie.manage_title")}&lt;/h2>
+                &lt;p>{t("cookie.manage_text")}&lt;/p>
+                &lt;ul className="list-disc pl-6 space-y-1 mt-2">
+                    &lt;li>&lt;a className="underline"
+                           href="https://support.google.com/chrome/answer/95647"
+                           rel="noopener noreferrer"
+                           target="_blank">Chrome&lt;/a>&lt;/li>
+                    &lt;li>&lt;a className="underline"
+                           href="https://support.mozilla.org/kb/enable-and-disable-cookies-website-preferences"
+                           rel="noopener noreferrer"
+                           target="_blank">Firefox&lt;/a>&lt;/li>
+                    &lt;li>&lt;a className="underline"
+                           href="https://support.apple.com/en-us/HT201265"
+                           rel="noopener noreferrer"
+                           target="_blank">Safari&lt;/a>&lt;/li>
+                    &lt;li>&lt;a className="underline"
+                           href="https://support.microsoft.com/help/17442"
+                           rel="noopener noreferrer"
+                           target="_blank">Edge&lt;/a>&lt;/li>
+                &lt;/ul>
+            &lt;/section>
+
+            &lt;section className="mb-8">
+                &lt;h2 className="text-2xl font-semibold mb-2">{t("cookie.rights_title")}&lt;/h2>
+                &lt;p>{t("cookie.rights_text")}&lt;/p>
+                &lt;p className="mt-2">
+                    {t("cookie.contact_text")}{" "}
+                    &lt;a href="mailto:masone.daniele@gmail.com" className="text-blue-600 dark:text-blue-400 underline">
+                        masone.daniele@gmail.com
+                    &lt;/a>
+                &lt;/p>
+            &lt;/section>
+
+            &lt;footer
+                className="border-t border-gray-300 dark:border-gray-700 pt-4 text-sm text-gray-500 dark:text-gray-600 text-center">
+                {t("cookie.last_updated")}: {t("privacy.last_date_updated")}
+            &lt;/footer>
+        &lt;/main>
+    );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#BrandIcon">BrandIcon</a></li><li><a href="global.html#Card">Card</a></li><li><a href="global.html#CardContent">CardContent</a></li><li><a href="global.html#CookieBanner">CookieBanner</a></li><li><a href="global.html#Textarea">Textarea</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Fri Jun 20 2025 11:44:14 GMT+0200 (Ora legale dell’Europa centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
