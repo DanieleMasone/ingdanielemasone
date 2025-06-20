@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.21",
-    "docdash": "^2.0.2",
+    "better-docs": "^2.7.3",
     "fs-extra": "^11.3.0",
     "gh-pages": "^6.3.0",
     "jsdoc": "^4.0.4",
