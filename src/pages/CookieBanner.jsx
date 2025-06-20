@@ -13,7 +13,6 @@ import React, {useEffect, useState} from 'react';
  * @component
  * @returns {JSX.Element|null} The cookie consent banner or null if consent is already given.
  */
-
 function CookieBanner() {
     const [visible, setVisible] = useState(false);
 

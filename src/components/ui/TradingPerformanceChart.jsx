@@ -4,7 +4,6 @@ import {Line} from 'react-chartjs-2';
 import {
     CategoryScale,
     Chart as ChartJS,
-    ChartOptions,
     Filler,
     Legend,
     LinearScale,
@@ -89,7 +88,7 @@ export default function TradingPerformanceChart() {
         ],
     };
 
-    const options: ChartOptions<'line'> = {
+    const options = {
         responsive: true,
         maintainAspectRatio: false,
         scales: {
@@ -128,7 +127,7 @@ export default function TradingPerformanceChart() {
         },
     };
 
-    function generateSummary(view: 'monthly' | 'annual') {
+    function generateSummary(view) {
         if (view === 'monthly') {
             const monthlyDataByYear = {
                 2022: monthlyReturns.slice(0, 12),

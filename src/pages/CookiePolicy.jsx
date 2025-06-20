@@ -16,7 +16,6 @@ import {useTranslation} from "react-i18next";
  * @component
  * @returns {JSX.Element} The rendered cookie policy page.
  */
-
 export default function CookiePolicy() {
     const {t} = useTranslation();
 
