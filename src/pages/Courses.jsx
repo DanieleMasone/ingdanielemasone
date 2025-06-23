@@ -25,7 +25,7 @@ import {ExpandableText} from "../components/ui/ExpandableText";
  */
 export default function Courses() {
     const {t} = useTranslation();
-    const coursesPerPage = 6;
+    const coursesPerPage = 4;
     const [page, setPage] = useState(1);
 
     const courses = [
@@ -124,7 +124,7 @@ export default function Courses() {
 
     return (
         <PageSection title={t("courses_page.title")}>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
                 {displayedCourses.map((course, idx) => (
                     <Card
                         key={idx}
@@ -187,7 +187,7 @@ export default function Courses() {
                         ← {t("previous")}
                     </button>
 
-                    <span className="px-4 py-2 text-sm text-gray-600 dark:text-gray-300">
+                    <span data-testid="pagination-info" className="px-4 py-2 text-sm text-gray-600 dark:text-gray-300">
                         {page} / {totalPages}
                     </span>
 
