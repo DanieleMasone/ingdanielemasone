@@ -135,7 +135,9 @@
 <a name='L70'></a><a href='#L70'>70</a>
 <a name='L71'></a><a href='#L71'>71</a>
 <a name='L72'></a><a href='#L72'>72</a>
-<a name='L73'></a><a href='#L73'>73</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -157,32 +159,33 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">98x</span>
-<span class="cline-any cline-yes">98x</span>
-<span class="cline-any cline-yes">98x</span>
-<span class="cline-any cline-yes">98x</span>
+<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-yes">82x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">98x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">82x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">98x</span>
-<span class="cline-any cline-yes">84x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">84x</span>
-<span class="cline-any cline-yes">84x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-yes">72x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">72x</span>
+<span class="cline-any cline-yes">72x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">84x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">98x</span>
+<span class="cline-any cline-yes">72x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -207,7 +210,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {useState, useRef, useEffect} from "react";
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {useEffect, useRef, useState} from "react";
 import {useTranslation} from "react-i18next";
 import clsx from "clsx";
 &nbsp;
@@ -268,13 +272,15 @@ export function ExpandableText({value = <span class="branch-0 cbranch-no" title=
             &lt;/p&gt;
 &nbsp;
             {showButton &amp;&amp; (
-<span class="branch-1 cbranch-no" title="branch not covered" >                &lt;button</span>
-                    onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setExpanded(!expanded)}</span>
-                    className="mt-1 text-xs text-blue-600 dark:text-blue-400 hover:underline"
-                    type="button"
-                &gt;
-                    {expanded ? t("showLess") : t("showMore")}
-                &lt;/button&gt;
+<span class="branch-1 cbranch-no" title="branch not covered" >                &lt;div className="mt-1 flex justify-end"&gt;</span>
+                    &lt;button
+                        onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setExpanded(!expanded)}</span>
+                        className="text-xs text-blue-600 dark:text-blue-400 hover:underline"
+                        type="button"
+                    &gt;
+                        {expanded ? t("showLess") : t("showMore")}
+                    &lt;/button&gt;
+                &lt;/div&gt;
             )}
         &lt;/div&gt;
     );
@@ -286,7 +292,7 @@ export function ExpandableText({value = <span class="branch-0 cbranch-no" title=
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-06-23T09:31:17.659Z
+                at 2025-06-23T10:41:55.732Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
