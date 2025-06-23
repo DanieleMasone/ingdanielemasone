@@ -155,9 +155,16 @@ export default function Testimonials() {
                                     <>
                                         <Disclosure.Button
                                             className="flex justify-between w-full items-center text-left">
-                                            <div>
-                                                <p className="font-semibold">{t(testi.nameKey)}</p>
-                                                <p className="text-sm text-gray-500 dark:text-gray-400">{t(testi.roleKey)}</p>
+                                            <div className="flex items-center space-x-4">
+                                                <img
+                                                    src={`https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(t(testi.nameKey))}`}
+                                                    alt={`${t(testi.nameKey)} avatar`}
+                                                    className="w-10 h-10 rounded-full ring-1 ring-gray-300 dark:ring-gray-700 bg-white"
+                                                />
+                                                <div>
+                                                    <p className="font-semibold">{t(testi.nameKey)}</p>
+                                                    <p className="text-sm text-gray-500 dark:text-gray-400">{t(testi.roleKey)}</p>
+                                                </div>
                                             </div>
                                             <ChevronDown className={`h-5 w-5 transform ${open ? "rotate-180" : ""}`}/>
                                         </Disclosure.Button>

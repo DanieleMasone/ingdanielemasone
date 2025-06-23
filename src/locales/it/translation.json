@@ -216,42 +216,42 @@
   "testimonials_people": {
     "mirko": {
       "name": "Mirko Buccoliero",
-      "role": "Cyber Security Specialist",
+      "role": "Cyber Security Engineer @ Repower Italia",
       "quote": "Daniele è sempre disponibile per aiutarti e farti comprendere tutto ciò di cui hai bisogno in ambito informatico. Molto preparato e gentile."
     },
     "alessia": {
       "name": "Alessia Pecoraro",
-      "role": "HR",
+      "role": "HR Generalist @ Etjca S.p.A.",
       "quote": "Daniele è un vero professionista del settore. Si è dimostrato molto disponibile."
     },
     "federico": {
       "name": "Federico Selva",
-      "role": "Junior SOC Analyst",
+      "role": "Cybersecurity Report Assistant (Entry-Level)",
       "quote": "Sempre gentile nelle risposte e molto preparato negli argomenti tecnici! Davvero un grande, chiaro nello spiegare nei suoi corsi. Lo consiglio vivamente!"
     },
     "daniela": {
       "name": "Daniela Tagliavia d'Aragona",
-      "role": "Esperto Economico Finanziario - Area Funzionari e Elevata Qualificazione",
+      "role": "Area Servizi e Affari Generali - Area Funzionari e Elevata Qualificazione",
       "quote": "Ho conosciuto Daniele personalmente e ho sempre avuto modo di parlare con lui, chiedendogli consigli e pareri sul mondo del lavoro, su come svolgere i colloqui e sul tipo di formazione su cui investire (corsi, lezioni frontali, ecc.). Appassionato, costante, amante dello studio, si dimostra attento, scrupoloso, competente ed informato. Mi ha accompagnato proattivamente lungo il percorso di orientamento al lavoro, tenendo conto delle mie attitudini e dei miei desideri professionali."
     },
     "fabio": {
       "name": "Fabio Lo Guasto",
-      "role": "Junior Software Developer - Studente Junior Java developer",
+      "role": "Store Manager",
       "quote": "Daniele è il mio insegnante con il quale ho iniziato da zero lo studio di Spring-boot , Maven, Git ed il linguaggio Sql. Inoltre ho seguito i suoi corsi su Udemy di Java ed Sql.\nSono davvero soddisfatto perchè è preparato davvero su tutto, sempre puntuale e sempre disponibile.\nIn 5 mesi di lezioni non ne ha mai saltata una.\nHo frequentato due scuole private pagate a caro prezzo facendo lezioni one to one, ma nessuna regge il confronto con lui, inoltre mi sono trovato molto bene con il suo metodo di insegnamento.\nSono stato molto fortunato perchè è davvero una garanzia.\nGrazie mille e andiamo avanti verso il prossimo obbiettivo."
     },
     "antonio": {
       "name": "Antonio Signorello",
-      "role": "HR Project Manager / Talent Acquisition / Smart Worker / Blogger",
+      "role": "HR Senior Recruiter/ Psicologo del lavoro/ HR Specialist",
       "quote": "Daniele, è un ottimo coach: motivatore, comunicatore, risolutore di problemi. Conosciuto prima su LinkedIn, poi come formatore al corso java, fin da subito apparso umile, garbato. Solido know- how lo completa come professionista"
     },
     "andrea ": {
       "name": "Andrea Motta",
-      "role": "Cyber Security Soc Analyst",
+      "role": "Consultant Risk Advisory @ Deloitte",
       "quote": "Molto disponibile nel comprendere le esigenze dello studente e pronto a rispondere alle domande relative al programma dei suoi corsi"
     },
     "francescaM": {
       "name": "Francesca Marasco",
-      "role": "Concept Manager",
+      "role": "Corporate Packaging Specialist @ Mapei",
       "quote": "Daniele è una persona disponibile e molto preparata. È stata un'esperienza positiva!"
     },
     "luca": {
@@ -271,7 +271,7 @@
     },
     "riccardo": {
       "name": "Riccardo Di Chello",
-      "role": "Technical Lead",
+      "role": "Technical Lead @ Unicredit",
       "quote": "Ho lavorato con Daniele nello stesso team di sviluppo e posso dire fin dall'inizio che è un ottimo compagno di squadra oltre che un abile sviluppatore front-end. Sempre pronto ad aiutare e a contribuire a creare un buon ambiente lavorativo, è appassionato e concreto. Sono felice di trovarlo qui!"
     },
     "lucaC": {
@@ -286,22 +286,22 @@
     },
     "andreaM": {
       "name": "Andrea Montoli",
-      "role": "Practice Principal, Fulfilment and Telco Cloud",
+      "role": "Lead of Global Systems Integration and Telco Cloud Practice @ HCLTech CTG.",
       "quote": "Daniele ha lavorato nel mio team e ha fornito ottime competenze tecniche. Ha dimostrato di essere competente, lavoratore e appassionato di tecnologia. Sponsorizzo la sua competenza e capacità e sono disponibile per qualsiasi richiesta."
     },
     "daniele": {
       "name": "Daniele Montesano",
-      "role": "Sofware Engineer | VR EngineerSofware Engineer | VR Engineer",
+      "role": "Sofware Engineer | VR Engineer",
       "quote": "Ho frequentato il corso di ingegneria informatica con Daniele e durante questo periodo ho avuto la possibilità di lavorare su alcuni progetti, uno di questi è stata la trasposizione di un gioco da tavolo nella sua versione digitale, con lui. Ciò che mi ha colpito di più di lui, è la sua abilità nel lavoro di squadra. Anche se non eravamo nello stesso gruppo di lavoro, era sempre disponibile alla discussione e allo scambio di idee sulla progettazione e implementazione del software."
     },
     "marco": {
       "name": "Marco Gonella",
-      "role": "Sviluppatore front-end",
+      "role": "Lead of front-end @ Vedrai SpA",
       "quote": "Daniele era il mio collega del team di sviluppo che ha lavorato su un progetto agile (adottando la metodologia SAFe) per l'implementazione di una GUI web complessa e reattiva con Node.js + AngularJS, abbiamo lavorato insieme per 1 anno. Daniele è un esperto sviluppatore full-stack, persona dedicata e precisa e ha notevoli capacità nel relazionarsi a situazioni complicate e critiche, proponendo sempre le migliori soluzioni. È un compagno di lavoro molto professionale con cui lavorare."
     },
     "raffaele": {
       "name": "Raffaele Calandrella",
-      "role": "Head of Architecture",
+      "role": "Software Architect",
       "quote": "Professionista competente e soprattutto molto perseverante. Con particolare attenzione alla qualità del lavoro e un'ottima attitudine al lavoro di squadra. Ho avuto l'opportunità di lavorare con Daniele e di apprezzarne sia le qualità professionali che umane. In breve tempo ha potuto inserirsi e dare il suo contributo, distinguendosi nel team per dedizione e qualità del lavoro."
     },
     "francescaR": {
@@ -311,22 +311,22 @@
     },
     "mattia": {
       "name": "Mattia Capitanio",
-      "role": "Software Engineer",
+      "role": "Software Engineer @ SIO S.P.A.",
       "quote": "Daniele è un ingegnere informatico tecnicamente preparato, una persona collaborativa e dedita, molto appassionato di nuove tecnologie. Ho avuto l'opportunità di lavorare con lui nello stesso team: è sempre stato fortemente motivato e orientato agli obiettivi, in grado di realizzare i suoi progetti in tempo! Un compagno di lavoro molto professionale con cui lavorare."
     },
     "davide": {
       "name": "Davide Perini",
-      "role": "Enterprise Architect",
+      "role": "Enterprise Architect @ Sky",
       "quote": "Daniele è un ingegnere informatico appassionato, prezioso e pragmatico, la cui esperienza è molto utile in ambienti dinamici e frenetici in cui una soluzione deve essere pensata, implementata e rilasciata rapidamente per apportare valore al cliente il prima possibile. È un bravo compagno di squadra, sempre pronto allo scambio di idee e alla condivisione di conoscenze, consiglio Daniele a tutti coloro che necessitano di un professionista affidabile."
     },
     "jacopo": {
       "name": "Jacopo Andrea La Torre",
-      "role": "Senior Technical Consultant",
+      "role": "Senior Technical Consultant @ Hewlett Packard Enterprise",
       "quote": "Daniele era un membro del mio team di sviluppo, lavorando come sviluppatore front-end su un progetto agile (adottando la metodologia SAFe) per l'implementazione di una GUI web responsive complessa con Node.js + Angular. Daniele è una persona dedicata, appassionata sull’apprendimento di nuove tecnologie, linguaggi e modelli di sviluppo. Ha dimostrato costante impegno e precisione nel rispetto degli obiettivi e delle scadenze, buone conoscenze tecniche, una solida autonomia nel problem solving e nello svolgimento dei compiti di programmazione assegnati. Raccomando Daniele anche per il suo atteggiamento costantemente positivo e la sua capacità di lavorare in squadra valorizzandosi sempre. Riconosciuto ed apprezzato dai colleghi per serietà e dedizione"
     },
     "yuri": {
       "name": "Yuri Blanc",
-      "role": "Techincal Architect - Frontend Lead - AWS Certified Solutions Architect",
+      "role": "Lead Architect @ RGI",
       "quote": "Daniele è uno sviluppatore altamente competente, attento ai dettagli e molto appassionato. È anche un ottimo insegnante che ha prodotto diversi corsi online su Udemy. Lavorando insieme posso affermare che è molto determinato nello svolgere i compiti, anche quelli più difficili, con diligenza. Quando e se incontra difficoltà è molto ricettivo ai suggerimenti e successivamente propone nuove soluzioni o miglioramenti in autonomia."
     }
   }
