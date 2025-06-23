@@ -34,7 +34,8 @@ function BrandIcon({icon, color, className, size = 24}) {
  * Uses i18next for translations.
  *
  * @component
- * @returns {JSX.Element} Footer element with icon links and copyright.
+ * @module components/ui/Footer
+ * @returns {JSX.Element} The Footer element with icon links and copyright.
  */
 export default function Footer() {
     const {t} = useTranslation();

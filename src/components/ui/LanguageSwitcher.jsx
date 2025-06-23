@@ -15,6 +15,7 @@ const flags = {
  * Supported languages: English ("en") and Italian ("it").
  *
  * @component
+ * @module components/ui/LanguageSwitcher
  * @returns {JSX.Element} The language switcher UI.
  */
 export default function LanguageSwitcher() {

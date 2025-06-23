@@ -16,6 +16,7 @@ const ITEMS_PER_PAGE = 6;
  * Uses translations for all textual content via react-i18next.
  *
  * @component
+ * @module pages/Testimonials
  * @returns {JSX.Element} The Testimonials section with pagination and collapsible testimonial cards.
  */
 export default function Testimonials() {

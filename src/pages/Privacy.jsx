@@ -9,9 +9,9 @@ import {useTranslation} from "react-i18next";
  * data transfer, retention, user rights, cookie policy, and change notifications.
  *
  * @component
+ * @module pages/Privacy
  * @returns {JSX.Element} The rendered privacy policy page
  */
-
 export default function Privacy() {
     const {t} = useTranslation();
 

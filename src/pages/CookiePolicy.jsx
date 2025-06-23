@@ -14,6 +14,7 @@ import {useTranslation} from "react-i18next";
  * The component also includes external links for cookie management instructions and a contact email.
  *
  * @component
+ * @module pages/CookiePolicy
  * @returns {JSX.Element} The rendered cookie policy page.
  */
 export default function CookiePolicy() {

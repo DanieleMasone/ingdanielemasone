@@ -1,12 +1,16 @@
 import React from "react";
 
 /**
- * Generic Card component for containers with default style.
+ * Generic Card component for containers with default styling.
+ *
+ * @component
+ * @module components/ui/Card
  *
  * @param {object} props - Component properties.
  * @param {React.ReactNode} props.children - Inner content of the card.
- * @param {string} [props.className] - Additional CSS classes to add to the card.
- * @returns {JSX.Element} Card with basic styles and content.
+ * @param {string} [props.className] - Additional CSS classes to add to the card container.
+ * @param {object} [props.rest] - Other props to spread on the container div (e.g., event handlers, data attributes).
+ * @returns {JSX.Element} Card with basic styles and wrapped content.
  */
 export function Card({children, className = "", ...rest}) {
     return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import {fireEvent, render, screen} from '@testing-library/react';
+import {fireEvent, render, screen, within} from '@testing-library/react';
 import {MemoryRouter} from 'react-router-dom';
 import Header from './Header';
 
@@ -65,6 +65,79 @@ describe('Header component', () => {
         renderHeader('/');
         expect(screen.getByTestId('language-switcher')).toBeInTheDocument();
         expect(screen.getByTestId('dark-mode-toggle')).toBeInTheDocument();
+    });
+
+    describe('Header component - mobile menu', () => {
+        beforeEach(() => {
+            // Render at root, mobile menu closed initially
+            render(
+                <MemoryRouter initialEntries={['/']}>
+                    <Header/>
+                </MemoryRouter>
+            );
+        });
+
+        test('mobile menu toggle button opens and closes menu', () => {
+            const toggleBtn = screen.getByLabelText(/toggle mobile menu/i);
+
+            // Mobile menu not initially rendered
+            expect(screen.queryByTestId('mobile-menu')).not.toBeInTheDocument();
+
+            // Open menu
+            fireEvent.click(toggleBtn);
+            const mobileMenu = screen.getByTestId('mobile-menu');
+            expect(within(mobileMenu).getByText('Portfolio')).toBeInTheDocument();
+
+            // Close menu
+            fireEvent.click(toggleBtn);
+            expect(screen.queryByTestId('mobile-menu')).not.toBeInTheDocument();
+        });
+
+        test('mobile menu highlights active "Home" link and closes menu on link click', () => {
+            const toggleBtn = screen.getByLabelText(/toggle mobile menu/i);
+            fireEvent.click(toggleBtn);
+
+            const mobileMenu = screen.getByTestId('mobile-menu');
+            const homeLink = within(mobileMenu).getByText('Home');
+            expect(homeLink).toHaveClass('text-blue-600');
+
+            fireEvent.click(homeLink);
+
+            // Menu should close after click, then floating menu disappears
+            expect(screen.queryByTestId('mobile-menu')).not.toBeInTheDocument();
+        });
+
+        test('mobile portfolio dropdown expands and collapses', () => {
+            const toggleBtn = screen.getByLabelText(/toggle mobile menu/i);
+            fireEvent.click(toggleBtn);
+
+            const mobileMenu = screen.getByTestId('mobile-menu');
+            const portfolioButton = within(mobileMenu).getByRole('button', {name: /portfolio/i});
+
+            // Initially panel closed
+            expect(within(mobileMenu).queryByText('Experience')).not.toBeInTheDocument();
+
+            fireEvent.click(portfolioButton);
+            expect(within(mobileMenu).getByText('Experience')).toBeInTheDocument();
+
+            fireEvent.click(portfolioButton);
+            expect(within(mobileMenu).queryByText('Experience')).not.toBeInTheDocument();
+        });
+
+        test('clicking portfolio links in mobile menu closes menu', () => {
+            const toggleBtn = screen.getByLabelText(/toggle mobile menu/i);
+            fireEvent.click(toggleBtn);
+
+            const mobileMenu = screen.getByTestId('mobile-menu');
+            const portfolioButton = within(mobileMenu).getByRole('button', {name: /portfolio/i});
+            fireEvent.click(portfolioButton);
+
+            const experienceLink = within(mobileMenu).getByText('Experience');
+            fireEvent.click(experienceLink);
+
+            // After clicking the mobile menu should disappear
+            expect(screen.queryByTestId('mobile-menu')).not.toBeInTheDocument();
+        });
     });
 
 });

@@ -36,6 +36,10 @@ i18n.use(initReactI18next).init({
     console.error('Failed to init i18n:', error);
 });
 
+/**
+ * @file Entry point of the application.
+ * @description This file initializes the React application and mounts it to the DOM.
+ */
 export default function App() {
     return (
         <div

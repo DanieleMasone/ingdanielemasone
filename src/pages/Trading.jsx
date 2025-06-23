@@ -9,6 +9,7 @@ import PageSection from "../components/ui/PageSection";
  * Uses translations for all textual content via react-i18next.
  *
  * @component
+ * @module pages/Trading
  * @returns {JSX.Element} The Trading page section with content and chart.
  */
 export default function Trading() {

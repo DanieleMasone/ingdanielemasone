@@ -10,6 +10,8 @@ import {Disclosure} from '@headlessui/react';
  * Header component with navigation, language switcher, and dark mode toggle.
  * Supports desktop and mobile layouts with responsive menus.
  *
+ * @component
+ * @module components/ui/Header
  * @returns {JSX.Element} The header element with navigation links and controls.
  */
 export default function Header() {
@@ -99,54 +101,79 @@ export default function Header() {
             {/* Mobile menu */}
             {menuOpen && (
                 <div
-                    className="md:hidden px-4 pb-4 space-y-3 bg-gray-100 dark:bg-gray-800 border-t border-gray-300 dark:border-gray-700">
-                    {navMain.map(item => (
+                    data-testid="mobile-menu"
+                    className="md:hidden px-4 pt-4 pb-6 bg-gray-100 dark:bg-gray-800 border-t border-gray-300 dark:border-gray-700 space-y-4">
+
+                    {/* Top row: Home on left, Lang & Theme on right */}
+                    <div className="flex justify-between items-center">
                         <Link
-                            key={item.to}
-                            to={item.to}
+                            to="/"
                             onClick={() => setMenuOpen(false)}
-                            className={`block py-2 rounded text-base font-medium transition ${
-                                pathname === item.to
+                            className={`text-base font-medium transition ${
+                                pathname === '/'
                                     ? 'text-blue-600 dark:text-blue-400 font-semibold'
                                     : 'text-gray-900 dark:text-white'
-                            } hover:bg-gray-200 dark:hover:bg-gray-700`}
+                            } hover:text-blue-600 dark:hover:text-blue-400`}
                         >
-                            {item.label}
+                            {t("home")}
                         </Link>
-                    ))}
 
-                    <Disclosure>
-                        {({open}) => (
-                            <div>
-                                <Disclosure.Button
-                                    className="flex items-center justify-between w-full py-2 text-base font-medium text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">
-                                    <span>{t("portfolio")}</span>
-                                    <ChevronDown
-                                        className={`w-5 h-5 transition-transform ${open ? 'rotate-180' : ''}`}/>
-                                </Disclosure.Button>
-                                <Disclosure.Panel className="pl-4 space-y-1">
-                                    {navPortfolio.map(item => (
-                                        <Link
-                                            key={item.to}
-                                            to={item.to}
-                                            onClick={() => setMenuOpen(false)}
-                                            className={`block py-1 text-sm font-normal transition ${
-                                                pathname === item.to
-                                                    ? 'text-blue-600 dark:text-blue-400 font-semibold'
-                                                    : 'text-gray-900 dark:text-white'
-                                            } hover:text-blue-600 dark:hover:text-blue-400`}
-                                        >
-                                            {item.label}
-                                        </Link>
-                                    ))}
-                                </Disclosure.Panel>
-                            </div>
-                        )}
-                    </Disclosure>
+                        <div className="flex items-center space-x-4">
+                            <LanguageSwitcher/>
+                            <DarkModeToggle/>
+                        </div>
+                    </div>
 
-                    <div className="flex items-center justify-between pt-3">
-                        <LanguageSwitcher/>
-                        <DarkModeToggle/>
+                    {/* Nav items (escluso home) */}
+                    <div className="space-y-2">
+                        {navMain
+                            .filter(item => item.to !== '/') // evitiamo doppio "home"
+                            .map(item => (
+                                <Link
+                                    key={item.to}
+                                    to={item.to}
+                                    onClick={() => setMenuOpen(false)}
+                                    className={`block py-2 rounded text-base font-medium transition ${
+                                        pathname === item.to
+                                            ? 'text-blue-600 dark:text-blue-400 font-semibold'
+                                            : 'text-gray-900 dark:text-white'
+                                    } hover:bg-gray-200 dark:hover:bg-gray-700`}
+                                >
+                                    {item.label}
+                                </Link>
+                            ))}
+                    </div>
+
+                    {/* Portfolio in basso a sinistra */}
+                    <div className="pt-4">
+                        <Disclosure>
+                            {({open}) => (
+                                <>
+                                    <Disclosure.Button
+                                        className="flex items-center justify-between w-full py-2 text-base font-medium text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">
+                                        <span>{t("portfolio")}</span>
+                                        <ChevronDown
+                                            className={`w-5 h-5 transition-transform ${open ? 'rotate-180' : ''}`}/>
+                                    </Disclosure.Button>
+                                    <Disclosure.Panel className="pl-4 space-y-1">
+                                        {navPortfolio.map(item => (
+                                            <Link
+                                                key={item.to}
+                                                to={item.to}
+                                                onClick={() => setMenuOpen(false)}
+                                                className={`block py-1 text-sm font-normal transition ${
+                                                    pathname === item.to
+                                                        ? 'text-blue-600 dark:text-blue-400 font-semibold'
+                                                        : 'text-gray-900 dark:text-white'
+                                                } hover:text-blue-600 dark:hover:text-blue-400`}
+                                            >
+                                                {item.label}
+                                            </Link>
+                                        ))}
+                                    </Disclosure.Panel>
+                                </>
+                            )}
+                        </Disclosure>
                     </div>
                 </div>
             )}

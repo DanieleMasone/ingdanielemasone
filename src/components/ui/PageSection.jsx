@@ -5,6 +5,9 @@ import React from "react";
  *
  * It applies consistent padding and max-width styles and displays the title prominently.
  *
+ * @component
+ * @module components/ui/PageSection
+ *
  * @param {Object} props
  * @param {string} props.title - The title text displayed as a section heading.
  * @param {React.ReactNode} props.children - The content inside the section.

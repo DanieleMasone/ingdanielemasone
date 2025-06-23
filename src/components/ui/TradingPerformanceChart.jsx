@@ -27,6 +27,7 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip,
  * Translations are supported via react-i18next.
  *
  * @component
+ * @module components/ui/TradingPerformanceChart
  * @returns {JSX.Element} The trading performance chart section.
  */
 export default function TradingPerformanceChart() {

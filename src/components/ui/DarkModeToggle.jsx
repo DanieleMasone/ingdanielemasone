@@ -6,6 +6,7 @@ import React, {useEffect, useState} from 'react';
  * It syncs the mode state with localStorage and adds/removes the 'dark' class on the root element.
  *
  * @component
+ * @module components/ui/DarkModeToggle
  * @returns {JSX.Element} A button to toggle dark mode.
  */
 export default function DarkModeToggle() {

@@ -11,6 +11,7 @@ import React, {useEffect, useState} from 'react';
  * - When user clicks "Accept", stores consent in localStorage and hides the banner.
  *
  * @component
+ * @module pages/CookieBanner
  * @returns {JSX.Element|null} The cookie consent banner or null if consent is already given.
  */
 function CookieBanner() {

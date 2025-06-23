@@ -3,9 +3,9 @@ import {Card} from "../components/ui/Card";
 import {CardContent} from "../components/ui/CardContent";
 import {Disclosure} from '@headlessui/react';
 import {ChevronDown} from 'lucide-react';
-import {Textarea} from "../components/ui/Textarea";
 import {useState} from "react";
 import PageSection from "../components/ui/PageSection";
+import {ExpandableText} from "../components/ui/ExpandableText";
 
 /**
  * Projects component displays a list of projects grouped by company.
@@ -17,6 +17,7 @@ import PageSection from "../components/ui/PageSection";
  * - Uses i18n translation for UI texts and project types.
  *
  * @component
+ * @module pages/Projects
  * @returns {JSX.Element} Rendered Projects section with filtering and collapsible tech details.
  */
 export default function Projects() {
@@ -158,8 +159,9 @@ export default function Projects() {
                                 <p className="text-gray-700 dark:text-gray-400">{proj.company}</p>
                                 <p className="text-sm mb-2 text-gray-600 dark:text-gray-500">{proj.period}</p>
                                 {proj.type && (
-                                    <Textarea
+                                    <ExpandableText
                                         value={t(`project_types.${proj.type}`, proj.type)}
+                                        maxLines={3}
                                         className="mb-2 text-sm"
                                     />
                                 )}

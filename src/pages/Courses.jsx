@@ -3,9 +3,9 @@ import {Card} from "../components/ui/Card";
 import {CardContent} from "../components/ui/CardContent";
 import {Disclosure} from '@headlessui/react';
 import {ChevronDown} from 'lucide-react';
-import {Textarea} from "../components/ui/Textarea";
 import {useState} from "react";
 import PageSection from "../components/ui/PageSection";
+import {ExpandableText} from "../components/ui/ExpandableText";
 
 
 /**
@@ -20,6 +20,7 @@ import PageSection from "../components/ui/PageSection";
  * - Each course is displayed inside a Card with expandable technologies section.
  *
  * @component
+ * @module pages/Courses
  * @returns {JSX.Element} The rendered Courses page section.
  */
 export default function Courses() {
@@ -141,10 +142,10 @@ export default function Courses() {
                                 </a>
                             </h3>
 
-                            <Textarea
-                                className="mb-2 mt-2 cursor-default"
+                            <ExpandableText
                                 value={t(course.descKey)}
-                                readOnly
+                                maxLines={3}
+                                className="mb-2 mt-2 cursor-default"
                             />
 
                             <p className="text-sm text-gray-500 dark:text-gray-400 font-mono mb-2">

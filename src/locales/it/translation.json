@@ -17,6 +17,8 @@
   "home_description": "Realizzo applicazioni scalabili, mantenibili e sicure. Lavoro con tecnologie moderne lato front-end e back-end, seguendo i principi dell'architettura pulita e metodologie Agile.",
   "projects_title": "Progetti",
   "show_technologies": "Mostra tecnologie",
+  "showMore": "Mostra tutto ⋯",
+  "showLess": "Mostra meno ▲",
   "project_types": {
     "Enterprise Portal": "Fastweb Enterprise Portal Development",
     "IoT Workplace Booking": "Portale web in grado di gestire le prenotazioni delle sale riunioni e/o delle postazioni di lavoro personalizzandole con accessori (aria condizionata, luci, proiettore...).\nLa raccolta di informazioni da questi oggetti consente di monitorare l'intero ambiente.",

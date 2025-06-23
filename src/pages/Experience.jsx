@@ -2,11 +2,11 @@ import {useTranslation} from "react-i18next";
 import {useState} from "react";
 import {Card} from "../components/ui/Card";
 import {CardContent} from "../components/ui/CardContent";
-import {Textarea} from "../components/ui/Textarea";
 import {Disclosure} from "@headlessui/react";
 import {ChevronDown} from "lucide-react";
 import {AnimatePresence, motion} from "framer-motion";
 import PageSection from "../components/ui/PageSection";
+import {ExpandableText} from "../components/ui/ExpandableText";
 
 /**
  * Experience component renders a list of professional experiences filtered by selected year.
@@ -17,6 +17,7 @@ import PageSection from "../components/ui/PageSection";
  * Uses i18next for translations.
  *
  * @component
+ * @module pages/Experience
  * @returns {JSX.Element} The rendered experience section with filtering and animated transitions.
  */
 export default function Experience() {
@@ -142,10 +143,10 @@ export default function Experience() {
                                 <p className="text-sm mb-2 text-gray-600 dark:text-gray-500">{exp.period}</p>
 
                                 {exp.description && (
-                                    <Textarea
+                                    <ExpandableText
                                         value={exp.description}
-                                        className="mb-2 text-sm bg-transparent text-gray-800 dark:text-gray-200"
-                                        readOnly
+                                        maxLines={3}
+                                        className="mb-2 text-sm text-gray-800 dark:text-gray-200 bg-transparent"
                                     />
                                 )}
 
