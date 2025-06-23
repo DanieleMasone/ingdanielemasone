@@ -128,7 +128,48 @@
 <a name='L63'></a><a href='#L63'>63</a>
 <a name='L64'></a><a href='#L64'>64</a>
 <a name='L65'></a><a href='#L65'>65</a>
-<a name='L66'></a><a href='#L66'>66</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -145,14 +186,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -208,7 +244,6 @@ import {useEffect, useState} from "react";
  * @component
  * @returns {JSX.Element} The rendered Home section
  */
-&nbsp;
 export default function Home() {
     const {t} = useTranslation();
     const [isVisible, setIsVisible] = useState(false);
@@ -224,21 +259,40 @@ export default function Home() {
                     isVisible ? "opacity-100" : "opacity-0"
                 }`}
             &gt;
-                {/* Text content */}
-                &lt;div className="flex flex-col justify-center text-center md:text-left"&gt;
-                    &lt;h2 className="text-3xl sm:text-4xl font-extrabold mb-4 sm:mb-6 text-gray-900 dark:text-white tracking-tight leading-tight"&gt;
+                {/* Left column: title + description */}
+                &lt;div className="order-1 md:order-1 flex flex-col justify-center text-center md:text-left"&gt;
+                    &lt;h2 className="text-3xl sm:text-4xl font-extrabold mb-4 sm:mb-6 text-gray-900 dark:text-white tracking-tight leading-tight order-1"&gt;
                         {t("about_title")}
                     &lt;/h2&gt;
-                    &lt;p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 mb-4 sm:mb-6 leading-relaxed"&gt;
+&nbsp;
+                    {/* Avatar visible only on mobile, immediately after the title */}
+                    &lt;div className="order-2 md:hidden flex justify-center mb-4"&gt;
+                        &lt;div
+                            className="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-4 sm:p-6 w-full max-w-xs sm:max-w-sm"&gt;
+                            &lt;img
+                                src={danielePhoto}
+                                alt="Daniele Masone"
+                                className="rounded-full w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mx-auto mb-4 sm:mb-6 object-cover shadow-md hover:scale-105 transition-transform duration-300"
+                            /&gt;
+                            &lt;h3 className="text-lg sm:text-xl font-semibold text-center text-gray-900 dark:text-white mb-1 sm:mb-2"&gt;
+                                Daniele Masone
+                            &lt;/h3&gt;
+                            &lt;p className="text-center text-gray-600 dark:text-gray-400 text-xs sm:text-sm"&gt;
+                                Senior Software Engineer / Technical Architect FE
+                            &lt;/p&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+&nbsp;
+                    &lt;p className="order-3 text-base sm:text-lg text-gray-700 dark:text-gray-300 mb-4 sm:mb-6 leading-relaxed"&gt;
                         {t("about_intro")}
                     &lt;/p&gt;
-                    &lt;p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed"&gt;
+                    &lt;p className="order-4 text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed"&gt;
                         {t("about_experience")}
                     &lt;/p&gt;
                 &lt;/div&gt;
 &nbsp;
-                {/* Image + info */}
-                &lt;div className="flex items-center justify-center"&gt;
+                {/* Right column: desktop avatar only */}
+                &lt;div className="order-2 hidden md:flex items-center justify-center"&gt;
                     &lt;div
                         className="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-4 sm:p-6 w-full max-w-xs sm:max-w-sm"&gt;
                         &lt;img
@@ -265,7 +319,7 @@ export default function Home() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-06-20T14:21:37.244Z
+                at 2025-06-23T08:54:27.609Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

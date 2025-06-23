@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>pages/Projects.jsx - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-components_ui_Card.html">components/ui/Card</a></li><li><a href="module-components_ui_CardContent.html">components/ui/CardContent</a></li><li><a href="module-components_ui_DarkModeToggle.html">components/ui/DarkModeToggle</a></li><li><a href="module-components_ui_ExpandableText.html">components/ui/ExpandableText</a></li><li><a href="module-components_ui_Footer.html">components/ui/Footer</a></li><li><a href="module-components_ui_Header.html">components/ui/Header</a></li><li><a href="module-components_ui_LanguageSwitcher.html">components/ui/LanguageSwitcher</a></li><li><a href="module-components_ui_PageSection.html">components/ui/PageSection</a></li><li><a href="module-components_ui_TradingPerformanceChart.html">components/ui/TradingPerformanceChart</a></li><li><a href="module-pages_CookieBanner.html">pages/CookieBanner</a></li><li><a href="module-pages_CookiePolicy.html">pages/CookiePolicy</a></li><li><a href="module-pages_Courses.html">pages/Courses</a></li><li><a href="module-pages_Experience.html">pages/Experience</a></li><li><a href="module-pages_Home.html">pages/Home</a></li><li><a href="module-pages_Privacy.html">pages/Privacy</a></li><li><a href="module-pages_Projects.html">pages/Projects</a></li><li><a href="module-pages_Testimonials.html">pages/Testimonials</a></li><li><a href="module-pages_Trading.html">pages/Trading</a></li></ul><h3>Global</h3><ul><li><a href="global.html#BrandIcon">BrandIcon</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">pages/Projects.jsx</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {useTranslation} from 'react-i18next';
+import {Card} from "../components/ui/Card";
+import {CardContent} from "../components/ui/CardContent";
+import {Disclosure} from '@headlessui/react';
+import {ChevronDown} from 'lucide-react';
+import {useState} from "react";
+import PageSection from "../components/ui/PageSection";
+import {ExpandableText} from "../components/ui/ExpandableText";
+
+/**
+ * Projects component displays a list of projects grouped by company.
+ *
+ * Features:
+ * - Sidebar with buttons to filter projects by company.
+ * - Shows project details including name, company, period, type, and technologies used.
+ * - Each project has a collapsible panel to toggle visibility of technology stack.
+ * - Uses i18n translation for UI texts and project types.
+ *
+ * @component
+ * @module pages/Projects
+ * @returns {JSX.Element} Rendered Projects section with filtering and collapsible tech details.
+ */
+export default function Projects() {
+    const {t} = useTranslation();
+    const [selectedCompany, setSelectedCompany] = useState("RGI");
+
+    const projects = [
+        {
+            name: "OLO Gateway",
+            tech: "MySQL · REST APIs · JSON · JBoss Application Server · HTML · Node.js · HTML5 · JEE · AngularJS · Git· OOP · JavaScript · CSS · jQuery · XML",
+            type: "Enterprise Portal",
+            company: "Fastweb",
+            period: "09/2016 - 10/2017"
+        },
+        {
+            name: "OSS Trasformation",
+            tech: "MySQL · REST APIs · JSON · JBoss Application Server · HTML · Node.js · HTML5 · JEE · AngularJS · Git· OOP · JavaScript · CSS · jQuery · XML",
+            type: "Enterprise Portal",
+            company: "Fastweb",
+            period: "09/2016 - 10/2017"
+        },
+        {
+            name: "io.T Tecno",
+            tech: "MySQL · REST APIs · SQL · JSON · Hibernate · JBoss Application Server · HTML · Node.js · HTML5 · JEE· AngularJS · Git · Maven · OOP · JavaScript · Tomcat · CSS · jQuery · Spring · XML",
+            type: "IoT Workplace Booking",
+            company: "Teoresi",
+            period: "10/2017 - 07/2018"
+        },
+        {
+            name: "DART",
+            tech: "MySQL · REST APIs · SQL · JSON · Hibernate · JBoss Application Server · HTML · Node.js · HTML5 · JEE · AngularJS · Git · Maven · OOP · JavaScript · Tomcat · CSS · jQuery · Spring · XML",
+            type: "dart",
+            company: "Teoresi",
+            period: "10/2017 - 07/2018"
+        },
+        {
+            name: "Newsmemory",
+            tech: "MySQL · REST APIs · SQL · PHP · JSON · HTML · HTML5 · Eclipse · Git · SQLite · OOP · JavaScript · CSS · jQuery · XML",
+            type: "Newspaper CMS",
+            company: "TECNAVIA APPS s.r.l.",
+            period: "07/2018 - 05/2019"
+        },
+        {
+            name: "2In1App",
+            tech: "MySQL · REST APIs · SQL · React Native · Git · Java · Android · OOP · XML",
+            type: "Hybrid Mobile App",
+            company: "TECNAVIA APPS s.r.l.",
+            period: "07/2018 - 05/2019"
+        },
+        {
+            name: "IDB rest services",
+            tech: "MySQL · REST APIs · SQL · JSON · Hibernate · JBoss Application Server · JEE · Git · Java · Maven · OOP · Tomcat · XML",
+            type: "restServices",
+            company: "Italiaonline",
+            period: "07/2019 - 09/2021"
+        },
+        {
+            name: "Area Clienti ",
+            tech: " MySQL · REST APIs · SQL · JSON · Hibernate · JBoss Application Server · HTML · Docker · Node.js · HTML5 · JEE · AngularJS · Git · Java · Maven · OOP · JavaScript · Tomcat · Machine learning · CSS · Framework Spring · XML",
+            type: "areaClienti",
+            company: "Italiaonline",
+            period: "05/2019 - 09/2021"
+        },
+        {
+            name: "AfterLife",
+            tech: "MySQL · REST APIs · SQL · JSON · JBoss Application Server · HTML · Docker · Node.js · HTML5 · JEE · AngularJS · Git · Maven · OOP · JavaScript · CSS · XML",
+            type: "Insurance Web Portal",
+            company: "RGI",
+            period: "09/2021 - 02/2022"
+        },
+        {
+            name: "Group Policy Library",
+            tech: "MySQL · REST APIs · SQL · JSON · JBoss Application Server · HTML · Docker · Node.js · HTML5 · JEE · AngularJS · Git · Maven · OOP · JavaScript · CSS · XML",
+            type: "UI Library",
+            company: "RGI",
+            period: "02/2022 - 05/2022"
+        },
+        {
+            name: "AXA Mobility",
+            tech: "MySQL · REST APIs · SQL · JSON · JBoss Application Server · HTML · Docker · Node.js · HTML5 · JEE · AngularJS · Git · Maven · OOP · JavaScript · CSS · XML",
+            type: "Mobility Portal",
+            company: "RGI",
+            period: "03/2022 - 01/2023"
+        },
+        {
+            name: "HalfLife",
+            tech: "MySQL · REST APIs · SQL · JSON · JBoss Application Server · HTML · Docker · Node.js · HTML5 · JEE · AngularJS · Git · Java · Maven · OOP · JavaScript · CSS · XML",
+            type: "Enterprise Application",
+            company: "RGI",
+            period: "01/2023 - 03/2023"
+        },
+        {
+            name: "Passportal client",
+            tech: "MySQL · REST APIs · SQL · JSON · JBoss Application Server · HTML · Docker · Node.js · HTML5 · JEE · AngularJS · Git · Java · Maven · OOP · JavaScript · CSS · XML",
+            type: "Enterprise Application",
+            company: "RGI",
+            period: "03/2023"
+        }
+    ];
+
+    const companies = [...new Set(projects.map(p => p.company))];
+
+    const groupedProjects = projects.reduce((acc, proj) => {
+        acc[proj.company] = acc[proj.company] || [];
+        acc[proj.company].push(proj);
+        return acc;
+    }, {});
+
+    return (
+        &lt;PageSection title={t("projects_title")}>
+            &lt;div className="flex flex-col md:flex-row gap-6">
+                {/* Sidebar Tabs */}
+                &lt;div className="md:w-1/4 flex flex-row md:flex-col overflow-x-auto gap-2 md:gap-4">
+                    {companies.map((company) => (
+                        &lt;button
+                            key={company}
+                            onClick={() => setSelectedCompany(company)}
+                            className={`px-4 py-2 rounded-lg border text-sm whitespace-nowrap
+                ${
+                                selectedCompany === company
+                                    ? "bg-blue-600 text-white dark:bg-blue-500"
+                                    : "bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200"
+                            }`}
+                        >
+                            {company}
+                        &lt;/button>
+                    ))}
+                &lt;/div>
+
+                {/* Content */}
+                &lt;div className="flex-1 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                    {(groupedProjects[selectedCompany] || []).map((proj, idx) => (
+                        &lt;Card
+                            key={idx}
+                            className="bg-white border border-gray-200 text-gray-900 dark:bg-gray-900 dark:border-gray-700 dark:text-white transition-colors duration-300"
+                        >
+                            &lt;CardContent>
+                                &lt;h3 className="text-lg font-semibold">{proj.name}&lt;/h3>
+                                &lt;p className="text-gray-700 dark:text-gray-400">{proj.company}&lt;/p>
+                                &lt;p className="text-sm mb-2 text-gray-600 dark:text-gray-500">{proj.period}&lt;/p>
+                                {proj.type &amp;&amp; (
+                                    &lt;ExpandableText
+                                        value={t(`project_types.${proj.type}`, proj.type)}
+                                        maxLines={3}
+                                        className="mb-2 text-sm"
+                                    />
+                                )}
+
+                                &lt;Disclosure>
+                                    {({open}) => (
+                                        &lt;div>
+                                            &lt;Disclosure.Button
+                                                className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
+                                            >
+                                                &lt;span>{t("show_technologies")}&lt;/span>
+                                                &lt;ChevronDown
+                                                    className={`ml-1 w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}
+                                                />
+                                            &lt;/Disclosure.Button>
+                                            &lt;Disclosure.Panel className="mt-2 text-sm text-gray-700 dark:text-gray-300">
+                                                {proj.tech}
+                                            &lt;/Disclosure.Panel>
+                                        &lt;/div>
+                                    )}
+                                &lt;/Disclosure>
+                            &lt;/CardContent>
+                        &lt;/Card>
+                    ))}
+                &lt;/div>
+            &lt;/div>
+        &lt;/PageSection>
+    );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Mon Jun 23 2025 11:11:14 GMT+0200 (Ora legale dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

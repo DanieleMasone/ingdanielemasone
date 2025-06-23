@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>pages/Courses.jsx - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-components_ui_Card.html">components/ui/Card</a></li><li><a href="module-components_ui_CardContent.html">components/ui/CardContent</a></li><li><a href="module-components_ui_DarkModeToggle.html">components/ui/DarkModeToggle</a></li><li><a href="module-components_ui_ExpandableText.html">components/ui/ExpandableText</a></li><li><a href="module-components_ui_Footer.html">components/ui/Footer</a></li><li><a href="module-components_ui_Header.html">components/ui/Header</a></li><li><a href="module-components_ui_LanguageSwitcher.html">components/ui/LanguageSwitcher</a></li><li><a href="module-components_ui_PageSection.html">components/ui/PageSection</a></li><li><a href="module-components_ui_TradingPerformanceChart.html">components/ui/TradingPerformanceChart</a></li><li><a href="module-pages_CookieBanner.html">pages/CookieBanner</a></li><li><a href="module-pages_CookiePolicy.html">pages/CookiePolicy</a></li><li><a href="module-pages_Courses.html">pages/Courses</a></li><li><a href="module-pages_Experience.html">pages/Experience</a></li><li><a href="module-pages_Home.html">pages/Home</a></li><li><a href="module-pages_Privacy.html">pages/Privacy</a></li><li><a href="module-pages_Projects.html">pages/Projects</a></li><li><a href="module-pages_Testimonials.html">pages/Testimonials</a></li><li><a href="module-pages_Trading.html">pages/Trading</a></li></ul><h3>Global</h3><ul><li><a href="global.html#BrandIcon">BrandIcon</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">pages/Courses.jsx</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {useTranslation} from 'react-i18next';
+import {Card} from "../components/ui/Card";
+import {CardContent} from "../components/ui/CardContent";
+import {Disclosure} from '@headlessui/react';
+import {ChevronDown} from 'lucide-react';
+import {useState} from "react";
+import PageSection from "../components/ui/PageSection";
+import {ExpandableText} from "../components/ui/ExpandableText";
+
+
+/**
+ * Courses component.
+ *
+ * Displays a paginated list of programming courses, each with title, description,
+ * duration, and technologies used.
+ *
+ * Features:
+ * - Uses i18next for translations of titles, descriptions, and UI texts.
+ * - Shows 6 courses per page with next/previous pagination buttons.
+ * - Each course is displayed inside a Card with expandable technologies section.
+ *
+ * @component
+ * @module pages/Courses
+ * @returns {JSX.Element} The rendered Courses page section.
+ */
+export default function Courses() {
+    const {t} = useTranslation();
+    const coursesPerPage = 6;
+    const [page, setPage] = useState(1);
+
+    const courses = [
+        {
+            nameKey: "courses_page.git.title",
+            descKey: "courses_page.git.description",
+            durationKey: "courses_page.git.duration",
+            tech: "Git",
+            link: "https://www.udemy.com/course/corso-git/"
+        },
+        {
+            nameKey: "courses_page.typescript.title",
+            descKey: "courses_page.typescript.description",
+            durationKey: "courses_page.typescript.duration",
+            tech: "Typescript, data types, module, OOP ...",
+            link: "https://www.udemy.com/course/typescript-da-zero/"
+        },
+        {
+            nameKey: "courses_page.jQuery.title",
+            descKey: "courses_page.jQuery.description",
+            durationKey: "courses_page.jQuery.duration",
+            tech: "jQuery, Selectors, Classes management, Traversing, Manipulating CSS, Bind, Events ...",
+            link: "https://www.udemy.com/course/corso-jquery/"
+        },
+        {
+            nameKey: "courses_page.php.title",
+            descKey: "courses_page.php.description",
+            durationKey: "courses_page.php.duration",
+            tech: "Php, data types, Control flow statements, iterations, Regular expressions, Arrays, OOP, HTTP calls, File system ...",
+            link: "https://www.udemy.com/course/corso-di-programmazione-php/"
+        },
+        {
+            nameKey: "courses_page.cpp.title",
+            descKey: "courses_page.cpp.description",
+            durationKey: "courses_page.cpp.duration",
+            tech: "C++, data types, control flow statements, iterations, I/O system, arrays and structs, OOP, lambda expressions ...",
+            link: "https://www.udemy.com/course/corso-di-programmazione-c-plus-plus/"
+        },
+        {
+            nameKey: "courses_page.html5.title",
+            descKey: "courses_page.html5.description",
+            durationKey: "courses_page.html5.duration",
+            tech: "HTML5, APIs (WebStorage, Web Workers, Drag &amp; Drop ...), Canvas &amp; Multimedia, Header, Footer, Aside ...",
+            link: "https://www.udemy.com/course/corso-html5/"
+        },
+        {
+            nameKey: "courses_page.angularJS.title",
+            descKey: "courses_page.angularJS.description",
+            durationKey: "courses_page.angularJS.duration",
+            tech: "AngularJS, scope (the hierarchy), services ($http), control flow statement, directives (bind, ng-class, ng-repeat...), filters, custom directives ...",
+            link: "https://www.udemy.com/course/corso-angularjs/"
+        },
+        {
+            nameKey: "courses_page.java.title",
+            descKey: "courses_page.java.description",
+            durationKey: "courses_page.java.duration",
+            tech: "Java, Control flow statements, iterations, arrays, OOP, File management, Lambda expressions, MySQL, MongoDB  ...",
+            link: "https://www.udemy.com/course/corso-di-programmazione-java/"
+        },
+        {
+            nameKey: "courses_page.javascript.title",
+            descKey: "courses_page.javascript.description",
+            durationKey: "courses_page.javascript.duration",
+            tech: "Javascript, control flow statements, iterations, arrays, DOM, Design patterns, Arrow function ...",
+            link: "https://www.udemy.com/course/corso-di-programmazione-javascript/"
+        },
+        {
+            nameKey: "courses_page.c.title",
+            descKey: "courses_page.c.description",
+            durationKey: "courses_page.c.duration",
+            tech: "C, data types, control flow statements, iterations, arrays, structs ...",
+            link: "https://www.udemy.com/course/corso-di-programmazione-c/"
+        },
+        {
+            nameKey: "courses_page.assembler.title",
+            descKey: "courses_page.assembler.description",
+            durationKey: "courses_page.assembler.duration",
+            tech: "AssemblerX86, data types, control flow statement, iterations, arrays ...",
+            link: "https://www.udemy.com/course/corso-di-programmazione-assembler-8086/"
+        },
+        {
+            nameKey: "courses_page.sql.title",
+            descKey: "courses_page.sql.description",
+            durationKey: "courses_page.sql.duration",
+            tech: "SQL, C, E/R, DB design ...",
+            link: "https://www.udemy.com/course/corso-sulle-basi-di-dati-dallo-schema-er-allsql/"
+        }
+    ];
+
+    const totalPages = Math.ceil(courses.length / coursesPerPage);
+
+    const displayedCourses = courses.slice(
+        (page - 1) * coursesPerPage,
+        page * coursesPerPage
+    );
+
+    return (
+        &lt;PageSection title={t("courses_page.title")}>
+            &lt;div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {displayedCourses.map((course, idx) => (
+                    &lt;Card
+                        key={idx}
+                        className="bg-white border border-gray-200 text-gray-900 dark:bg-gray-900 dark:border-gray-700 dark:text-white transition-colors duration-300"
+                    >
+                        &lt;CardContent>
+                            &lt;h3 className="text-lg font-semibold">
+                                &lt;a
+                                    href={course.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hover:underline"
+                                >
+                                    {t(course.nameKey)}
+                                &lt;/a>
+                            &lt;/h3>
+
+                            &lt;ExpandableText
+                                value={t(course.descKey)}
+                                maxLines={3}
+                                className="mb-2 mt-2 cursor-default"
+                            />
+
+                            &lt;p className="text-sm text-gray-500 dark:text-gray-400 font-mono mb-2">
+                                {t("courses_page.duration")}: {t(course.durationKey)}
+                            &lt;/p>
+
+                            &lt;Disclosure>
+                                {({open}) => (
+                                    &lt;>
+                                        &lt;Disclosure.Button
+                                            className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
+                                        >
+                                            &lt;span>{t("show_technologies")}&lt;/span>
+                                            &lt;ChevronDown
+                                                className={`ml-1 w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}
+                                            />
+                                        &lt;/Disclosure.Button>
+                                        &lt;Disclosure.Panel className="mt-2 text-sm text-gray-700 dark:text-gray-300">
+                                            {course.tech}
+                                        &lt;/Disclosure.Panel>
+                                    &lt;/>
+                                )}
+                            &lt;/Disclosure>
+                        &lt;/CardContent>
+                    &lt;/Card>
+                ))}
+            &lt;/div>
+
+            {/* Pagination Controls */}
+            {totalPages > 1 &amp;&amp; (
+                &lt;div className="flex justify-center mt-8 space-x-4">
+                    &lt;button
+                        onClick={() => setPage(p => Math.max(p - 1, 1))}
+                        disabled={page === 1}
+                        className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
+                               text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
+                               hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
+                    >
+                        ← {t("previous")}
+                    &lt;/button>
+
+                    &lt;span className="px-4 py-2 text-sm text-gray-600 dark:text-gray-300">
+                        {page} / {totalPages}
+                    &lt;/span>
+
+                    &lt;button
+                        onClick={() => setPage(p => Math.min(p + 1, totalPages))}
+                        disabled={page === totalPages}
+                        className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
+                               text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
+                               hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
+                    >
+                        {t("next")} →
+                    &lt;/button>
+                &lt;/div>
+            )}
+        &lt;/PageSection>
+    );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Mon Jun 23 2025 11:11:14 GMT+0200 (Ora legale dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>
