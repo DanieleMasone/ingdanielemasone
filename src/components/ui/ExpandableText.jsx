@@ -1,4 +1,4 @@
-import {useState, useRef, useEffect} from "react";
+import {useEffect, useRef, useState} from "react";
 import {useTranslation} from "react-i18next";
 import clsx from "clsx";
 
@@ -59,13 +59,15 @@ export function ExpandableText({value = "", maxLines = 3, className = ""}) {
             </p>
 
             {showButton && (
-                <button
-                    onClick={() => setExpanded(!expanded)}
-                    className="mt-1 text-xs text-blue-600 dark:text-blue-400 hover:underline"
-                    type="button"
-                >
-                    {expanded ? t("showLess") : t("showMore")}
-                </button>
+                <div className="mt-1 flex justify-end">
+                    <button
+                        onClick={() => setExpanded(!expanded)}
+                        className="text-xs text-blue-600 dark:text-blue-400 hover:underline"
+                        type="button"
+                    >
+                        {expanded ? t("showLess") : t("showMore")}
+                    </button>
+                </div>
             )}
         </div>
     );

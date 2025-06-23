@@ -36,7 +36,6 @@ export default function DarkModeToggle() {
             aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
         >
             <span className="text-lg">{darkMode ? '☀️' : '🌙'}</span>
-            <span className="text-sm font-medium">{darkMode ? 'Light Mode' : 'Dark Mode'}</span>
         </button>
     );
 

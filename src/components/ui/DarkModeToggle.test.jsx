@@ -51,11 +51,9 @@ describe("DarkModeToggle component", () => {
 
         // Initially light mode
         expect(button).toHaveTextContent("🌙");
-        expect(button).toHaveTextContent("Dark Mode");
 
         // Toggle to dark mode
         fireEvent.click(button);
         expect(button).toHaveTextContent("☀️");
-        expect(button).toHaveTextContent("Light Mode");
     });
 });
