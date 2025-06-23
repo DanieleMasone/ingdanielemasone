@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>components/ui/CardContent.jsx - Documentation</title>
+    <title>components/ui/ExpandableText.jsx - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -35,7 +35,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">components/ui/CardContent.jsx</h1>
+    <h1 class="page-title">components/ui/ExpandableText.jsx</h1>
     
 
     
@@ -45,32 +45,75 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React from "react";
+            <pre class="prettyprint source linenums"><code>import {useState, useRef, useEffect} from "react";
+import {useTranslation} from "react-i18next";
+import clsx from "clsx";
+
 
 /**
- * CardContent component for content section inside a card with padding and text styling.
+ * ExpandableText component displays a text paragraph that can be truncated
+ * to a maximum number of lines with an option to expand and collapse.
+ *
+ * Shows a "Show More" / "Show Less" toggle button when the text exceeds the
+ * specified number of lines.
  *
  * @component
- * @module components/ui/CardContent
+ * @module components/ui/ExpandableText
  *
- * @param {object} props - Component properties.
- * @param {React.ReactNode} props.children - Inner content of the CardContent.
- * @param {string} [props.className] - Additional CSS classes to add to the content div.
- * @param {object} [props.rest] - Other props to spread on the container div (e.g., event handlers, data attributes).
- * @returns {JSX.Element} Content container with padding and text styles.
+ * @param {object} props - Component props.
+ * @param {string} [props.value=""] - The text content to display.
+ * @param {number} [props.maxLines=3] - Maximum number of visible lines before truncation.
+ * @param {string} [props.className=""] - Additional CSS classes to apply to the paragraph.
+ * @returns {JSX.Element} A paragraph with expandable/collapsible text.
  */
-export function CardContent({children, className = "", ...rest}) {
+export function ExpandableText({value = "", maxLines = 3, className = ""}) {
+    const [expanded, setExpanded] = useState(false);
+    const [showButton, setShowButton] = useState(false);
+    const {t} = useTranslation();
+    const paragraphRef = useRef(null);
+
+    const lineClampClass = {
+        1: "line-clamp-1",
+        2: "line-clamp-2",
+        3: "line-clamp-3",
+        4: "line-clamp-4",
+        5: "line-clamp-5",
+    }[maxLines] || "line-clamp-3";
+
+    useEffect(() => {
+        if (!paragraphRef.current) return;
+
+        const scrollHeight = paragraphRef.current.scrollHeight;
+        const clientHeight = paragraphRef.current.clientHeight;
+
+
+        // Show the button if it is expanded (to allow closing)
+        // or if the text is truncated (needs expansion)
+        setShowButton(expanded || scrollHeight > clientHeight);
+    }, [value, maxLines, expanded]);
+
     return (
-        &lt;div
-            {...rest}
-            className={`
-                p-4 sm:p-6 md:p-8
-                text-sm sm:text-base
-                text-gray-900 dark:text-gray-300
-                ${className}
-            `}
-        >
-            {children}
+        &lt;div className="relative">
+            &lt;p
+                ref={paragraphRef}
+                className={clsx(
+                    "text-sm sm:text-base whitespace-pre-line transition-all",
+                    !expanded &amp;&amp; lineClampClass,
+                    className
+                )}
+            >
+                {value}
+            &lt;/p>
+
+            {showButton &amp;&amp; (
+                &lt;button
+                    onClick={() => setExpanded(!expanded)}
+                    className="mt-1 text-xs text-blue-600 dark:text-blue-400 hover:underline"
+                    type="button"
+                >
+                    {expanded ? t("showLess") : t("showMore")}
+                &lt;/button>
+            )}
         &lt;/div>
     );
 }

@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>components/ui/CardContent.jsx - Documentation</title>
+    <title>App.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -35,7 +35,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">components/ui/CardContent.jsx</h1>
+    <h1 class="page-title">App.js</h1>
     
 
     
@@ -45,32 +45,67 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React from "react";
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import {Route, Routes} from 'react-router-dom';
+import Home from './pages/Home';
+import Experience from './pages/Experience';
+import Projects from './pages/Projects';
+import Header from './components/ui/Header';
+import Footer from './components/ui/Footer';
+import translationEN from "./locales/en/translation.json";
+import translationIT from "./locales/it/translation.json";
+import {initReactI18next} from "react-i18next";
+import i18n from "i18next";
+import CookieBanner from "./pages/CookieBanner";
+import Privacy from "./pages/Privacy";
+import CookiePolicy from "./pages/CookiePolicy";
+import Courses from "./pages/Courses";
+import Trading from "./pages/Trading";
+import Testimonials from "./pages/Testimonials";
+
+const resources = {
+    en: {
+        translation: translationEN,
+    },
+    it: {
+        translation: translationIT,
+    }
+};
+
+i18n.use(initReactI18next).init({
+    resources,
+    lng: "en",
+    fallbackLng: "en",
+    interpolation: {
+        escapeValue: false,
+    }
+}).catch(error => {
+    console.error('Failed to init i18n:', error);
+});
 
 /**
- * CardContent component for content section inside a card with padding and text styling.
- *
- * @component
- * @module components/ui/CardContent
- *
- * @param {object} props - Component properties.
- * @param {React.ReactNode} props.children - Inner content of the CardContent.
- * @param {string} [props.className] - Additional CSS classes to add to the content div.
- * @param {object} [props.rest] - Other props to spread on the container div (e.g., event handlers, data attributes).
- * @returns {JSX.Element} Content container with padding and text styles.
+ * @file Entry point of the application.
+ * @description This file initializes the React application and mounts it to the DOM.
  */
-export function CardContent({children, className = "", ...rest}) {
+export default function App() {
     return (
         &lt;div
-            {...rest}
-            className={`
-                p-4 sm:p-6 md:p-8
-                text-sm sm:text-base
-                text-gray-900 dark:text-gray-300
-                ${className}
-            `}
-        >
-            {children}
+            className="min-h-screen flex flex-col bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-white transition-colors duration-300">
+            &lt;Header/>
+            &lt;main className="flex-grow">
+                &lt;Routes>
+                    &lt;Route path="/" element={&lt;Home/>}/>
+                    &lt;Route path="/experience" element={&lt;Experience/>}/>
+                    &lt;Route path="/projects" element={&lt;Projects/>}/>
+                    &lt;Route path="/courses" element={&lt;Courses/>}/>
+                    &lt;Route path="/trading" element={&lt;Trading/>}/>
+                    &lt;Route path="/testimonials" element={&lt;Testimonials/>}/>
+                    &lt;Route path="/privacy" element={&lt;Privacy/>}/>
+                    &lt;Route path="/cookie-policy" element={&lt;CookiePolicy/>}/>
+                &lt;/Routes>
+            &lt;/main>
+            &lt;Footer/>
+            &lt;CookieBanner/>
         &lt;/div>
     );
 }
