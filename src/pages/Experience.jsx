@@ -130,7 +130,7 @@ export default function Experience() {
                     animate={{opacity: 1, y: 0}}
                     exit={{opacity: 0, y: -40}}
                     transition={{duration: 0.4}}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                    className="flex flex-wrap gap-6"
                 >
                     {filteredExperiences.map((exp, i) => (
                         <Card

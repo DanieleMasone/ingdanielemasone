@@ -6,7 +6,7 @@ import {ChevronDown} from 'lucide-react';
 import {useState} from "react";
 import PageSection from "../components/ui/PageSection";
 import {ExpandableText} from "../components/ui/ExpandableText";
-
+import {AnimatePresence, motion} from "framer-motion";
 
 /**
  * Courses component.
@@ -124,55 +124,65 @@ export default function Courses() {
 
     return (
         <PageSection title={t("courses_page.title")}>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
-                {displayedCourses.map((course, idx) => (
-                    <Card
-                        key={idx}
-                        className="bg-white border border-gray-200 text-gray-900 dark:bg-gray-900 dark:border-gray-700 dark:text-white transition-colors duration-300"
-                    >
-                        <CardContent>
-                            <h3 className="text-lg font-semibold">
-                                <a
-                                    href={course.link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="hover:underline"
-                                >
-                                    {t(course.nameKey)}
-                                </a>
-                            </h3>
 
-                            <ExpandableText
-                                value={t(course.descKey)}
-                                maxLines={3}
-                                className="mb-2 mt-2 cursor-default"
-                            />
+            <AnimatePresence mode="wait">
+                <motion.div
+                    key={`page-${page}`}
+                    initial={{opacity: 0, y: 40}}
+                    animate={{opacity: 1, y: 0}}
+                    exit={{opacity: 0, y: -40}}
+                    transition={{duration: 0.4}}
+                    className="flex flex-wrap gap-6"
+                >
+                    {displayedCourses.map((course, idx) => (
+                        <Card
+                            key={idx}
+                            className="bg-white border border-gray-200 text-gray-900 dark:bg-gray-900 dark:border-gray-700 dark:text-white transition-colors duration-300"
+                        >
+                            <CardContent>
+                                <h3 className="text-lg font-semibold">
+                                    <a
+                                        href={course.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="hover:underline"
+                                    >
+                                        {t(course.nameKey)}
+                                    </a>
+                                </h3>
 
-                            <p className="text-sm text-gray-500 dark:text-gray-400 font-mono mb-2">
-                                {t("courses_page.duration")}: {t(course.durationKey)}
-                            </p>
+                                <ExpandableText
+                                    value={t(course.descKey)}
+                                    maxLines={3}
+                                    className="mb-2 mt-2 cursor-default"
+                                />
 
-                            <Disclosure>
-                                {({open}) => (
-                                    <>
-                                        <Disclosure.Button
-                                            className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
-                                        >
-                                            <span>{t("show_technologies")}</span>
-                                            <ChevronDown
-                                                className={`ml-1 w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}
-                                            />
-                                        </Disclosure.Button>
-                                        <Disclosure.Panel className="mt-2 text-sm text-gray-700 dark:text-gray-300">
-                                            {course.tech}
-                                        </Disclosure.Panel>
-                                    </>
-                                )}
-                            </Disclosure>
-                        </CardContent>
-                    </Card>
-                ))}
-            </div>
+                                <p className="text-sm text-gray-500 dark:text-gray-400 font-mono mb-2">
+                                    {t("courses_page.duration")}: {t(course.durationKey)}
+                                </p>
+
+                                <Disclosure>
+                                    {({open}) => (
+                                        <>
+                                            <Disclosure.Button
+                                                className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
+                                            >
+                                                <span>{t("show_technologies")}</span>
+                                                <ChevronDown
+                                                    className={`ml-1 w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}
+                                                />
+                                            </Disclosure.Button>
+                                            <Disclosure.Panel className="mt-2 text-sm text-gray-700 dark:text-gray-300">
+                                                {course.tech}
+                                            </Disclosure.Panel>
+                                        </>
+                                    )}
+                                </Disclosure>
+                            </CardContent>
+                        </Card>
+                    ))}
+                </motion.div>
+            </AnimatePresence>
 
             {/* Pagination Controls */}
             {totalPages > 1 && (

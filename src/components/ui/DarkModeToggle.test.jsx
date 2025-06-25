@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
+import {fireEvent, render, screen} from "@testing-library/react";
 import DarkModeToggle from "./DarkModeToggle";
 
 describe("DarkModeToggle component", () => {
@@ -10,7 +10,7 @@ describe("DarkModeToggle component", () => {
 
     it("initializes darkMode state from localStorage", () => {
         localStorage.setItem("theme", "dark");
-        render(<DarkModeToggle />);
+        render(<DarkModeToggle/>);
         const button = screen.getByRole("button");
         expect(button).toHaveAccessibleName("Switch to light mode");
         expect(document.documentElement).toHaveClass("dark");
@@ -18,14 +18,14 @@ describe("DarkModeToggle component", () => {
 
     it("initializes light mode if localStorage is not 'dark'", () => {
         localStorage.setItem("theme", "light");
-        render(<DarkModeToggle />);
+        render(<DarkModeToggle/>);
         const button = screen.getByRole("button");
         expect(button).toHaveAccessibleName("Switch to dark mode");
         expect(document.documentElement).not.toHaveClass("dark");
     });
 
     it("toggles dark mode on button click", () => {
-        render(<DarkModeToggle />);
+        render(<DarkModeToggle/>);
         const button = screen.getByRole("button");
 
         // Initially light mode
@@ -45,15 +45,19 @@ describe("DarkModeToggle component", () => {
         expect(localStorage.getItem("theme")).toBe("light");
     });
 
-    it("renders correct icon and label based on mode", () => {
-        render(<DarkModeToggle />);
+    it("toggles aria-label and icon correctly", () => {
+        render(<DarkModeToggle/>);
         const button = screen.getByRole("button");
 
-        // Initially light mode
-        expect(button).toHaveTextContent("🌙");
+        // Initial mode: light → shows moon icon, air-label indicates switching to dark
+        expect(button).toHaveAttribute("aria-label", "Switch to dark mode");
 
-        // Toggle to dark mode
+        // Click → activate dark mode → show sun, aria-label indicates switching to light
         fireEvent.click(button);
-        expect(button).toHaveTextContent("☀️");
+        expect(button).toHaveAttribute("aria-label", "Switch to light mode");
+
+        // Click again → return to light mode
+        fireEvent.click(button);
+        expect(button).toHaveAttribute("aria-label", "Switch to dark mode");
     });
 });

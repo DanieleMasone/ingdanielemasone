@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-
+import { Moon, Sun } from 'lucide-react';
 
 /**
  * DarkModeToggle component toggles between dark and light theme modes.
@@ -35,7 +35,7 @@ export default function DarkModeToggle() {
                focus:outline-none focus:ring-2 focus:ring-blue-500"
             aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
         >
-            <span className="text-lg">{darkMode ? '☀️' : '🌙'}</span>
+            {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
         </button>
     );
 
