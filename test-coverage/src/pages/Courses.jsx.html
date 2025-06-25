@@ -270,7 +270,17 @@
 <a name='L205'></a><a href='#L205'>205</a>
 <a name='L206'></a><a href='#L206'>206</a>
 <a name='L207'></a><a href='#L207'>207</a>
-<a name='L208'></a><a href='#L208'>208</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L208'></a><a href='#L208'>208</a>
+<a name='L209'></a><a href='#L209'>209</a>
+<a name='L210'></a><a href='#L210'>210</a>
+<a name='L211'></a><a href='#L211'>211</a>
+<a name='L212'></a><a href='#L212'>212</a>
+<a name='L213'></a><a href='#L213'>213</a>
+<a name='L214'></a><a href='#L214'>214</a>
+<a name='L215'></a><a href='#L215'>215</a>
+<a name='L216'></a><a href='#L216'>216</a>
+<a name='L217'></a><a href='#L217'>217</a>
+<a name='L218'></a><a href='#L218'>218</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -395,6 +405,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -426,7 +445,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">84x</span>
+<span class="cline-any cline-yes">72x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -485,7 +505,7 @@ import {ChevronDown} from 'lucide-react';
 import {useState} from "react";
 import PageSection from "../components/ui/PageSection";
 import {ExpandableText} from "../components/ui/ExpandableText";
-&nbsp;
+import {AnimatePresence, motion} from "framer-motion";
 &nbsp;
 /**
  * Courses component.
@@ -603,55 +623,65 @@ export default function Courses() {
 &nbsp;
     return (
         &lt;PageSection title={t("courses_page.title")}&gt;
-            &lt;div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6"&gt;
-                {displayedCourses.map((course, idx) =&gt; (
-                    &lt;Card
-                        key={idx}
-                        className="bg-white border border-gray-200 text-gray-900 dark:bg-gray-900 dark:border-gray-700 dark:text-white transition-colors duration-300"
-                    &gt;
-                        &lt;CardContent&gt;
-                            &lt;h3 className="text-lg font-semibold"&gt;
-                                &lt;a
-                                    href={course.link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="hover:underline"
-                                &gt;
-                                    {t(course.nameKey)}
-                                &lt;/a&gt;
-                            &lt;/h3&gt;
 &nbsp;
-                            &lt;ExpandableText
-                                value={t(course.descKey)}
-                                maxLines={3}
-                                className="mb-2 mt-2 cursor-default"
-                            /&gt;
+            &lt;AnimatePresence mode="wait"&gt;
+                &lt;motion.div
+                    key={`page-${page}`}
+                    initial={{opacity: 0, y: 40}}
+                    animate={{opacity: 1, y: 0}}
+                    exit={{opacity: 0, y: -40}}
+                    transition={{duration: 0.4}}
+                    className="flex flex-wrap gap-6"
+                &gt;
+                    {displayedCourses.map((course, idx) =&gt; (
+                        &lt;Card
+                            key={idx}
+                            className="bg-white border border-gray-200 text-gray-900 dark:bg-gray-900 dark:border-gray-700 dark:text-white transition-colors duration-300"
+                        &gt;
+                            &lt;CardContent&gt;
+                                &lt;h3 className="text-lg font-semibold"&gt;
+                                    &lt;a
+                                        href={course.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="hover:underline"
+                                    &gt;
+                                        {t(course.nameKey)}
+                                    &lt;/a&gt;
+                                &lt;/h3&gt;
 &nbsp;
-                            &lt;p className="text-sm text-gray-500 dark:text-gray-400 font-mono mb-2"&gt;
-                                {t("courses_page.duration")}: {t(course.durationKey)}
-                            &lt;/p&gt;
+                                &lt;ExpandableText
+                                    value={t(course.descKey)}
+                                    maxLines={3}
+                                    className="mb-2 mt-2 cursor-default"
+                                /&gt;
 &nbsp;
-                            &lt;Disclosure&gt;
-                                {({open}) =&gt; (
-                                    &lt;&gt;
-                                        &lt;Disclosure.Button
-                                            className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
-                                        &gt;
-                                            &lt;span&gt;{t("show_technologies")}&lt;/span&gt;
-                                            &lt;ChevronDown
-                                                className={`ml-1 w-4 h-4 transition-transform ${open ? <span class="branch-0 cbranch-no" title="branch not covered" >"rotate-180" </span>: ""}`}
-                                            /&gt;
-                                        &lt;/Disclosure.Button&gt;
-                                        &lt;Disclosure.Panel className="mt-2 text-sm text-gray-700 dark:text-gray-300"&gt;
-                                            {course.tech}
-                                        &lt;/Disclosure.Panel&gt;
-                                    &lt;/&gt;
-                                )}
-                            &lt;/Disclosure&gt;
-                        &lt;/CardContent&gt;
-                    &lt;/Card&gt;
-                ))}
-            &lt;/div&gt;
+                                &lt;p className="text-sm text-gray-500 dark:text-gray-400 font-mono mb-2"&gt;
+                                    {t("courses_page.duration")}: {t(course.durationKey)}
+                                &lt;/p&gt;
+&nbsp;
+                                &lt;Disclosure&gt;
+                                    {({open}) =&gt; (
+                                        &lt;&gt;
+                                            &lt;Disclosure.Button
+                                                className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
+                                            &gt;
+                                                &lt;span&gt;{t("show_technologies")}&lt;/span&gt;
+                                                &lt;ChevronDown
+                                                    className={`ml-1 w-4 h-4 transition-transform ${open ? <span class="branch-0 cbranch-no" title="branch not covered" >"rotate-180" </span>: ""}`}
+                                                /&gt;
+                                            &lt;/Disclosure.Button&gt;
+                                            &lt;Disclosure.Panel className="mt-2 text-sm text-gray-700 dark:text-gray-300"&gt;
+                                                {course.tech}
+                                            &lt;/Disclosure.Panel&gt;
+                                        &lt;/&gt;
+                                    )}
+                                &lt;/Disclosure&gt;
+                            &lt;/CardContent&gt;
+                        &lt;/Card&gt;
+                    ))}
+                &lt;/motion.div&gt;
+            &lt;/AnimatePresence&gt;
 &nbsp;
             {/* Pagination Controls */}
             {totalPages &gt; 1 &amp;&amp; (
@@ -691,7 +721,7 @@ export default function Courses() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-06-23T10:41:55.732Z
+                at 2025-06-25T09:24:19.294Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

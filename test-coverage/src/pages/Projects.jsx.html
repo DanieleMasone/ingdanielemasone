@@ -256,7 +256,22 @@
 <a name='L191'></a><a href='#L191'>191</a>
 <a name='L192'></a><a href='#L192'>192</a>
 <a name='L193'></a><a href='#L193'>193</a>
-<a name='L194'></a><a href='#L194'>194</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L194'></a><a href='#L194'>194</a>
+<a name='L195'></a><a href='#L195'>195</a>
+<a name='L196'></a><a href='#L196'>196</a>
+<a name='L197'></a><a href='#L197'>197</a>
+<a name='L198'></a><a href='#L198'>198</a>
+<a name='L199'></a><a href='#L199'>199</a>
+<a name='L200'></a><a href='#L200'>200</a>
+<a name='L201'></a><a href='#L201'>201</a>
+<a name='L202'></a><a href='#L202'>202</a>
+<a name='L203'></a><a href='#L203'>203</a>
+<a name='L204'></a><a href='#L204'>204</a>
+<a name='L205'></a><a href='#L205'>205</a>
+<a name='L206'></a><a href='#L206'>206</a>
+<a name='L207'></a><a href='#L207'>207</a>
+<a name='L208'></a><a href='#L208'>208</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -408,6 +423,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">27x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -425,8 +450,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">85x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">81x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -457,6 +485,7 @@ import {ChevronDown} from 'lucide-react';
 import {useState} from "react";
 import PageSection from "../components/ui/PageSection";
 import {ExpandableText} from "../components/ui/ExpandableText";
+import {AnimatePresence, motion} from "framer-motion";
 &nbsp;
 /**
  * Projects component displays a list of projects grouped by company.
@@ -477,81 +506,11 @@ export default function Projects() {
 &nbsp;
     const projects = [
         {
-            name: "OLO Gateway",
-            tech: "MySQL · REST APIs · JSON · JBoss Application Server · HTML · Node.js · HTML5 · JEE · AngularJS · Git· OOP · JavaScript · CSS · jQuery · XML",
-            type: "Enterprise Portal",
-            company: "Fastweb",
-            period: "09/2016 - 10/2017"
-        },
-        {
-            name: "OSS Trasformation",
-            tech: "MySQL · REST APIs · JSON · JBoss Application Server · HTML · Node.js · HTML5 · JEE · AngularJS · Git· OOP · JavaScript · CSS · jQuery · XML",
-            type: "Enterprise Portal",
-            company: "Fastweb",
-            period: "09/2016 - 10/2017"
-        },
-        {
-            name: "io.T Tecno",
-            tech: "MySQL · REST APIs · SQL · JSON · Hibernate · JBoss Application Server · HTML · Node.js · HTML5 · JEE· AngularJS · Git · Maven · OOP · JavaScript · Tomcat · CSS · jQuery · Spring · XML",
-            type: "IoT Workplace Booking",
-            company: "Teoresi",
-            period: "10/2017 - 07/2018"
-        },
-        {
-            name: "DART",
-            tech: "MySQL · REST APIs · SQL · JSON · Hibernate · JBoss Application Server · HTML · Node.js · HTML5 · JEE · AngularJS · Git · Maven · OOP · JavaScript · Tomcat · CSS · jQuery · Spring · XML",
-            type: "dart",
-            company: "Teoresi",
-            period: "10/2017 - 07/2018"
-        },
-        {
-            name: "Newsmemory",
-            tech: "MySQL · REST APIs · SQL · PHP · JSON · HTML · HTML5 · Eclipse · Git · SQLite · OOP · JavaScript · CSS · jQuery · XML",
-            type: "Newspaper CMS",
-            company: "TECNAVIA APPS s.r.l.",
-            period: "07/2018 - 05/2019"
-        },
-        {
-            name: "2In1App",
-            tech: "MySQL · REST APIs · SQL · React Native · Git · Java · Android · OOP · XML",
-            type: "Hybrid Mobile App",
-            company: "TECNAVIA APPS s.r.l.",
-            period: "07/2018 - 05/2019"
-        },
-        {
-            name: "IDB rest services",
-            tech: "MySQL · REST APIs · SQL · JSON · Hibernate · JBoss Application Server · JEE · Git · Java · Maven · OOP · Tomcat · XML",
-            type: "restServices",
-            company: "Italiaonline",
-            period: "07/2019 - 09/2021"
-        },
-        {
-            name: "Area Clienti ",
-            tech: " MySQL · REST APIs · SQL · JSON · Hibernate · JBoss Application Server · HTML · Docker · Node.js · HTML5 · JEE · AngularJS · Git · Java · Maven · OOP · JavaScript · Tomcat · Machine learning · CSS · Framework Spring · XML",
-            type: "areaClienti",
-            company: "Italiaonline",
-            period: "05/2019 - 09/2021"
-        },
-        {
-            name: "AfterLife",
-            tech: "MySQL · REST APIs · SQL · JSON · JBoss Application Server · HTML · Docker · Node.js · HTML5 · JEE · AngularJS · Git · Maven · OOP · JavaScript · CSS · XML",
-            type: "Insurance Web Portal",
+            name: "Passportal client",
+            tech: "MySQL · REST APIs · SQL · JSON · JBoss Application Server · HTML · Docker · Node.js · HTML5 · JEE · AngularJS · Git · Java · Maven · OOP · JavaScript · CSS · XML",
+            type: "Enterprise Application",
             company: "RGI",
-            period: "09/2021 - 02/2022"
-        },
-        {
-            name: "Group Policy Library",
-            tech: "MySQL · REST APIs · SQL · JSON · JBoss Application Server · HTML · Docker · Node.js · HTML5 · JEE · AngularJS · Git · Maven · OOP · JavaScript · CSS · XML",
-            type: "UI Library",
-            company: "RGI",
-            period: "02/2022 - 05/2022"
-        },
-        {
-            name: "AXA Mobility",
-            tech: "MySQL · REST APIs · SQL · JSON · JBoss Application Server · HTML · Docker · Node.js · HTML5 · JEE · AngularJS · Git · Maven · OOP · JavaScript · CSS · XML",
-            type: "Mobility Portal",
-            company: "RGI",
-            period: "03/2022 - 01/2023"
+            period: "03/2023"
         },
         {
             name: "HalfLife",
@@ -561,11 +520,81 @@ export default function Projects() {
             period: "01/2023 - 03/2023"
         },
         {
-            name: "Passportal client",
-            tech: "MySQL · REST APIs · SQL · JSON · JBoss Application Server · HTML · Docker · Node.js · HTML5 · JEE · AngularJS · Git · Java · Maven · OOP · JavaScript · CSS · XML",
-            type: "Enterprise Application",
+            name: "AXA Mobility",
+            tech: "MySQL · REST APIs · SQL · JSON · JBoss Application Server · HTML · Docker · Node.js · HTML5 · JEE · AngularJS · Git · Maven · OOP · JavaScript · CSS · XML",
+            type: "Mobility Portal",
             company: "RGI",
-            period: "03/2023"
+            period: "03/2022 - 01/2023"
+        },
+        {
+            name: "Group Policy Library",
+            tech: "MySQL · REST APIs · SQL · JSON · JBoss Application Server · HTML · Docker · Node.js · HTML5 · JEE · AngularJS · Git · Maven · OOP · JavaScript · CSS · XML",
+            type: "UI Library",
+            company: "RGI",
+            period: "02/2022 - 05/2022"
+        },
+        {
+            name: "AfterLife",
+            tech: "MySQL · REST APIs · SQL · JSON · JBoss Application Server · HTML · Docker · Node.js · HTML5 · JEE · AngularJS · Git · Maven · OOP · JavaScript · CSS · XML",
+            type: "Insurance Web Portal",
+            company: "RGI",
+            period: "09/2021 - 02/2022"
+        },
+        {
+            name: "Area Clienti ",
+            tech: " MySQL · REST APIs · SQL · JSON · Hibernate · JBoss Application Server · HTML · Docker · Node.js · HTML5 · JEE · AngularJS · Git · Java · Maven · OOP · JavaScript · Tomcat · Machine learning · CSS · Framework Spring · XML",
+            type: "areaClienti",
+            company: "Italiaonline",
+            period: "05/2019 - 09/2021"
+        },
+        {
+            name: "IDB rest services",
+            tech: "MySQL · REST APIs · SQL · JSON · Hibernate · JBoss Application Server · JEE · Git · Java · Maven · OOP · Tomcat · XML",
+            type: "restServices",
+            company: "Italiaonline",
+            period: "07/2019 - 09/2021"
+        },
+        {
+            name: "2In1App",
+            tech: "MySQL · REST APIs · SQL · React Native · Git · Java · Android · OOP · XML",
+            type: "Hybrid Mobile App",
+            company: "TECNAVIA APPS s.r.l.",
+            period: "07/2018 - 05/2019"
+        },
+        {
+            name: "Newsmemory",
+            tech: "MySQL · REST APIs · SQL · PHP · JSON · HTML · HTML5 · Eclipse · Git · SQLite · OOP · JavaScript · CSS · jQuery · XML",
+            type: "Newspaper CMS",
+            company: "TECNAVIA APPS s.r.l.",
+            period: "07/2018 - 05/2019"
+        },
+        {
+            name: "DART",
+            tech: "MySQL · REST APIs · SQL · JSON · Hibernate · JBoss Application Server · HTML · Node.js · HTML5 · JEE · AngularJS · Git · Maven · OOP · JavaScript · Tomcat · CSS · jQuery · Spring · XML",
+            type: "dart",
+            company: "Teoresi",
+            period: "10/2017 - 07/2018"
+        },
+        {
+            name: "io.T Tecno",
+            tech: "MySQL · REST APIs · SQL · JSON · Hibernate · JBoss Application Server · HTML · Node.js · HTML5 · JEE· AngularJS · Git · Maven · OOP · JavaScript · Tomcat · CSS · jQuery · Spring · XML",
+            type: "IoT Workplace Booking",
+            company: "Teoresi",
+            period: "10/2017 - 07/2018"
+        },
+        {
+            name: "OSS Trasformation",
+            tech: "MySQL · REST APIs · JSON · JBoss Application Server · HTML · Node.js · HTML5 · JEE · AngularJS · Git· OOP · JavaScript · CSS · jQuery · XML",
+            type: "Enterprise Portal",
+            company: "Fastweb",
+            period: "09/2016 - 10/2017"
+        },
+        {
+            name: "OLO Gateway",
+            tech: "MySQL · REST APIs · JSON · JBoss Application Server · HTML · Node.js · HTML5 · JEE · AngularJS · Git· OOP · JavaScript · CSS · jQuery · XML",
+            type: "Enterprise Portal",
+            company: "Fastweb",
+            period: "09/2016 - 10/2017"
         }
     ];
 &nbsp;
@@ -587,7 +616,7 @@ export default function Projects() {
                             key={company}
                             onClick={() =&gt; setSelectedCompany(company)}
                             className={`px-4 py-2 rounded-lg border text-sm whitespace-nowrap
-                ${
+                            ${
                                 selectedCompany === company
                                     ? "bg-blue-600 text-white dark:bg-blue-500"
                                     : "bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200"
@@ -599,45 +628,58 @@ export default function Projects() {
                 &lt;/div&gt;
 &nbsp;
                 {/* Content */}
-                &lt;div className="flex-1 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6"&gt;
-                    {(groupedProjects[selectedCompany] || <span class="branch-1 cbranch-no" title="branch not covered" >[])</span>.map((proj, idx) =&gt; (
-                        &lt;Card
-                            key={idx}
-                            className="bg-white border border-gray-200 text-gray-900 dark:bg-gray-900 dark:border-gray-700 dark:text-white transition-colors duration-300"
+                &lt;div className="flex-1"&gt;
+                    &lt;AnimatePresence mode="wait"&gt;
+                        &lt;motion.div
+                            key={selectedCompany}
+                            initial={{opacity: 0, y: 40}}
+                            animate={{opacity: 1, y: 0}}
+                            exit={{opacity: 0, y: -40}}
+                            transition={{duration: 0.4}}
+                            layout
+                            className="flex flex-wrap gap-6 min-h-[500px]"
                         &gt;
-                            &lt;CardContent&gt;
-                                &lt;h3 className="text-lg font-semibold"&gt;{proj.name}&lt;/h3&gt;
-                                &lt;p className="text-gray-700 dark:text-gray-400"&gt;{proj.company}&lt;/p&gt;
-                                &lt;p className="text-sm mb-2 text-gray-600 dark:text-gray-500"&gt;{proj.period}&lt;/p&gt;
-                                {proj.type &amp;&amp; (
-                                    &lt;ExpandableText
-                                        value={t(`project_types.${proj.type}`, proj.type)}
-                                        maxLines={3}
-                                        className="mb-2 text-sm"
-                                    /&gt;
-                                )}
-&nbsp;
-                                &lt;Disclosure&gt;
-                                    {({open}) =&gt; (
-                                        &lt;div&gt;
-                                            &lt;Disclosure.Button
-                                                className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
-                                            &gt;
-                                                &lt;span&gt;{t("show_technologies")}&lt;/span&gt;
-                                                &lt;ChevronDown
-                                                    className={`ml-1 w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}
-                                                /&gt;
-                                            &lt;/Disclosure.Button&gt;
-                                            &lt;Disclosure.Panel className="mt-2 text-sm text-gray-700 dark:text-gray-300"&gt;
-                                                {proj.tech}
-                                            &lt;/Disclosure.Panel&gt;
-                                        &lt;/div&gt;
-                                    )}
-                                &lt;/Disclosure&gt;
-                            &lt;/CardContent&gt;
-                        &lt;/Card&gt;
-                    ))}
+                            {(groupedProjects[selectedCompany] || <span class="branch-1 cbranch-no" title="branch not covered" >[])</span>.map((proj, idx) =&gt; (
+                                &lt;Card
+                                    key={idx}
+                                    className="bg-white border border-gray-200 text-gray-900 dark:bg-gray-900 dark:border-gray-700 dark:text-white transition-colors duration-300"
+                                &gt;
+                                    &lt;CardContent&gt;
+                                        &lt;h3 className="text-lg font-semibold"&gt;{proj.name}&lt;/h3&gt;
+                                        &lt;p className="text-gray-700 dark:text-gray-400"&gt;{proj.company}&lt;/p&gt;
+                                        &lt;p className="text-sm mb-2 text-gray-600 dark:text-gray-500"&gt;{proj.period}&lt;/p&gt;
+                                        {proj.type &amp;&amp; (
+                                            &lt;ExpandableText
+                                                value={t(`project_types.${proj.type}`, proj.type)}
+                                                maxLines={3}
+                                                className="mb-2 text-sm"
+                                            /&gt;
+                                        )}
+                                        &lt;Disclosure&gt;
+                                            {({open}) =&gt; (
+                                                &lt;div&gt;
+                                                    &lt;Disclosure.Button
+                                                        className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
+                                                    &gt;
+                                                        &lt;span&gt;{t("show_technologies")}&lt;/span&gt;
+                                                        &lt;ChevronDown
+                                                            className={`ml-1 w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}
+                                                        /&gt;
+                                                    &lt;/Disclosure.Button&gt;
+                                                    &lt;Disclosure.Panel
+                                                        className="mt-2 text-sm text-gray-700 dark:text-gray-300"&gt;
+                                                        {proj.tech}
+                                                    &lt;/Disclosure.Panel&gt;
+                                                &lt;/div&gt;
+                                            )}
+                                        &lt;/Disclosure&gt;
+                                    &lt;/CardContent&gt;
+                                &lt;/Card&gt;
+                            ))}
+                        &lt;/motion.div&gt;
+                    &lt;/AnimatePresence&gt;
                 &lt;/div&gt;
+&nbsp;
             &lt;/div&gt;
         &lt;/PageSection&gt;
     );
@@ -649,7 +691,7 @@ export default function Projects() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-06-23T10:41:55.732Z
+                at 2025-06-25T09:24:19.294Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

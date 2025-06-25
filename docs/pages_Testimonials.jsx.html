@@ -52,8 +52,9 @@ import {ChevronDown} from "lucide-react";
 import {Card} from "../components/ui/Card";
 import {CardContent} from "../components/ui/CardContent";
 import PageSection from "../components/ui/PageSection";
+import {AnimatePresence, motion} from "framer-motion";
 
-const ITEMS_PER_PAGE = 6;
+const ITEMS_PER_PAGE = 3;
 
 /**
  * Testimonials component renders a paginated list of testimonial cards.
@@ -192,32 +193,50 @@ export default function Testimonials() {
 
     return (
         &lt;PageSection title={t("testimonials_page.title")}>
-            &lt;div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {displayedTestimonials.map((testi, idx) => (
-                    &lt;Card key={idx}
-                          className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 shadow-sm">
-                        &lt;CardContent>
-                            &lt;Disclosure>
-                                {({open}) => (
-                                    &lt;>
-                                        &lt;Disclosure.Button
-                                            className="flex justify-between w-full items-center text-left">
-                                            &lt;div>
-                                                &lt;p className="font-semibold">{t(testi.nameKey)}&lt;/p>
-                                                &lt;p className="text-sm text-gray-500 dark:text-gray-400">{t(testi.roleKey)}&lt;/p>
-                                            &lt;/div>
-                                            &lt;ChevronDown className={`h-5 w-5 transform ${open ? "rotate-180" : ""}`}/>
-                                        &lt;/Disclosure.Button>
-                                        &lt;Disclosure.Panel className="mt-2 text-sm text-gray-700 dark:text-gray-300">
-                                            {t(testi.quoteKey)}
-                                        &lt;/Disclosure.Panel>
-                                    &lt;/>
-                                )}
-                            &lt;/Disclosure>
-                        &lt;/CardContent>
-                    &lt;/Card>
-                ))}
-            &lt;/div>
+
+            &lt;AnimatePresence mode="wait">
+                &lt;motion.div
+                    key={`page-${currentPage}`}
+                    initial={{opacity: 0, y: 40}}
+                    animate={{opacity: 1, y: 0}}
+                    exit={{opacity: 0, y: -40}}
+                    transition={{duration: 0.4}}
+                    className="flex flex-wrap gap-6"
+                >
+                    {displayedTestimonials.map((testi, idx) => (
+                        &lt;Card key={idx}
+                              className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 shadow-sm">
+                            &lt;CardContent>
+                                &lt;Disclosure>
+                                    {({open}) => (
+                                        &lt;>
+                                            &lt;Disclosure.Button
+                                                className="flex justify-between w-full items-center text-left">
+                                                &lt;div className="flex items-center space-x-4">
+                                                    &lt;img
+                                                        src={`https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(t(testi.nameKey))}`}
+                                                        alt={`${t(testi.nameKey)} avatar`}
+                                                        className="w-10 h-10 rounded-full ring-1 ring-gray-300 dark:ring-gray-700 bg-white"
+                                                    />
+                                                    &lt;div>
+                                                        &lt;p className="font-semibold">{t(testi.nameKey)}&lt;/p>
+                                                        &lt;p className="text-sm text-gray-500 dark:text-gray-400">{t(testi.roleKey)}&lt;/p>
+                                                    &lt;/div>
+                                                &lt;/div>
+                                                &lt;ChevronDown
+                                                    className={`h-5 w-5 transform ${open ? "rotate-180" : ""}`}/>
+                                            &lt;/Disclosure.Button>
+                                            &lt;Disclosure.Panel className="mt-2 text-sm text-gray-700 dark:text-gray-300">
+                                                {t(testi.quoteKey)}
+                                            &lt;/Disclosure.Panel>
+                                        &lt;/>
+                                    )}
+                                &lt;/Disclosure>
+                            &lt;/CardContent>
+                        &lt;/Card>
+                    ))}
+                &lt;/motion.div>
+            &lt;/AnimatePresence>
 
             {/* Pagination Controls */}
             {totalPages > 1 &amp;&amp; (
@@ -247,6 +266,8 @@ export default function Testimonials() {
                     &lt;/button>
                 &lt;/div>
             )}
+
+
         &lt;/PageSection>
     );
 }
@@ -264,7 +285,7 @@ export default function Testimonials() {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Mon Jun 23 2025 11:23:15 GMT+0200 (Ora legale dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Wed Jun 25 2025 11:24:20 GMT+0200 (Ora legale dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

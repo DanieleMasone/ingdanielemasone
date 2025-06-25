@@ -112,11 +112,11 @@ export default function TradingPerformanceChart() {
         return acc;
     }, []);
 
-    // Dati annuali che hai fornito
+    // Annual data you provided
     const annualLabels = ['2022', '2023', '2024', '2025 (parz.)'];
     const annualReturns = [-10.92, 18.51, 8.83, 8.69];
 
-    // Dataset e labels in base alla view
+    // Datasets and labels based on the view
     const chartData = {
         labels: view === 'monthly' ? monthlyLabels : annualLabels,
         datasets: [
@@ -185,22 +185,47 @@ export default function TradingPerformanceChart() {
             };
 
             return (
-                &lt;div className="space-y-6 text-sm">
+                &lt;div className="space-y-8">
                     {Object.entries(monthlyDataByYear).map(([year, monthsData]) => (
-                        &lt;div
-                            key={year}
-                            className="overflow-x-auto grid grid-cols-1 sm:grid-cols-[auto_repeat(6,minmax(0,1fr))] md:grid-cols-[auto_repeat(12,minmax(0,1fr))] gap-2 items-center bg-gray-50 dark:bg-gray-800 rounded-xl shadow-md p-4"
-                        >
-                            &lt;div
-                                className="font-semibold text-lg text-gray-900 dark:text-gray-100 flex items-center justify-center">
+                        &lt;div key={year} className="space-y-2">
+                            &lt;div className="text-lg font-bold text-gray-900 dark:text-gray-100">
                                 {year}
                             &lt;/div>
 
-                            {monthsData.map((val, i) => (
-                                &lt;div
-                                    key={i}
-                                    className="flex flex-col items-center justify-between bg-white dark:bg-gray-900 rounded-md p-2 shadow-sm min-w-[60px]"
-                                >
+                            {/* Mobile: horizontally scrollable */}
+                            &lt;div className="sm:hidden overflow-x-auto">
+                                &lt;div className="flex gap-2 min-w-[720px]">
+                                    {monthsData.map((val, i) => (
+                                        &lt;div
+                                            key={i}
+                                            className="flex flex-col items-center justify-center bg-white dark:bg-gray-800 rounded-md p-2 shadow-sm border border-gray-200 dark:border-gray-700 min-w-[60px]"
+                                        >
+                                        &lt;span
+                                            className={`text-sm font-semibold ${
+                                                val === null
+                                                    ? 'text-gray-400 dark:text-gray-500'
+                                                    : val &lt; 0
+                                                        ? 'text-red-600 dark:text-red-400'
+                                                        : 'text-green-600 dark:text-green-400'
+                                            }`}
+                                        >
+                                            {val !== null ? `${val.toFixed(2).replace('.', ',')}%` : 'na'}
+                                        &lt;/span>
+                                            &lt;span className="mt-1 text-xs text-gray-600 dark:text-gray-400">
+                                            {months[i]}
+                                        &lt;/span>
+                                        &lt;/div>
+                                    ))}
+                                &lt;/div>
+                            &lt;/div>
+
+                            {/* Desktop: fixed grid */}
+                            &lt;div className="hidden sm:grid grid-cols-12 gap-2">
+                                {monthsData.map((val, i) => (
+                                    &lt;div
+                                        key={i}
+                                        className="flex flex-col items-center justify-center bg-white dark:bg-gray-800 rounded-md p-2 shadow-sm border border-gray-200 dark:border-gray-700"
+                                    >
                                     &lt;span
                                         className={`text-sm font-semibold ${
                                             val === null
@@ -212,35 +237,37 @@ export default function TradingPerformanceChart() {
                                     >
                                         {val !== null ? `${val.toFixed(2).replace('.', ',')}%` : 'na'}
                                     &lt;/span>
-                                    &lt;span className="mt-1 text-xs text-gray-600 dark:text-gray-400">
+                                        &lt;span className="mt-1 text-xs text-gray-600 dark:text-gray-400">
                                         {months[i]}
                                     &lt;/span>
-                                &lt;/div>
-                            ))}
-                        &lt;/div>
-                    ))}
-                &lt;/div>
-            );
-        } else {
-            return (
-                &lt;div className="flex flex-wrap justify-center gap-4 text-center text-sm">
-                    {annualLabels.map((year, i) => (
-                        &lt;div
-                            key={year}
-                            className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md w-full sm:w-40"
-                        >
-                            &lt;h4 className="mb-2 font-semibold text-lg border-b border-gray-300 dark:border-gray-700 pb-1">
-                                {year}
-                            &lt;/h4>
-                            &lt;p className={annualReturns[i] &lt; 0 ? 'text-red-600 dark:text-red-400' : 'text-green-700 dark:text-green-400'}>
-                                {t('performance_return_label', 'Rendimento')}: {annualReturns[i] > 0 ? '+' : ''}
-                                {annualReturns[i].toFixed(2).replace('.', ',')}%
-                            &lt;/p>
+                                    &lt;/div>
+                                ))}
+                            &lt;/div>
                         &lt;/div>
                     ))}
                 &lt;/div>
             );
         }
+
+        // annual unchanged
+        return (
+            &lt;div className="flex flex-wrap justify-center gap-4 text-center text-sm">
+                {annualLabels.map((year, i) => (
+                    &lt;div
+                        key={year}
+                        className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md w-full sm:w-40"
+                    >
+                        &lt;h4 className="mb-2 font-semibold text-lg border-b border-gray-300 dark:border-gray-700 pb-1">
+                            {year}
+                        &lt;/h4>
+                        &lt;p className={annualReturns[i] &lt; 0 ? 'text-red-600 dark:text-red-400' : 'text-green-700 dark:text-green-400'}>
+                            {t('performance_return_label', 'Rendimento')}: {annualReturns[i] > 0 ? '+' : ''}
+                            {annualReturns[i].toFixed(2).replace('.', ',')}%
+                        &lt;/p>
+                    &lt;/div>
+                ))}
+            &lt;/div>
+        );
     }
 
     return (
@@ -285,7 +312,7 @@ export default function TradingPerformanceChart() {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Mon Jun 23 2025 11:23:15 GMT+0200 (Ora legale dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Wed Jun 25 2025 11:24:20 GMT+0200 (Ora legale dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

@@ -275,7 +275,22 @@
 <a name='L210'></a><a href='#L210'>210</a>
 <a name='L211'></a><a href='#L211'>211</a>
 <a name='L212'></a><a href='#L212'>212</a>
-<a name='L213'></a><a href='#L213'>213</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L213'></a><a href='#L213'>213</a>
+<a name='L214'></a><a href='#L214'>214</a>
+<a name='L215'></a><a href='#L215'>215</a>
+<a name='L216'></a><a href='#L216'>216</a>
+<a name='L217'></a><a href='#L217'>217</a>
+<a name='L218'></a><a href='#L218'>218</a>
+<a name='L219'></a><a href='#L219'>219</a>
+<a name='L220'></a><a href='#L220'>220</a>
+<a name='L221'></a><a href='#L221'>221</a>
+<a name='L222'></a><a href='#L222'>222</a>
+<a name='L223'></a><a href='#L223'>223</a>
+<a name='L224'></a><a href='#L224'>224</a>
+<a name='L225'></a><a href='#L225'>225</a>
+<a name='L226'></a><a href='#L226'>226</a>
+<a name='L227'></a><a href='#L227'>227</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -424,12 +439,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">30x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">82x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -487,6 +513,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {useState} from "react";
 import {useTranslation} from "react-i18next";
 import {Disclosure} from "@headlessui/react";
@@ -494,8 +522,9 @@ import {ChevronDown} from "lucide-react";
 import {Card} from "../components/ui/Card";
 import {CardContent} from "../components/ui/CardContent";
 import PageSection from "../components/ui/PageSection";
+import {AnimatePresence, motion} from "framer-motion";
 &nbsp;
-const ITEMS_PER_PAGE = 6;
+const ITEMS_PER_PAGE = 3;
 &nbsp;
 /**
  * Testimonials component renders a paginated list of testimonial cards.
@@ -634,39 +663,50 @@ export default function Testimonials() {
 &nbsp;
     return (
         &lt;PageSection title={t("testimonials_page.title")}&gt;
-            &lt;div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"&gt;
-                {displayedTestimonials.map((testi, idx) =&gt; (
-                    &lt;Card key={idx}
-                          className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 shadow-sm"&gt;
-                        &lt;CardContent&gt;
-                            &lt;Disclosure&gt;
-                                {({open}) =&gt; (
-                                    &lt;&gt;
-                                        &lt;Disclosure.Button
-                                            className="flex justify-between w-full items-center text-left"&gt;
-                                            &lt;div className="flex items-center space-x-4"&gt;
-                                                &lt;img
-                                                    src={`https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(t(testi.nameKey))}`}
-                                                    alt={`${t(testi.nameKey)} avatar`}
-                                                    className="w-10 h-10 rounded-full ring-1 ring-gray-300 dark:ring-gray-700 bg-white"
-                                                /&gt;
-                                                &lt;div&gt;
-                                                    &lt;p className="font-semibold"&gt;{t(testi.nameKey)}&lt;/p&gt;
-                                                    &lt;p className="text-sm text-gray-500 dark:text-gray-400"&gt;{t(testi.roleKey)}&lt;/p&gt;
+&nbsp;
+            &lt;AnimatePresence mode="wait"&gt;
+                &lt;motion.div
+                    key={`page-${currentPage}`}
+                    initial={{opacity: 0, y: 40}}
+                    animate={{opacity: 1, y: 0}}
+                    exit={{opacity: 0, y: -40}}
+                    transition={{duration: 0.4}}
+                    className="flex flex-wrap gap-6"
+                &gt;
+                    {displayedTestimonials.map((testi, idx) =&gt; (
+                        &lt;Card key={idx}
+                              className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 shadow-sm"&gt;
+                            &lt;CardContent&gt;
+                                &lt;Disclosure&gt;
+                                    {({open}) =&gt; (
+                                        &lt;&gt;
+                                            &lt;Disclosure.Button
+                                                className="flex justify-between w-full items-center text-left"&gt;
+                                                &lt;div className="flex items-center space-x-4"&gt;
+                                                    &lt;img
+                                                        src={`https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(t(testi.nameKey))}`}
+                                                        alt={`${t(testi.nameKey)} avatar`}
+                                                        className="w-10 h-10 rounded-full ring-1 ring-gray-300 dark:ring-gray-700 bg-white"
+                                                    /&gt;
+                                                    &lt;div&gt;
+                                                        &lt;p className="font-semibold"&gt;{t(testi.nameKey)}&lt;/p&gt;
+                                                        &lt;p className="text-sm text-gray-500 dark:text-gray-400"&gt;{t(testi.roleKey)}&lt;/p&gt;
+                                                    &lt;/div&gt;
                                                 &lt;/div&gt;
-                                            &lt;/div&gt;
-                                            &lt;ChevronDown className={`h-5 w-5 transform ${open ? "rotate-180" : ""}`}/&gt;
-                                        &lt;/Disclosure.Button&gt;
-                                        &lt;Disclosure.Panel className="mt-2 text-sm text-gray-700 dark:text-gray-300"&gt;
-                                            {t(testi.quoteKey)}
-                                        &lt;/Disclosure.Panel&gt;
-                                    &lt;/&gt;
-                                )}
-                            &lt;/Disclosure&gt;
-                        &lt;/CardContent&gt;
-                    &lt;/Card&gt;
-                ))}
-            &lt;/div&gt;
+                                                &lt;ChevronDown
+                                                    className={`h-5 w-5 transform ${open ? "rotate-180" : ""}`}/&gt;
+                                            &lt;/Disclosure.Button&gt;
+                                            &lt;Disclosure.Panel className="mt-2 text-sm text-gray-700 dark:text-gray-300"&gt;
+                                                {t(testi.quoteKey)}
+                                            &lt;/Disclosure.Panel&gt;
+                                        &lt;/&gt;
+                                    )}
+                                &lt;/Disclosure&gt;
+                            &lt;/CardContent&gt;
+                        &lt;/Card&gt;
+                    ))}
+                &lt;/motion.div&gt;
+            &lt;/AnimatePresence&gt;
 &nbsp;
             {/* Pagination Controls */}
             {totalPages &gt; 1 &amp;&amp; (
@@ -696,6 +736,8 @@ export default function Testimonials() {
                     &lt;/button&gt;
                 &lt;/div&gt;
             )}
+&nbsp;
+&nbsp;
         &lt;/PageSection&gt;
     );
 }
@@ -706,7 +748,7 @@ export default function Testimonials() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-06-23T10:41:55.732Z
+                at 2025-06-25T09:24:19.294Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

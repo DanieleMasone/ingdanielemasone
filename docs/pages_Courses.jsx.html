@@ -53,7 +53,7 @@ import {ChevronDown} from 'lucide-react';
 import {useState} from "react";
 import PageSection from "../components/ui/PageSection";
 import {ExpandableText} from "../components/ui/ExpandableText";
-
+import {AnimatePresence, motion} from "framer-motion";
 
 /**
  * Courses component.
@@ -72,7 +72,7 @@ import {ExpandableText} from "../components/ui/ExpandableText";
  */
 export default function Courses() {
     const {t} = useTranslation();
-    const coursesPerPage = 6;
+    const coursesPerPage = 4;
     const [page, setPage] = useState(1);
 
     const courses = [
@@ -171,55 +171,65 @@ export default function Courses() {
 
     return (
         &lt;PageSection title={t("courses_page.title")}>
-            &lt;div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {displayedCourses.map((course, idx) => (
-                    &lt;Card
-                        key={idx}
-                        className="bg-white border border-gray-200 text-gray-900 dark:bg-gray-900 dark:border-gray-700 dark:text-white transition-colors duration-300"
-                    >
-                        &lt;CardContent>
-                            &lt;h3 className="text-lg font-semibold">
-                                &lt;a
-                                    href={course.link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="hover:underline"
-                                >
-                                    {t(course.nameKey)}
-                                &lt;/a>
-                            &lt;/h3>
 
-                            &lt;ExpandableText
-                                value={t(course.descKey)}
-                                maxLines={3}
-                                className="mb-2 mt-2 cursor-default"
-                            />
+            &lt;AnimatePresence mode="wait">
+                &lt;motion.div
+                    key={`page-${page}`}
+                    initial={{opacity: 0, y: 40}}
+                    animate={{opacity: 1, y: 0}}
+                    exit={{opacity: 0, y: -40}}
+                    transition={{duration: 0.4}}
+                    className="flex flex-wrap gap-6"
+                >
+                    {displayedCourses.map((course, idx) => (
+                        &lt;Card
+                            key={idx}
+                            className="bg-white border border-gray-200 text-gray-900 dark:bg-gray-900 dark:border-gray-700 dark:text-white transition-colors duration-300"
+                        >
+                            &lt;CardContent>
+                                &lt;h3 className="text-lg font-semibold">
+                                    &lt;a
+                                        href={course.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="hover:underline"
+                                    >
+                                        {t(course.nameKey)}
+                                    &lt;/a>
+                                &lt;/h3>
 
-                            &lt;p className="text-sm text-gray-500 dark:text-gray-400 font-mono mb-2">
-                                {t("courses_page.duration")}: {t(course.durationKey)}
-                            &lt;/p>
+                                &lt;ExpandableText
+                                    value={t(course.descKey)}
+                                    maxLines={3}
+                                    className="mb-2 mt-2 cursor-default"
+                                />
 
-                            &lt;Disclosure>
-                                {({open}) => (
-                                    &lt;>
-                                        &lt;Disclosure.Button
-                                            className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
-                                        >
-                                            &lt;span>{t("show_technologies")}&lt;/span>
-                                            &lt;ChevronDown
-                                                className={`ml-1 w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}
-                                            />
-                                        &lt;/Disclosure.Button>
-                                        &lt;Disclosure.Panel className="mt-2 text-sm text-gray-700 dark:text-gray-300">
-                                            {course.tech}
-                                        &lt;/Disclosure.Panel>
-                                    &lt;/>
-                                )}
-                            &lt;/Disclosure>
-                        &lt;/CardContent>
-                    &lt;/Card>
-                ))}
-            &lt;/div>
+                                &lt;p className="text-sm text-gray-500 dark:text-gray-400 font-mono mb-2">
+                                    {t("courses_page.duration")}: {t(course.durationKey)}
+                                &lt;/p>
+
+                                &lt;Disclosure>
+                                    {({open}) => (
+                                        &lt;>
+                                            &lt;Disclosure.Button
+                                                className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
+                                            >
+                                                &lt;span>{t("show_technologies")}&lt;/span>
+                                                &lt;ChevronDown
+                                                    className={`ml-1 w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}
+                                                />
+                                            &lt;/Disclosure.Button>
+                                            &lt;Disclosure.Panel className="mt-2 text-sm text-gray-700 dark:text-gray-300">
+                                                {course.tech}
+                                            &lt;/Disclosure.Panel>
+                                        &lt;/>
+                                    )}
+                                &lt;/Disclosure>
+                            &lt;/CardContent>
+                        &lt;/Card>
+                    ))}
+                &lt;/motion.div>
+            &lt;/AnimatePresence>
 
             {/* Pagination Controls */}
             {totalPages > 1 &amp;&amp; (
@@ -234,7 +244,7 @@ export default function Courses() {
                         ← {t("previous")}
                     &lt;/button>
 
-                    &lt;span className="px-4 py-2 text-sm text-gray-600 dark:text-gray-300">
+                    &lt;span data-testid="pagination-info" className="px-4 py-2 text-sm text-gray-600 dark:text-gray-300">
                         {page} / {totalPages}
                     &lt;/span>
 
@@ -266,7 +276,7 @@ export default function Courses() {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Mon Jun 23 2025 11:23:15 GMT+0200 (Ora legale dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Wed Jun 25 2025 11:24:20 GMT+0200 (Ora legale dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
