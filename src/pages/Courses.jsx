@@ -25,7 +25,7 @@ import {AnimatePresence, motion} from "framer-motion";
  */
 export default function Courses() {
     const {t} = useTranslation();
-    const coursesPerPage = 4;
+    const coursesPerPage = 3;
     const [page, setPage] = useState(1);
 
     const courses = [

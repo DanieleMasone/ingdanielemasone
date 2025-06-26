@@ -1,6 +1,7 @@
 import {useEffect, useRef, useState} from "react";
 import {useTranslation} from "react-i18next";
 import clsx from "clsx";
+import {ChevronDown, ChevronUp} from 'lucide-react';
 
 
 /**
@@ -62,10 +63,18 @@ export function ExpandableText({value = "", maxLines = 3, className = ""}) {
                 <div className="mt-1 flex justify-end">
                     <button
                         onClick={() => setExpanded(!expanded)}
-                        className="text-xs text-blue-600 dark:text-blue-400 hover:underline"
+                        className="text-xs text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1"
                         type="button"
                     >
-                        {expanded ? t("showLess") : t("showMore")}
+                        {expanded ? (
+                            <>
+                                {t("showLess")} <ChevronUp className="w-4 h-4"/>
+                            </>
+                        ) : (
+                            <>
+                                {t("showMore")} <ChevronDown className="w-4 h-4"/>
+                            </>
+                        )}
                     </button>
                 </div>
             )}

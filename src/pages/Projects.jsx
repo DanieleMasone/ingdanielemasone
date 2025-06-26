@@ -24,6 +24,8 @@ import {AnimatePresence, motion} from "framer-motion";
 export default function Projects() {
     const {t} = useTranslation();
     const [selectedCompany, setSelectedCompany] = useState("RGI");
+    const [page, setPage] = useState(1);
+    const itemsPerPage = 2;
 
     const projects = [
         {
@@ -135,7 +137,10 @@ export default function Projects() {
                     {companies.map((company) => (
                         <button
                             key={company}
-                            onClick={() => setSelectedCompany(company)}
+                            onClick={() => {
+                                setSelectedCompany(company);
+                                setPage(1);
+                            }}
                             className={`px-4 py-2 rounded-lg border text-sm whitespace-nowrap
                             ${
                                 selectedCompany === company
@@ -152,51 +157,94 @@ export default function Projects() {
                 <div className="flex-1">
                     <AnimatePresence mode="wait">
                         <motion.div
-                            key={selectedCompany}
+                            key={selectedCompany + page}
                             initial={{opacity: 0, y: 40}}
                             animate={{opacity: 1, y: 0}}
                             exit={{opacity: 0, y: -40}}
                             transition={{duration: 0.4}}
                             layout
-                            className="flex flex-wrap gap-6 min-h-[500px]"
+                            className="flex flex-wrap gap-6 min-h-[500px] items-start"
                         >
-                            {(groupedProjects[selectedCompany] || []).map((proj, idx) => (
-                                <Card
-                                    key={idx}
-                                    className="bg-white border border-gray-200 text-gray-900 dark:bg-gray-900 dark:border-gray-700 dark:text-white transition-colors duration-300"
-                                >
-                                    <CardContent>
-                                        <h3 className="text-lg font-semibold">{proj.name}</h3>
-                                        <p className="text-gray-700 dark:text-gray-400">{proj.company}</p>
-                                        <p className="text-sm mb-2 text-gray-600 dark:text-gray-500">{proj.period}</p>
-                                        {proj.type && (
-                                            <ExpandableText
-                                                value={t(`project_types.${proj.type}`, proj.type)}
-                                                maxLines={3}
-                                                className="mb-2 text-sm"
-                                            />
-                                        )}
-                                        <Disclosure>
-                                            {({open}) => (
-                                                <div>
-                                                    <Disclosure.Button
-                                                        className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
-                                                    >
-                                                        <span>{t("show_technologies")}</span>
-                                                        <ChevronDown
-                                                            className={`ml-1 w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}
+                            {(() => {
+                                const currentProjects = groupedProjects[selectedCompany] || [];
+                                const totalPages = Math.ceil(currentProjects.length / itemsPerPage);
+                                const paginated = currentProjects.slice(
+                                    (page - 1) * itemsPerPage,
+                                    page * itemsPerPage
+                                );
+
+                                return (
+                                    <>
+                                        {paginated.map((proj, idx) => (
+                                            <Card
+                                                key={idx}
+                                                className="bg-white border border-gray-200 text-gray-900 dark:bg-gray-900 dark:border-gray-700 dark:text-white transition-colors duration-300"
+                                            >
+                                                <CardContent>
+                                                    <h3 className="text-lg font-semibold">{proj.name}</h3>
+                                                    <p className="text-gray-700 dark:text-gray-400">{proj.company}</p>
+                                                    <p className="text-sm mb-2 text-gray-600 dark:text-gray-500">{proj.period}</p>
+                                                    {proj.type && (
+                                                        <ExpandableText
+                                                            value={t(`project_types.${proj.type}`, proj.type)}
+                                                            maxLines={3}
+                                                            className="mb-2 text-sm"
                                                         />
-                                                    </Disclosure.Button>
-                                                    <Disclosure.Panel
-                                                        className="mt-2 text-sm text-gray-700 dark:text-gray-300">
-                                                        {proj.tech}
-                                                    </Disclosure.Panel>
-                                                </div>
-                                            )}
-                                        </Disclosure>
-                                    </CardContent>
-                                </Card>
-                            ))}
+                                                    )}
+                                                    <Disclosure>
+                                                        {({open}) => (
+                                                            <div>
+                                                                <Disclosure.Button
+                                                                    className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
+                                                                >
+                                                                    <span>{t("show_technologies")}</span>
+                                                                    <ChevronDown
+                                                                        className={`ml-1 w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}
+                                                                    />
+                                                                </Disclosure.Button>
+                                                                <Disclosure.Panel
+                                                                    className="mt-2 text-sm text-gray-700 dark:text-gray-300">
+                                                                    {proj.tech}
+                                                                </Disclosure.Panel>
+                                                            </div>
+                                                        )}
+                                                    </Disclosure>
+                                                </CardContent>
+                                            </Card>
+                                        ))}
+
+                                        {/* Pagination Controls */}
+                                        {totalPages > 1 && (
+                                            <div className="w-full flex justify-center mt-8 space-x-4">
+                                                <button
+                                                    onClick={() => setPage(p => Math.max(p - 1, 1))}
+                                                    disabled={page === 1}
+                                                    className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
+                                                               text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
+                                                               hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
+                                                >
+                                                    ← {t("previous")}
+                                                </button>
+
+                                                <span data-testid="pagination-info"
+                                                      className="px-4 py-2 text-sm text-gray-600 dark:text-gray-300">
+                                                    {page} / {totalPages}
+                                                </span>
+
+                                                <button
+                                                    onClick={() => setPage(p => Math.min(p + 1, totalPages))}
+                                                    disabled={page === totalPages}
+                                                    className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
+                                                                text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
+                                                                hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
+                                                >
+                                                    {t("next")} →
+                                                </button>
+                                            </div>
+                                        )}
+                                    </>
+                                );
+                            })()}
                         </motion.div>
                     </AnimatePresence>
                 </div>

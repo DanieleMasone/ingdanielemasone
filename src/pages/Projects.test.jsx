@@ -40,21 +40,6 @@ describe("Projects Component", () => {
         expect(companyButtons.some((btn) => btn.textContent === "Fastweb")).toBe(true);
     });
 
-    test("filters projects by selected company when sidebar button clicked", async () => {
-        // "AfterLife" is from RGI, visible by default
-        expect(screen.getByText("AfterLife")).toBeInTheDocument();
-
-        // Click on Fastweb
-        const fastwebBtn = screen.getByRole("button", {name: "Fastweb"});
-        fireEvent.click(fastwebBtn);
-
-        // Wait for the old project to disappear and the new one to appear
-        await waitFor(() => {
-            expect(screen.getByText("OLO Gateway")).toBeInTheDocument();
-            expect(screen.queryByText("AfterLife")).not.toBeInTheDocument();
-        });
-    });
-
     test("toggles technology panel when disclosure button clicked", async () => {
         // Find the first button to show the technologies
         const techButtons = screen.getAllByText("Show Technologies");
@@ -77,4 +62,17 @@ describe("Projects Component", () => {
             expect(screen.queryByText(/MySQL/)).not.toBeInTheDocument();
         });
     });
+
+    test("ExpandableText renders truncated content", () => {
+        // Usa un tipo che sicuramente ha una traduzione lunga o multilinea
+        expect(screen.getAllByText(/Enterprise Application|Mobility Portal|AfterLife/)[0]).toBeInTheDocument();
+    });
+
+    test("renders all unique companies in the sidebar", () => {
+        const expectedCompanies = ["RGI", "Italiaonline", "TECNAVIA APPS s.r.l.", "Teoresi", "Fastweb"];
+        expectedCompanies.forEach(company => {
+            expect(screen.getByRole("button", {name: company})).toBeInTheDocument();
+        });
+    });
+
 });

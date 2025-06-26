@@ -17,8 +17,31 @@
   "home_description": "Realizzo applicazioni scalabili, mantenibili e sicure. Lavoro con tecnologie moderne lato front-end e back-end, seguendo i principi dell'architettura pulita e metodologie Agile.",
   "projects_title": "Progetti",
   "show_technologies": "Mostra tecnologie",
-  "showMore": "Mostra tutto ⋯",
-  "showLess": "Mostra meno ▲",
+  "showMore": "Mostra tutto",
+  "showLess": "Mostra meno",
+  "performance_positive": "Positivo",
+  "performance_negative": "Negativo",
+  "performance_cumulative": "Cumulato",
+  "months": {
+    "jan": "Gen",
+    "feb": "Feb",
+    "mar": "Mar",
+    "apr": "Apr",
+    "may": "Mag",
+    "jun": "Giu",
+    "jul": "Lug",
+    "aug": "Ago",
+    "sep": "Set",
+    "oct": "Ott",
+    "nov": "Nov",
+    "dec": "Dic"
+  },
+  "annual_labels": {
+    "2022": "2022",
+    "2023": "2023",
+    "2024": "2024",
+    "2025_partial": "2025 (parz.)"
+  },
   "project_types": {
     "Enterprise Portal": "Fastweb Enterprise Portal Development",
     "IoT Workplace Booking": "Portale web in grado di gestire le prenotazioni delle sale riunioni e/o delle postazioni di lavoro personalizzandole con accessori (aria condizionata, luci, proiettore...).\nLa raccolta di informazioni da questi oggetti consente di monitorare l'intero ambiente.",

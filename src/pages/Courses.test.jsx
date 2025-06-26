@@ -66,15 +66,19 @@ describe('Courses component', () => {
     });
 
     test('pagination shows current page and total pages', () => {
-        expect(screen.getByTestId("pagination-info").textContent).toBe("1 / 3");
+        expect(screen.getByTestId("pagination-info").textContent).toBe("1 / 4");
 
         const nextButton = screen.getByRole('button', {name: /next/i});
         fireEvent.click(nextButton);
 
-        expect(screen.getByTestId("pagination-info").textContent).toBe("2 / 3");
+        expect(screen.getByTestId("pagination-info").textContent).toBe("2 / 4");
 
         fireEvent.click(nextButton);
 
-        expect(screen.getByTestId("pagination-info").textContent).toBe("3 / 3");
+        expect(screen.getByTestId("pagination-info").textContent).toBe("3 / 4");
+
+        fireEvent.click(nextButton);
+
+        expect(screen.getByTestId("pagination-info").textContent).toBe("4 / 4");
     });
 });
