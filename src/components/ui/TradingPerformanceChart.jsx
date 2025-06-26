@@ -73,7 +73,7 @@ export default function TradingPerformanceChart() {
         1.87, -0.41, -1.84, 0.93, 5.78, 3.28, null, null, null, null, null, null,
     ];
 
-    const getCumulativeSum = (returns: (number | null)[]): (number | null)[] => {
+    const getCumulativeSum = (returns) => {
         let sum = 0;
         return returns.map((r) => {
             if (r == null) return null;
@@ -159,7 +159,7 @@ export default function TradingPerformanceChart() {
                 beginAtZero: true,
                 ticks: {
                     color: isDark ? '#ddd' : '#333',
-                    callback: (val: number) => `${val}%`,
+                    callback: (val) => `${val}%`,
                 },
                 grid: {
                     color: isDark ? '#444' : '#ddd',
@@ -281,7 +281,7 @@ export default function TradingPerformanceChart() {
     );
 }
 
-function ValueBox({value, label}: { value: number | null; label: string }) {
+function ValueBox({ value, label }) {
     const color =
         value == null
             ? 'text-gray-400 dark:text-gray-500'
