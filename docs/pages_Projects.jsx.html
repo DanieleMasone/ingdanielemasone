@@ -71,6 +71,8 @@ import {AnimatePresence, motion} from "framer-motion";
 export default function Projects() {
     const {t} = useTranslation();
     const [selectedCompany, setSelectedCompany] = useState("RGI");
+    const [page, setPage] = useState(1);
+    const itemsPerPage = 2;
 
     const projects = [
         {
@@ -182,7 +184,10 @@ export default function Projects() {
                     {companies.map((company) => (
                         &lt;button
                             key={company}
-                            onClick={() => setSelectedCompany(company)}
+                            onClick={() => {
+                                setSelectedCompany(company);
+                                setPage(1);
+                            }}
                             className={`px-4 py-2 rounded-lg border text-sm whitespace-nowrap
                             ${
                                 selectedCompany === company
@@ -199,51 +204,94 @@ export default function Projects() {
                 &lt;div className="flex-1">
                     &lt;AnimatePresence mode="wait">
                         &lt;motion.div
-                            key={selectedCompany}
+                            key={selectedCompany + page}
                             initial={{opacity: 0, y: 40}}
                             animate={{opacity: 1, y: 0}}
                             exit={{opacity: 0, y: -40}}
                             transition={{duration: 0.4}}
                             layout
-                            className="flex flex-wrap gap-6 min-h-[500px]"
+                            className="flex flex-wrap gap-6 min-h-[500px] items-start"
                         >
-                            {(groupedProjects[selectedCompany] || []).map((proj, idx) => (
-                                &lt;Card
-                                    key={idx}
-                                    className="bg-white border border-gray-200 text-gray-900 dark:bg-gray-900 dark:border-gray-700 dark:text-white transition-colors duration-300"
-                                >
-                                    &lt;CardContent>
-                                        &lt;h3 className="text-lg font-semibold">{proj.name}&lt;/h3>
-                                        &lt;p className="text-gray-700 dark:text-gray-400">{proj.company}&lt;/p>
-                                        &lt;p className="text-sm mb-2 text-gray-600 dark:text-gray-500">{proj.period}&lt;/p>
-                                        {proj.type &amp;&amp; (
-                                            &lt;ExpandableText
-                                                value={t(`project_types.${proj.type}`, proj.type)}
-                                                maxLines={3}
-                                                className="mb-2 text-sm"
-                                            />
-                                        )}
-                                        &lt;Disclosure>
-                                            {({open}) => (
-                                                &lt;div>
-                                                    &lt;Disclosure.Button
-                                                        className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
-                                                    >
-                                                        &lt;span>{t("show_technologies")}&lt;/span>
-                                                        &lt;ChevronDown
-                                                            className={`ml-1 w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}
+                            {(() => {
+                                const currentProjects = groupedProjects[selectedCompany] || [];
+                                const totalPages = Math.ceil(currentProjects.length / itemsPerPage);
+                                const paginated = currentProjects.slice(
+                                    (page - 1) * itemsPerPage,
+                                    page * itemsPerPage
+                                );
+
+                                return (
+                                    &lt;>
+                                        {paginated.map((proj, idx) => (
+                                            &lt;Card
+                                                key={idx}
+                                                className="bg-white border border-gray-200 text-gray-900 dark:bg-gray-900 dark:border-gray-700 dark:text-white transition-colors duration-300"
+                                            >
+                                                &lt;CardContent>
+                                                    &lt;h3 className="text-lg font-semibold">{proj.name}&lt;/h3>
+                                                    &lt;p className="text-gray-700 dark:text-gray-400">{proj.company}&lt;/p>
+                                                    &lt;p className="text-sm mb-2 text-gray-600 dark:text-gray-500">{proj.period}&lt;/p>
+                                                    {proj.type &amp;&amp; (
+                                                        &lt;ExpandableText
+                                                            value={t(`project_types.${proj.type}`, proj.type)}
+                                                            maxLines={3}
+                                                            className="mb-2 text-sm"
                                                         />
-                                                    &lt;/Disclosure.Button>
-                                                    &lt;Disclosure.Panel
-                                                        className="mt-2 text-sm text-gray-700 dark:text-gray-300">
-                                                        {proj.tech}
-                                                    &lt;/Disclosure.Panel>
-                                                &lt;/div>
-                                            )}
-                                        &lt;/Disclosure>
-                                    &lt;/CardContent>
-                                &lt;/Card>
-                            ))}
+                                                    )}
+                                                    &lt;Disclosure>
+                                                        {({open}) => (
+                                                            &lt;div>
+                                                                &lt;Disclosure.Button
+                                                                    className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
+                                                                >
+                                                                    &lt;span>{t("show_technologies")}&lt;/span>
+                                                                    &lt;ChevronDown
+                                                                        className={`ml-1 w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}
+                                                                    />
+                                                                &lt;/Disclosure.Button>
+                                                                &lt;Disclosure.Panel
+                                                                    className="mt-2 text-sm text-gray-700 dark:text-gray-300">
+                                                                    {proj.tech}
+                                                                &lt;/Disclosure.Panel>
+                                                            &lt;/div>
+                                                        )}
+                                                    &lt;/Disclosure>
+                                                &lt;/CardContent>
+                                            &lt;/Card>
+                                        ))}
+
+                                        {/* Pagination Controls */}
+                                        {totalPages > 1 &amp;&amp; (
+                                            &lt;div className="w-full flex justify-center mt-8 space-x-4">
+                                                &lt;button
+                                                    onClick={() => setPage(p => Math.max(p - 1, 1))}
+                                                    disabled={page === 1}
+                                                    className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
+                                                               text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
+                                                               hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
+                                                >
+                                                    ← {t("previous")}
+                                                &lt;/button>
+
+                                                &lt;span data-testid="pagination-info"
+                                                      className="px-4 py-2 text-sm text-gray-600 dark:text-gray-300">
+                                                    {page} / {totalPages}
+                                                &lt;/span>
+
+                                                &lt;button
+                                                    onClick={() => setPage(p => Math.min(p + 1, totalPages))}
+                                                    disabled={page === totalPages}
+                                                    className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
+                                                                text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
+                                                                hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
+                                                >
+                                                    {t("next")} →
+                                                &lt;/button>
+                                            &lt;/div>
+                                        )}
+                                    &lt;/>
+                                );
+                            })()}
                         &lt;/motion.div>
                     &lt;/AnimatePresence>
                 &lt;/div>
@@ -266,7 +314,7 @@ export default function Projects() {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Wed Jun 25 2025 11:24:20 GMT+0200 (Ora legale dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Thu Jun 26 2025 12:21:36 GMT+0200 (Ora legale dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
