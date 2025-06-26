@@ -128,8 +128,8 @@ export default function TradingPerformanceChart() {
                 borderColor: cumulativeColor,
                 backgroundColor: 'transparent',
                 borderWidth: 3,
-                pointRadius: 4,
-                pointHoverRadius: 6,
+                pointRadius: window.innerWidth < 640 ? 1 : 4,
+                pointHoverRadius: window.innerWidth < 640 ? 3 : 6,
                 spanGaps: true,
                 tension: isMonthly ? 0.3 : 0,
             },
@@ -170,7 +170,7 @@ export default function TradingPerformanceChart() {
                 ticks: {
                     color: isDark ? '#ddd' : '#333',
                     autoSkip: true,
-                    maxTicksLimit: 20,
+                    maxTicksLimit: window.innerWidth < 640 ? 6 : 20 // mobile: 6 tick max
                 },
                 grid: {
                     color: isDark ? '#444' : '#ddd',
