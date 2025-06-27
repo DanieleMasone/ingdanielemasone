@@ -155,26 +155,26 @@ export default function Projects() {
 
                 {/* Content */}
                 <div className="flex-1">
-                    <AnimatePresence mode="wait">
-                        <motion.div
-                            key={selectedCompany + page}
-                            initial={{opacity: 0, y: 40}}
-                            animate={{opacity: 1, y: 0}}
-                            exit={{opacity: 0, y: -40}}
-                            transition={{duration: 0.4}}
-                            layout
-                            className="flex flex-wrap gap-6 min-h-[500px] items-start"
-                        >
-                            {(() => {
-                                const currentProjects = groupedProjects[selectedCompany] || [];
-                                const totalPages = Math.ceil(currentProjects.length / itemsPerPage);
-                                const paginated = currentProjects.slice(
-                                    (page - 1) * itemsPerPage,
-                                    page * itemsPerPage
-                                );
+                    {(() => {
+                        const currentProjects = groupedProjects[selectedCompany] || [];
+                        const totalPages = Math.ceil(currentProjects.length / itemsPerPage);
+                        const paginated = currentProjects.slice(
+                            (page - 1) * itemsPerPage,
+                            page * itemsPerPage
+                        );
 
-                                return (
-                                    <>
+                        return (
+                            <>
+                                <AnimatePresence mode="wait">
+                                    <motion.div
+                                        key={selectedCompany + page}
+                                        initial={{opacity: 0, y: 40}}
+                                        animate={{opacity: 1, y: 0}}
+                                        exit={{opacity: 0, y: -40}}
+                                        transition={{duration: 0.4}}
+                                        layout
+                                        className="flex flex-wrap gap-6 min-h-[500px] items-start"
+                                    >
                                         {paginated.map((proj, idx) => (
                                             <Card
                                                 key={idx}
@@ -212,43 +212,42 @@ export default function Projects() {
                                                 </CardContent>
                                             </Card>
                                         ))}
+                                    </motion.div>
+                                </AnimatePresence>
 
-                                        {/* Pagination Controls */}
-                                        {totalPages > 1 && (
-                                            <div className="w-full flex justify-center mt-8 space-x-4">
-                                                <button
-                                                    onClick={() => setPage(p => Math.max(p - 1, 1))}
-                                                    disabled={page === 1}
-                                                    className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
+                                {/* Pagination Controls */}
+                                {totalPages > 1 && (
+                                    <div className="w-full flex justify-center mt-8 space-x-4">
+                                        <button
+                                            onClick={() => setPage(p => Math.max(p - 1, 1))}
+                                            disabled={page === 1}
+                                            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
                                                                text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
                                                                hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
-                                                >
-                                                    ← {t("previous")}
-                                                </button>
+                                        >
+                                            ← {t("previous")}
+                                        </button>
 
-                                                <span data-testid="pagination-info"
-                                                      className="px-4 py-2 text-sm text-gray-600 dark:text-gray-300">
+                                        <span data-testid="pagination-info"
+                                              className="px-4 py-2 text-sm text-gray-600 dark:text-gray-300">
                                                     {page} / {totalPages}
                                                 </span>
 
-                                                <button
-                                                    onClick={() => setPage(p => Math.min(p + 1, totalPages))}
-                                                    disabled={page === totalPages}
-                                                    className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
+                                        <button
+                                            onClick={() => setPage(p => Math.min(p + 1, totalPages))}
+                                            disabled={page === totalPages}
+                                            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
                                                                 text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
                                                                 hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
-                                                >
-                                                    {t("next")} →
-                                                </button>
-                                            </div>
-                                        )}
-                                    </>
-                                );
-                            })()}
-                        </motion.div>
-                    </AnimatePresence>
+                                        >
+                                            {t("next")} →
+                                        </button>
+                                    </div>
+                                )}
+                            </>
+                        );
+                    })()}
                 </div>
-
             </div>
         </PageSection>
     );
