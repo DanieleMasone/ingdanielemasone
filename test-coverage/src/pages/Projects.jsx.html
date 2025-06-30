@@ -317,8 +317,7 @@
 <a name='L252'></a><a href='#L252'>252</a>
 <a name='L253'></a><a href='#L253'>253</a>
 <a name='L254'></a><a href='#L254'>254</a>
-<a name='L255'></a><a href='#L255'>255</a>
-<a name='L256'></a><a href='#L256'>256</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L255'></a><a href='#L255'>255</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -476,16 +475,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
@@ -494,6 +483,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
@@ -537,25 +536,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -730,26 +728,26 @@ export default function Projects() {
 &nbsp;
                 {/* Content */}
                 &lt;div className="flex-1"&gt;
-                    &lt;AnimatePresence mode="wait"&gt;
-                        &lt;motion.div
-                            key={selectedCompany + page}
-                            initial={{opacity: 0, y: 40}}
-                            animate={{opacity: 1, y: 0}}
-                            exit={{opacity: 0, y: -40}}
-                            transition={{duration: 0.4}}
-                            layout
-                            className="flex flex-wrap gap-6 min-h-[500px] items-start"
-                        &gt;
-                            {(() =&gt; {
-                                const currentProjects = groupedProjects[selectedCompany] || <span class="branch-1 cbranch-no" title="branch not covered" >[];</span>
-                                const totalPages = Math.ceil(currentProjects.length / itemsPerPage);
-                                const paginated = currentProjects.slice(
-                                    (page - 1) * itemsPerPage,
-                                    page * itemsPerPage
-                                );
+                    {(() =&gt; {
+                        const currentProjects = groupedProjects[selectedCompany] || <span class="branch-1 cbranch-no" title="branch not covered" >[];</span>
+                        const totalPages = Math.ceil(currentProjects.length / itemsPerPage);
+                        const paginated = currentProjects.slice(
+                            (page - 1) * itemsPerPage,
+                            page * itemsPerPage
+                        );
 &nbsp;
-                                return (
-                                    &lt;&gt;
+                        return (
+                            &lt;&gt;
+                                &lt;AnimatePresence mode="wait"&gt;
+                                    &lt;motion.div
+                                        key={selectedCompany + page}
+                                        initial={{opacity: 0, y: 40}}
+                                        animate={{opacity: 1, y: 0}}
+                                        exit={{opacity: 0, y: -40}}
+                                        transition={{duration: 0.4}}
+                                        layout
+                                        className="flex flex-wrap gap-6 min-h-[500px] items-start"
+                                    &gt;
                                         {paginated.map((proj, idx) =&gt; (
                                             &lt;Card
                                                 key={idx}
@@ -787,43 +785,42 @@ export default function Projects() {
                                                 &lt;/CardContent&gt;
                                             &lt;/Card&gt;
                                         ))}
+                                    &lt;/motion.div&gt;
+                                &lt;/AnimatePresence&gt;
 &nbsp;
-                                        {/* Pagination Controls */}
-                                        {totalPages &gt; 1 &amp;&amp; (
-                                            &lt;div className="w-full flex justify-center mt-8 space-x-4"&gt;
-                                                &lt;button
-                                                    onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setPage(<span class="fstat-no" title="function not covered" >p </span>=&gt; <span class="cstat-no" title="statement not covered" >Math.max(p - 1, 1))</span>}</span>
-                                                    disabled={page === 1}
-                                                    className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
+                                {/* Pagination Controls */}
+                                {totalPages &gt; 1 &amp;&amp; (
+                                    &lt;div className="w-full flex justify-center mt-8 space-x-4"&gt;
+                                        &lt;button
+                                            onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setPage(<span class="fstat-no" title="function not covered" >p </span>=&gt; <span class="cstat-no" title="statement not covered" >Math.max(p - 1, 1))</span>}</span>
+                                            disabled={page === 1}
+                                            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
                                                                text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
                                                                hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
-                                                &gt;
-                                                    ← {t("previous")}
-                                                &lt;/button&gt;
+                                        &gt;
+                                            ← {t("previous")}
+                                        &lt;/button&gt;
 &nbsp;
-                                                &lt;span data-testid="pagination-info"
-                                                      className="px-4 py-2 text-sm text-gray-600 dark:text-gray-300"&gt;
+                                        &lt;span data-testid="pagination-info"
+                                              className="px-4 py-2 text-sm text-gray-600 dark:text-gray-300"&gt;
                                                     {page} / {totalPages}
                                                 &lt;/span&gt;
 &nbsp;
-                                                &lt;button
-                                                    onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setPage(<span class="fstat-no" title="function not covered" >p </span>=&gt; <span class="cstat-no" title="statement not covered" >Math.min(p + 1, totalPages))</span>}</span>
-                                                    disabled={page === totalPages}
-                                                    className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
+                                        &lt;button
+                                            onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setPage(<span class="fstat-no" title="function not covered" >p </span>=&gt; <span class="cstat-no" title="statement not covered" >Math.min(p + 1, totalPages))</span>}</span>
+                                            disabled={page === totalPages}
+                                            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
                                                                 text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
                                                                 hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
-                                                &gt;
-                                                    {t("next")} →
-                                                &lt;/button&gt;
-                                            &lt;/div&gt;
-                                        )}
-                                    &lt;/&gt;
-                                );
-                            })()}
-                        &lt;/motion.div&gt;
-                    &lt;/AnimatePresence&gt;
+                                        &gt;
+                                            {t("next")} →
+                                        &lt;/button&gt;
+                                    &lt;/div&gt;
+                                )}
+                            &lt;/&gt;
+                        );
+                    })()}
                 &lt;/div&gt;
-&nbsp;
             &lt;/div&gt;
         &lt;/PageSection&gt;
     );
@@ -835,7 +832,7 @@ export default function Projects() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-06-26T10:21:35.628Z
+                at 2025-06-30T09:02:24.272Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
