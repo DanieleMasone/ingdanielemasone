@@ -1,63 +1,52 @@
-import {useEffect, useRef, useState} from "react";
+import {useLayoutEffect, useRef, useState} from "react";
 import {useTranslation} from "react-i18next";
 import clsx from "clsx";
-import {ChevronDown, ChevronUp} from 'lucide-react';
+import {ChevronDown, ChevronUp} from "lucide-react";
 
-
-/**
- * ExpandableText component displays a text paragraph that can be truncated
- * to a maximum number of lines with an option to expand and collapse.
- *
- * Shows a "Show More" / "Show Less" toggle button when the text exceeds the
- * specified number of lines.
- *
- * @component
- * @module components/ui/ExpandableText
- *
- * @param {object} props - Component props.
- * @param {string} [props.value=""] - The text content to display.
- * @param {number} [props.maxLines=3] - Maximum number of visible lines before truncation.
- * @param {string} [props.className=""] - Additional CSS classes to apply to the paragraph.
- * @returns {JSX.Element} A paragraph with expandable/collapsible text.
- */
 export function ExpandableText({value = "", maxLines = 3, className = ""}) {
     const [expanded, setExpanded] = useState(false);
     const [showButton, setShowButton] = useState(false);
-    const {t} = useTranslation();
+    const [contentHeight, setContentHeight] = useState(0);
     const paragraphRef = useRef(null);
+    const {t} = useTranslation();
 
-    const lineClampClass = {
-        1: "line-clamp-1",
-        2: "line-clamp-2",
-        3: "line-clamp-3",
-        4: "line-clamp-4",
-        5: "line-clamp-5",
-    }[maxLines] || "line-clamp-3";
+    const lineHeightEm = 1.5; // 1.5em is the normal average
+    const collapsedHeightEm = maxLines * lineHeightEm;
 
-    useEffect(() => {
-        if (!paragraphRef.current) return;
+    useLayoutEffect(() => {
+        const el = paragraphRef.current;
+        if (!el) return;
 
-        const scrollHeight = paragraphRef.current.scrollHeight;
-        const clientHeight = paragraphRef.current.clientHeight;
+        const scrollHeight = el.scrollHeight;
+        setContentHeight(scrollHeight);
 
+        const fontSize = parseFloat(getComputedStyle(el).fontSize);
+        const collapsedHeightEm = maxLines * 1.5;
+        const collapsedHeightPx = collapsedHeightEm * fontSize;
 
-        // Show the button if it is expanded (to allow closing)
-        // or if the text is truncated (needs expansion)
-        setShowButton(expanded || scrollHeight > clientHeight);
-    }, [value, maxLines, expanded]);
+        setShowButton(scrollHeight > collapsedHeightPx);
+    }, [value, maxLines]);
 
     return (
         <div className="relative">
-            <p
+            <div
                 ref={paragraphRef}
                 className={clsx(
-                    "text-sm sm:text-base whitespace-pre-line transition-all",
-                    !expanded && lineClampClass,
+                    "text-sm sm:text-base whitespace-pre-line overflow-hidden transition-[max-height] duration-500 ease-in-out relative",
                     className
                 )}
+                style={{
+                    maxHeight: expanded ? `${contentHeight}px` : `${collapsedHeightEm}em`,
+                }}
+                aria-expanded={expanded}
             >
                 {value}
-            </p>
+
+                {!expanded && showButton && (
+                    <div
+                        className="absolute bottom-0 left-0 w-full h-6 bg-gradient-to-t from-white dark:from-slate-900 pointer-events-none"/>
+                )}
+            </div>
 
             {showButton && (
                 <div className="mt-1 flex justify-end">
