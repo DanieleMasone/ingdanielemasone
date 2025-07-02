@@ -32,7 +32,6 @@
         <priority>0.7</priority>
     </url>
 
-    <!-- Hidden/Legal pages -->
     <url>
         <loc>https://danielemasone.github.io/ingdanielemasone/privacy</loc>
         <priority>0.3</priority>

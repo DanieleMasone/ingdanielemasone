@@ -1,8 +1,4 @@
-# https://www.robotstxt.org/robotstxt.html
-
-# Allows all bots to access everything
 User-agent: *
 Allow: /
 
-# Sitemap (for sitemap.xml file)
 Sitemap: https://danielemasone.github.io/ingdanielemasone/sitemap.xml
