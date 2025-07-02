@@ -58,6 +58,7 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/user-event": "^14.6.1",
     "autoprefixer": "^10.4.21",
     "docdash": "^2.0.2",
     "fs-extra": "^11.3.0",

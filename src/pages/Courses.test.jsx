@@ -48,21 +48,21 @@ describe('Courses component', () => {
         expect(screen.getByText(/3h 20m/i)).toBeInTheDocument();
     });
 
+    test('renders course image wrapped in link', () => {
+        const link = screen.getByRole('link', {name: /git course/i});
+        expect(link).toHaveAttribute('href', 'https://www.udemy.com/course/corso-git/');
+    });
+
     test('pagination buttons enabled/disabled correctly', () => {
-        // On first page, Previous disabled, Next enabled
         const prevButton = screen.getByRole('button', {name: /previous/i});
         const nextButton = screen.getByRole('button', {name: /next/i});
 
         expect(prevButton).toBeDisabled();
         expect(nextButton).toBeEnabled();
 
-        // Click next page
         fireEvent.click(nextButton);
 
-        // Now Previous enabled
         expect(prevButton).toBeEnabled();
-
-        // If last page reached, Next disabled (depends on total courses/pages)
     });
 
     test('pagination shows current page and total pages', () => {
@@ -70,15 +70,12 @@ describe('Courses component', () => {
 
         const nextButton = screen.getByRole('button', {name: /next/i});
         fireEvent.click(nextButton);
-
         expect(screen.getByTestId("pagination-info").textContent).toBe("2 / 4");
 
         fireEvent.click(nextButton);
-
         expect(screen.getByTestId("pagination-info").textContent).toBe("3 / 4");
 
         fireEvent.click(nextButton);
-
         expect(screen.getByTestId("pagination-info").textContent).toBe("4 / 4");
     });
 });

@@ -4,13 +4,22 @@ import Testimonials from "./Testimonials";
 import {I18nextProvider, initReactI18next} from "react-i18next";
 import i18n from "i18next";
 
-// Mock minimal translations
+// Mock minimal translations for the keys used in the component
 const resources = {
     en: {
         translation: {
             "testimonials_people.mirko.name": "Mirko",
             "testimonials_people.mirko.role": "Developer",
             "testimonials_people.mirko.quote": "Great work!",
+            "testimonials_people.alessia.name": "Alessia",
+            "testimonials_people.alessia.role": "Designer",
+            "testimonials_people.alessia.quote": "Amazing service!",
+            "testimonials_people.federico.name": "Federico",
+            "testimonials_people.federico.role": "Manager",
+            "testimonials_people.federico.quote": "Highly recommend!",
+            "testimonials_people.daniela.name": "Daniela",
+            "testimonials_people.daniela.role": "QA",
+            "testimonials_people.daniela.quote": "Thorough testing.",
             "testimonials_page.title": "Testimonials",
             "testimonials_page.prev": "Prev",
             "testimonials_page.next": "Next"
@@ -35,59 +44,62 @@ describe("Testimonials component", () => {
     });
 
     test("renders pagination buttons and current page info", () => {
-        const nextButton = screen.getByRole("button", {
-            name: (content) => content.includes("Next")
-        });
-        const prevButton = screen.getByRole("button", {
-            name: (content) => content.includes("Prev")
-        });
-
-        expect(nextButton).toBeInTheDocument();
-        expect(prevButton).toBeInTheDocument();
-
+        expect(screen.getByRole("button", {name: /Next/i})).toBeInTheDocument();
+        expect(screen.getByRole("button", {name: /Prev/i})).toBeInTheDocument();
         expect(screen.getByText("1 / 8")).toBeInTheDocument();
     });
 
     test("pagination next button changes page", () => {
-        const nextButton = screen.getByRole("button", {
-            name: (content) => content.includes("Next")
-        });
-
-        // Check initial page
         expect(screen.getByText("1 / 8")).toBeInTheDocument();
-
-        fireEvent.click(nextButton);
-
-        // Now page should be 2
+        fireEvent.click(screen.getByRole("button", {name: /Next/i}));
         expect(screen.getByText("2 / 8")).toBeInTheDocument();
     });
 
-    test("toggles testimonial quote visibility on disclosure click", async () => {
-        // Find a disclosure button (avoiding navigation ones)
-        const disclosureButtons = screen.getAllByRole("button").filter(
-            btn => !btn.textContent.includes("Next") && !btn.textContent.includes("Prev")
-        );
-        const firstDisclosureButton = disclosureButtons[0];
+    test("pagination prev button changes page", () => {
+        // Go to page 2 first
+        fireEvent.click(screen.getByRole("button", {name: /Next/i}));
+        expect(screen.getByText("2 / 8")).toBeInTheDocument();
 
+        // Go back to page 1
+        fireEvent.click(screen.getByRole("button", {name: /Prev/i}));
+        expect(screen.getByText("1 / 8")).toBeInTheDocument();
+    });
+
+    test("prev button disabled on first page", () => {
+        const prevBtn = screen.getByRole("button", {name: /Prev/i});
+        expect(prevBtn).toBeDisabled();
+    });
+
+    test("next button disabled on last page", () => {
+        const nextBtn = screen.getByRole("button", {name: /Next/i});
+        // Go to last page
+        for (let i = 1; i < 8; i++) {
+            fireEvent.click(nextBtn);
+        }
+        expect(screen.getByText("8 / 8")).toBeInTheDocument();
+        expect(nextBtn).toBeDisabled();
+    });
+
+    test("toggles testimonial quote visibility on disclosure click", async () => {
+        // Get all disclosure buttons (excluding pagination ones)
+        const disclosureButtons = screen
+            .getAllByRole("button")
+            .filter(btn => !btn.textContent.includes("Next") && !btn.textContent.includes("Prev"));
+        const firstDisclosureButton = disclosureButtons[0];
         expect(firstDisclosureButton).toBeInTheDocument();
 
         const quoteText = resources.en.translation["testimonials_people.mirko.quote"];
 
-        // Make sure the quote is not visible initially
+        // Odds not initially visible
         expect(screen.queryByText(quoteText)).not.toBeInTheDocument();
 
-        // Show odds
+        // Open
         fireEvent.click(firstDisclosureButton);
+        await waitFor(() => expect(screen.getByText(quoteText)).toBeVisible());
 
-        await waitFor(() => {
-            expect(screen.getByText(quoteText)).toBeVisible();
-        });
-
-        // Hides odds
+        // Close
         fireEvent.click(firstDisclosureButton);
-
-        await waitFor(() => {
-            expect(screen.queryByText(quoteText)).not.toBeInTheDocument();
-        });
+        await waitFor(() => expect(screen.queryByText(quoteText)).not.toBeInTheDocument());
     });
+
 });

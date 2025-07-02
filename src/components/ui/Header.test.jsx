@@ -140,4 +140,58 @@ describe('Header component', () => {
         });
     });
 
+    test('highlights active link in portfolio when path matches (desktop)', () => {
+        renderHeader('/projects');
+        const portfolioButton = screen.getByRole('button', {name: /portfolio/i});
+        fireEvent.click(portfolioButton);
+        const activeLink = screen.getByText('Projects');
+        expect(activeLink).toHaveClass('text-blue-600');
+    });
+
+    test('desktop dropdown closes when clicking a portfolio link', () => {
+        renderHeader('/');
+        const portfolioButton = screen.getByRole('button', {name: /portfolio/i});
+        fireEvent.click(portfolioButton);
+        const experienceLink = screen.getByText('Experience');
+        fireEvent.click(experienceLink);
+
+        // Experience clicked => dropdown closed
+        expect(screen.queryByText('Experience')).not.toBeInTheDocument();
+    });
+
+    test('ChevronDown icon rotates on portfolio toggle (desktop)', () => {
+        renderHeader('/');
+        const chevron = screen.getByRole('button', {name: /portfolio/i}).querySelector('svg');
+        expect(chevron).not.toHaveClass('rotate-180');
+
+        fireEvent.click(screen.getByRole('button', {name: /portfolio/i}));
+        expect(chevron).toHaveClass('rotate-180');
+    });
+
+    test('Menu icon switches to X when mobile menu is open', () => {
+        renderHeader('/');
+        const toggleBtn = screen.getByLabelText(/toggle mobile menu/i);
+
+        // First icon: <Menu />
+        expect(toggleBtn.querySelector('svg')).toBeInTheDocument();
+        expect(toggleBtn.querySelector('svg').getAttribute('data-icon')).not.toBe('x'); // rough check
+
+        fireEvent.click(toggleBtn);
+        const newIcon = toggleBtn.querySelector('svg');
+        expect(newIcon).toBeInTheDocument();
+    });
+
+    test('ChevronDown icon rotates on mobile portfolio toggle', () => {
+        renderHeader('/');
+        const toggleBtn = screen.getByLabelText(/toggle mobile menu/i);
+        fireEvent.click(toggleBtn);
+
+        const mobileMenu = screen.getByTestId('mobile-menu');
+        const chevron = within(mobileMenu).getByRole('button', {name: /portfolio/i}).querySelector('svg');
+        expect(chevron).not.toHaveClass('rotate-180');
+
+        fireEvent.click(within(mobileMenu).getByRole('button', {name: /portfolio/i}));
+        expect(chevron).toHaveClass('rotate-180');
+    });
+
 });

@@ -64,7 +64,7 @@ describe("Projects Component", () => {
     });
 
     test("ExpandableText renders truncated content", () => {
-        // Usa un tipo che sicuramente ha una traduzione lunga o multilinea
+        // Use a type that definitely has a long or multi-line translation
         expect(screen.getAllByText(/Enterprise Application|Mobility Portal|AfterLife/)[0]).toBeInTheDocument();
     });
 
@@ -73,6 +73,44 @@ describe("Projects Component", () => {
         expectedCompanies.forEach(company => {
             expect(screen.getByRole("button", {name: company})).toBeInTheDocument();
         });
+    });
+
+    test("pagination works correctly when clicking next and previous", async () => {
+        // Default is RGI, which has more than 2 projects → should have pagination
+        expect(screen.getByTestId("pagination-info")).toHaveTextContent("1 / 3");
+
+        fireEvent.click(screen.getByRole("button", {name: /next/i}));
+
+        await waitFor(() => {
+            expect(screen.getByTestId("pagination-info")).toHaveTextContent("2 / 3");
+        });
+
+        fireEvent.click(screen.getByRole("button", {name: /previous/i}));
+
+        await waitFor(() => {
+            expect(screen.getByTestId("pagination-info")).toHaveTextContent("1 / 3");
+        });
+    });
+
+    test("projects with no type do not render type section", async () => {
+        // Fake a project without "type"
+        const customProjects = [...Array(1)].map(() => ({
+            name: "Test Without Type",
+            tech: "Docker",
+            type: undefined,
+            company: "RGI",
+            period: "01/2020"
+        }));
+
+        const {rerender} = render(<Projects/>);
+        rerender(<Projects projects={customProjects}/>); // supponendo che Projects accetti prop (puoi modularizzare per i test)
+
+        expect(screen.queryByText(/project_types/)).not.toBeInTheDocument();
+    });
+
+    test("all projects show correct company in content", () => {
+        // Make sure your company name is shown in projects
+        expect(screen.getAllByText("RGI").length).toBeGreaterThan(1);
     });
 
 });

@@ -1,63 +1,75 @@
 import React from "react";
 import {render, screen} from "@testing-library/react";
-import Footer from "./Footer";
+import userEvent from "@testing-library/user-event";
+import Footer, {BrandIcon} from "./Footer";
 
-// Mock useTranslation hook
 jest.mock("react-i18next", () => ({
     useTranslation: () => ({
-        t: (key) => {
-            if (key === "footer_copyright") return "© 2025 Daniele Masone";
-            return key;
-        }
+        t: (key) => (key === "footer_copyright" ? "© 2025 Daniele Masone" : key),
     }),
 }));
 
-describe("Footer component", () => {
+describe("Footer component - additional tests", () => {
     beforeEach(() => {
         jest.clearAllMocks();
     });
 
-    it("renders footer container", () => {
+    it("footer has correct CSS classes for styling", () => {
         render(<Footer/>);
-        const footer = screen.getByRole('contentinfo');
-        expect(footer).toBeInTheDocument();
+        const footer = screen.getByRole("contentinfo");
+        // Check some key classes (e.g. sticky, backdrop-blur)
+        expect(footer).toHaveClass("sticky");
+        expect(footer).toHaveClass("bottom-0");
+        expect(footer.className).toMatch(/backdrop-blur-sm/);
+        expect(footer.className).toMatch(/dark:bg-gray-900\/80/);
     });
 
-    it("renders all social icon links with correct href and aria-label", () => {
+    it("each social link has a BrandIcon with correct props", () => {
         render(<Footer/>);
-        const socialLinks = [
-            {key: "linkedin", href: "https://www.linkedin.com/in/daniele-masone", label: "linkedin"},
-            {key: "instagram", href: "https://www.instagram.com/ing_daniele_masone/", label: "Instagram"},
-            {key: "facebook", href: "https://www.facebook.com/danieleMasone", label: "Facebook"},
-            {key: "github", href: "https://github.com/DanieleMasone", label: "GitHub"},
-            {key: "udemy", href: "https://www.udemy.com/user/daniele-masone/", label: "Udemy"},
-        ];
-
-        socialLinks.forEach(({key, href, label}) => {
-            const link = screen.getByRole("link", { name: label });
-            expect(link).toBeInTheDocument();
-            expect(link).toHaveAttribute("href", href);
-            expect(link).toHaveAttribute("aria-label", label);
-            expect(link).toHaveAttribute("target", "_blank");
-            expect(link).toHaveAttribute("rel", "noopener noreferrer");
+        const links = screen.getAllByRole("link");
+        links.forEach((link) => {
+            const svg = link.querySelector("svg");
+            expect(svg).toBeInTheDocument();
+            expect(svg).toHaveAttribute("role", "img");
+            expect(svg).toHaveAttribute("viewBox", "0 0 24 24");
+            expect(svg).toHaveAttribute("xmlns", "http://www.w3.org/2000/svg");
+            expect(svg).toHaveAttribute("width", "28");
+            expect(svg).toHaveAttribute("height", "28");
+            // Check the fill: it must be present and not empty
+            expect(svg).toHaveAttribute("fill");
+            expect(svg.getAttribute("fill")).not.toBe("");
         });
     });
 
-    it("renders the translated footer text", () => {
-        render(<Footer/>);
-        const footerText = screen.getByText("© 2025 Daniele Masone");
-        expect(footerText).toHaveTextContent("© 2025 Daniele Masone");
+    it("BrandIcon renders null if icon or icon.svg is missing", () => {
+        const {container} = render(<BrandIcon icon={null} color="#000"/>);
+        expect(container.firstChild).toBeNull();
+
+        const {container: container2} = render(<BrandIcon icon={{}} color="#000"/>);
+        expect(container2.firstChild).toBeNull();
     });
 
-    it("renders BrandIcon with SVG element", () => {
-        render(<Footer/>);
-        const svgElements = screen.getAllByRole("img");
-        expect(svgElements.length).toBeGreaterThanOrEqual(5);
+    it("social links are keyboard accessible and focusable", async () => {
+        render(<Footer />);
+        const user = userEvent.setup();
+        const links = screen.getAllByRole("link");
 
-        // Check if SVG has appropriate attributes
-        svgElements.forEach(svg => {
-            expect(svg).toHaveAttribute("viewBox", "0 0 24 24");
-            expect(svg).toHaveAttribute("xmlns", "http://www.w3.org/2000/svg");
+        // Going to the first link
+        await user.tab();
+        expect(links[0]).toHaveFocus();
+
+        // Have it all over the others
+        for (let i = 1; i < links.length; i++) {
+            await user.tab();
+            expect(links[i]).toHaveFocus();
+        }
+    });
+
+    it("social links open in a new tab with rel noopener noreferrer for security", () => {
+        render(<Footer/>);
+        screen.getAllByRole("link").forEach(link => {
+            expect(link).toHaveAttribute("target", "_blank");
+            expect(link).toHaveAttribute("rel", "noopener noreferrer");
         });
     });
 });

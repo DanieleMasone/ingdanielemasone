@@ -12,7 +12,7 @@ import {useTranslation} from "react-i18next";
  * @param {number} [props.size=24] - Width and height of the icon.
  * @returns {JSX.Element|null} SVG element or null if no valid icon.
  */
-function BrandIcon({icon, color, className, size = 24}) {
+export function BrandIcon({icon, color, className, size = 24}) {
     if (!icon || !icon.svg) return null;
 
     return (
