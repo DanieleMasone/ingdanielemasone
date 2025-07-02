@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://danielemasone.github.io/ingdanielemasone/sitemap.xml
+Sitemap: https://danielemasone.github.io/ingdanielemasone/sitemap.txt
