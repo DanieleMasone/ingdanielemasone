@@ -42,7 +42,8 @@
     "coveragePathIgnorePatterns": [
       "/node_modules/",
       "./src/reportWebVitals.js",
-      "./src/index.js"
+      "./src/index.js",
+      "./src/i18n/i18n.js"
     ]
   },
   "browserslist": {
