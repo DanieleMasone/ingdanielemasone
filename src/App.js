@@ -15,6 +15,7 @@ import CookiePolicy from "./pages/CookiePolicy";
 import Courses from "./pages/Courses";
 import Trading from "./pages/Trading";
 import Testimonials from "./pages/Testimonials";
+import NotFound from "./components/ui/NotFound";
 
 const resources = {
     en: {
@@ -55,6 +56,8 @@ export default function App() {
                     <Route path="/testimonials" element={<Testimonials/>}/>
                     <Route path="/privacy" element={<Privacy/>}/>
                     <Route path="/cookie-policy" element={<CookiePolicy/>}/>
+                    {/* Catch-all route for 404 errors */}
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
             </main>
             <Footer/>

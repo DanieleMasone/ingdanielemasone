@@ -21,6 +21,9 @@
   "performance_positive": "Positivo",
   "performance_negative": "Negativo",
   "performance_cumulative": "Cumulato",
+  "notfound_title": "Pagina non trovata",
+  "notfound_description": "La pagina che stai cercando non esiste o è stata rimossa.",
+  "go_home": "Torna alla Home",
   "months": {
     "jan": "Gen",
     "feb": "Feb",
