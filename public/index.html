@@ -2,11 +2,39 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8"/>
-    <link rel="icon" href="%PUBLIC_URL%/logo.jpg" />
+    <link rel="icon" href="%PUBLIC_URL%/logo.jpg"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!-- Titolo SEO -->
     <title>Daniele Masone - Portfolio</title>
 
-    <!-- Set dark mode before React loads -->
+    <!-- Meta Description -->
+    <meta name="description"
+          content="Portfolio di Daniele Masone, ingegnere informatico. Esperienze, progetti, corsi e testimonianze.">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://github.com/DanieleMasone/ingdanielemasone"/>
+
+    <!-- Open Graph (Facebook, LinkedIn, etc.) -->
+    <meta property="og:title" content="Daniele Masone - Portfolio"/>
+    <meta property="og:description"
+          content="Portfolio di Daniele Masone, ingegnere informatico. Esperienze, progetti, corsi e testimonianze."/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://github.com/DanieleMasone/ingdanielemasone"/>
+    <meta property="og:image" content="https://github.com/DanieleMasone/ingdanielemasone/blob/main/public/logo.jpg"/>
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Daniele Masone - Portfolio"/>
+    <meta name="twitter:description"
+          content="Portfolio di Daniele Masone, ingegnere informatico. Esperienze, progetti, corsi e testimonianze."/>
+    <meta name="twitter:image" content="https://github.com/DanieleMasone/ingdanielemasone/blob/main/public/logo.jpg"/>
+
+    <!-- SEO generica -->
+    <meta name="author" content="Daniele Masone"/>
+    <meta name="robots" content="index, follow"/>
+
+    <!-- Dark mode script -->
     <script>
         (function () {
             const theme = localStorage.getItem('theme');
