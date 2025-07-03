@@ -315,7 +315,23 @@
 <a name='L250'></a><a href='#L250'>250</a>
 <a name='L251'></a><a href='#L251'>251</a>
 <a name='L252'></a><a href='#L252'>252</a>
-<a name='L253'></a><a href='#L253'>253</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L253'></a><a href='#L253'>253</a>
+<a name='L254'></a><a href='#L254'>254</a>
+<a name='L255'></a><a href='#L255'>255</a>
+<a name='L256'></a><a href='#L256'>256</a>
+<a name='L257'></a><a href='#L257'>257</a>
+<a name='L258'></a><a href='#L258'>258</a>
+<a name='L259'></a><a href='#L259'>259</a>
+<a name='L260'></a><a href='#L260'>260</a>
+<a name='L261'></a><a href='#L261'>261</a>
+<a name='L262'></a><a href='#L262'>262</a>
+<a name='L263'></a><a href='#L263'>263</a>
+<a name='L264'></a><a href='#L264'>264</a>
+<a name='L265'></a><a href='#L265'>265</a>
+<a name='L266'></a><a href='#L266'>266</a>
+<a name='L267'></a><a href='#L267'>267</a>
+<a name='L268'></a><a href='#L268'>268</a>
+<a name='L269'></a><a href='#L269'>269</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -499,7 +515,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">63x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -728,17 +760,32 @@ export default function Courses() {
                     className="flex flex-wrap gap-6"
                 &gt;
                     {displayedCourses.map((course, idx) =&gt; (
-                        &lt;Card
-                            key={idx}
-                            className="flex items-start gap-4 p-4 sm:p-6"
-                        &gt;
-&nbsp;
-                            {/* Text content on the left */}
+                        &lt;Card key={idx} className="flex flex-col md:flex-row items-start gap-4 p-4 sm:p-6"&gt;
                             &lt;CardContent className="p-0 flex-1"&gt;
-                                &lt;h3 className="text-lg font-semibold"&gt;
-                                    {t(course.nameKey)}
-                                &lt;/h3&gt;
 &nbsp;
+                                {/* Title + small image on mobile */}
+                                &lt;div className="flex items-center justify-between"&gt;
+                                    &lt;h3 className="text-lg font-semibold"&gt;
+                                        {t(course.nameKey)}
+                                    &lt;/h3&gt;
+&nbsp;
+                                    {/* Mobile small image */}
+                                    &lt;a
+                                        href={course.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="block md:hidden shrink-0 ml-4"
+                                    &gt;
+                                        &lt;img
+                                            src={course.image}
+                                            alt={t(course.nameKey)}
+                                            className="rounded-full w-16 h-16 object-cover shadow-md hover:scale-105 transition-transform duration-300"
+                                            loading="lazy"
+                                        /&gt;
+                                    &lt;/a&gt;
+                                &lt;/div&gt;
+&nbsp;
+                                {/* Rest of the content takes full width */}
                                 &lt;ExpandableText
                                     value={t(course.descKey)}
                                     maxLines={3}
@@ -753,7 +800,8 @@ export default function Courses() {
                                     {({open}) =&gt; (
                                         &lt;&gt;
                                             &lt;Disclosure.Button
-                                                className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"&gt;
+                                                className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
+                                            &gt;
                                                 &lt;span&gt;{t("show_technologies")}&lt;/span&gt;
                                                 &lt;ChevronDown
                                                     className={`ml-1 w-4 h-4 transition-transform ${
@@ -769,17 +817,17 @@ export default function Courses() {
                                 &lt;/Disclosure&gt;
                             &lt;/CardContent&gt;
 &nbsp;
-                            {/* Image on the right */}
+                            {/* Desktop large image */}
                             &lt;a
                                 href={course.link}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="shrink-0"
+                                className="hidden md:block shrink-0"
                             &gt;
                                 &lt;img
                                     src={course.image}
                                     alt={t(course.nameKey)}
-                                    className="rounded-full w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mx-auto mb-4 sm:mb-6 object-cover shadow-md hover:scale-105 transition-transform duration-300"
+                                    className="rounded-full w-48 h-48 object-cover shadow-md hover:scale-105 transition-transform duration-300"
                                     loading="lazy"
                                 /&gt;
                             &lt;/a&gt;
@@ -826,7 +874,7 @@ export default function Courses() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-07-02T13:46:04.509Z
+                at 2025-07-03T06:31:10.132Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
