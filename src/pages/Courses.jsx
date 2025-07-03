@@ -159,17 +159,32 @@ export default function Courses() {
                     className="flex flex-wrap gap-6"
                 >
                     {displayedCourses.map((course, idx) => (
-                        <Card
-                            key={idx}
-                            className="flex items-start gap-4 p-4 sm:p-6"
-                        >
-
-                            {/* Text content on the left */}
+                        <Card key={idx} className="flex flex-col md:flex-row items-start gap-4 p-4 sm:p-6">
                             <CardContent className="p-0 flex-1">
-                                <h3 className="text-lg font-semibold">
-                                    {t(course.nameKey)}
-                                </h3>
 
+                                {/* Title + small image on mobile */}
+                                <div className="flex items-center justify-between">
+                                    <h3 className="text-lg font-semibold">
+                                        {t(course.nameKey)}
+                                    </h3>
+
+                                    {/* Mobile small image */}
+                                    <a
+                                        href={course.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="block md:hidden shrink-0 ml-4"
+                                    >
+                                        <img
+                                            src={course.image}
+                                            alt={t(course.nameKey)}
+                                            className="rounded-full w-16 h-16 object-cover shadow-md hover:scale-105 transition-transform duration-300"
+                                            loading="lazy"
+                                        />
+                                    </a>
+                                </div>
+
+                                {/* Rest of the content takes full width */}
                                 <ExpandableText
                                     value={t(course.descKey)}
                                     maxLines={3}
@@ -184,7 +199,8 @@ export default function Courses() {
                                     {({open}) => (
                                         <>
                                             <Disclosure.Button
-                                                className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2">
+                                                className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
+                                            >
                                                 <span>{t("show_technologies")}</span>
                                                 <ChevronDown
                                                     className={`ml-1 w-4 h-4 transition-transform ${
@@ -200,17 +216,17 @@ export default function Courses() {
                                 </Disclosure>
                             </CardContent>
 
-                            {/* Image on the right */}
+                            {/* Desktop large image */}
                             <a
                                 href={course.link}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="shrink-0"
+                                className="hidden md:block shrink-0"
                             >
                                 <img
                                     src={course.image}
                                     alt={t(course.nameKey)}
-                                    className="rounded-full w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mx-auto mb-4 sm:mb-6 object-cover shadow-md hover:scale-105 transition-transform duration-300"
+                                    className="rounded-full w-48 h-48 object-cover shadow-md hover:scale-105 transition-transform duration-300"
                                     loading="lazy"
                                 />
                             </a>

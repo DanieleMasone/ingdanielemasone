@@ -49,8 +49,12 @@ describe('Courses component', () => {
     });
 
     test('renders course image wrapped in link', () => {
-        const link = screen.getByRole('link', {name: /git course/i});
-        expect(link).toHaveAttribute('href', 'https://www.udemy.com/course/corso-git/');
+        const links = screen.getAllByRole('link', {name: /git course/i});
+        expect(links).toHaveLength(2);
+
+        links.forEach(link => {
+            expect(link).toHaveAttribute('href', 'https://www.udemy.com/course/corso-git/');
+        });
     });
 
     test('pagination buttons enabled/disabled correctly', () => {
