@@ -2,43 +2,43 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
-        <loc>https://danielemasone.github.io/ingdanielemasone/</loc>
+        <loc>https://danielemasone.github.io/ingdanielemasone/#/</loc>
         <lastmod>2025-07-02</lastmod>
         <priority>1.0</priority>
     </url>
 
     <url>
-        <loc>https://danielemasone.github.io/ingdanielemasone/experience</loc>
+        <loc>https://danielemasone.github.io/ingdanielemasone/#/experience</loc>
         <priority>0.9</priority>
     </url>
 
     <url>
-        <loc>https://danielemasone.github.io/ingdanielemasone/projects</loc>
+        <loc>https://danielemasone.github.io/ingdanielemasone/#/projects</loc>
         <priority>0.9</priority>
     </url>
 
     <url>
-        <loc>https://danielemasone.github.io/ingdanielemasone/courses</loc>
+        <loc>https://danielemasone.github.io/ingdanielemasone/#/courses</loc>
         <priority>0.8</priority>
     </url>
 
     <url>
-        <loc>https://danielemasone.github.io/ingdanielemasone/testimonials</loc>
+        <loc>https://danielemasone.github.io/ingdanielemasone/#/testimonials</loc>
         <priority>0.7</priority>
     </url>
 
     <url>
-        <loc>https://danielemasone.github.io/ingdanielemasone/trading</loc>
+        <loc>https://danielemasone.github.io/ingdanielemasone/#/trading</loc>
         <priority>0.7</priority>
     </url>
 
     <url>
-        <loc>https://danielemasone.github.io/ingdanielemasone/privacy</loc>
+        <loc>https://danielemasone.github.io/ingdanielemasone/#/privacy</loc>
         <priority>0.3</priority>
     </url>
 
     <url>
-        <loc>https://danielemasone.github.io/ingdanielemasone/cookie-policy</loc>
+        <loc>https://danielemasone.github.io/ingdanielemasone/#/cookie-policy</loc>
         <priority>0.3</priority>
     </url>
 
