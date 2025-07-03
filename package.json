@@ -26,11 +26,11 @@
   },
   "scripts": {
     "start": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
-    "build": "react-scripts build && copy build\\index.html build\\404.html",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "coverage": "react-scripts test --coverage --watchAll=false",
     "doc": "jsdoc -c jsdoc.json -d docs",
-    "deploy:all": "npm run build && copy build\\index.html build\\404.html && npm run coverage && npm run doc && node scripts/deployAll.js"
+    "deploy:all": "npm run build && npm run coverage && npm run doc && node scripts/deployAll.js"
   },
   "eslintConfig": {
     "extends": [
