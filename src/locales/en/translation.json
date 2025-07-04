@@ -44,19 +44,18 @@
     "2024": "2024",
     "2025_partial": "2025 (partial)"
   },
-
   "project_types": {
-    "Enterprise Portal": "Fastweb Enterprise Portal Development",
-    "IoT Workplace Booking": "Web portal able to manage meetings room bookings and / or working places by customizing them with accessories (air conditioning, lights, projector ...).\nCollecting information from these objects allows you to monitor the entire environment.",
-    "dart": "Web portal for car management by FCA with matlab clients.",
-    "Newspaper CMS": "Development of a web portal for the management / publication of newspapers",
-    "Hybrid Mobile App": "Develop app in react-native with native part in ObjectC (for ios) and java (for Android)",
-    "areaClienti": "Italiaonline Enterprise Portal Development.",
-    "restServices": "Develop rest services for read/write on Oracle DB.",
-    "Insurance Web Portal": "Insurance Web Portal",
-    "Mobility Portal": "AXA Enterprise Portal Development",
-    "UI Library": "Custom Library Development FE",
-    "Enterprise Application": "Enterprise Application",
+    "Enterprise Portal": "Development of Fastweb’s Enterprise Portal.",
+    "IoT Workplace Booking": "Web platform for booking meeting rooms and workstations with customizable features (AC, lights, projector, etc.). IoT device data enables full environmental monitoring.",
+    "dart": "Web portal for managing FCA’s vehicle fleet, integrated with a MATLAB client.",
+    "Newspaper CMS": "Development of a CMS for digital newspaper management and publishing.",
+    "Hybrid Mobile App": "Hybrid mobile app built with React Native and native modules in Objective-C (iOS) and Java (Android).",
+    "areaClienti": "Development of Italiaonline’s main customer portal.",
+    "restServices": "Design and implementation of REST services for read/write operations on Oracle DB.",
+    "Insurance Web Portal": "Web portal for managing insurance services.",
+    "Mobility Portal": "Development of AXA’s internal mobility portal.",
+    "UI Library": "Creation of a custom, reusable front-end component library.",
+    "Enterprise Application": "Enterprise-grade application for complex business environments.",
     "Architect": "Front-End Architect"
   },
   "about_title": "Introducing myself",
@@ -72,28 +71,28 @@
   "experience_show_stack": "Show stack",
   "exp_rgi_role": "Front-End Architect / Team Leader",
   "exp_rgi_period": "09/2021 – Present",
-  "exp_rgi_description": "As a Front-End Architect and Team Leader, I contribute strategically and operationally to the design, optimization, and maintenance of front-end application architectures through the following key activities:\n\n- Code Reviews: Reviewing team members' front-end code to ensure quality, efficiency, and adherence to company standards.\n- Design & Company Standards: Overseeing application structure and design to ensure compliance with internal guidelines and industry best practices.\n- Application Security: Defining preventive practices and strategies to ensure secure, vulnerability-free applications.\n- JavaScript/TypeScript Optimization: Continuously improving implementations to maintain high performance and scalability.\n- Technical Documentation: Creating detailed documents describing UI architecture, behaviors, and data interactions via REST APIs or other data processing mechanisms.\n- Requirements Definition: Collaborating with stakeholders and teams to document and identify both functional and technical requirements.\n- Technology Evaluation: Assessing and integrating new frameworks and tools while ensuring backward compatibility and seamless operations.\n- Workflow Optimization: Managing build automation, dependency management, and code quality tools (linting, testing).\n- Guidelines & Patterns: Developing technical standards and reusable patterns based on project-specific needs.\n- Performance Testing & Troubleshooting: Monitoring application performance and proactively resolving issues and inefficiencies.",
+  "exp_rgi_description": "I lead the design, optimization, and maintenance of front-end architectures both strategically and operationally through the following key activities:\n\n- Code Reviews: Reviewing code to ensure quality, efficiency, and adherence to standards\n- Standards & Guidelines: Overseeing architecture design according to company best practices\n- Application Security: Defining preventive practices to avoid vulnerabilities\n- JavaScript/TypeScript Optimization: Continuously improving performance and scalability\n- Technical Documentation: Creating detailed documents on UI architecture and REST API interactions\n- Requirements Gathering: Collaborating with stakeholders to define functional and technical requirements\n- Technology Evaluation: Assessing and integrating new tools and frameworks\n- Workflow Optimization: Managing build automation, linting, testing, and code quality\n- Guidelines & Patterns: Defining technical standards and reusable design patterns\n- Performance Testing & Troubleshooting: Monitoring performance and proactively resolving issues",
   "exp_iol_role": "Full Stack Software Engineer",
   "exp_iol_period": "05/2019 – 09/2021",
-  "exp_iol_description": "As a Java Analyst Developer, I managed full-stack development with expertise in modern technologies and agile methodologies. Key areas include:\n\nFront-End Development:\n- Technologies: JavaScript, jQuery, Angular 10, TypeScript, Node.js\n- UI Design: Creating responsive and dynamic interfaces using HTML5, CSS, and Bootstrap.\n\nBack-End Development:\n- Technologies: Java EE, Spring, Hibernate\n- Focus: Developing scalable, robust server-side solutions.\n\nMicroservices:\n- Tools: JHipster, Docker, Docker Swarm\n- Responsibilities: Designing and implementing microservice-based architectures for scalable deployments.\n\nDatabase Management:\n- Tools: MySQL, Oracle\n- Goal: Optimizing data structure and performance.\n\nAgile Methodology:\n- Tools: Jira\n- Approach: Managing projects and workflows using Agile principles.\n\nApplication Server:\n- Tool: Tomcat\n- Use: Deploying and managing Java-based web applications.\n\nVersion Control:\n- Tools: Git, SVN\n- Role: Code versioning and collaboration across development teams.\n\nDependency Management:\n- Tool: Maven\n- Purpose: Handling libraries and streamlining build processes.",
+  "exp_iol_description": "As a Java Analyst Developer, I managed full-stack development using modern technologies and Agile methodologies. Key areas of expertise include:\n\nFront-End:\n- Technologies: JavaScript, jQuery, Angular 10, TypeScript, Node.js\n- UI Design: building responsive and dynamic interfaces with HTML5, CSS, and Bootstrap\n\nBack-End:\n- Technologies: Java EE, Spring, Hibernate\n- Focus: building robust and scalable server-side solutions\n\nMicroservices:\n- Tools: JHipster, Docker, Docker Swarm\n- Responsibilities: designing and implementing microservice-based architectures\n\nDatabase:\n- Tools: MySQL, Oracle\n- Goal: optimizing data structure and performance\n\nAgile Methodology:\n- Tools: Jira\n- Approach: managing projects and workflows following Agile principles\n\nApplication Server:\n- Tool: Tomcat\n- Use: deploying and managing Java web applications\n\nVersion Control:\n- Tools: Git, SVN\n- Role: versioning and team collaboration\n\nDependency Management:\n- Tool: Maven\n- Purpose: managing libraries and streamlining build processes",
   "exp_tecnavia_role": "Full Stack Software Engineer",
   "exp_tecnavia_period": "07/2018 – 05/2019",
-  "exp_tecnavia_description": "As a Full Stack Software Engineer, I worked on front-end and back-end development as well as mobile app creation for both iOS and Android platforms.\n\nFront-End Development:\n- Technologies: JavaScript, jQuery, CSS, HTML\n- Tools: Bootstrap for responsive design and rapid prototyping.\n\nBack-End Development:\n- Technologies: PHP (Zend Framework), Java\n- Focus: Scalable and maintainable server-side application development.\n\nMobile App Development:\n- Tools: React Native, Objective-C, Java, Node.js\n- Scope: Developing hybrid and native cross-platform applications.\n\nDatabase Management:\n- Tools: MySQL, SQLite\n- Purpose: Efficient data storage and access optimization.\n\nApplication Server:\n- Tool: MAMP\n- Use: Local development and testing environment setup.\n\nVersion Control:\n- Tool: SVN\n- Role: Ensuring code integrity and collaborative development workflows.",
+  "exp_tecnavia_description": "As a Full Stack Software Engineer, I worked on front-end and back-end development as well as mobile app creation for iOS and Android platforms.\n\nFront-End Development:\n- Technologies: JavaScript, jQuery, CSS, HTML\n- Tools: Bootstrap for responsive design and rapid prototyping\n\nBack-End Development:\n- Technologies: PHP (Zend Framework), Java\n- Focus: scalable and maintainable server-side application development\n\nMobile App Development:\n- Tools: React Native, Objective-C, Java, Node.js\n- Scope: hybrid and native cross-platform app development\n\nDatabase Management:\n- Tools: MySQL, SQLite\n- Purpose: efficient data storage and access optimization\n\nApplication Server:\n- Tool: MAMP\n- Use: setting up local development and testing environments\n\nVersion Control:\n- Tool: SVN\n- Role: ensuring code integrity and collaborative workflows",
   "exp_teoresi_role": "Full Stack Software Engineer",
   "exp_teoresi_period": "10/2017 – 07/2018",
-  "exp_teoresi_description": "As a Java Analyst Developer, I was responsible for full-cycle application development across front-end and back-end, leveraging various modern technologies.\n\nFront-End Development:\n- Tools: JavaScript (jQuery, AngularJS, Node.js), HTML5, CSS, Bootstrap\n- Focus: Dynamic and responsive UI design.\n\nBack-End Development:\n- Technologies: Java, Spring, Hibernate\n- Objective: Building robust and scalable applications.\n\nDatabase Management:\n- Tool: MySQL\n- Use: Designing and optimizing relational databases.\n\nApplication Server:\n- Tool: Tomcat\n- Role: Deploying Java-based web applications.\n\nVersion Control:\n- Tool: Git\n- Purpose: Source code management and team collaboration.\n\nDependency Management:\n- Tool: Maven\n- Use: Simplifying builds and ensuring consistency across environments.\n\nDeployment:\n- Process: Deploying .war files across development, testing, and production environments.\n\nDevelopment Methodology:\n- Model: Waterfall\n- Tools: Jira for project tracking and planning.",
+  "exp_teoresi_description": "As a Java Analyst Developer, I handled full-stack development in a Java environment, managing all phases of the software lifecycle.\n\nFront-End Development:\n- Technologies: JavaScript (jQuery, AngularJS, Node.js), HTML5, CSS, Bootstrap\n- Focus: designing dynamic and responsive user interfaces\n\nBack-End Development:\n- Technologies: Java, Spring, Hibernate\n- Objective: building robust and scalable applications\n\nDatabase Management:\n- Tool: MySQL\n- Use: designing and optimizing relational databases\n\nApplication Server:\n- Tool: Tomcat\n- Role: deploying Java-based web applications\n\nVersion Control:\n- Tool: Git\n- Purpose: code versioning and team collaboration\n\nDependency Management:\n- Tool: Maven\n- Use: simplifying build processes and ensuring consistency across environments\n\nDeployment:\n- Process: deploying .war files to development, testing, and production environments\n\nDevelopment Methodology:\n- Model: Waterfall\n- Tool: Jira for project tracking and planning",
   "exp_hpe_role": "Junior Software Engineer",
   "exp_hpe_period": "09/2016 – 10/2017",
-  "exp_hpe_description": "As a Technical Consultant at HPE, I was involved in front-end and back-end software development to meet client-specific needs. Key competencies include:\n\nFront-End Development:\n- Tools: JavaScript (Knockout.js, jQuery, AngularJS, Node.js), CSS, Bootstrap, HTML5\n\nBack-End Development:\n- Technologies: Java EE, Spring, Hibernate\n- Purpose: High-performance, scalable applications.\n\nDatabase Management:\n- Tools: PostgreSQL, CouchDB, Oracle\n\nApplication Server:\n- Tool: WildFly\n- Use: Deploying Java EE applications.\n\nAgile Methodology:\n- Tool: Trello\n- Role: Managing tasks and iterations.\n\nVersion Control:\n- Tool: SVN\n- Goal: Code tracking and collaboration.\n\nDependency Management:\n- Tool: Maven\n\nDeployment:\n- Formats: .ear, .rpm\n- Environments: Development, QA, Production\n\nClient Support:\n- Activities: Project demos and support based on client requirements.\n\nTraining & Mentorship:\n- Focus: Providing guidance and technical knowledge to junior developers.",
+  "exp_hpe_description": "As a Technical Consultant at HPE, I supported front-end and back-end software development to meet specific client needs. Key competencies include:\n\nFront-End Development:\n- Tools: JavaScript (Knockout.js, jQuery, AngularJS, Node.js), CSS, Bootstrap, HTML5\n\nBack-End Development:\n- Technologies: Java EE, Spring, Hibernate\n- Purpose: high-performance, scalable applications\n\nDatabase Management:\n- Tools: PostgreSQL, CouchDB, Oracle\n\nApplication Server:\n- Tool: WildFly\n- Use: deploying Java EE applications\n\nAgile Methodology:\n- Tool: Trello\n- Role: managing tasks and iterations\n\nVersion Control:\n- Tool: SVN\n- Goal: code tracking and collaboration\n\nDependency Management:\n- Tool: Maven\n\nDeployment:\n- Formats: .ear, .rpm\n- Environments: development, QA, production\n\nClient Support:\n- Activities: project demos and support based on client requirements\n\nTraining & Mentorship:\n- Focus: providing technical guidance to junior developers",
   "exp_digiCamere_role": "Junior System Engineer",
   "exp_digiCamere_period": "06/2016 – 09/2016",
-  "exp_digiCamere_description": "As a Junior System Engineer, I was involved in system maintenance and automation, focusing on operational efficiency.\n\nScripting & Automation:\n- Languages: PowerShell, PHP\n- Goal: Server-side task automation.\n\nSystem Monitoring:\n- Tools: EveryStep\n- Activities: Monitoring system health and identifying anomalies.\n- Log Analysis: Troubleshooting issues through system logs.\n\nAndroid Development:\n- Focus: Creating Android apps to enhance system usability.\n\nDatabase:\n- Language: SQL\n- Activities: Writing and optimizing queries.\n\nWebsite Monitoring:\n- Tool: HTTrack\n- Use: Backup and service availability monitoring.\n\nInstallation & Configuration:\n- Tasks: Installing and configuring hardware and software on servers.",
+  "exp_digiCamere_description": "As a Junior System Engineer, I contributed to system maintenance and automation with a focus on improving operational efficiency.\n\nScripting & Automation:\n- Languages: PowerShell, PHP\n- Goal: automating server-side tasks\n\nSystem Monitoring:\n- Tool: EveryStep\n- Activities: monitoring system health and detecting anomalies\n- Log Analysis: troubleshooting through system logs\n\nAndroid Development:\n- Focus: developing Android apps to improve system usability\n\nDatabase:\n- Language: SQL\n- Activities: writing and optimizing queries\n\nWebsite Monitoring:\n- Tool: HTTrack\n- Use: web backup and service availability monitoring\n\nInstallation & Configuration:\n- Tasks: installing and configuring hardware and software on servers",
   "exp_piksel_role": "Junior System Engineer",
   "exp_piksel_period": "10/2015 – 04/2016",
-  "exp_piksel_description": "As a Junior System Engineer, I gained hands-on experience managing and monitoring IT systems with a strong focus on security and uptime.\n\nSystem Monitoring:\n- Tool: Nagios\n- Purpose: Detecting and resolving issues to maintain infrastructure health.\n\nBackup Management:\n- Tasks: Scheduling and executing regular backups for data integrity.\n\nLog Analysis:\n- Activities: Reviewing system logs to identify and fix operational issues.\n\nUser Management & Security:\n- Platform: Windows Server\n- Tasks: Creating user accounts, resetting passwords, managing access.\n\nInstallation & Configuration:\n- Role: Preparing servers with required hardware and software.\n\nActive Directory:\n- Responsibilities: Managing domain users and resources for enhanced security and organization.",
+  "exp_piksel_description": "As a Junior System Engineer, I managed and monitored IT systems in an enterprise environment with a focus on security and availability.\n\nSystem Monitoring:\n- Tool: Nagios\n- Purpose: detecting and resolving issues to maintain infrastructure integrity\n\nBackup Management:\n- Tasks: scheduling and executing regular backups to ensure data continuity\n\nLog Analysis:\n- Duties: analyzing system logs to identify and correct anomalies\n\nUser Management & Security:\n- Platform: Windows Server\n- Actions: creating user accounts, resetting passwords, managing permissions\n\nInstallation & Configuration:\n- Role: preparing servers with necessary hardware and software\n\nActive Directory:\n- Responsibilities: managing domain users and resources to enhance security and organization",
   "exp_coach_role": "Private Tutor",
   "exp_coach_period": "01/2009 – 10/2015",
-  "exp_coach_description": "While studying, I offered private tutoring to high school and university students in the following subjects:\n\nMathematics:\n- Topics: Algebra, geometry, calculus, differential and integral analysis\n- Approach: Adapting teaching methods to individual needs.\n\nStatistics:\n- Topics: Data analysis, probability, statistical inference, regression methods\n\nComputer Science:\n- Topics: Programming languages, algorithms, data structures, operating systems, databases\n- Method: Practical examples and clear explanations.\n\nIT Systems:\n- Topics: Systems design, networking, cybersecurity\n- Focus: Practical applications and problem-solving.\n\nThis experience enhanced my teaching skills and adaptability to various learning styles.",
+  "exp_coach_description": "While studying at university, I offered private tutoring to high school and university students in the following areas:\n\nMathematics:\n- Topics: algebra, geometry, differential and integral calculus\n- Approach: adapting teaching methods to individual needs\n\nStatistics:\n- Topics: data analysis, probability, statistical inference, regression methods\n\nComputer Science:\n- Topics: programming languages, algorithms, data structures, operating systems, databases\n- Method: practical examples and clear explanations\n\nIT Systems:\n- Topics: systems design, networking, cybersecurity\n- Focus: practical applications and problem-solving\n\nThis experience strengthened my communication skills and adaptability to various learning styles.",
   "trading_title": "My Trading Activity",
   "trading_intro": "Alongside my tech work, I invest in the stock market with discipline and long-term vision.",
   "trading_description": "Since 2022, I’ve been operating on eToro as a long-term investor focused on dividend-paying stocks and diversified ETFs. I build sustainable, growth-oriented portfolios with consistent dividend reinvestment. No high-risk trading or short-term speculation.",
@@ -172,65 +171,65 @@
   "courses_page": {
     "title": "My Online Courses",
     "duration": "Duration",
-    "learn_more": "Learn more",
+    "learn_more": "Learn More",
     "git": {
       "title": "Git Course",
-      "description": "This video course will teach you how to use Git.",
+      "description": "Learn how to use Git for version control and team collaboration.",
       "duration": "2.5 hours"
     },
     "typescript": {
       "title": "TypeScript Course",
-      "description": "This video course will teach you the TypeScript language.",
+      "description": "A comprehensive introduction to TypeScript and its benefits for modern development.",
       "duration": "1.5 hours"
     },
     "jQuery": {
       "title": "jQuery Course",
-      "description": "This video course will teach you how to use the jQuery library.",
+      "description": "Master the jQuery library to manipulate the DOM and handle events easily.",
       "duration": "3 hours"
     },
     "php": {
       "title": "PHP Programming Course",
-      "description": "This video course will teach you PHP programming.",
+      "description": "Learn server-side development with PHP from scratch.",
       "duration": "11.5 hours"
     },
     "cpp": {
       "title": "C++ Programming Course",
-      "description": "This video course will teach you C++ programming.",
+      "description": "A full course to learn C++ programming, starting from the basics.",
       "duration": "14.5 hours"
     },
     "html5": {
       "title": "HTML5 Course",
-      "description": "This video course will teach you how to use HTML5.",
+      "description": "Build semantic and modern web pages using HTML5.",
       "duration": "5 hours"
     },
     "angularJS": {
       "title": "AngularJS Course",
-      "description": "This video course will teach you how to use the AngularJS framework.",
+      "description": "Develop dynamic web applications using AngularJS.",
       "duration": "3.5 hours"
     },
     "java": {
       "title": "Java Programming Course",
-      "description": "This video course will teach you the fundamentals of Java programming.",
+      "description": "Understand the fundamentals of Java and object-oriented programming.",
       "duration": "7.5 hours"
     },
     "javascript": {
       "title": "JavaScript Programming Course",
-      "description": "This video course will teach you JavaScript programming.",
+      "description": "Learn to build interactive web applications with JavaScript.",
       "duration": "10.5 hours"
     },
     "c": {
       "title": "C Programming Course",
-      "description": "This video course will teach you C programming (recommended for complete beginners).",
+      "description": "Introductory course to the C language. Perfect for absolute beginners.",
       "duration": "6.5 hours"
     },
     "assembler": {
-      "title": "Assembler X 8086 Programming Course",
-      "description": "This video course will teach you programming using the 8086 assembler language.",
+      "title": "8086 Assembler Course",
+      "description": "Learn Assembly language programming for 8086 microprocessors and low-level logic.",
       "duration": "6 hours"
     },
     "sql": {
-      "title": "Database Basics Course: From E/R Diagrams to SQL",
-      "description": "This video course will teach you how to create a solid database (through the 3 fundamental design phases) and query it using basic SQL (Structured Query Language) to transform data into information, insert, update, and delete table data, and understand the theoretical and practical principles of designing and creating relational databases, tables, and views.",
+      "title": "Database & SQL Course",
+      "description": "From E/R modeling to SQL queries: database theory, design and practical implementation.",
       "duration": "6 hours"
     }
   },

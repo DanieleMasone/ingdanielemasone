@@ -6,6 +6,11 @@ const flags = {
     it: "https://flagcdn.com/w20/it.png",
 };
 
+const languageLabels = {
+    en: "English",
+    it: "Italiano",
+};
+
 /**
  * LanguageSwitcher component provides a dropdown button to switch between supported languages.
  *
@@ -105,7 +110,10 @@ export default function LanguageSwitcher() {
                                 className="w-6 h-auto rounded-sm shadow"
                                 loading="lazy"
                             />
-                            <span>{lang === "en" ? "En" : "Ita"}</span>
+                            <div className="flex flex-col text-left">
+                                <span className="text-sm font-semibold uppercase">{lang}</span>
+                                <span className="text-xs text-gray-500 dark:text-gray-400">{languageLabels[lang]}</span>
+                            </div>
                         </button>
                     ))}
                 </div>
