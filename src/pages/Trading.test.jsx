@@ -1,6 +1,7 @@
-import { render, screen } from "@testing-library/react";
+import {render, screen} from "@testing-library/react";
 import Trading from "./Trading"; // adjust path as needed
 import React from "react";
+import {HelmetProvider} from "react-helmet-async";
 
 // Mock react-i18next
 jest.mock("react-i18next", () => ({
@@ -24,7 +25,7 @@ jest.mock("../components/ui/TradingPerformanceChart", () => () => (
 ));
 
 // Mock PageSection component
-jest.mock("../components/ui/PageSection", () => ({ title, children }) => (
+jest.mock("../components/ui/PageSection", () => ({title, children}) => (
     <section>
         <h2>{title}</h2>
         {children}
@@ -33,11 +34,15 @@ jest.mock("../components/ui/PageSection", () => ({ title, children }) => (
 
 describe("Trading component", () => {
     beforeEach(() => {
-        render(<Trading />);
+        render(
+            <HelmetProvider>
+                <Trading/>
+            </HelmetProvider>
+        );
     });
 
     test("renders the section title from translation", () => {
-        expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent("Trading Performance");
+        expect(screen.getByRole("heading", {level: 2})).toHaveTextContent("Trading Performance");
     });
 
     test("renders intro, description and disclaimer text", () => {
@@ -47,7 +52,7 @@ describe("Trading component", () => {
     });
 
     test("renders a call-to-action link with correct href and text", () => {
-        const link = screen.getByRole("link", { name: /Visit my eToro profile/i });
+        const link = screen.getByRole("link", {name: /Visit my eToro profile/i});
         expect(link).toBeInTheDocument();
         expect(link).toHaveAttribute("href", "https://www.etoro.com/people/danielemasone");
         expect(link).toHaveAttribute("target", "_blank");

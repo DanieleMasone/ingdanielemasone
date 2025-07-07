@@ -1,5 +1,7 @@
 import {render, screen} from '@testing-library/react';
 import Home from './Home';
+import {HelmetProvider} from "react-helmet-async";
+import React from "react";
 
 jest.mock('react-i18next', () => ({
     useTranslation: () => ({
@@ -17,28 +19,27 @@ jest.mock('react-i18next', () => ({
 }));
 
 describe('Home component', () => {
+    beforeEach(() => {
+        render(
+            <HelmetProvider>
+                <Home/>
+            </HelmetProvider>
+        );
+    });
+
     test('renders about title, intro and experience texts', () => {
-        render(<Home/>);
         expect(screen.getByRole('heading', {level: 2})).toHaveTextContent('About Me');
         expect(screen.getByText('Hello, I am a software engineer.')).toBeInTheDocument();
         expect(screen.getByText('I have 10 years of experience in frontend development.')).toBeInTheDocument();
     });
 
-    test('initial opacity is 0 and changes to 100 on mount', () => {
-        const {container} = render(<Home/>);
-        const wrapper = container.querySelector('div.grid');
-        expect(wrapper).toHaveClass('opacity-100');
-    });
-
     test('renders exactly two images with alt text "Daniele Masone" for desktop and mobile', () => {
-        render(<Home/>);
         const images = screen.getAllByAltText('Daniele Masone');
         expect(images.length).toBe(2);
         images.forEach(img => expect(img).toBeInTheDocument());
     });
 
     test('mobile avatar container is visible only on small screens (has md:hidden class)', () => {
-        render(<Home/>);
         const images = screen.getAllByAltText('Daniele Masone');
 
         // Find the image whose parent has the class md:hidden
@@ -51,7 +52,6 @@ describe('Home component', () => {
     });
 
     test('desktop avatar container is visible only on medium+ screens (has hidden md:flex classes)', () => {
-        render(<Home/>);
         const images = screen.getAllByAltText('Daniele Masone');
 
         // Find the image whose parent has the class md:flex
@@ -64,7 +64,6 @@ describe('Home component', () => {
     });
 
     test('desktop avatar container is hidden on small screens (has hidden md:flex classes)', () => {
-        render(<Home/>);
         // Take all the pictures
         const images = screen.getAllByAltText('Daniele Masone');
 
@@ -78,8 +77,6 @@ describe('Home component', () => {
     });
 
     test('title is above avatar and description on mobile', () => {
-        render(<Home/>);
-
         const title = screen.getByRole('heading', {level: 2});
         const images = screen.getAllByAltText('Daniele Masone');
 

@@ -6,6 +6,7 @@ import {Card} from "../components/ui/Card";
 import {CardContent} from "../components/ui/CardContent";
 import PageSection from "../components/ui/PageSection";
 import {AnimatePresence, motion} from "framer-motion";
+import SeoHead from "../components/ui/SeoHead";
 
 const ITEMS_PER_PAGE = 3;
 
@@ -145,82 +146,86 @@ export default function Testimonials() {
     );
 
     return (
-        <PageSection title={t("testimonials_page.title")}>
+        <>
+            <SeoHead pageKey="testimonials" path="/testimonials"/>
 
-            <AnimatePresence mode="wait">
-                <motion.div
-                    key={`page-${currentPage}`}
-                    initial={{opacity: 0, y: 40}}
-                    animate={{opacity: 1, y: 0}}
-                    exit={{opacity: 0, y: -40}}
-                    transition={{duration: 0.4}}
-                    className="flex flex-wrap gap-6"
-                >
-                    {displayedTestimonials.map((testi, idx) => (
-                        <Card key={idx}
-                              className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 shadow-sm">
-                            <CardContent>
-                                <Disclosure>
-                                    {({open}) => (
-                                        <>
-                                            <Disclosure.Button
-                                                className="flex justify-between w-full items-center text-left">
-                                                <div className="flex items-center space-x-4">
-                                                    <img
-                                                        src={`https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(t(testi.nameKey))}`}
-                                                        alt={`${t(testi.nameKey)} avatar`}
-                                                        className="w-10 h-10 rounded-full ring-1 ring-gray-300 dark:ring-gray-700 bg-white"
-                                                    />
-                                                    <div>
-                                                        <p className="font-semibold">{t(testi.nameKey)}</p>
-                                                        <p className="text-sm text-gray-500 dark:text-gray-400">{t(testi.roleKey)}</p>
+            <PageSection title={t("testimonials_page.title")}>
+
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={`page-${currentPage}`}
+                        initial={{opacity: 0, y: 40}}
+                        animate={{opacity: 1, y: 0}}
+                        exit={{opacity: 0, y: -40}}
+                        transition={{duration: 0.4}}
+                        className="flex flex-wrap gap-6"
+                    >
+                        {displayedTestimonials.map((testi, idx) => (
+                            <Card key={idx}
+                                  className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 shadow-sm">
+                                <CardContent>
+                                    <Disclosure>
+                                        {({open}) => (
+                                            <>
+                                                <Disclosure.Button
+                                                    className="flex justify-between w-full items-center text-left">
+                                                    <div className="flex items-center space-x-4">
+                                                        <img
+                                                            src={`https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(t(testi.nameKey))}`}
+                                                            alt={`${t(testi.nameKey)} avatar`}
+                                                            className="w-10 h-10 rounded-full ring-1 ring-gray-300 dark:ring-gray-700 bg-white"
+                                                        />
+                                                        <div>
+                                                            <p className="font-semibold">{t(testi.nameKey)}</p>
+                                                            <p className="text-sm text-gray-500 dark:text-gray-400">{t(testi.roleKey)}</p>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <ChevronDown
-                                                    className={`h-5 w-5 transform ${open ? "rotate-180" : ""}`}/>
-                                            </Disclosure.Button>
-                                            <Disclosure.Panel className="mt-2 text-sm text-gray-700 dark:text-gray-300">
-                                                {t(testi.quoteKey)}
-                                            </Disclosure.Panel>
-                                        </>
-                                    )}
-                                </Disclosure>
-                            </CardContent>
-                        </Card>
-                    ))}
-                </motion.div>
-            </AnimatePresence>
+                                                    <ChevronDown
+                                                        className={`h-5 w-5 transform ${open ? "rotate-180" : ""}`}/>
+                                                </Disclosure.Button>
+                                                <Disclosure.Panel
+                                                    className="mt-2 text-sm text-gray-700 dark:text-gray-300">
+                                                    {t(testi.quoteKey)}
+                                                </Disclosure.Panel>
+                                            </>
+                                        )}
+                                    </Disclosure>
+                                </CardContent>
+                            </Card>
+                        ))}
+                    </motion.div>
+                </AnimatePresence>
 
-            {/* Pagination Controls */}
-            {totalPages > 1 && (
-                <div className="flex justify-center mt-8 space-x-4">
-                    <button
-                        onClick={() => setCurrentPage(p => Math.max(p - 1, 1))}
-                        disabled={currentPage === 1}
-                        className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
+                {/* Pagination Controls */}
+                {totalPages > 1 && (
+                    <div className="flex justify-center mt-8 space-x-4">
+                        <button
+                            onClick={() => setCurrentPage(p => Math.max(p - 1, 1))}
+                            disabled={currentPage === 1}
+                            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
                            text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
                            hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
-                    >
-                        ← {t("testimonials_page.prev")}
-                    </button>
+                        >
+                            ← {t("testimonials_page.prev")}
+                        </button>
 
-                    <span className="px-4 py-2 text-sm text-gray-600 dark:text-gray-300">
+                        <span className="px-4 py-2 text-sm text-gray-600 dark:text-gray-300">
                         {currentPage} / {totalPages}
                     </span>
 
-                    <button
-                        onClick={() => setCurrentPage(p => Math.min(p + 1, totalPages))}
-                        disabled={currentPage === totalPages}
-                        className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
+                        <button
+                            onClick={() => setCurrentPage(p => Math.min(p + 1, totalPages))}
+                            disabled={currentPage === totalPages}
+                            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
                            text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
                            hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
-                    >
-                        {t("testimonials_page.next")} →
-                    </button>
-                </div>
-            )}
+                        >
+                            {t("testimonials_page.next")} →
+                        </button>
+                    </div>
+                )}
 
-
-        </PageSection>
+            </PageSection>
+        </>
     );
 }

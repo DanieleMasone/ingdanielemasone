@@ -1,6 +1,6 @@
 import React from 'react';
 import {fireEvent, render, screen, within} from '@testing-library/react';
-import {MemoryRouter} from 'react-router-dom';
+import {MemoryRouter} from 'react-router';
 import Header from './Header';
 
 // Mock i18n translation hook

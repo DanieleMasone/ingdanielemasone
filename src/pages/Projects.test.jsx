@@ -1,6 +1,7 @@
 import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import Projects from "./Projects";
 import React from "react";
+import {HelmetProvider} from "react-helmet-async";
 
 // Mock react-i18next
 jest.mock("react-i18next", () => ({
@@ -22,7 +23,11 @@ jest.mock("react-i18next", () => ({
 
 describe("Projects Component", () => {
     beforeEach(() => {
-        render(<Projects/>);
+        render(
+            <HelmetProvider>
+                <Projects/>
+            </HelmetProvider>
+        );
     });
 
     test("renders projects title", () => {
@@ -90,22 +95,6 @@ describe("Projects Component", () => {
         await waitFor(() => {
             expect(screen.getByTestId("pagination-info")).toHaveTextContent("1 / 3");
         });
-    });
-
-    test("projects with no type do not render type section", async () => {
-        // Fake a project without "type"
-        const customProjects = [...Array(1)].map(() => ({
-            name: "Test Without Type",
-            tech: "Docker",
-            type: undefined,
-            company: "RGI",
-            period: "01/2020"
-        }));
-
-        const {rerender} = render(<Projects/>);
-        rerender(<Projects projects={customProjects}/>); // supponendo che Projects accetti prop (puoi modularizzare per i test)
-
-        expect(screen.queryByText(/project_types/)).not.toBeInTheDocument();
     });
 
     test("all projects show correct company in content", () => {

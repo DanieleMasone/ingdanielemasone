@@ -3,6 +3,7 @@ import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import Testimonials from "./Testimonials";
 import {I18nextProvider, initReactI18next} from "react-i18next";
 import i18n from "i18next";
+import {HelmetProvider} from "react-helmet-async";
 
 // Mock minimal translations for the keys used in the component
 const resources = {
@@ -37,9 +38,11 @@ i18n.use(initReactI18next).init({
 describe("Testimonials component", () => {
     beforeEach(() => {
         render(
-            <I18nextProvider i18n={i18n}>
-                <Testimonials/>
-            </I18nextProvider>
+            <HelmetProvider>
+                <I18nextProvider i18n={i18n}>
+                    <Testimonials/>
+                </I18nextProvider>
+            </HelmetProvider>
         );
     });
 

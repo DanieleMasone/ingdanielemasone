@@ -7,6 +7,7 @@ import {ChevronDown} from "lucide-react";
 import {AnimatePresence, motion} from "framer-motion";
 import PageSection from "../components/ui/PageSection";
 import {ExpandableText} from "../components/ui/ExpandableText";
+import SeoHead from "../components/ui/SeoHead";
 
 /**
  * Experience component renders a list of professional experiences filtered by selected year.
@@ -99,80 +100,85 @@ export default function Experience() {
         : [];
 
     return (
-        <PageSection title={t("experience_title")}>
-            <div className="flex flex-wrap justify-center gap-3 mb-10">
-                {yearList.map((year) => (
-                    <button
-                        key={year}
-                        onClick={() => setSelectedYear(year)}
-                        className={`px-4 py-2 rounded-2xl shadow-sm border transition backdrop-blur-sm
-                            ${
-                            selectedYear === year
-                                ? "ring-2 ring-blue-500 border-blue-500 bg-blue-100 text-blue-800 dark:bg-blue-700 dark:text-white"
-                                : "border-gray-300 dark:border-gray-600 bg-white/30 dark:bg-gray-800/30 text-gray-900 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700"
-                        }
-                            ${
-                            selectedYear === year
-                                ? "bg-blue-100 dark:bg-blue-700 text-blue-800 dark:text-white"
-                                : "bg-white/30 dark:bg-gray-800/30 text-gray-900 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
-                        }`}
-                    >
-                        {year}
-                    </button>
-                ))}
-            </div>
+        <>
+            <SeoHead pageKey="experience" path="/experience"/>
 
-
-            <AnimatePresence mode="wait">
-                <motion.div
-                    key={selectedYear || "none"}
-                    initial={{opacity: 0, y: 40}}
-                    animate={{opacity: 1, y: 0}}
-                    exit={{opacity: 0, y: -40}}
-                    transition={{duration: 0.4}}
-                    className="flex flex-wrap gap-6"
-                >
-                    {filteredExperiences.map((exp, i) => (
-                        <Card
-                            key={i}
-                            className="h-full bg-white/60 dark:bg-gray-900/40 shadow-xl rounded-2xl backdrop-blur-sm"
+            <PageSection title={t("experience_title")}>
+                <div className="flex flex-wrap justify-center gap-3 mb-10">
+                    {yearList.map((year) => (
+                        <button
+                            key={year}
+                            onClick={() => setSelectedYear(year)}
+                            className={`px-4 py-2 rounded-2xl shadow-sm border transition backdrop-blur-sm
+                            ${
+                                selectedYear === year
+                                    ? "ring-2 ring-blue-500 border-blue-500 bg-blue-100 text-blue-800 dark:bg-blue-700 dark:text-white"
+                                    : "border-gray-300 dark:border-gray-600 bg-white/30 dark:bg-gray-800/30 text-gray-900 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700"
+                            }
+                            ${
+                                selectedYear === year
+                                    ? "bg-blue-100 dark:bg-blue-700 text-blue-800 dark:text-white"
+                                    : "bg-white/30 dark:bg-gray-800/30 text-gray-900 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                            }`}
                         >
-                            <CardContent>
-                                <h3 className="text-xl font-semibold mb-1">{exp.role}</h3>
-                                <p className="text-gray-700 dark:text-gray-400 font-medium">{exp.company}</p>
-                                <p className="text-sm mb-2 text-gray-600 dark:text-gray-500">{exp.period}</p>
-
-                                {exp.description && (
-                                    <ExpandableText
-                                        value={exp.description}
-                                        maxLines={3}
-                                        className="mb-2 text-sm text-gray-800 dark:text-gray-200 bg-transparent"
-                                    />
-                                )}
-
-                                <Disclosure>
-                                    {({open}) => (
-                                        <div>
-                                            <Disclosure.Button
-                                                className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline">
-                                                <span>{t("experience_show_stack")}</span>
-                                                <ChevronDown
-                                                    className={`ml-1 w-4 h-4 transition-transform ${
-                                                        open ? "rotate-180" : ""
-                                                    }`}
-                                                />
-                                            </Disclosure.Button>
-                                            <Disclosure.Panel className="mt-2 text-sm text-gray-700 dark:text-gray-300">
-                                                {exp.tech}
-                                            </Disclosure.Panel>
-                                        </div>
-                                    )}
-                                </Disclosure>
-                            </CardContent>
-                        </Card>
+                            {year}
+                        </button>
                     ))}
-                </motion.div>
-            </AnimatePresence>
-        </PageSection>
+                </div>
+
+
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={selectedYear || "none"}
+                        initial={{opacity: 0, y: 40}}
+                        animate={{opacity: 1, y: 0}}
+                        exit={{opacity: 0, y: -40}}
+                        transition={{duration: 0.4}}
+                        className="flex flex-wrap gap-6"
+                    >
+                        {filteredExperiences.map((exp, i) => (
+                            <Card
+                                key={i}
+                                className="h-full bg-white/60 dark:bg-gray-900/40 shadow-xl rounded-2xl backdrop-blur-sm"
+                            >
+                                <CardContent>
+                                    <h3 className="text-xl font-semibold mb-1">{exp.role}</h3>
+                                    <p className="text-gray-700 dark:text-gray-400 font-medium">{exp.company}</p>
+                                    <p className="text-sm mb-2 text-gray-600 dark:text-gray-500">{exp.period}</p>
+
+                                    {exp.description && (
+                                        <ExpandableText
+                                            value={exp.description}
+                                            maxLines={3}
+                                            className="mb-2 text-sm text-gray-800 dark:text-gray-200 bg-transparent"
+                                        />
+                                    )}
+
+                                    <Disclosure>
+                                        {({open}) => (
+                                            <div>
+                                                <Disclosure.Button
+                                                    className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline">
+                                                    <span>{t("experience_show_stack")}</span>
+                                                    <ChevronDown
+                                                        className={`ml-1 w-4 h-4 transition-transform ${
+                                                            open ? "rotate-180" : ""
+                                                        }`}
+                                                    />
+                                                </Disclosure.Button>
+                                                <Disclosure.Panel
+                                                    className="mt-2 text-sm text-gray-700 dark:text-gray-300">
+                                                    {exp.tech}
+                                                </Disclosure.Panel>
+                                            </div>
+                                        )}
+                                    </Disclosure>
+                                </CardContent>
+                            </Card>
+                        ))}
+                    </motion.div>
+                </AnimatePresence>
+            </PageSection>
+        </>
     );
 }

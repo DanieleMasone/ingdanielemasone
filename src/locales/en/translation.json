@@ -354,5 +354,39 @@
       "role": "Lead Architect @ RGI",
       "quote": "Daniele is a highly competent developer, detail-oriented, and very passionate. He’s also an excellent teacher who has produced several online courses on Udemy. Working with him, I can say he is very determined in completing tasks, even the most challenging ones, with diligence. When he encounters difficulties, he is very receptive to suggestions and later independently proposes new solutions or improvements."
     }
+  },
+  "seo": {
+    "home": {
+      "title": "Daniele Masone - Portfolio",
+      "description": "Portfolio of Daniele Masone, software engineer. Experience, projects, courses and testimonials."
+    },
+    "experience": {
+      "title": "Professional Experience - Daniele Masone",
+      "description": "Work and professional experience of Daniele Masone, including frontend development and architecture."
+    },
+    "projects": {
+      "title": "Projects - Daniele Masone",
+      "description": "Personal and professional projects by Daniele Masone, using modern tech and best practices."
+    },
+    "courses": {
+      "title": "Courses - Daniele Masone",
+      "description": "Courses and skills acquired by Daniele Masone in the IT and tech domain."
+    },
+    "testimonials": {
+      "title": "Testimonials - Daniele Masone",
+      "description": "What coworkers and collaborators say about working with Daniele Masone."
+    },
+    "trading": {
+      "title": "Trading - Daniele Masone",
+      "description": "Insights, studies and thoughts from Daniele Masone on trading and financial markets."
+    },
+    "privacy": {
+      "title": "Privacy Policy - Daniele Masone",
+      "description": "Privacy notice regarding the portfolio website of Daniele Masone."
+    },
+    "cookie": {
+      "title": "Cookie Policy - Daniele Masone",
+      "description": "Cookie usage policy on Daniele Masone's portfolio website."
+    }
   }
 }

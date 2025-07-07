@@ -354,5 +354,39 @@
       "role": "Lead Architect @ RGI",
       "quote": "Daniele è uno sviluppatore altamente competente, attento ai dettagli e molto appassionato. È anche un ottimo insegnante che ha prodotto diversi corsi online su Udemy. Lavorando insieme posso affermare che è molto determinato nello svolgere i compiti, anche quelli più difficili, con diligenza. Quando e se incontra difficoltà è molto ricettivo ai suggerimenti e successivamente propone nuove soluzioni o miglioramenti in autonomia."
     }
+  },
+  "seo": {
+    "home": {
+      "title": "Daniele Masone - Portfolio",
+      "description": "Portfolio di Daniele Masone, ingegnere informatico. Esperienze, progetti, corsi e testimonianze."
+    },
+    "experience": {
+      "title": "Esperienza professionale - Daniele Masone",
+      "description": "Le esperienze lavorative e professionali di Daniele Masone, tra sviluppo frontend, architettura e altro."
+    },
+    "projects": {
+      "title": "Progetti - Daniele Masone",
+      "description": "Progetti personali e professionali di Daniele Masone, con tecnologie moderne e buone pratiche."
+    },
+    "courses": {
+      "title": "Corsi - Daniele Masone",
+      "description": "Corsi seguiti e competenze acquisite da Daniele Masone in ambito informatico e tecnologico."
+    },
+    "testimonials": {
+      "title": "Testimonianze - Daniele Masone",
+      "description": "Cosa dicono colleghi e collaboratori sull’esperienza lavorativa con Daniele Masone."
+    },
+    "trading": {
+      "title": "Trading - Daniele Masone",
+      "description": "Approfondimenti, studi e riflessioni di Daniele Masone sul mondo del trading e dei mercati finanziari."
+    },
+    "privacy": {
+      "title": "Privacy Policy - Daniele Masone",
+      "description": "Informativa sulla privacy relativa al sito portfolio di Daniele Masone."
+    },
+    "cookie": {
+      "title": "Cookie Policy - Daniele Masone",
+      "description": "Politica sull’uso dei cookie nel sito portfolio di Daniele Masone."
+    }
   }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import {render, screen} from '@testing-library/react';
 import CookiePolicy from './CookiePolicy';
+import {HelmetProvider} from "react-helmet-async";
 
 // Mock of react-i18next with t() returning fixed texts
 jest.mock('react-i18next', () => ({
@@ -33,7 +34,11 @@ jest.mock('react-i18next', () => ({
 
 describe('CookiePolicy component', () => {
     beforeEach(() => {
-        render(<CookiePolicy/>);
+        render(
+            <HelmetProvider>
+                <CookiePolicy/>
+            </HelmetProvider>
+        );
     });
 
     test('renders all major section headings', () => {

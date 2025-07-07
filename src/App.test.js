@@ -1,6 +1,7 @@
 import {render, screen} from '@testing-library/react';
 import App from './App';
-import {MemoryRouter} from 'react-router-dom';
+import {MemoryRouter} from 'react-router';
+import {HelmetProvider} from "react-helmet-async";
 
 jest.mock('react-chartjs-2', () => ({
     Chart: () => null,
@@ -13,9 +14,11 @@ jest.mock('react-chartjs-2', () => ({
 
 const renderWithRouter = (initialEntries = ['/']) => {
     return render(
-        <MemoryRouter initialEntries={initialEntries}>
-            <App/>
-        </MemoryRouter>
+        <HelmetProvider>
+            <MemoryRouter initialEntries={initialEntries}>
+                <App/>
+            </MemoryRouter>
+        </HelmetProvider>
     );
 };
 

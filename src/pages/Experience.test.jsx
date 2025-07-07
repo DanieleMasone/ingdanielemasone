@@ -3,6 +3,7 @@ import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import Experience from "./Experience";
 import i18n from "i18next";
 import {I18nextProvider, initReactI18next} from "react-i18next";
+import {HelmetProvider} from "react-helmet-async";
 
 i18n.use(initReactI18next).init({
     lng: "en",
@@ -45,9 +46,11 @@ i18n.use(initReactI18next).init({
 describe("Experience component", () => {
     beforeEach(() => {
         render(
-            <I18nextProvider i18n={i18n}>
-                <Experience/>
-            </I18nextProvider>
+            <HelmetProvider>
+                <I18nextProvider i18n={i18n}>
+                    <Experience/>
+                </I18nextProvider>
+            </HelmetProvider>
         );
     });
 

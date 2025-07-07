@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Link, useLocation} from 'react-router-dom';
+import {Link, useLocation} from 'react-router';
 import LanguageSwitcher from './LanguageSwitcher';
 import DarkModeToggle from './DarkModeToggle';
 import {useTranslation} from 'react-i18next';

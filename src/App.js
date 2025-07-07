@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Routes} from 'react-router-dom';
+import {Route, Routes} from 'react-router';
 import Home from './pages/Home';
 import Experience from './pages/Experience';
 import Projects from './pages/Projects';
@@ -9,13 +9,13 @@ import translationEN from "./locales/en/translation.json";
 import translationIT from "./locales/it/translation.json";
 import {initReactI18next} from "react-i18next";
 import i18n from "i18next";
-import CookieBanner from "./pages/CookieBanner";
 import Privacy from "./pages/Privacy";
 import CookiePolicy from "./pages/CookiePolicy";
 import Courses from "./pages/Courses";
 import Trading from "./pages/Trading";
 import Testimonials from "./pages/Testimonials";
 import NotFound from "./components/ui/NotFound";
+import CookieBanner from "./components/ui/CookieBanner";
 
 const resources = {
     en: {
@@ -57,7 +57,7 @@ export default function App() {
                     <Route path="/privacy" element={<Privacy/>}/>
                     <Route path="/cookie-policy" element={<CookiePolicy/>}/>
                     {/* Catch-all route for 404 errors */}
-                    <Route path="*" element={<NotFound />} />
+                    <Route path="*" element={<NotFound/>}/>
                 </Routes>
             </main>
             <Footer/>

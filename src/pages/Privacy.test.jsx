@@ -1,5 +1,7 @@
 import {render, screen, within} from '@testing-library/react';
 import Privacy from './Privacy';
+import {HelmetProvider} from "react-helmet-async";
+import React from "react";
 
 jest.mock('react-i18next', () => ({
     useTranslation: () => ({
@@ -49,8 +51,15 @@ jest.mock('react-i18next', () => ({
 }));
 
 describe('Privacy component', () => {
+    beforeEach(() => {
+        render(
+            <HelmetProvider>
+                <Privacy/>
+            </HelmetProvider>
+        );
+    });
+
     test('renders main heading and introduction', () => {
-        render(<Privacy/>);
         expect(screen.getByRole('heading', {level: 1})).toHaveTextContent('Privacy Policy');
         expect(screen.getByRole('heading', {name: /Introduction/i})).toBeInTheDocument();
         expect(screen.getByText(/Welcome to our privacy policy./i)).toBeInTheDocument();
@@ -59,7 +68,6 @@ describe('Privacy component', () => {
 
 
     test('renders data owner section with address and email link', () => {
-        render(<Privacy/>);
         const ownerHeading = screen.getByRole('heading', {name: /Data Owner/i});
         expect(ownerHeading).toBeInTheDocument();
 
@@ -77,8 +85,6 @@ describe('Privacy component', () => {
     });
 
     test('renders lists of data types, purposes, legal basis, rights, and others', () => {
-        render(<Privacy/>);
-
         // Check some list items from data types
         expect(screen.getByText(/Browsing Data/i)).toBeInTheDocument();
         expect(screen.getByText(/Voluntary Data/i)).toBeInTheDocument();

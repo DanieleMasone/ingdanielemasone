@@ -1,6 +1,7 @@
 import React from 'react';
 import {fireEvent, render, screen} from '@testing-library/react';
 import Courses from './Courses';
+import {HelmetProvider} from "react-helmet-async";
 
 jest.mock('react-i18next', () => ({
     useTranslation: () => ({
@@ -28,7 +29,11 @@ jest.mock('react-i18next', () => ({
 
 describe('Courses component', () => {
     beforeEach(() => {
-        render(<Courses/>);
+        render(
+            <HelmetProvider>
+                <Courses/>
+            </HelmetProvider>
+        );
     });
 
     test('renders page title', () => {

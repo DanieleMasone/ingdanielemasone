@@ -19,6 +19,7 @@ import jqueryPhoto from '../assets/courses/JQUERY.png';
 import phpPhoto from '../assets/courses/PHP.png';
 import sqlPhoto from '../assets/courses/SQL.png';
 import typescriptPhoto from '../assets/courses/TYPESCRIPT.png';
+import SeoHead from "../components/ui/SeoHead";
 
 /**
  * Courses component.
@@ -147,122 +148,128 @@ export default function Courses() {
     );
 
     return (
-        <PageSection title={t("courses_page.title")}>
+        <>
+            <SeoHead pageKey="courses" path="/courses"/>
 
-            <AnimatePresence mode="wait">
-                <motion.div
-                    key={`page-${page}`}
-                    initial={{opacity: 0, y: 40}}
-                    animate={{opacity: 1, y: 0}}
-                    exit={{opacity: 0, y: -40}}
-                    transition={{duration: 0.4}}
-                    className="flex flex-wrap gap-6"
-                >
-                    {displayedCourses.map((course, idx) => (
-                        <Card key={idx} className="flex flex-col md:flex-row items-start gap-4 p-4 sm:p-6">
-                            <CardContent className="p-0 flex-1">
+            <PageSection title={t("courses_page.title")}>
 
-                                {/* Title + small image on mobile */}
-                                <div className="flex items-center justify-between">
-                                    <h3 className="text-lg font-semibold">
-                                        {t(course.nameKey)}
-                                    </h3>
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={`page-${page}`}
+                        initial={{opacity: 0, y: 40}}
+                        animate={{opacity: 1, y: 0}}
+                        exit={{opacity: 0, y: -40}}
+                        transition={{duration: 0.4}}
+                        className="flex flex-wrap gap-6"
+                    >
+                        {displayedCourses.map((course, idx) => (
+                            <Card key={idx} className="flex flex-col md:flex-row items-start gap-4 p-4 sm:p-6">
+                                <CardContent className="p-0 flex-1">
 
-                                    {/* Mobile small image */}
-                                    <a
-                                        href={course.link}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="block md:hidden shrink-0 ml-4"
-                                    >
-                                        <img
-                                            src={course.image}
-                                            alt={t(course.nameKey)}
-                                            className="rounded-full w-16 h-16 object-cover shadow-md hover:scale-105 transition-transform duration-300"
-                                            loading="lazy"
-                                        />
-                                    </a>
-                                </div>
+                                    {/* Title + small image on mobile */}
+                                    <div className="flex items-center justify-between">
+                                        <h3 className="text-lg font-semibold">
+                                            {t(course.nameKey)}
+                                        </h3>
 
-                                {/* Rest of the content takes full width */}
-                                <ExpandableText
-                                    value={t(course.descKey)}
-                                    maxLines={3}
-                                    className="my-2 cursor-default"
-                                />
+                                        {/* Mobile small image */}
+                                        <a
+                                            href={course.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="block md:hidden shrink-0 ml-4"
+                                        >
+                                            <img
+                                                src={course.image}
+                                                alt={t(course.nameKey)}
+                                                className="rounded-full w-16 h-16 object-cover shadow-md hover:scale-105 transition-transform duration-300"
+                                                loading="lazy"
+                                            />
+                                        </a>
+                                    </div>
 
-                                <p className="text-sm text-gray-500 dark:text-gray-400 font-mono mb-2">
-                                    {t("courses_page.duration")}: {t(course.durationKey)}
-                                </p>
+                                    {/* Rest of the content takes full width */}
+                                    <ExpandableText
+                                        value={t(course.descKey)}
+                                        maxLines={3}
+                                        className="my-2 cursor-default"
+                                    />
 
-                                <Disclosure>
-                                    {({open}) => (
-                                        <>
-                                            <Disclosure.Button
-                                                className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
-                                            >
-                                                <span>{t("show_technologies")}</span>
-                                                <ChevronDown
-                                                    className={`ml-1 w-4 h-4 transition-transform ${
-                                                        open ? "rotate-180" : ""
-                                                    }`}
-                                                />
-                                            </Disclosure.Button>
-                                            <Disclosure.Panel className="mt-2 text-sm text-gray-700 dark:text-gray-300">
-                                                {course.tech}
-                                            </Disclosure.Panel>
-                                        </>
-                                    )}
-                                </Disclosure>
-                            </CardContent>
+                                    <p className="text-sm text-gray-500 dark:text-gray-400 font-mono mb-2">
+                                        {t("courses_page.duration")}: {t(course.durationKey)}
+                                    </p>
 
-                            {/* Desktop large image */}
-                            <a
-                                href={course.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="hidden md:block shrink-0"
-                            >
-                                <img
-                                    src={course.image}
-                                    alt={t(course.nameKey)}
-                                    className="rounded-full w-48 h-48 object-cover shadow-md hover:scale-105 transition-transform duration-300"
-                                    loading="lazy"
-                                />
-                            </a>
-                        </Card>
-                    ))}
-                </motion.div>
-            </AnimatePresence>
+                                    <Disclosure>
+                                        {({open}) => (
+                                            <>
+                                                <Disclosure.Button
+                                                    className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
+                                                >
+                                                    <span>{t("show_technologies")}</span>
+                                                    <ChevronDown
+                                                        className={`ml-1 w-4 h-4 transition-transform ${
+                                                            open ? "rotate-180" : ""
+                                                        }`}
+                                                    />
+                                                </Disclosure.Button>
+                                                <Disclosure.Panel
+                                                    className="mt-2 text-sm text-gray-700 dark:text-gray-300">
+                                                    {course.tech}
+                                                </Disclosure.Panel>
+                                            </>
+                                        )}
+                                    </Disclosure>
+                                </CardContent>
 
-            {/* Pagination Controls */}
-            {totalPages > 1 && (
-                <div className="flex justify-center mt-8 space-x-4">
-                    <button
-                        onClick={() => setPage(p => Math.max(p - 1, 1))}
-                        disabled={page === 1}
-                        className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
+                                {/* Desktop large image */}
+                                <a
+                                    href={course.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hidden md:block shrink-0"
+                                >
+                                    <img
+                                        src={course.image}
+                                        alt={t(course.nameKey)}
+                                        className="rounded-full w-48 h-48 object-cover shadow-md hover:scale-105 transition-transform duration-300"
+                                        loading="lazy"
+                                    />
+                                </a>
+                            </Card>
+                        ))}
+                    </motion.div>
+                </AnimatePresence>
+
+                {/* Pagination Controls */}
+                {totalPages > 1 && (
+                    <div className="flex justify-center mt-8 space-x-4">
+                        <button
+                            onClick={() => setPage(p => Math.max(p - 1, 1))}
+                            disabled={page === 1}
+                            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
                                text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
                                hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
-                    >
-                        ← {t("previous")}
-                    </button>
+                        >
+                            ← {t("previous")}
+                        </button>
 
-                    <span data-testid="pagination-info" className="px-4 py-2 text-sm text-gray-600 dark:text-gray-300">
+                        <span data-testid="pagination-info"
+                              className="px-4 py-2 text-sm text-gray-600 dark:text-gray-300">
                         {page} / {totalPages}
                     </span>
 
-                    <button
-                        onClick={() => setPage(p => Math.min(p + 1, totalPages))}
-                        disabled={page === totalPages}
-                        className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
+                        <button
+                            onClick={() => setPage(p => Math.min(p + 1, totalPages))}
+                            disabled={page === totalPages}
+                            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
                                text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
                                hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
-                    >
-                        {t("next")} →
-                    </button>
-                </div>
-            )}
-        </PageSection>
+                        >
+                            {t("next")} →
+                        </button>
+                    </div>
+                )}
+            </PageSection>
+        </>
     );
 }
