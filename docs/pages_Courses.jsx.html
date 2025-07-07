@@ -29,7 +29,7 @@
 <nav >
     
     
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-components_ui_Card.html">components/ui/Card</a></li><li><a href="module-components_ui_CardContent.html">components/ui/CardContent</a></li><li><a href="module-components_ui_DarkModeToggle.html">components/ui/DarkModeToggle</a></li><li><a href="module-components_ui_Footer.html">components/ui/Footer</a></li><li><a href="module-components_ui_Header.html">components/ui/Header</a></li><li><a href="module-components_ui_LanguageSwitcher.html">components/ui/LanguageSwitcher</a></li><li><a href="module-components_ui_NotFound.html">components/ui/NotFound</a></li><li><a href="module-components_ui_PageSection.html">components/ui/PageSection</a></li><li><a href="module-components_ui_TradingPerformanceChart.html">components/ui/TradingPerformanceChart</a></li><li><a href="module-pages_CookieBanner.html">pages/CookieBanner</a></li><li><a href="module-pages_CookiePolicy.html">pages/CookiePolicy</a></li><li><a href="module-pages_Courses.html">pages/Courses</a></li><li><a href="module-pages_Experience.html">pages/Experience</a></li><li><a href="module-pages_Home.html">pages/Home</a></li><li><a href="module-pages_Privacy.html">pages/Privacy</a></li><li><a href="module-pages_Projects.html">pages/Projects</a></li><li><a href="module-pages_Testimonials.html">pages/Testimonials</a></li><li><a href="module-pages_Trading.html">pages/Trading</a></li></ul><h3>Global</h3><ul><li><a href="global.html#BrandIcon">BrandIcon</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-components_ui_Card.html">components/ui/Card</a></li><li><a href="module-components_ui_CardContent.html">components/ui/CardContent</a></li><li><a href="module-components_ui_DarkModeToggle.html">components/ui/DarkModeToggle</a></li><li><a href="module-components_ui_Footer.html">components/ui/Footer</a></li><li><a href="module-components_ui_Header.html">components/ui/Header</a></li><li><a href="module-components_ui_LanguageSwitcher.html">components/ui/LanguageSwitcher</a></li><li><a href="module-components_ui_NotFound.html">components/ui/NotFound</a></li><li><a href="module-components_ui_PageSection.html">components/ui/PageSection</a></li><li><a href="module-components_ui_SeoHead.html">components/ui/SeoHead</a></li><li><a href="module-components_ui_TradingPerformanceChart.html">components/ui/TradingPerformanceChart</a></li><li><a href="module-pages_CookieBanner.html">pages/CookieBanner</a></li><li><a href="module-pages_CookiePolicy.html">pages/CookiePolicy</a></li><li><a href="module-pages_Courses.html">pages/Courses</a></li><li><a href="module-pages_Experience.html">pages/Experience</a></li><li><a href="module-pages_Home.html">pages/Home</a></li><li><a href="module-pages_Privacy.html">pages/Privacy</a></li><li><a href="module-pages_Projects.html">pages/Projects</a></li><li><a href="module-pages_Testimonials.html">pages/Testimonials</a></li><li><a href="module-pages_Trading.html">pages/Trading</a></li></ul><h3>Global</h3><ul><li><a href="global.html#BrandIcon">BrandIcon</a></li></ul>
     
 </nav>
 
@@ -66,6 +66,7 @@ import jqueryPhoto from '../assets/courses/JQUERY.png';
 import phpPhoto from '../assets/courses/PHP.png';
 import sqlPhoto from '../assets/courses/SQL.png';
 import typescriptPhoto from '../assets/courses/TYPESCRIPT.png';
+import SeoHead from "../components/ui/SeoHead";
 
 /**
  * Courses component.
@@ -194,107 +195,129 @@ export default function Courses() {
     );
 
     return (
-        &lt;PageSection title={t("courses_page.title")}>
+        &lt;>
+            &lt;SeoHead pageKey="courses" path="/courses"/>
 
-            &lt;AnimatePresence mode="wait">
-                &lt;motion.div
-                    key={`page-${page}`}
-                    initial={{opacity: 0, y: 40}}
-                    animate={{opacity: 1, y: 0}}
-                    exit={{opacity: 0, y: -40}}
-                    transition={{duration: 0.4}}
-                    className="flex flex-wrap gap-6"
-                >
-                    {displayedCourses.map((course, idx) => (
-                        &lt;Card
-                            key={idx}
-                            className="flex items-start gap-4 p-4 sm:p-6"
-                        >
+            &lt;PageSection title={t("courses_page.title")}>
 
-                            {/* Text content on the left */}
-                            &lt;CardContent className="p-0 flex-1">
-                                &lt;h3 className="text-lg font-semibold">
-                                    {t(course.nameKey)}
-                                &lt;/h3>
+                &lt;AnimatePresence mode="wait">
+                    &lt;motion.div
+                        key={`page-${page}`}
+                        initial={{opacity: 0, y: 40}}
+                        animate={{opacity: 1, y: 0}}
+                        exit={{opacity: 0, y: -40}}
+                        transition={{duration: 0.4}}
+                        className="flex flex-wrap gap-6"
+                    >
+                        {displayedCourses.map((course, idx) => (
+                            &lt;Card key={idx} className="flex flex-col md:flex-row items-start gap-4 p-4 sm:p-6">
+                                &lt;CardContent className="p-0 flex-1">
 
-                                &lt;ExpandableText
-                                    value={t(course.descKey)}
-                                    maxLines={3}
-                                    className="my-2 cursor-default"
-                                />
+                                    {/* Title + small image on mobile */}
+                                    &lt;div className="flex items-center justify-between">
+                                        &lt;h3 className="text-lg font-semibold">
+                                            {t(course.nameKey)}
+                                        &lt;/h3>
 
-                                &lt;p className="text-sm text-gray-500 dark:text-gray-400 font-mono mb-2">
-                                    {t("courses_page.duration")}: {t(course.durationKey)}
-                                &lt;/p>
+                                        {/* Mobile small image */}
+                                        &lt;a
+                                            href={course.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="block md:hidden shrink-0 ml-4"
+                                        >
+                                            &lt;img
+                                                src={course.image}
+                                                alt={t(course.nameKey)}
+                                                className="rounded-full w-16 h-16 object-cover shadow-md hover:scale-105 transition-transform duration-300"
+                                                loading="lazy"
+                                            />
+                                        &lt;/a>
+                                    &lt;/div>
 
-                                &lt;Disclosure>
-                                    {({open}) => (
-                                        &lt;>
-                                            &lt;Disclosure.Button
-                                                className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2">
-                                                &lt;span>{t("show_technologies")}&lt;/span>
-                                                &lt;ChevronDown
-                                                    className={`ml-1 w-4 h-4 transition-transform ${
-                                                        open ? "rotate-180" : ""
-                                                    }`}
-                                                />
-                                            &lt;/Disclosure.Button>
-                                            &lt;Disclosure.Panel className="mt-2 text-sm text-gray-700 dark:text-gray-300">
-                                                {course.tech}
-                                            &lt;/Disclosure.Panel>
-                                        &lt;/>
-                                    )}
-                                &lt;/Disclosure>
-                            &lt;/CardContent>
+                                    {/* Rest of the content takes full width */}
+                                    &lt;ExpandableText
+                                        value={t(course.descKey)}
+                                        maxLines={3}
+                                        className="my-2 cursor-default"
+                                    />
 
-                            {/* Image on the right */}
-                            &lt;a
-                                href={course.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="shrink-0"
-                            >
-                                &lt;img
-                                    src={course.image}
-                                    alt={t(course.nameKey)}
-                                    className="rounded-full w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mx-auto mb-4 sm:mb-6 object-cover shadow-md hover:scale-105 transition-transform duration-300"
-                                    loading="lazy"
-                                />
-                            &lt;/a>
-                        &lt;/Card>
-                    ))}
-                &lt;/motion.div>
-            &lt;/AnimatePresence>
+                                    &lt;p className="text-sm text-gray-500 dark:text-gray-400 font-mono mb-2">
+                                        {t("courses_page.duration")}: {t(course.durationKey)}
+                                    &lt;/p>
 
-            {/* Pagination Controls */}
-            {totalPages > 1 &amp;&amp; (
-                &lt;div className="flex justify-center mt-8 space-x-4">
-                    &lt;button
-                        onClick={() => setPage(p => Math.max(p - 1, 1))}
-                        disabled={page === 1}
-                        className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
+                                    &lt;Disclosure>
+                                        {({open}) => (
+                                            &lt;>
+                                                &lt;Disclosure.Button
+                                                    className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
+                                                >
+                                                    &lt;span>{t("show_technologies")}&lt;/span>
+                                                    &lt;ChevronDown
+                                                        className={`ml-1 w-4 h-4 transition-transform ${
+                                                            open ? "rotate-180" : ""
+                                                        }`}
+                                                    />
+                                                &lt;/Disclosure.Button>
+                                                &lt;Disclosure.Panel
+                                                    className="mt-2 text-sm text-gray-700 dark:text-gray-300">
+                                                    {course.tech}
+                                                &lt;/Disclosure.Panel>
+                                            &lt;/>
+                                        )}
+                                    &lt;/Disclosure>
+                                &lt;/CardContent>
+
+                                {/* Desktop large image */}
+                                &lt;a
+                                    href={course.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hidden md:block shrink-0"
+                                >
+                                    &lt;img
+                                        src={course.image}
+                                        alt={t(course.nameKey)}
+                                        className="rounded-full w-48 h-48 object-cover shadow-md hover:scale-105 transition-transform duration-300"
+                                        loading="lazy"
+                                    />
+                                &lt;/a>
+                            &lt;/Card>
+                        ))}
+                    &lt;/motion.div>
+                &lt;/AnimatePresence>
+
+                {/* Pagination Controls */}
+                {totalPages > 1 &amp;&amp; (
+                    &lt;div className="flex justify-center mt-8 space-x-4">
+                        &lt;button
+                            onClick={() => setPage(p => Math.max(p - 1, 1))}
+                            disabled={page === 1}
+                            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
                                text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
                                hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
-                    >
-                        ← {t("previous")}
-                    &lt;/button>
+                        >
+                            ← {t("previous")}
+                        &lt;/button>
 
-                    &lt;span data-testid="pagination-info" className="px-4 py-2 text-sm text-gray-600 dark:text-gray-300">
+                        &lt;span data-testid="pagination-info"
+                              className="px-4 py-2 text-sm text-gray-600 dark:text-gray-300">
                         {page} / {totalPages}
                     &lt;/span>
 
-                    &lt;button
-                        onClick={() => setPage(p => Math.min(p + 1, totalPages))}
-                        disabled={page === totalPages}
-                        className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
+                        &lt;button
+                            onClick={() => setPage(p => Math.min(p + 1, totalPages))}
+                            disabled={page === totalPages}
+                            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
                                text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
                                hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
-                    >
-                        {t("next")} →
-                    &lt;/button>
-                &lt;/div>
-            )}
-        &lt;/PageSection>
+                        >
+                            {t("next")} →
+                        &lt;/button>
+                    &lt;/div>
+                )}
+            &lt;/PageSection>
+        &lt;/>
     );
 }
 </code></pre>
@@ -311,7 +334,7 @@ export default function Courses() {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Wed Jul 02 2025 15:46:15 GMT+0200 (Ora legale dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Mon Jul 07 2025 11:21:19 GMT+0200 (Ora legale dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

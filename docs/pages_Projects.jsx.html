@@ -29,7 +29,7 @@
 <nav >
     
     
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-components_ui_Card.html">components/ui/Card</a></li><li><a href="module-components_ui_CardContent.html">components/ui/CardContent</a></li><li><a href="module-components_ui_DarkModeToggle.html">components/ui/DarkModeToggle</a></li><li><a href="module-components_ui_Footer.html">components/ui/Footer</a></li><li><a href="module-components_ui_Header.html">components/ui/Header</a></li><li><a href="module-components_ui_LanguageSwitcher.html">components/ui/LanguageSwitcher</a></li><li><a href="module-components_ui_NotFound.html">components/ui/NotFound</a></li><li><a href="module-components_ui_PageSection.html">components/ui/PageSection</a></li><li><a href="module-components_ui_TradingPerformanceChart.html">components/ui/TradingPerformanceChart</a></li><li><a href="module-pages_CookieBanner.html">pages/CookieBanner</a></li><li><a href="module-pages_CookiePolicy.html">pages/CookiePolicy</a></li><li><a href="module-pages_Courses.html">pages/Courses</a></li><li><a href="module-pages_Experience.html">pages/Experience</a></li><li><a href="module-pages_Home.html">pages/Home</a></li><li><a href="module-pages_Privacy.html">pages/Privacy</a></li><li><a href="module-pages_Projects.html">pages/Projects</a></li><li><a href="module-pages_Testimonials.html">pages/Testimonials</a></li><li><a href="module-pages_Trading.html">pages/Trading</a></li></ul><h3>Global</h3><ul><li><a href="global.html#BrandIcon">BrandIcon</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-components_ui_Card.html">components/ui/Card</a></li><li><a href="module-components_ui_CardContent.html">components/ui/CardContent</a></li><li><a href="module-components_ui_DarkModeToggle.html">components/ui/DarkModeToggle</a></li><li><a href="module-components_ui_Footer.html">components/ui/Footer</a></li><li><a href="module-components_ui_Header.html">components/ui/Header</a></li><li><a href="module-components_ui_LanguageSwitcher.html">components/ui/LanguageSwitcher</a></li><li><a href="module-components_ui_NotFound.html">components/ui/NotFound</a></li><li><a href="module-components_ui_PageSection.html">components/ui/PageSection</a></li><li><a href="module-components_ui_SeoHead.html">components/ui/SeoHead</a></li><li><a href="module-components_ui_TradingPerformanceChart.html">components/ui/TradingPerformanceChart</a></li><li><a href="module-pages_CookieBanner.html">pages/CookieBanner</a></li><li><a href="module-pages_CookiePolicy.html">pages/CookiePolicy</a></li><li><a href="module-pages_Courses.html">pages/Courses</a></li><li><a href="module-pages_Experience.html">pages/Experience</a></li><li><a href="module-pages_Home.html">pages/Home</a></li><li><a href="module-pages_Privacy.html">pages/Privacy</a></li><li><a href="module-pages_Projects.html">pages/Projects</a></li><li><a href="module-pages_Testimonials.html">pages/Testimonials</a></li><li><a href="module-pages_Trading.html">pages/Trading</a></li></ul><h3>Global</h3><ul><li><a href="global.html#BrandIcon">BrandIcon</a></li></ul>
     
 </nav>
 
@@ -54,6 +54,7 @@ import {useState} from "react";
 import PageSection from "../components/ui/PageSection";
 import {ExpandableText} from "../components/ui/ExpandableText";
 import {AnimatePresence, motion} from "framer-motion";
+import SeoHead from "../components/ui/SeoHead";
 
 /**
  * Projects component displays a list of projects grouped by company.
@@ -177,126 +178,130 @@ export default function Projects() {
     }, {});
 
     return (
-        &lt;PageSection title={t("projects_title")}>
-            &lt;div className="flex flex-col md:flex-row gap-6">
-                {/* Sidebar Tabs */}
-                &lt;div className="md:w-1/4 flex flex-row md:flex-col overflow-x-auto gap-2 md:gap-4">
-                    {companies.map((company) => (
-                        &lt;button
-                            key={company}
-                            onClick={() => {
-                                setSelectedCompany(company);
-                                setPage(1);
-                            }}
-                            className={`px-4 py-2 rounded-lg border text-sm whitespace-nowrap
+        &lt;>
+            &lt;SeoHead pageKey="projects" path="/projects"/>
+
+            &lt;PageSection title={t("projects_title")}>
+                &lt;div className="flex flex-col md:flex-row gap-6">
+                    {/* Sidebar Tabs */}
+                    &lt;div className="md:w-1/4 flex flex-row md:flex-col overflow-x-auto gap-2 md:gap-4">
+                        {companies.map((company) => (
+                            &lt;button
+                                key={company}
+                                onClick={() => {
+                                    setSelectedCompany(company);
+                                    setPage(1);
+                                }}
+                                className={`px-4 py-2 rounded-lg border text-sm whitespace-nowrap
                             ${
-                                selectedCompany === company
-                                    ? "bg-blue-600 text-white dark:bg-blue-500"
-                                    : "bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200"
-                            }`}
-                        >
-                            {company}
-                        &lt;/button>
-                    ))}
-                &lt;/div>
+                                    selectedCompany === company
+                                        ? "bg-blue-600 text-white dark:bg-blue-500"
+                                        : "bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200"
+                                }`}
+                            >
+                                {company}
+                            &lt;/button>
+                        ))}
+                    &lt;/div>
 
-                {/* Content */}
-                &lt;div className="flex-1">
-                    {(() => {
-                        const currentProjects = groupedProjects[selectedCompany] || [];
-                        const totalPages = Math.ceil(currentProjects.length / itemsPerPage);
-                        const paginated = currentProjects.slice(
-                            (page - 1) * itemsPerPage,
-                            page * itemsPerPage
-                        );
+                    {/* Content */}
+                    &lt;div className="flex-1">
+                        {(() => {
+                            const currentProjects = groupedProjects[selectedCompany] || [];
+                            const totalPages = Math.ceil(currentProjects.length / itemsPerPage);
+                            const paginated = currentProjects.slice(
+                                (page - 1) * itemsPerPage,
+                                page * itemsPerPage
+                            );
 
-                        return (
-                            &lt;>
-                                &lt;AnimatePresence mode="wait">
-                                    &lt;motion.div
-                                        key={selectedCompany + page}
-                                        initial={{opacity: 0, y: 40}}
-                                        animate={{opacity: 1, y: 0}}
-                                        exit={{opacity: 0, y: -40}}
-                                        transition={{duration: 0.4}}
-                                        layout
-                                        className="flex flex-wrap gap-6 min-h-[500px] items-start"
-                                    >
-                                        {paginated.map((proj, idx) => (
-                                            &lt;Card
-                                                key={idx}
-                                                className="bg-white border border-gray-200 text-gray-900 dark:bg-gray-900 dark:border-gray-700 dark:text-white transition-colors duration-300"
-                                            >
-                                                &lt;CardContent>
-                                                    &lt;h3 className="text-lg font-semibold">{proj.name}&lt;/h3>
-                                                    &lt;p className="text-gray-700 dark:text-gray-400">{proj.company}&lt;/p>
-                                                    &lt;p className="text-sm mb-2 text-gray-600 dark:text-gray-500">{proj.period}&lt;/p>
-                                                    {proj.type &amp;&amp; (
-                                                        &lt;ExpandableText
-                                                            value={t(`project_types.${proj.type}`, proj.type)}
-                                                            maxLines={3}
-                                                            className="mb-2 text-sm"
-                                                        />
-                                                    )}
-                                                    &lt;Disclosure>
-                                                        {({open}) => (
-                                                            &lt;div>
-                                                                &lt;Disclosure.Button
-                                                                    className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
-                                                                >
-                                                                    &lt;span>{t("show_technologies")}&lt;/span>
-                                                                    &lt;ChevronDown
-                                                                        className={`ml-1 w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}
-                                                                    />
-                                                                &lt;/Disclosure.Button>
-                                                                &lt;Disclosure.Panel
-                                                                    className="mt-2 text-sm text-gray-700 dark:text-gray-300">
-                                                                    {proj.tech}
-                                                                &lt;/Disclosure.Panel>
-                                                            &lt;/div>
+                            return (
+                                &lt;>
+                                    &lt;AnimatePresence mode="wait">
+                                        &lt;motion.div
+                                            key={selectedCompany + page}
+                                            initial={{opacity: 0, y: 40}}
+                                            animate={{opacity: 1, y: 0}}
+                                            exit={{opacity: 0, y: -40}}
+                                            transition={{duration: 0.4}}
+                                            layout
+                                            className="flex flex-wrap gap-6 min-h-[500px] items-start"
+                                        >
+                                            {paginated.map((proj, idx) => (
+                                                &lt;Card
+                                                    key={idx}
+                                                    className="bg-white border border-gray-200 text-gray-900 dark:bg-gray-900 dark:border-gray-700 dark:text-white transition-colors duration-300"
+                                                >
+                                                    &lt;CardContent>
+                                                        &lt;h3 className="text-lg font-semibold">{proj.name}&lt;/h3>
+                                                        &lt;p className="text-gray-700 dark:text-gray-400">{proj.company}&lt;/p>
+                                                        &lt;p className="text-sm mb-2 text-gray-600 dark:text-gray-500">{proj.period}&lt;/p>
+                                                        {proj.type &amp;&amp; (
+                                                            &lt;ExpandableText
+                                                                value={t(`project_types.${proj.type}`, proj.type)}
+                                                                maxLines={3}
+                                                                className="mb-2 text-sm"
+                                                            />
                                                         )}
-                                                    &lt;/Disclosure>
-                                                &lt;/CardContent>
-                                            &lt;/Card>
-                                        ))}
-                                    &lt;/motion.div>
-                                &lt;/AnimatePresence>
+                                                        &lt;Disclosure>
+                                                            {({open}) => (
+                                                                &lt;div>
+                                                                    &lt;Disclosure.Button
+                                                                        className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
+                                                                    >
+                                                                        &lt;span>{t("show_technologies")}&lt;/span>
+                                                                        &lt;ChevronDown
+                                                                            className={`ml-1 w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}
+                                                                        />
+                                                                    &lt;/Disclosure.Button>
+                                                                    &lt;Disclosure.Panel
+                                                                        className="mt-2 text-sm text-gray-700 dark:text-gray-300">
+                                                                        {proj.tech}
+                                                                    &lt;/Disclosure.Panel>
+                                                                &lt;/div>
+                                                            )}
+                                                        &lt;/Disclosure>
+                                                    &lt;/CardContent>
+                                                &lt;/Card>
+                                            ))}
+                                        &lt;/motion.div>
+                                    &lt;/AnimatePresence>
 
-                                {/* Pagination Controls */}
-                                {totalPages > 1 &amp;&amp; (
-                                    &lt;div className="w-full flex justify-center mt-8 space-x-4">
-                                        &lt;button
-                                            onClick={() => setPage(p => Math.max(p - 1, 1))}
-                                            disabled={page === 1}
-                                            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
+                                    {/* Pagination Controls */}
+                                    {totalPages > 1 &amp;&amp; (
+                                        &lt;div className="w-full flex justify-center mt-8 space-x-4">
+                                            &lt;button
+                                                onClick={() => setPage(p => Math.max(p - 1, 1))}
+                                                disabled={page === 1}
+                                                className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
                                                                text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
                                                                hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
-                                        >
-                                            ← {t("previous")}
-                                        &lt;/button>
+                                            >
+                                                ← {t("previous")}
+                                            &lt;/button>
 
-                                        &lt;span data-testid="pagination-info"
-                                              className="px-4 py-2 text-sm text-gray-600 dark:text-gray-300">
+                                            &lt;span data-testid="pagination-info"
+                                                  className="px-4 py-2 text-sm text-gray-600 dark:text-gray-300">
                                                     {page} / {totalPages}
                                                 &lt;/span>
 
-                                        &lt;button
-                                            onClick={() => setPage(p => Math.min(p + 1, totalPages))}
-                                            disabled={page === totalPages}
-                                            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
+                                            &lt;button
+                                                onClick={() => setPage(p => Math.min(p + 1, totalPages))}
+                                                disabled={page === totalPages}
+                                                className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
                                                                 text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
                                                                 hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
-                                        >
-                                            {t("next")} →
-                                        &lt;/button>
-                                    &lt;/div>
-                                )}
-                            &lt;/>
-                        );
-                    })()}
+                                            >
+                                                {t("next")} →
+                                            &lt;/button>
+                                        &lt;/div>
+                                    )}
+                                &lt;/>
+                            );
+                        })()}
+                    &lt;/div>
                 &lt;/div>
-            &lt;/div>
-        &lt;/PageSection>
+            &lt;/PageSection>
+        &lt;/>
     );
 }
 </code></pre>
@@ -313,7 +318,7 @@ export default function Projects() {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Wed Jul 02 2025 15:46:15 GMT+0200 (Ora legale dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Mon Jul 07 2025 11:21:19 GMT+0200 (Ora legale dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

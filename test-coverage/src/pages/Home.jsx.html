@@ -147,7 +147,12 @@
 <a name='L82'></a><a href='#L82'>82</a>
 <a name='L83'></a><a href='#L83'>83</a>
 <a name='L84'></a><a href='#L84'>84</a>
-<a name='L85'></a><a href='#L85'>85</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -164,14 +169,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">22x</span>
-<span class="cline-any cline-yes">22x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">22x</span>
-<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -234,6 +244,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {useTranslation} from 'react-i18next';
 import danielePhoto from '../assets/daniele.jpg';
 import {useEffect, useState} from "react";
+import SeoHead from "../components/ui/SeoHead";
 &nbsp;
 /**
  * Home component displays an about section with a title, introductory text,
@@ -256,20 +267,49 @@ export default function Home() {
     }, []);
 &nbsp;
     return (
-        &lt;section className="px-4 py-8 sm:px-6 md:px-8 max-w-7xl mx-auto"&gt;
-            &lt;div
-                className={`grid grid-cols-1 md:grid-cols-2 gap-10 bg-gradient-to-br from-blue-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl p-6 sm:p-8 md:p-10 shadow-lg transition-opacity duration-700 ${
-                    isVisible ? "opacity-100" : "opacity-0"
-                }`}
-            &gt;
-                {/* Left column: title + description */}
-                &lt;div className="order-1 md:order-1 flex flex-col justify-center text-center md:text-left"&gt;
-                    &lt;h2 className="text-3xl sm:text-4xl font-extrabold mb-4 sm:mb-6 text-gray-900 dark:text-white tracking-tight leading-tight order-1"&gt;
-                        {t("about_title")}
-                    &lt;/h2&gt;
+        &lt;&gt;
+            &lt;SeoHead pageKey="home" path="/"/&gt;
 &nbsp;
-                    {/* Avatar visible only on mobile, immediately after the title */}
-                    &lt;div className="order-2 md:hidden flex justify-center mb-4"&gt;
+            &lt;section className="px-4 py-8 sm:px-6 md:px-8 max-w-7xl mx-auto"&gt;
+                &lt;div
+                    className={`grid grid-cols-1 md:grid-cols-2 gap-10 bg-gradient-to-br from-blue-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl p-6 sm:p-8 md:p-10 shadow-lg transition-opacity duration-700 ${
+                        isVisible ? "opacity-100" : "opacity-0"
+                    }`}
+                &gt;
+                    {/* Left column: title + description */}
+                    &lt;div className="order-1 md:order-1 flex flex-col justify-center text-center md:text-left"&gt;
+                        &lt;h2 className="text-3xl sm:text-4xl font-extrabold mb-4 sm:mb-6 text-gray-900 dark:text-white tracking-tight leading-tight order-1"&gt;
+                            {t("about_title")}
+                        &lt;/h2&gt;
+&nbsp;
+                        {/* Avatar visible only on mobile, immediately after the title */}
+                        &lt;div className="order-2 md:hidden flex justify-center mb-4"&gt;
+                            &lt;div
+                                className="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-4 sm:p-6 w-full max-w-xs sm:max-w-sm"&gt;
+                                &lt;img
+                                    src={danielePhoto}
+                                    alt="Daniele Masone"
+                                    className="rounded-full w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mx-auto mb-4 sm:mb-6 object-cover shadow-md hover:scale-105 transition-transform duration-300"
+                                /&gt;
+                                &lt;h3 className="text-lg sm:text-xl font-semibold text-center text-gray-900 dark:text-white mb-1 sm:mb-2"&gt;
+                                    Daniele Masone
+                                &lt;/h3&gt;
+                                &lt;p className="text-center text-gray-600 dark:text-gray-400 text-xs sm:text-sm"&gt;
+                                    Senior Software Engineer / Technical Architect FE
+                                &lt;/p&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+&nbsp;
+                        &lt;p className="order-3 text-base sm:text-lg text-gray-700 dark:text-gray-300 mb-4 sm:mb-6 leading-relaxed"&gt;
+                            {t("about_intro")}
+                        &lt;/p&gt;
+                        &lt;p className="order-4 text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed"&gt;
+                            {t("about_experience")}
+                        &lt;/p&gt;
+                    &lt;/div&gt;
+&nbsp;
+                    {/* Right column: desktop avatar only */}
+                    &lt;div className="order-2 hidden md:flex items-center justify-center"&gt;
                         &lt;div
                             className="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-4 sm:p-6 w-full max-w-xs sm:max-w-sm"&gt;
                             &lt;img
@@ -285,34 +325,9 @@ export default function Home() {
                             &lt;/p&gt;
                         &lt;/div&gt;
                     &lt;/div&gt;
-&nbsp;
-                    &lt;p className="order-3 text-base sm:text-lg text-gray-700 dark:text-gray-300 mb-4 sm:mb-6 leading-relaxed"&gt;
-                        {t("about_intro")}
-                    &lt;/p&gt;
-                    &lt;p className="order-4 text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed"&gt;
-                        {t("about_experience")}
-                    &lt;/p&gt;
                 &lt;/div&gt;
-&nbsp;
-                {/* Right column: desktop avatar only */}
-                &lt;div className="order-2 hidden md:flex items-center justify-center"&gt;
-                    &lt;div
-                        className="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-4 sm:p-6 w-full max-w-xs sm:max-w-sm"&gt;
-                        &lt;img
-                            src={danielePhoto}
-                            alt="Daniele Masone"
-                            className="rounded-full w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mx-auto mb-4 sm:mb-6 object-cover shadow-md hover:scale-105 transition-transform duration-300"
-                        /&gt;
-                        &lt;h3 className="text-lg sm:text-xl font-semibold text-center text-gray-900 dark:text-white mb-1 sm:mb-2"&gt;
-                            Daniele Masone
-                        &lt;/h3&gt;
-                        &lt;p className="text-center text-gray-600 dark:text-gray-400 text-xs sm:text-sm"&gt;
-                            Senior Software Engineer / Technical Architect FE
-                        &lt;/p&gt;
-                    &lt;/div&gt;
-                &lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/section&gt;
+            &lt;/section&gt;
+        &lt;/&gt;
     );
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -322,7 +337,7 @@ export default function Home() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-07-03T13:08:04.366Z
+                at 2025-07-07T09:20:53.786Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

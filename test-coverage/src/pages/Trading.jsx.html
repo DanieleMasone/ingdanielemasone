@@ -113,7 +113,13 @@
 <a name='L48'></a><a href='#L48'>48</a>
 <a name='L49'></a><a href='#L49'>49</a>
 <a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -131,6 +137,10 @@
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -166,6 +176,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {useTranslation} from "react-i18next";
 import TradingPerformanceChart from "../components/ui/TradingPerformanceChart";
 import PageSection from "../components/ui/PageSection";
+import SeoHead from "../components/ui/SeoHead";
 &nbsp;
 /**
  * Trading component renders a section with trading introduction text,
@@ -181,36 +192,40 @@ export default function Trading() {
     const {t} = useTranslation();
 &nbsp;
     return (
-        &lt;PageSection title={t("trading_title")}&gt;
-            {/* Text above */}
-            &lt;div className="flex flex-col justify-start mb-8"&gt;
-                &lt;p className="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed"&gt;
-                    {t("trading_intro")}
-                &lt;/p&gt;
-                &lt;p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-4"&gt;
-                    {t("trading_description")}
-                &lt;/p&gt;
+        &lt;&gt;
+            &lt;SeoHead pageKey="trading" path="/trading"/&gt;
 &nbsp;
-                {/* Disclaimer */}
-                &lt;p className="text-xs text-gray-500 dark:text-gray-400 mt-6 leading-relaxed"&gt;
-                    {t("disclaimer_text")}
-                &lt;/p&gt;
+            &lt;PageSection title={t("trading_title")}&gt;
+                {/* Text above */}
+                &lt;div className="flex flex-col justify-start mb-8"&gt;
+                    &lt;p className="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed"&gt;
+                        {t("trading_intro")}
+                    &lt;/p&gt;
+                    &lt;p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-4"&gt;
+                        {t("trading_description")}
+                    &lt;/p&gt;
 &nbsp;
-                &lt;a
-                    href="https://www.etoro.com/people/danielemasone"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-6 inline-block bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg px-6 py-3 text-center text-base transition-colors"
-                &gt;
-                    {t("trading_cta")}
-                &lt;/a&gt;
-            &lt;/div&gt;
+                    {/* Disclaimer */}
+                    &lt;p className="text-xs text-gray-500 dark:text-gray-400 mt-6 leading-relaxed"&gt;
+                        {t("disclaimer_text")}
+                    &lt;/p&gt;
 &nbsp;
-            {/* Graph below that takes up all the remaining space */}
-            &lt;div className="flex-grow w-full"&gt;
-                &lt;TradingPerformanceChart/&gt;
-            &lt;/div&gt;
-        &lt;/PageSection&gt;
+                    &lt;a
+                        href="https://www.etoro.com/people/danielemasone"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-6 inline-block bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg px-6 py-3 text-center text-base transition-colors"
+                    &gt;
+                        {t("trading_cta")}
+                    &lt;/a&gt;
+                &lt;/div&gt;
+&nbsp;
+                {/* Graph below that takes up all the remaining space */}
+                &lt;div className="flex-grow w-full"&gt;
+                    &lt;TradingPerformanceChart/&gt;
+                &lt;/div&gt;
+            &lt;/PageSection&gt;
+        &lt;/&gt;
     );
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -220,7 +235,7 @@ export default function Trading() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-07-03T13:08:04.366Z
+                at 2025-07-07T09:20:53.786Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

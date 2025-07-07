@@ -202,7 +202,14 @@
 <a name='L137'></a><a href='#L137'>137</a>
 <a name='L138'></a><a href='#L138'>138</a>
 <a name='L139'></a><a href='#L139'>139</a>
-<a name='L140'></a><a href='#L140'>140</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L140'></a><a href='#L140'>140</a>
+<a name='L141'></a><a href='#L141'>141</a>
+<a name='L142'></a><a href='#L142'>142</a>
+<a name='L143'></a><a href='#L143'>143</a>
+<a name='L144'></a><a href='#L144'>144</a>
+<a name='L145'></a><a href='#L145'>145</a>
+<a name='L146'></a><a href='#L146'>146</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -220,6 +227,11 @@
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -343,6 +355,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from "react";
 import {useTranslation} from "react-i18next";
+import SeoHead from "../components/ui/SeoHead";
 &nbsp;
 /**
  * Privacy component displays the privacy policy page.
@@ -359,125 +372,130 @@ export default function Privacy() {
     const {t} = useTranslation();
 &nbsp;
     return (
-        &lt;main className="max-w-4xl mx-auto p-8 bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-300 min-h-screen"&gt;
-            &lt;h1 className="text-4xl font-bold mb-6"&gt;{t("privacy.title")}&lt;/h1&gt;
+        &lt;&gt;
+            &lt;SeoHead pageKey="privacy" path="/privacy"/&gt;
 &nbsp;
-            &lt;section className="mb-8"&gt;
-                &lt;h2 className="text-2xl font-semibold mb-2"&gt;{t("privacy.intro_title")}&lt;/h2&gt;
-                &lt;p&gt;
-                    {t("privacy.intro_text1")}{" "}
-                    &lt;a
-                        href="https://www.ingdanielemasone.com/"
-                        className="text-blue-600 dark:text-blue-400 underline hover:text-blue-800 dark:hover:text-blue-300"
-                    &gt;
-                        https://www.ingdanielemasone.com/
-                    &lt;/a&gt;. {t("privacy.intro_text2")}
-                &lt;/p&gt;
-            &lt;/section&gt;
+            &lt;main
+                className="max-w-4xl mx-auto p-8 bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-300 min-h-screen"&gt;
+                &lt;h1 className="text-4xl font-bold mb-6"&gt;{t("privacy.title")}&lt;/h1&gt;
 &nbsp;
-            &lt;section className="mb-8"&gt;
-                &lt;h2 className="text-2xl font-semibold mb-2"&gt;{t("privacy.owner_title")}&lt;/h2&gt;
-                &lt;address className="not-italic mb-2"&gt;
-                    &lt;strong&gt;Daniele Masone&lt;/strong&gt;
-                    &lt;br/&gt;
-                    {t("privacy.address")}
-                    &lt;br/&gt;
-                    Email:{" "}
-                    &lt;a
-                        href="mailto:masone.daniele@gmail.com"
-                        className="text-blue-600 dark:text-blue-400 underline"
-                    &gt;
-                        masone.daniele@gmail.com
-                    &lt;/a&gt;
-                &lt;/address&gt;
-            &lt;/section&gt;
+                &lt;section className="mb-8"&gt;
+                    &lt;h2 className="text-2xl font-semibold mb-2"&gt;{t("privacy.intro_title")}&lt;/h2&gt;
+                    &lt;p&gt;
+                        {t("privacy.intro_text1")}{" "}
+                        &lt;a
+                            href="https://www.ingdanielemasone.com/"
+                            className="text-blue-600 dark:text-blue-400 underline hover:text-blue-800 dark:hover:text-blue-300"
+                        &gt;
+                            https://www.ingdanielemasone.com/
+                        &lt;/a&gt;. {t("privacy.intro_text2")}
+                    &lt;/p&gt;
+                &lt;/section&gt;
 &nbsp;
-            &lt;section className="mb-8"&gt;
-                &lt;h2 className="text-2xl font-semibold mb-2"&gt;{t("privacy.data_types_title")}&lt;/h2&gt;
-                &lt;ul className="list-disc pl-6 space-y-1"&gt;
-                    &lt;li&gt;
-                        &lt;strong&gt;{t("privacy.browsing_data")}:&lt;/strong&gt; {t("privacy.browsing_data_details")}
-                    &lt;/li&gt;
-                    &lt;li&gt;
-                        &lt;strong&gt;{t("privacy.voluntary_data")}:&lt;/strong&gt; {t("privacy.voluntary_data_details")}
-                    &lt;/li&gt;
-                &lt;/ul&gt;
-            &lt;/section&gt;
+                &lt;section className="mb-8"&gt;
+                    &lt;h2 className="text-2xl font-semibold mb-2"&gt;{t("privacy.owner_title")}&lt;/h2&gt;
+                    &lt;address className="not-italic mb-2"&gt;
+                        &lt;strong&gt;Daniele Masone&lt;/strong&gt;
+                        &lt;br/&gt;
+                        {t("privacy.address")}
+                        &lt;br/&gt;
+                        Email:{" "}
+                        &lt;a
+                            href="mailto:masone.daniele@gmail.com"
+                            className="text-blue-600 dark:text-blue-400 underline"
+                        &gt;
+                            masone.daniele@gmail.com
+                        &lt;/a&gt;
+                    &lt;/address&gt;
+                &lt;/section&gt;
 &nbsp;
-            &lt;section className="mb-8"&gt;
-                &lt;h2 className="text-2xl font-semibold mb-2"&gt;{t("privacy.purpose_title")}&lt;/h2&gt;
-                &lt;ul className="list-disc pl-6 space-y-1"&gt;
-                    &lt;li&gt;{t("privacy.purpose_1")}&lt;/li&gt;
-                    &lt;li&gt;{t("privacy.purpose_2")}&lt;/li&gt;
-                    &lt;li&gt;{t("privacy.purpose_3")}&lt;/li&gt;
-                &lt;/ul&gt;
-            &lt;/section&gt;
+                &lt;section className="mb-8"&gt;
+                    &lt;h2 className="text-2xl font-semibold mb-2"&gt;{t("privacy.data_types_title")}&lt;/h2&gt;
+                    &lt;ul className="list-disc pl-6 space-y-1"&gt;
+                        &lt;li&gt;
+                            &lt;strong&gt;{t("privacy.browsing_data")}:&lt;/strong&gt; {t("privacy.browsing_data_details")}
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;strong&gt;{t("privacy.voluntary_data")}:&lt;/strong&gt; {t("privacy.voluntary_data_details")}
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/section&gt;
 &nbsp;
-            &lt;section className="mb-8"&gt;
-                &lt;h2 className="text-2xl font-semibold mb-2"&gt;{t("privacy.legal_basis_title")}&lt;/h2&gt;
-                &lt;ul className="list-disc pl-6 space-y-1"&gt;
-                    &lt;li&gt;{t("privacy.legal_1")}&lt;/li&gt;
-                    &lt;li&gt;{t("privacy.legal_2")}&lt;/li&gt;
-                    &lt;li&gt;{t("privacy.legal_3")}&lt;/li&gt;
-                &lt;/ul&gt;
-            &lt;/section&gt;
+                &lt;section className="mb-8"&gt;
+                    &lt;h2 className="text-2xl font-semibold mb-2"&gt;{t("privacy.purpose_title")}&lt;/h2&gt;
+                    &lt;ul className="list-disc pl-6 space-y-1"&gt;
+                        &lt;li&gt;{t("privacy.purpose_1")}&lt;/li&gt;
+                        &lt;li&gt;{t("privacy.purpose_2")}&lt;/li&gt;
+                        &lt;li&gt;{t("privacy.purpose_3")}&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/section&gt;
 &nbsp;
-            &lt;section className="mb-8"&gt;
-                &lt;h2 className="text-2xl font-semibold mb-2"&gt;{t("privacy.recipients_title")}&lt;/h2&gt;
-                &lt;p&gt;{t("privacy.recipients_text")}&lt;/p&gt;
-            &lt;/section&gt;
+                &lt;section className="mb-8"&gt;
+                    &lt;h2 className="text-2xl font-semibold mb-2"&gt;{t("privacy.legal_basis_title")}&lt;/h2&gt;
+                    &lt;ul className="list-disc pl-6 space-y-1"&gt;
+                        &lt;li&gt;{t("privacy.legal_1")}&lt;/li&gt;
+                        &lt;li&gt;{t("privacy.legal_2")}&lt;/li&gt;
+                        &lt;li&gt;{t("privacy.legal_3")}&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/section&gt;
 &nbsp;
-            &lt;section className="mb-8"&gt;
-                &lt;h2 className="text-2xl font-semibold mb-2"&gt;{t("privacy.transfer_title")}&lt;/h2&gt;
-                &lt;p&gt;{t("privacy.transfer_text")}&lt;/p&gt;
-            &lt;/section&gt;
+                &lt;section className="mb-8"&gt;
+                    &lt;h2 className="text-2xl font-semibold mb-2"&gt;{t("privacy.recipients_title")}&lt;/h2&gt;
+                    &lt;p&gt;{t("privacy.recipients_text")}&lt;/p&gt;
+                &lt;/section&gt;
 &nbsp;
-            &lt;section className="mb-8"&gt;
-                &lt;h2 className="text-2xl font-semibold mb-2"&gt;{t("privacy.retention_title")}&lt;/h2&gt;
-                &lt;p&gt;{t("privacy.retention_text")}&lt;/p&gt;
-            &lt;/section&gt;
+                &lt;section className="mb-8"&gt;
+                    &lt;h2 className="text-2xl font-semibold mb-2"&gt;{t("privacy.transfer_title")}&lt;/h2&gt;
+                    &lt;p&gt;{t("privacy.transfer_text")}&lt;/p&gt;
+                &lt;/section&gt;
 &nbsp;
-            &lt;section className="mb-8"&gt;
-                &lt;h2 className="text-2xl font-semibold mb-2"&gt;{t("privacy.rights_title")}&lt;/h2&gt;
-                &lt;ul className="list-disc pl-6 space-y-1"&gt;
-                    &lt;li&gt;{t("privacy.rights_1")}&lt;/li&gt;
-                    &lt;li&gt;{t("privacy.rights_2")}&lt;/li&gt;
-                    &lt;li&gt;{t("privacy.rights_3")}&lt;/li&gt;
-                &lt;/ul&gt;
-                &lt;p&gt;
-                    {t("privacy.rights_exercise")}{" "}
-                    &lt;a
-                        href="mailto:masone.daniele@gmail.com"
-                        className="text-blue-600 dark:text-blue-400 underline"
-                    &gt;
-                        masone.daniele@gmail.com
-                    &lt;/a&gt;
-                &lt;/p&gt;
-            &lt;/section&gt;
+                &lt;section className="mb-8"&gt;
+                    &lt;h2 className="text-2xl font-semibold mb-2"&gt;{t("privacy.retention_title")}&lt;/h2&gt;
+                    &lt;p&gt;{t("privacy.retention_text")}&lt;/p&gt;
+                &lt;/section&gt;
 &nbsp;
-            &lt;section className="mb-8"&gt;
-                &lt;h2 className="text-2xl font-semibold mb-2"&gt;{t("privacy.cookie_title")}&lt;/h2&gt;
-                &lt;p&gt;
-                    {t("privacy.cookie_text")}{" "}
-                    &lt;a
-                        href="/cookie-policy"
-                        className="text-blue-600 dark:text-blue-400 underline"
-                    &gt;
-                        {t("privacy.cookie_link")}
-                    &lt;/a&gt;.
-                &lt;/p&gt;
-            &lt;/section&gt;
+                &lt;section className="mb-8"&gt;
+                    &lt;h2 className="text-2xl font-semibold mb-2"&gt;{t("privacy.rights_title")}&lt;/h2&gt;
+                    &lt;ul className="list-disc pl-6 space-y-1"&gt;
+                        &lt;li&gt;{t("privacy.rights_1")}&lt;/li&gt;
+                        &lt;li&gt;{t("privacy.rights_2")}&lt;/li&gt;
+                        &lt;li&gt;{t("privacy.rights_3")}&lt;/li&gt;
+                    &lt;/ul&gt;
+                    &lt;p&gt;
+                        {t("privacy.rights_exercise")}{" "}
+                        &lt;a
+                            href="mailto:masone.daniele@gmail.com"
+                            className="text-blue-600 dark:text-blue-400 underline"
+                        &gt;
+                            masone.daniele@gmail.com
+                        &lt;/a&gt;
+                    &lt;/p&gt;
+                &lt;/section&gt;
 &nbsp;
-            &lt;section className="mb-8"&gt;
-                &lt;h2 className="text-2xl font-semibold mb-2"&gt;{t("privacy.changes_title")}&lt;/h2&gt;
-                &lt;p&gt;{t("privacy.changes_text")}&lt;/p&gt;
-            &lt;/section&gt;
+                &lt;section className="mb-8"&gt;
+                    &lt;h2 className="text-2xl font-semibold mb-2"&gt;{t("privacy.cookie_title")}&lt;/h2&gt;
+                    &lt;p&gt;
+                        {t("privacy.cookie_text")}{" "}
+                        &lt;a
+                            href="/cookie-policy"
+                            className="text-blue-600 dark:text-blue-400 underline"
+                        &gt;
+                            {t("privacy.cookie_link")}
+                        &lt;/a&gt;.
+                    &lt;/p&gt;
+                &lt;/section&gt;
 &nbsp;
-            &lt;footer
-                className="border-t border-gray-300 dark:border-gray-700 pt-4 text-sm text-gray-500 dark:text-gray-600 text-center"&gt;
-                {t("privacy.last_updated")}: {t("privacy.last_date_updated")}
-            &lt;/footer&gt;
-        &lt;/main&gt;
+                &lt;section className="mb-8"&gt;
+                    &lt;h2 className="text-2xl font-semibold mb-2"&gt;{t("privacy.changes_title")}&lt;/h2&gt;
+                    &lt;p&gt;{t("privacy.changes_text")}&lt;/p&gt;
+                &lt;/section&gt;
+&nbsp;
+                &lt;footer
+                    className="border-t border-gray-300 dark:border-gray-700 pt-4 text-sm text-gray-500 dark:text-gray-600 text-center"&gt;
+                    {t("privacy.last_updated")}: {t("privacy.last_date_updated")}
+                &lt;/footer&gt;
+            &lt;/main&gt;
+        &lt;/&gt;
     );
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -487,7 +505,7 @@ export default function Privacy() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-07-03T13:08:04.366Z
+                at 2025-07-07T09:20:53.786Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

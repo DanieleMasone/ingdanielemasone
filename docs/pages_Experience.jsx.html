@@ -29,7 +29,7 @@
 <nav >
     
     
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-components_ui_Card.html">components/ui/Card</a></li><li><a href="module-components_ui_CardContent.html">components/ui/CardContent</a></li><li><a href="module-components_ui_DarkModeToggle.html">components/ui/DarkModeToggle</a></li><li><a href="module-components_ui_Footer.html">components/ui/Footer</a></li><li><a href="module-components_ui_Header.html">components/ui/Header</a></li><li><a href="module-components_ui_LanguageSwitcher.html">components/ui/LanguageSwitcher</a></li><li><a href="module-components_ui_NotFound.html">components/ui/NotFound</a></li><li><a href="module-components_ui_PageSection.html">components/ui/PageSection</a></li><li><a href="module-components_ui_TradingPerformanceChart.html">components/ui/TradingPerformanceChart</a></li><li><a href="module-pages_CookieBanner.html">pages/CookieBanner</a></li><li><a href="module-pages_CookiePolicy.html">pages/CookiePolicy</a></li><li><a href="module-pages_Courses.html">pages/Courses</a></li><li><a href="module-pages_Experience.html">pages/Experience</a></li><li><a href="module-pages_Home.html">pages/Home</a></li><li><a href="module-pages_Privacy.html">pages/Privacy</a></li><li><a href="module-pages_Projects.html">pages/Projects</a></li><li><a href="module-pages_Testimonials.html">pages/Testimonials</a></li><li><a href="module-pages_Trading.html">pages/Trading</a></li></ul><h3>Global</h3><ul><li><a href="global.html#BrandIcon">BrandIcon</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-components_ui_Card.html">components/ui/Card</a></li><li><a href="module-components_ui_CardContent.html">components/ui/CardContent</a></li><li><a href="module-components_ui_DarkModeToggle.html">components/ui/DarkModeToggle</a></li><li><a href="module-components_ui_Footer.html">components/ui/Footer</a></li><li><a href="module-components_ui_Header.html">components/ui/Header</a></li><li><a href="module-components_ui_LanguageSwitcher.html">components/ui/LanguageSwitcher</a></li><li><a href="module-components_ui_NotFound.html">components/ui/NotFound</a></li><li><a href="module-components_ui_PageSection.html">components/ui/PageSection</a></li><li><a href="module-components_ui_SeoHead.html">components/ui/SeoHead</a></li><li><a href="module-components_ui_TradingPerformanceChart.html">components/ui/TradingPerformanceChart</a></li><li><a href="module-pages_CookieBanner.html">pages/CookieBanner</a></li><li><a href="module-pages_CookiePolicy.html">pages/CookiePolicy</a></li><li><a href="module-pages_Courses.html">pages/Courses</a></li><li><a href="module-pages_Experience.html">pages/Experience</a></li><li><a href="module-pages_Home.html">pages/Home</a></li><li><a href="module-pages_Privacy.html">pages/Privacy</a></li><li><a href="module-pages_Projects.html">pages/Projects</a></li><li><a href="module-pages_Testimonials.html">pages/Testimonials</a></li><li><a href="module-pages_Trading.html">pages/Trading</a></li></ul><h3>Global</h3><ul><li><a href="global.html#BrandIcon">BrandIcon</a></li></ul>
     
 </nav>
 
@@ -54,6 +54,7 @@ import {ChevronDown} from "lucide-react";
 import {AnimatePresence, motion} from "framer-motion";
 import PageSection from "../components/ui/PageSection";
 import {ExpandableText} from "../components/ui/ExpandableText";
+import SeoHead from "../components/ui/SeoHead";
 
 /**
  * Experience component renders a list of professional experiences filtered by selected year.
@@ -146,81 +147,86 @@ export default function Experience() {
         : [];
 
     return (
-        &lt;PageSection title={t("experience_title")}>
-            &lt;div className="flex flex-wrap justify-center gap-3 mb-10">
-                {yearList.map((year) => (
-                    &lt;button
-                        key={year}
-                        onClick={() => setSelectedYear(year)}
-                        className={`px-4 py-2 rounded-2xl shadow-sm border transition backdrop-blur-sm
-                            ${
-                            selectedYear === year
-                                ? "ring-2 ring-blue-500 border-blue-500 bg-blue-100 text-blue-800 dark:bg-blue-700 dark:text-white"
-                                : "border-gray-300 dark:border-gray-600 bg-white/30 dark:bg-gray-800/30 text-gray-900 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700"
-                        }
-                            ${
-                            selectedYear === year
-                                ? "bg-blue-100 dark:bg-blue-700 text-blue-800 dark:text-white"
-                                : "bg-white/30 dark:bg-gray-800/30 text-gray-900 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
-                        }`}
-                    >
-                        {year}
-                    &lt;/button>
-                ))}
-            &lt;/div>
+        &lt;>
+            &lt;SeoHead pageKey="experience" path="/experience"/>
 
-
-            &lt;AnimatePresence mode="wait">
-                &lt;motion.div
-                    key={selectedYear || "none"}
-                    initial={{opacity: 0, y: 40}}
-                    animate={{opacity: 1, y: 0}}
-                    exit={{opacity: 0, y: -40}}
-                    transition={{duration: 0.4}}
-                    className="flex flex-wrap gap-6"
-                >
-                    {filteredExperiences.map((exp, i) => (
-                        &lt;Card
-                            key={i}
-                            className="h-full bg-white/60 dark:bg-gray-900/40 shadow-xl rounded-2xl backdrop-blur-sm"
+            &lt;PageSection title={t("experience_title")}>
+                &lt;div className="flex flex-wrap justify-center gap-3 mb-10">
+                    {yearList.map((year) => (
+                        &lt;button
+                            key={year}
+                            onClick={() => setSelectedYear(year)}
+                            className={`px-4 py-2 rounded-2xl shadow-sm border transition backdrop-blur-sm
+                            ${
+                                selectedYear === year
+                                    ? "ring-2 ring-blue-500 border-blue-500 bg-blue-100 text-blue-800 dark:bg-blue-700 dark:text-white"
+                                    : "border-gray-300 dark:border-gray-600 bg-white/30 dark:bg-gray-800/30 text-gray-900 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700"
+                            }
+                            ${
+                                selectedYear === year
+                                    ? "bg-blue-100 dark:bg-blue-700 text-blue-800 dark:text-white"
+                                    : "bg-white/30 dark:bg-gray-800/30 text-gray-900 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                            }`}
                         >
-                            &lt;CardContent>
-                                &lt;h3 className="text-xl font-semibold mb-1">{exp.role}&lt;/h3>
-                                &lt;p className="text-gray-700 dark:text-gray-400 font-medium">{exp.company}&lt;/p>
-                                &lt;p className="text-sm mb-2 text-gray-600 dark:text-gray-500">{exp.period}&lt;/p>
-
-                                {exp.description &amp;&amp; (
-                                    &lt;ExpandableText
-                                        value={exp.description}
-                                        maxLines={3}
-                                        className="mb-2 text-sm text-gray-800 dark:text-gray-200 bg-transparent"
-                                    />
-                                )}
-
-                                &lt;Disclosure>
-                                    {({open}) => (
-                                        &lt;div>
-                                            &lt;Disclosure.Button
-                                                className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline">
-                                                &lt;span>{t("experience_show_stack")}&lt;/span>
-                                                &lt;ChevronDown
-                                                    className={`ml-1 w-4 h-4 transition-transform ${
-                                                        open ? "rotate-180" : ""
-                                                    }`}
-                                                />
-                                            &lt;/Disclosure.Button>
-                                            &lt;Disclosure.Panel className="mt-2 text-sm text-gray-700 dark:text-gray-300">
-                                                {exp.tech}
-                                            &lt;/Disclosure.Panel>
-                                        &lt;/div>
-                                    )}
-                                &lt;/Disclosure>
-                            &lt;/CardContent>
-                        &lt;/Card>
+                            {year}
+                        &lt;/button>
                     ))}
-                &lt;/motion.div>
-            &lt;/AnimatePresence>
-        &lt;/PageSection>
+                &lt;/div>
+
+
+                &lt;AnimatePresence mode="wait">
+                    &lt;motion.div
+                        key={selectedYear || "none"}
+                        initial={{opacity: 0, y: 40}}
+                        animate={{opacity: 1, y: 0}}
+                        exit={{opacity: 0, y: -40}}
+                        transition={{duration: 0.4}}
+                        className="flex flex-wrap gap-6"
+                    >
+                        {filteredExperiences.map((exp, i) => (
+                            &lt;Card
+                                key={i}
+                                className="h-full bg-white/60 dark:bg-gray-900/40 shadow-xl rounded-2xl backdrop-blur-sm"
+                            >
+                                &lt;CardContent>
+                                    &lt;h3 className="text-xl font-semibold mb-1">{exp.role}&lt;/h3>
+                                    &lt;p className="text-gray-700 dark:text-gray-400 font-medium">{exp.company}&lt;/p>
+                                    &lt;p className="text-sm mb-2 text-gray-600 dark:text-gray-500">{exp.period}&lt;/p>
+
+                                    {exp.description &amp;&amp; (
+                                        &lt;ExpandableText
+                                            value={exp.description}
+                                            maxLines={3}
+                                            className="mb-2 text-sm text-gray-800 dark:text-gray-200 bg-transparent"
+                                        />
+                                    )}
+
+                                    &lt;Disclosure>
+                                        {({open}) => (
+                                            &lt;div>
+                                                &lt;Disclosure.Button
+                                                    className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline">
+                                                    &lt;span>{t("experience_show_stack")}&lt;/span>
+                                                    &lt;ChevronDown
+                                                        className={`ml-1 w-4 h-4 transition-transform ${
+                                                            open ? "rotate-180" : ""
+                                                        }`}
+                                                    />
+                                                &lt;/Disclosure.Button>
+                                                &lt;Disclosure.Panel
+                                                    className="mt-2 text-sm text-gray-700 dark:text-gray-300">
+                                                    {exp.tech}
+                                                &lt;/Disclosure.Panel>
+                                            &lt;/div>
+                                        )}
+                                    &lt;/Disclosure>
+                                &lt;/CardContent>
+                            &lt;/Card>
+                        ))}
+                    &lt;/motion.div>
+                &lt;/AnimatePresence>
+            &lt;/PageSection>
+        &lt;/>
     );
 }
 </code></pre>
@@ -237,7 +243,7 @@ export default function Experience() {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Wed Jul 02 2025 15:46:15 GMT+0200 (Ora legale dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Mon Jul 07 2025 11:21:19 GMT+0200 (Ora legale dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

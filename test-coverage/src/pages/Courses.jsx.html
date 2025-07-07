@@ -331,7 +331,15 @@
 <a name='L266'></a><a href='#L266'>266</a>
 <a name='L267'></a><a href='#L267'>267</a>
 <a name='L268'></a><a href='#L268'>268</a>
-<a name='L269'></a><a href='#L269'>269</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L269'></a><a href='#L269'>269</a>
+<a name='L270'></a><a href='#L270'>270</a>
+<a name='L271'></a><a href='#L271'>271</a>
+<a name='L272'></a><a href='#L272'>272</a>
+<a name='L273'></a><a href='#L273'>273</a>
+<a name='L274'></a><a href='#L274'>274</a>
+<a name='L275'></a><a href='#L275'>275</a>
+<a name='L276'></a><a href='#L276'>276</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -480,6 +488,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -572,6 +583,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -586,7 +598,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -620,6 +634,7 @@ import jqueryPhoto from '../assets/courses/JQUERY.png';
 import phpPhoto from '../assets/courses/PHP.png';
 import sqlPhoto from '../assets/courses/SQL.png';
 import typescriptPhoto from '../assets/courses/TYPESCRIPT.png';
+import SeoHead from "../components/ui/SeoHead";
 &nbsp;
 /**
  * Courses component.
@@ -748,123 +763,129 @@ export default function Courses() {
     );
 &nbsp;
     return (
-        &lt;PageSection title={t("courses_page.title")}&gt;
+        &lt;&gt;
+            &lt;SeoHead pageKey="courses" path="/courses"/&gt;
 &nbsp;
-            &lt;AnimatePresence mode="wait"&gt;
-                &lt;motion.div
-                    key={`page-${page}`}
-                    initial={{opacity: 0, y: 40}}
-                    animate={{opacity: 1, y: 0}}
-                    exit={{opacity: 0, y: -40}}
-                    transition={{duration: 0.4}}
-                    className="flex flex-wrap gap-6"
-                &gt;
-                    {displayedCourses.map((course, idx) =&gt; (
-                        &lt;Card key={idx} className="flex flex-col md:flex-row items-start gap-4 p-4 sm:p-6"&gt;
-                            &lt;CardContent className="p-0 flex-1"&gt;
+            &lt;PageSection title={t("courses_page.title")}&gt;
 &nbsp;
-                                {/* Title + small image on mobile */}
-                                &lt;div className="flex items-center justify-between"&gt;
-                                    &lt;h3 className="text-lg font-semibold"&gt;
-                                        {t(course.nameKey)}
-                                    &lt;/h3&gt;
+                &lt;AnimatePresence mode="wait"&gt;
+                    &lt;motion.div
+                        key={`page-${page}`}
+                        initial={{opacity: 0, y: 40}}
+                        animate={{opacity: 1, y: 0}}
+                        exit={{opacity: 0, y: -40}}
+                        transition={{duration: 0.4}}
+                        className="flex flex-wrap gap-6"
+                    &gt;
+                        {displayedCourses.map((course, idx) =&gt; (
+                            &lt;Card key={idx} className="flex flex-col md:flex-row items-start gap-4 p-4 sm:p-6"&gt;
+                                &lt;CardContent className="p-0 flex-1"&gt;
 &nbsp;
-                                    {/* Mobile small image */}
-                                    &lt;a
-                                        href={course.link}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="block md:hidden shrink-0 ml-4"
-                                    &gt;
-                                        &lt;img
-                                            src={course.image}
-                                            alt={t(course.nameKey)}
-                                            className="rounded-full w-16 h-16 object-cover shadow-md hover:scale-105 transition-transform duration-300"
-                                            loading="lazy"
-                                        /&gt;
-                                    &lt;/a&gt;
-                                &lt;/div&gt;
+                                    {/* Title + small image on mobile */}
+                                    &lt;div className="flex items-center justify-between"&gt;
+                                        &lt;h3 className="text-lg font-semibold"&gt;
+                                            {t(course.nameKey)}
+                                        &lt;/h3&gt;
 &nbsp;
-                                {/* Rest of the content takes full width */}
-                                &lt;ExpandableText
-                                    value={t(course.descKey)}
-                                    maxLines={3}
-                                    className="my-2 cursor-default"
-                                /&gt;
+                                        {/* Mobile small image */}
+                                        &lt;a
+                                            href={course.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="block md:hidden shrink-0 ml-4"
+                                        &gt;
+                                            &lt;img
+                                                src={course.image}
+                                                alt={t(course.nameKey)}
+                                                className="rounded-full w-16 h-16 object-cover shadow-md hover:scale-105 transition-transform duration-300"
+                                                loading="lazy"
+                                            /&gt;
+                                        &lt;/a&gt;
+                                    &lt;/div&gt;
 &nbsp;
-                                &lt;p className="text-sm text-gray-500 dark:text-gray-400 font-mono mb-2"&gt;
-                                    {t("courses_page.duration")}: {t(course.durationKey)}
-                                &lt;/p&gt;
+                                    {/* Rest of the content takes full width */}
+                                    &lt;ExpandableText
+                                        value={t(course.descKey)}
+                                        maxLines={3}
+                                        className="my-2 cursor-default"
+                                    /&gt;
 &nbsp;
-                                &lt;Disclosure&gt;
-                                    {({open}) =&gt; (
-                                        &lt;&gt;
-                                            &lt;Disclosure.Button
-                                                className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
-                                            &gt;
-                                                &lt;span&gt;{t("show_technologies")}&lt;/span&gt;
-                                                &lt;ChevronDown
-                                                    className={`ml-1 w-4 h-4 transition-transform ${
-                                                        open ? <span class="branch-0 cbranch-no" title="branch not covered" >"rotate-180" </span>: ""
-                                                    }`}
-                                                /&gt;
-                                            &lt;/Disclosure.Button&gt;
-                                            &lt;Disclosure.Panel className="mt-2 text-sm text-gray-700 dark:text-gray-300"&gt;
-                                                {course.tech}
-                                            &lt;/Disclosure.Panel&gt;
-                                        &lt;/&gt;
-                                    )}
-                                &lt;/Disclosure&gt;
-                            &lt;/CardContent&gt;
+                                    &lt;p className="text-sm text-gray-500 dark:text-gray-400 font-mono mb-2"&gt;
+                                        {t("courses_page.duration")}: {t(course.durationKey)}
+                                    &lt;/p&gt;
 &nbsp;
-                            {/* Desktop large image */}
-                            &lt;a
-                                href={course.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="hidden md:block shrink-0"
-                            &gt;
-                                &lt;img
-                                    src={course.image}
-                                    alt={t(course.nameKey)}
-                                    className="rounded-full w-48 h-48 object-cover shadow-md hover:scale-105 transition-transform duration-300"
-                                    loading="lazy"
-                                /&gt;
-                            &lt;/a&gt;
-                        &lt;/Card&gt;
-                    ))}
-                &lt;/motion.div&gt;
-            &lt;/AnimatePresence&gt;
+                                    &lt;Disclosure&gt;
+                                        {({open}) =&gt; (
+                                            &lt;&gt;
+                                                &lt;Disclosure.Button
+                                                    className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
+                                                &gt;
+                                                    &lt;span&gt;{t("show_technologies")}&lt;/span&gt;
+                                                    &lt;ChevronDown
+                                                        className={`ml-1 w-4 h-4 transition-transform ${
+                                                            open ? <span class="branch-0 cbranch-no" title="branch not covered" >"rotate-180" </span>: ""
+                                                        }`}
+                                                    /&gt;
+                                                &lt;/Disclosure.Button&gt;
+                                                &lt;Disclosure.Panel
+                                                    className="mt-2 text-sm text-gray-700 dark:text-gray-300"&gt;
+                                                    {course.tech}
+                                                &lt;/Disclosure.Panel&gt;
+                                            &lt;/&gt;
+                                        )}
+                                    &lt;/Disclosure&gt;
+                                &lt;/CardContent&gt;
 &nbsp;
-            {/* Pagination Controls */}
-            {totalPages &gt; 1 &amp;&amp; (
-                &lt;div className="flex justify-center mt-8 space-x-4"&gt;
-                    &lt;button
-                        onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setPage(<span class="fstat-no" title="function not covered" >p </span>=&gt; <span class="cstat-no" title="statement not covered" >Math.max(p - 1, 1))</span>}</span>
-                        disabled={page === 1}
-                        className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
+                                {/* Desktop large image */}
+                                &lt;a
+                                    href={course.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hidden md:block shrink-0"
+                                &gt;
+                                    &lt;img
+                                        src={course.image}
+                                        alt={t(course.nameKey)}
+                                        className="rounded-full w-48 h-48 object-cover shadow-md hover:scale-105 transition-transform duration-300"
+                                        loading="lazy"
+                                    /&gt;
+                                &lt;/a&gt;
+                            &lt;/Card&gt;
+                        ))}
+                    &lt;/motion.div&gt;
+                &lt;/AnimatePresence&gt;
+&nbsp;
+                {/* Pagination Controls */}
+                {totalPages &gt; 1 &amp;&amp; (
+                    &lt;div className="flex justify-center mt-8 space-x-4"&gt;
+                        &lt;button
+                            onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setPage(<span class="fstat-no" title="function not covered" >p </span>=&gt; <span class="cstat-no" title="statement not covered" >Math.max(p - 1, 1))</span>}</span>
+                            disabled={page === 1}
+                            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
                                text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
                                hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
-                    &gt;
-                        ← {t("previous")}
-                    &lt;/button&gt;
+                        &gt;
+                            ← {t("previous")}
+                        &lt;/button&gt;
 &nbsp;
-                    &lt;span data-testid="pagination-info" className="px-4 py-2 text-sm text-gray-600 dark:text-gray-300"&gt;
+                        &lt;span data-testid="pagination-info"
+                              className="px-4 py-2 text-sm text-gray-600 dark:text-gray-300"&gt;
                         {page} / {totalPages}
                     &lt;/span&gt;
 &nbsp;
-                    &lt;button
-                        onClick={() =&gt; setPage(p =&gt; Math.min(p + 1, totalPages))}
-                        disabled={page === totalPages}
-                        className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
+                        &lt;button
+                            onClick={() =&gt; setPage(p =&gt; Math.min(p + 1, totalPages))}
+                            disabled={page === totalPages}
+                            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
                                text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
                                hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
-                    &gt;
-                        {t("next")} →
-                    &lt;/button&gt;
-                &lt;/div&gt;
-            )}
-        &lt;/PageSection&gt;
+                        &gt;
+                            {t("next")} →
+                        &lt;/button&gt;
+                    &lt;/div&gt;
+                )}
+            &lt;/PageSection&gt;
+        &lt;/&gt;
     );
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -874,7 +895,7 @@ export default function Courses() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-07-03T13:08:04.366Z
+                at 2025-07-07T09:20:53.786Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -289,7 +289,13 @@
 <a name='L224'></a><a href='#L224'>224</a>
 <a name='L225'></a><a href='#L225'>225</a>
 <a name='L226'></a><a href='#L226'>226</a>
-<a name='L227'></a><a href='#L227'>227</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L227'></a><a href='#L227'>227</a>
+<a name='L228'></a><a href='#L228'>228</a>
+<a name='L229'></a><a href='#L229'>229</a>
+<a name='L230'></a><a href='#L230'>230</a>
+<a name='L231'></a><a href='#L231'>231</a>
+<a name='L232'></a><a href='#L232'>232</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -448,12 +454,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">49x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">70x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -523,6 +533,7 @@ import {Card} from "../components/ui/Card";
 import {CardContent} from "../components/ui/CardContent";
 import PageSection from "../components/ui/PageSection";
 import {AnimatePresence, motion} from "framer-motion";
+import SeoHead from "../components/ui/SeoHead";
 &nbsp;
 const ITEMS_PER_PAGE = 3;
 &nbsp;
@@ -662,83 +673,87 @@ export default function Testimonials() {
     );
 &nbsp;
     return (
-        &lt;PageSection title={t("testimonials_page.title")}&gt;
+        &lt;&gt;
+            &lt;SeoHead pageKey="testimonials" path="/testimonials"/&gt;
 &nbsp;
-            &lt;AnimatePresence mode="wait"&gt;
-                &lt;motion.div
-                    key={`page-${currentPage}`}
-                    initial={{opacity: 0, y: 40}}
-                    animate={{opacity: 1, y: 0}}
-                    exit={{opacity: 0, y: -40}}
-                    transition={{duration: 0.4}}
-                    className="flex flex-wrap gap-6"
-                &gt;
-                    {displayedTestimonials.map((testi, idx) =&gt; (
-                        &lt;Card key={idx}
-                              className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 shadow-sm"&gt;
-                            &lt;CardContent&gt;
-                                &lt;Disclosure&gt;
-                                    {({open}) =&gt; (
-                                        &lt;&gt;
-                                            &lt;Disclosure.Button
-                                                className="flex justify-between w-full items-center text-left"&gt;
-                                                &lt;div className="flex items-center space-x-4"&gt;
-                                                    &lt;img
-                                                        src={`https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(t(testi.nameKey))}`}
-                                                        alt={`${t(testi.nameKey)} avatar`}
-                                                        className="w-10 h-10 rounded-full ring-1 ring-gray-300 dark:ring-gray-700 bg-white"
-                                                    /&gt;
-                                                    &lt;div&gt;
-                                                        &lt;p className="font-semibold"&gt;{t(testi.nameKey)}&lt;/p&gt;
-                                                        &lt;p className="text-sm text-gray-500 dark:text-gray-400"&gt;{t(testi.roleKey)}&lt;/p&gt;
+            &lt;PageSection title={t("testimonials_page.title")}&gt;
+&nbsp;
+                &lt;AnimatePresence mode="wait"&gt;
+                    &lt;motion.div
+                        key={`page-${currentPage}`}
+                        initial={{opacity: 0, y: 40}}
+                        animate={{opacity: 1, y: 0}}
+                        exit={{opacity: 0, y: -40}}
+                        transition={{duration: 0.4}}
+                        className="flex flex-wrap gap-6"
+                    &gt;
+                        {displayedTestimonials.map((testi, idx) =&gt; (
+                            &lt;Card key={idx}
+                                  className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 shadow-sm"&gt;
+                                &lt;CardContent&gt;
+                                    &lt;Disclosure&gt;
+                                        {({open}) =&gt; (
+                                            &lt;&gt;
+                                                &lt;Disclosure.Button
+                                                    className="flex justify-between w-full items-center text-left"&gt;
+                                                    &lt;div className="flex items-center space-x-4"&gt;
+                                                        &lt;img
+                                                            src={`https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(t(testi.nameKey))}`}
+                                                            alt={`${t(testi.nameKey)} avatar`}
+                                                            className="w-10 h-10 rounded-full ring-1 ring-gray-300 dark:ring-gray-700 bg-white"
+                                                        /&gt;
+                                                        &lt;div&gt;
+                                                            &lt;p className="font-semibold"&gt;{t(testi.nameKey)}&lt;/p&gt;
+                                                            &lt;p className="text-sm text-gray-500 dark:text-gray-400"&gt;{t(testi.roleKey)}&lt;/p&gt;
+                                                        &lt;/div&gt;
                                                     &lt;/div&gt;
-                                                &lt;/div&gt;
-                                                &lt;ChevronDown
-                                                    className={`h-5 w-5 transform ${open ? "rotate-180" : ""}`}/&gt;
-                                            &lt;/Disclosure.Button&gt;
-                                            &lt;Disclosure.Panel className="mt-2 text-sm text-gray-700 dark:text-gray-300"&gt;
-                                                {t(testi.quoteKey)}
-                                            &lt;/Disclosure.Panel&gt;
-                                        &lt;/&gt;
-                                    )}
-                                &lt;/Disclosure&gt;
-                            &lt;/CardContent&gt;
-                        &lt;/Card&gt;
-                    ))}
-                &lt;/motion.div&gt;
-            &lt;/AnimatePresence&gt;
+                                                    &lt;ChevronDown
+                                                        className={`h-5 w-5 transform ${open ? "rotate-180" : ""}`}/&gt;
+                                                &lt;/Disclosure.Button&gt;
+                                                &lt;Disclosure.Panel
+                                                    className="mt-2 text-sm text-gray-700 dark:text-gray-300"&gt;
+                                                    {t(testi.quoteKey)}
+                                                &lt;/Disclosure.Panel&gt;
+                                            &lt;/&gt;
+                                        )}
+                                    &lt;/Disclosure&gt;
+                                &lt;/CardContent&gt;
+                            &lt;/Card&gt;
+                        ))}
+                    &lt;/motion.div&gt;
+                &lt;/AnimatePresence&gt;
 &nbsp;
-            {/* Pagination Controls */}
-            {totalPages &gt; 1 &amp;&amp; (
-                &lt;div className="flex justify-center mt-8 space-x-4"&gt;
-                    &lt;button
-                        onClick={() =&gt; setCurrentPage(p =&gt; Math.max(p - 1, 1))}
-                        disabled={currentPage === 1}
-                        className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
+                {/* Pagination Controls */}
+                {totalPages &gt; 1 &amp;&amp; (
+                    &lt;div className="flex justify-center mt-8 space-x-4"&gt;
+                        &lt;button
+                            onClick={() =&gt; setCurrentPage(p =&gt; Math.max(p - 1, 1))}
+                            disabled={currentPage === 1}
+                            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
                            text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
                            hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
-                    &gt;
-                        ← {t("testimonials_page.prev")}
-                    &lt;/button&gt;
+                        &gt;
+                            ← {t("testimonials_page.prev")}
+                        &lt;/button&gt;
 &nbsp;
-                    &lt;span className="px-4 py-2 text-sm text-gray-600 dark:text-gray-300"&gt;
+                        &lt;span className="px-4 py-2 text-sm text-gray-600 dark:text-gray-300"&gt;
                         {currentPage} / {totalPages}
                     &lt;/span&gt;
 &nbsp;
-                    &lt;button
-                        onClick={() =&gt; setCurrentPage(p =&gt; Math.min(p + 1, totalPages))}
-                        disabled={currentPage === totalPages}
-                        className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
+                        &lt;button
+                            onClick={() =&gt; setCurrentPage(p =&gt; Math.min(p + 1, totalPages))}
+                            disabled={currentPage === totalPages}
+                            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
                            text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
                            hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
-                    &gt;
-                        {t("testimonials_page.next")} →
-                    &lt;/button&gt;
-                &lt;/div&gt;
-            )}
+                        &gt;
+                            {t("testimonials_page.next")} →
+                        &lt;/button&gt;
+                    &lt;/div&gt;
+                )}
 &nbsp;
-&nbsp;
-        &lt;/PageSection&gt;
+            &lt;/PageSection&gt;
+        &lt;/&gt;
     );
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -748,7 +763,7 @@ export default function Testimonials() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-07-03T13:08:04.366Z
+                at 2025-07-07T09:20:53.786Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

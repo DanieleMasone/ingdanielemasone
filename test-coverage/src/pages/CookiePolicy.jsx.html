@@ -155,7 +155,15 @@
 <a name='L90'></a><a href='#L90'>90</a>
 <a name='L91'></a><a href='#L91'>91</a>
 <a name='L92'></a><a href='#L92'>92</a>
-<a name='L93'></a><a href='#L93'>93</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -178,6 +186,12 @@
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -249,6 +263,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from "react";
 import {useTranslation} from "react-i18next";
+import SeoHead from "../components/ui/SeoHead";
 &nbsp;
 /**
  * CookiePolicy component renders the cookie policy page content.
@@ -270,73 +285,79 @@ export default function CookiePolicy() {
     const {t} = useTranslation();
 &nbsp;
     return (
-        &lt;main className="max-w-4xl mx-auto p-8 bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-300 min-h-screen"&gt;
-            &lt;h1 className="text-4xl font-bold mb-6"&gt;{t("cookie.title")}&lt;/h1&gt;
+        &lt;&gt;
+            &lt;SeoHead pageKey="cookie" path="/cookie-policy"/&gt;
 &nbsp;
-            &lt;section className="mb-8"&gt;
-                &lt;h2 className="text-2xl font-semibold mb-2"&gt;{t("cookie.what_title")}&lt;/h2&gt;
-                &lt;p&gt;{t("cookie.what_text")}&lt;/p&gt;
-            &lt;/section&gt;
+            &lt;main
+                className="max-w-4xl mx-auto p-8 bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-300 min-h-screen"&gt;
+                &lt;h1 className="text-4xl font-bold mb-6"&gt;{t("cookie.title")}&lt;/h1&gt;
 &nbsp;
-            &lt;section className="mb-8"&gt;
-                &lt;h2 className="text-2xl font-semibold mb-2"&gt;{t("cookie.types_title")}&lt;/h2&gt;
-                &lt;ul className="list-disc pl-6 space-y-2"&gt;
-                    &lt;li&gt;
-                        &lt;strong&gt;{t("cookie.technical_title")}:&lt;/strong&gt; {t("cookie.technical_text")}
-                    &lt;/li&gt;
-                    &lt;li&gt;
-                        &lt;strong&gt;{t("cookie.analytics_title")}:&lt;/strong&gt; {t("cookie.analytics_text")}
-                    &lt;/li&gt;
-                    &lt;li&gt;
-                        &lt;strong&gt;{t("cookie.profiling_title")}:&lt;/strong&gt; {t("cookie.profiling_text")}
-                    &lt;/li&gt;
-                &lt;/ul&gt;
-            &lt;/section&gt;
+                &lt;section className="mb-8"&gt;
+                    &lt;h2 className="text-2xl font-semibold mb-2"&gt;{t("cookie.what_title")}&lt;/h2&gt;
+                    &lt;p&gt;{t("cookie.what_text")}&lt;/p&gt;
+                &lt;/section&gt;
 &nbsp;
-            &lt;section className="mb-8"&gt;
-                &lt;h2 className="text-2xl font-semibold mb-2"&gt;{t("cookie.consent_title")}&lt;/h2&gt;
-                &lt;p&gt;{t("cookie.consent_text")}&lt;/p&gt;
-            &lt;/section&gt;
+                &lt;section className="mb-8"&gt;
+                    &lt;h2 className="text-2xl font-semibold mb-2"&gt;{t("cookie.types_title")}&lt;/h2&gt;
+                    &lt;ul className="list-disc pl-6 space-y-2"&gt;
+                        &lt;li&gt;
+                            &lt;strong&gt;{t("cookie.technical_title")}:&lt;/strong&gt; {t("cookie.technical_text")}
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;strong&gt;{t("cookie.analytics_title")}:&lt;/strong&gt; {t("cookie.analytics_text")}
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;strong&gt;{t("cookie.profiling_title")}:&lt;/strong&gt; {t("cookie.profiling_text")}
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/section&gt;
 &nbsp;
-            &lt;section className="mb-8"&gt;
-                &lt;h2 className="text-2xl font-semibold mb-2"&gt;{t("cookie.manage_title")}&lt;/h2&gt;
-                &lt;p&gt;{t("cookie.manage_text")}&lt;/p&gt;
-                &lt;ul className="list-disc pl-6 space-y-1 mt-2"&gt;
-                    &lt;li&gt;&lt;a className="underline"
-                           href="https://support.google.com/chrome/answer/95647"
-                           rel="noopener noreferrer"
-                           target="_blank"&gt;Chrome&lt;/a&gt;&lt;/li&gt;
-                    &lt;li&gt;&lt;a className="underline"
-                           href="https://support.mozilla.org/kb/enable-and-disable-cookies-website-preferences"
-                           rel="noopener noreferrer"
-                           target="_blank"&gt;Firefox&lt;/a&gt;&lt;/li&gt;
-                    &lt;li&gt;&lt;a className="underline"
-                           href="https://support.apple.com/en-us/HT201265"
-                           rel="noopener noreferrer"
-                           target="_blank"&gt;Safari&lt;/a&gt;&lt;/li&gt;
-                    &lt;li&gt;&lt;a className="underline"
-                           href="https://support.microsoft.com/help/17442"
-                           rel="noopener noreferrer"
-                           target="_blank"&gt;Edge&lt;/a&gt;&lt;/li&gt;
-                &lt;/ul&gt;
-            &lt;/section&gt;
+                &lt;section className="mb-8"&gt;
+                    &lt;h2 className="text-2xl font-semibold mb-2"&gt;{t("cookie.consent_title")}&lt;/h2&gt;
+                    &lt;p&gt;{t("cookie.consent_text")}&lt;/p&gt;
+                &lt;/section&gt;
 &nbsp;
-            &lt;section className="mb-8"&gt;
-                &lt;h2 className="text-2xl font-semibold mb-2"&gt;{t("cookie.rights_title")}&lt;/h2&gt;
-                &lt;p&gt;{t("cookie.rights_text")}&lt;/p&gt;
-                &lt;p className="mt-2"&gt;
-                    {t("cookie.contact_text")}{" "}
-                    &lt;a href="mailto:masone.daniele@gmail.com" className="text-blue-600 dark:text-blue-400 underline"&gt;
-                        masone.daniele@gmail.com
-                    &lt;/a&gt;
-                &lt;/p&gt;
-            &lt;/section&gt;
+                &lt;section className="mb-8"&gt;
+                    &lt;h2 className="text-2xl font-semibold mb-2"&gt;{t("cookie.manage_title")}&lt;/h2&gt;
+                    &lt;p&gt;{t("cookie.manage_text")}&lt;/p&gt;
+                    &lt;ul className="list-disc pl-6 space-y-1 mt-2"&gt;
+                        &lt;li&gt;&lt;a className="underline"
+                               href="https://support.google.com/chrome/answer/95647"
+                               rel="noopener noreferrer"
+                               target="_blank"&gt;Chrome&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a className="underline"
+                               href="https://support.mozilla.org/kb/enable-and-disable-cookies-website-preferences"
+                               rel="noopener noreferrer"
+                               target="_blank"&gt;Firefox&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a className="underline"
+                               href="https://support.apple.com/en-us/HT201265"
+                               rel="noopener noreferrer"
+                               target="_blank"&gt;Safari&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a className="underline"
+                               href="https://support.microsoft.com/help/17442"
+                               rel="noopener noreferrer"
+                               target="_blank"&gt;Edge&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/section&gt;
 &nbsp;
-            &lt;footer
-                className="border-t border-gray-300 dark:border-gray-700 pt-4 text-sm text-gray-500 dark:text-gray-600 text-center"&gt;
-                {t("cookie.last_updated")}: {t("privacy.last_date_updated")}
-            &lt;/footer&gt;
-        &lt;/main&gt;
+                &lt;section className="mb-8"&gt;
+                    &lt;h2 className="text-2xl font-semibold mb-2"&gt;{t("cookie.rights_title")}&lt;/h2&gt;
+                    &lt;p&gt;{t("cookie.rights_text")}&lt;/p&gt;
+                    &lt;p className="mt-2"&gt;
+                        {t("cookie.contact_text")}{" "}
+                        &lt;a href="mailto:masone.daniele@gmail.com"
+                           className="text-blue-600 dark:text-blue-400 underline"&gt;
+                            masone.daniele@gmail.com
+                        &lt;/a&gt;
+                    &lt;/p&gt;
+                &lt;/section&gt;
+&nbsp;
+                &lt;footer
+                    className="border-t border-gray-300 dark:border-gray-700 pt-4 text-sm text-gray-500 dark:text-gray-600 text-center"&gt;
+                    {t("cookie.last_updated")}: {t("privacy.last_date_updated")}
+                &lt;/footer&gt;
+            &lt;/main&gt;
+        &lt;/&gt;
     );
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -346,7 +367,7 @@ export default function CookiePolicy() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-07-03T13:08:04.366Z
+                at 2025-07-07T09:20:53.786Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

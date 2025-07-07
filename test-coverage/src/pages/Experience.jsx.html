@@ -241,7 +241,14 @@
 <a name='L176'></a><a href='#L176'>176</a>
 <a name='L177'></a><a href='#L177'>177</a>
 <a name='L178'></a><a href='#L178'>178</a>
-<a name='L179'></a><a href='#L179'>179</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L179'></a><a href='#L179'>179</a>
+<a name='L180'></a><a href='#L180'>180</a>
+<a name='L181'></a><a href='#L181'>181</a>
+<a name='L182'></a><a href='#L182'>182</a>
+<a name='L183'></a><a href='#L183'>183</a>
+<a name='L184'></a><a href='#L184'>184</a>
+<a name='L185'></a><a href='#L185'>185</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -345,6 +352,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">34x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -419,6 +429,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {useTranslation} from "react-i18next";
 import {useState} from "react";
 import {Card} from "../components/ui/Card";
@@ -428,6 +440,7 @@ import {ChevronDown} from "lucide-react";
 import {AnimatePresence, motion} from "framer-motion";
 import PageSection from "../components/ui/PageSection";
 import {ExpandableText} from "../components/ui/ExpandableText";
+import SeoHead from "../components/ui/SeoHead";
 &nbsp;
 /**
  * Experience component renders a list of professional experiences filtered by selected year.
@@ -520,81 +533,86 @@ export default function Experience() {
         : <span class="branch-1 cbranch-no" title="branch not covered" >[];</span>
 &nbsp;
     return (
-        &lt;PageSection title={t("experience_title")}&gt;
-            &lt;div className="flex flex-wrap justify-center gap-3 mb-10"&gt;
-                {yearList.map((year) =&gt; (
-                    &lt;button
-                        key={year}
-                        onClick={() =&gt; setSelectedYear(year)}
-                        className={`px-4 py-2 rounded-2xl shadow-sm border transition backdrop-blur-sm
-                            ${
-                            selectedYear === year
-                                ? "ring-2 ring-blue-500 border-blue-500 bg-blue-100 text-blue-800 dark:bg-blue-700 dark:text-white"
-                                : "border-gray-300 dark:border-gray-600 bg-white/30 dark:bg-gray-800/30 text-gray-900 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700"
-                        }
-                            ${
-                            selectedYear === year
-                                ? "bg-blue-100 dark:bg-blue-700 text-blue-800 dark:text-white"
-                                : "bg-white/30 dark:bg-gray-800/30 text-gray-900 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
-                        }`}
-                    &gt;
-                        {year}
-                    &lt;/button&gt;
-                ))}
-            &lt;/div&gt;
+        &lt;&gt;
+            &lt;SeoHead pageKey="experience" path="/experience"/&gt;
 &nbsp;
-&nbsp;
-            &lt;AnimatePresence mode="wait"&gt;
-                &lt;motion.div
-                    key={selectedYear || <span class="branch-1 cbranch-no" title="branch not covered" >"none"}</span>
-                    initial={{opacity: 0, y: 40}}
-                    animate={{opacity: 1, y: 0}}
-                    exit={{opacity: 0, y: -40}}
-                    transition={{duration: 0.4}}
-                    className="flex flex-wrap gap-6"
-                &gt;
-                    {filteredExperiences.map((exp, i) =&gt; (
-                        &lt;Card
-                            key={i}
-                            className="h-full bg-white/60 dark:bg-gray-900/40 shadow-xl rounded-2xl backdrop-blur-sm"
+            &lt;PageSection title={t("experience_title")}&gt;
+                &lt;div className="flex flex-wrap justify-center gap-3 mb-10"&gt;
+                    {yearList.map((year) =&gt; (
+                        &lt;button
+                            key={year}
+                            onClick={() =&gt; setSelectedYear(year)}
+                            className={`px-4 py-2 rounded-2xl shadow-sm border transition backdrop-blur-sm
+                            ${
+                                selectedYear === year
+                                    ? "ring-2 ring-blue-500 border-blue-500 bg-blue-100 text-blue-800 dark:bg-blue-700 dark:text-white"
+                                    : "border-gray-300 dark:border-gray-600 bg-white/30 dark:bg-gray-800/30 text-gray-900 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700"
+                            }
+                            ${
+                                selectedYear === year
+                                    ? "bg-blue-100 dark:bg-blue-700 text-blue-800 dark:text-white"
+                                    : "bg-white/30 dark:bg-gray-800/30 text-gray-900 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                            }`}
                         &gt;
-                            &lt;CardContent&gt;
-                                &lt;h3 className="text-xl font-semibold mb-1"&gt;{exp.role}&lt;/h3&gt;
-                                &lt;p className="text-gray-700 dark:text-gray-400 font-medium"&gt;{exp.company}&lt;/p&gt;
-                                &lt;p className="text-sm mb-2 text-gray-600 dark:text-gray-500"&gt;{exp.period}&lt;/p&gt;
-&nbsp;
-                                {exp.description &amp;&amp; (
-                                    &lt;ExpandableText
-                                        value={exp.description}
-                                        maxLines={3}
-                                        className="mb-2 text-sm text-gray-800 dark:text-gray-200 bg-transparent"
-                                    /&gt;
-                                )}
-&nbsp;
-                                &lt;Disclosure&gt;
-                                    {({open}) =&gt; (
-                                        &lt;div&gt;
-                                            &lt;Disclosure.Button
-                                                className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline"&gt;
-                                                &lt;span&gt;{t("experience_show_stack")}&lt;/span&gt;
-                                                &lt;ChevronDown
-                                                    className={`ml-1 w-4 h-4 transition-transform ${
-                                                        open ? "rotate-180" : ""
-                                                    }`}
-                                                /&gt;
-                                            &lt;/Disclosure.Button&gt;
-                                            &lt;Disclosure.Panel className="mt-2 text-sm text-gray-700 dark:text-gray-300"&gt;
-                                                {exp.tech}
-                                            &lt;/Disclosure.Panel&gt;
-                                        &lt;/div&gt;
-                                    )}
-                                &lt;/Disclosure&gt;
-                            &lt;/CardContent&gt;
-                        &lt;/Card&gt;
+                            {year}
+                        &lt;/button&gt;
                     ))}
-                &lt;/motion.div&gt;
-            &lt;/AnimatePresence&gt;
-        &lt;/PageSection&gt;
+                &lt;/div&gt;
+&nbsp;
+&nbsp;
+                &lt;AnimatePresence mode="wait"&gt;
+                    &lt;motion.div
+                        key={selectedYear || <span class="branch-1 cbranch-no" title="branch not covered" >"none"}</span>
+                        initial={{opacity: 0, y: 40}}
+                        animate={{opacity: 1, y: 0}}
+                        exit={{opacity: 0, y: -40}}
+                        transition={{duration: 0.4}}
+                        className="flex flex-wrap gap-6"
+                    &gt;
+                        {filteredExperiences.map((exp, i) =&gt; (
+                            &lt;Card
+                                key={i}
+                                className="h-full bg-white/60 dark:bg-gray-900/40 shadow-xl rounded-2xl backdrop-blur-sm"
+                            &gt;
+                                &lt;CardContent&gt;
+                                    &lt;h3 className="text-xl font-semibold mb-1"&gt;{exp.role}&lt;/h3&gt;
+                                    &lt;p className="text-gray-700 dark:text-gray-400 font-medium"&gt;{exp.company}&lt;/p&gt;
+                                    &lt;p className="text-sm mb-2 text-gray-600 dark:text-gray-500"&gt;{exp.period}&lt;/p&gt;
+&nbsp;
+                                    {exp.description &amp;&amp; (
+                                        &lt;ExpandableText
+                                            value={exp.description}
+                                            maxLines={3}
+                                            className="mb-2 text-sm text-gray-800 dark:text-gray-200 bg-transparent"
+                                        /&gt;
+                                    )}
+&nbsp;
+                                    &lt;Disclosure&gt;
+                                        {({open}) =&gt; (
+                                            &lt;div&gt;
+                                                &lt;Disclosure.Button
+                                                    className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline"&gt;
+                                                    &lt;span&gt;{t("experience_show_stack")}&lt;/span&gt;
+                                                    &lt;ChevronDown
+                                                        className={`ml-1 w-4 h-4 transition-transform ${
+                                                            open ? "rotate-180" : ""
+                                                        }`}
+                                                    /&gt;
+                                                &lt;/Disclosure.Button&gt;
+                                                &lt;Disclosure.Panel
+                                                    className="mt-2 text-sm text-gray-700 dark:text-gray-300"&gt;
+                                                    {exp.tech}
+                                                &lt;/Disclosure.Panel&gt;
+                                            &lt;/div&gt;
+                                        )}
+                                    &lt;/Disclosure&gt;
+                                &lt;/CardContent&gt;
+                            &lt;/Card&gt;
+                        ))}
+                    &lt;/motion.div&gt;
+                &lt;/AnimatePresence&gt;
+            &lt;/PageSection&gt;
+        &lt;/&gt;
     );
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -604,7 +622,7 @@ export default function Experience() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-07-03T13:08:04.366Z
+                at 2025-07-07T09:20:53.786Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
