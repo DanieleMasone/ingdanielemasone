@@ -71,7 +71,7 @@ describe("Experience component", () => {
         const toggleButtons = screen.getAllByText(/show stack/i);
         const toggleButton = toggleButtons[0];
 
-        // Controlla che il pannello non sia nel DOM o sia nascosto all’inizio
+        // Check that the panel is not in the DOM or hidden at the beginning
         expect(screen.queryByText(/MySQL/i)).not.toBeInTheDocument();
 
         fireEvent.click(toggleButton);

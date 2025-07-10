@@ -8,6 +8,7 @@ import {AnimatePresence, motion} from "framer-motion";
 import PageSection from "../components/ui/PageSection";
 import {ExpandableText} from "../components/ui/ExpandableText";
 import SeoHead from "../components/ui/SeoHead";
+import {YearButton} from "../components/ui/YearButton";
 
 /**
  * Experience component renders a list of professional experiences filtered by selected year.
@@ -80,6 +81,20 @@ export default function Experience() {
             period: t("exp_coach_period"),
             description: t("exp_coach_description"),
             tech: "Framework Spring · jQuery · C# · VBA · x86 Assembly · Bash · Matlab · .NET · HTML5 · XML · C · PhpMyAdmin · CSS · HTML · Cisco Technologies · MySQL · PHP · Git · C++"
+        },
+        {
+            role: t("exp_salesiani_role"),
+            company: "Salesiani Sesto San Giovanni",
+            period: t("exp_salesiani_period"),
+            description: t("exp_salesiani_description"),
+            tech: "C · C++ · C# · Assembly x86 · PHP · MySQL · HTML · CSS · Matlab"
+        },
+        {
+            role: t("exp_polimi_role"),
+            company: "Politecnico di Milano",
+            period: t("exp_polimi_period"),
+            description: t("exp_polimi_description"),
+            tech: "Java · C · C++ · Android · STM32 · USB communication · Embedded systems · Linux"
         }
     ];
 
@@ -104,28 +119,25 @@ export default function Experience() {
             <SeoHead pageKey="experience" path="/experience"/>
 
             <PageSection title={t("experience_title")}>
-                <div className="flex flex-wrap justify-center gap-3 mb-10">
-                    {yearList.map((year) => (
-                        <button
-                            key={year}
-                            onClick={() => setSelectedYear(year)}
-                            className={`px-4 py-2 rounded-2xl shadow-sm border transition backdrop-blur-sm
-                            ${
-                                selectedYear === year
-                                    ? "ring-2 ring-blue-500 border-blue-500 bg-blue-100 text-blue-800 dark:bg-blue-700 dark:text-white"
-                                    : "border-gray-300 dark:border-gray-600 bg-white/30 dark:bg-gray-800/30 text-gray-900 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700"
-                            }
-                            ${
-                                selectedYear === year
-                                    ? "bg-blue-100 dark:bg-blue-700 text-blue-800 dark:text-white"
-                                    : "bg-white/30 dark:bg-gray-800/30 text-gray-900 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
-                            }`}
-                        >
-                            {year}
-                        </button>
-                    ))}
-                </div>
+                <div className="mb-10">
+                    {/* Mobile: horizontal scroll */}
+                    <div className="block sm:hidden overflow-x-auto scrollbar-hide">
+                        <div className="flex w-max gap-3 px-1">
+                            {yearList.map((year) => (
+                                <YearButton key={year} year={year} selectedYear={selectedYear}
+                                            setSelectedYear={setSelectedYear}/>
+                            ))}
+                        </div>
+                    </div>
 
+                    {/* Desktop: wrapped layout */}
+                    <div className="hidden sm:flex flex-wrap justify-center gap-3">
+                        {yearList.map((year) => (
+                            <YearButton key={year} year={year} selectedYear={selectedYear}
+                                        setSelectedYear={setSelectedYear}/>
+                        ))}
+                    </div>
+                </div>
 
                 <AnimatePresence mode="wait">
                     <motion.div
