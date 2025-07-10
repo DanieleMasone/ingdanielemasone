@@ -29,7 +29,7 @@
 <nav >
     
     
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-components_ui_Card.html">components/ui/Card</a></li><li><a href="module-components_ui_CardContent.html">components/ui/CardContent</a></li><li><a href="module-components_ui_DarkModeToggle.html">components/ui/DarkModeToggle</a></li><li><a href="module-components_ui_Footer.html">components/ui/Footer</a></li><li><a href="module-components_ui_Header.html">components/ui/Header</a></li><li><a href="module-components_ui_LanguageSwitcher.html">components/ui/LanguageSwitcher</a></li><li><a href="module-components_ui_NotFound.html">components/ui/NotFound</a></li><li><a href="module-components_ui_PageSection.html">components/ui/PageSection</a></li><li><a href="module-components_ui_SeoHead.html">components/ui/SeoHead</a></li><li><a href="module-components_ui_TradingPerformanceChart.html">components/ui/TradingPerformanceChart</a></li><li><a href="module-pages_CookieBanner.html">pages/CookieBanner</a></li><li><a href="module-pages_CookiePolicy.html">pages/CookiePolicy</a></li><li><a href="module-pages_Courses.html">pages/Courses</a></li><li><a href="module-pages_Experience.html">pages/Experience</a></li><li><a href="module-pages_Home.html">pages/Home</a></li><li><a href="module-pages_Privacy.html">pages/Privacy</a></li><li><a href="module-pages_Projects.html">pages/Projects</a></li><li><a href="module-pages_Testimonials.html">pages/Testimonials</a></li><li><a href="module-pages_Trading.html">pages/Trading</a></li></ul><h3>Global</h3><ul><li><a href="global.html#BrandIcon">BrandIcon</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-components_ui_Card.html">components/ui/Card</a></li><li><a href="module-components_ui_CardContent.html">components/ui/CardContent</a></li><li><a href="module-components_ui_DarkModeToggle.html">components/ui/DarkModeToggle</a></li><li><a href="module-components_ui_Footer.html">components/ui/Footer</a></li><li><a href="module-components_ui_Header.html">components/ui/Header</a></li><li><a href="module-components_ui_LanguageSwitcher.html">components/ui/LanguageSwitcher</a></li><li><a href="module-components_ui_NotFound.html">components/ui/NotFound</a></li><li><a href="module-components_ui_PageSection.html">components/ui/PageSection</a></li><li><a href="module-components_ui_SeoHead.html">components/ui/SeoHead</a></li><li><a href="module-components_ui_TradingPerformanceChart.html">components/ui/TradingPerformanceChart</a></li><li><a href="module-components_ui_YearButton.html">components/ui/YearButton</a></li><li><a href="module-pages_CookieBanner.html">pages/CookieBanner</a></li><li><a href="module-pages_CookiePolicy.html">pages/CookiePolicy</a></li><li><a href="module-pages_Courses.html">pages/Courses</a></li><li><a href="module-pages_Experience.html">pages/Experience</a></li><li><a href="module-pages_Home.html">pages/Home</a></li><li><a href="module-pages_Privacy.html">pages/Privacy</a></li><li><a href="module-pages_Projects.html">pages/Projects</a></li><li><a href="module-pages_Testimonials.html">pages/Testimonials</a></li><li><a href="module-pages_Trading.html">pages/Trading</a></li></ul><h3>Global</h3><ul><li><a href="global.html#BrandIcon">BrandIcon</a></li></ul>
     
 </nav>
 
@@ -55,6 +55,7 @@ import {AnimatePresence, motion} from "framer-motion";
 import PageSection from "../components/ui/PageSection";
 import {ExpandableText} from "../components/ui/ExpandableText";
 import SeoHead from "../components/ui/SeoHead";
+import {YearButton} from "../components/ui/YearButton";
 
 /**
  * Experience component renders a list of professional experiences filtered by selected year.
@@ -127,6 +128,20 @@ export default function Experience() {
             period: t("exp_coach_period"),
             description: t("exp_coach_description"),
             tech: "Framework Spring · jQuery · C# · VBA · x86 Assembly · Bash · Matlab · .NET · HTML5 · XML · C · PhpMyAdmin · CSS · HTML · Cisco Technologies · MySQL · PHP · Git · C++"
+        },
+        {
+            role: t("exp_salesiani_role"),
+            company: "Salesiani Sesto San Giovanni",
+            period: t("exp_salesiani_period"),
+            description: t("exp_salesiani_description"),
+            tech: "C · C++ · C# · Assembly x86 · PHP · MySQL · HTML · CSS · Matlab"
+        },
+        {
+            role: t("exp_polimi_role"),
+            company: "Politecnico di Milano",
+            period: t("exp_polimi_period"),
+            description: t("exp_polimi_description"),
+            tech: "Java · C · C++ · Android · STM32 · USB communication · Embedded systems · Linux"
         }
     ];
 
@@ -151,28 +166,25 @@ export default function Experience() {
             &lt;SeoHead pageKey="experience" path="/experience"/>
 
             &lt;PageSection title={t("experience_title")}>
-                &lt;div className="flex flex-wrap justify-center gap-3 mb-10">
-                    {yearList.map((year) => (
-                        &lt;button
-                            key={year}
-                            onClick={() => setSelectedYear(year)}
-                            className={`px-4 py-2 rounded-2xl shadow-sm border transition backdrop-blur-sm
-                            ${
-                                selectedYear === year
-                                    ? "ring-2 ring-blue-500 border-blue-500 bg-blue-100 text-blue-800 dark:bg-blue-700 dark:text-white"
-                                    : "border-gray-300 dark:border-gray-600 bg-white/30 dark:bg-gray-800/30 text-gray-900 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700"
-                            }
-                            ${
-                                selectedYear === year
-                                    ? "bg-blue-100 dark:bg-blue-700 text-blue-800 dark:text-white"
-                                    : "bg-white/30 dark:bg-gray-800/30 text-gray-900 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
-                            }`}
-                        >
-                            {year}
-                        &lt;/button>
-                    ))}
-                &lt;/div>
+                &lt;div className="mb-10">
+                    {/* Mobile: horizontal scroll */}
+                    &lt;div className="block sm:hidden overflow-x-auto scrollbar-hide">
+                        &lt;div className="flex w-max gap-3 px-1">
+                            {yearList.map((year) => (
+                                &lt;YearButton key={year} year={year} selectedYear={selectedYear}
+                                            setSelectedYear={setSelectedYear}/>
+                            ))}
+                        &lt;/div>
+                    &lt;/div>
 
+                    {/* Desktop: wrapped layout */}
+                    &lt;div className="hidden sm:flex flex-wrap justify-center gap-3">
+                        {yearList.map((year) => (
+                            &lt;YearButton key={year} year={year} selectedYear={selectedYear}
+                                        setSelectedYear={setSelectedYear}/>
+                        ))}
+                    &lt;/div>
+                &lt;/div>
 
                 &lt;AnimatePresence mode="wait">
                     &lt;motion.div
@@ -243,7 +255,7 @@ export default function Experience() {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Mon Jul 07 2025 11:21:19 GMT+0200 (Ora legale dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Thu Jul 10 2025 10:47:26 GMT+0200 (Ora legale dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
