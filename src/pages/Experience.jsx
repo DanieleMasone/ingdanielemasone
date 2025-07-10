@@ -114,6 +114,30 @@ export default function Experience() {
         ? experiences.filter(exp => exp.period.includes(selectedYear))
         : [];
 
+    const getExperienceLabel = (period, year, t) => {
+        const years = period.match(/\b(20\d{2}|19\d{2})\b/g);
+        const selected = parseInt(year, 10);
+
+        if (!years) return null;
+
+        const start = parseInt(years[0], 10);
+        const end = years[1] ? parseInt(years[1], 10) : null;
+
+        if (start === selected && end === selected) {
+            return {label: t("exp_label_single"), type: "single"};
+        }
+
+        if (start === selected) {
+            return {label: t("exp_label_start"), type: "start"};
+        }
+
+        if (end === selected) {
+            return {label: t("exp_label_end"), type: "end"};
+        }
+
+        return null;
+    };
+
     return (
         <>
             <SeoHead pageKey="experience" path="/experience"/>
@@ -157,6 +181,25 @@ export default function Experience() {
                                     <h3 className="text-xl font-semibold mb-1">{exp.role}</h3>
                                     <p className="text-gray-700 dark:text-gray-400 font-medium">{exp.company}</p>
                                     <p className="text-sm mb-2 text-gray-600 dark:text-gray-500">{exp.period}</p>
+
+                                    {(() => {
+                                        const status = getExperienceLabel(exp.period, selectedYear, t);
+                                        if (!status) return null;
+
+                                        const colorMap = {
+                                            start: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300",
+                                            end: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300",
+                                            single: "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300",
+                                        };
+
+                                        return (
+                                            <span
+                                                className={`inline-block mt-1 px-2 py-0.5 text-xs font-semibold rounded-full ${colorMap[status.type]}`}
+                                            >
+                                                {status.label}
+                                            </span>
+                                        );
+                                    })()}
 
                                     {exp.description && (
                                         <ExpandableText

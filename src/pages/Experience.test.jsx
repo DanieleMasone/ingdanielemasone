@@ -37,6 +37,9 @@ i18n.use(initReactI18next).init({
                 exp_coach_description: "Mentoring junior devs",
                 experience_title: "Experience",
                 experience_show_stack: "Show Stack",
+                exp_label_start: "Start",
+                exp_label_end: "End",
+                exp_label_single: "Only this year"
             },
         },
     },
@@ -86,4 +89,16 @@ describe("Experience component", () => {
             expect(screen.queryByText(/MySQL/i)).not.toBeInTheDocument();
         });
     });
+
+    test("displays status badges correctly", () => {
+        const roles = screen.getAllByRole("heading", {level: 3});
+
+        // Look for at least one badge with the text 'Start', 'End', or 'Only this year'
+        const start = screen.queryAllByText("Start");
+        const end = screen.queryAllByText("End");
+        const single = screen.queryAllByText("Only this year");
+
+        expect(start.length + end.length + single.length).toBeGreaterThan(0);
+    });
+
 });
