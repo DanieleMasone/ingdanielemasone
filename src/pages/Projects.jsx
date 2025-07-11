@@ -8,6 +8,7 @@ import PageSection from "../components/ui/PageSection";
 import {ExpandableText} from "../components/ui/ExpandableText";
 import {AnimatePresence, motion} from "framer-motion";
 import SeoHead from "../components/ui/SeoHead";
+import {SelectableButton} from "../components/ui/SelectableButton";
 
 /**
  * Projects component displays a list of projects grouped by company.
@@ -139,21 +140,15 @@ export default function Projects() {
                     {/* Sidebar Tabs */}
                     <div className="md:w-1/4 flex flex-row md:flex-col overflow-x-auto gap-2 md:gap-4">
                         {companies.map((company) => (
-                            <button
+                            <SelectableButton
                                 key={company}
+                                label={company}
+                                isSelected={selectedCompany === company}
                                 onClick={() => {
                                     setSelectedCompany(company);
                                     setPage(1);
                                 }}
-                                className={`px-4 py-2 rounded-lg border text-sm whitespace-nowrap
-                            ${
-                                    selectedCompany === company
-                                        ? "bg-blue-600 text-white dark:bg-blue-500"
-                                        : "bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200"
-                                }`}
-                            >
-                                {company}
-                            </button>
+                            />
                         ))}
                     </div>
 

@@ -57,10 +57,15 @@ describe("Experience component", () => {
         );
     });
 
-    test("renders year filter buttons", () => {
+    test("renders year filter buttons and highlights the selected one", () => {
         const buttons = screen.getAllByRole("button");
         expect(buttons.length).toBeGreaterThan(0);
-        expect(buttons[0]).toHaveClass("ring-2");
+
+        // Make sure at least one is selected (e.g. the first one by default)
+        const selectedButton = buttons.find(btn =>
+            btn.className.includes("bg-blue-600")
+        );
+        expect(selectedButton).toBeDefined();
     });
 
     test("displays experiences filtered by selected year", () => {

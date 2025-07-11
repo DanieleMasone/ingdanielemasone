@@ -8,7 +8,7 @@ import {AnimatePresence, motion} from "framer-motion";
 import PageSection from "../components/ui/PageSection";
 import {ExpandableText} from "../components/ui/ExpandableText";
 import SeoHead from "../components/ui/SeoHead";
-import {YearButton} from "../components/ui/YearButton";
+import {SelectableButton} from "../components/ui/SelectableButton";
 
 /**
  * Experience component renders a list of professional experiences filtered by selected year.
@@ -144,21 +144,16 @@ export default function Experience() {
 
             <PageSection title={t("experience_title")}>
                 <div className="mb-10">
-                    {/* Mobile: horizontal scroll */}
-                    <div className="block sm:hidden overflow-x-auto scrollbar-hide">
-                        <div className="flex w-max gap-3 px-1">
-                            {yearList.map((year) => (
-                                <YearButton key={year} year={year} selectedYear={selectedYear}
-                                            setSelectedYear={setSelectedYear}/>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Desktop: wrapped layout */}
-                    <div className="hidden sm:flex flex-wrap justify-center gap-3">
+                    {/* Mobile: horizontal scroll - Desktop: grid wrap */}
+                    <div
+                        className="flex flex-row sm:flex-wrap sm:justify-center gap-2 sm:gap-3 overflow-x-auto sm:overflow-visible px-1 sm:px-0 scrollbar-hide">
                         {yearList.map((year) => (
-                            <YearButton key={year} year={year} selectedYear={selectedYear}
-                                        setSelectedYear={setSelectedYear}/>
+                            <SelectableButton
+                                key={year}
+                                label={year}
+                                isSelected={selectedYear === year}
+                                onClick={() => setSelectedYear(year)}
+                            />
                         ))}
                     </div>
                 </div>
