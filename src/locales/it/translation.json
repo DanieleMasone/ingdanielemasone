@@ -9,7 +9,7 @@
   "next": "Successivo",
   "all": "Tutte",
   "trading": "Trading",
-  "testimonials": "Recensioni",
+  "testimonials": "Testimonials",
   "portfolio": "Portfolio",
   "footer_copyright": "© 2025 Daniele Masone. Tutti i diritti riservati.",
   "home_subtitle": "Senior Software Engineer, Front-End Architect e Technical Team Leader.",
@@ -45,23 +45,40 @@
     "2025_partial": "2025 (parz.)"
   },
   "project_types": {
+    "fastweb": {
+      "oloGatewayMobile": "Sviluppo di un portale web per la gestione delle richieste di portabilità dei clienti Fastweb in ambito mobile.",
+      "oloGatewayFisso": "Realizzazione di portali web per operatori partner (es. Metroweb, Flash Fiber) nell’ambito delle attivazioni di rete fissa.",
+      "OSSTrasformation": "Reingegnerizzazione del portale web core di Fastweb, utilizzato per la gestione delle attività critiche legate al business aziendale."
+    },
+    "teoresi": {
+      "tecno": "Sviluppo di un portale web per la prenotazione di sale riunioni e postazioni di lavoro, con possibilità di personalizzazione (aria condizionata, luci, proiettore, ecc.). I dati raccolti dai dispositivi IoT permettono il monitoraggio completo dell’ambiente.",
+      "dart": "Sviluppo di un portale per la gestione della flotta auto FCA, integrato con client MATLAB."
+    },
+    "tecnavia": {
+      "newsmemory": "Sviluppo di un CMS per la gestione e pubblicazione di quotidiani digitali.",
+      "mobileApp": "Sviluppo di un'app mobile ibrida in React Native, con componenti nativi in Objective-C (iOS) e Java (Android)."
+    },
+    "italiaonline": {
+      "areaClienti": "Sviluppo dell'area clienti principale di Italiaonline.",
+      "restServices": "Progettazione e sviluppo di servizi REST per operazioni di lettura/scrittura su database Oracle."
+    },
+    "rgi": {
+      "FEArchitecture": "Reingegnerizzazione dell’ambiente Front-End core (portal client), con definizione della nuova architettura di riferimento e responsabilità tecniche da Technical Architect.",
+      "HalfLife": "Sviluppo di librerie front-end personalizzate per i flussi assicurativi ramo vita, con ruolo di Team Leader e coordinamento tecnico.",
+      "AXAmobility": "Sviluppo di un portale web per gli operatori AXA, dedicato alla gestione dei flussi assicurativi, con attività di rilascio, definizione delle linee guida architetturali e supervisione tecnica.",
+      "GroupPolicyLibrary": "Realizzazione di una libreria custom per la gestione dei flussi assicurativi legati alle polizze collettive, inclusa la definizione delle linee guida per la manutenzione e l’estendibilità.",
+      "AfterLife": "Sviluppo di componenti riusabili per il ramo vita, con definizione delle best practice di sviluppo e architettura front-end."
+    },
     "Enterprise Portal": "Sviluppo del portale Enterprise di Fastweb.",
-    "IoT Workplace Booking": "Portale web per la prenotazione di sale riunioni e postazioni di lavoro, con possibilità di personalizzazione (aria condizionata, luci, proiettore, ecc.). I dati raccolti dai dispositivi IoT permettono il monitoraggio completo dell’ambiente.",
-    "dart": "Portale per la gestione della flotta auto FCA, integrato con client MATLAB.",
-    "Newspaper CMS": "Sviluppo di un CMS per la gestione e pubblicazione di quotidiani digitali.",
-    "Hybrid Mobile App": "Sviluppo di un'app mobile ibrida in React Native, con componenti nativi in Objective-C (iOS) e Java (Android).",
-    "areaClienti": "Sviluppo dell'area clienti principale di Italiaonline.",
-    "restServices": "Progettazione e sviluppo di servizi REST per operazioni di lettura/scrittura su database Oracle.",
     "Insurance Web Portal": "Portale web per la gestione di servizi assicurativi.",
     "Mobility Portal": "Sviluppo del portale aziendale AXA dedicato alla mobilità.",
     "UI Library": "Realizzazione di una libreria front-end personalizzata e riutilizzabile.",
     "Enterprise Application": "Applicazione enterprise per contesti aziendali complessi.",
     "Architect": "Front-End Architect"
   },
-  "about_title": "Mi presento",
-  "about_intro": "Sono un ingegnere informatico con una forte esperienza nello sviluppo front-end e back-end, specializzato in architetture SPA, microservizi e UI scalabili.",
-  "about_experience": "Ho lavorato per aziende come RGI Group, Italiaonline, Fastweb, AXA e altre, ricoprendo ruoli da sviluppatore full stack a front-end architect. Creo portali web, librerie UI, REST API e app mobile. Insegno anche su Udemy corsi di programmazione (C, JavaScript, PHP, Angular, React...).",
-  "contact_title": "Contattami",
+  "about_title": "Chi sono",
+  "about_intro": "Sono un ingegnere informatico con un solido background sia sistemistico che nello sviluppo software. Attualmente ricopro il ruolo di Technical Architect Front-End, progettando soluzioni scalabili e performanti in ambienti enterprise, con un focus su architetture a microservizi, UI modulari e applicazioni SPA.",
+  "about_experience": "Ho lavorato per realtà come RGI Group, Italiaonline, Fastweb, AXA, HPE e altre, ricoprendo ruoli da sviluppatore full stack a front-end architect. Sviluppo portali web, REST API, componenti riusabili, librerie UI e app mobile. Ho competenze su tutto lo stack: dal front-end (React, Angular, TypeScript) al back-end (Java EE, PHP, NodeJS), fino alla containerizzazione con Docker e l’orchestrazione con Kubernetes. Utilizzo metodologie Agile, seguo i principi del clean code e contribuisco attivamente a code review, documentazione e definizione di standard di progetto. Offro anche formazione online su Udemy e privatamente, trattando programmazione (C, Java, PHP, JavaScript, Angular, React), preparazione ai colloqui e ottimizzazione del profilo LinkedIn e del CV tecnico.","contact_title": "Contattami",
   "contact_name_placeholder": "Il tuo nome",
   "contact_email_placeholder": "La tua email",
   "contact_message_placeholder": "Il tuo messaggio",

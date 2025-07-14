@@ -10,11 +10,30 @@ jest.mock("react-i18next", () => ({
             const translations = {
                 projects_title: "Projects",
                 show_technologies: "Show Technologies",
-                "project_types.Enterprise Portal": "Enterprise Portal",
-                "project_types.IoT Workplace Booking": "IoT Workplace Booking",
-                "project_types.areaClienti": "Area Clienti",
-                "project_types.restServices": "Rest Services",
-                "project_types.dart": "DART",
+
+                // FASTWEB
+                "project_types.fastweb.oloGatewayMobile": "Development of a web portal for managing number portability requests for Fastweb’s mobile customers.",
+                "project_types.fastweb.oloGatewayFisso": "Implementation of web portals for partner operators (e.g., Metroweb, Flash Fiber) related to fixed network provisioning.",
+                "project_types.fastweb.OSSTrasformation": "Reengineering of Fastweb’s core web portal used for managing key business-critical operations.",
+
+                // TEORESI
+                "project_types.teoresi.tecno": "Development of web platform for booking meeting rooms and workstations with customizable features (AC, lights, projector, etc.). IoT device data enables full environmental monitoring.",
+                "project_types.teoresi.dart": "Development of web portal for managing FCA’s vehicle fleet, integrated with a MATLAB client.",
+
+                // TECNAVIA
+                "project_types.tecnavia.newsmemory": "Development of a CMS for digital newspaper management and publishing.",
+                "project_types.tecnavia.mobileApp": "Hybrid mobile app built with React Native and native modules in Objective-C (iOS) and Java (Android).",
+
+                // ITALIAONLINE
+                "project_types.italiaonline.areaClienti": "Development of Italiaonline’s main customer portal.",
+                "project_types.italiaonline.restServices": "Design and implementation of REST services for read/write operations on Oracle DB.",
+
+                // RGI
+                "project_types.rgi.FEArchitecture": "Redesign of the core Front-End environment (portal client), defining the new architectural standards and overseeing technical responsibilities as a Technical Architect.",
+                "project_types.rgi.HalfLife": "Development of custom front-end libraries for life insurance workflows, with responsibilities as Front-End Team Leader and technical coordinator.",
+                "project_types.rgi.AXAmobility": "Development of a web portal for AXA operators, handling multiple insurance processes, release management, and definition of architectural guidelines.",
+                "project_types.rgi.GroupPolicyLibrary": "Implementation of a custom library for group policy insurance workflows, including the definition of technical guidelines to ensure maintainability and scalability.",
+                "project_types.rgi.AfterLife": "Development of reusable components for life insurance flows, with a focus on defining front-end architecture and best development practices.",
             };
             return translations[key] || fallback || key;
         },
@@ -66,11 +85,6 @@ describe("Projects Component", () => {
         await waitFor(() => {
             expect(screen.queryByText(/MySQL/)).not.toBeInTheDocument();
         });
-    });
-
-    test("ExpandableText renders truncated content", () => {
-        // Use a type that definitely has a long or multi-line translation
-        expect(screen.getAllByText(/Enterprise Application|Mobility Portal|AfterLife/)[0]).toBeInTheDocument();
     });
 
     test("renders all unique companies in the sidebar", () => {

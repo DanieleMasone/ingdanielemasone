@@ -9,7 +9,7 @@
   "next": "Next",
   "all": "all",
   "trading": "Trading",
-  "testimonials": "Reviews",
+  "testimonials": "Testimonianze",
   "portfolio": "Portfolio",
   "footer_copyright": "© 2025 Daniele Masone. All rights reserved.",
   "home_subtitle": "Senior Software Engineer, Front-End Architect, and Technical Team Leader.",
@@ -45,22 +45,40 @@
     "2025_partial": "2025 (partial)"
   },
   "project_types": {
+    "fastweb": {
+      "oloGatewayMobile": "Development of a web portal for managing number portability requests for Fastweb’s mobile customers.",
+      "oloGatewayFisso": "Implementation of web portals for partner operators (e.g., Metroweb, Flash Fiber) related to fixed network provisioning.",
+      "OSSTrasformation": "Reengineering of Fastweb’s core web portal used for managing key business-critical operations."
+    },
+    "teoresi": {
+      "tecno": "Development of web platform for booking meeting rooms and workstations with customizable features (AC, lights, projector, etc.). IoT device data enables full environmental monitoring.",
+      "dart": "Development of web portal for managing FCA’s vehicle fleet, integrated with a MATLAB client."
+    },
+    "tecnavia": {
+      "newsmemory": "Development of a CMS for digital newspaper management and publishing.",
+      "mobileApp": "Hybrid mobile app built with React Native and native modules in Objective-C (iOS) and Java (Android)."
+    },
+    "italiaonline": {
+      "areaClienti": "Development of Italiaonline’s main customer portal.",
+      "restServices": "Design and implementation of REST services for read/write operations on Oracle DB."
+    },
+    "rgi": {
+      "FEArchitecture": "Redesign of the core Front-End environment (portal client), defining the new architectural standards and overseeing technical responsibilities as a Technical Architect.",
+      "HalfLife": "Development of custom front-end libraries for life insurance workflows, with responsibilities as Front-End Team Leader and technical coordinator.",
+      "AXAmobility": "Development of a web portal for AXA operators, handling multiple insurance processes, release management, and definition of architectural guidelines.",
+      "GroupPolicyLibrary": "Implementation of a custom library for group policy insurance workflows, including the definition of technical guidelines to ensure maintainability and scalability.",
+      "AfterLife": "Development of reusable components for life insurance flows, with a focus on defining front-end architecture and best development practices."
+    },
     "Enterprise Portal": "Development of Fastweb’s Enterprise Portal.",
-    "IoT Workplace Booking": "Web platform for booking meeting rooms and workstations with customizable features (AC, lights, projector, etc.). IoT device data enables full environmental monitoring.",
-    "dart": "Web portal for managing FCA’s vehicle fleet, integrated with a MATLAB client.",
-    "Newspaper CMS": "Development of a CMS for digital newspaper management and publishing.",
-    "Hybrid Mobile App": "Hybrid mobile app built with React Native and native modules in Objective-C (iOS) and Java (Android).",
-    "areaClienti": "Development of Italiaonline’s main customer portal.",
-    "restServices": "Design and implementation of REST services for read/write operations on Oracle DB.",
     "Insurance Web Portal": "Web portal for managing insurance services.",
     "Mobility Portal": "Development of AXA’s internal mobility portal.",
     "UI Library": "Creation of a custom, reusable front-end component library.",
     "Enterprise Application": "Enterprise-grade application for complex business environments.",
     "Architect": "Front-End Architect"
   },
-  "about_title": "Introducing myself",
-  "about_intro": "I am a software engineer with strong experience in both front-end and back-end development, specializing in SPA architectures, microservices, and scalable UIs.",
-  "about_experience": "I have worked for companies like RGI Group, Italiaonline, Fastweb, AXA, and others, covering roles from full stack developer to front-end architect. I build web portals, UI libraries, REST APIs, and mobile apps. I also teach programming courses on Udemy (C, JavaScript, PHP, Angular, React...).",
+  "about_title": "About Me",
+  "about_intro": "I'm a software engineer with a solid background in both IT infrastructure and software development. Currently, I work as a Front-End Technical Architect, designing scalable and high-performance solutions in enterprise environments, with a focus on microservices architecture, modular UIs, and SPA applications.",
+  "about_experience": "I’ve worked with companies such as RGI Group, Italiaonline, Fastweb, AXA, HPE and others, covering roles from full stack developer to front-end architect. I develop web portals, REST APIs, reusable components, UI libraries, and mobile apps. I have end-to-end experience across the stack: from front-end (React, Angular, TypeScript) to back-end (Java EE, PHP, NodeJS), including containerization with Docker and orchestration with Kubernetes. I follow Agile methodologies, apply clean code principles, and actively contribute to code reviews, documentation, and technical standards. I also provide online training on Udemy and private lessons, covering topics like programming (C, Java, PHP, JavaScript, Angular, React), job interview preparation, and optimization of LinkedIn profiles and technical CVs.",
   "contact_title": "Contact Me",
   "contact_name_placeholder": "Your name",
   "contact_email_placeholder": "Your email",

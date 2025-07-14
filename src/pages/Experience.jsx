@@ -174,27 +174,28 @@ export default function Experience() {
                             >
                                 <CardContent>
                                     <h3 className="text-xl font-semibold mb-1">{exp.role}</h3>
-                                    <p className="text-gray-700 dark:text-gray-400 font-medium">{exp.company}</p>
-                                    <p className="text-sm mb-2 text-gray-600 dark:text-gray-500">{exp.period}</p>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <p className="text-gray-700 dark:text-gray-400 font-medium">{exp.company}</p>
+                                        {(() => {
+                                            const status = getExperienceLabel(exp.period, selectedYear, t);
+                                            if (!status) return null;
 
-                                    {(() => {
-                                        const status = getExperienceLabel(exp.period, selectedYear, t);
-                                        if (!status) return null;
+                                            const colorMap = {
+                                                start: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300",
+                                                end: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300",
+                                                single: "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300",
+                                            };
 
-                                        const colorMap = {
-                                            start: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300",
-                                            end: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300",
-                                            single: "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300",
-                                        };
-
-                                        return (
-                                            <span
-                                                className={`inline-block mt-1 px-2 py-0.5 text-xs font-semibold rounded-full ${colorMap[status.type]}`}
-                                            >
+                                            return (
+                                                <span
+                                                    className={`inline-block mt-1 px-2 py-0.5 text-xs font-semibold rounded-full ${colorMap[status.type]}`}
+                                                >
                                                 {status.label}
                                             </span>
-                                        );
-                                    })()}
+                                            );
+                                        })()}
+                                    </div>
+                                    <p className="text-sm mb-2 text-gray-600 dark:text-gray-500">{exp.period}</p>
 
                                     {exp.description && (
                                         <ExpandableText
