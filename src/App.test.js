@@ -44,7 +44,7 @@ describe("App.js", () => {
     // Page route tests
     test('renders Home page by default', () => {
         renderWithRouter(['/']);
-        expect(screen.getByRole('heading', {name: /Introducing myself/i, level: 2})).toBeInTheDocument();
+        expect(screen.getByRole('heading', {name: /About Me/i, level: 2})).toBeInTheDocument();
     });
 
     test('renders Experience page', () => {
