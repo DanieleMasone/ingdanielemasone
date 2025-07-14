@@ -31,7 +31,7 @@ export default function Projects() {
 
     const projects = [
         {
-            name: "Passportal client",
+            name: "FE Architecture Development",
             tech: "MySQL · REST APIs · SQL · JSON · JBoss Application Server · HTML · Docker · Node.js · HTML5 · JEE · AngularJS · Git · Java · Maven · OOP · JavaScript · CSS · XML",
             type: "rgi.FEArchitecture",
             company: "RGI",
