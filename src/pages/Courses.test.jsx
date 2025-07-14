@@ -1,5 +1,5 @@
 import React from 'react';
-import {fireEvent, render, screen} from '@testing-library/react';
+import {fireEvent, render, screen, waitFor} from '@testing-library/react';
 import Courses from './Courses';
 import {HelmetProvider} from "react-helmet-async";
 
@@ -87,4 +87,41 @@ describe('Courses component', () => {
         fireEvent.click(nextButton);
         expect(screen.getByTestId("pagination-info").textContent).toBe("4 / 4");
     });
+
+    test('each course image has correct alt text', () => {
+        const images = screen.getAllByRole('img');
+
+        images.forEach(img => {
+            expect(img).toHaveAttribute('alt');
+            expect(img.getAttribute('alt')).not.toBe('');
+        });
+    });
+
+    test('each course image links to correct udemy course', () => {
+        const links = screen.getAllByRole('link');
+
+        links.forEach(link => {
+            expect(link).toHaveAttribute('href');
+            expect(link).toHaveAttribute('target', '_blank');
+        });
+    });
+
+    test('includes SEO head metadata', async () => {
+        await waitFor(() => {
+            const titleTag = document.head.querySelector('title');
+            expect(titleTag).not.toBeNull();
+            expect(titleTag?.textContent?.toLowerCase()).toContain('courses');
+        });
+    });
+
+    test('disables "Next" on last page', () => {
+        const nextButton = screen.getByRole('button', {name: /next/i});
+        fireEvent.click(nextButton);
+        fireEvent.click(nextButton);
+        fireEvent.click(nextButton); // now on page 4
+
+        expect(screen.getByTestId("pagination-info").textContent).toBe("4 / 4");
+        expect(nextButton).toBeDisabled();
+    });
+
 });

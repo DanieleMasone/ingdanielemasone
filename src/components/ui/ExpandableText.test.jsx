@@ -107,4 +107,25 @@ describe("ExpandableText", () => {
         const reExpandButton = await screen.findByRole("button", {name: /show more/i});
         expect(reExpandButton).toBeInTheDocument();
     });
+
+    test("shows fade overlay when collapsed", async () => {
+        renderWithI18n(<ExpandableText value={longText} maxLines={2}/>);
+
+        await waitFor(() => {
+            const overlay = screen.getByText(/Riga 1/).parentElement?.querySelector("div.absolute");
+            expect(overlay).toBeInTheDocument();
+        });
+    });
+
+    test("hides fade overlay when expanded", async () => {
+        renderWithI18n(<ExpandableText value={longText} maxLines={2}/>);
+        const button = await screen.findByRole("button", {name: /show more/i});
+        fireEvent.click(button);
+
+        await waitFor(() => {
+            const overlay = screen.getByText(/Riga 1/).parentElement?.querySelector("div.absolute");
+            expect(overlay).not.toBeInTheDocument();
+        });
+    });
+
 });

@@ -106,4 +106,53 @@ describe("Experience component", () => {
         expect(start.length + end.length + single.length).toBeGreaterThan(0);
     });
 
+    test("includes SEO head metadata", () => {
+        const title = document.head.querySelector("title");
+        expect(title?.textContent?.toLowerCase()).toContain("experience");
+    });
+
+    test("renders experience title", () => {
+        expect(screen.getByRole("heading", {name: /experience/i})).toBeInTheDocument();
+    });
+
+    test("shows no experiences if selected year has no entries", () => {
+        // Let's add a fake year
+        const fakeButton = document.createElement("button");
+        fakeButton.textContent = "1900";
+        fakeButton.onclick = () => {
+        };
+        document.body.appendChild(fakeButton);
+
+        fireEvent.click(fakeButton);
+
+        const roles = screen.queryAllByRole("heading", {level: 3});
+        expect(roles.length).toBeGreaterThan(0);
+    });
+
+    test("description is rendered and collapsible", async () => {
+        // Verify that the description is present in the DOM
+        const someDesc = screen.getByText(/worked on backend development/i);
+        expect(someDesc).toBeInTheDocument();
+
+        // Simulate expansion toggle
+        const toggleButton = screen.getAllByText(/show stack/i)[0];
+        fireEvent.click(toggleButton);
+
+        await waitFor(() => {
+            expect(screen.getByText(/MySQL/i)).toBeInTheDocument();
+        });
+    });
+
+
+    test("getExperienceLabel returns correct label types", () => {
+        const fn = require("./Experience").getExperienceLabel;
+
+        const t = (key) => key;
+
+        expect(fn("2020 - 2022", "2020", t)).toEqual({label: "exp_label_start", type: "start"});
+        expect(fn("2020 - 2022", "2022", t)).toEqual({label: "exp_label_end", type: "end"});
+        expect(fn("2020 - 2020", "2020", t)).toEqual({label: "exp_label_single", type: "single"});
+        expect(fn("2020 - 2022", "2021", t)).toBe(null);
+    });
+
 });

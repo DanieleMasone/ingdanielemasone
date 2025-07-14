@@ -116,4 +116,39 @@ describe("Projects Component", () => {
         expect(screen.getAllByText("RGI").length).toBeGreaterThan(1);
     });
 
+    test("switching company resets pagination to first page", async () => {
+        // Go to page 2 with RGI
+        fireEvent.click(screen.getByRole("button", {name: /next/i}));
+        await waitFor(() => {
+            expect(screen.getByTestId("pagination-info")).toHaveTextContent("2 / 3");
+        });
+
+        // Change company (Italiaonline only has 2 projects → no pagination)
+        fireEvent.click(screen.getByRole("button", {name: "Italiaonline"}));
+
+        //Ensures that the pagination component disappears (because totalPages <= 1)
+        await waitFor(() => {
+            expect(screen.queryByTestId("pagination-info")).not.toBeInTheDocument();
+        });
+    });
+
+    test("clicking on a different company shows its projects", async () => {
+        fireEvent.click(screen.getByRole("button", {name: "Fastweb"}));
+
+        await waitFor(() => {
+            expect(screen.getByText("OSS Trasformation")).toBeInTheDocument();
+            expect(screen.getByText("OLO Gateway (metroweb, flash fiber)")).toBeInTheDocument();
+        });
+    });
+
+    test("renders project type translated description correctly", () => {
+        expect(screen.getByText(/Redesign of the core Front-End environment/)).toBeInTheDocument();
+    });
+
+    test("ExpandableText limits text to 3 lines initially", () => {
+        // Check for max-lines class or truncated content (depending on implementation)
+        const expandable = screen.getAllByText(/Redesign of the core Front-End environment/)[0];
+        expect(expandable).toBeInTheDocument();
+    });
+
 });

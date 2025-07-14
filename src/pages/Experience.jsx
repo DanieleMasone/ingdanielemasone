@@ -11,6 +11,44 @@ import SeoHead from "../components/ui/SeoHead";
 import {SelectableButton} from "../components/ui/SelectableButton";
 
 /**
+ * Determines the experience label and type based on the selected year within a period string.
+ *
+ * Parses the given period string to extract start and end years, then compares with the selected year.
+ * Returns an object with a localized label and a type indicating whether the year is at the start, end,
+ * or the only year of the experience period.
+ *
+ * @param {string} period - The period string containing one or two years (e.g. "2019-2021" or "2020").
+ * @param {string|number} year - The selected year to compare against the period.
+ * @param {function} t - Translation function (e.g. from i18next) to get localized labels.
+ * @returns {{label: string, type: "single" | "start" | "end"} | null}
+ *          An object with the label and type if the selected year matches start/end/single year,
+ *          or null if no match or invalid period.
+ */
+export const getExperienceLabel = (period, year, t) => {
+    const years = period.match(/\b(20\d{2}|19\d{2})\b/g);
+    const selected = parseInt(year, 10);
+
+    if (!years) return null;
+
+    const start = parseInt(years[0], 10);
+    const end = years[1] ? parseInt(years[1], 10) : null;
+
+    if (start === selected && end === selected) {
+        return {label: t("exp_label_single"), type: "single"};
+    }
+
+    if (start === selected) {
+        return {label: t("exp_label_start"), type: "start"};
+    }
+
+    if (end === selected) {
+        return {label: t("exp_label_end"), type: "end"};
+    }
+
+    return null;
+};
+
+/**
  * Experience component renders a list of professional experiences filtered by selected year.
  *
  * It displays year buttons to filter experiences by year extracted from experience periods.
@@ -113,30 +151,6 @@ export default function Experience() {
     const filteredExperiences = selectedYear
         ? experiences.filter(exp => exp.period.includes(selectedYear))
         : [];
-
-    const getExperienceLabel = (period, year, t) => {
-        const years = period.match(/\b(20\d{2}|19\d{2})\b/g);
-        const selected = parseInt(year, 10);
-
-        if (!years) return null;
-
-        const start = parseInt(years[0], 10);
-        const end = years[1] ? parseInt(years[1], 10) : null;
-
-        if (start === selected && end === selected) {
-            return {label: t("exp_label_single"), type: "single"};
-        }
-
-        if (start === selected) {
-            return {label: t("exp_label_start"), type: "start"};
-        }
-
-        if (end === selected) {
-            return {label: t("exp_label_end"), type: "end"};
-        }
-
-        return null;
-    };
 
     return (
         <>

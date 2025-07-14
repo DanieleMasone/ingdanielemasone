@@ -237,7 +237,7 @@ export default function Projects() {
                                             <span data-testid="pagination-info"
                                                   className="px-4 py-2 text-sm text-gray-600 dark:text-gray-300">
                                                     {page} / {totalPages}
-                                                </span>
+                                            </span>
 
                                             <button
                                                 onClick={() => setPage(p => Math.min(p + 1, totalPages))}

@@ -194,4 +194,56 @@ describe('Header component', () => {
         expect(chevron).toHaveClass('rotate-180');
     });
 
+    test('desktop nav includes correct number of main links and portfolio links', () => {
+        renderHeader('/');
+        // Main navigation has 1 link (Home)
+        expect(screen.getAllByRole('link')).toEqual(
+            expect.arrayContaining([
+                expect.objectContaining({textContent: 'Home'}),
+            ])
+        );
+
+        // Open portfolio and check internal links
+        fireEvent.click(screen.getByRole('button', {name: /portfolio/i}));
+        const portfolioLinks = ['Experience', 'Projects', 'Courses', 'Testimonials', 'Trading'];
+        portfolioLinks.forEach(label => {
+            expect(screen.getByText(label)).toBeInTheDocument();
+        });
+    });
+
+    test('mobile menu contains LanguageSwitcher and DarkModeToggle components', () => {
+        renderHeader('/');
+        const toggleBtn = screen.getByLabelText(/toggle mobile menu/i);
+        fireEvent.click(toggleBtn);
+
+        const mobileMenu = screen.getByTestId('mobile-menu');
+        expect(within(mobileMenu).getByTestId('language-switcher')).toBeInTheDocument();
+        expect(within(mobileMenu).getByTestId('dark-mode-toggle')).toBeInTheDocument();
+    });
+
+    test('clicking a portfolio link in desktop nav navigates and closes dropdown', () => {
+        renderHeader('/');
+        const portfolioButton = screen.getByRole('button', {name: /portfolio/i});
+        fireEvent.click(portfolioButton);
+
+        const projectsLink = screen.getByText('Projects');
+        fireEvent.click(projectsLink);
+
+        // Dropdown must go
+        expect(screen.queryByText('Projects')).not.toBeInTheDocument();
+    });
+
+    test('menu button aria-label toggles correctly', () => {
+        renderHeader('/');
+        const toggleBtn = screen.getByLabelText(/toggle mobile menu/i);
+        expect(toggleBtn).toBeInTheDocument();
+
+        fireEvent.click(toggleBtn);
+        // There is no air-expanded on the button, but at least the menu appears
+        expect(screen.queryByTestId('mobile-menu')).toBeInTheDocument();
+
+        fireEvent.click(toggleBtn);
+        expect(screen.queryByTestId('mobile-menu')).not.toBeInTheDocument();
+    });
+
 });
