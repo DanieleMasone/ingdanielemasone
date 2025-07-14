@@ -29,7 +29,7 @@
 <nav >
     
     
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-components_ui_Card.html">components/ui/Card</a></li><li><a href="module-components_ui_CardContent.html">components/ui/CardContent</a></li><li><a href="module-components_ui_DarkModeToggle.html">components/ui/DarkModeToggle</a></li><li><a href="module-components_ui_Footer.html">components/ui/Footer</a></li><li><a href="module-components_ui_Header.html">components/ui/Header</a></li><li><a href="module-components_ui_LanguageSwitcher.html">components/ui/LanguageSwitcher</a></li><li><a href="module-components_ui_NotFound.html">components/ui/NotFound</a></li><li><a href="module-components_ui_PageSection.html">components/ui/PageSection</a></li><li><a href="module-components_ui_SelectableButton.html">components/ui/SelectableButton</a></li><li><a href="module-components_ui_SeoHead.html">components/ui/SeoHead</a></li><li><a href="module-components_ui_TradingPerformanceChart.html">components/ui/TradingPerformanceChart</a></li><li><a href="module-pages_CookieBanner.html">pages/CookieBanner</a></li><li><a href="module-pages_CookiePolicy.html">pages/CookiePolicy</a></li><li><a href="module-pages_Courses.html">pages/Courses</a></li><li><a href="module-pages_Experience.html">pages/Experience</a></li><li><a href="module-pages_Home.html">pages/Home</a></li><li><a href="module-pages_Privacy.html">pages/Privacy</a></li><li><a href="module-pages_Projects.html">pages/Projects</a></li><li><a href="module-pages_Testimonials.html">pages/Testimonials</a></li><li><a href="module-pages_Trading.html">pages/Trading</a></li></ul><h3>Global</h3><ul><li><a href="global.html#BrandIcon">BrandIcon</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-components_ui_Card.html">components/ui/Card</a></li><li><a href="module-components_ui_CardContent.html">components/ui/CardContent</a></li><li><a href="module-components_ui_DarkModeToggle.html">components/ui/DarkModeToggle</a></li><li><a href="module-components_ui_Footer.html">components/ui/Footer</a></li><li><a href="module-components_ui_Header.html">components/ui/Header</a></li><li><a href="module-components_ui_LanguageSwitcher.html">components/ui/LanguageSwitcher</a></li><li><a href="module-components_ui_NotFound.html">components/ui/NotFound</a></li><li><a href="module-components_ui_PageSection.html">components/ui/PageSection</a></li><li><a href="module-components_ui_SelectableButton.html">components/ui/SelectableButton</a></li><li><a href="module-components_ui_SeoHead.html">components/ui/SeoHead</a></li><li><a href="module-components_ui_TradingPerformanceChart.html">components/ui/TradingPerformanceChart</a></li><li><a href="module-pages_CookieBanner.html">pages/CookieBanner</a></li><li><a href="module-pages_CookiePolicy.html">pages/CookiePolicy</a></li><li><a href="module-pages_Courses.html">pages/Courses</a></li><li><a href="module-pages_Experience.html">pages/Experience</a></li><li><a href="module-pages_Home.html">pages/Home</a></li><li><a href="module-pages_Privacy.html">pages/Privacy</a></li><li><a href="module-pages_Projects.html">pages/Projects</a></li><li><a href="module-pages_Testimonials.html">pages/Testimonials</a></li><li><a href="module-pages_Trading.html">pages/Trading</a></li></ul><h3>Global</h3><ul><li><a href="global.html#BrandIcon">BrandIcon</a></li><li><a href="global.html#getExperienceLabel">getExperienceLabel</a></li></ul>
     
 </nav>
 
@@ -56,6 +56,44 @@ import PageSection from "../components/ui/PageSection";
 import {ExpandableText} from "../components/ui/ExpandableText";
 import SeoHead from "../components/ui/SeoHead";
 import {SelectableButton} from "../components/ui/SelectableButton";
+
+/**
+ * Determines the experience label and type based on the selected year within a period string.
+ *
+ * Parses the given period string to extract start and end years, then compares with the selected year.
+ * Returns an object with a localized label and a type indicating whether the year is at the start, end,
+ * or the only year of the experience period.
+ *
+ * @param {string} period - The period string containing one or two years (e.g. "2019-2021" or "2020").
+ * @param {string|number} year - The selected year to compare against the period.
+ * @param {function} t - Translation function (e.g. from i18next) to get localized labels.
+ * @returns {{label: string, type: "single" | "start" | "end"} | null}
+ *          An object with the label and type if the selected year matches start/end/single year,
+ *          or null if no match or invalid period.
+ */
+export const getExperienceLabel = (period, year, t) => {
+    const years = period.match(/\b(20\d{2}|19\d{2})\b/g);
+    const selected = parseInt(year, 10);
+
+    if (!years) return null;
+
+    const start = parseInt(years[0], 10);
+    const end = years[1] ? parseInt(years[1], 10) : null;
+
+    if (start === selected &amp;&amp; end === selected) {
+        return {label: t("exp_label_single"), type: "single"};
+    }
+
+    if (start === selected) {
+        return {label: t("exp_label_start"), type: "start"};
+    }
+
+    if (end === selected) {
+        return {label: t("exp_label_end"), type: "end"};
+    }
+
+    return null;
+};
 
 /**
  * Experience component renders a list of professional experiences filtered by selected year.
@@ -160,30 +198,6 @@ export default function Experience() {
     const filteredExperiences = selectedYear
         ? experiences.filter(exp => exp.period.includes(selectedYear))
         : [];
-
-    const getExperienceLabel = (period, year, t) => {
-        const years = period.match(/\b(20\d{2}|19\d{2})\b/g);
-        const selected = parseInt(year, 10);
-
-        if (!years) return null;
-
-        const start = parseInt(years[0], 10);
-        const end = years[1] ? parseInt(years[1], 10) : null;
-
-        if (start === selected &amp;&amp; end === selected) {
-            return {label: t("exp_label_single"), type: "single"};
-        }
-
-        if (start === selected) {
-            return {label: t("exp_label_start"), type: "start"};
-        }
-
-        if (end === selected) {
-            return {label: t("exp_label_end"), type: "end"};
-        }
-
-        return null;
-    };
 
     return (
         &lt;>
@@ -294,7 +308,7 @@ export default function Experience() {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Mon Jul 14 2025 11:45:30 GMT+0200 (Ora legale dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Mon Jul 14 2025 16:34:33 GMT+0200 (Ora legale dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
