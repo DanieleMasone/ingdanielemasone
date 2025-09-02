@@ -41,7 +41,7 @@ export default function Trading() {
                             href="https://www.etoro.com/people/danielemasone"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex-1 min-w-[140px] inline-block bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-white font-semibold rounded-lg px-6 py-3 text-center text-base transition-colors focus:outline-none focus:ring-2 focus:ring-green-400 dark:focus:ring-green-300 shadow-md"
+                            className="flex-1 min-w-[140px] flex items-center justify-center text-center bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-white font-semibold rounded-lg px-6 py-3 text-base transition-colors focus:outline-none focus:ring-2 focus:ring-green-400 dark:focus:ring-green-300 shadow-md"
                         >
                             {t("trading_cta")}
                         </a>
@@ -50,7 +50,7 @@ export default function Trading() {
                             href="https://etoro.tw/44k4LJg"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex-1 min-w-[140px] inline-block bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-semibold rounded-lg px-6 py-3 text-center text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-300 shadow-md"
+                            className="flex-1 min-w-[140px] flex items-center justify-center text-center bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-semibold rounded-lg px-6 py-3 text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-300 shadow-md"
                         >
                             {t("trading_signup")}
                         </a>
