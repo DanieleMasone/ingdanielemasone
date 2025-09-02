@@ -12,7 +12,8 @@ jest.mock("react-i18next", () => ({
                 trading_intro: "Welcome to my trading performance overview.",
                 trading_description: "Here you can find detailed metrics about my trading results.",
                 disclaimer_text: "Trading involves risk. Past performance is not indicative of future results.",
-                trading_cta: "Visit my eToro profile",
+                trading_cta: "My eToro profile",
+                trading_signup: "Sign up on eToro"
             };
             return translations[key] || key;
         },
@@ -52,11 +53,19 @@ describe("Trading component", () => {
     });
 
     test("renders a call-to-action link with correct href and text", () => {
-        const link = screen.getByRole("link", {name: /Visit my eToro profile/i});
+        const link = screen.getByRole("link", {name: /My eToro profile/i});
         expect(link).toBeInTheDocument();
         expect(link).toHaveAttribute("href", "https://www.etoro.com/people/danielemasone");
         expect(link).toHaveAttribute("target", "_blank");
         expect(link).toHaveAttribute("rel", "noopener noreferrer");
+    });
+
+    test("renders a signup link with correct href and text", () => {
+        const signupLink = screen.getByRole("link", {name: /Sign up on eToro/i});
+        expect(signupLink).toBeInTheDocument();
+        expect(signupLink).toHaveAttribute("href", "https://etoro.tw/44k4LJg");
+        expect(signupLink).toHaveAttribute("target", "_blank");
+        expect(signupLink).toHaveAttribute("rel", "noopener noreferrer");
     });
 
     test("renders the TradingPerformanceChart component", () => {
