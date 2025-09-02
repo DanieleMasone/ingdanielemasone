@@ -35,14 +35,26 @@ export default function Trading() {
                         {t("disclaimer_text")}
                     </p>
 
-                    <a
-                        href="https://www.etoro.com/people/danielemasone"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-6 inline-block bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg px-6 py-3 text-center text-base transition-colors"
-                    >
-                        {t("trading_cta")}
-                    </a>
+                    {/* Buttons */}
+                    <div className="mt-6 flex flex-row gap-4">
+                        <a
+                            href="https://www.etoro.com/people/danielemasone"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-block bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-white font-semibold rounded-lg px-6 py-3 text-center text-base transition-colors focus:outline-none focus:ring-2 focus:ring-green-400 dark:focus:ring-green-300 shadow-md"
+                        >
+                            {t("trading_cta")}
+                        </a>
+
+                        <a
+                            href="https://etoro.tw/44k4LJg"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-block bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-semibold rounded-lg px-6 py-3 text-center text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-300 shadow-md"
+                        >
+                            {t("trading_signup")}
+                        </a>
+                    </div>
                 </div>
 
                 {/* Graph below that takes up all the remaining space */}
