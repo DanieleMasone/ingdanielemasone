@@ -226,7 +226,7 @@ export default function TradingPerformanceChart() {
                                     />
                                 </button>
 
-                                {/* Contenuto Accordion */}
+                                {/* Contents Accordion */}
                                 <div
                                     className={`transition-all duration-300 ease-in-out overflow-hidden ${
                                         isOpen ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
@@ -234,7 +234,7 @@ export default function TradingPerformanceChart() {
                                 >
 
                                     <div className="p-4">
-                                        {/* Desktop: griglia 12 card su una riga, nessuno scroll */}
+                                        {/* Desktop: 12-card grid on one row, no scrolling */}
                                         <div className="hidden sm:grid grid-cols-12 gap-3">
                                             {data.map((val, i) => {
                                                 const isNeutral = val == null || val === "-";
@@ -244,7 +244,7 @@ export default function TradingPerformanceChart() {
                                                     <div
                                                         key={i}
                                                         className={`rounded-xl shadow-md p-2 transition transform hover:scale-105 hover:shadow-lg
-                    ${isNeutral
+                                                        ${isNeutral
                                                             ? "bg-gray-100 dark:bg-gray-800"
                                                             : isPositive
                                                                 ? "bg-green-50 dark:bg-green-900/20"
@@ -281,7 +281,7 @@ export default function TradingPerformanceChart() {
                                             })}
                                         </div>
 
-                                        {/* Mobile: scroll orizzontale */}
+                                        {/* Mobile: horizontal scroll */}
                                         <div className="sm:hidden overflow-x-auto overflow-y-hidden">
                                             <div className="flex flex-nowrap gap-3 px-2">
                                                 {data.map((val, i) => {
@@ -330,7 +330,6 @@ export default function TradingPerformanceChart() {
                                             </div>
                                         </div>
                                     </div>
-
 
                                 </div>
                             </div>
