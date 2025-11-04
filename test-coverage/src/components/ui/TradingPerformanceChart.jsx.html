@@ -30,9 +30,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.46% </span>
+                <span class="strong">88.23% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>92/104</span>
+                <span class='fraction'>90/102</span>
             </div>
         
             
@@ -495,8 +495,8 @@
 <a name='L430'></a><a href='#L430'>430</a>
 <a name='L431'></a><a href='#L431'>431</a>
 <a name='L432'></a><a href='#L432'>432</a>
-<a name='L433'></a><a href='#L433'>433</a>
-<a name='L434'></a><a href='#L434'>434</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L433'></a><a href='#L433'>433</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -719,16 +719,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">40x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -944,6 +942,7 @@ import {
     PointElement,
     Tooltip,
 } from 'chart.js';
+import {SelectableButton} from "./SelectableButton";
 &nbsp;
 ChartJS.register(
     CategoryScale,
@@ -1149,25 +1148,23 @@ export default function TradingPerformanceChart() {
         if (isMonthly) {
             return (
                 &lt;div className="space-y-4"&gt;
-                    {/* Tabs per anno */}
-                    &lt;div className="flex gap-2 overflow-x-auto pb-2 scrollbar-none"&gt;
-                        {Object.keys(years).map((year) =&gt; (
-                            &lt;button
-                                key={year}
-                                onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setSelectedYear(year)}</span>
-                                className={`px-4 py-2 rounded-lg font-semibold whitespace-nowrap transition-colors
-                                ${
-                                    selectedYear === year
-                                        ? "bg-blue-600 text-white"
-                                        : "bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600"
-                                }`}
-                            &gt;
-                                {year}
-                            &lt;/button&gt;
-                        ))}
+                    {/* Tabs by year */}
+                    &lt;div className="mb-4"&gt;
+                        &lt;div
+                            className="flex flex-row sm:flex-wrap sm:justify-center gap-2 sm:gap-3 overflow-x-auto sm:overflow-visible px-1 sm:px-0 scrollbar-hide"
+                        &gt;
+                            {Object.keys(years).map((year) =&gt; (
+                                &lt;SelectableButton
+                                    key={year}
+                                    label={year}
+                                    isSelected={selectedYear === year}
+                                    onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setSelectedYear(year)}</span>
+                                /&gt;
+                            ))}
+                        &lt;/div&gt;
                     &lt;/div&gt;
 &nbsp;
-                    {/* Cards per l’anno selezionato */}
+                    {/* Cards for the selected year */}
                     &lt;div className="p-4"&gt;
                         {/* Desktop: 12-card grid su una riga */}
                         &lt;div className="hidden sm:grid grid-cols-12 gap-3"&gt;
@@ -1223,10 +1220,10 @@ export default function TradingPerformanceChart() {
                                 })}
                         &lt;/div&gt;
 &nbsp;
-                        {/* Mobile: scroll orizzontale */}
+                        {/* Mobile: horizontal scroll */}
                         &lt;div
                             className="sm:hidden overflow-x-auto overflow-y-hidden scrollbar-thin scrollbar-thumb-gray-400 dark:scrollbar-thumb-gray-600 scrollbar-track-gray-200 dark:scrollbar-track-gray-800"&gt;
-                            &lt;div className="flex flex-nowrap gap-3 px-2"&gt;
+                            &lt;div className="flex flex-nowrap gap-4 p-2"&gt;
                                 {monthlyReturns
                                     .slice(years[selectedYear], years[selectedYear] + 12)
                                     .map((val, i) =&gt; {
@@ -1284,7 +1281,7 @@ export default function TradingPerformanceChart() {
             );
         }
 &nbsp;
-        // --- VISTA ANNUALE ---
+        // --- ANNUAL VIEW ---
         return (
             &lt;div className="overflow-x-auto sm:overflow-x-visible"&gt;
                 &lt;div className="flex sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-2"&gt;
@@ -1369,7 +1366,7 @@ export default function TradingPerformanceChart() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-11-04T09:56:50.976Z
+                at 2025-11-04T10:17:57.840Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
