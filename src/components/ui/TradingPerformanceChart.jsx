@@ -13,7 +13,6 @@ import {
     PointElement,
     Tooltip,
 } from 'chart.js';
-import {ChevronDown} from "lucide-react";
 
 ChartJS.register(
     CategoryScale,
@@ -84,7 +83,7 @@ export default function TradingPerformanceChart() {
         const valid = months.filter((r) => r != null);
         let capital = 1;
         valid.forEach((r) => (capital *= 1 + r / 100));
-        return +( (capital - 1) * 100 ).toFixed(2);
+        return +((capital - 1) * 100).toFixed(2);
     }
 
     const getCumulativeSum = (returns) => {
@@ -210,148 +209,151 @@ export default function TradingPerformanceChart() {
             },
         },
     };
-    const [openYear, setOpenYear] = useState(null);
+
+    const [selectedYear, setSelectedYear] = useState("2025");
 
     function renderSummary() {
+        const years = {2022: 0, 2023: 12, 2024: 24, 2025: 36};
+
         if (isMonthly) {
-            const years = {2022: 0, 2023: 12, 2024: 24, 2025: 36};
             return (
                 <div className="space-y-4">
-                    {Object.entries(years).map(([year, idx]) => {
-                        const data = monthlyReturns.slice(idx, idx + 12);
-                        const isOpen = openYear === year;
-
-                        return (
-                            <div
+                    {/* Tabs per anno */}
+                    <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-none">
+                        {Object.keys(years).map((year) => (
+                            <button
                                 key={year}
-                                className="border rounded-xl shadow-sm overflow-hidden transition-colors bg-white dark:bg-gray-900"
+                                onClick={() => setSelectedYear(year)}
+                                className={`px-4 py-2 rounded-lg font-semibold whitespace-nowrap transition-colors
+                                ${
+                                    selectedYear === year
+                                        ? "bg-blue-600 text-white"
+                                        : "bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600"
+                                }`}
                             >
-                                {/* Header Accordion */}
-                                <button
-                                    onClick={() => setOpenYear(isOpen ? null : year)}
-                                    className="w-full flex justify-between items-center px-4 py-3 text-left font-semibold text-gray-900 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-                                >
-                                    <span className="text-lg">{year}</span>
-                                    <ChevronDown
-                                        className={`w-5 h-5 transform transition-transform duration-300 ${
-                                            isOpen ? "rotate-180" : ""
-                                        }`}
-                                    />
-                                </button>
+                                {year}
+                            </button>
+                        ))}
+                    </div>
 
-                                {/* Contents Accordion */}
-                                <div
-                                    className={`transition-all duration-300 ease-in-out overflow-hidden ${
-                                        isOpen ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
-                                    }`}
-                                >
+                    {/* Cards per l’anno selezionato */}
+                    <div className="p-4">
+                        {/* Desktop: 12-card grid su una riga */}
+                        <div className="hidden sm:grid grid-cols-12 gap-3">
+                            {monthlyReturns
+                                .slice(years[selectedYear], years[selectedYear] + 12)
+                                .map((val, i) => {
+                                    const isNeutral = val == null || val === "-";
+                                    const isPositive = !isNeutral && val >= 0;
 
-                                    <div className="p-4">
-                                        {/* Desktop: 12-card grid on one row, no scrolling */}
-                                        <div className="hidden sm:grid grid-cols-12 gap-3">
-                                            {data.map((val, i) => {
-                                                const isNeutral = val == null || val === "-";
-                                                const isPositive = !isNeutral && val >= 0;
+                                    return (
+                                        <div
+                                            key={i}
+                                            className={`rounded-xl shadow-md p-2 transition transform hover:scale-105 hover:shadow-lg
+                                        ${
+                                                isNeutral
+                                                    ? "bg-gray-100 dark:bg-gray-800"
+                                                    : isPositive
+                                                        ? "bg-green-50 dark:bg-green-900/20"
+                                                        : "bg-red-50 dark:bg-red-900/20"
+                                            }`}
+                                        >
+                                            <h4 className="mb-1 text-sm font-bold text-gray-900 dark:text-gray-100 text-center">
+                                                {months[i]}
+                                            </h4>
+                                            <p
+                                                className={`text-xs font-semibold text-center ${
+                                                    isNeutral
+                                                        ? "text-gray-500 dark:text-gray-400"
+                                                        : isPositive
+                                                            ? "text-green-700 dark:text-green-400"
+                                                            : "text-red-600 dark:text-red-400"
+                                                }`}
+                                            >
+                                                {t("performance_return_label", "Rendimento")}
+                                            </p>
+                                            <p
+                                                className={`mt-1 text-sm font-bold text-center break-words ${
+                                                    isNeutral
+                                                        ? "text-gray-500 dark:text-gray-400"
+                                                        : isPositive
+                                                            ? "text-green-700 dark:text-green-400"
+                                                            : "text-red-600 dark:text-red-400"
+                                                }`}
+                                            >
+                                                {isNeutral
+                                                    ? "—"
+                                                    : (val > 0 ? "+" : "") +
+                                                    val.toFixed(2).replace(".", ",") +
+                                                    "%"}
+                                            </p>
+                                        </div>
+                                    );
+                                })}
+                        </div>
 
-                                                return (
-                                                    <div
-                                                        key={i}
-                                                        className={`rounded-xl shadow-md p-2 transition transform hover:scale-105 hover:shadow-lg
-                                                        ${isNeutral
-                                                            ? "bg-gray-100 dark:bg-gray-800"
+                        {/* Mobile: scroll orizzontale */}
+                        <div
+                            className="sm:hidden overflow-x-auto overflow-y-hidden scrollbar-thin scrollbar-thumb-gray-400 dark:scrollbar-thumb-gray-600 scrollbar-track-gray-200 dark:scrollbar-track-gray-800">
+                            <div className="flex flex-nowrap gap-3 px-2">
+                                {monthlyReturns
+                                    .slice(years[selectedYear], years[selectedYear] + 12)
+                                    .map((val, i) => {
+                                        const isNeutral = val == null || val === "-";
+                                        const isPositive = !isNeutral && val >= 0;
+
+                                        return (
+                                            <div
+                                                key={i}
+                                                className={`flex-shrink-0 w-36 rounded-xl shadow-md p-3 transition transform hover:scale-105 hover:shadow-lg
+                                            ${
+                                                    isNeutral
+                                                        ? "bg-gray-100 dark:bg-gray-800"
+                                                        : isPositive
+                                                            ? "bg-green-50 dark:bg-green-900/20"
+                                                            : "bg-red-50 dark:bg-red-900/20"
+                                                }`}
+                                            >
+                                                <h4 className="mb-1 text-sm font-bold text-gray-900 dark:text-gray-100 text-center">
+                                                    {months[i]}
+                                                </h4>
+                                                <p
+                                                    className={`text-xs font-semibold text-center ${
+                                                        isNeutral
+                                                            ? "text-gray-500 dark:text-gray-400"
                                                             : isPositive
-                                                                ? "bg-green-50 dark:bg-green-900/20"
-                                                                : "bg-red-50 dark:bg-red-900/20"
-                                                        }`}
-                                                    >
-                                                        <h4 className="mb-1 text-sm font-bold text-gray-900 dark:text-gray-100 text-center">
-                                                            {months[i]}
-                                                        </h4>
-                                                        <p
-                                                            className={`text-xs font-semibold text-center ${
-                                                                isNeutral
-                                                                    ? "text-gray-500 dark:text-gray-400"
-                                                                    : isPositive
-                                                                        ? "text-green-700 dark:text-green-400"
-                                                                        : "text-red-600 dark:text-red-400"
-                                                            }`}
-                                                        >
-                                                            {t('performance_return_label', 'Rendimento')}
-                                                        </p>
-                                                        <p
-                                                            className={`mt-1 text-sm font-bold text-center break-words ${
-                                                                isNeutral
-                                                                    ? "text-gray-500 dark:text-gray-400"
-                                                                    : isPositive
-                                                                        ? "text-green-700 dark:text-green-400"
-                                                                        : "text-red-600 dark:text-red-400"
-                                                            }`}
-                                                        >
-                                                            {isNeutral ? "—" : (val > 0 ? "+" : "") + val.toFixed(2).replace(".", ",") + "%"}
-                                                        </p>
-                                                    </div>
-                                                );
-                                            })}
-                                        </div>
-
-                                        {/* Mobile: horizontal scroll */}
-                                        <div className="sm:hidden overflow-x-auto overflow-y-hidden">
-                                            <div className="flex flex-nowrap gap-3 px-2">
-                                                {data.map((val, i) => {
-                                                    const isNeutral = val == null || val === "-";
-                                                    const isPositive = !isNeutral && val >= 0;
-
-                                                    return (
-                                                        <div
-                                                            key={i}
-                                                            className={`flex-shrink-0 w-36 rounded-xl shadow-md p-3 transition transform hover:scale-105 hover:shadow-lg
-                                                            ${isNeutral
-                                                                ? "bg-gray-100 dark:bg-gray-800"
-                                                                : isPositive
-                                                                    ? "bg-green-50 dark:bg-green-900/20"
-                                                                    : "bg-red-50 dark:bg-red-900/20"
-                                                            }`}
-                                                        >
-                                                            <h4 className="mb-1 text-sm font-bold text-gray-900 dark:text-gray-100 text-center">
-                                                                {months[i]}
-                                                            </h4>
-                                                            <p
-                                                                className={`text-xs font-semibold text-center ${
-                                                                    isNeutral
-                                                                        ? "text-gray-500 dark:text-gray-400"
-                                                                        : isPositive
-                                                                            ? "text-green-700 dark:text-green-400"
-                                                                            : "text-red-600 dark:text-red-400"
-                                                                }`}
-                                                            >
-                                                                {t('performance_return_label', 'Rendimento')}
-                                                            </p>
-                                                            <p
-                                                                className={`mt-1 text-sm font-bold text-center break-words ${
-                                                                    isNeutral
-                                                                        ? "text-gray-500 dark:text-gray-400"
-                                                                        : isPositive
-                                                                            ? "text-green-700 dark:text-green-400"
-                                                                            : "text-red-600 dark:text-red-400"
-                                                                }`}
-                                                            >
-                                                                {isNeutral ? "—" : (val > 0 ? "+" : "") + val.toFixed(2).replace(".", ",") + "%"}
-                                                            </p>
-                                                        </div>
-                                                    );
-                                                })}
+                                                                ? "text-green-700 dark:text-green-400"
+                                                                : "text-red-600 dark:text-red-400"
+                                                    }`}
+                                                >
+                                                    {t("performance_return_label", "Rendimento")}
+                                                </p>
+                                                <p
+                                                    className={`mt-1 text-sm font-bold text-center break-words ${
+                                                        isNeutral
+                                                            ? "text-gray-500 dark:text-gray-400"
+                                                            : isPositive
+                                                                ? "text-green-700 dark:text-green-400"
+                                                                : "text-red-600 dark:text-red-400"
+                                                    }`}
+                                                >
+                                                    {isNeutral
+                                                        ? "—"
+                                                        : (val > 0 ? "+" : "") +
+                                                        val.toFixed(2).replace(".", ",") +
+                                                        "%"}
+                                                </p>
                                             </div>
-                                        </div>
-                                    </div>
-
-                                </div>
+                                        );
+                                    })}
                             </div>
-                        );
-                    })}
+                        </div>
+                    </div>
                 </div>
             );
         }
 
+        // --- VISTA ANNUALE ---
         return (
             <div className="overflow-x-auto sm:overflow-x-visible">
                 <div className="flex sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-2">
@@ -362,9 +364,10 @@ export default function TradingPerformanceChart() {
                             <div
                                 key={year}
                                 className={`flex-shrink-0 w-36 sm:w-auto rounded-xl shadow-md p-4 transition transform hover:scale-105 hover:shadow-lg
-                            ${isPositive
-                                    ? "bg-green-50 dark:bg-green-900/20"
-                                    : "bg-red-50 dark:bg-red-900/20"
+                            ${
+                                    isPositive
+                                        ? "bg-green-50 dark:bg-green-900/20"
+                                        : "bg-red-50 dark:bg-red-900/20"
                                 }`}
                             >
                                 <h4 className="mb-2 text-lg font-bold text-gray-900 dark:text-gray-100 text-center">
@@ -377,7 +380,7 @@ export default function TradingPerformanceChart() {
                                             : "text-red-600 dark:text-red-400"
                                     }`}
                                 >
-                                    {t('performance_return_label')}
+                                    {t("performance_return_label")}
                                 </p>
                                 <p
                                     className={`mt-1 text-xl font-bold text-center ${
@@ -387,9 +390,10 @@ export default function TradingPerformanceChart() {
                                     }`}
                                 >
                                     {annualReturns[i] != null
-                                        ? (annualReturns[i] > 0 ? "+" : "") + annualReturns[i].toFixed(2).replace(".", ",") + "%"
-                                        : "—"
-                                    }
+                                        ? (annualReturns[i] > 0 ? "+" : "") +
+                                        annualReturns[i].toFixed(2).replace(".", ",") +
+                                        "%"
+                                        : "—"}
                                 </p>
                             </div>
                         );
