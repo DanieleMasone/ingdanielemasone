@@ -13,6 +13,7 @@ import {
     PointElement,
     Tooltip,
 } from 'chart.js';
+import {SelectableButton} from "./SelectableButton";
 
 ChartJS.register(
     CategoryScale,
@@ -218,25 +219,23 @@ export default function TradingPerformanceChart() {
         if (isMonthly) {
             return (
                 <div className="space-y-4">
-                    {/* Tabs per anno */}
-                    <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-none">
-                        {Object.keys(years).map((year) => (
-                            <button
-                                key={year}
-                                onClick={() => setSelectedYear(year)}
-                                className={`px-4 py-2 rounded-lg font-semibold whitespace-nowrap transition-colors
-                                ${
-                                    selectedYear === year
-                                        ? "bg-blue-600 text-white"
-                                        : "bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600"
-                                }`}
-                            >
-                                {year}
-                            </button>
-                        ))}
+                    {/* Tabs by year */}
+                    <div className="mb-4">
+                        <div
+                            className="flex flex-row sm:flex-wrap sm:justify-center gap-2 sm:gap-3 overflow-x-auto sm:overflow-visible px-1 sm:px-0 scrollbar-hide"
+                        >
+                            {Object.keys(years).map((year) => (
+                                <SelectableButton
+                                    key={year}
+                                    label={year}
+                                    isSelected={selectedYear === year}
+                                    onClick={() => setSelectedYear(year)}
+                                />
+                            ))}
+                        </div>
                     </div>
 
-                    {/* Cards per l’anno selezionato */}
+                    {/* Cards for the selected year */}
                     <div className="p-4">
                         {/* Desktop: 12-card grid su una riga */}
                         <div className="hidden sm:grid grid-cols-12 gap-3">
@@ -292,10 +291,10 @@ export default function TradingPerformanceChart() {
                                 })}
                         </div>
 
-                        {/* Mobile: scroll orizzontale */}
+                        {/* Mobile: horizontal scroll */}
                         <div
                             className="sm:hidden overflow-x-auto overflow-y-hidden scrollbar-thin scrollbar-thumb-gray-400 dark:scrollbar-thumb-gray-600 scrollbar-track-gray-200 dark:scrollbar-track-gray-800">
-                            <div className="flex flex-nowrap gap-3 px-2">
+                            <div className="flex flex-nowrap gap-4 p-2">
                                 {monthlyReturns
                                     .slice(years[selectedYear], years[selectedYear] + 12)
                                     .map((val, i) => {
@@ -353,7 +352,7 @@ export default function TradingPerformanceChart() {
             );
         }
 
-        // --- VISTA ANNUALE ---
+        // --- ANNUAL VIEW ---
         return (
             <div className="overflow-x-auto sm:overflow-x-visible">
                 <div className="flex sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-2">
