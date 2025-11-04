@@ -66,7 +66,7 @@ export default function TradingPerformanceChart() {
         t('annual_labels.2024'),
         t('annual_labels.2025_partial')
     ];
-    const annualReturns = [-10.92, 18.51, 8.83, 8.69];
+
     const monthlyReturns = [
         -3.58, -1.38, 5.29, -6.27, 0.27, -8.29, 8.74, -3.13, -7.78, 3.44, 7.52, -4.44,
         6.54, -1.86, 2.85, -0.81, 1.96, 3.78, 2.68, -3.01, -3.98, -2.98, 8.07, 4.73,
@@ -74,12 +74,25 @@ export default function TradingPerformanceChart() {
         1.87, -0.41, -1.84, 0.93, 5.78, 4.38, 1.51, 1.48, 3.43, 2.75, null, null,
     ];
 
+    const annualReturns = [];
+    for (let i = 0; i < monthlyReturns.length; i += 12) {
+        const chunk = monthlyReturns.slice(i, i + 12);
+        if (chunk.length > 0) annualReturns.push(calcAnnualReturn(chunk));
+    }
+
+    function calcAnnualReturn(months) {
+        const valid = months.filter((r) => r != null);
+        let capital = 1;
+        valid.forEach((r) => (capital *= 1 + r / 100));
+        return +( (capital - 1) * 100 ).toFixed(2);
+    }
+
     const getCumulativeSum = (returns) => {
-        let sum = 0;
+        let capital = 100;
         return returns.map((r) => {
             if (r == null) return null;
-            sum += r;
-            return +sum.toFixed(2);
+            capital *= 1 + r / 100;
+            return +(capital - 100).toFixed(2);
         });
     };
 
