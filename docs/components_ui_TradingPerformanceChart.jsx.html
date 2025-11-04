@@ -60,6 +60,7 @@ import {
     PointElement,
     Tooltip,
 } from 'chart.js';
+import {ChevronDown} from "lucide-react";
 
 ChartJS.register(
     CategoryScale,
@@ -112,20 +113,33 @@ export default function TradingPerformanceChart() {
         t('annual_labels.2024'),
         t('annual_labels.2025_partial')
     ];
-    const annualReturns = [-10.92, 18.51, 8.83, 8.69];
+
     const monthlyReturns = [
         -3.58, -1.38, 5.29, -6.27, 0.27, -8.29, 8.74, -3.13, -7.78, 3.44, 7.52, -4.44,
         6.54, -1.86, 2.85, -0.81, 1.96, 3.78, 2.68, -3.01, -3.98, -2.98, 8.07, 4.73,
         -1.26, 2.19, 2.16, -2.68, 4.98, -0.01, 3.18, 2.5, 1.89, -2.89, 1.48, -2.68,
-        1.87, -0.41, -1.84, 0.93, 5.78, 4.38, null, null, null, null, null, null,
+        1.87, -0.41, -1.84, 0.93, 5.78, 4.38, 1.51, 1.48, 3.43, 2.75, null, null,
     ];
 
+    const annualReturns = [];
+    for (let i = 0; i &lt; monthlyReturns.length; i += 12) {
+        const chunk = monthlyReturns.slice(i, i + 12);
+        if (chunk.length > 0) annualReturns.push(calcAnnualReturn(chunk));
+    }
+
+    function calcAnnualReturn(months) {
+        const valid = months.filter((r) => r != null);
+        let capital = 1;
+        valid.forEach((r) => (capital *= 1 + r / 100));
+        return +( (capital - 1) * 100 ).toFixed(2);
+    }
+
     const getCumulativeSum = (returns) => {
-        let sum = 0;
+        let capital = 100;
         return returns.map((r) => {
             if (r == null) return null;
-            sum += r;
-            return +sum.toFixed(2);
+            capital *= 1 + r / 100;
+            return +(capital - 100).toFixed(2);
         });
     };
 
@@ -243,28 +257,140 @@ export default function TradingPerformanceChart() {
             },
         },
     };
+    const [openYear, setOpenYear] = useState(null);
 
     function renderSummary() {
         if (isMonthly) {
             const years = {2022: 0, 2023: 12, 2024: 24, 2025: 36};
             return (
-                &lt;div className="space-y-8">
+                &lt;div className="space-y-4">
                     {Object.entries(years).map(([year, idx]) => {
                         const data = monthlyReturns.slice(idx, idx + 12);
+                        const isOpen = openYear === year;
+
                         return (
-                            &lt;div key={year} className="space-y-2">
-                                &lt;div className="text-lg font-bold text-gray-900 dark:text-gray-100">{year}&lt;/div>
-                                &lt;div className="sm:hidden overflow-x-auto">
-                                    &lt;div className="flex gap-2 min-w-[720px]">
-                                        {data.map((val, i) => (
-                                            &lt;ValueBox key={i} value={val} label={months[i]}/>
-                                        ))}
+                            &lt;div
+                                key={year}
+                                className="border rounded-xl shadow-sm overflow-hidden transition-colors bg-white dark:bg-gray-900"
+                            >
+                                {/* Header Accordion */}
+                                &lt;button
+                                    onClick={() => setOpenYear(isOpen ? null : year)}
+                                    className="w-full flex justify-between items-center px-4 py-3 text-left font-semibold text-gray-900 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                                >
+                                    &lt;span className="text-lg">{year}&lt;/span>
+                                    &lt;ChevronDown
+                                        className={`w-5 h-5 transform transition-transform duration-300 ${
+                                            isOpen ? "rotate-180" : ""
+                                        }`}
+                                    />
+                                &lt;/button>
+
+                                {/* Contents Accordion */}
+                                &lt;div
+                                    className={`transition-all duration-300 ease-in-out overflow-hidden ${
+                                        isOpen ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
+                                    }`}
+                                >
+
+                                    &lt;div className="p-4">
+                                        {/* Desktop: 12-card grid on one row, no scrolling */}
+                                        &lt;div className="hidden sm:grid grid-cols-12 gap-3">
+                                            {data.map((val, i) => {
+                                                const isNeutral = val == null || val === "-";
+                                                const isPositive = !isNeutral &amp;&amp; val >= 0;
+
+                                                return (
+                                                    &lt;div
+                                                        key={i}
+                                                        className={`rounded-xl shadow-md p-2 transition transform hover:scale-105 hover:shadow-lg
+                                                        ${isNeutral
+                                                            ? "bg-gray-100 dark:bg-gray-800"
+                                                            : isPositive
+                                                                ? "bg-green-50 dark:bg-green-900/20"
+                                                                : "bg-red-50 dark:bg-red-900/20"
+                                                        }`}
+                                                    >
+                                                        &lt;h4 className="mb-1 text-sm font-bold text-gray-900 dark:text-gray-100 text-center">
+                                                            {months[i]}
+                                                        &lt;/h4>
+                                                        &lt;p
+                                                            className={`text-xs font-semibold text-center ${
+                                                                isNeutral
+                                                                    ? "text-gray-500 dark:text-gray-400"
+                                                                    : isPositive
+                                                                        ? "text-green-700 dark:text-green-400"
+                                                                        : "text-red-600 dark:text-red-400"
+                                                            }`}
+                                                        >
+                                                            {t('performance_return_label', 'Rendimento')}
+                                                        &lt;/p>
+                                                        &lt;p
+                                                            className={`mt-1 text-sm font-bold text-center break-words ${
+                                                                isNeutral
+                                                                    ? "text-gray-500 dark:text-gray-400"
+                                                                    : isPositive
+                                                                        ? "text-green-700 dark:text-green-400"
+                                                                        : "text-red-600 dark:text-red-400"
+                                                            }`}
+                                                        >
+                                                            {isNeutral ? "—" : (val > 0 ? "+" : "") + val.toFixed(2).replace(".", ",") + "%"}
+                                                        &lt;/p>
+                                                    &lt;/div>
+                                                );
+                                            })}
+                                        &lt;/div>
+
+                                        {/* Mobile: horizontal scroll */}
+                                        &lt;div className="sm:hidden overflow-x-auto overflow-y-hidden">
+                                            &lt;div className="flex flex-nowrap gap-3 px-2">
+                                                {data.map((val, i) => {
+                                                    const isNeutral = val == null || val === "-";
+                                                    const isPositive = !isNeutral &amp;&amp; val >= 0;
+
+                                                    return (
+                                                        &lt;div
+                                                            key={i}
+                                                            className={`flex-shrink-0 w-36 rounded-xl shadow-md p-3 transition transform hover:scale-105 hover:shadow-lg
+                                                            ${isNeutral
+                                                                ? "bg-gray-100 dark:bg-gray-800"
+                                                                : isPositive
+                                                                    ? "bg-green-50 dark:bg-green-900/20"
+                                                                    : "bg-red-50 dark:bg-red-900/20"
+                                                            }`}
+                                                        >
+                                                            &lt;h4 className="mb-1 text-sm font-bold text-gray-900 dark:text-gray-100 text-center">
+                                                                {months[i]}
+                                                            &lt;/h4>
+                                                            &lt;p
+                                                                className={`text-xs font-semibold text-center ${
+                                                                    isNeutral
+                                                                        ? "text-gray-500 dark:text-gray-400"
+                                                                        : isPositive
+                                                                            ? "text-green-700 dark:text-green-400"
+                                                                            : "text-red-600 dark:text-red-400"
+                                                                }`}
+                                                            >
+                                                                {t('performance_return_label', 'Rendimento')}
+                                                            &lt;/p>
+                                                            &lt;p
+                                                                className={`mt-1 text-sm font-bold text-center break-words ${
+                                                                    isNeutral
+                                                                        ? "text-gray-500 dark:text-gray-400"
+                                                                        : isPositive
+                                                                            ? "text-green-700 dark:text-green-400"
+                                                                            : "text-red-600 dark:text-red-400"
+                                                                }`}
+                                                            >
+                                                                {isNeutral ? "—" : (val > 0 ? "+" : "") + val.toFixed(2).replace(".", ",") + "%"}
+                                                            &lt;/p>
+                                                        &lt;/div>
+                                                    );
+                                                })}
+                                            &lt;/div>
+                                        &lt;/div>
                                     &lt;/div>
-                                &lt;/div>
-                                &lt;div className="hidden sm:grid grid-cols-12 gap-2">
-                                    {data.map((val, i) => (
-                                        &lt;ValueBox key={i} value={val} label={months[i]}/>
-                                    ))}
+
                                 &lt;/div>
                             &lt;/div>
                         );
@@ -274,27 +400,48 @@ export default function TradingPerformanceChart() {
         }
 
         return (
-            &lt;div className="flex flex-wrap justify-center gap-4 text-center text-sm">
-                {annualLabels.map((year, i) => (
-                    &lt;div
-                        key={year}
-                        className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md w-full sm:w-40"
-                    >
-                        &lt;h4 className="mb-2 font-semibold text-lg border-b border-gray-300 dark:border-gray-700 pb-1">
-                            {year}
-                        &lt;/h4>
-                        &lt;p
-                            className={
-                                annualReturns[i] &lt; 0
-                                    ? 'text-red-600 dark:text-red-400'
-                                    : 'text-green-700 dark:text-green-400'
-                            }
-                        >
-                            {t('performance_return_label', 'Rendimento')}: {annualReturns[i] > 0 ? '+' : ''}
-                            {annualReturns[i].toFixed(2).replace('.', ',')}%
-                        &lt;/p>
-                    &lt;/div>
-                ))}
+            &lt;div className="overflow-x-auto sm:overflow-x-visible">
+                &lt;div className="flex sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-2">
+                    {annualLabels.map((year, i) => {
+                        const isPositive = annualReturns[i] >= 0;
+
+                        return (
+                            &lt;div
+                                key={year}
+                                className={`flex-shrink-0 w-36 sm:w-auto rounded-xl shadow-md p-4 transition transform hover:scale-105 hover:shadow-lg
+                            ${isPositive
+                                    ? "bg-green-50 dark:bg-green-900/20"
+                                    : "bg-red-50 dark:bg-red-900/20"
+                                }`}
+                            >
+                                &lt;h4 className="mb-2 text-lg font-bold text-gray-900 dark:text-gray-100 text-center">
+                                    {year}
+                                &lt;/h4>
+                                &lt;p
+                                    className={`text-sm font-semibold text-center ${
+                                        isPositive
+                                            ? "text-green-700 dark:text-green-400"
+                                            : "text-red-600 dark:text-red-400"
+                                    }`}
+                                >
+                                    {t('performance_return_label')}
+                                &lt;/p>
+                                &lt;p
+                                    className={`mt-1 text-xl font-bold text-center ${
+                                        isPositive
+                                            ? "text-green-700 dark:text-green-400"
+                                            : "text-red-600 dark:text-red-400"
+                                    }`}
+                                >
+                                    {annualReturns[i] != null
+                                        ? (annualReturns[i] > 0 ? "+" : "") + annualReturns[i].toFixed(2).replace(".", ",") + "%"
+                                        : "—"
+                                    }
+                                &lt;/p>
+                            &lt;/div>
+                        );
+                    })}
+                &lt;/div>
             &lt;/div>
         );
     }
@@ -327,25 +474,6 @@ export default function TradingPerformanceChart() {
         &lt;/section>
     );
 }
-
-function ValueBox({ value, label }) {
-    const color =
-        value == null
-            ? 'text-gray-400 dark:text-gray-500'
-            : value &lt; 0
-                ? 'text-red-600 dark:text-red-400'
-                : 'text-green-600 dark:text-green-400';
-
-    return (
-        &lt;div
-            className="flex flex-col items-center justify-center bg-white dark:bg-gray-800 rounded-md p-2 shadow-sm border border-gray-200 dark:border-gray-700 min-w-[60px]">
-      &lt;span className={`text-sm font-semibold ${color}`}>
-        {value != null ? `${value.toFixed(2).replace('.', ',')}%` : 'na'}
-      &lt;/span>
-            &lt;span className="mt-1 text-xs text-gray-600 dark:text-gray-400">{label}&lt;/span>
-        &lt;/div>
-    );
-}
 </code></pre>
         </article>
     </section>
@@ -360,7 +488,7 @@ function ValueBox({ value, label }) {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Mon Jul 14 2025 16:34:33 GMT+0200 (Ora legale dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Tue Nov 04 2025 10:37:37 GMT+0100 (Ora standard dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
