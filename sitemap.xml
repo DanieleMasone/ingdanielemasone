@@ -23,6 +23,11 @@
     </url>
 
     <url>
+        <loc>https://danielemasone.github.io/ingdanielemasone/#/certifications</loc>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
         <loc>https://danielemasone.github.io/ingdanielemasone/#/testimonials</loc>
         <priority>0.7</priority>
     </url>

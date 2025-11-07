@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>pages/Certifications.jsx - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-components_ui_Card.html">components/ui/Card</a></li><li><a href="module-components_ui_CardContent.html">components/ui/CardContent</a></li><li><a href="module-components_ui_DarkModeToggle.html">components/ui/DarkModeToggle</a></li><li><a href="module-components_ui_Footer.html">components/ui/Footer</a></li><li><a href="module-components_ui_Header.html">components/ui/Header</a></li><li><a href="module-components_ui_LanguageSwitcher.html">components/ui/LanguageSwitcher</a></li><li><a href="module-components_ui_NotFound.html">components/ui/NotFound</a></li><li><a href="module-components_ui_PageSection.html">components/ui/PageSection</a></li><li><a href="module-components_ui_Pagination.html">components/ui/Pagination</a></li><li><a href="module-components_ui_SelectableButton.html">components/ui/SelectableButton</a></li><li><a href="module-components_ui_SeoHead.html">components/ui/SeoHead</a></li><li><a href="module-components_ui_TradingPerformanceChart.html">components/ui/TradingPerformanceChart</a></li><li><a href="module-pages_Certifications.html">pages/Certifications</a></li><li><a href="module-pages_CookieBanner.html">pages/CookieBanner</a></li><li><a href="module-pages_CookiePolicy.html">pages/CookiePolicy</a></li><li><a href="module-pages_Courses.html">pages/Courses</a></li><li><a href="module-pages_Experience.html">pages/Experience</a></li><li><a href="module-pages_Home.html">pages/Home</a></li><li><a href="module-pages_Privacy.html">pages/Privacy</a></li><li><a href="module-pages_Projects.html">pages/Projects</a></li><li><a href="module-pages_Testimonials.html">pages/Testimonials</a></li><li><a href="module-pages_Trading.html">pages/Trading</a></li></ul><h3>Global</h3><ul><li><a href="global.html#BrandIcon">BrandIcon</a></li><li><a href="global.html#getExperienceLabel">getExperienceLabel</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">pages/Certifications.jsx</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {Award, ExternalLink} from "lucide-react";
+import {useTranslation} from "react-i18next";
+import {Card} from "../components/ui/Card";
+import {CardContent} from "../components/ui/CardContent";
+import PageSection from "../components/ui/PageSection";
+import {AnimatePresence, motion} from "framer-motion";
+import SeoHead from "../components/ui/SeoHead";
+import {useState} from "react";
+import Pagination from "../components/ui/Pagination";
+
+const ITEMS_PER_PAGE = 3;
+
+/**
+ * Certifications component.
+ *
+ * Displays a paginated list of professional certifications, each with title, issuer, and date.
+ *
+ * Features:
+ * - Uses i18next for translations.
+ * - Shows 6 certifications per page with next/previous pagination buttons.
+ * - Includes smooth animations via Framer Motion for entry transitions.
+ *
+ * @component
+ * @module pages/Certifications
+ * @returns {JSX.Element} The rendered Certifications page section.
+ */
+export default function Certifications() {
+    const {t} = useTranslation();
+    const [page, setPage] = useState(1);
+
+    const certifications = [
+        {
+            nameKey: "Speexx English CEFR Level B2.2",
+            issuer: "Speexx",
+            date: "2024",
+            link: "https://portal.speexx.com/certificate/MDBmOTRlZTctYzc5Zi00OGUzLTk0OWQtMDU0MDc2NDg2NmQ5Ojo4Mg==",
+        },
+        {
+            nameKey: "Speexx English CEFR Level B2.1",
+            issuer: "Speexx",
+            date: "2024",
+            link: "https://portal.speexx.com/certificate/NzY3NzczMTo6ODE=",
+        },
+        {
+            nameKey: "Speexx English CEFR Level B1.2",
+            issuer: "Speexx",
+            date: "2024",
+            link: "https://portal.speexx.com/certificate/NzY3NzczMTo6ODA=",
+        },
+        {
+            nameKey: "Speexx English CEFR Level B1.1",
+            issuer: "Speexx",
+            date: "2023",
+            link: "https://portal.speexx.com/certificate/NzY3NzczMTo6Nzk=",
+        },
+        {
+            nameKey: "Codemotion Milan 2023",
+            issuer: "Codemotion",
+            date: "2023",
+            link: "https://credsverse.com/credentials/070cb7c9-c2c8-4bf5-b27b-df66298f9561",
+        },
+        {
+            nameKey: "Codemotion Workshop Fest 2023",
+            issuer: "Codemotion",
+            date: "2023",
+            link: "https://credsverse.com/credentials/98c00e0e-8cb8-41d1-96b0-515b1b2842ef",
+        }
+    ];
+
+    const totalPages = Math.ceil(certifications.length / ITEMS_PER_PAGE);
+
+    const displayedCerts = certifications.slice(
+        (page - 1) * ITEMS_PER_PAGE,
+        page * ITEMS_PER_PAGE
+    );
+
+    return (
+        &lt;>
+            &lt;SeoHead pageKey="certifications" path="/certifications"/>
+
+            &lt;PageSection title={t("certifications_page.title")}>
+
+                &lt;AnimatePresence mode="wait">
+                    &lt;motion.div
+                        key={`page-${page}`}
+                        initial={{opacity: 0, y: 40}}
+                        animate={{opacity: 1, y: 0}}
+                        exit={{opacity: 0, y: -40}}
+                        transition={{duration: 0.4}}
+                        className="flex flex-wrap gap-6"
+                    >
+                        {displayedCerts.map((cert, idx) => (
+                            &lt;Card
+                                key={idx}
+                                className="flex flex-col md:flex-row items-start gap-4 p-4 sm:p-6"
+                            >
+                                &lt;CardContent className="p-0 flex-1">
+                                    &lt;div className="flex items-center justify-between">
+                                        &lt;div className="flex items-center gap-2">
+                                            &lt;Award className="w-6 h-6 text-blue-500 dark:text-blue-400"/>
+                                            &lt;h3 className="text-lg font-semibold">
+                                                {t(cert.nameKey)}
+                                            &lt;/h3>
+                                        &lt;/div>
+                                    &lt;/div>
+
+                                    &lt;p className="text-sm text-gray-500 dark:text-gray-400 font-mono mb-2">
+                                        {cert.issuer} — {cert.date}
+                                    &lt;/p>
+
+                                    &lt;a
+                                        href={cert.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline mt-2"
+                                    >
+                                        {t("view_certificate", "View Certificate")}
+                                        &lt;ExternalLink className="w-4 h-4 ml-1"/>
+                                    &lt;/a>
+                                &lt;/CardContent>
+                            &lt;/Card>
+                        ))}
+                    &lt;/motion.div>
+                &lt;/AnimatePresence>
+
+                {/* Pagination Controls */}
+                &lt;Pagination
+                    page={page}
+                    totalPages={totalPages}
+                    onPageChange={setPage}
+                />
+            &lt;/PageSection>
+        &lt;/>
+    );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Fri Nov 07 2025 15:18:47 GMT+0100 (Ora standard dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>
