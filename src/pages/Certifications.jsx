@@ -33,25 +33,25 @@ export default function Certifications() {
             nameKey: "Speexx English CEFR Level B2.2",
             issuer: "Speexx",
             date: "2024",
-            link: "https://portal.speexx.com/certificate/MDBmOTRlZTctYzc5Zi00OGUzLTk0OWQtMDU0MDc2NDg2NmQ5Ojo4Mg==",
+            link: "https://portal.speexx.com/certificate/ZTAxY2Y5ZTktNGRjMi00Yzc0LWFjYmQtZjAzOTIyZDNmZjdmOjo4Mg=="
         },
         {
             nameKey: "Speexx English CEFR Level B2.1",
             issuer: "Speexx",
             date: "2024",
-            link: "https://portal.speexx.com/certificate/NzY3NzczMTo6ODE=",
+            link: "https://portal.speexx.com/certificate/ZTAxY2Y5ZTktNGRjMi00Yzc0LWFjYmQtZjAzOTIyZDNmZjdmOjo4MQ=="
         },
         {
             nameKey: "Speexx English CEFR Level B1.2",
             issuer: "Speexx",
             date: "2024",
-            link: "https://portal.speexx.com/certificate/NzY3NzczMTo6ODA=",
+            link: "https://portal.speexx.com/certificate/ZTAxY2Y5ZTktNGRjMi00Yzc0LWFjYmQtZjAzOTIyZDNmZjdmOjo4MA=="
         },
         {
             nameKey: "Speexx English CEFR Level B1.1",
             issuer: "Speexx",
             date: "2023",
-            link: "https://portal.speexx.com/certificate/NzY3NzczMTo6Nzk=",
+            link: "https://portal.speexx.com/certificate/ZTAxY2Y5ZTktNGRjMi00Yzc0LWFjYmQtZjAzOTIyZDNmZjdmOjo3OQ=="
         },
         {
             nameKey: "Codemotion Milan 2023",
