@@ -31,7 +31,7 @@ describe("Certifications component", () => {
     });
 
     test("renders certification cards with name, issuer and date", () => {
-        expect(screen.getByText(/Speexx English CEFR Level B2.2/i)).toBeInTheDocument();
+        expect(screen.getByText(/English CEFR Level B2.2/i)).toBeInTheDocument();
 
         const speexxEntries = screen.getAllByText(/Speexx — 2024/i);
         expect(speexxEntries.length).toBeGreaterThan(0);
