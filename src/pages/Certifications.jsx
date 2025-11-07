@@ -87,24 +87,27 @@ export default function Certifications() {
                         animate={{opacity: 1, y: 0}}
                         exit={{opacity: 0, y: -40}}
                         transition={{duration: 0.4}}
-                        className="flex flex-wrap gap-6"
+                        className="flex flex-col items-center gap-6"
                     >
                         {displayedCerts.map((cert, idx) => (
                             <Card
                                 key={idx}
-                                className="flex flex-col md:flex-row items-start gap-4 p-4 sm:p-6"
+                                className="relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
+                                         dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
+                                           rounded-xl hover:shadow-lg transition-all duration-300"
                             >
-                                <CardContent className="p-0 flex-1">
-                                    <div className="flex items-center justify-between">
-                                        <div className="flex items-center gap-2">
-                                            <Award className="w-6 h-6 text-blue-500 dark:text-blue-400"/>
-                                            <h3 className="text-lg font-semibold">
-                                                {t(cert.nameKey)}
-                                            </h3>
-                                        </div>
-                                    </div>
+                                {/* Decorative icon at the top right */}
+                                <div className="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-full
+                                              bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 shadow-sm">
+                                    <Award className="w-5 h-5"/>
+                                </div>
 
-                                    <p className="text-sm text-gray-500 dark:text-gray-400 font-mono mb-2">
+                                <CardContent className="p-0">
+                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+                                        {t(cert.nameKey)}
+                                    </h3>
+
+                                    <p className="text-sm text-gray-500 dark:text-gray-400 font-mono mb-3">
                                         {cert.issuer} — {cert.date}
                                     </p>
 
@@ -112,12 +115,17 @@ export default function Certifications() {
                                         href={cert.link}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline mt-2"
+                                        className="inline-flex items-center text-sm text-blue-600 dark:text-blue-400
+                                                 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
                                     >
                                         {t("view_certificate", "View Certificate")}
                                         <ExternalLink className="w-4 h-4 ml-1"/>
                                     </a>
                                 </CardContent>
+
+                                {/* Hover effect */}
+                                <div className="absolute inset-0 pointer-events-none opacity-0 hover:opacity-100 transition-opacity
+                                                duration-500 bg-gradient-to-r from-blue-50/30 to-transparent dark:from-blue-900/10"/>
                             </Card>
                         ))}
                     </motion.div>
