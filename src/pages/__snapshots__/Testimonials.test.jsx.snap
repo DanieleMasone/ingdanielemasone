@@ -1,0 +1,288 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testimonials component matches snapshot 1`] = `
+<DocumentFragment>
+  <section
+    class="px-4 py-6 sm:px-6 md:px-8 max-w-7xl mx-auto"
+  >
+    <h2
+      class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-gray-900 dark:text-white"
+    >
+      Testimonials
+    </h2>
+    <div
+      class="flex flex-wrap gap-6"
+      style="opacity: 0; transform: translateY(40px);"
+    >
+      <div
+        class="rounded-2xl bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 w-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 shadow-sm"
+      >
+        <div
+          class="
+                p-4 sm:p-6 md:p-8
+                text-sm sm:text-base
+                text-gray-900 dark:text-gray-300
+                
+            "
+        >
+          <button
+            aria-expanded="false"
+            class="flex justify-between w-full items-center text-left"
+            data-headlessui-state=""
+            id="headlessui-disclosure-button-:r1i:"
+            type="button"
+          >
+            <div
+              class="flex items-center space-x-4"
+            >
+              <img
+                alt="Mirko avatar"
+                class="w-10 h-10 rounded-full ring-1 ring-gray-300 dark:ring-gray-700 bg-white"
+                src="https://api.dicebear.com/7.x/bottts/svg?seed=Mirko"
+              />
+              <div>
+                <div
+                  class="flex items-center space-x-2 font-semibold"
+                >
+                  <span>
+                    Mirko
+                  </span>
+                  <a
+                    aria-label="LinkedIn profile of Mirko"
+                    class="hover:opacity-80 transition"
+                    href="https://www.linkedin.com/in/mirko-buccoliero-5a552615a"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <svg
+                      fill="#0A66C2"
+                      height="20"
+                      role="img"
+                      viewBox="0 0 24 24"
+                      width="20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.85-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667h-3.554V9h3.414v1.561h.049c.477-.9 1.637-1.85 3.367-1.85 3.598 0 4.265 2.368 4.265 5.452v6.289zM5.337 7.433a2.063 2.063 0 1 1 0-4.126 2.063 2.063 0 0 1 0 4.126zM6.814 20.452H3.861V9h2.953v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.723v20.549C0 23.226.792 24 1.771 24h20.451C23.2 24 24 23.226 24 22.272V1.723C24 .774 23.2 0 22.225 0z"
+                      />
+                    </svg>
+                  </a>
+                </div>
+                <p
+                  class="text-sm text-gray-500 dark:text-gray-400"
+                >
+                  Developer
+                </p>
+              </div>
+            </div>
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-chevron-down h-5 w-5 transform"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m6 9 6 6 6-6"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div
+        class="rounded-2xl bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 w-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 shadow-sm"
+      >
+        <div
+          class="
+                p-4 sm:p-6 md:p-8
+                text-sm sm:text-base
+                text-gray-900 dark:text-gray-300
+                
+            "
+        >
+          <button
+            aria-expanded="false"
+            class="flex justify-between w-full items-center text-left"
+            data-headlessui-state=""
+            id="headlessui-disclosure-button-:r1k:"
+            type="button"
+          >
+            <div
+              class="flex items-center space-x-4"
+            >
+              <img
+                alt="Alessia avatar"
+                class="w-10 h-10 rounded-full ring-1 ring-gray-300 dark:ring-gray-700 bg-white"
+                src="https://api.dicebear.com/7.x/bottts/svg?seed=Alessia"
+              />
+              <div>
+                <div
+                  class="flex items-center space-x-2 font-semibold"
+                >
+                  <span>
+                    Alessia
+                  </span>
+                  <a
+                    aria-label="LinkedIn profile of Alessia"
+                    class="hover:opacity-80 transition"
+                    href="https://www.linkedin.com/in/alessiapecorarohr"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <svg
+                      fill="#0A66C2"
+                      height="20"
+                      role="img"
+                      viewBox="0 0 24 24"
+                      width="20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.85-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667h-3.554V9h3.414v1.561h.049c.477-.9 1.637-1.85 3.367-1.85 3.598 0 4.265 2.368 4.265 5.452v6.289zM5.337 7.433a2.063 2.063 0 1 1 0-4.126 2.063 2.063 0 0 1 0 4.126zM6.814 20.452H3.861V9h2.953v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.723v20.549C0 23.226.792 24 1.771 24h20.451C23.2 24 24 23.226 24 22.272V1.723C24 .774 23.2 0 22.225 0z"
+                      />
+                    </svg>
+                  </a>
+                </div>
+                <p
+                  class="text-sm text-gray-500 dark:text-gray-400"
+                >
+                  Designer
+                </p>
+              </div>
+            </div>
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-chevron-down h-5 w-5 transform"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m6 9 6 6 6-6"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div
+        class="rounded-2xl bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 w-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 shadow-sm"
+      >
+        <div
+          class="
+                p-4 sm:p-6 md:p-8
+                text-sm sm:text-base
+                text-gray-900 dark:text-gray-300
+                
+            "
+        >
+          <button
+            aria-expanded="false"
+            class="flex justify-between w-full items-center text-left"
+            data-headlessui-state=""
+            id="headlessui-disclosure-button-:r1m:"
+            type="button"
+          >
+            <div
+              class="flex items-center space-x-4"
+            >
+              <img
+                alt="Federico avatar"
+                class="w-10 h-10 rounded-full ring-1 ring-gray-300 dark:ring-gray-700 bg-white"
+                src="https://api.dicebear.com/7.x/bottts/svg?seed=Federico"
+              />
+              <div>
+                <div
+                  class="flex items-center space-x-2 font-semibold"
+                >
+                  <span>
+                    Federico
+                  </span>
+                  <a
+                    aria-label="LinkedIn profile of Federico"
+                    class="hover:opacity-80 transition"
+                    href="https://www.linkedin.com/in/federico-s-62a333110"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <svg
+                      fill="#0A66C2"
+                      height="20"
+                      role="img"
+                      viewBox="0 0 24 24"
+                      width="20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.85-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667h-3.554V9h3.414v1.561h.049c.477-.9 1.637-1.85 3.367-1.85 3.598 0 4.265 2.368 4.265 5.452v6.289zM5.337 7.433a2.063 2.063 0 1 1 0-4.126 2.063 2.063 0 0 1 0 4.126zM6.814 20.452H3.861V9h2.953v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.723v20.549C0 23.226.792 24 1.771 24h20.451C23.2 24 24 23.226 24 22.272V1.723C24 .774 23.2 0 22.225 0z"
+                      />
+                    </svg>
+                  </a>
+                </div>
+                <p
+                  class="text-sm text-gray-500 dark:text-gray-400"
+                >
+                  Manager
+                </p>
+              </div>
+            </div>
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-chevron-down h-5 w-5 transform"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m6 9 6 6 6-6"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      class="flex justify-center mt-8 space-x-4 "
+    >
+      <button
+        class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
+ text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
+ hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
+        disabled=""
+      >
+        ← previous
+      </button>
+      <span
+        class="px-4 py-2 text-sm text-gray-600 dark:text-gray-300"
+        data-testid="pagination-info"
+      >
+        1 / 8
+      </span>
+      <button
+        class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
+ text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
+ hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
+      >
+        next →
+      </button>
+    </div>
+  </section>
+</DocumentFragment>
+`;
