@@ -105,4 +105,14 @@ describe("Testimonials component", () => {
         await waitFor(() => expect(screen.queryByText(quoteText)).not.toBeInTheDocument());
     });
 
+    test("matches snapshot", () => {
+        const {asFragment} = render(
+            <HelmetProvider>
+                <I18nextProvider i18n={i18n}>
+                    <Testimonials/>
+                </I18nextProvider>
+            </HelmetProvider>
+        );
+        expect(asFragment()).toMatchSnapshot();
+    });
 });

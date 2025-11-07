@@ -124,4 +124,12 @@ describe('Courses component', () => {
         expect(nextButton).toBeDisabled();
     });
 
+    test("matches snapshot", () => {
+        const {asFragment} = render(
+            <HelmetProvider>
+                <Courses/>
+            </HelmetProvider>
+        );
+        expect(asFragment()).toMatchSnapshot();
+    });
 });

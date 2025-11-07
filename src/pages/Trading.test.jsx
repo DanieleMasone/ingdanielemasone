@@ -71,4 +71,13 @@ describe("Trading component", () => {
     test("renders the TradingPerformanceChart component", () => {
         expect(screen.getByTestId("mock-chart")).toBeInTheDocument();
     });
+
+    test("matches snapshot", () => {
+        const {asFragment} = render(
+            <HelmetProvider>
+                <Trading/>
+            </HelmetProvider>
+        );
+        expect(asFragment()).toMatchSnapshot();
+    });
 });

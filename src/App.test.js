@@ -82,4 +82,9 @@ describe("App.js", () => {
         expect(screen.getByRole('heading', {name: /Cookie Policy/i, level: 1})).toBeInTheDocument();
     });
 
+    test('renders Certifications page', () => {
+        renderWithRouter(['/certifications']);
+        expect(screen.getByRole('heading', {name: /Certifications/i, level: 2})).toBeInTheDocument();
+    });
+
 });

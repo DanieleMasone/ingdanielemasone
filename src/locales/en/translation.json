@@ -5,6 +5,7 @@
   "projects": "Projects",
   "contact": "Contact",
   "courses": "Courses",
+  "certifications": "Certifications",
   "previous": "Previous",
   "next": "Next",
   "all": "all",
@@ -137,6 +138,13 @@
   "performance_view_monthly": "Monthly View",
   "performance_view_annual": "Annual View",
   "performance_return_label": "Return",
+  "certifications_page": {
+    "title": "Certifications",
+    "description": "List of obtained professional certifications, with direct links to the official certificates.",
+    "view_certificate": "View certificate",
+    "issuer": "Issuer",
+    "date": "Issued on"
+  },
   "privacy": {
     "title": "Privacy Policy",
     "intro_title": "Introduction",
@@ -415,6 +423,10 @@
     "cookie": {
       "title": "Cookie Policy - Daniele Masone",
       "description": "Cookie usage policy on Daniele Masone's portfolio website."
+    },
+    "certifications": {
+      "title": "Professional Certifications - Daniele Masone",
+      "description": "The professional certifications earned by Daniele Masone in the IT and technology fields, with links to official certificates."
     }
   }
 }

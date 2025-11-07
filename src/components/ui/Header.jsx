@@ -27,6 +27,7 @@ export default function Header() {
     const navPortfolio = [
         {to: '/experience', label: t('experience')},
         {to: '/projects', label: t('projects')},
+        {to: '/certifications', label: t('certifications')},
         {to: '/courses', label: t('courses')},
         {to: '/testimonials', label: t('testimonials')},
         {to: '/trading', label: t('trading')}

@@ -100,4 +100,12 @@ describe('Home component', () => {
         expect(intro).toHaveClass('order-3');
     });
 
+    test("matches snapshot", () => {
+        const {asFragment} = render(
+            <HelmetProvider>
+                <Home/>
+            </HelmetProvider>
+        );
+        expect(asFragment()).toMatchSnapshot();
+    });
 });

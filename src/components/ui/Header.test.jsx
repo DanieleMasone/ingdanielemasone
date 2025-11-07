@@ -15,6 +15,7 @@ jest.mock('react-i18next', () => ({
                 courses: 'Courses',
                 testimonials: 'Testimonials',
                 trading: 'Trading',
+                certifications: 'Certifications'
             };
             return translations[key] || key;
         },
@@ -205,7 +206,7 @@ describe('Header component', () => {
 
         // Open portfolio and check internal links
         fireEvent.click(screen.getByRole('button', {name: /portfolio/i}));
-        const portfolioLinks = ['Experience', 'Projects', 'Courses', 'Testimonials', 'Trading'];
+        const portfolioLinks = ['Experience', 'Projects', 'Courses', 'Testimonials', 'Trading', 'Certifications'];
         portfolioLinks.forEach(label => {
             expect(screen.getByText(label)).toBeInTheDocument();
         });

@@ -105,4 +105,13 @@ describe('Privacy component', () => {
         expect(screen.getByText(/Last updated/i)).toBeInTheDocument();
         expect(screen.getByText(/June 2025/i)).toBeInTheDocument();
     });
+
+    test("matches snapshot", () => {
+        const {asFragment} = render(
+            <HelmetProvider>
+                <Privacy/>
+            </HelmetProvider>
+        );
+        expect(asFragment()).toMatchSnapshot();
+    });
 });

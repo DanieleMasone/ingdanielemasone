@@ -155,4 +155,14 @@ describe("Experience component", () => {
         expect(fn("2020 - 2022", "2021", t)).toBe(null);
     });
 
+    test("matches snapshot", () => {
+        const {asFragment} = render(
+            <HelmetProvider>
+                <I18nextProvider i18n={i18n}>
+                    <Experience/>
+                </I18nextProvider>
+            </HelmetProvider>
+        );
+        expect(asFragment()).toMatchSnapshot();
+    });
 });

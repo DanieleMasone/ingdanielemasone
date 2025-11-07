@@ -5,6 +5,7 @@
   "projects": "Progetti",
   "contact": "Contattami",
   "courses": "Corsi",
+  "certifications": "Certificazioni",
   "previous": "Precedente",
   "next": "Successivo",
   "all": "Tutte",
@@ -136,6 +137,13 @@
   "performance_view_monthly": "Vista Mensile",
   "performance_view_annual": "Vista Annuale",
   "performance_return_label": "Rendimento",
+  "certifications_page": {
+    "title": "Certificazioni",
+    "description": "Elenco delle certificazioni professionali conseguite, con link diretti ai certificati ufficiali.",
+    "view_certificate": "Vedi certificato",
+    "issuer": "Ente rilasciante",
+    "date": "Data di rilascio"
+  },
   "privacy": {
     "title": "Privacy Policy",
     "intro_title": "Introduzione",
@@ -414,6 +422,10 @@
     "cookie": {
       "title": "Cookie Policy - Daniele Masone",
       "description": "Politica sull’uso dei cookie nel sito portfolio di Daniele Masone."
+    },
+    "certifications": {
+      "title": "Certificazioni professionali - Daniele Masone",
+      "description": "Le certificazioni professionali conseguite da Daniele Masone in ambito informatico e tecnologico, con i link ai certificati ufficiali."
     }
   }
 }

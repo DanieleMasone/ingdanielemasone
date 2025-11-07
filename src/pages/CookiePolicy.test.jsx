@@ -64,4 +64,13 @@ describe('CookiePolicy component', () => {
         expect(footer.textContent.toLowerCase()).toContain('last updated');
         expect(footer.textContent.toLowerCase()).toContain('june 2025');
     });
+
+    test("matches snapshot", () => {
+        const {asFragment} = render(
+            <HelmetProvider>
+                <CookiePolicy/>
+            </HelmetProvider>
+        );
+        expect(asFragment()).toMatchSnapshot();
+    });
 });

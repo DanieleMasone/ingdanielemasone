@@ -9,6 +9,9 @@ import {ExpandableText} from "../components/ui/ExpandableText";
 import {AnimatePresence, motion} from "framer-motion";
 import SeoHead from "../components/ui/SeoHead";
 import {SelectableButton} from "../components/ui/SelectableButton";
+import Pagination from "../components/ui/Pagination";
+
+const ITEMS_PER_PAGE = 2;
 
 /**
  * Projects component displays a list of projects grouped by company.
@@ -27,7 +30,6 @@ export default function Projects() {
     const {t} = useTranslation();
     const [selectedCompany, setSelectedCompany] = useState("RGI");
     const [page, setPage] = useState(1);
-    const itemsPerPage = 2;
 
     const projects = [
         {
@@ -163,10 +165,10 @@ export default function Projects() {
                     <div className="flex-1">
                         {(() => {
                             const currentProjects = groupedProjects[selectedCompany] || [];
-                            const totalPages = Math.ceil(currentProjects.length / itemsPerPage);
+                            const totalPages = Math.ceil(currentProjects.length / ITEMS_PER_PAGE);
                             const paginated = currentProjects.slice(
-                                (page - 1) * itemsPerPage,
-                                page * itemsPerPage
+                                (page - 1) * ITEMS_PER_PAGE,
+                                page * ITEMS_PER_PAGE
                             );
 
                             return (
@@ -222,34 +224,11 @@ export default function Projects() {
                                     </AnimatePresence>
 
                                     {/* Pagination Controls */}
-                                    {totalPages > 1 && (
-                                        <div className="w-full flex justify-center mt-8 space-x-4">
-                                            <button
-                                                onClick={() => setPage(p => Math.max(p - 1, 1))}
-                                                disabled={page === 1}
-                                                className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
-                                                               text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
-                                                               hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
-                                            >
-                                                ← {t("previous")}
-                                            </button>
-
-                                            <span data-testid="pagination-info"
-                                                  className="px-4 py-2 text-sm text-gray-600 dark:text-gray-300">
-                                                    {page} / {totalPages}
-                                            </span>
-
-                                            <button
-                                                onClick={() => setPage(p => Math.min(p + 1, totalPages))}
-                                                disabled={page === totalPages}
-                                                className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
-                                                                text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
-                                                                hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
-                                            >
-                                                {t("next")} →
-                                            </button>
-                                        </div>
-                                    )}
+                                    <Pagination
+                                        page={page}
+                                        totalPages={totalPages}
+                                        onPageChange={setPage}
+                                    />
                                 </>
                             );
                         })()}

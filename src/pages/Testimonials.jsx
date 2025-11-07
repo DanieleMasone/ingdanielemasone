@@ -8,6 +8,7 @@ import PageSection from "../components/ui/PageSection";
 import {AnimatePresence, motion} from "framer-motion";
 import SeoHead from "../components/ui/SeoHead";
 import {BrandIcon, linkedinIcon} from "../components/ui/Footer";
+import Pagination from "../components/ui/Pagination";
 
 const ITEMS_PER_PAGE = 3;
 
@@ -24,7 +25,7 @@ const ITEMS_PER_PAGE = 3;
  */
 export default function Testimonials() {
     const {t} = useTranslation();
-    const [currentPage, setCurrentPage] = useState(1);
+    const [page, setPage] = useState(1);
 
     const testimonials = [
         {
@@ -170,8 +171,8 @@ export default function Testimonials() {
     const totalPages = Math.ceil(testimonials.length / ITEMS_PER_PAGE);
 
     const displayedTestimonials = testimonials.slice(
-        (currentPage - 1) * ITEMS_PER_PAGE,
-        currentPage * ITEMS_PER_PAGE
+        (page - 1) * ITEMS_PER_PAGE,
+        page * ITEMS_PER_PAGE
     );
 
     return (
@@ -182,7 +183,7 @@ export default function Testimonials() {
 
                 <AnimatePresence mode="wait">
                     <motion.div
-                        key={`page-${currentPage}`}
+                        key={`page-${page}`}
                         initial={{opacity: 0, y: 40}}
                         animate={{opacity: 1, y: 0}}
                         exit={{opacity: 0, y: -40}}
@@ -242,34 +243,11 @@ export default function Testimonials() {
                 </AnimatePresence>
 
                 {/* Pagination Controls */}
-                {totalPages > 1 && (
-                    <div className="flex justify-center mt-8 space-x-4">
-                        <button
-                            onClick={() => setCurrentPage(p => Math.max(p - 1, 1))}
-                            disabled={currentPage === 1}
-                            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
-                           text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
-                           hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
-                        >
-                            ← {t("testimonials_page.prev")}
-                        </button>
-
-                        <span className="px-4 py-2 text-sm text-gray-600 dark:text-gray-300">
-                        {currentPage} / {totalPages}
-                    </span>
-
-                        <button
-                            onClick={() => setCurrentPage(p => Math.min(p + 1, totalPages))}
-                            disabled={currentPage === totalPages}
-                            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
-                           text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
-                           hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
-                        >
-                            {t("testimonials_page.next")} →
-                        </button>
-                    </div>
-                )}
-
+                <Pagination
+                    page={page}
+                    totalPages={totalPages}
+                    onPageChange={setPage}
+                />
             </PageSection>
         </>
     );

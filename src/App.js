@@ -16,6 +16,7 @@ import Trading from "./pages/Trading";
 import Testimonials from "./pages/Testimonials";
 import NotFound from "./components/ui/NotFound";
 import CookieBanner from "./components/ui/CookieBanner";
+import Certifications from "./pages/Certifications";
 
 const resources = {
     en: {
@@ -52,6 +53,7 @@ export default function App() {
                     <Route path="/experience" element={<Experience/>}/>
                     <Route path="/projects" element={<Projects/>}/>
                     <Route path="/courses" element={<Courses/>}/>
+                    <Route path="/certifications" element={<Certifications/>}/>
                     <Route path="/trading" element={<Trading/>}/>
                     <Route path="/testimonials" element={<Testimonials/>}/>
                     <Route path="/privacy" element={<Privacy/>}/>

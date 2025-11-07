@@ -151,4 +151,12 @@ describe("Projects Component", () => {
         expect(expandable).toBeInTheDocument();
     });
 
+    test("matches snapshot", () => {
+        const {asFragment} = render(
+            <HelmetProvider>
+                <Projects/>
+            </HelmetProvider>
+        );
+        expect(asFragment()).toMatchSnapshot();
+    });
 });

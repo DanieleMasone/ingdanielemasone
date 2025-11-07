@@ -20,6 +20,9 @@ import phpPhoto from '../assets/courses/PHP.png';
 import sqlPhoto from '../assets/courses/SQL.png';
 import typescriptPhoto from '../assets/courses/TYPESCRIPT.png';
 import SeoHead from "../components/ui/SeoHead";
+import Pagination from "../components/ui/Pagination";
+
+const ITEMS_PER_PAGE = 3;
 
 /**
  * Courses component.
@@ -38,7 +41,6 @@ import SeoHead from "../components/ui/SeoHead";
  */
 export default function Courses() {
     const {t} = useTranslation();
-    const coursesPerPage = 3;
     const [page, setPage] = useState(1);
 
     const courses = [
@@ -140,11 +142,11 @@ export default function Courses() {
         }
     ];
 
-    const totalPages = Math.ceil(courses.length / coursesPerPage);
+    const totalPages = Math.ceil(courses.length / ITEMS_PER_PAGE);
 
     const displayedCourses = courses.slice(
-        (page - 1) * coursesPerPage,
-        page * coursesPerPage
+        (page - 1) * ITEMS_PER_PAGE,
+        page * ITEMS_PER_PAGE
     );
 
     return (
@@ -241,34 +243,11 @@ export default function Courses() {
                 </AnimatePresence>
 
                 {/* Pagination Controls */}
-                {totalPages > 1 && (
-                    <div className="flex justify-center mt-8 space-x-4">
-                        <button
-                            onClick={() => setPage(p => Math.max(p - 1, 1))}
-                            disabled={page === 1}
-                            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
-                               text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
-                               hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
-                        >
-                            ← {t("previous")}
-                        </button>
-
-                        <span data-testid="pagination-info"
-                              className="px-4 py-2 text-sm text-gray-600 dark:text-gray-300">
-                        {page} / {totalPages}
-                    </span>
-
-                        <button
-                            onClick={() => setPage(p => Math.min(p + 1, totalPages))}
-                            disabled={page === totalPages}
-                            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
-                               text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
-                               hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
-                        >
-                            {t("next")} →
-                        </button>
-                    </div>
-                )}
+                <Pagination
+                    page={page}
+                    totalPages={totalPages}
+                    onPageChange={setPage}
+                />
             </PageSection>
         </>
     );
