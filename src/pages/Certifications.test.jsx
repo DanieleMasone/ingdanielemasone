@@ -6,8 +6,8 @@ import Certifications from "./Certifications";
 // Mock i18next
 jest.mock("react-i18next", () => ({
     useTranslation: () => ({
-        t: (key: string) => {
-            const map: Record<string, string> = {
+        t: (key) => {
+            const map = {
                 "certifications_page.title": "Certifications",
                 "view_certificate": "View Certificate",
             };

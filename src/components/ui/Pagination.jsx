@@ -1,12 +1,5 @@
 import {useTranslation} from "react-i18next";
 
-interface PaginationProps {
-    page: number;
-    totalPages: number;
-    onPageChange: (page: number) => void;
-    className?: string;
-}
-
 /**
  * Reusable pagination component.
  *
@@ -23,7 +16,7 @@ export default function Pagination({
                                        totalPages,
                                        onPageChange,
                                        className = "",
-                                   }: PaginationProps) {
+                                   }) {
     const {t} = useTranslation();
 
     if (totalPages <= 1) return null;

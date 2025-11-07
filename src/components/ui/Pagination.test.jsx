@@ -6,8 +6,8 @@ import Pagination from "./Pagination";
 // Mock i18next
 jest.mock("react-i18next", () => ({
     useTranslation: () => ({
-        t: (key: string) => {
-            const translations: Record<string, string> = {
+        t: (key) => {
+            const translations = {
                 previous: "Previous",
                 next: "Next",
             };
