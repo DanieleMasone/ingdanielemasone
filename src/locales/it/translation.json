@@ -40,12 +40,7 @@
     "nov": "Nov",
     "dec": "Dic"
   },
-  "annual_labels": {
-    "2022": "2022",
-    "2023": "2023",
-    "2024": "2024",
-    "2025_partial": "2025 (parz.)"
-  },
+  "partial": "parziale",
   "project_types": {
     "fastweb": {
       "oloGatewayMobile": "Sviluppo di un portale web per la gestione delle richieste di portabilità dei clienti Fastweb in ambito mobile.",
