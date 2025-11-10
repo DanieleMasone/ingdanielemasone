@@ -104,4 +104,32 @@ describe('LanguageSwitcher', () => {
         expect(enOption).not.toBeDisabled();
         expect(enOption).not.toHaveAttribute('aria-current');
     });
+
+    test('closes dropdown when clicking outside and cleans up event listener', () => {
+        const addSpy = jest.spyOn(document, 'addEventListener');
+        const removeSpy = jest.spyOn(document, 'removeEventListener');
+
+        renderWithI18n(
+            <>
+                <LanguageSwitcher/>
+                <div data-testid="outside">Outside</div>
+            </>
+        );
+
+        const button = screen.getByRole('button', {name: /seleziona lingua/i});
+        fireEvent.click(button);
+        expect(addSpy).toHaveBeenCalledWith('mousedown', expect.any(Function));
+
+        fireEvent.mouseDown(screen.getByTestId('outside'));
+        expect(screen.queryByRole('menu')).not.toBeInTheDocument();
+
+        // Unmount to trigger cleanup
+        fireEvent.click(button); // reopen
+        expect(screen.getByRole('menu')).toBeInTheDocument();
+        addSpy.mockClear();
+        removeSpy.mockClear();
+
+        fireEvent.click(button); // close manually
+        expect(removeSpy).toHaveBeenCalledWith('mousedown', expect.any(Function));
+    });
 });

@@ -14,26 +14,26 @@ exports[`Testimonials component with mobile + desktop paginators matches snapsho
       class="md:hidden sticky top-0 z-20 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md py-2 mb-4 border-b border-gray-200 dark:border-gray-700"
     >
       <div
-        class="flex justify-center mt-8 space-x-4 "
+        class="flex flex-wrap justify-center items-center gap-3 mt-8 "
       >
         <button
-          class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
+          class="min-w-[110px] px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
  text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
- hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
+ hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition text-center"
           disabled=""
         >
           ← Prev
         </button>
         <span
-          class="px-4 py-2 text-sm text-gray-600 dark:text-gray-300"
+          class="px-4 py-2 text-sm text-gray-600 dark:text-gray-300 whitespace-nowrap"
           data-testid="pagination-info"
         >
           1 / 8
         </span>
         <button
-          class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
+          class="min-w-[110px] px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
  text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
- hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
+ hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition text-center"
         >
           Next →
         </button>
@@ -288,26 +288,26 @@ exports[`Testimonials component with mobile + desktop paginators matches snapsho
       class="hidden md:block mt-4"
     >
       <div
-        class="flex justify-center mt-8 space-x-4 "
+        class="flex flex-wrap justify-center items-center gap-3 mt-8 "
       >
         <button
-          class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
+          class="min-w-[110px] px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
  text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
- hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
+ hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition text-center"
           disabled=""
         >
           ← Prev
         </button>
         <span
-          class="px-4 py-2 text-sm text-gray-600 dark:text-gray-300"
+          class="px-4 py-2 text-sm text-gray-600 dark:text-gray-300 whitespace-nowrap"
           data-testid="pagination-info"
         >
           1 / 8
         </span>
         <button
-          class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
+          class="min-w-[110px] px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
  text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
- hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
+ hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition text-center"
         >
           Next →
         </button>

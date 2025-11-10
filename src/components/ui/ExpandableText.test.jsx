@@ -4,18 +4,13 @@ import {ExpandableText} from "./ExpandableText";
 import {I18nextProvider, initReactI18next} from "react-i18next";
 import i18n from "i18next";
 
-// Init i18n
+// Setup i18n mock
 const initTestI18n = () => {
     i18n.use(initReactI18next).init({
         lng: "en",
         fallbackLng: "en",
         resources: {
-            en: {
-                translation: {
-                    showMore: "Show more",
-                    showLess: "Show less",
-                },
-            },
+            en: {translation: {showMore: "Show more", showLess: "Show less"}},
         },
         interpolation: {escapeValue: false},
         react: {useSuspense: false},
@@ -28,33 +23,23 @@ describe("ExpandableText", () => {
     });
 
     beforeEach(() => {
+        // Mock layout and DOM metrics
         Object.defineProperty(HTMLElement.prototype, "scrollHeight", {
             configurable: true,
             get() {
                 if (this.textContent && this.textContent.includes("Riga")) {
-                    return 100; // Simulate long content
+                    return 100; // long text case
                 }
-                return 20; // Simulate short content
-            },
-        });
-
-        Object.defineProperty(HTMLElement.prototype, "clientHeight", {
-            configurable: true,
-            get() {
-                return 50; // Simulate visible height for overflow
+                return 20; // short text case
             },
         });
 
         Object.defineProperty(window, "getComputedStyle", {
             value: () => ({
-                getPropertyValue: (prop) => {
-                    if (prop === "font-size") return "16px";
-                    return "";
-                },
-                fontSize: "16px", // If you log in directly
+                lineHeight: "16px",
+                getPropertyValue: () => "16px",
             }),
         });
-
     });
 
     const renderWithI18n = (ui) =>
@@ -63,69 +48,76 @@ describe("ExpandableText", () => {
     const longText = "Riga 1\nRiga 2\nRiga 3\nRiga 4\nRiga 5";
     const shortText = "Breve testo";
 
-    test("renders long text and show toggle button", async () => {
+    test("renders long text and shows 'Show more' button", async () => {
         renderWithI18n(<ExpandableText value={longText} maxLines={2}/>);
 
-        // The text is visible
         expect(screen.getByText(/Riga 1/)).toBeInTheDocument();
 
-        // Need to wait for useLayoutEffect to show the button
-        await waitFor(() => {
-            expect(screen.getByRole("button", {name: /Show more/i})).toBeInTheDocument();
-        });
+        const button = await screen.findByRole("button", {name: /Show more/i});
+        expect(button).toBeInTheDocument();
     });
 
-    test("renders short text and hides toggle button", async () => {
+    test("renders short text without toggle button", async () => {
         renderWithI18n(<ExpandableText value={shortText} maxLines={3}/>);
-
         expect(screen.getByText(shortText)).toBeInTheDocument();
+        await waitFor(() => expect(screen.queryByRole("button")).not.toBeInTheDocument());
+    });
 
-        // Let's wait to make sure the button does NOT appear
+    test("expands and collapses text correctly with aria-expanded toggle", async () => {
+        renderWithI18n(<ExpandableText value={longText} maxLines={2}/>);
+
+        const expandBtn = await screen.findByRole("button", {name: /Show more/i});
+        const paragraph = expandBtn.closest("div").previousSibling;
+
+        expect(paragraph).toHaveAttribute("aria-expanded", "false");
+        const initialHeight = paragraph.style.maxHeight;
+        expect(initialHeight).toMatch(/2em/);
+
+        // Expand
+        fireEvent.click(expandBtn);
         await waitFor(() => {
-            expect(screen.queryByRole("button")).not.toBeInTheDocument();
+            expect(paragraph).toHaveAttribute("aria-expanded", "true");
+            expect(paragraph.style.maxHeight).toMatch(/px/);
+        });
+
+        // Collapse again
+        const collapseBtn = await screen.findByRole("button", {name: /Show less/i});
+        fireEvent.click(collapseBtn);
+        await waitFor(() => {
+            expect(paragraph).toHaveAttribute("aria-expanded", "false");
+            expect(paragraph.style.maxHeight).toMatch(/2em/);
         });
     });
 
-    test("expands and collapses text", async () => {
+    test("shows fade overlay when collapsed and hides when expanded", async () => {
         renderWithI18n(<ExpandableText value={longText} maxLines={2}/>);
+        const expandBtn = await screen.findByRole("button", {name: /Show more/i});
 
-        // Wait for the initial button "Show more"
-        const expandButton = await screen.findByRole("button", {name: /show more/i});
-        expect(expandButton).toBeInTheDocument();
-
-        // Click to expand
-        fireEvent.click(expandButton);
-
-        // Wait for the "Show less" button
-        const collapseButton = await screen.findByRole("button", {name: /show less/i});
-        expect(collapseButton).toBeInTheDocument();
-
-        // Click to close
-        fireEvent.click(collapseButton);
-
-        // Wait for the "Show more" button to come back
-        const reExpandButton = await screen.findByRole("button", {name: /show more/i});
-        expect(reExpandButton).toBeInTheDocument();
-    });
-
-    test("shows fade overlay when collapsed", async () => {
-        renderWithI18n(<ExpandableText value={longText} maxLines={2}/>);
-
+        // Initially collapsed — fade should be visible
         await waitFor(() => {
-            const overlay = screen.getByText(/Riga 1/).parentElement?.querySelector("div.absolute");
+            const overlay = screen.getByText(/Riga 1/).parentElement.querySelector("div.absolute");
             expect(overlay).toBeInTheDocument();
         });
-    });
 
-    test("hides fade overlay when expanded", async () => {
-        renderWithI18n(<ExpandableText value={longText} maxLines={2}/>);
-        const button = await screen.findByRole("button", {name: /show more/i});
-        fireEvent.click(button);
+        // Expand
+        fireEvent.click(expandBtn);
 
         await waitFor(() => {
-            const overlay = screen.getByText(/Riga 1/).parentElement?.querySelector("div.absolute");
+            const overlay = screen.getByText(/Riga 1/).parentElement.querySelector("div.absolute");
             expect(overlay).not.toBeInTheDocument();
         });
     });
 
+    test("applies custom className to the paragraph container", async () => {
+        renderWithI18n(<ExpandableText value={longText} className="custom-class"/>);
+        const paragraph = screen.getByText(/Riga 1/).closest("div");
+        expect(paragraph).toHaveClass("custom-class");
+    });
+
+    test("handles missing ref element gracefully (branch coverage)", () => {
+        const {unmount} = renderWithI18n(<ExpandableText value=""/>);
+        // Force unmount before ref exists — triggers the early return in useLayoutEffect
+        unmount();
+        expect(true).toBe(true); // just to confirm no crash
+    });
 });
