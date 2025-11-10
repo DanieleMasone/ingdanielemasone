@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>components/SeoHead.jsx - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-components_Footer.html">components/Footer</a></li><li><a href="module-components_Header.html">components/Header</a></li><li><a href="module-components_NotFound.html">components/NotFound</a></li><li><a href="module-components_SeoHead.html">components/SeoHead</a></li><li><a href="module-components_ui_AvatarCard.html">components/ui/AvatarCard</a></li><li><a href="module-components_ui_Card.html">components/ui/Card</a></li><li><a href="module-components_ui_CardContent.html">components/ui/CardContent</a></li><li><a href="module-components_ui_DarkModeToggle.html">components/ui/DarkModeToggle</a></li><li><a href="module-components_ui_ExpandableText.html">components/ui/ExpandableText</a></li><li><a href="module-components_ui_LanguageSwitcher.html">components/ui/LanguageSwitcher</a></li><li><a href="module-components_ui_PageSection.html">components/ui/PageSection</a></li><li><a href="module-components_ui_Pagination.html">components/ui/Pagination</a></li><li><a href="module-components_ui_SelectableButton.html">components/ui/SelectableButton</a></li><li><a href="module-components_ui_TradingPerformanceChart.html">components/ui/TradingPerformanceChart</a></li><li><a href="module-pages_Certifications.html">pages/Certifications</a></li><li><a href="module-pages_CookieBanner.html">pages/CookieBanner</a></li><li><a href="module-pages_CookiePolicy.html">pages/CookiePolicy</a></li><li><a href="module-pages_Courses.html">pages/Courses</a></li><li><a href="module-pages_Experience.html">pages/Experience</a></li><li><a href="module-pages_Home.html">pages/Home</a></li><li><a href="module-pages_Privacy.html">pages/Privacy</a></li><li><a href="module-pages_Projects.html">pages/Projects</a></li><li><a href="module-pages_Testimonials.html">pages/Testimonials</a></li><li><a href="module-pages_Trading.html">pages/Trading</a></li></ul><h3>Global</h3><ul><li><a href="global.html#BrandIcon">BrandIcon</a></li><li><a href="global.html#getExperienceLabel">getExperienceLabel</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">components/SeoHead.jsx</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import {Helmet} from 'react-helmet-async';
+import {useTranslation} from "react-i18next";
+
+/**
+ * SeoHead is a React component for injecting SEO-related meta tags into the document head
+ * using `react-helmet`. It supports dynamic title and description localization via `react-i18next`,
+ * and constructs canonical/Open Graph/Twitter metadata based on the provided `pageKey` and `path`.
+ *
+ * @component
+ * @module components/SeoHead
+ * @example
+ * // Inside a page component
+ * &lt;SeoHead pageKey="home" path="/" />
+ *
+ * @param {string} pageKey - The translation key suffix for fetching SEO title and description.
+ * @param {string} path - The relative URL path of the page (e.g., "/projects").
+ *
+ * @returns {JSX.Element} A Helmet component injecting meta tags into the &lt;head>.
+ */
+export default function SeoHead({pageKey, path}) {
+    const {t} = useTranslation();
+
+    const title = t(`seo.${pageKey}.title`);
+    const description = t(`seo.${pageKey}.description`);
+    const url = `https://danielemasone.github.io/ingdanielemasone/#${path}`;
+    const image = "https://danielemasone.github.io/ingdanielemasone/logo.jpg";
+
+    return (
+        &lt;Helmet>
+            &lt;title>{title}&lt;/title>
+            &lt;meta name="description" content={description}/>
+            &lt;link rel="canonical" href={url}/>
+
+            {/* Open Graph */}
+            &lt;meta property="og:title" content={title}/>
+            &lt;meta property="og:description" content={description}/>
+            &lt;meta property="og:type" content="website"/>
+            &lt;meta property="og:url" content={url}/>
+            &lt;meta property="og:image" content={image}/>
+
+            {/* Twitter */}
+            &lt;meta name="twitter:card" content="summary_large_image"/>
+            &lt;meta name="twitter:title" content={title}/>
+            &lt;meta name="twitter:description" content={description}/>
+            &lt;meta name="twitter:image" content={image}/>
+        &lt;/Helmet>
+    );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Mon Nov 10 2025 15:17:12 GMT+0100 (Ora standard dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

@@ -29,7 +29,7 @@
 <nav >
     
     
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-components_ui_Card.html">components/ui/Card</a></li><li><a href="module-components_ui_CardContent.html">components/ui/CardContent</a></li><li><a href="module-components_ui_DarkModeToggle.html">components/ui/DarkModeToggle</a></li><li><a href="module-components_ui_Footer.html">components/ui/Footer</a></li><li><a href="module-components_ui_Header.html">components/ui/Header</a></li><li><a href="module-components_ui_LanguageSwitcher.html">components/ui/LanguageSwitcher</a></li><li><a href="module-components_ui_NotFound.html">components/ui/NotFound</a></li><li><a href="module-components_ui_PageSection.html">components/ui/PageSection</a></li><li><a href="module-components_ui_Pagination.html">components/ui/Pagination</a></li><li><a href="module-components_ui_SelectableButton.html">components/ui/SelectableButton</a></li><li><a href="module-components_ui_SeoHead.html">components/ui/SeoHead</a></li><li><a href="module-components_ui_TradingPerformanceChart.html">components/ui/TradingPerformanceChart</a></li><li><a href="module-pages_Certifications.html">pages/Certifications</a></li><li><a href="module-pages_CookieBanner.html">pages/CookieBanner</a></li><li><a href="module-pages_CookiePolicy.html">pages/CookiePolicy</a></li><li><a href="module-pages_Courses.html">pages/Courses</a></li><li><a href="module-pages_Experience.html">pages/Experience</a></li><li><a href="module-pages_Home.html">pages/Home</a></li><li><a href="module-pages_Privacy.html">pages/Privacy</a></li><li><a href="module-pages_Projects.html">pages/Projects</a></li><li><a href="module-pages_Testimonials.html">pages/Testimonials</a></li><li><a href="module-pages_Trading.html">pages/Trading</a></li></ul><h3>Global</h3><ul><li><a href="global.html#BrandIcon">BrandIcon</a></li><li><a href="global.html#getExperienceLabel">getExperienceLabel</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-components_Footer.html">components/Footer</a></li><li><a href="module-components_Header.html">components/Header</a></li><li><a href="module-components_NotFound.html">components/NotFound</a></li><li><a href="module-components_SeoHead.html">components/SeoHead</a></li><li><a href="module-components_ui_AvatarCard.html">components/ui/AvatarCard</a></li><li><a href="module-components_ui_Card.html">components/ui/Card</a></li><li><a href="module-components_ui_CardContent.html">components/ui/CardContent</a></li><li><a href="module-components_ui_DarkModeToggle.html">components/ui/DarkModeToggle</a></li><li><a href="module-components_ui_ExpandableText.html">components/ui/ExpandableText</a></li><li><a href="module-components_ui_LanguageSwitcher.html">components/ui/LanguageSwitcher</a></li><li><a href="module-components_ui_PageSection.html">components/ui/PageSection</a></li><li><a href="module-components_ui_Pagination.html">components/ui/Pagination</a></li><li><a href="module-components_ui_SelectableButton.html">components/ui/SelectableButton</a></li><li><a href="module-components_ui_TradingPerformanceChart.html">components/ui/TradingPerformanceChart</a></li><li><a href="module-pages_Certifications.html">pages/Certifications</a></li><li><a href="module-pages_CookieBanner.html">pages/CookieBanner</a></li><li><a href="module-pages_CookiePolicy.html">pages/CookiePolicy</a></li><li><a href="module-pages_Courses.html">pages/Courses</a></li><li><a href="module-pages_Experience.html">pages/Experience</a></li><li><a href="module-pages_Home.html">pages/Home</a></li><li><a href="module-pages_Privacy.html">pages/Privacy</a></li><li><a href="module-pages_Projects.html">pages/Projects</a></li><li><a href="module-pages_Testimonials.html">pages/Testimonials</a></li><li><a href="module-pages_Trading.html">pages/Trading</a></li></ul><h3>Global</h3><ul><li><a href="global.html#BrandIcon">BrandIcon</a></li><li><a href="global.html#getExperienceLabel">getExperienceLabel</a></li></ul>
     
 </nav>
 
@@ -46,9 +46,9 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import {useTranslation} from 'react-i18next';
-import danielePhoto from '../assets/daniele.jpg';
-import {useEffect, useState} from "react";
-import SeoHead from "../components/ui/SeoHead";
+import SeoHead from "../components/SeoHead"
+import {motion} from "framer-motion";
+import {AvatarCard} from "../components/ui/AvatarCard";
 
 /**
  * Home component displays an about section with a title, introductory text,
@@ -64,72 +64,42 @@ import SeoHead from "../components/ui/SeoHead";
  */
 export default function Home() {
     const {t} = useTranslation();
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-        setIsVisible(true);
-    }, []);
 
     return (
         &lt;>
             &lt;SeoHead pageKey="home" path="/"/>
 
-            &lt;section className="px-4 py-8 sm:px-6 md:px-8 max-w-7xl mx-auto">
-                &lt;div
-                    className={`grid grid-cols-1 md:grid-cols-2 gap-10 bg-gradient-to-br from-blue-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl p-6 sm:p-8 md:p-10 shadow-lg transition-opacity duration-700 ${
-                        isVisible ? "opacity-100" : "opacity-0"
-                    }`}
+            &lt;section className="px-4 py-8 sm:px-6 md:px-12 max-w-7xl mx-auto">
+                &lt;motion.div
+                    className="grid grid-cols-1 md:grid-cols-2 gap-10 bg-gradient-to-br from-blue-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl p-6 sm:p-8 md:p-10 shadow-lg"
+                    initial={{opacity: 0, y: 40}}
+                    animate={{opacity: 1, y: 0}}
+                    transition={{duration: 0.6, ease: "easeOut"}}
                 >
-                    {/* Left column: title + description */}
-                    &lt;div className="order-1 md:order-1 flex flex-col justify-center text-center md:text-left">
-                        &lt;h2 className="text-3xl sm:text-4xl font-extrabold mb-4 sm:mb-6 text-gray-900 dark:text-white tracking-tight leading-tight order-1">
+                    {/* Avatar mobile */}
+                    &lt;div className="md:hidden flex justify-center mb-6">
+                        &lt;AvatarCard/>
+                    &lt;/div>
+
+                    {/* Left column: text */}
+                    &lt;div className="flex flex-col justify-center text-center md:text-left space-y-4">
+                        &lt;h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white tracking-tight leading-tight">
                             {t("about_title")}
                         &lt;/h2>
 
-                        {/* Avatar visible only on mobile, immediately after the title */}
-                        &lt;div className="order-2 md:hidden flex justify-center mb-4">
-                            &lt;div
-                                className="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-4 sm:p-6 w-full max-w-xs sm:max-w-sm">
-                                &lt;img
-                                    src={danielePhoto}
-                                    alt="Daniele Masone"
-                                    className="rounded-full w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mx-auto mb-4 sm:mb-6 object-cover shadow-md hover:scale-105 transition-transform duration-300"
-                                />
-                                &lt;h3 className="text-lg sm:text-xl font-semibold text-center text-gray-900 dark:text-white mb-1 sm:mb-2">
-                                    Daniele Masone
-                                &lt;/h3>
-                                &lt;p className="text-center text-gray-600 dark:text-gray-400 text-xs sm:text-sm">
-                                    Senior Software Engineer / Technical Architect FE
-                                &lt;/p>
-                            &lt;/div>
-                        &lt;/div>
-
-                        &lt;p className="order-3 text-base sm:text-lg text-gray-700 dark:text-gray-300 mb-4 sm:mb-6 leading-relaxed">
+                        &lt;p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
                             {t("about_intro")}
                         &lt;/p>
-                        &lt;p className="order-4 text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed">
+                        &lt;p className="text-sm sm:text-base text-gray-500 dark:text-gray-400 leading-relaxed">
                             {t("about_experience")}
                         &lt;/p>
                     &lt;/div>
 
-                    {/* Right column: desktop avatar only */}
-                    &lt;div className="order-2 hidden md:flex items-center justify-center">
-                        &lt;div
-                            className="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-4 sm:p-6 w-full max-w-xs sm:max-w-sm">
-                            &lt;img
-                                src={danielePhoto}
-                                alt="Daniele Masone"
-                                className="rounded-full w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mx-auto mb-4 sm:mb-6 object-cover shadow-md hover:scale-105 transition-transform duration-300"
-                            />
-                            &lt;h3 className="text-lg sm:text-xl font-semibold text-center text-gray-900 dark:text-white mb-1 sm:mb-2">
-                                Daniele Masone
-                            &lt;/h3>
-                            &lt;p className="text-center text-gray-600 dark:text-gray-400 text-xs sm:text-sm">
-                                Senior Software Engineer / Technical Architect FE
-                            &lt;/p>
-                        &lt;/div>
+                    {/* Right column: avatar desktop */}
+                    &lt;div className="hidden md:flex items-center justify-center">
+                        &lt;AvatarCard/>
                     &lt;/div>
-                &lt;/div>
+                &lt;/motion.div>
             &lt;/section>
         &lt;/>
     );
@@ -148,7 +118,7 @@ export default function Home() {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Fri Nov 07 2025 16:55:41 GMT+0100 (Ora standard dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Mon Nov 10 2025 15:17:12 GMT+0100 (Ora standard dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

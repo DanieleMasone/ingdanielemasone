@@ -206,7 +206,19 @@
 <a name='L141'></a><a href='#L141'>141</a>
 <a name='L142'></a><a href='#L142'>142</a>
 <a name='L143'></a><a href='#L143'>143</a>
-<a name='L144'></a><a href='#L144'>144</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L144'></a><a href='#L144'>144</a>
+<a name='L145'></a><a href='#L145'>145</a>
+<a name='L146'></a><a href='#L146'>146</a>
+<a name='L147'></a><a href='#L147'>147</a>
+<a name='L148'></a><a href='#L148'>148</a>
+<a name='L149'></a><a href='#L149'>149</a>
+<a name='L150'></a><a href='#L150'>150</a>
+<a name='L151'></a><a href='#L151'>151</a>
+<a name='L152'></a><a href='#L152'>152</a>
+<a name='L153'></a><a href='#L153'>153</a>
+<a name='L154'></a><a href='#L154'>154</a>
+<a name='L155'></a><a href='#L155'>155</a>
+<a name='L156'></a><a href='#L156'>156</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -298,7 +310,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">21x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -355,7 +379,7 @@ import {Card} from "../components/ui/Card";
 import {CardContent} from "../components/ui/CardContent";
 import PageSection from "../components/ui/PageSection";
 import {AnimatePresence, motion} from "framer-motion";
-import SeoHead from "../components/ui/SeoHead";
+import SeoHead from "../components/SeoHead";
 import {useState} from "react";
 import Pagination from "../components/ui/Pagination";
 &nbsp;
@@ -430,6 +454,15 @@ export default function Certifications() {
             &lt;SeoHead pageKey="certifications" path="/certifications"/&gt;
 &nbsp;
             &lt;PageSection title={t("certifications_page.title")}&gt;
+                {/* Pagination mobile sticky */}
+                &lt;div
+                    className="md:hidden sticky top-0 z-20 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md py-2 mb-4 border-b border-gray-200 dark:border-gray-700"&gt;
+                    &lt;Pagination
+                        page={page}
+                        totalPages={totalPages}
+                        onPageChange={setPage}
+                    /&gt;
+                &lt;/div&gt;
 &nbsp;
                 &lt;AnimatePresence mode="wait"&gt;
                     &lt;motion.div
@@ -438,18 +471,19 @@ export default function Certifications() {
                         animate={{opacity: 1, y: 0}}
                         exit={{opacity: 0, y: -40}}
                         transition={{duration: 0.4}}
+                        layout
                         className="flex flex-col items-center gap-6"
                     &gt;
                         {displayedCerts.map((cert, idx) =&gt; (
                             &lt;Card
                                 key={idx}
                                 className="relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
-                                         dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
-                                           rounded-xl hover:shadow-lg transition-all duration-300"
+                                   dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
+                                   rounded-xl hover:shadow-lg transition-all duration-300"
                             &gt;
                                 {/* Decorative icon at the top right */}
                                 &lt;div className="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-full
-                                              bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 shadow-sm"&gt;
+                                      bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 shadow-sm"&gt;
                                     &lt;Award className="w-5 h-5"/&gt;
                                 &lt;/div&gt;
 &nbsp;
@@ -467,7 +501,7 @@ export default function Certifications() {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="inline-flex items-center text-sm text-blue-600 dark:text-blue-400
-                                                 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
+                                         hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
                                     &gt;
                                         {t("view_certificate", "View Certificate")}
                                         &lt;ExternalLink className="w-4 h-4 ml-1"/&gt;
@@ -476,18 +510,20 @@ export default function Certifications() {
 &nbsp;
                                 {/* Hover effect */}
                                 &lt;div className="absolute inset-0 pointer-events-none opacity-0 hover:opacity-100 transition-opacity
-                                                duration-500 bg-gradient-to-r from-blue-50/30 to-transparent dark:from-blue-900/10"/&gt;
+                                        duration-500 bg-gradient-to-r from-blue-50/30 to-transparent dark:from-blue-900/10"/&gt;
                             &lt;/Card&gt;
                         ))}
                     &lt;/motion.div&gt;
                 &lt;/AnimatePresence&gt;
 &nbsp;
-                {/* Pagination Controls */}
-                &lt;Pagination
-                    page={page}
-                    totalPages={totalPages}
-                    onPageChange={setPage}
-                /&gt;
+                {/* Pagination desktop normal */}
+                &lt;div className="hidden md:block mt-4"&gt;
+                    &lt;Pagination
+                        page={page}
+                        totalPages={totalPages}
+                        onPageChange={setPage}
+                    /&gt;
+                &lt;/div&gt;
             &lt;/PageSection&gt;
         &lt;/&gt;
     );
@@ -499,7 +535,7 @@ export default function Certifications() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-11-07T15:55:39.629Z
+                at 2025-11-10T14:17:04.116Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
