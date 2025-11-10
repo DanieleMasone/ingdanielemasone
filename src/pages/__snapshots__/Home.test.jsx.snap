@@ -2,75 +2,51 @@
 
 exports[`Home component matches snapshot 1`] = `
 <DocumentFragment>
+  <div
+    data-testid="seo-head"
+  />
   <section
-    class="px-4 py-8 sm:px-6 md:px-8 max-w-7xl mx-auto"
+    class="px-4 py-8 sm:px-6 md:px-12 max-w-7xl mx-auto"
   >
     <div
-      class="grid grid-cols-1 md:grid-cols-2 gap-10 bg-gradient-to-br from-blue-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl p-6 sm:p-8 md:p-10 shadow-lg transition-opacity duration-700 opacity-100"
+      class="grid grid-cols-1 md:grid-cols-2 gap-10 bg-gradient-to-br from-blue-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl p-6 sm:p-8 md:p-10 shadow-lg"
+      style="opacity: 0; transform: translateY(40px);"
     >
       <div
-        class="order-1 md:order-1 flex flex-col justify-center text-center md:text-left"
+        class="md:hidden flex justify-center mb-6"
+      >
+        <div
+          data-testid="avatar-card"
+        >
+          Avatar
+        </div>
+      </div>
+      <div
+        class="flex flex-col justify-center text-center md:text-left space-y-4"
       >
         <h2
-          class="text-3xl sm:text-4xl font-extrabold mb-4 sm:mb-6 text-gray-900 dark:text-white tracking-tight leading-tight order-1"
+          class="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white tracking-tight leading-tight"
         >
           About Me
         </h2>
-        <div
-          class="order-2 md:hidden flex justify-center mb-4"
-        >
-          <div
-            class="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-4 sm:p-6 w-full max-w-xs sm:max-w-sm"
-          >
-            <img
-              alt="Daniele Masone"
-              class="rounded-full w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mx-auto mb-4 sm:mb-6 object-cover shadow-md hover:scale-105 transition-transform duration-300"
-              src="daniele.jpg"
-            />
-            <h3
-              class="text-lg sm:text-xl font-semibold text-center text-gray-900 dark:text-white mb-1 sm:mb-2"
-            >
-              Daniele Masone
-            </h3>
-            <p
-              class="text-center text-gray-600 dark:text-gray-400 text-xs sm:text-sm"
-            >
-              Senior Software Engineer / Technical Architect FE
-            </p>
-          </div>
-        </div>
         <p
-          class="order-3 text-base sm:text-lg text-gray-700 dark:text-gray-300 mb-4 sm:mb-6 leading-relaxed"
+          class="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed"
         >
           Hello, I am a software engineer.
         </p>
         <p
-          class="order-4 text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed"
+          class="text-sm sm:text-base text-gray-500 dark:text-gray-400 leading-relaxed"
         >
           I have 10 years of experience in frontend development.
         </p>
       </div>
       <div
-        class="order-2 hidden md:flex items-center justify-center"
+        class="hidden md:flex items-center justify-center"
       >
         <div
-          class="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-4 sm:p-6 w-full max-w-xs sm:max-w-sm"
+          data-testid="avatar-card"
         >
-          <img
-            alt="Daniele Masone"
-            class="rounded-full w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mx-auto mb-4 sm:mb-6 object-cover shadow-md hover:scale-105 transition-transform duration-300"
-            src="daniele.jpg"
-          />
-          <h3
-            class="text-lg sm:text-xl font-semibold text-center text-gray-900 dark:text-white mb-1 sm:mb-2"
-          >
-            Daniele Masone
-          </h3>
-          <p
-            class="text-center text-gray-600 dark:text-gray-400 text-xs sm:text-sm"
-          >
-            Senior Software Engineer / Technical Architect FE
-          </p>
+          Avatar
         </div>
       </div>
     </div>

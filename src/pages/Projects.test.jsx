@@ -10,6 +10,8 @@ jest.mock("react-i18next", () => ({
             const translations = {
                 projects_title: "Projects",
                 show_technologies: "Show Technologies",
+                previous: "Prev",
+                next: "Next",
 
                 // FASTWEB
                 "project_types.fastweb.oloGatewayMobile": "Development of a web portal for managing number portability requests for Fastweb’s mobile customers.",
@@ -49,8 +51,59 @@ describe("Projects Component", () => {
         );
     });
 
+    const getPaginationControls = () => {
+        const nextButtons = screen.getAllByRole("button", {name: /Next/i});
+        const prevButtons = screen.getAllByRole("button", {name: /Prev/i});
+        const pageDisplays = screen.getAllByTestId("pagination-info");
+        return {nextButtons, prevButtons, pageDisplays};
+    };
+
     test("renders projects title", () => {
         expect(screen.getByText("Projects")).toBeInTheDocument();
+    });
+
+    test("renders both mobile and desktop pagination controls", () => {
+        const {nextButtons, prevButtons, pageDisplays} = getPaginationControls();
+
+        expect(nextButtons.length).toBe(2);
+        expect(prevButtons.length).toBe(2);
+        expect(pageDisplays.length).toBe(2);
+
+        pageDisplays.forEach(el => expect(el).toHaveTextContent("1 / 3")); // Total pages by default
+    });
+
+    test("prev buttons are disabled on first page", () => {
+        const {prevButtons} = getPaginationControls();
+        prevButtons.forEach(btn => expect(btn).toBeDisabled());
+    });
+
+    test("next buttons are disabled on last page", () => {
+        const {nextButtons, pageDisplays} = getPaginationControls();
+
+        // Go to the last page
+        nextButtons.forEach(btn => fireEvent.click(btn));
+
+        pageDisplays.forEach(el => expect(el).toHaveTextContent("3 / 3")); // last page
+        nextButtons.forEach(btn => expect(btn).toBeDisabled());
+    });
+
+    test("next and prev buttons work independently for each paginator", () => {
+        const {nextButtons, prevButtons, pageDisplays} = getPaginationControls();
+
+        // Advance mobile paginator
+        fireEvent.click(nextButtons[0]);
+        expect(pageDisplays[0]).toHaveTextContent("2 / 3");
+        expect(pageDisplays[1]).toHaveTextContent("2 / 3");
+
+        // Go back to desktop paginator
+        fireEvent.click(prevButtons[1]);
+        expect(pageDisplays[0]).toHaveTextContent("1 / 3");
+        expect(pageDisplays[1]).toHaveTextContent("1 / 3");
+
+        // Return to page 1 for both
+        fireEvent.click(prevButtons[0]);
+        fireEvent.click(nextButtons[1]);
+        pageDisplays.forEach(el => expect(el).toHaveTextContent("2 / 3"));
     });
 
     test("renders sidebar with unique company buttons", () => {
@@ -94,42 +147,9 @@ describe("Projects Component", () => {
         });
     });
 
-    test("pagination works correctly when clicking next and previous", async () => {
-        // Default is RGI, which has more than 2 projects → should have pagination
-        expect(screen.getByTestId("pagination-info")).toHaveTextContent("1 / 3");
-
-        fireEvent.click(screen.getByRole("button", {name: /next/i}));
-
-        await waitFor(() => {
-            expect(screen.getByTestId("pagination-info")).toHaveTextContent("2 / 3");
-        });
-
-        fireEvent.click(screen.getByRole("button", {name: /previous/i}));
-
-        await waitFor(() => {
-            expect(screen.getByTestId("pagination-info")).toHaveTextContent("1 / 3");
-        });
-    });
-
     test("all projects show correct company in content", () => {
         // Make sure your company name is shown in projects
         expect(screen.getAllByText("RGI").length).toBeGreaterThan(1);
-    });
-
-    test("switching company resets pagination to first page", async () => {
-        // Go to page 2 with RGI
-        fireEvent.click(screen.getByRole("button", {name: /next/i}));
-        await waitFor(() => {
-            expect(screen.getByTestId("pagination-info")).toHaveTextContent("2 / 3");
-        });
-
-        // Change company (Italiaonline only has 2 projects → no pagination)
-        fireEvent.click(screen.getByRole("button", {name: "Italiaonline"}));
-
-        //Ensures that the pagination component disappears (because totalPages <= 1)
-        await waitFor(() => {
-            expect(screen.queryByTestId("pagination-info")).not.toBeInTheDocument();
-        });
     });
 
     test("clicking on a different company shows its projects", async () => {

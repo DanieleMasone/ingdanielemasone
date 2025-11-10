@@ -23,8 +23,8 @@ jest.mock('react-i18next', () => ({
 }));
 
 // Mock LanguageSwitcher and DarkModeToggle to avoid rendering complexity
-jest.mock('./LanguageSwitcher', () => () => <div data-testid="language-switcher"/>);
-jest.mock('./DarkModeToggle', () => () => <div data-testid="dark-mode-toggle"/>);
+jest.mock('./ui/LanguageSwitcher', () => () => <div data-testid="language-switcher"/>);
+jest.mock('./ui/DarkModeToggle', () => () => <div data-testid="dark-mode-toggle"/>);
 
 describe('Header component', () => {
     function renderHeader(initialPath = '/') {

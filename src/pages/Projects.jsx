@@ -7,7 +7,7 @@ import {useState} from "react";
 import PageSection from "../components/ui/PageSection";
 import {ExpandableText} from "../components/ui/ExpandableText";
 import {AnimatePresence, motion} from "framer-motion";
-import SeoHead from "../components/ui/SeoHead";
+import SeoHead from "../components/SeoHead";
 import {SelectableButton} from "../components/ui/SelectableButton";
 import Pagination from "../components/ui/Pagination";
 
@@ -34,98 +34,98 @@ export default function Projects() {
     const projects = [
         {
             name: "FE Architecture Development",
-            tech: "MySQL · REST APIs · SQL · JSON · JBoss Application Server · HTML · Docker · Node.js · HTML5 · JEE · AngularJS · Git · Java · Maven · OOP · JavaScript · CSS · XML",
+            tech: "MySQL, REST APIs, SQL, JSON, JBoss Application Server, HTML, Docker, Node.js, HTML5, JEE, AngularJS, Git, Java, Maven, OOP, JavaScript, CSS, XML",
             type: "rgi.FEArchitecture",
             company: "RGI",
             period: "03/2023"
         },
         {
             name: "HalfLife",
-            tech: "MySQL · REST APIs · SQL · JSON · JBoss Application Server · HTML · Docker · Node.js · HTML5 · JEE · AngularJS · Git · Java · Maven · OOP · JavaScript · CSS · XML",
+            tech: "MySQL, REST APIs, SQL, JSON, JBoss Application Server, HTML, Docker, Node.js, HTML5, JEE, AngularJS, Git, Java, Maven, OOP, JavaScript, CSS, XML",
             type: "rgi.HalfLife",
             company: "RGI",
             period: "01/2023 - 03/2023"
         },
         {
             name: "AXA Mobility",
-            tech: "MySQL · REST APIs · SQL · JSON · JBoss Application Server · HTML · Docker · Node.js · HTML5 · JEE · AngularJS · Git · Maven · OOP · JavaScript · CSS · XML",
+            tech: "MySQL, REST APIs, SQL, JSON, JBoss Application Server, HTML, Docker, Node.js, HTML5, JEE, AngularJS, Git, Maven, OOP, JavaScript, CSS, XML",
             type: "rgi.AXAmobility",
             company: "RGI",
             period: "03/2022 - 01/2023"
         },
         {
             name: "Group Policy Library",
-            tech: "MySQL · REST APIs · SQL · JSON · JBoss Application Server · HTML · Docker · Node.js · HTML5 · JEE · AngularJS · Git · Maven · OOP · JavaScript · CSS · XML",
+            tech: "MySQL, REST APIs, SQL, JSON, JBoss Application Server, HTML, Docker, Node.js, HTML5, JEE, AngularJS, Git, Maven, OOP, JavaScript, CSS, XML",
             type: "rgi.GroupPolicyLibrary",
             company: "RGI",
             period: "02/2022 - 05/2022"
         },
         {
             name: "AfterLife",
-            tech: "MySQL · REST APIs · SQL · JSON · JBoss Application Server · HTML · Docker · Node.js · HTML5 · JEE · AngularJS · Git · Maven · OOP · JavaScript · CSS · XML",
+            tech: "MySQL, REST APIs, SQL, JSON, JBoss Application Server, HTML, Docker, Node.js, HTML5, JEE, AngularJS, Git, Maven, OOP, JavaScript, CSS, XML",
             type: "rgi.AfterLife",
             company: "RGI",
             period: "09/2021 - 02/2022"
         },
         {
             name: "Area Clienti ",
-            tech: " MySQL · REST APIs · SQL · JSON · Hibernate · JBoss Application Server · HTML · Docker · Node.js · HTML5 · JEE · AngularJS · Git · Java · Maven · OOP · JavaScript · Tomcat · Machine learning · CSS · Framework Spring · XML",
+            tech: " MySQL, REST APIs, SQL, JSON, Hibernate, JBoss Application Server, HTML, Docker, Node.js, HTML5, JEE, AngularJS, Git, Java, Maven, OOP, JavaScript, Tomcat, Machine learning, CSS, Framework Spring, XML",
             type: "italiaonline.areaClienti",
             company: "Italiaonline",
             period: "05/2019 - 09/2021"
         },
         {
             name: "IDB rest services",
-            tech: "MySQL · REST APIs · SQL · JSON · Hibernate · JBoss Application Server · JEE · Git · Java · Maven · OOP · Tomcat · XML",
+            tech: "MySQL, REST APIs, SQL, JSON, Hibernate, JBoss Application Server, JEE, Git, Java, Maven, OOP, Tomcat, XML",
             type: "italiaonline.restServices",
             company: "Italiaonline",
             period: "07/2019 - 09/2021"
         },
         {
             name: "2In1App",
-            tech: "MySQL · REST APIs · SQL · React Native · Git · Java · Android · OOP · XML",
+            tech: "MySQL, REST APIs, SQL, React Native, Git, Java, Android, OOP, XML",
             type: "tecnavia.mobileApp",
             company: "TECNAVIA APPS s.r.l.",
             period: "07/2018 - 05/2019"
         },
         {
             name: "Newsmemory",
-            tech: "MySQL · REST APIs · SQL · PHP · JSON · HTML · HTML5 · Eclipse · Git · SQLite · OOP · JavaScript · CSS · jQuery · XML",
+            tech: "MySQL, REST APIs, SQL, PHP, JSON, HTML, HTML5, Eclipse, Git, SQLite, OOP, JavaScript, CSS, jQuery, XML",
             type: "tecnavia.newsmemory",
             company: "TECNAVIA APPS s.r.l.",
             period: "07/2018 - 05/2019"
         },
         {
             name: "DART",
-            tech: "MySQL · REST APIs · SQL · JSON · Hibernate · JBoss Application Server · HTML · Node.js · HTML5 · JEE · AngularJS · Git · Maven · OOP · JavaScript · Tomcat · CSS · jQuery · Spring · XML",
+            tech: "MySQL, REST APIs, SQL, JSON, Hibernate, JBoss Application Server, HTML, Node.js, HTML5, JEE, AngularJS, Git, Maven, OOP, JavaScript, Tomcat, CSS, jQuery, Spring, XML",
             type: "teoresi.dart",
             company: "Teoresi",
             period: "10/2017 - 07/2018"
         },
         {
             name: "io.T Tecno",
-            tech: "MySQL · REST APIs · SQL · JSON · Hibernate · JBoss Application Server · HTML · Node.js · HTML5 · JEE· AngularJS · Git · Maven · OOP · JavaScript · Tomcat · CSS · jQuery · Spring · XML",
+            tech: "MySQL, REST APIs, SQL, JSON, Hibernate, JBoss Application Server, HTML, Node.js, HTML5, JEE· AngularJS, Git, Maven, OOP, JavaScript, Tomcat, CSS, jQuery, Spring, XML",
             type: "teoresi.tecno",
             company: "Teoresi",
             period: "10/2017 - 07/2018"
         },
         {
             name: "OSS Trasformation",
-            tech: "MySQL · REST APIs · JSON · JBoss Application Server · HTML · Node.js · HTML5 · JEE · AngularJS · Git· OOP · JavaScript · CSS · jQuery · XML",
+            tech: "MySQL, REST APIs, JSON, JBoss Application Server, HTML, Node.js, HTML5, JEE, AngularJS, Git· OOP, JavaScript, CSS, jQuery, XML",
             type: "fastweb.OSSTrasformation",
             company: "Fastweb",
             period: "09/2016 - 10/2017"
         },
         {
             name: "OLO Gateway (metroweb, flash fiber)",
-            tech: "MySQL · REST APIs · JSON · JBoss Application Server · HTML · Node.js · HTML5 · JEE · AngularJS · Git· OOP · JavaScript · CSS · jQuery · XML",
+            tech: "MySQL, REST APIs, JSON, JBoss Application Server, HTML, Node.js, HTML5, JEE, AngularJS, Git· OOP, JavaScript, CSS, jQuery, XML",
             type: "fastweb.oloGatewayFisso",
             company: "Fastweb",
             period: "09/2016 - 10/2017"
         },
         {
             name: "OLO Gateway mobile",
-            tech: "MySQL · REST APIs · JSON · JBoss Application Server · HTML · Node.js · HTML5 · JEE · AngularJS · Git· OOP · JavaScript · CSS · jQuery · XML",
+            tech: "MySQL, REST APIs, JSON, JBoss Application Server, HTML, Node.js, HTML5, JEE, AngularJS, Git· OOP, JavaScript, CSS, jQuery, XML",
             type: "fastweb.oloGatewayMobile",
             company: "Fastweb",
             period: "09/2016 - 10/2017"
@@ -162,7 +162,7 @@ export default function Projects() {
                     </div>
 
                     {/* Content */}
-                    <div className="flex-1">
+                    <div className="flex-1 relative">
                         {(() => {
                             const currentProjects = groupedProjects[selectedCompany] || [];
                             const totalPages = Math.ceil(currentProjects.length / ITEMS_PER_PAGE);
@@ -173,6 +173,16 @@ export default function Projects() {
 
                             return (
                                 <>
+                                    {/* Pagination mobile sticky */}
+                                    <div
+                                        className="md:hidden sticky top-0 z-20 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md py-2 mb-4 border-b border-gray-200 dark:border-gray-700">
+                                        <Pagination
+                                            page={page}
+                                            totalPages={totalPages}
+                                            onPageChange={setPage}
+                                        />
+                                    </div>
+
                                     <AnimatePresence mode="wait">
                                         <motion.div
                                             key={selectedCompany + page}
@@ -181,12 +191,14 @@ export default function Projects() {
                                             exit={{opacity: 0, y: -40}}
                                             transition={{duration: 0.4}}
                                             layout
-                                            className="flex flex-wrap gap-6 min-h-[500px] items-start"
+                                            className="flex flex-col items-center gap-6"
                                         >
                                             {paginated.map((proj, idx) => (
                                                 <Card
                                                     key={idx}
-                                                    className="bg-white border border-gray-200 text-gray-900 dark:bg-gray-900 dark:border-gray-700 dark:text-white transition-colors duration-300"
+                                                    className="relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
+                                                       dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
+                                                       rounded-xl hover:shadow-lg transition-all duration-300"
                                                 >
                                                     <CardContent>
                                                         <h3 className="text-lg font-semibold">{proj.name}</h3>
@@ -211,8 +223,13 @@ export default function Projects() {
                                                                         />
                                                                     </Disclosure.Button>
                                                                     <Disclosure.Panel
-                                                                        className="mt-2 text-sm text-gray-700 dark:text-gray-300">
-                                                                        {proj.tech}
+                                                                        className="mt-2 flex flex-wrap gap-2">
+                                                                        {proj.tech.split(",").map((t, i) => (
+                                                                            <span key={i}
+                                                                                  className="text-xs px-2 py-1 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300">
+                                                                      {t.trim()}
+                                                                    </span>
+                                                                        ))}
                                                                     </Disclosure.Panel>
                                                                 </div>
                                                             )}
@@ -223,12 +240,14 @@ export default function Projects() {
                                         </motion.div>
                                     </AnimatePresence>
 
-                                    {/* Pagination Controls */}
-                                    <Pagination
-                                        page={page}
-                                        totalPages={totalPages}
-                                        onPageChange={setPage}
-                                    />
+                                    {/* Pagination desktop normal */}
+                                    <div className="hidden md:block mt-4">
+                                        <Pagination
+                                            page={page}
+                                            totalPages={totalPages}
+                                            onPageChange={setPage}
+                                        />
+                                    </div>
                                 </>
                             );
                         })()}

@@ -1,7 +1,21 @@
 import {useLayoutEffect, useRef, useState} from "react";
-import {useTranslation} from "react-i18next";
 import clsx from "clsx";
 import {ChevronDown, ChevronUp} from "lucide-react";
+import {useTranslation} from "react-i18next";
+
+/**
+ * ExpandableText component
+ *
+ * Displays a text block limited to a maximum number of lines, with the ability to expand or collapse.
+ *
+ * @component
+ * @module components/ui/ExpandableText
+ * @param {Object} props - Component props
+ * @param {string} props.value - The text content to display.
+ * @param {number} [props.maxLines=3] - Maximum number of visible lines when collapsed.
+ * @param {string} [props.className] - Additional CSS classes for styling.
+ * @returns {JSX.Element} An expandable text block with a toggle button.
+ */
 
 export function ExpandableText({value = "", maxLines = 3, className = ""}) {
     const [expanded, setExpanded] = useState(false);
@@ -10,22 +24,16 @@ export function ExpandableText({value = "", maxLines = 3, className = ""}) {
     const paragraphRef = useRef(null);
     const {t} = useTranslation();
 
-    const lineHeightEm = 1.5; // 1.5em is the normal average
-    const collapsedHeightEm = maxLines * lineHeightEm;
-
     useLayoutEffect(() => {
         const el = paragraphRef.current;
         if (!el) return;
 
-        const scrollHeight = el.scrollHeight;
-        setContentHeight(scrollHeight);
+        const lineHeight = parseFloat(getComputedStyle(el).lineHeight || "16");
+        const maxHeightPx = maxLines * lineHeight;
 
-        const fontSize = parseFloat(getComputedStyle(el).fontSize);
-        const collapsedHeightEm = maxLines * 1.5;
-        const collapsedHeightPx = collapsedHeightEm * fontSize;
-
-        setShowButton(scrollHeight > collapsedHeightPx);
-    }, [value, maxLines]);
+        setContentHeight(el.scrollHeight);
+        setShowButton(el.scrollHeight > maxHeightPx);
+    }, [value, maxLines, paragraphRef]);
 
     return (
         <div className="relative">
@@ -36,7 +44,7 @@ export function ExpandableText({value = "", maxLines = 3, className = ""}) {
                     className
                 )}
                 style={{
-                    maxHeight: expanded ? `${contentHeight}px` : `${collapsedHeightEm}em`,
+                    maxHeight: expanded ? `${contentHeight}px` : `${maxLines}em`,
                 }}
                 aria-expanded={expanded}
             >
@@ -51,9 +59,9 @@ export function ExpandableText({value = "", maxLines = 3, className = ""}) {
             {showButton && (
                 <div className="mt-1 flex justify-end">
                     <button
+                        type="button"
                         onClick={() => setExpanded(!expanded)}
                         className="text-xs text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1"
-                        type="button"
                     >
                         {expanded ? (
                             <>

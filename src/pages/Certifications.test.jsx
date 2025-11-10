@@ -49,8 +49,11 @@ describe("Certifications component", () => {
     });
 
     test("renders pagination controls", () => {
-        expect(screen.getByText(/←/)).toBeInTheDocument();
-        expect(screen.getByText(/→/)).toBeInTheDocument();
+        const prevButtons = screen.getAllByText(/←/);
+        expect(prevButtons.length).toBeGreaterThan(0);
+
+        const nextButtons = screen.getAllByText(/→/);
+        expect(nextButtons.length).toBeGreaterThan(0);
     });
 
     test("matches snapshot", () => {

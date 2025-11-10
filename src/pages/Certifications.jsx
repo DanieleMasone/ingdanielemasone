@@ -4,7 +4,7 @@ import {Card} from "../components/ui/Card";
 import {CardContent} from "../components/ui/CardContent";
 import PageSection from "../components/ui/PageSection";
 import {AnimatePresence, motion} from "framer-motion";
-import SeoHead from "../components/ui/SeoHead";
+import SeoHead from "../components/SeoHead";
 import {useState} from "react";
 import Pagination from "../components/ui/Pagination";
 
@@ -79,6 +79,15 @@ export default function Certifications() {
             <SeoHead pageKey="certifications" path="/certifications"/>
 
             <PageSection title={t("certifications_page.title")}>
+                {/* Pagination mobile sticky */}
+                <div
+                    className="md:hidden sticky top-0 z-20 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md py-2 mb-4 border-b border-gray-200 dark:border-gray-700">
+                    <Pagination
+                        page={page}
+                        totalPages={totalPages}
+                        onPageChange={setPage}
+                    />
+                </div>
 
                 <AnimatePresence mode="wait">
                     <motion.div
@@ -87,18 +96,19 @@ export default function Certifications() {
                         animate={{opacity: 1, y: 0}}
                         exit={{opacity: 0, y: -40}}
                         transition={{duration: 0.4}}
+                        layout
                         className="flex flex-col items-center gap-6"
                     >
                         {displayedCerts.map((cert, idx) => (
                             <Card
                                 key={idx}
                                 className="relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
-                                         dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
-                                           rounded-xl hover:shadow-lg transition-all duration-300"
+                                   dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
+                                   rounded-xl hover:shadow-lg transition-all duration-300"
                             >
                                 {/* Decorative icon at the top right */}
                                 <div className="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-full
-                                              bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 shadow-sm">
+                                      bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 shadow-sm">
                                     <Award className="w-5 h-5"/>
                                 </div>
 
@@ -116,7 +126,7 @@ export default function Certifications() {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="inline-flex items-center text-sm text-blue-600 dark:text-blue-400
-                                                 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
+                                         hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
                                     >
                                         {t("view_certificate", "View Certificate")}
                                         <ExternalLink className="w-4 h-4 ml-1"/>
@@ -125,18 +135,20 @@ export default function Certifications() {
 
                                 {/* Hover effect */}
                                 <div className="absolute inset-0 pointer-events-none opacity-0 hover:opacity-100 transition-opacity
-                                                duration-500 bg-gradient-to-r from-blue-50/30 to-transparent dark:from-blue-900/10"/>
+                                        duration-500 bg-gradient-to-r from-blue-50/30 to-transparent dark:from-blue-900/10"/>
                             </Card>
                         ))}
                     </motion.div>
                 </AnimatePresence>
 
-                {/* Pagination Controls */}
-                <Pagination
-                    page={page}
-                    totalPages={totalPages}
-                    onPageChange={setPage}
-                />
+                {/* Pagination desktop normal */}
+                <div className="hidden md:block mt-4">
+                    <Pagination
+                        page={page}
+                        totalPages={totalPages}
+                        onPageChange={setPage}
+                    />
+                </div>
             </PageSection>
         </>
     );

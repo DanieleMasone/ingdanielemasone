@@ -1,11 +1,11 @@
 import React from "react";
-import {fireEvent, render, screen, waitFor} from "@testing-library/react";
+import {fireEvent, render, screen, waitFor, within} from "@testing-library/react";
 import Testimonials from "./Testimonials";
 import {I18nextProvider, initReactI18next} from "react-i18next";
 import i18n from "i18next";
 import {HelmetProvider} from "react-helmet-async";
 
-// Mock minimal translations for the keys used in the component
+// Minimal translations
 const resources = {
     en: {
         translation: {
@@ -22,8 +22,8 @@ const resources = {
             "testimonials_people.daniela.role": "QA",
             "testimonials_people.daniela.quote": "Thorough testing.",
             "testimonials_page.title": "Testimonials",
-            "testimonials_page.prev": "Prev",
-            "testimonials_page.next": "Next"
+            "previous": "Prev",
+            "next": "Next"
         }
     }
 };
@@ -35,7 +35,7 @@ i18n.use(initReactI18next).init({
     interpolation: {escapeValue: false}
 });
 
-describe("Testimonials component", () => {
+describe("Testimonials component with mobile + desktop paginators", () => {
     beforeEach(() => {
         render(
             <HelmetProvider>
@@ -46,63 +46,73 @@ describe("Testimonials component", () => {
         );
     });
 
-    test("renders pagination buttons and current page info", () => {
-        expect(screen.getByRole("button", {name: /Next/i})).toBeInTheDocument();
-        expect(screen.getByRole("button", {name: /Prev/i})).toBeInTheDocument();
-        expect(screen.getByText("1 / 8")).toBeInTheDocument();
+    const getPaginationButtons = () => {
+        const nextButtons = screen.getAllByRole("button", {name: /Next/i});
+        const prevButtons = screen.getAllByRole("button", {name: /Prev/i});
+        const pageDisplays = screen.getAllByTestId("pagination-info");
+        return {nextButtons, prevButtons, pageDisplays};
+    };
+
+    test("renders both mobile and desktop pagination controls", () => {
+        const {nextButtons, prevButtons, pageDisplays} = getPaginationButtons();
+        expect(nextButtons.length).toBe(2);
+        expect(prevButtons.length).toBe(2);
+        expect(pageDisplays.length).toBe(2);
+
+        pageDisplays.forEach(el => expect(el).toHaveTextContent("1 / 8"));
     });
 
-    test("pagination next button changes page", () => {
-        expect(screen.getByText("1 / 8")).toBeInTheDocument();
-        fireEvent.click(screen.getByRole("button", {name: /Next/i}));
-        expect(screen.getByText("2 / 8")).toBeInTheDocument();
+    test("prev buttons are disabled on first page", () => {
+        const {prevButtons} = getPaginationButtons();
+        prevButtons.forEach(btn => expect(btn).toBeDisabled());
     });
 
-    test("pagination prev button changes page", () => {
-        // Go to page 2 first
-        fireEvent.click(screen.getByRole("button", {name: /Next/i}));
-        expect(screen.getByText("2 / 8")).toBeInTheDocument();
+    test("next buttons are disabled on last page", () => {
+        const {nextButtons, pageDisplays} = getPaginationButtons();
 
-        // Go back to page 1
-        fireEvent.click(screen.getByRole("button", {name: /Prev/i}));
-        expect(screen.getByText("1 / 8")).toBeInTheDocument();
-    });
-
-    test("prev button disabled on first page", () => {
-        const prevBtn = screen.getByRole("button", {name: /Prev/i});
-        expect(prevBtn).toBeDisabled();
-    });
-
-    test("next button disabled on last page", () => {
-        const nextBtn = screen.getByRole("button", {name: /Next/i});
-        // Go to last page
         for (let i = 1; i < 8; i++) {
-            fireEvent.click(nextBtn);
+            nextButtons.forEach(btn => fireEvent.click(btn));
         }
-        expect(screen.getByText("8 / 8")).toBeInTheDocument();
-        expect(nextBtn).toBeDisabled();
+
+        pageDisplays.forEach(el => expect(el).toHaveTextContent("8 / 8"));
+        nextButtons.forEach(btn => expect(btn).toBeDisabled());
+    });
+
+    test("next and prev buttons work independently for each paginator", () => {
+        const {nextButtons, prevButtons, pageDisplays} = getPaginationButtons();
+
+        // Advance mobile paginator
+        fireEvent.click(nextButtons[0]);
+        expect(pageDisplays[0]).toHaveTextContent("2 / 8");
+        expect(pageDisplays[1]).toHaveTextContent("2 / 8");
+
+        // Advance desktop paginator
+        fireEvent.click(nextButtons[1]);
+        expect(pageDisplays[0]).toHaveTextContent("3 / 8");
+        expect(pageDisplays[1]).toHaveTextContent("3 / 8");
+
+        // Return to page 1
+        fireEvent.click(prevButtons[0]);
+        fireEvent.click(prevButtons[1]);
+        pageDisplays.forEach(el => expect(el).toHaveTextContent("1 / 8"));
     });
 
     test("toggles testimonial quote visibility on disclosure click", async () => {
-        // Get all disclosure buttons (excluding pagination ones)
-        const disclosureButtons = screen
-            .getAllByRole("button")
-            .filter(btn => !btn.textContent.includes("Next") && !btn.textContent.includes("Prev"));
-        const firstDisclosureButton = disclosureButtons[0];
-        expect(firstDisclosureButton).toBeInTheDocument();
+        const cards = screen.getAllByTestId("testimonial-card");
+        const firstCard = cards[0];
+        const {getByRole, queryByText} = within(firstCard);
 
-        const quoteText = resources.en.translation["testimonials_people.mirko.quote"];
+        const name = resources.en.translation["testimonials_people.mirko.name"];
+        const quote = resources.en.translation["testimonials_people.mirko.quote"];
 
-        // Odds not initially visible
-        expect(screen.queryByText(quoteText)).not.toBeInTheDocument();
+        const disclosureButton = getByRole("button", {name: new RegExp(name, "i")});
+        expect(queryByText(quote)).not.toBeInTheDocument();
 
-        // Open
-        fireEvent.click(firstDisclosureButton);
-        await waitFor(() => expect(screen.getByText(quoteText)).toBeVisible());
+        fireEvent.click(disclosureButton);
+        await waitFor(() => expect(queryByText(quote)).toBeVisible());
 
-        // Close
-        fireEvent.click(firstDisclosureButton);
-        await waitFor(() => expect(screen.queryByText(quoteText)).not.toBeInTheDocument());
+        fireEvent.click(disclosureButton);
+        await waitFor(() => expect(queryByText(quote)).not.toBeInTheDocument());
     });
 
     test("matches snapshot", () => {

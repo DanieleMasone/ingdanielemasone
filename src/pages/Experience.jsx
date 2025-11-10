@@ -7,7 +7,7 @@ import {ChevronDown} from "lucide-react";
 import {AnimatePresence, motion} from "framer-motion";
 import PageSection from "../components/ui/PageSection";
 import {ExpandableText} from "../components/ui/ExpandableText";
-import SeoHead from "../components/ui/SeoHead";
+import SeoHead from "../components/SeoHead";
 import {SelectableButton} from "../components/ui/SelectableButton";
 
 /**
@@ -69,70 +69,70 @@ export default function Experience() {
             company: "RGI Group",
             period: t("exp_rgi_period"),
             description: t("exp_rgi_description"),
-            tech: "MySQL · JavaScript · Docker · JSON · REST APIs · HTML5 · Node.js · XML · CSS · HTML · OOP · Openapi · AngularJS · Git · Mapstruct"
+            tech: "MySQL, JavaScript, Docker, JSON, REST APIs, HTML5, Node.js, XML, CSS, HTML, OOP, Openapi, AngularJS, Git, Mapstruct"
         },
         {
             role: t("exp_iol_role"),
             company: "Italiaonline",
             period: t("exp_iol_period"),
             description: t("exp_iol_description"),
-            tech: "Spring · JavaScript · Docker · Hibernate · JSON · Java · JBoss Application Server · MySQL · REST APIs · Eclipse · HTML5 · JEE · Node.js · XML · Machine learning · CSS · Tomcat · HTML · OOP · AngularJS · Maven · Git",
+            tech: "Spring, JavaScript, Docker, Hibernate, JSON, Java, JBoss Application Server, MySQL, REST APIs, Eclipse, HTML5, JEE, Node.js, XML, Machine learning, CSS, Tomcat, HTML, OOP, AngularJS, Maven, Git",
         },
         {
             role: t("exp_tecnavia_role"),
             company: "Tecnavia Apps",
             period: t("exp_tecnavia_period"),
             description: t("exp_tecnavia_description"),
-            tech: " jQuery · React Native · JavaScript · JSON · Java · SQL · REST APIs · Eclipse · HTML5 · XML · CSS · Android · HTML · OOP · SQLite · MySQL · PHP · Git",
+            tech: " jQuery, React Native, JavaScript, JSON, Java, SQL, REST APIs, Eclipse, HTML5, XML, CSS, Android, HTML, OOP, SQLite, MySQL, PHP, Git",
         },
         {
             role: t("exp_teoresi_role"),
             company: "Teoresi",
             period: t("exp_teoresi_period"),
             description: t("exp_teoresi_description"),
-            tech: " jQuery · JavaScript · Hibernate · JSON · JBoss Application Server · SQL · REST APIs · HTML5 · JEE · Node.js · XML · CSS · Tomcat · HTML · OOP · AngularJS · Maven · MySQL · Git"
+            tech: " jQuery, JavaScript, Hibernate, JSON, JBoss Application Server, SQL, REST APIs, HTML5, JEE, Node.js, XML, CSS, Tomcat, HTML, OOP, AngularJS, Maven, MySQL, Git"
         },
         {
             role: t("exp_hpe_role"),
             company: "Hewlett Packard Enterprise",
             period: t("exp_hpe_period"),
             description: t("exp_hpe_description"),
-            tech: "jQuery · JavaScript · PostgreSQL · Hibernate · JSON · JBoss Application Server · SQL · REST APIs · Eclipse · HTML5 · JEE · Node.js · XML · CSS · Tomcat · HTML · OOP · AngularJS · Maven · MySQL · Git"
+            tech: "jQuery, JavaScript, PostgreSQL, Hibernate, JSON, JBoss Application Server, SQL, REST APIs, Eclipse, HTML5, JEE, Node.js, XML, CSS, Tomcat, HTML, OOP, AngularJS, Maven, MySQL, Git"
         },
         {
             role: t("exp_digiCamere_role"),
             company: "DigiCamere",
             period: t("exp_digiCamere_period"),
             description: t("exp_digiCamere_description"),
-            tech: "Server Windows · Bash · XML · Linux · Tomcat · Active Directory"
+            tech: "Server Windows, Bash, XML, Linux, Tomcat, Active Directory"
         },
         {
             role: t("exp_piksel_role"),
             company: "Piksel",
             period: t("exp_piksel_period"),
             description: t("exp_piksel_description"),
-            tech: "Server Windows · Bash · XML · Linux · Tomcat · Active Directory"
+            tech: "Server Windows, Bash, XML, Linux, Tomcat, Active Directory"
         },
         {
             role: t("exp_coach_role"),
             company: "-",
             period: t("exp_coach_period"),
             description: t("exp_coach_description"),
-            tech: "Framework Spring · jQuery · C# · VBA · x86 Assembly · Bash · Matlab · .NET · HTML5 · XML · C · PhpMyAdmin · CSS · HTML · Cisco Technologies · MySQL · PHP · Git · C++"
+            tech: "Framework Spring, jQuery, C#, VBA, x86 Assembly, Bash, Matlab, .NET, HTML5, XML, C, PhpMyAdmin, CSS, HTML, Cisco Technologies, MySQL, PHP, Git, C++"
         },
         {
             role: t("exp_salesiani_role"),
             company: "Salesiani Sesto San Giovanni",
             period: t("exp_salesiani_period"),
             description: t("exp_salesiani_description"),
-            tech: "C · C++ · C# · Assembly x86 · PHP · MySQL · HTML · CSS · Matlab"
+            tech: "C, C++, C#, Assembly x86, PHP, MySQL, HTML, CSS, Matlab"
         },
         {
             role: t("exp_polimi_role"),
             company: "Politecnico di Milano",
             period: t("exp_polimi_period"),
             description: t("exp_polimi_description"),
-            tech: "Java · C · C++ · Android · STM32 · USB communication · Embedded systems · Linux"
+            tech: "Java, C, C++, Android, STM32, USB communication, Embedded systems, Linux"
         }
     ];
 
@@ -179,17 +179,20 @@ export default function Experience() {
                         animate={{opacity: 1, y: 0}}
                         exit={{opacity: 0, y: -40}}
                         transition={{duration: 0.4}}
-                        className="flex flex-wrap gap-6"
+                        layout
+                        className="flex flex-col items-center gap-6"
                     >
                         {filteredExperiences.map((exp, i) => (
                             <Card
                                 key={i}
-                                className="h-full bg-white/60 dark:bg-gray-900/40 shadow-xl rounded-2xl backdrop-blur-sm"
+                                className="relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
+                                         dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
+                                           rounded-xl hover:shadow-lg transition-all duration-300 flex flex-col md:flex-row items-start gap-4"
                             >
                                 <CardContent>
-                                    <h3 className="text-xl font-semibold mb-1">{exp.role}</h3>
+                                    <h3 className="text-lg font-semibold">{exp.role}</h3>
                                     <div className="flex items-center gap-2 mb-2">
-                                        <p className="text-gray-700 dark:text-gray-400 font-medium">{exp.company}</p>
+                                        <p className="text-gray-700 dark:text-gray-400">{exp.company}</p>
                                         {(() => {
                                             const status = getExperienceLabel(exp.period, selectedYear, t);
                                             if (!status) return null;
@@ -215,7 +218,7 @@ export default function Experience() {
                                         <ExpandableText
                                             value={exp.description}
                                             maxLines={3}
-                                            className="mb-2 text-sm text-gray-800 dark:text-gray-200 bg-transparent"
+                                            className="mb-2 text-sm"
                                         />
                                     )}
 
@@ -223,17 +226,21 @@ export default function Experience() {
                                         {({open}) => (
                                             <div>
                                                 <Disclosure.Button
-                                                    className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline">
+                                                    className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
+                                                >
                                                     <span>{t("experience_show_stack")}</span>
                                                     <ChevronDown
-                                                        className={`ml-1 w-4 h-4 transition-transform ${
-                                                            open ? "rotate-180" : ""
-                                                        }`}
+                                                        className={`ml-1 w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}
                                                     />
                                                 </Disclosure.Button>
                                                 <Disclosure.Panel
-                                                    className="mt-2 text-sm text-gray-700 dark:text-gray-300">
-                                                    {exp.tech}
+                                                    className="mt-2 flex flex-wrap gap-2">
+                                                    {exp.tech.split(",").map((t, i) => (
+                                                        <span key={i}
+                                                              className="text-xs px-2 py-1 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300">
+                                                                      {t.trim()}
+                                                                    </span>
+                                                    ))}
                                                 </Disclosure.Panel>
                                             </div>
                                         )}

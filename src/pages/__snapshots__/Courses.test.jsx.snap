@@ -11,11 +11,42 @@ exports[`Courses component matches snapshot 1`] = `
       Courses
     </h2>
     <div
-      class="flex flex-wrap gap-6"
+      class="md:hidden sticky top-0 z-20 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md py-2 mb-4 border-b border-gray-200 dark:border-gray-700"
+    >
+      <div
+        class="flex justify-center mt-8 space-x-4 "
+      >
+        <button
+          class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
+ text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
+ hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
+          disabled=""
+        >
+          ← Previous
+        </button>
+        <span
+          class="px-4 py-2 text-sm text-gray-600 dark:text-gray-300"
+          data-testid="pagination-info"
+        >
+          1 / 4
+        </span>
+        <button
+          class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
+ text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
+ hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
+        >
+          Next →
+        </button>
+      </div>
+    </div>
+    <div
+      class="flex flex-col items-center gap-6"
       style="opacity: 0; transform: translateY(40px);"
     >
       <div
-        class="rounded-2xl bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 w-full flex flex-col md:flex-row items-start gap-4 p-4 sm:p-6"
+        class="rounded-2xl bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 w-full relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
+ dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
+ rounded-xl hover:shadow-lg transition-all duration-300 flex flex-col md:flex-row items-start gap-4"
       >
         <div
           class="
@@ -26,7 +57,7 @@ exports[`Courses component matches snapshot 1`] = `
             "
         >
           <div
-            class="flex items-center justify-between"
+            class="flex items-center justify-between mb-2"
           >
             <h3
               class="text-lg font-semibold"
@@ -52,8 +83,8 @@ exports[`Courses component matches snapshot 1`] = `
           >
             <div
               aria-expanded="false"
-              class="text-sm sm:text-base whitespace-pre-line overflow-hidden transition-[max-height] duration-500 ease-in-out relative my-2 cursor-default"
-              style="max-height: 4.5em;"
+              class="text-sm sm:text-base whitespace-pre-line overflow-hidden transition-[max-height] duration-500 ease-in-out relative my-2 cursor-default text-gray-700 dark:text-gray-300"
+              style="max-height: 3em;"
             >
               Learn Git basics and advanced usage.
             </div>
@@ -63,34 +94,38 @@ exports[`Courses component matches snapshot 1`] = `
           >
             Duration: 3h 20m
           </p>
-          <button
-            aria-expanded="false"
-            class="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
+          <div
             data-headlessui-state=""
-            id="headlessui-disclosure-button-:r2e:"
-            type="button"
           >
-            <span>
-              Show technologies
-            </span>
-            <svg
-              aria-hidden="true"
-              class="lucide lucide-chevron-down ml-1 w-4 h-4 transition-transform"
-              fill="none"
-              height="24"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-              width="24"
-              xmlns="http://www.w3.org/2000/svg"
+            <button
+              aria-expanded="false"
+              class="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
+              data-headlessui-state=""
+              id="headlessui-disclosure-button-:r2q:"
+              type="button"
             >
-              <path
-                d="m6 9 6 6 6-6"
-              />
-            </svg>
-          </button>
+              <span>
+                Show technologies
+              </span>
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-chevron-down ml-1 w-4 h-4 transition-transform"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="m6 9 6 6 6-6"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
         <a
           class="hidden md:block shrink-0"
@@ -107,7 +142,9 @@ exports[`Courses component matches snapshot 1`] = `
         </a>
       </div>
       <div
-        class="rounded-2xl bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 w-full flex flex-col md:flex-row items-start gap-4 p-4 sm:p-6"
+        class="rounded-2xl bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 w-full relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
+ dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
+ rounded-xl hover:shadow-lg transition-all duration-300 flex flex-col md:flex-row items-start gap-4"
       >
         <div
           class="
@@ -118,7 +155,7 @@ exports[`Courses component matches snapshot 1`] = `
             "
         >
           <div
-            class="flex items-center justify-between"
+            class="flex items-center justify-between mb-2"
           >
             <h3
               class="text-lg font-semibold"
@@ -144,8 +181,8 @@ exports[`Courses component matches snapshot 1`] = `
           >
             <div
               aria-expanded="false"
-              class="text-sm sm:text-base whitespace-pre-line overflow-hidden transition-[max-height] duration-500 ease-in-out relative my-2 cursor-default"
-              style="max-height: 4.5em;"
+              class="text-sm sm:text-base whitespace-pre-line overflow-hidden transition-[max-height] duration-500 ease-in-out relative my-2 cursor-default text-gray-700 dark:text-gray-300"
+              style="max-height: 3em;"
             >
               TypeScript fundamentals and advanced topics.
             </div>
@@ -155,34 +192,38 @@ exports[`Courses component matches snapshot 1`] = `
           >
             Duration: 4h 10m
           </p>
-          <button
-            aria-expanded="false"
-            class="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
+          <div
             data-headlessui-state=""
-            id="headlessui-disclosure-button-:r2g:"
-            type="button"
           >
-            <span>
-              Show technologies
-            </span>
-            <svg
-              aria-hidden="true"
-              class="lucide lucide-chevron-down ml-1 w-4 h-4 transition-transform"
-              fill="none"
-              height="24"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-              width="24"
-              xmlns="http://www.w3.org/2000/svg"
+            <button
+              aria-expanded="false"
+              class="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
+              data-headlessui-state=""
+              id="headlessui-disclosure-button-:r2s:"
+              type="button"
             >
-              <path
-                d="m6 9 6 6 6-6"
-              />
-            </svg>
-          </button>
+              <span>
+                Show technologies
+              </span>
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-chevron-down ml-1 w-4 h-4 transition-transform"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="m6 9 6 6 6-6"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
         <a
           class="hidden md:block shrink-0"
@@ -199,7 +240,9 @@ exports[`Courses component matches snapshot 1`] = `
         </a>
       </div>
       <div
-        class="rounded-2xl bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 w-full flex flex-col md:flex-row items-start gap-4 p-4 sm:p-6"
+        class="rounded-2xl bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 w-full relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
+ dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
+ rounded-xl hover:shadow-lg transition-all duration-300 flex flex-col md:flex-row items-start gap-4"
       >
         <div
           class="
@@ -210,7 +253,7 @@ exports[`Courses component matches snapshot 1`] = `
             "
         >
           <div
-            class="flex items-center justify-between"
+            class="flex items-center justify-between mb-2"
           >
             <h3
               class="text-lg font-semibold"
@@ -236,8 +279,8 @@ exports[`Courses component matches snapshot 1`] = `
           >
             <div
               aria-expanded="false"
-              class="text-sm sm:text-base whitespace-pre-line overflow-hidden transition-[max-height] duration-500 ease-in-out relative my-2 cursor-default"
-              style="max-height: 4.5em;"
+              class="text-sm sm:text-base whitespace-pre-line overflow-hidden transition-[max-height] duration-500 ease-in-out relative my-2 cursor-default text-gray-700 dark:text-gray-300"
+              style="max-height: 3em;"
             >
               Master jQuery selectors and events.
             </div>
@@ -247,34 +290,38 @@ exports[`Courses component matches snapshot 1`] = `
           >
             Duration: 2h 45m
           </p>
-          <button
-            aria-expanded="false"
-            class="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
+          <div
             data-headlessui-state=""
-            id="headlessui-disclosure-button-:r2i:"
-            type="button"
           >
-            <span>
-              Show technologies
-            </span>
-            <svg
-              aria-hidden="true"
-              class="lucide lucide-chevron-down ml-1 w-4 h-4 transition-transform"
-              fill="none"
-              height="24"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-              width="24"
-              xmlns="http://www.w3.org/2000/svg"
+            <button
+              aria-expanded="false"
+              class="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
+              data-headlessui-state=""
+              id="headlessui-disclosure-button-:r2u:"
+              type="button"
             >
-              <path
-                d="m6 9 6 6 6-6"
-              />
-            </svg>
-          </button>
+              <span>
+                Show technologies
+              </span>
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-chevron-down ml-1 w-4 h-4 transition-transform"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="m6 9 6 6 6-6"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
         <a
           class="hidden md:block shrink-0"
@@ -292,29 +339,33 @@ exports[`Courses component matches snapshot 1`] = `
       </div>
     </div>
     <div
-      class="flex justify-center mt-8 space-x-4 "
+      class="hidden md:block mt-4"
     >
-      <button
-        class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
+      <div
+        class="flex justify-center mt-8 space-x-4 "
+      >
+        <button
+          class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
  text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
  hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
-        disabled=""
-      >
-        ← Previous
-      </button>
-      <span
-        class="px-4 py-2 text-sm text-gray-600 dark:text-gray-300"
-        data-testid="pagination-info"
-      >
-        1 / 4
-      </span>
-      <button
-        class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
+          disabled=""
+        >
+          ← Previous
+        </button>
+        <span
+          class="px-4 py-2 text-sm text-gray-600 dark:text-gray-300"
+          data-testid="pagination-info"
+        >
+          1 / 4
+        </span>
+        <button
+          class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
  text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
  hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition"
-      >
-        Next →
-      </button>
+        >
+          Next →
+        </button>
+      </div>
     </div>
   </section>
 </DocumentFragment>

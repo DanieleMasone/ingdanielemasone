@@ -17,11 +17,17 @@ describe("Footer component - additional tests", () => {
     it("footer has correct CSS classes for styling", () => {
         render(<Footer/>);
         const footer = screen.getByRole("contentinfo");
-        // Check some key classes (e.g. sticky, backdrop-blur)
+
+        // Core controls
         expect(footer).toHaveClass("sticky");
         expect(footer).toHaveClass("bottom-0");
-        expect(footer.className).toMatch(/backdrop-blur-sm/);
-        expect(footer.className).toMatch(/dark:bg-gray-900\/80/);
+
+        // Updated backdrop classes
+        expect(footer.className).toMatch(/backdrop-blur-md/);
+        expect(footer.className).toMatch(/backdrop-saturate-150/);
+
+        // Dark mode background update
+        expect(footer.className).toMatch(/dark:bg-gray-900\/60/);
     });
 
     it("each social link has a BrandIcon with correct props", () => {
@@ -33,8 +39,8 @@ describe("Footer component - additional tests", () => {
             expect(svg).toHaveAttribute("role", "img");
             expect(svg).toHaveAttribute("viewBox", "0 0 24 24");
             expect(svg).toHaveAttribute("xmlns", "http://www.w3.org/2000/svg");
-            expect(svg).toHaveAttribute("width", "28");
-            expect(svg).toHaveAttribute("height", "28");
+            expect(svg).toHaveAttribute("width", "26");
+            expect(svg).toHaveAttribute("height", "26");
             // Check the fill: it must be present and not empty
             expect(svg).toHaveAttribute("fill");
             expect(svg.getAttribute("fill")).not.toBe("");

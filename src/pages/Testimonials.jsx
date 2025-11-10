@@ -6,8 +6,8 @@ import {Card} from "../components/ui/Card";
 import {CardContent} from "../components/ui/CardContent";
 import PageSection from "../components/ui/PageSection";
 import {AnimatePresence, motion} from "framer-motion";
-import SeoHead from "../components/ui/SeoHead";
-import {BrandIcon, linkedinIcon} from "../components/ui/Footer";
+import SeoHead from "../components/SeoHead";
+import {BrandIcon, linkedinIcon} from "../components/Footer";
 import Pagination from "../components/ui/Pagination";
 
 const ITEMS_PER_PAGE = 3;
@@ -180,58 +180,72 @@ export default function Testimonials() {
             <SeoHead pageKey="testimonials" path="/testimonials"/>
 
             <PageSection title={t("testimonials_page.title")}>
+                {/* Pagination mobile sticky */}
+                <div
+                    className="md:hidden sticky top-0 z-20 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md py-2 mb-4 border-b border-gray-200 dark:border-gray-700">
+                    <Pagination
+                        page={page}
+                        totalPages={totalPages}
+                        onPageChange={setPage}
+                    />
+                </div>
 
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={`page-${page}`}
-                        initial={{opacity: 0, y: 40}}
-                        animate={{opacity: 1, y: 0}}
-                        exit={{opacity: 0, y: -40}}
-                        transition={{duration: 0.4}}
-                        className="flex flex-wrap gap-6"
+                        initial={{opacity: 0, scale: 0.96}}
+                        animate={{opacity: 1, scale: 1}}
+                        exit={{opacity: 0, scale: 0.96}}
+                        transition={{duration: 0.3, ease: "easeOut"}}
+                        layout
+                        className="flex flex-col items-center gap-6"
                     >
-                        {displayedTestimonials.map((testi, idx) => (
-                            <Card key={idx}
-                                  className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 shadow-sm">
+                        {displayedTestimonials.map((texts, idx) => (
+                            <Card
+                                data-testid="testimonial-card"
+                                key={idx}
+                                className="relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
+                                   dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
+                                   rounded-xl hover:shadow-lg transition-all duration-300"
+                            >
                                 <CardContent>
                                     <Disclosure>
                                         {({open}) => (
                                             <>
                                                 <Disclosure.Button
-                                                    className="flex justify-between w-full items-center text-left">
-                                                    <div className="flex items-center space-x-4">
+                                                    className="flex justify-between items-center w-full text-left py-1"
+                                                >
+                                                    <div className="flex items-center space-x-3">
                                                         <img
-                                                            src={`https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(t(testi.nameKey))}`}
-                                                            alt={`${t(testi.nameKey)} avatar`}
+                                                            src={`https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(t(texts.nameKey))}`}
+                                                            alt={`${t(texts.nameKey)} avatar`}
                                                             className="w-10 h-10 rounded-full ring-1 ring-gray-300 dark:ring-gray-700 bg-white"
                                                         />
                                                         <div>
-                                                            <div className="flex items-center space-x-2 font-semibold">
-                                                                <span>{t(testi.nameKey)}</span>
-                                                                {testi.linkedinUrl && (
+                                                            <p className="font-semibold flex items-center gap-2">
+                                                                {t(texts.nameKey)}
+                                                                {texts.linkedinUrl && (
                                                                     <a
-                                                                        href={testi.linkedinUrl}
+                                                                        href={texts.linkedinUrl}
                                                                         target="_blank"
                                                                         rel="noopener noreferrer"
-                                                                        aria-label={`LinkedIn profile of ${t(testi.nameKey)}`}
-                                                                        className="hover:opacity-80 transition"
                                                                     >
                                                                         <BrandIcon icon={linkedinIcon} color="#0A66C2"
-                                                                                   size={20}/>
+                                                                                   size={18}/>
                                                                     </a>
                                                                 )}
-                                                            </div>
-                                                            <p className="text-sm text-gray-500 dark:text-gray-400">
-                                                                {t(testi.roleKey)}
                                                             </p>
+                                                            <p className="text-xs text-gray-500 dark:text-gray-400">{t(texts.roleKey)}</p>
                                                         </div>
                                                     </div>
                                                     <ChevronDown
-                                                        className={`h-5 w-5 transform ${open ? "rotate-180" : ""}`}/>
+                                                        className={`w-5 h-5 transition-transform ${open ? "rotate-180" : ""}`}
+                                                    />
                                                 </Disclosure.Button>
                                                 <Disclosure.Panel
-                                                    className="mt-2 text-sm text-gray-700 dark:text-gray-300">
-                                                    {t(testi.quoteKey)}
+                                                    className="mt-3 border-l-2 border-blue-500 pl-3 italic text-gray-700 dark:text-gray-300"
+                                                >
+                                                    {t(texts.quoteKey)}
                                                 </Disclosure.Panel>
                                             </>
                                         )}
@@ -242,12 +256,14 @@ export default function Testimonials() {
                     </motion.div>
                 </AnimatePresence>
 
-                {/* Pagination Controls */}
-                <Pagination
-                    page={page}
-                    totalPages={totalPages}
-                    onPageChange={setPage}
-                />
+                {/* Pagination desktop normal */}
+                <div className="hidden md:block mt-4">
+                    <Pagination
+                        page={page}
+                        totalPages={totalPages}
+                        onPageChange={setPage}
+                    />
+                </div>
             </PageSection>
         </>
     );

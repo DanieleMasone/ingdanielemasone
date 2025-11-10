@@ -1,7 +1,7 @@
 import {useTranslation} from "react-i18next";
 import TradingPerformanceChart from "../components/ui/TradingPerformanceChart";
 import PageSection from "../components/ui/PageSection";
-import SeoHead from "../components/ui/SeoHead";
+import SeoHead from "../components/SeoHead";
 
 /**
  * Trading component renders a section with trading introduction text,

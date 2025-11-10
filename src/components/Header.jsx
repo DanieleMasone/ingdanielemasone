@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Link, useLocation} from 'react-router';
-import LanguageSwitcher from './LanguageSwitcher';
-import DarkModeToggle from './DarkModeToggle';
+import LanguageSwitcher from './ui/LanguageSwitcher';
+import DarkModeToggle from './ui/DarkModeToggle';
 import {useTranslation} from 'react-i18next';
 import {ChevronDown, Menu, X} from 'lucide-react';
 import {Disclosure} from '@headlessui/react';
@@ -11,7 +11,7 @@ import {Disclosure} from '@headlessui/react';
  * Supports desktop and mobile layouts with responsive menus.
  *
  * @component
- * @module components/ui/Header
+ * @module components/Header
  * @returns {JSX.Element} The header element with navigation links and controls.
  */
 export default function Header() {

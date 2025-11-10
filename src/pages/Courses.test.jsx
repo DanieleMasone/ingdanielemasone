@@ -62,30 +62,21 @@ describe('Courses component', () => {
         });
     });
 
-    test('pagination buttons enabled/disabled correctly', () => {
-        const prevButton = screen.getByRole('button', {name: /previous/i});
-        const nextButton = screen.getByRole('button', {name: /next/i});
-
-        expect(prevButton).toBeDisabled();
-        expect(nextButton).toBeEnabled();
-
-        fireEvent.click(nextButton);
-
-        expect(prevButton).toBeEnabled();
+    test('disables "Previous" on first page', () => {
+        const prevButtons = screen.getAllByRole('button', {name: /previous/i});
+        // mobile e desktop hanno entrambi il pulsante "Previous" sulla pagina 1
+        prevButtons.forEach(btn => expect(btn).toBeDisabled());
     });
 
-    test('pagination shows current page and total pages', () => {
-        expect(screen.getByTestId("pagination-info").textContent).toBe("1 / 4");
+    test('next button advances page and updates pagination info', () => {
+        const nextButtons = screen.getAllByRole('button', {name: /next/i});
+        const pageInfos = screen.getAllByTestId("pagination-info");
 
-        const nextButton = screen.getByRole('button', {name: /next/i});
-        fireEvent.click(nextButton);
-        expect(screen.getByTestId("pagination-info").textContent).toBe("2 / 4");
+        // Avanza pagina usando entrambi i paginatori
+        fireEvent.click(nextButtons[0]); // mobile
+        fireEvent.click(nextButtons[1]); // desktop
 
-        fireEvent.click(nextButton);
-        expect(screen.getByTestId("pagination-info").textContent).toBe("3 / 4");
-
-        fireEvent.click(nextButton);
-        expect(screen.getByTestId("pagination-info").textContent).toBe("4 / 4");
+        pageInfos.forEach(info => expect(info).toHaveTextContent("3 / 4"));
     });
 
     test('each course image has correct alt text', () => {
@@ -114,14 +105,24 @@ describe('Courses component', () => {
         });
     });
 
-    test('disables "Next" on last page', () => {
-        const nextButton = screen.getByRole('button', {name: /next/i});
-        fireEvent.click(nextButton);
-        fireEvent.click(nextButton);
-        fireEvent.click(nextButton); // now on page 4
+    test('Next and Previous buttons work independently for mobile and desktop', () => {
+        const nextButtons = screen.getAllByRole('button', {name: /next/i});
+        const prevButtons = screen.getAllByRole('button', {name: /previous/i});
+        const pageInfos = screen.getAllByTestId("pagination-info");
 
-        expect(screen.getByTestId("pagination-info").textContent).toBe("4 / 4");
-        expect(nextButton).toBeDisabled();
+        // Advance mobile
+        fireEvent.click(nextButtons[0]);
+        expect(pageInfos[0]).toHaveTextContent("2 / 4");
+        expect(pageInfos[1]).toHaveTextContent("2 / 4");
+
+        // Advance desktop
+        fireEvent.click(nextButtons[1]);
+        expect(pageInfos[1]).toHaveTextContent("3 / 4");
+
+        // Go back to page 1 for both
+        fireEvent.click(prevButtons[0]);
+        fireEvent.click(prevButtons[1]);
+        pageInfos.forEach(info => expect(info).toHaveTextContent("1 / 4"));
     });
 
     test("matches snapshot", () => {

@@ -19,7 +19,7 @@ import jqueryPhoto from '../assets/courses/JQUERY.png';
 import phpPhoto from '../assets/courses/PHP.png';
 import sqlPhoto from '../assets/courses/SQL.png';
 import typescriptPhoto from '../assets/courses/TYPESCRIPT.png';
-import SeoHead from "../components/ui/SeoHead";
+import SeoHead from "../components/SeoHead";
 import Pagination from "../components/ui/Pagination";
 
 const ITEMS_PER_PAGE = 3;
@@ -56,7 +56,7 @@ export default function Courses() {
             nameKey: "courses_page.typescript.title",
             descKey: "courses_page.typescript.description",
             durationKey: "courses_page.typescript.duration",
-            tech: "Typescript, data types, module, OOP ...",
+            tech: "Typescript, data types, module, OOP, ...",
             link: "https://www.udemy.com/course/typescript-da-zero/",
             image: typescriptPhoto
         },
@@ -64,7 +64,7 @@ export default function Courses() {
             nameKey: "courses_page.jQuery.title",
             descKey: "courses_page.jQuery.description",
             durationKey: "courses_page.jQuery.duration",
-            tech: "jQuery, Selectors, Classes management, Traversing, Manipulating CSS, Bind, Events ...",
+            tech: "jQuery, Selectors, Classes management, Traversing, Manipulating CSS, Bind, Events, ...",
             link: "https://www.udemy.com/course/corso-jquery/",
             image: jqueryPhoto
         },
@@ -72,7 +72,7 @@ export default function Courses() {
             nameKey: "courses_page.php.title",
             descKey: "courses_page.php.description",
             durationKey: "courses_page.php.duration",
-            tech: "Php, data types, Control flow statements, iterations, Regular expressions, Arrays, OOP, HTTP calls, File system ...",
+            tech: "Php, data types, Control flow statements, iterations, Regular expressions, Arrays, OOP, HTTP calls, File system, ...",
             link: "https://www.udemy.com/course/corso-di-programmazione-php/",
             image: phpPhoto
         },
@@ -80,7 +80,7 @@ export default function Courses() {
             nameKey: "courses_page.cpp.title",
             descKey: "courses_page.cpp.description",
             durationKey: "courses_page.cpp.duration",
-            tech: "C++, data types, control flow statements, iterations, I/O system, arrays and structs, OOP, lambda expressions ...",
+            tech: "C++, data types, control flow statements, iterations, I/O system, arrays and structs, OOP, lambda expressions, ...",
             link: "https://www.udemy.com/course/corso-di-programmazione-c-plus-plus/",
             image: cplusplusPhoto
         },
@@ -88,7 +88,7 @@ export default function Courses() {
             nameKey: "courses_page.html5.title",
             descKey: "courses_page.html5.description",
             durationKey: "courses_page.html5.duration",
-            tech: "HTML5, APIs (WebStorage, Web Workers, Drag & Drop ...), Canvas & Multimedia, Header, Footer, Aside ...",
+            tech: "HTML5, APIs (WebStorage, Web Workers, Drag & Drop, ...), Canvas & Multimedia, Header, Footer, Aside, ...",
             link: "https://www.udemy.com/course/corso-html5/",
             image: html5Photo
         },
@@ -96,7 +96,7 @@ export default function Courses() {
             nameKey: "courses_page.angularJS.title",
             descKey: "courses_page.angularJS.description",
             durationKey: "courses_page.angularJS.duration",
-            tech: "AngularJS, scope (the hierarchy), services ($http), control flow statement, directives (bind, ng-class, ng-repeat...), filters, custom directives ...",
+            tech: "AngularJS, scope (the hierarchy), services ($http), control flow statement, directives (bind, ng-class, ng-repeat...), filters, custom directives, ...",
             link: "https://www.udemy.com/course/corso-angularjs/",
             image: angularjsPhoto
         },
@@ -104,7 +104,7 @@ export default function Courses() {
             nameKey: "courses_page.java.title",
             descKey: "courses_page.java.description",
             durationKey: "courses_page.java.duration",
-            tech: "Java, Control flow statements, iterations, arrays, OOP, File management, Lambda expressions, MySQL, MongoDB  ...",
+            tech: "Java, Control flow statements, iterations, arrays, OOP, File management, Lambda expressions, MySQL, MongoDB , ...",
             link: "https://www.udemy.com/course/corso-di-programmazione-java/",
             image: javaPhoto
         },
@@ -112,7 +112,7 @@ export default function Courses() {
             nameKey: "courses_page.javascript.title",
             descKey: "courses_page.javascript.description",
             durationKey: "courses_page.javascript.duration",
-            tech: "Javascript, control flow statements, iterations, arrays, DOM, Design patterns, Arrow function ...",
+            tech: "Javascript, control flow statements, iterations, arrays, DOM, Design patterns, Arrow function, ...",
             link: "https://www.udemy.com/course/corso-di-programmazione-javascript/",
             image: javascriptPhoto
         },
@@ -120,7 +120,7 @@ export default function Courses() {
             nameKey: "courses_page.c.title",
             descKey: "courses_page.c.description",
             durationKey: "courses_page.c.duration",
-            tech: "C, data types, control flow statements, iterations, arrays, structs ...",
+            tech: "C, data types, control flow statements, iterations, arrays, structs, ...",
             link: "https://www.udemy.com/course/corso-di-programmazione-c/",
             image: cPhoto
         },
@@ -128,7 +128,7 @@ export default function Courses() {
             nameKey: "courses_page.assembler.title",
             descKey: "courses_page.assembler.description",
             durationKey: "courses_page.assembler.duration",
-            tech: "AssemblerX86, data types, control flow statement, iterations, arrays ...",
+            tech: "AssemblerX86, data types, control flow statement, iterations, arrays, ...",
             link: "https://www.udemy.com/course/corso-di-programmazione-assembler-8086/",
             image: assemblyPhoto
         },
@@ -136,7 +136,7 @@ export default function Courses() {
             nameKey: "courses_page.sql.title",
             descKey: "courses_page.sql.description",
             durationKey: "courses_page.sql.duration",
-            tech: "SQL, C, E/R, DB design ...",
+            tech: "SQL, C, E/R, DB design, ...",
             link: "https://www.udemy.com/course/corso-sulle-basi-di-dati-dallo-schema-er-allsql/",
             image: sqlPhoto
         }
@@ -154,6 +154,15 @@ export default function Courses() {
             <SeoHead pageKey="courses" path="/courses"/>
 
             <PageSection title={t("courses_page.title")}>
+                {/* Pagination mobile sticky */}
+                <div
+                    className="md:hidden sticky top-0 z-20 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md py-2 mb-4 border-b border-gray-200 dark:border-gray-700">
+                    <Pagination
+                        page={page}
+                        totalPages={totalPages}
+                        onPageChange={setPage}
+                    />
+                </div>
 
                 <AnimatePresence mode="wait">
                     <motion.div
@@ -162,17 +171,20 @@ export default function Courses() {
                         animate={{opacity: 1, y: 0}}
                         exit={{opacity: 0, y: -40}}
                         transition={{duration: 0.4}}
-                        className="flex flex-wrap gap-6"
+                        layout
+                        className="flex flex-col items-center gap-6"
                     >
                         {displayedCourses.map((course, idx) => (
-                            <Card key={idx} className="flex flex-col md:flex-row items-start gap-4 p-4 sm:p-6">
+                            <Card
+                                key={idx}
+                                className="relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
+                                         dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
+                                           rounded-xl hover:shadow-lg transition-all duration-300 flex flex-col md:flex-row items-start gap-4"
+                            >
                                 <CardContent className="p-0 flex-1">
-
-                                    {/* Title + small image on mobile */}
-                                    <div className="flex items-center justify-between">
-                                        <h3 className="text-lg font-semibold">
-                                            {t(course.nameKey)}
-                                        </h3>
+                                    {/* Title + mobile image */}
+                                    <div className="flex items-center justify-between mb-2">
+                                        <h3 className="text-lg font-semibold">{t(course.nameKey)}</h3>
 
                                         {/* Mobile small image */}
                                         <a
@@ -190,35 +202,40 @@ export default function Courses() {
                                         </a>
                                     </div>
 
-                                    {/* Rest of the content takes full width */}
+                                    {/* Description */}
                                     <ExpandableText
                                         value={t(course.descKey)}
                                         maxLines={3}
-                                        className="my-2 cursor-default"
+                                        className="my-2 cursor-default text-gray-700 dark:text-gray-300"
                                     />
 
+                                    {/* Duration */}
                                     <p className="text-sm text-gray-500 dark:text-gray-400 font-mono mb-2">
                                         {t("courses_page.duration")}: {t(course.durationKey)}
                                     </p>
 
+                                    {/* Technologies */}
                                     <Disclosure>
                                         {({open}) => (
-                                            <>
+                                            <div>
                                                 <Disclosure.Button
-                                                    className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
-                                                >
+                                                    className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2">
                                                     <span>{t("show_technologies")}</span>
                                                     <ChevronDown
-                                                        className={`ml-1 w-4 h-4 transition-transform ${
-                                                            open ? "rotate-180" : ""
-                                                        }`}
+                                                        className={`ml-1 w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}
                                                     />
                                                 </Disclosure.Button>
-                                                <Disclosure.Panel
-                                                    className="mt-2 text-sm text-gray-700 dark:text-gray-300">
-                                                    {course.tech}
+                                                <Disclosure.Panel className="mt-2 flex flex-wrap gap-2">
+                                                    {course.tech.split(",").map((t, i) => (
+                                                        <span
+                                                            key={i}
+                                                            className="text-xs px-2 py-1 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300"
+                                                        >
+                                                {t.trim()}
+                                              </span>
+                                                    ))}
                                                 </Disclosure.Panel>
-                                            </>
+                                            </div>
                                         )}
                                     </Disclosure>
                                 </CardContent>
@@ -242,12 +259,14 @@ export default function Courses() {
                     </motion.div>
                 </AnimatePresence>
 
-                {/* Pagination Controls */}
-                <Pagination
-                    page={page}
-                    totalPages={totalPages}
-                    onPageChange={setPage}
-                />
+                {/* Pagination desktop normal */}
+                <div className="hidden md:block mt-4">
+                    <Pagination
+                        page={page}
+                        totalPages={totalPages}
+                        onPageChange={setPage}
+                    />
+                </div>
             </PageSection>
         </>
     );

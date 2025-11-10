@@ -1,6 +1,6 @@
 import React from "react";
 import {useTranslation} from "react-i18next";
-import SeoHead from "../components/ui/SeoHead";
+import SeoHead from "../components/SeoHead";
 
 /**
  * Privacy component displays the privacy policy page.

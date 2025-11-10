@@ -8,7 +8,7 @@ import {useTranslation} from "react-i18next";
  * and constructs canonical/Open Graph/Twitter metadata based on the provided `pageKey` and `path`.
  *
  * @component
- * @module components/ui/SeoHead
+ * @module components/SeoHead
  * @example
  * // Inside a page component
  * <SeoHead pageKey="home" path="/" />

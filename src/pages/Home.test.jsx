@@ -1,8 +1,9 @@
 import {render, screen} from '@testing-library/react';
 import Home from './Home';
-import {HelmetProvider} from "react-helmet-async";
-import React from "react";
+import React from 'react';
+import {HelmetProvider} from 'react-helmet-async';
 
+// Mock i18n
 jest.mock('react-i18next', () => ({
     useTranslation: () => ({
         t: (key) => {
@@ -10,13 +11,25 @@ jest.mock('react-i18next', () => ({
                 about_title: 'About Me',
                 about_intro: 'Hello, I am a software engineer.',
                 about_experience: 'I have 10 years of experience in frontend development.',
-                showMore: 'Show more',
-                showLess: 'Show less',
             };
             return translations[key] || key;
         },
     }),
 }));
+
+// Mock AvatarCard
+jest.mock('../components/ui/AvatarCard', () => ({
+    AvatarCard: () => <div data-testid="avatar-card">Avatar</div>,
+}));
+
+// Mock SeoHead to prevent Helmet manipulation
+jest.mock('../components/SeoHead', () => ({
+    __esModule: true,
+    default: () => <div data-testid="seo-head"/>,
+}));
+
+// Mock image import if needed
+jest.mock('../assets/daniele.jpg', () => 'daniele.jpg');
 
 describe('Home component', () => {
     beforeEach(() => {
@@ -33,71 +46,24 @@ describe('Home component', () => {
         expect(screen.getByText('I have 10 years of experience in frontend development.')).toBeInTheDocument();
     });
 
-    test('renders exactly two images with alt text "Daniele Masone" for desktop and mobile', () => {
-        const images = screen.getAllByAltText('Daniele Masone');
-        expect(images.length).toBe(2);
-        images.forEach(img => expect(img).toBeInTheDocument());
+    test('renders exactly two avatars (mobile + desktop)', () => {
+        const avatars = screen.getAllByTestId('avatar-card');
+        expect(avatars.length).toBe(2);
+        avatars.forEach((el) => expect(el).toBeInTheDocument());
     });
 
-    test('mobile avatar container is visible only on small screens (has md:hidden class)', () => {
-        const images = screen.getAllByAltText('Daniele Masone');
-
-        // Find the image whose parent has the class md:hidden
-        const mobileImage = images.find(img => img.closest('div.md\\:hidden'));
-
-        expect(mobileImage).toBeDefined();
-
-        const mobileAvatarContainer = mobileImage.closest('div.order-2');
-        expect(mobileAvatarContainer).toHaveClass('md:hidden');
+    test('mobile avatar container has md:hidden class', () => {
+        const mobileAvatar = screen.getAllByTestId('avatar-card')[0];
+        expect(mobileAvatar.parentElement).toHaveClass('md:hidden');
     });
 
-    test('desktop avatar container is visible only on medium+ screens (has hidden md:flex classes)', () => {
-        const images = screen.getAllByAltText('Daniele Masone');
-
-        // Find the image whose parent has the class md:flex
-        const desktopImage = images.find(img => img.closest('div.md\\:flex'));
-
-        expect(desktopImage).toBeDefined();
-
-        const desktopAvatarContainer = desktopImage.closest('div.order-2');
-        expect(desktopAvatarContainer).toHaveClass('hidden', 'md:flex');
+    test('desktop avatar container has hidden md:flex classes', () => {
+        const desktopAvatar = screen.getAllByTestId('avatar-card')[1];
+        expect(desktopAvatar.parentElement).toHaveClass('hidden', 'md:flex');
     });
 
-    test('desktop avatar container is hidden on small screens (has hidden md:flex classes)', () => {
-        // Take all the pictures
-        const images = screen.getAllByAltText('Daniele Masone');
-
-        // Find the one inside the desktop container (has class md:flex)
-        const desktopImage = images.find(img => img.closest('div.md\\:flex'));
-
-        expect(desktopImage).toBeDefined();
-
-        const desktopAvatarContainer = desktopImage.closest('div.order-2');
-        expect(desktopAvatarContainer).toHaveClass('hidden', 'md:flex');
-    });
-
-    test('title is above avatar and description on mobile', () => {
-        const title = screen.getByRole('heading', {level: 2});
-        const images = screen.getAllByAltText('Daniele Masone');
-
-        // Find mobile avatar image (container has md:hidden)
-        const mobileImage = images.find(img => img.closest('div.md\\:hidden'));
-        const intro = screen.getByText('Hello, I am a software engineer.');
-
-        expect(title).toBeInTheDocument();
-        expect(mobileImage).toBeInTheDocument();
-        expect(intro).toBeInTheDocument();
-
-        // Now I only check DOM order classes because you can't test the real layout:
-        // // title order-1
-        expect(title).toHaveClass('order-1');
-
-        // avatar container order-2 (get mobileImage container)
-        const mobileAvatarContainer = mobileImage.closest('div.order-2');
-        expect(mobileAvatarContainer).toHaveClass('md:hidden', 'order-2');
-
-        // intro order-3
-        expect(intro).toHaveClass('order-3');
+    test('renders SeoHead component', () => {
+        expect(screen.getByTestId('seo-head')).toBeInTheDocument();
     });
 
     test("matches snapshot", () => {

@@ -13,7 +13,7 @@ import {useEffect, useState} from 'react';
  * Strings are localized using `react-i18next`.
  *
  * @component
- * @module components/ui/NotFound
+ * @module components/NotFound
  *
  * @returns {JSX.Element} The rendered 404 page
  */
