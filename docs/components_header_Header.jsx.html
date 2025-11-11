@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>components/header/Header.jsx - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-components_footer_Footer.html">components/footer/Footer</a></li><li><a href="module-components_header_Header.html">components/header/Header</a></li><li><a href="module-components_notFound_NotFound.html">components/notFound/NotFound</a></li><li><a href="module-components_seoHead_SeoHead.html">components/seoHead/SeoHead</a></li><li><a href="module-components_ui_avatarCard_AvatarCard.html">components/ui/avatarCard/AvatarCard</a></li><li><a href="module-components_ui_card_Card.html">components/ui/card/Card</a></li><li><a href="module-components_ui_cardContent_CardContent.html">components/ui/cardContent/CardContent</a></li><li><a href="module-components_ui_darkModeToggle_DarkModeToggle.html">components/ui/darkModeToggle/DarkModeToggle</a></li><li><a href="module-components_ui_expandableText_ExpandableText.html">components/ui/expandableText/ExpandableText</a></li><li><a href="module-components_ui_languageSwitcher_LanguageSwitcher.html">components/ui/languageSwitcher/LanguageSwitcher</a></li><li><a href="module-components_ui_pageSection_PageSection.html">components/ui/pageSection/PageSection</a></li><li><a href="module-components_ui_pagination_Pagination.html">components/ui/pagination/Pagination</a></li><li><a href="module-components_ui_selectableButton_SelectableButton.html">components/ui/selectableButton/SelectableButton</a></li><li><a href="module-components_ui_tradingPerformanceChart_TradingPerformanceChart.html">components/ui/tradingPerformanceChart/TradingPerformanceChart</a></li><li><a href="module-pages_certifications_Certifications.html">pages/certifications/Certifications</a></li><li><a href="module-pages_cookiePolicy_CookiePolicy.html">pages/cookiePolicy/CookiePolicy</a></li><li><a href="module-pages_courses_Courses.html">pages/courses/Courses</a></li><li><a href="module-pages_experience_Experience.html">pages/experience/Experience</a></li><li><a href="module-pages_home_Home.html">pages/home/Home</a></li><li><a href="module-pages_privacy_Privacy.html">pages/privacy/Privacy</a></li><li><a href="module-pages_projects_Projects.html">pages/projects/Projects</a></li><li><a href="module-pages_testimonials_Testimonials.html">pages/testimonials/Testimonials</a></li><li><a href="module-pages_trading_Trading.html">pages/trading/Trading</a></li><li><a href="module-pages_ui_cookieBanner_CookieBanner.html">pages/ui/cookieBanner/CookieBanner</a></li></ul><h3>Global</h3><ul><li><a href="global.html#BrandIcon">BrandIcon</a></li><li><a href="global.html#getExperienceLabel">getExperienceLabel</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">components/header/Header.jsx</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, {useState} from 'react';
+import {Link, useLocation} from 'react-router';
+import LanguageSwitcher from '../ui/languageSwitcher/LanguageSwitcher';
+import DarkModeToggle from '../ui/darkModeToggle/DarkModeToggle';
+import {useTranslation} from 'react-i18next';
+import {ChevronDown, Menu, X} from 'lucide-react';
+import {Disclosure} from '@headlessui/react';
+
+/**
+ * Header component with navigation, language switcher, and dark mode toggle.
+ * Supports desktop and mobile layouts with responsive menus.
+ *
+ * @component
+ * @module components/header/Header
+ * @returns {JSX.Element} The header element with navigation links and controls.
+ */
+export default function Header() {
+    const {t} = useTranslation();
+    const {pathname} = useLocation();
+    const [menuOpen, setMenuOpen] = useState(false);
+    const [portfolioOpen, setPortfolioOpen] = useState(false);
+
+    const navMain = [
+        {to: '/', label: t('home')},
+    ];
+
+    const navPortfolio = [
+        {to: '/experience', label: t('experience')},
+        {to: '/projects', label: t('projects')},
+        {to: '/certifications', label: t('certifications')},
+        {to: '/courses', label: t('courses')},
+        {to: '/testimonials', label: t('testimonials')},
+        {to: '/trading', label: t('trading')}
+    ];
+
+    return (
+        &lt;header className="bg-gray-200/70 dark:bg-gray-900 backdrop-blur-sm sticky top-0 z-50 shadow-md">
+            &lt;div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3 md:px-6 md:py-4">
+                {/* Desktop Nav */}
+                &lt;nav className="hidden md:flex items-center space-x-6">
+                    {navMain.map(item => (
+                        &lt;Link
+                            key={item.to}
+                            to={item.to}
+                            className={`transition font-medium hover:text-blue-600 dark:hover:text-blue-400 ${
+                                pathname === item.to ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'text-gray-900 dark:text-white'
+                            }`}
+                        >
+                            {item.label}
+                        &lt;/Link>
+                    ))}
+
+                    {/* Portfolio Dropdown */}
+                    &lt;div className="relative group">
+                        &lt;button
+                            onClick={() => setPortfolioOpen(!portfolioOpen)}
+                            className={`flex items-center space-x-1 font-medium hover:text-blue-600 dark:hover:text-blue-400 transition ${
+                                portfolioOpen ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'text-gray-900 dark:text-white'
+                            }`}
+                        >
+                            &lt;span>{t("portfolio")}&lt;/span>
+                            &lt;ChevronDown
+                                className={`w-4 h-4 transition-transform ${portfolioOpen ? 'rotate-180' : ''}`}/>
+                        &lt;/button>
+
+                        {portfolioOpen &amp;&amp; (
+                            &lt;div
+                                className="absolute left-0 mt-2 w-52 bg-white dark:bg-gray-800 shadow-lg rounded-lg border dark:border-gray-700 z-50">
+                                {navPortfolio.map(item => (
+                                    &lt;Link
+                                        key={item.to}
+                                        to={item.to}
+                                        onClick={() => setPortfolioOpen(false)}
+                                        className={`block px-4 py-2 text-sm rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition ${
+                                            pathname === item.to ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'text-gray-900 dark:text-white'
+                                        }`}
+                                    >
+                                        {item.label}
+                                    &lt;/Link>
+                                ))}
+                            &lt;/div>
+                        )}
+                    &lt;/div>
+                &lt;/nav>
+
+                {/* Language/DarkMode (Desktop) */}
+                &lt;div className="hidden md:flex items-center space-x-4">
+                    &lt;LanguageSwitcher/>
+                    &lt;DarkModeToggle/>
+                &lt;/div>
+
+                {/* Mobile menu toggle */}
+                &lt;button
+                    className="md:hidden p-2 rounded focus:outline-none hover:bg-gray-300 dark:hover:bg-gray-700 transition"
+                    onClick={() => setMenuOpen(!menuOpen)}
+                    aria-label="Toggle mobile menu"
+                >
+                    {menuOpen ? &lt;X className="w-6 h-6"/> : &lt;Menu className="w-6 h-6"/>}
+                &lt;/button>
+            &lt;/div>
+
+            {/* Mobile menu */}
+            {menuOpen &amp;&amp; (
+                &lt;div
+                    data-testid="mobile-menu"
+                    className="md:hidden px-4 pt-4 pb-6 bg-gray-100 dark:bg-gray-800 border-t border-gray-300 dark:border-gray-700 space-y-4">
+
+                    {/* Top row: Home on left, Lang &amp; Theme on right */}
+                    &lt;div className="flex justify-between items-center">
+                        &lt;Link
+                            to="/"
+                            onClick={() => setMenuOpen(false)}
+                            className={`text-base font-medium transition ${
+                                pathname === '/'
+                                    ? 'text-blue-600 dark:text-blue-400 font-semibold'
+                                    : 'text-gray-900 dark:text-white'
+                            } hover:text-blue-600 dark:hover:text-blue-400`}
+                        >
+                            {t("home")}
+                        &lt;/Link>
+
+                        &lt;div className="flex items-center space-x-4">
+                            &lt;LanguageSwitcher/>
+                            &lt;DarkModeToggle/>
+                        &lt;/div>
+                    &lt;/div>
+
+                    {/* Nav items (escluso home) */}
+                    &lt;div className="space-y-2">
+                        {navMain
+                            .filter(item => item.to !== '/') // evitiamo doppio "home"
+                            .map(item => (
+                                &lt;Link
+                                    key={item.to}
+                                    to={item.to}
+                                    onClick={() => setMenuOpen(false)}
+                                    className={`block py-2 rounded text-base font-medium transition ${
+                                        pathname === item.to
+                                            ? 'text-blue-600 dark:text-blue-400 font-semibold'
+                                            : 'text-gray-900 dark:text-white'
+                                    } hover:bg-gray-200 dark:hover:bg-gray-700`}
+                                >
+                                    {item.label}
+                                &lt;/Link>
+                            ))}
+                    &lt;/div>
+
+                    {/* Portfolio in basso a sinistra */}
+                    &lt;div className="pt-4">
+                        &lt;Disclosure>
+                            {({open}) => (
+                                &lt;>
+                                    &lt;Disclosure.Button
+                                        className="flex items-center justify-between w-full py-2 text-base font-medium text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">
+                                        &lt;span>{t("portfolio")}&lt;/span>
+                                        &lt;ChevronDown
+                                            className={`w-5 h-5 transition-transform ${open ? 'rotate-180' : ''}`}/>
+                                    &lt;/Disclosure.Button>
+                                    &lt;Disclosure.Panel className="pl-4 space-y-1">
+                                        {navPortfolio.map(item => (
+                                            &lt;Link
+                                                key={item.to}
+                                                to={item.to}
+                                                onClick={() => setMenuOpen(false)}
+                                                className={`block py-1 text-sm font-normal transition ${
+                                                    pathname === item.to
+                                                        ? 'text-blue-600 dark:text-blue-400 font-semibold'
+                                                        : 'text-gray-900 dark:text-white'
+                                                } hover:text-blue-600 dark:hover:text-blue-400`}
+                                            >
+                                                {item.label}
+                                            &lt;/Link>
+                                        ))}
+                                    &lt;/Disclosure.Panel>
+                                &lt;/>
+                            )}
+                        &lt;/Disclosure>
+                    &lt;/div>
+                &lt;/div>
+            )}
+        &lt;/header>
+    );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Tue Nov 11 2025 12:20:53 GMT+0100 (Ora standard dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

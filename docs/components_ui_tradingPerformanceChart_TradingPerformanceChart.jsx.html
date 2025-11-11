@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>components/ui/tradingPerformanceChart/TradingPerformanceChart.jsx - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-components_footer_Footer.html">components/footer/Footer</a></li><li><a href="module-components_header_Header.html">components/header/Header</a></li><li><a href="module-components_notFound_NotFound.html">components/notFound/NotFound</a></li><li><a href="module-components_seoHead_SeoHead.html">components/seoHead/SeoHead</a></li><li><a href="module-components_ui_avatarCard_AvatarCard.html">components/ui/avatarCard/AvatarCard</a></li><li><a href="module-components_ui_card_Card.html">components/ui/card/Card</a></li><li><a href="module-components_ui_cardContent_CardContent.html">components/ui/cardContent/CardContent</a></li><li><a href="module-components_ui_darkModeToggle_DarkModeToggle.html">components/ui/darkModeToggle/DarkModeToggle</a></li><li><a href="module-components_ui_expandableText_ExpandableText.html">components/ui/expandableText/ExpandableText</a></li><li><a href="module-components_ui_languageSwitcher_LanguageSwitcher.html">components/ui/languageSwitcher/LanguageSwitcher</a></li><li><a href="module-components_ui_pageSection_PageSection.html">components/ui/pageSection/PageSection</a></li><li><a href="module-components_ui_pagination_Pagination.html">components/ui/pagination/Pagination</a></li><li><a href="module-components_ui_selectableButton_SelectableButton.html">components/ui/selectableButton/SelectableButton</a></li><li><a href="module-components_ui_tradingPerformanceChart_TradingPerformanceChart.html">components/ui/tradingPerformanceChart/TradingPerformanceChart</a></li><li><a href="module-pages_certifications_Certifications.html">pages/certifications/Certifications</a></li><li><a href="module-pages_cookiePolicy_CookiePolicy.html">pages/cookiePolicy/CookiePolicy</a></li><li><a href="module-pages_courses_Courses.html">pages/courses/Courses</a></li><li><a href="module-pages_experience_Experience.html">pages/experience/Experience</a></li><li><a href="module-pages_home_Home.html">pages/home/Home</a></li><li><a href="module-pages_privacy_Privacy.html">pages/privacy/Privacy</a></li><li><a href="module-pages_projects_Projects.html">pages/projects/Projects</a></li><li><a href="module-pages_testimonials_Testimonials.html">pages/testimonials/Testimonials</a></li><li><a href="module-pages_trading_Trading.html">pages/trading/Trading</a></li><li><a href="module-pages_ui_cookieBanner_CookieBanner.html">pages/ui/cookieBanner/CookieBanner</a></li></ul><h3>Global</h3><ul><li><a href="global.html#BrandIcon">BrandIcon</a></li><li><a href="global.html#getExperienceLabel">getExperienceLabel</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">components/ui/tradingPerformanceChart/TradingPerformanceChart.jsx</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, {useEffect, useMemo, useState} from 'react';
+import {useTranslation} from 'react-i18next';
+import {Line} from 'react-chartjs-2';
+import {
+    BarController,
+    BarElement,
+    CategoryScale,
+    Chart as ChartJS,
+    Filler,
+    Legend,
+    LinearScale,
+    LineElement,
+    PointElement,
+    Tooltip,
+} from 'chart.js';
+import {SelectableButton} from "../selectableButton/SelectableButton";
+
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Tooltip,
+    Legend,
+    Filler,
+    BarElement,
+    BarController
+);
+
+
+/**
+ * TradingPerformanceChart component renders a line chart showing trading returns performance,
+ * either monthly or annual, with light/dark theme support.
+ *
+ * It listens for changes in the `dark` CSS class on the document element to update colors dynamically.
+ * Users can switch between monthly and annual views via a select dropdown.
+ * The chart is rendered with `react-chartjs-2` and `chart.js`.
+ * Below the chart, a summary section shows detailed monthly returns by year or annual returns,
+ * with color-coded positive/negative values.
+ *
+ * Translations are supported via react-i18next.
+ *
+ * @component
+ * @module components/ui/tradingPerformanceChart/TradingPerformanceChart
+ * @returns {JSX.Element} The trading performance chart section.
+ */
+export default function TradingPerformanceChart() {
+    const {t} = useTranslation();
+    const startYear = 2022; // First year of the dataset
+    const monthlyReturns = [
+        -3.58, -1.38, 5.29, -6.27, 0.27, -8.29, 8.74, -3.13, -7.78, 3.44, 7.52, -4.44,
+        6.54, -1.86, 2.85, -0.81, 1.96, 3.78, 2.68, -3.01, -3.98, -2.98, 8.07, 4.73,
+        -1.26, 2.19, 2.16, -2.68, 4.98, -0.01, 3.18, 2.5, 1.89, -2.89, 1.48, -2.68,
+        1.87, -0.41, -1.84, 0.93, 5.78, 4.38, 1.51, 1.48, 3.43, 2.75, null, null,
+    ];
+    const totalMonths = monthlyReturns.length;
+    const lastMonthIndex = totalMonths - 1;
+    const currentYear = startYear + Math.floor(lastMonthIndex / 12);
+
+    const months = [
+        t('months.jan'),
+        t('months.feb'),
+        t('months.mar'),
+        t('months.apr'),
+        t('months.may'),
+        t('months.jun'),
+        t('months.jul'),
+        t('months.aug'),
+        t('months.sep'),
+        t('months.oct'),
+        t('months.nov'),
+        t('months.dec')
+    ];
+
+    const allYears = Array.from(
+        {length: currentYear - startYear + 1},
+        (_, i) => startYear + i
+    );
+
+    const annualLabels = allYears.map((y, idx) => {
+        const validMonths = monthlyReturns.slice(idx * 12, (idx + 1) * 12).filter(v => v != null).length;
+        return validMonths &lt; 12 ? `${y} (${t('partial')})` : String(y);
+    });
+
+    const annualReturns = Array.from({length: allYears.length}, (_, i) =>
+        calcAnnualReturn(monthlyReturns.slice(i * 12, i * 12 + 12))
+    );
+
+    function calcAnnualReturn(months) {
+        const valid = months.filter((r) => r != null);
+        let capital = 1;
+        valid.forEach((r) => (capital *= 1 + r / 100));
+        return +((capital - 1) * 100).toFixed(2);
+    }
+
+    const getCumulativeSum = (returns) => {
+        let capital = 100;
+        return returns.map((r) => {
+            if (r == null) return null;
+            capital *= 1 + r / 100;
+            return +(capital - 100).toFixed(2);
+        });
+    };
+
+    const [isDark, setIsDark] = useState(() =>
+        document.documentElement.classList.contains('dark')
+    );
+    const [view, setView] = useState('monthly');
+
+    useEffect(() => {
+        const observer = new MutationObserver(() =>
+            setIsDark(document.documentElement.classList.contains('dark'))
+        );
+        observer.observe(document.documentElement, {attributes: true, attributeFilter: ['class']});
+        return () => observer.disconnect();
+    }, []);
+
+    const isMonthly = view === 'monthly';
+
+    const labels = isMonthly
+        ? allYears.flatMap((year, idx) => {
+            const start = idx * 12;
+            const remaining = monthlyReturns.slice(start, start + 12).filter(v => v != null);
+            return remaining.map((_, i) => `${months[i]} ${year}`);
+        })
+        : annualLabels;
+
+    const dataSet = isMonthly ? monthlyReturns : annualReturns;
+
+
+    const cumulative = useMemo(() => getCumulativeSum(dataSet), [dataSet]);
+
+    const cumulativeColor = useMemo(() => {
+        const last = cumulative.filter((v) => v != null).at(-1) ?? 0;
+        return last >= 0
+            ? isDark ? '#7ee787' : '#22c55e'
+            : isDark ? '#ff6b81' : '#dc2626';
+    }, [cumulative, isDark]);
+
+    const positive = useMemo(() => dataSet.map(v => (v != null &amp;&amp; v > 0 ? v : 0)), [dataSet]);
+    const negative = useMemo(() => dataSet.map(v => (v != null &amp;&amp; v &lt; 0 ? v : 0)), [dataSet]);
+
+    const chartData = {
+        labels,
+        datasets: [
+            {
+                type: 'line',
+                label: String(t('performance_cumulative')),
+                data: cumulative,
+                borderColor: cumulativeColor,
+                backgroundColor: 'transparent',
+                borderWidth: 3,
+                pointRadius: window.innerWidth &lt; 640 ? 1 : 4,
+                pointHoverRadius: window.innerWidth &lt; 640 ? 3 : 6,
+                spanGaps: true,
+                tension: isMonthly ? 0.3 : 0,
+            },
+            {
+                type: 'bar',
+                label: String(t('performance_positive')),
+                data: positive,
+                backgroundColor: isDark ? 'rgba(126, 231, 135, 0.8)' : 'rgba(74, 222, 128, 0.8)',
+                stack: 'stack1',
+            },
+            {
+                type: 'bar',
+                label: String(t('performance_negative')),
+                data: negative,
+                backgroundColor: isDark ? 'rgba(255, 99, 132, 0.8)' : 'rgba(239, 68, 68, 0.8)',
+                stack: 'stack1',
+            },
+        ],
+    };
+
+    const options = {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                stacked: true,
+                beginAtZero: true,
+                ticks: {
+                    color: isDark ? '#ddd' : '#333',
+                    callback: (val) => `${val}%`,
+                },
+                grid: {
+                    color: isDark ? '#444' : '#ddd',
+                },
+            },
+            x: {
+                stacked: true,
+                ticks: {
+                    color: isDark ? '#ddd' : '#333',
+                    autoSkip: true,
+                    maxTicksLimit: window.innerWidth &lt; 640 ? 6 : 20 // mobile: 6 tick max
+                },
+                grid: {
+                    color: isDark ? '#444' : '#ddd',
+                },
+            },
+        },
+        plugins: {
+            legend: {
+                labels: {
+                    color: isDark ? '#eee' : '#333',
+                    font: {size: 14, weight: 'bold'},
+                },
+            },
+            tooltip: {
+                mode: 'index',
+                intersect: false,
+                callbacks: {
+                    label: (ctx) => {
+                        const val = ctx.parsed.y;
+                        return `${ctx.dataset.label}: ${val >= 0 ? '+' : ''}${val}%`;
+                    },
+                },
+            },
+        },
+    };
+
+    const [selectedYear, setSelectedYear] = useState("2025");
+
+    function renderSummary() {
+        const years = Object.fromEntries(
+            allYears.map((y, i) => [y, i * 12])
+        );
+
+        if (isMonthly) {
+            return (
+                &lt;div className="space-y-4">
+                    {/* Tabs by year */}
+                    &lt;div className="mb-4">
+                        &lt;div
+                            className="flex flex-row sm:flex-wrap sm:justify-center gap-2 sm:gap-3 overflow-x-auto sm:overflow-visible px-1 sm:px-0 scrollbar-hide"
+                        >
+                            {[...allYears].reverse().map((year) => (
+                                &lt;div key={year} className="snap-start">
+                                    &lt;SelectableButton
+                                        key={year}
+                                        label={year}
+                                        isSelected={selectedYear === String(year)}
+                                        onClick={() => setSelectedYear(String(year))}
+                                    />
+                                &lt;/div>
+                            ))}
+                        &lt;/div>
+
+                    &lt;/div>
+
+                    {/* Cards for the selected year */}
+                    &lt;div className="p-4">
+                        {/* Desktop: 12-card grid su una riga */}
+                        &lt;div className="hidden sm:grid grid-cols-12 gap-3">
+                            {monthlyReturns
+                                .slice(years[selectedYear], years[selectedYear] + 12)
+                                .map((val, i) => {
+                                    const isNeutral = val == null || val === "-";
+                                    const isPositive = !isNeutral &amp;&amp; val >= 0;
+                                    const monthIndex = i;
+                                    const monthLabel = months[monthIndex] || `M${monthIndex + 1}`;
+
+                                    return (
+                                        &lt;div
+                                            key={i}
+                                            className={`rounded-xl shadow-md p-2 transition transform hover:scale-105 hover:shadow-lg
+                                        ${
+                                                isNeutral
+                                                    ? "bg-gray-100 dark:bg-gray-800"
+                                                    : isPositive
+                                                        ? "bg-green-50 dark:bg-green-900/20"
+                                                        : "bg-red-50 dark:bg-red-900/20"
+                                            }`}
+                                        >
+                                            &lt;h4 className="mb-1 text-sm font-bold text-gray-900 dark:text-gray-100 text-center">
+                                                {monthLabel}
+                                            &lt;/h4>
+                                            &lt;p
+                                                className={`text-xs font-semibold text-center ${
+                                                    isNeutral
+                                                        ? "text-gray-500 dark:text-gray-400"
+                                                        : isPositive
+                                                            ? "text-green-700 dark:text-green-400"
+                                                            : "text-red-600 dark:text-red-400"
+                                                }`}
+                                            >
+                                                {t("performance_return_label")}
+                                            &lt;/p>
+                                            &lt;p
+                                                className={`mt-1 text-sm font-bold text-center break-words ${
+                                                    isNeutral
+                                                        ? "text-gray-500 dark:text-gray-400"
+                                                        : isPositive
+                                                            ? "text-green-700 dark:text-green-400"
+                                                            : "text-red-600 dark:text-red-400"
+                                                }`}
+                                            >
+                                                {isNeutral
+                                                    ? "—"
+                                                    : (val > 0 ? "+" : "") +
+                                                    val.toFixed(2).replace(".", ",") +
+                                                    "%"}
+                                            &lt;/p>
+                                        &lt;/div>
+                                    );
+                                })}
+                        &lt;/div>
+
+                        {/* Mobile: horizontal scroll */}
+                        &lt;div
+                            className="sm:hidden overflow-x-auto overflow-y-hidden scrollbar-thin scrollbar-thumb-gray-400 dark:scrollbar-thumb-gray-600 scrollbar-track-gray-200 dark:scrollbar-track-gray-800">
+                            &lt;div className="flex flex-nowrap gap-4 p-2">
+                                {monthlyReturns
+                                    .slice(years[selectedYear], years[selectedYear] + 12)
+                                    .map((val, i) => {
+                                        const isNeutral = val == null || val === "-";
+                                        const isPositive = !isNeutral &amp;&amp; val >= 0;
+                                        const monthIndex = i;
+                                        const monthLabel = months[monthIndex] || `M${monthIndex + 1}`;
+
+                                        return (
+                                            &lt;div
+                                                key={i}
+                                                className={`flex-shrink-0 w-36 rounded-xl shadow-md p-3 transition transform hover:scale-105 hover:shadow-lg
+                                            ${
+                                                    isNeutral
+                                                        ? "bg-gray-100 dark:bg-gray-800"
+                                                        : isPositive
+                                                            ? "bg-green-50 dark:bg-green-900/20"
+                                                            : "bg-red-50 dark:bg-red-900/20"
+                                                }`}
+                                            >
+                                                &lt;h4 className="mb-1 text-sm font-bold text-gray-900 dark:text-gray-100 text-center">
+                                                    {monthLabel}
+                                                &lt;/h4>
+                                                &lt;p
+                                                    className={`text-xs font-semibold text-center ${
+                                                        isNeutral
+                                                            ? "text-gray-500 dark:text-gray-400"
+                                                            : isPositive
+                                                                ? "text-green-700 dark:text-green-400"
+                                                                : "text-red-600 dark:text-red-400"
+                                                    }`}
+                                                >
+                                                    {t("performance_return_label")}
+                                                &lt;/p>
+                                                &lt;p
+                                                    className={`mt-1 text-sm font-bold text-center break-words ${
+                                                        isNeutral
+                                                            ? "text-gray-500 dark:text-gray-400"
+                                                            : isPositive
+                                                                ? "text-green-700 dark:text-green-400"
+                                                                : "text-red-600 dark:text-red-400"
+                                                    }`}
+                                                >
+                                                    {isNeutral
+                                                        ? "—"
+                                                        : (val > 0 ? "+" : "") +
+                                                        val.toFixed(2).replace(".", ",") +
+                                                        "%"}
+                                                &lt;/p>
+                                            &lt;/div>
+                                        );
+                                    })}
+                            &lt;/div>
+                        &lt;/div>
+                    &lt;/div>
+                &lt;/div>
+            );
+        }
+
+        // --- ANNUAL VIEW ---
+        return (
+            &lt;div className="overflow-x-auto sm:overflow-x-visible">
+                &lt;div className="flex sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-2">
+                    {annualLabels.map((year, i) => {
+                        const isPositive = annualReturns[i] >= 0;
+
+                        return (
+                            &lt;div
+                                key={year}
+                                className={`flex-shrink-0 w-36 sm:w-auto rounded-xl shadow-md p-4 transition transform hover:scale-105 hover:shadow-lg
+                            ${
+                                    isPositive
+                                        ? "bg-green-50 dark:bg-green-900/20"
+                                        : "bg-red-50 dark:bg-red-900/20"
+                                }`}
+                            >
+                                &lt;h4 className="mb-2 text-lg font-bold text-gray-900 dark:text-gray-100 text-center">
+                                    {year}
+                                &lt;/h4>
+                                &lt;p
+                                    className={`text-sm font-semibold text-center ${
+                                        isPositive
+                                            ? "text-green-700 dark:text-green-400"
+                                            : "text-red-600 dark:text-red-400"
+                                    }`}
+                                >
+                                    {t("performance_return_label")}
+                                &lt;/p>
+                                &lt;p
+                                    className={`mt-1 text-xl font-bold text-center ${
+                                        isPositive
+                                            ? "text-green-700 dark:text-green-400"
+                                            : "text-red-600 dark:text-red-400"
+                                    }`}
+                                >
+                                    {annualReturns[i] != null
+                                        ? (annualReturns[i] > 0 ? "+" : "") +
+                                        annualReturns[i].toFixed(2).replace(".", ",") +
+                                        "%"
+                                        : "—"}
+                                &lt;/p>
+                            &lt;/div>
+                        );
+                    })}
+                &lt;/div>
+            &lt;/div>
+        );
+    }
+
+    return (
+        &lt;section
+            className="max-w-6xl mx-auto px-4 sm:px-6 py-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg flex flex-col gap-6">
+            &lt;header className="text-center flex flex-col items-center gap-4">
+                &lt;h3 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
+                    {t('performance_title')}
+                &lt;/h3>
+                &lt;select
+                    className="rounded border border-gray-300 dark:border-gray-700 px-3 py-1 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 cursor-pointer"
+                    value={view}
+                    onChange={(e) => setView(e.target.value === 'annual' ? 'annual' : 'monthly')}
+                    aria-label={t('performance_view_selector_aria')}
+                >
+                    &lt;option value="monthly">{t('performance_view_monthly')}&lt;/option>
+                    &lt;option value="annual">{t('performance_view_annual')}&lt;/option>
+                &lt;/select>
+            &lt;/header>
+
+            &lt;div className="w-full h-[300px] sm:h-[500px] md:h-[700px]">
+                &lt;Line data={chartData} options={options}/>
+            &lt;/div>
+
+            &lt;div className="text-gray-800 dark:text-gray-300 text-sm space-y-6 text-center">
+                {renderSummary()}
+            &lt;/div>
+        &lt;/section>
+    );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Tue Nov 11 2025 12:20:53 GMT+0100 (Ora standard dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>
