@@ -1,0 +1,259 @@
+import {useTranslation} from 'react-i18next';
+import {Card} from "../../components/ui/card/Card";
+import {CardContent} from "../../components/ui/cardContent/CardContent";
+import {Disclosure} from '@headlessui/react';
+import {ChevronDown} from 'lucide-react';
+import {useState} from "react";
+import PageSection from "../../components/ui/pageSection/PageSection";
+import {ExpandableText} from "../../components/ui/expandableText/ExpandableText";
+import {AnimatePresence, motion} from "framer-motion";
+import SeoHead from "../../components/seoHead/SeoHead";
+import {SelectableButton} from "../../components/ui/selectableButton/SelectableButton";
+import Pagination from "../../components/ui/pagination/Pagination";
+
+const ITEMS_PER_PAGE = 2;
+
+/**
+ * Projects component displays a list of projects grouped by company.
+ *
+ * Features:
+ * - Sidebar with buttons to filter projects by company.
+ * - Shows project details including name, company, period, type, and technologies used.
+ * - Each project has a collapsible panel to toggle visibility of technology stack.
+ * - Uses i18n translation for UI texts and project types.
+ *
+ * @component
+ * @module pages/projects/Projects
+ * @returns {JSX.Element} Rendered Projects section with filtering and collapsible tech details.
+ */
+export default function Projects() {
+    const {t} = useTranslation();
+    const [selectedCompany, setSelectedCompany] = useState("RGI");
+    const [page, setPage] = useState(1);
+
+    const projects = [
+        {
+            name: "FE Architecture Development",
+            tech: "MySQL, REST APIs, SQL, JSON, JBoss Application Server, HTML, Docker, Node.js, HTML5, JEE, AngularJS, Git, Java, Maven, OOP, JavaScript, CSS, XML",
+            type: "rgi.FEArchitecture",
+            company: "RGI",
+            period: "03/2023"
+        },
+        {
+            name: "HalfLife",
+            tech: "MySQL, REST APIs, SQL, JSON, JBoss Application Server, HTML, Docker, Node.js, HTML5, JEE, AngularJS, Git, Java, Maven, OOP, JavaScript, CSS, XML",
+            type: "rgi.HalfLife",
+            company: "RGI",
+            period: "01/2023 - 03/2023"
+        },
+        {
+            name: "AXA Mobility",
+            tech: "MySQL, REST APIs, SQL, JSON, JBoss Application Server, HTML, Docker, Node.js, HTML5, JEE, AngularJS, Git, Maven, OOP, JavaScript, CSS, XML",
+            type: "rgi.AXAmobility",
+            company: "RGI",
+            period: "03/2022 - 01/2023"
+        },
+        {
+            name: "Group Policy Library",
+            tech: "MySQL, REST APIs, SQL, JSON, JBoss Application Server, HTML, Docker, Node.js, HTML5, JEE, AngularJS, Git, Maven, OOP, JavaScript, CSS, XML",
+            type: "rgi.GroupPolicyLibrary",
+            company: "RGI",
+            period: "02/2022 - 05/2022"
+        },
+        {
+            name: "AfterLife",
+            tech: "MySQL, REST APIs, SQL, JSON, JBoss Application Server, HTML, Docker, Node.js, HTML5, JEE, AngularJS, Git, Maven, OOP, JavaScript, CSS, XML",
+            type: "rgi.AfterLife",
+            company: "RGI",
+            period: "09/2021 - 02/2022"
+        },
+        {
+            name: "Area Clienti ",
+            tech: " MySQL, REST APIs, SQL, JSON, Hibernate, JBoss Application Server, HTML, Docker, Node.js, HTML5, JEE, AngularJS, Git, Java, Maven, OOP, JavaScript, Tomcat, Machine learning, CSS, Framework Spring, XML",
+            type: "italiaonline.areaClienti",
+            company: "Italiaonline",
+            period: "05/2019 - 09/2021"
+        },
+        {
+            name: "IDB rest services",
+            tech: "MySQL, REST APIs, SQL, JSON, Hibernate, JBoss Application Server, JEE, Git, Java, Maven, OOP, Tomcat, XML",
+            type: "italiaonline.restServices",
+            company: "Italiaonline",
+            period: "07/2019 - 09/2021"
+        },
+        {
+            name: "2In1App",
+            tech: "MySQL, REST APIs, SQL, React Native, Git, Java, Android, OOP, XML",
+            type: "tecnavia.mobileApp",
+            company: "TECNAVIA APPS s.r.l.",
+            period: "07/2018 - 05/2019"
+        },
+        {
+            name: "Newsmemory",
+            tech: "MySQL, REST APIs, SQL, PHP, JSON, HTML, HTML5, Eclipse, Git, SQLite, OOP, JavaScript, CSS, jQuery, XML",
+            type: "tecnavia.newsmemory",
+            company: "TECNAVIA APPS s.r.l.",
+            period: "07/2018 - 05/2019"
+        },
+        {
+            name: "DART",
+            tech: "MySQL, REST APIs, SQL, JSON, Hibernate, JBoss Application Server, HTML, Node.js, HTML5, JEE, AngularJS, Git, Maven, OOP, JavaScript, Tomcat, CSS, jQuery, Spring, XML",
+            type: "teoresi.dart",
+            company: "Teoresi",
+            period: "10/2017 - 07/2018"
+        },
+        {
+            name: "io.T Tecno",
+            tech: "MySQL, REST APIs, SQL, JSON, Hibernate, JBoss Application Server, HTML, Node.js, HTML5, JEE· AngularJS, Git, Maven, OOP, JavaScript, Tomcat, CSS, jQuery, Spring, XML",
+            type: "teoresi.tecno",
+            company: "Teoresi",
+            period: "10/2017 - 07/2018"
+        },
+        {
+            name: "OSS Trasformation",
+            tech: "MySQL, REST APIs, JSON, JBoss Application Server, HTML, Node.js, HTML5, JEE, AngularJS, Git· OOP, JavaScript, CSS, jQuery, XML",
+            type: "fastweb.OSSTrasformation",
+            company: "Fastweb",
+            period: "09/2016 - 10/2017"
+        },
+        {
+            name: "OLO Gateway (metroweb, flash fiber)",
+            tech: "MySQL, REST APIs, JSON, JBoss Application Server, HTML, Node.js, HTML5, JEE, AngularJS, Git· OOP, JavaScript, CSS, jQuery, XML",
+            type: "fastweb.oloGatewayFisso",
+            company: "Fastweb",
+            period: "09/2016 - 10/2017"
+        },
+        {
+            name: "OLO Gateway mobile",
+            tech: "MySQL, REST APIs, JSON, JBoss Application Server, HTML, Node.js, HTML5, JEE, AngularJS, Git· OOP, JavaScript, CSS, jQuery, XML",
+            type: "fastweb.oloGatewayMobile",
+            company: "Fastweb",
+            period: "09/2016 - 10/2017"
+        }
+    ];
+
+    const companies = [...new Set(projects.map(p => p.company))];
+
+    const groupedProjects = projects.reduce((acc, proj) => {
+        acc[proj.company] = acc[proj.company] || [];
+        acc[proj.company].push(proj);
+        return acc;
+    }, {});
+
+    return (
+        <>
+            <SeoHead pageKey="projects" path="/projects"/>
+
+            <PageSection title={t("projects_title")}>
+                <div className="flex flex-col md:flex-row gap-6">
+                    {/* Sidebar Tabs */}
+                    <div className="md:w-1/4 flex flex-row md:flex-col overflow-x-auto gap-2 md:gap-4">
+                        {companies.map((company) => (
+                            <SelectableButton
+                                key={company}
+                                label={company}
+                                isSelected={selectedCompany === company}
+                                onClick={() => {
+                                    setSelectedCompany(company);
+                                    setPage(1);
+                                }}
+                            />
+                        ))}
+                    </div>
+
+                    {/* Content */}
+                    <div className="flex-1 relative">
+                        {(() => {
+                            const currentProjects = groupedProjects[selectedCompany] || [];
+                            const totalPages = Math.ceil(currentProjects.length / ITEMS_PER_PAGE);
+                            const paginated = currentProjects.slice(
+                                (page - 1) * ITEMS_PER_PAGE,
+                                page * ITEMS_PER_PAGE
+                            );
+
+                            return (
+                                <>
+                                    {/* Pagination mobile sticky */}
+                                    <div
+                                        className="md:hidden sticky top-0 z-20 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md py-2 mb-4 border-b border-gray-200 dark:border-gray-700">
+                                        <Pagination
+                                            page={page}
+                                            totalPages={totalPages}
+                                            onPageChange={setPage}
+                                        />
+                                    </div>
+
+                                    <AnimatePresence mode="wait">
+                                        <motion.div
+                                            key={selectedCompany + page}
+                                            initial={{opacity: 0, y: 40}}
+                                            animate={{opacity: 1, y: 0}}
+                                            exit={{opacity: 0, y: -40}}
+                                            transition={{duration: 0.4}}
+                                            layout
+                                            className="flex flex-col items-center gap-6"
+                                        >
+                                            {paginated.map((proj, idx) => (
+                                                <Card
+                                                    key={idx}
+                                                    className="relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
+                                                       dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
+                                                       rounded-xl hover:shadow-lg transition-all duration-300"
+                                                >
+                                                    <CardContent>
+                                                        <h3 className="text-lg font-semibold">{proj.name}</h3>
+                                                        <p className="text-gray-700 dark:text-gray-400">{proj.company}</p>
+                                                        <p className="text-sm mb-2 text-gray-600 dark:text-gray-500">{proj.period}</p>
+                                                        {proj.type && (
+                                                            <ExpandableText
+                                                                value={t(`project_types.${proj.type}`)}
+                                                                maxLines={3}
+                                                                className="mb-2 text-sm"
+                                                            />
+                                                        )}
+                                                        <Disclosure>
+                                                            {({open}) => (
+                                                                <div>
+                                                                    <Disclosure.Button
+                                                                        className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
+                                                                    >
+                                                                        <span>{t("show_technologies")}</span>
+                                                                        <ChevronDown
+                                                                            className={`ml-1 w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}
+                                                                        />
+                                                                    </Disclosure.Button>
+                                                                    <Disclosure.Panel
+                                                                        className="mt-2 flex flex-wrap gap-2">
+                                                                        {proj.tech.split(",").map((t, i) => (
+                                                                            <span key={i}
+                                                                                  className="text-xs px-2 py-1 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300">
+                                                                      {t.trim()}
+                                                                    </span>
+                                                                        ))}
+                                                                    </Disclosure.Panel>
+                                                                </div>
+                                                            )}
+                                                        </Disclosure>
+                                                    </CardContent>
+                                                </Card>
+                                            ))}
+                                        </motion.div>
+                                    </AnimatePresence>
+
+                                    {/* Pagination desktop normal */}
+                                    <div className="hidden md:block mt-4">
+                                        <Pagination
+                                            page={page}
+                                            totalPages={totalPages}
+                                            onPageChange={setPage}
+                                        />
+                                    </div>
+                                </>
+                            );
+                        })()}
+                    </div>
+                </div>
+            </PageSection>
+        </>
+    );
+}

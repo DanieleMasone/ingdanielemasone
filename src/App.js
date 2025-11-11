@@ -1,22 +1,22 @@
 import React from 'react';
 import {Route, Routes} from 'react-router';
-import Home from './pages/Home';
-import Experience from './pages/Experience';
-import Projects from './pages/Projects';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import Home from './pages/home/Home';
+import Experience from './pages/experience/Experience';
+import Projects from './pages/projects/Projects';
+import Header from './components/header/Header';
+import Footer from './components/footer/Footer';
 import translationEN from "./locales/en/translation.json";
 import translationIT from "./locales/it/translation.json";
 import {initReactI18next} from "react-i18next";
 import i18n from "i18next";
-import Privacy from "./pages/Privacy";
-import CookiePolicy from "./pages/CookiePolicy";
-import Courses from "./pages/Courses";
-import Trading from "./pages/Trading";
-import Testimonials from "./pages/Testimonials";
-import NotFound from "./components/NotFound";
-import CookieBanner from "./components/ui/CookieBanner";
-import Certifications from "./pages/Certifications";
+import Privacy from "./pages/privacy/Privacy";
+import CookiePolicy from "./pages/cookiePolicy/CookiePolicy";
+import Courses from "./pages/courses/Courses";
+import Trading from "./pages/trading/Trading";
+import Testimonials from "./pages/testimonials/Testimonials";
+import NotFound from "./components/notFound/NotFound";
+import CookieBanner from "./components/ui/cookieBanner/CookieBanner";
+import Certifications from "./pages/certifications/Certifications";
 
 const resources = {
     en: {

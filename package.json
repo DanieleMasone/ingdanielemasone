@@ -32,7 +32,8 @@
     "test": "react-scripts test",
     "coverage": "react-scripts test --coverage --watchAll=false",
     "doc": "jsdoc -c jsdoc.json -d docs",
-    "deploy:all": "npm run build && npm run coverage && npm run doc && node scripts/deployAll.js"
+    "build:all": "npm run build && npm run coverage && npm run doc",
+    "deploy:all": "npm run build:all && node scripts/deployAll.js"
   },
   "eslintConfig": {
     "extends": [
