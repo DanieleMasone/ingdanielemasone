@@ -93,6 +93,17 @@ ChartJS.register(
  */
 export default function TradingPerformanceChart() {
     const {t} = useTranslation();
+    const startYear = 2022; // First year of the dataset
+    const monthlyReturns = [
+        -3.58, -1.38, 5.29, -6.27, 0.27, -8.29, 8.74, -3.13, -7.78, 3.44, 7.52, -4.44,
+        6.54, -1.86, 2.85, -0.81, 1.96, 3.78, 2.68, -3.01, -3.98, -2.98, 8.07, 4.73,
+        -1.26, 2.19, 2.16, -2.68, 4.98, -0.01, 3.18, 2.5, 1.89, -2.89, 1.48, -2.68,
+        1.87, -0.41, -1.84, 0.93, 5.78, 4.38, 1.51, 1.48, 3.43, 2.75, null, null,
+    ];
+    const totalMonths = monthlyReturns.length;
+    const lastMonthIndex = totalMonths - 1;
+    const currentYear = startYear + Math.floor(lastMonthIndex / 12);
+
     const months = [
         t('months.jan'),
         t('months.feb'),
@@ -107,25 +118,20 @@ export default function TradingPerformanceChart() {
         t('months.nov'),
         t('months.dec')
     ];
-    const annualLabels = [
-        t('annual_labels.2022'),
-        t('annual_labels.2023'),
-        t('annual_labels.2024'),
-        t('annual_labels.2025_partial')
-    ];
 
-    const monthlyReturns = [
-        -3.58, -1.38, 5.29, -6.27, 0.27, -8.29, 8.74, -3.13, -7.78, 3.44, 7.52, -4.44,
-        6.54, -1.86, 2.85, -0.81, 1.96, 3.78, 2.68, -3.01, -3.98, -2.98, 8.07, 4.73,
-        -1.26, 2.19, 2.16, -2.68, 4.98, -0.01, 3.18, 2.5, 1.89, -2.89, 1.48, -2.68,
-        1.87, -0.41, -1.84, 0.93, 5.78, 4.38, 1.51, 1.48, 3.43, 2.75, null, null,
-    ];
+    const allYears = Array.from(
+        {length: currentYear - startYear + 1},
+        (_, i) => startYear + i
+    );
 
-    const annualReturns = [];
-    for (let i = 0; i &lt; monthlyReturns.length; i += 12) {
-        const chunk = monthlyReturns.slice(i, i + 12);
-        if (chunk.length > 0) annualReturns.push(calcAnnualReturn(chunk));
-    }
+    const annualLabels = allYears.map((y, idx) => {
+        const validMonths = monthlyReturns.slice(idx * 12, (idx + 1) * 12).filter(v => v != null).length;
+        return validMonths &lt; 12 ? `${y} (${t('partial')})` : String(y);
+    });
+
+    const annualReturns = Array.from({length: allYears.length}, (_, i) =>
+        calcAnnualReturn(monthlyReturns.slice(i * 12, i * 12 + 12))
+    );
 
     function calcAnnualReturn(months) {
         const valid = months.filter((r) => r != null);
@@ -159,9 +165,11 @@ export default function TradingPerformanceChart() {
     const isMonthly = view === 'monthly';
 
     const labels = isMonthly
-        ? [2022, 2023, 2024, 2025].flatMap((year) =>
-            months.map((m) => `${m} ${year}`)
-        )
+        ? allYears.flatMap((year, idx) => {
+            const start = idx * 12;
+            const remaining = monthlyReturns.slice(start, start + 12).filter(v => v != null);
+            return remaining.map((_, i) => `${months[i]} ${year}`);
+        })
         : annualLabels;
 
     const dataSet = isMonthly ? monthlyReturns : annualReturns;
@@ -176,8 +184,8 @@ export default function TradingPerformanceChart() {
             : isDark ? '#ff6b81' : '#dc2626';
     }, [cumulative, isDark]);
 
-    const positive = dataSet.map((v) => (v != null &amp;&amp; v > 0 ? v : 0));
-    const negative = dataSet.map((v) => (v != null &amp;&amp; v &lt; 0 ? v : 0));
+    const positive = useMemo(() => dataSet.map(v => (v != null &amp;&amp; v > 0 ? v : 0)), [dataSet]);
+    const negative = useMemo(() => dataSet.map(v => (v != null &amp;&amp; v &lt; 0 ? v : 0)), [dataSet]);
 
     const chartData = {
         labels,
@@ -261,7 +269,9 @@ export default function TradingPerformanceChart() {
     const [selectedYear, setSelectedYear] = useState("2025");
 
     function renderSummary() {
-        const years = {2022: 0, 2023: 12, 2024: 24, 2025: 36};
+        const years = Object.fromEntries(
+            allYears.map((y, i) => [y, i * 12])
+        );
 
         if (isMonthly) {
             return (
@@ -271,15 +281,18 @@ export default function TradingPerformanceChart() {
                         &lt;div
                             className="flex flex-row sm:flex-wrap sm:justify-center gap-2 sm:gap-3 overflow-x-auto sm:overflow-visible px-1 sm:px-0 scrollbar-hide"
                         >
-                            {Object.keys(years).map((year) => (
-                                &lt;SelectableButton
-                                    key={year}
-                                    label={year}
-                                    isSelected={selectedYear === year}
-                                    onClick={() => setSelectedYear(year)}
-                                />
+                            {[...allYears].reverse().map((year) => (
+                                &lt;div key={year} className="snap-start">
+                                    &lt;SelectableButton
+                                        key={year}
+                                        label={year}
+                                        isSelected={selectedYear === String(year)}
+                                        onClick={() => setSelectedYear(String(year))}
+                                    />
+                                &lt;/div>
                             ))}
                         &lt;/div>
+
                     &lt;/div>
 
                     {/* Cards for the selected year */}
@@ -291,6 +304,8 @@ export default function TradingPerformanceChart() {
                                 .map((val, i) => {
                                     const isNeutral = val == null || val === "-";
                                     const isPositive = !isNeutral &amp;&amp; val >= 0;
+                                    const monthIndex = i;
+                                    const monthLabel = months[monthIndex] || `M${monthIndex + 1}`;
 
                                     return (
                                         &lt;div
@@ -305,7 +320,7 @@ export default function TradingPerformanceChart() {
                                             }`}
                                         >
                                             &lt;h4 className="mb-1 text-sm font-bold text-gray-900 dark:text-gray-100 text-center">
-                                                {months[i]}
+                                                {monthLabel}
                                             &lt;/h4>
                                             &lt;p
                                                 className={`text-xs font-semibold text-center ${
@@ -316,7 +331,7 @@ export default function TradingPerformanceChart() {
                                                             : "text-red-600 dark:text-red-400"
                                                 }`}
                                             >
-                                                {t("performance_return_label", "Rendimento")}
+                                                {t("performance_return_label")}
                                             &lt;/p>
                                             &lt;p
                                                 className={`mt-1 text-sm font-bold text-center break-words ${
@@ -347,6 +362,8 @@ export default function TradingPerformanceChart() {
                                     .map((val, i) => {
                                         const isNeutral = val == null || val === "-";
                                         const isPositive = !isNeutral &amp;&amp; val >= 0;
+                                        const monthIndex = i;
+                                        const monthLabel = months[monthIndex] || `M${monthIndex + 1}`;
 
                                         return (
                                             &lt;div
@@ -361,7 +378,7 @@ export default function TradingPerformanceChart() {
                                                 }`}
                                             >
                                                 &lt;h4 className="mb-1 text-sm font-bold text-gray-900 dark:text-gray-100 text-center">
-                                                    {months[i]}
+                                                    {monthLabel}
                                                 &lt;/h4>
                                                 &lt;p
                                                     className={`text-xs font-semibold text-center ${
@@ -372,7 +389,7 @@ export default function TradingPerformanceChart() {
                                                                 : "text-red-600 dark:text-red-400"
                                                     }`}
                                                 >
-                                                    {t("performance_return_label", "Rendimento")}
+                                                    {t("performance_return_label")}
                                                 &lt;/p>
                                                 &lt;p
                                                     className={`mt-1 text-sm font-bold text-center break-words ${
@@ -491,7 +508,7 @@ export default function TradingPerformanceChart() {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Mon Nov 10 2025 16:01:12 GMT+0100 (Ora standard dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Tue Nov 11 2025 09:10:38 GMT+0100 (Ora standard dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
