@@ -160,7 +160,8 @@ export default function Experience() {
                 <div className="mb-10">
                     {/* Mobile: horizontal scroll - Desktop: grid wrap */}
                     <div
-                        className="flex flex-row sm:flex-wrap sm:justify-center gap-2 sm:gap-3 overflow-x-auto sm:overflow-visible px-1 sm:px-0 scrollbar-hide">
+                        className="flex flex-row sm:flex-wrap sm:justify-center gap-2 sm:gap-3 overflow-x-auto sm:overflow-visible px-1 sm:px-0 scrollbar-hide"
+                    >
                         {yearList.map((year) => (
                             <SelectableButton
                                 key={year}

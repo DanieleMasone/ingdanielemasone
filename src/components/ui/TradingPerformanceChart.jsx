@@ -234,15 +234,18 @@ export default function TradingPerformanceChart() {
                         <div
                             className="flex flex-row sm:flex-wrap sm:justify-center gap-2 sm:gap-3 overflow-x-auto sm:overflow-visible px-1 sm:px-0 scrollbar-hide"
                         >
-                            {allYears.map((year) => (
-                                <SelectableButton
-                                    key={year}
-                                    label={year}
-                                    isSelected={selectedYear === String(year)}
-                                    onClick={() => setSelectedYear(String(year))}
-                                />
+                            {[...allYears].reverse().map((year) => (
+                                <div key={year} className="snap-start">
+                                    <SelectableButton
+                                        key={year}
+                                        label={year}
+                                        isSelected={selectedYear === String(year)}
+                                        onClick={() => setSelectedYear(String(year))}
+                                    />
+                                </div>
                             ))}
                         </div>
+
                     </div>
 
                     {/* Cards for the selected year */}
