@@ -10,7 +10,7 @@ describe('LanguageSwitcher', () => {
     }
 
     beforeEach(async () => {
-        await i18n.changeLanguage('en'); // attendi che la lingua sia impostata
+        await i18n.changeLanguage('en'); // wait for the language to be set
     });
 
     test('renders current language button with flag and code', () => {
