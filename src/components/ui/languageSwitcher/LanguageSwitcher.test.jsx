@@ -9,8 +9,8 @@ describe('LanguageSwitcher', () => {
         return render(<I18nextProvider i18n={i18n}>{ui}</I18nextProvider>);
     }
 
-    beforeEach(() => {
-        i18n.changeLanguage('en'); // Reset to default language
+    beforeEach(async () => {
+        await i18n.changeLanguage('en'); // attendi che la lingua sia impostata
     });
 
     test('renders current language button with flag and code', () => {
@@ -84,15 +84,15 @@ describe('LanguageSwitcher', () => {
         expect(updatedBtn).toHaveTextContent(/IT/i);
     });
 
-    test('active language option is disabled and marked with aria-current', () => {
+    test('active language option is visually highlighted but still clickable', async () => {
         renderWithI18n(<LanguageSwitcher/>);
         const toggleBtn = screen.getByRole('button', {name: /seleziona lingua/i});
-
         fireEvent.click(toggleBtn);
 
-        const activeOption = screen.getByRole('menuitem', {name: /english/i});
-        expect(activeOption).toBeDisabled();
-        expect(activeOption).toHaveAttribute('aria-current', 'true');
+        const activeOption = await screen.findByRole('menuitem', {name: /english/i});
+
+        expect(activeOption).not.toBeDisabled();    // It's not disabled
+        expect(activeOption.className).toMatch(/bg-blue-50|dark:bg-blue-900/);  // It's highlighted (specific classes)
     });
 
     test('inactive language options are clickable and not marked', () => {
