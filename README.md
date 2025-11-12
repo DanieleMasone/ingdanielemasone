@@ -48,7 +48,15 @@ npm run doc
 ```bash
 npm run coverage
 ```
+## build all (app + docs + coverage):
+```bash
+npm run build:all
+```
 ## Deploy all (app + docs + coverage):
+```bash
+npm run deploy
+```
+## Deploy and build all (app + docs + coverage):
 ```bash
 npm run deploy:all
 ```
