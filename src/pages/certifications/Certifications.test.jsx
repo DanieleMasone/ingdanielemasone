@@ -9,7 +9,7 @@ jest.mock("react-i18next", () => ({
         t: (key) => {
             const map = {
                 "certifications_page.title": "Certifications",
-                "view_certificate": "View Certificate",
+                "certifications_page.view_certificate": "View Certificate",
             };
             return map[key] || key;
         },

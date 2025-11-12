@@ -128,7 +128,7 @@ export default function Certifications() {
                                         className="inline-flex items-center text-sm text-blue-600 dark:text-blue-400
                                          hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
                                     >
-                                        {t("view_certificate", "View Certificate")}
+                                        {t("certifications_page.view_certificate")}
                                         <ExternalLink className="w-4 h-4 ml-1"/>
                                     </a>
                                 </CardContent>
