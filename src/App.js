@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route, Routes} from 'react-router';
-import './i18n';
+import './i18n/i18n';
 import Home from './pages/home/Home';
 import Experience from './pages/experience/Experience';
 import Projects from './pages/projects/Projects';
