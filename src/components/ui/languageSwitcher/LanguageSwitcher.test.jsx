@@ -57,13 +57,22 @@ describe('LanguageSwitcher', () => {
 
         const enOption = screen.getByRole('menuitem', {name: /english/i});
         const itOption = screen.getByRole('menuitem', {name: /italiano/i});
+        const frOption = screen.getByRole('menuitem', {name: /français/i});
+        const deOption = screen.getByRole('menuitem', {name: /deutsch/i});
+        const esOption = screen.getByRole('menuitem', {name: /español/i});
 
         expect(enOption).toBeInTheDocument();
         expect(itOption).toBeInTheDocument();
+        expect(frOption).toBeInTheDocument();
+        expect(deOption).toBeInTheDocument();
+        expect(esOption).toBeInTheDocument();
 
-        // Check for the presence of complete labels
+        // Check labels explicitly
         expect(screen.getByText('English')).toBeInTheDocument();
         expect(screen.getByText('Italiano')).toBeInTheDocument();
+        expect(screen.getByText('Français')).toBeInTheDocument();
+        expect(screen.getByText('Deutsch')).toBeInTheDocument();
+        expect(screen.getByText('Español')).toBeInTheDocument();
     });
 
     test('changes language when selecting a different option', async () => {

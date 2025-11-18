@@ -1,14 +1,11 @@
 import React from 'react';
 import {Route, Routes} from 'react-router';
+import './i18n';
 import Home from './pages/home/Home';
 import Experience from './pages/experience/Experience';
 import Projects from './pages/projects/Projects';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
-import translationEN from "./locales/en/translation.json";
-import translationIT from "./locales/it/translation.json";
-import {initReactI18next} from "react-i18next";
-import i18n from "i18next";
 import Privacy from "./pages/privacy/Privacy";
 import CookiePolicy from "./pages/cookiePolicy/CookiePolicy";
 import Courses from "./pages/courses/Courses";
@@ -18,25 +15,6 @@ import NotFound from "./components/notFound/NotFound";
 import CookieBanner from "./components/ui/cookieBanner/CookieBanner";
 import Certifications from "./pages/certifications/Certifications";
 
-const resources = {
-    en: {
-        translation: translationEN,
-    },
-    it: {
-        translation: translationIT,
-    }
-};
-
-i18n.use(initReactI18next).init({
-    resources,
-    lng: "en",
-    fallbackLng: "en",
-    interpolation: {
-        escapeValue: false,
-    }
-}).catch(error => {
-    console.error('Failed to init i18n:', error);
-});
 
 /**
  * @file Entry point of the application.
