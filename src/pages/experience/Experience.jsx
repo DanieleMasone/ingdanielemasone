@@ -65,6 +65,13 @@ export default function Experience() {
 
     const experiences = [
         {
+            role: t("exp_intesa_role"),
+            company: "Intesa Sanpaolo",
+            period: t("exp_intesa_period"),
+            description: t("exp_intesa_description"),
+            tech: "-"
+        },
+        {
             role: t("exp_rgi_role"),
             company: "RGI Group",
             period: t("exp_rgi_period"),
@@ -83,14 +90,14 @@ export default function Experience() {
             company: "Tecnavia Apps",
             period: t("exp_tecnavia_period"),
             description: t("exp_tecnavia_description"),
-            tech: " jQuery, React Native, JavaScript, JSON, Java, SQL, REST APIs, Eclipse, HTML5, XML, CSS, Android, HTML, OOP, SQLite, MySQL, PHP, Git",
+            tech: "jQuery, React Native, JavaScript, JSON, Java, SQL, REST APIs, Eclipse, HTML5, XML, CSS, Android, HTML, OOP, SQLite, MySQL, PHP, Git",
         },
         {
             role: t("exp_teoresi_role"),
             company: "Teoresi",
             period: t("exp_teoresi_period"),
             description: t("exp_teoresi_description"),
-            tech: " jQuery, JavaScript, Hibernate, JSON, JBoss Application Server, SQL, REST APIs, HTML5, JEE, Node.js, XML, CSS, Tomcat, HTML, OOP, AngularJS, Maven, MySQL, Git"
+            tech: "jQuery, JavaScript, Hibernate, JSON, JBoss Application Server, SQL, REST APIs, HTML5, JEE, Node.js, XML, CSS, Tomcat, HTML, OOP, AngularJS, Maven, MySQL, Git"
         },
         {
             role: t("exp_hpe_role"),
