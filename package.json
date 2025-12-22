@@ -64,6 +64,8 @@
   },
   "devDependencies": {
     "@testing-library/user-event": "^14.6.1",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
     "autoprefixer": "^10.4.21",
     "docdash": "^2.0.2",
     "fs-extra": "^11.3.0",
