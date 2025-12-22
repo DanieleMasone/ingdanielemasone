@@ -9,7 +9,7 @@ jest.mock("react-i18next", () => ({
             const translations = {
                 "avatar.name": "Daniele Masone",
                 "avatar.tagline": "Senior Software Engineer | Technical Architect | Teacher",
-                "avatar.skills": ["Java", "JavaScript", "AngularJS", "C", "MySQL"],
+                "avatar.skills": ["Java", "JavaScript", "Angular", "C", "MySQL"],
                 "avatar.bio": "Expert in software architecture, front-end & back-end development, and developer training."
             };
             if (options?.returnObjects) return translations[key] || [];
@@ -34,7 +34,7 @@ describe("AvatarCard", () => {
         expect(screen.getByText("Senior Software Engineer | Technical Architect | Teacher")).toBeInTheDocument();
 
         // Skills joined
-        expect(screen.getByText("Java • JavaScript • AngularJS • C • MySQL")).toBeInTheDocument();
+        expect(screen.getByText("Java • JavaScript • Angular • C • MySQL")).toBeInTheDocument();
 
         // Bio
         expect(screen.getByText("Expert in software architecture, front-end & back-end development, and developer training.")).toBeInTheDocument();
