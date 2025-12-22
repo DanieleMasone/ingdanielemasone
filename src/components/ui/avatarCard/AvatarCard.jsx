@@ -1,11 +1,13 @@
 import React from "react";
 import danielePhoto from '../../../assets/daniele.jpg';
+import cover from '../../../assets/cover.png';
 import {useTranslation} from "react-i18next";
 
 /**
  * AvatarCard component
  *
- * Displays the user's avatar with name and role.
+ * Displays a personal avatar card with a branded cover, photo, name, tagline, skills, and a short bio.
+ * Supports dark mode and responsive design for mobile and desktop.
  *
  * @component
  * @module components/ui/avatarCard/AvatarCard
@@ -15,18 +17,40 @@ export function AvatarCard() {
     const {t} = useTranslation();
 
     return (
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-4 sm:p-6 w-full max-w-xs sm:max-w-sm">
-            <img
-                src={danielePhoto}
-                alt={t("avatar.name")}
-                className="rounded-full w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mx-auto mb-4 sm:mb-6 object-cover shadow-md hover:scale-105 transition-transform duration-300"
-            />
-            <h3 className="text-lg sm:text-xl font-semibold text-center text-gray-900 dark:text-white mb-1 sm:mb-2">
-                {t("avatar.name")}
-            </h3>
-            <p className="text-center text-gray-500 dark:text-gray-400 text-xs sm:text-sm">
-                {t("avatar.role")}
-            </p>
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-full max-w-xs sm:max-w-sm overflow-hidden">
+
+            {/* Cover brand */}
+            <div className="h-16 sm:h-20 w-full relative">
+                <img
+                    src={cover}
+                    alt="Cover"
+                    className="w-full h-full object-cover"
+                />
+                {/* overlay only on the cover */}
+                <div className="absolute inset-0 bg-black/20 z-0"></div>
+            </div>
+
+            {/* Avatar container above the cover */}
+            <div className="flex justify-center -mt-2 sm:-mt-4 z-10 relative">
+                <img
+                    src={danielePhoto}
+                    alt={t("avatar.name")}
+                    className="rounded-full w-32 h-32 sm:w-40 sm:h-40 object-cover shadow-md border-4 border-white dark:border-gray-800 hover:scale-105 transition-transform duration-300"
+                />
+            </div>
+
+            <div className="mt-4 text-center pb-4 relative z-10">
+                <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base mb-1">
+                    {t("avatar.tagline")}
+                </p>
+                <p className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm mb-2">
+                    {t("avatar.skills", {returnObjects: true}).join(" • ")}
+                </p>
+                <p className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm">
+                    {t("avatar.bio")}
+                </p>
+            </div>
+
         </div>
     );
 }

@@ -5,11 +5,14 @@ import React from "react";
 // Mock di react-i18next
 jest.mock("react-i18next", () => ({
     useTranslation: () => ({
-        t: (key) => {
+        t: (key, options) => {
             const translations = {
                 "avatar.name": "Daniele Masone",
-                "avatar.role": "Senior Software Engineer / Technical Architect FE",
+                "avatar.tagline": "Senior Software Engineer | Technical Architect | Teacher",
+                "avatar.skills": ["Java", "JavaScript", "AngularJS", "C", "MySQL"],
+                "avatar.bio": "Expert in software architecture, front-end & back-end development, and developer training."
             };
+            if (options?.returnObjects) return translations[key] || [];
             return translations[key] || key;
         },
     }),
@@ -18,26 +21,22 @@ jest.mock("react-i18next", () => ({
 describe("AvatarCard", () => {
     test("renders avatar image with correct alt text", () => {
         render(<AvatarCard/>);
-
-        const img = screen.getByRole("img");
+        const img = screen.getByAltText("Daniele Masone");
         expect(img).toBeInTheDocument();
-        expect(img).toHaveAttribute("alt", "Daniele Masone");
-    });
-
-    test("renders name and role from translation", () => {
-        render(<AvatarCard/>);
-
-        expect(screen.getByText("Daniele Masone")).toBeInTheDocument();
-        expect(
-            screen.getByText("Senior Software Engineer / Technical Architect FE")
-        ).toBeInTheDocument();
-    });
-
-    test("image has hover and transition classes", () => {
-        render(<AvatarCard/>);
-
-        const img = screen.getByRole("img");
         expect(img).toHaveClass("hover:scale-105");
         expect(img).toHaveClass("transition-transform");
+    });
+
+    test("renders name, tagline, skills, and bio from translation", () => {
+        render(<AvatarCard/>);
+
+        // Tagline
+        expect(screen.getByText("Senior Software Engineer | Technical Architect | Teacher")).toBeInTheDocument();
+
+        // Skills joined
+        expect(screen.getByText("Java • JavaScript • AngularJS • C • MySQL")).toBeInTheDocument();
+
+        // Bio
+        expect(screen.getByText("Expert in software architecture, front-end & back-end development, and developer training.")).toBeInTheDocument();
     });
 });
