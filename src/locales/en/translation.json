@@ -430,7 +430,7 @@
   "avatar": {
     "name": "Daniele Masone",
     "tagline": "Senior Software Engineer | Technical Architect | Teacher",
-    "skills": ["Java", "JavaScript", "AngularJS", "C", "MySQL"],
+    "skills": ["Java", "JavaScript", "Angular", "C", "MySQL"],
     "bio": "Expert in software architecture, front-end & back-end development, and developer training."
   }
 }
