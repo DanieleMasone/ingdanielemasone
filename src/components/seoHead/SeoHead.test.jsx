@@ -124,7 +124,7 @@ describe('<SeoHead />', () => {
         await waitFor(() => {
             expect(document.querySelector('meta[property="og:image"]')).toHaveAttribute(
                 'content',
-                'https://danielemasone.github.io/ingdanielemasone/logo.jpg'
+                'https://danielemasone.github.io/ingdanielemasone/logo.png'
             );
         });
 
@@ -145,7 +145,7 @@ describe('<SeoHead />', () => {
         await waitFor(() => {
             expect(document.querySelector('meta[name="twitter:image"]')).toHaveAttribute(
                 'content',
-                'https://danielemasone.github.io/ingdanielemasone/logo.jpg'
+                'https://danielemasone.github.io/ingdanielemasone/logo.png'
             );
         });
     });

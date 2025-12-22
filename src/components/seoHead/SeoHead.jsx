@@ -24,7 +24,7 @@ export default function SeoHead({pageKey, path}) {
     const title = t(`seo.${pageKey}.title`);
     const description = t(`seo.${pageKey}.description`);
     const url = `https://danielemasone.github.io/ingdanielemasone/#${path}`;
-    const image = "https://danielemasone.github.io/ingdanielemasone/logo.jpg";
+    const image = "https://danielemasone.github.io/ingdanielemasone/logo.png";
 
     return (
         <Helmet>
