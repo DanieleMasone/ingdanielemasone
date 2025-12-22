@@ -39,7 +39,7 @@ export function AvatarCard() {
                 />
             </div>
 
-            <div className="mt-4 text-center pb-4 relative z-10">
+            <div className="mt-4 pb-4 relative z-10 px-4 sm:px-6 md:px-8 max-w-2xl mx-auto text-center">
                 <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base mb-1">
                     {t("avatar.tagline")}
                 </p>
