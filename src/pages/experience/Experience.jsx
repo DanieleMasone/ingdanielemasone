@@ -69,7 +69,7 @@ export default function Experience() {
             company: "Intesa Sanpaolo",
             period: t("exp_intesa_period"),
             description: t("exp_intesa_description"),
-            tech: "-"
+            tech: "Java, Angular, JavaScript, Framework Spring, Maven, HTML5, CSS, Server Windows, JSON, Node.js, Docker, XML, Git"
         },
         {
             role: t("exp_rgi_role"),
