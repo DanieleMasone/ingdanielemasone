@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/ingdanielemasone/static/css/main.a637069d.css",
-    "main.js": "/ingdanielemasone/static/js/main.a519333f.js",
+    "main.css": "/ingdanielemasone/static/css/main.5c61359a.css",
+    "main.js": "/ingdanielemasone/static/js/main.cc221fff.js",
     "static/media/cover.png": "/ingdanielemasone/static/media/cover.32841139b8bf916625f4.png",
     "static/media/daniele.jpg": "/ingdanielemasone/static/media/daniele.1537a9835d502627a957.jpg",
     "static/media/ASSEMBLY.png": "/ingdanielemasone/static/media/ASSEMBLY.51b5a0a1c1b2499f461d.png",
@@ -17,11 +17,11 @@
     "static/media/HTML5.png": "/ingdanielemasone/static/media/HTML5.c82ac0bcfccd27b8c426.png",
     "static/media/GIT.png": "/ingdanielemasone/static/media/GIT.d8b766416afabcd382bb.png",
     "index.html": "/ingdanielemasone/index.html",
-    "main.a637069d.css.map": "/ingdanielemasone/static/css/main.a637069d.css.map",
-    "main.a519333f.js.map": "/ingdanielemasone/static/js/main.a519333f.js.map"
+    "main.5c61359a.css.map": "/ingdanielemasone/static/css/main.5c61359a.css.map",
+    "main.cc221fff.js.map": "/ingdanielemasone/static/js/main.cc221fff.js.map"
   },
   "entrypoints": [
-    "static/css/main.a637069d.css",
-    "static/js/main.a519333f.js"
+    "static/css/main.5c61359a.css",
+    "static/js/main.cc221fff.js"
   ]
 }

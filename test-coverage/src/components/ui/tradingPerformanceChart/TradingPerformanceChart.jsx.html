@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">94.11% </span>
+                <span class="strong">92.94% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>80/85</span>
+                <span class='fraction'>79/85</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.73% </span>
+                <span class="strong">78.3% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>93/106</span>
+                <span class='fraction'>83/106</span>
             </div>
         
             
@@ -603,7 +603,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">624x</span>
 <span class="cline-any cline-yes">52x</span>
-<span class="cline-any cline-yes">611x</span>
+<span class="cline-any cline-yes">624x</span>
 <span class="cline-any cline-yes">52x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -611,8 +611,8 @@
 <span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-yes">492x</span>
-<span class="cline-any cline-yes">482x</span>
-<span class="cline-any cline-yes">482x</span>
+<span class="cline-any cline-yes">492x</span>
+<span class="cline-any cline-yes">492x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -635,7 +635,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">40x</span>
 <span class="cline-any cline-yes">480x</span>
-<span class="cline-any cline-yes">470x</span>
+<span class="cline-any cline-yes">480x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1014,7 +1014,7 @@ export default function TradingPerformanceChart() {
         -3.58, -1.38, 5.29, -6.27, 0.27, -8.29, 8.74, -3.13, -7.78, 3.44, 7.52, -4.44,
         6.54, -1.86, 2.85, -0.81, 1.96, 3.78, 2.68, -3.01, -3.98, -2.98, 8.07, 4.73,
         -1.26, 2.19, 2.16, -2.68, 4.98, -0.01, 3.18, 2.5, 1.89, -2.89, 1.48, -2.68,
-        1.87, -0.41, -1.84, 0.93, 5.78, 4.38, 1.51, 1.48, 3.43, 2.75, -0.03, null,
+        1.87, -0.41, -1.84, 0.93, 5.78, 4.38, 1.51, 1.48, 3.43, 2.75, -0.03, 1.20,
     ];
     const totalMonths = monthlyReturns.length;
     const lastMonthIndex = totalMonths - 1;
@@ -1042,7 +1042,7 @@ export default function TradingPerformanceChart() {
 &nbsp;
     const annualLabels = allYears.map((y, idx) =&gt; {
         const validMonths = monthlyReturns.slice(idx * 12, (idx + 1) * 12).filter(v =&gt; v != null).length;
-        return validMonths &lt; 12 ? `${y} (${t('partial')})` : String(y);
+        return validMonths &lt; 12 ? <span class="branch-0 cbranch-no" title="branch not covered" >`${y} (${t('partial')})` </span>: String(y);
     });
 &nbsp;
     const annualReturns = Array.from({length: allYears.length}, (_, i) =&gt;
@@ -1059,7 +1059,7 @@ export default function TradingPerformanceChart() {
     const getCumulativeSum = (returns) =&gt; {
         let capital = 100;
         return returns.map((r) =&gt; {
-            if (r == null) return null;
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (r == null) <span class="cstat-no" title="statement not covered" >return null;</span>
             capital *= 1 + r / 100;
             return +(capital - 100).toFixed(2);
         });
@@ -1229,7 +1229,7 @@ export default function TradingPerformanceChart() {
                                             className={`rounded-xl shadow-md p-2 transition transform hover:scale-105 hover:shadow-lg
                                         ${
                                                 isNeutral
-                                                    ? "bg-gray-100 dark:bg-gray-800"
+                                                    ? <span class="branch-0 cbranch-no" title="branch not covered" >"bg-gray-100 dark:bg-gray-800"</span>
                                                     : isPositive
                                                         ? "bg-green-50 dark:bg-green-900/20"
                                                         : "bg-red-50 dark:bg-red-900/20"
@@ -1241,7 +1241,7 @@ export default function TradingPerformanceChart() {
                                             &lt;p
                                                 className={`text-xs font-semibold text-center ${
                                                     isNeutral
-                                                        ? "text-gray-500 dark:text-gray-400"
+                                                        ? <span class="branch-0 cbranch-no" title="branch not covered" >"text-gray-500 dark:text-gray-400"</span>
                                                         : isPositive
                                                             ? "text-green-700 dark:text-green-400"
                                                             : "text-red-600 dark:text-red-400"
@@ -1252,14 +1252,14 @@ export default function TradingPerformanceChart() {
                                             &lt;p
                                                 className={`mt-1 text-sm font-bold text-center break-words ${
                                                     isNeutral
-                                                        ? "text-gray-500 dark:text-gray-400"
+                                                        ? <span class="branch-0 cbranch-no" title="branch not covered" >"text-gray-500 dark:text-gray-400"</span>
                                                         : isPositive
                                                             ? "text-green-700 dark:text-green-400"
                                                             : "text-red-600 dark:text-red-400"
                                                 }`}
                                             &gt;
                                                 {isNeutral
-                                                    ? "—"
+                                                    ? <span class="branch-0 cbranch-no" title="branch not covered" >"—"</span>
                                                     : (val &gt; 0 ? "+" : "") +
                                                     val.toFixed(2).replace(".", ",") +
                                                     "%"}
@@ -1287,7 +1287,7 @@ export default function TradingPerformanceChart() {
                                                 className={`flex-shrink-0 w-36 rounded-xl shadow-md p-3 transition transform hover:scale-105 hover:shadow-lg
                                             ${
                                                     isNeutral
-                                                        ? "bg-gray-100 dark:bg-gray-800"
+                                                        ? <span class="branch-0 cbranch-no" title="branch not covered" >"bg-gray-100 dark:bg-gray-800"</span>
                                                         : isPositive
                                                             ? "bg-green-50 dark:bg-green-900/20"
                                                             : "bg-red-50 dark:bg-red-900/20"
@@ -1299,7 +1299,7 @@ export default function TradingPerformanceChart() {
                                                 &lt;p
                                                     className={`text-xs font-semibold text-center ${
                                                         isNeutral
-                                                            ? "text-gray-500 dark:text-gray-400"
+                                                            ? <span class="branch-0 cbranch-no" title="branch not covered" >"text-gray-500 dark:text-gray-400"</span>
                                                             : isPositive
                                                                 ? "text-green-700 dark:text-green-400"
                                                                 : "text-red-600 dark:text-red-400"
@@ -1310,14 +1310,14 @@ export default function TradingPerformanceChart() {
                                                 &lt;p
                                                     className={`mt-1 text-sm font-bold text-center break-words ${
                                                         isNeutral
-                                                            ? "text-gray-500 dark:text-gray-400"
+                                                            ? <span class="branch-0 cbranch-no" title="branch not covered" >"text-gray-500 dark:text-gray-400"</span>
                                                             : isPositive
                                                                 ? "text-green-700 dark:text-green-400"
                                                                 : "text-red-600 dark:text-red-400"
                                                     }`}
                                                 &gt;
                                                     {isNeutral
-                                                        ? "—"
+                                                        ? <span class="branch-0 cbranch-no" title="branch not covered" >"—"</span>
                                                         : (val &gt; 0 ? "+" : "") +
                                                         val.toFixed(2).replace(".", ",") +
                                                         "%"}
@@ -1417,7 +1417,7 @@ export default function TradingPerformanceChart() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-12-22T09:57:34.036Z
+                at 2026-01-30T08:20:21.763Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>
