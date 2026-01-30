@@ -1,7 +1,7 @@
 import {useTranslation} from 'react-i18next';
-import SeoHead from "../../components/seoHead/SeoHead"
+import {SeoHead} from "@/components/seoHead/SeoHead"
 import {motion} from "framer-motion";
-import {AvatarCard} from "../../components/ui/avatarCard/AvatarCard";
+import {AvatarCard} from "@/components/ui/avatarCard/AvatarCard";
 
 /**
  * Home component displays an about section with a title, introductory text,

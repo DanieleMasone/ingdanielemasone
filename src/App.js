@@ -4,15 +4,15 @@ import './i18n/i18n';
 import Home from './pages/home/Home';
 import Experience from './pages/experience/Experience';
 import Projects from './pages/projects/Projects';
-import Header from './components/header/Header';
-import Footer from './components/footer/Footer';
+import {Header} from './components/header/Header';
+import {Footer} from './components/footer/Footer';
 import Privacy from "./pages/privacy/Privacy";
 import CookiePolicy from "./pages/cookiePolicy/CookiePolicy";
 import Courses from "./pages/courses/Courses";
 import Trading from "./pages/trading/Trading";
 import Testimonials from "./pages/testimonials/Testimonials";
-import NotFound from "./components/notFound/NotFound";
-import CookieBanner from "./components/ui/cookieBanner/CookieBanner";
+import {NotFound} from "./components/notFound/NotFound";
+import {CookieBanner} from "./components/ui/cookieBanner/CookieBanner";
 import Certifications from "./pages/certifications/Certifications";
 
 

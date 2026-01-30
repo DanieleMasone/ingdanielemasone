@@ -1,7 +1,7 @@
 import React from "react";
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import Pagination from "./Pagination";
+import {Pagination} from "./Pagination";
 
 // Mock i18next
 jest.mock("react-i18next", () => ({

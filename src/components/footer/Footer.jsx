@@ -41,7 +41,7 @@ export const linkedinIcon = {
  * @module components/footer/Footer
  * @returns {JSX.Element} The Footer element with icon links and copyright.
  */
-export default function Footer() {
+export function Footer() {
     const {t} = useTranslation();
 
     const links = [

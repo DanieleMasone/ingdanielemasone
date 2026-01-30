@@ -1,5 +1,5 @@
 import {fireEvent, render, screen} from '@testing-library/react';
-import CookieBanner from './CookieBanner';
+import {CookieBanner} from './CookieBanner';
 
 describe('CookieBanner', () => {
     beforeEach(() => {

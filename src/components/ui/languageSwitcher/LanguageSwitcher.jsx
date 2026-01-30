@@ -15,10 +15,10 @@ const languageLabels = {
     it: "Italiano",
     fr: "Français",
     de: "Deutsch",
-    es: "Español",
+    es: "Español"
 };
 
-export default function LanguageSwitcher() {
+export function LanguageSwitcher() {
     const {i18n} = useTranslation();
     const [open, setOpen] = useState(false);
     const dropdownRef = useRef(null);

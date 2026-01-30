@@ -1,12 +1,12 @@
 import {Award, ExternalLink} from "lucide-react";
 import {useTranslation} from "react-i18next";
-import {Card} from "../../components/ui/card/Card";
-import {CardContent} from "../../components/ui/cardContent/CardContent";
-import PageSection from "../../components/ui/pageSection/PageSection";
+import {Card} from "@/components/ui/card/Card";
+import {CardContent} from "@/components/ui/cardContent/CardContent";
+import {PageSection} from "@/components/ui/pageSection/PageSection";
 import {AnimatePresence, motion} from "framer-motion";
-import SeoHead from "../../components/seoHead/SeoHead";
+import {SeoHead} from "@/components/seoHead/SeoHead";
 import {useState} from "react";
-import Pagination from "../../components/ui/pagination/Pagination";
+import {Pagination} from "@/components/ui/pagination/Pagination";
 
 const ITEMS_PER_PAGE = 3;
 

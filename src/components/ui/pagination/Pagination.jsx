@@ -11,7 +11,7 @@ import {useTranslation} from "react-i18next";
  * @module components/ui/pagination/Pagination
  * @returns {JSX.Element} The header element with navigation links and controls.
  */
-export default function Pagination({
+export function Pagination({
                                        page,
                                        totalPages,
                                        onPageChange,

@@ -1,5 +1,5 @@
 import {fireEvent, render, screen, within} from '@testing-library/react';
-import TradingPerformanceChart from './TradingPerformanceChart';
+import {TradingPerformanceChart} from './TradingPerformanceChart';
 import React from 'react';
 
 jest.mock('react-i18next', () => ({

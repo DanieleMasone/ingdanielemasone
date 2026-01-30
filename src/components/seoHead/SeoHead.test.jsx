@@ -1,7 +1,7 @@
 import React from 'react';
 import {render, waitFor} from '@testing-library/react';
 import {HelmetProvider} from 'react-helmet-async';
-import SeoHead from './SeoHead';
+import {SeoHead} from './SeoHead';
 
 // Mock i18n
 jest.mock('react-i18next', () => ({

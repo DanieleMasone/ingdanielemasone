@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Moon, Sun } from 'lucide-react';
+import {Moon, Sun} from 'lucide-react';
 
 /**
  * DarkModeToggle component toggles between dark and light theme modes.
@@ -9,7 +9,7 @@ import { Moon, Sun } from 'lucide-react';
  * @module components/ui/darkModeToggle/DarkModeToggle
  * @returns {JSX.Element} A button to toggle dark mode.
  */
-export default function DarkModeToggle() {
+export function DarkModeToggle() {
     const [darkMode, setDarkMode] = useState(() =>
         localStorage.getItem('theme') === 'dark'
     );

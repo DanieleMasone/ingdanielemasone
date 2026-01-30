@@ -1,5 +1,5 @@
 import {render, screen} from '@testing-library/react';
-import NotFound from './NotFound';
+import {NotFound} from './NotFound';
 import React from 'react';
 
 // Mock by react-i18next

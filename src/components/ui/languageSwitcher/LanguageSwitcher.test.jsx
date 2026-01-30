@@ -1,6 +1,6 @@
 import React from 'react';
 import {fireEvent, render, screen, waitFor} from '@testing-library/react';
-import LanguageSwitcher from './LanguageSwitcher';
+import {LanguageSwitcher} from './LanguageSwitcher';
 import {I18nextProvider} from 'react-i18next';
 import i18n from '../../../i18n/i18n';
 

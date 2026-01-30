@@ -24,8 +24,7 @@ jest.mock('../../components/ui/avatarCard/AvatarCard', () => ({
 
 // Mock SeoHead to prevent Helmet manipulation
 jest.mock('../../components/seoHead/SeoHead', () => ({
-    __esModule: true,
-    default: () => <div data-testid="seo-head"/>,
+    SeoHead: ({ pageKey, path }) => <div data-testid="seo-head" />,
 }));
 
 // Mock image import if needed

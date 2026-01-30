@@ -14,7 +14,7 @@ import React, {useEffect, useState} from 'react';
  * @module pages/ui/cookieBanner/CookieBanner
  * @returns {JSX.Element|null} The cookie consent banner or null if consent is already given.
  */
-function CookieBanner() {
+export function CookieBanner() {
     const [visible, setVisible] = useState(false);
 
     useEffect(() => {
@@ -53,5 +53,3 @@ function CookieBanner() {
     );
 
 }
-
-export default CookieBanner;

@@ -1,6 +1,6 @@
 import React from 'react';
 import {render, screen} from '@testing-library/react';
-import PageSection from './PageSection';
+import {PageSection} from './PageSection';
 
 describe('PageSection', () => {
     it('renders the title correctly', () => {

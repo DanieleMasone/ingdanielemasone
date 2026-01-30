@@ -1,11 +1,11 @@
 import {useTranslation} from 'react-i18next';
-import {Card} from "../../components/ui/card/Card";
-import {CardContent} from "../../components/ui/cardContent/CardContent";
+import {Card} from "@/components/ui/card/Card";
+import {CardContent} from "@/components/ui/cardContent/CardContent";
 import {Disclosure} from '@headlessui/react';
 import {ChevronDown} from 'lucide-react';
 import {useState} from "react";
-import PageSection from "../../components/ui/pageSection/PageSection";
-import {ExpandableText} from "../../components/ui/expandableText/ExpandableText";
+import {PageSection} from "@/components/ui/pageSection/PageSection";
+import {ExpandableText} from "@/components/ui/expandableText/ExpandableText";
 import {AnimatePresence, motion} from "framer-motion";
 import gitPhoto from '../../assets/courses/GIT.png';
 import cPhoto from '../../assets/courses/C.png';
@@ -19,8 +19,8 @@ import jqueryPhoto from '../../assets/courses/JQUERY.png';
 import phpPhoto from '../../assets/courses/PHP.png';
 import sqlPhoto from '../../assets/courses/SQL.png';
 import typescriptPhoto from '../../assets/courses/TYPESCRIPT.png';
-import SeoHead from "../../components/seoHead/SeoHead";
-import Pagination from "../../components/ui/pagination/Pagination";
+import {SeoHead} from "@/components/seoHead/SeoHead";
+import {Pagination} from "@/components/ui/pagination/Pagination";
 
 const ITEMS_PER_PAGE = 3;
 

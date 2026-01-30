@@ -17,7 +17,7 @@ import {useEffect, useState} from 'react';
  *
  * @returns {JSX.Element} The rendered 404 page
  */
-export default function NotFound() {
+export function NotFound() {
     const {t} = useTranslation();
     const [isVisible, setIsVisible] = useState(false);
 

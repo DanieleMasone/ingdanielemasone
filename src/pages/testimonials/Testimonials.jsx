@@ -2,13 +2,13 @@ import {useState} from "react";
 import {useTranslation} from "react-i18next";
 import {Disclosure} from "@headlessui/react";
 import {ChevronDown} from "lucide-react";
-import {Card} from "../../components/ui/card/Card";
-import {CardContent} from "../../components/ui/cardContent/CardContent";
-import PageSection from "../../components/ui/pageSection/PageSection";
+import {Card} from "@/components/ui/card/Card";
+import {CardContent} from "@/components/ui/cardContent/CardContent";
+import {PageSection} from "@/components/ui/pageSection/PageSection";
 import {AnimatePresence, motion} from "framer-motion";
-import SeoHead from "../../components/seoHead/SeoHead";
-import {BrandIcon, linkedinIcon} from "../../components/footer/Footer";
-import Pagination from "../../components/ui/pagination/Pagination";
+import {SeoHead} from "@/components/seoHead/SeoHead";
+import {BrandIcon, linkedinIcon} from "@/components/footer/Footer";
+import {Pagination} from "@/components/ui/pagination/Pagination";
 
 const ITEMS_PER_PAGE = 3;
 

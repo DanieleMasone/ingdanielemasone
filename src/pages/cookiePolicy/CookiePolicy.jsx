@@ -1,6 +1,6 @@
 import React from "react";
 import {useTranslation} from "react-i18next";
-import SeoHead from "../../components/seoHead/SeoHead";
+import {SeoHead} from "@/components/seoHead/SeoHead";
 
 /**
  * CookiePolicy component renders the cookie policy page content.

@@ -18,7 +18,7 @@ import {useTranslation} from "react-i18next";
  *
  * @returns {JSX.Element} A Helmet component injecting meta tags into the <head>.
  */
-export default function SeoHead({pageKey, path}) {
+export function SeoHead({pageKey, path}) {
     const {t} = useTranslation();
 
     const title = t(`seo.${pageKey}.title`);

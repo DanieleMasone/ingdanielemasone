@@ -1,7 +1,7 @@
 import React from "react";
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import Footer, {BrandIcon} from "./Footer";
+import {BrandIcon, Footer} from "./Footer";
 
 jest.mock("react-i18next", () => ({
     useTranslation: () => ({

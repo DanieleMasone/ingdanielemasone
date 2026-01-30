@@ -1,14 +1,14 @@
 import {useTranslation} from "react-i18next";
 import {useState} from "react";
-import {Card} from "../../components/ui/card/Card";
-import {CardContent} from "../../components/ui/cardContent/CardContent";
+import {Card} from "@/components/ui/card/Card";
+import {CardContent} from "@/components/ui/cardContent/CardContent";
 import {Disclosure} from "@headlessui/react";
 import {ChevronDown} from "lucide-react";
 import {AnimatePresence, motion} from "framer-motion";
-import PageSection from "../../components/ui/pageSection/PageSection";
-import {ExpandableText} from "../../components/ui/expandableText/ExpandableText";
-import SeoHead from "../../components/seoHead/SeoHead";
-import {SelectableButton} from "../../components/ui/selectableButton/SelectableButton";
+import {PageSection} from "@/components/ui/pageSection/PageSection";
+import {ExpandableText} from "@/components/ui/expandableText/ExpandableText";
+import {SeoHead} from "@/components/seoHead/SeoHead";
+import {SelectableButton} from "@/components/ui/selectableButton/SelectableButton";
 
 /**
  * Determines the experience label and type based on the selected year within a period string.

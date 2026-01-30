@@ -44,7 +44,7 @@ ChartJS.register(
  * @module components/ui/tradingPerformanceChart/TradingPerformanceChart
  * @returns {JSX.Element} The trading performance chart section.
  */
-export default function TradingPerformanceChart() {
+export function TradingPerformanceChart() {
     const {t} = useTranslation();
     const startYear = 2022; // First year of the dataset
     const monthlyReturns = [

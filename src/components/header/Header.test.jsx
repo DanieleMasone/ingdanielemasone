@@ -1,7 +1,7 @@
 import React from "react";
 import {fireEvent, render, screen, within} from "@testing-library/react";
 import {MemoryRouter} from "react-router";
-import Header from "./Header";
+import {Header} from "./Header";
 
 jest.mock("react-i18next", () => ({
     useTranslation: () => ({
@@ -14,16 +14,17 @@ jest.mock("react-i18next", () => ({
             testimonials: "Testimonials",
             trading: "Trading",
             certifications: "Certifications",
-        }[key] || key),
+        }[key] || key)
     }),
 }));
 
-jest.mock("../ui/languageSwitcher/LanguageSwitcher", () => () => (
-    <div data-testid="language-switcher"/>
-));
-jest.mock("../ui/darkModeToggle/DarkModeToggle", () => () => (
-    <div data-testid="dark-mode-toggle"/>
-));
+jest.mock("../ui/languageSwitcher/LanguageSwitcher", () => ({
+    LanguageSwitcher: () => <div data-testid="language-switcher" />,
+}));
+
+jest.mock("../ui/darkModeToggle/DarkModeToggle", () => ({
+    DarkModeToggle: () => <div data-testid="dark-mode-toggle" />,
+}));
 
 describe("Header", () => {
     const renderHeader = (initialPath = "/") =>

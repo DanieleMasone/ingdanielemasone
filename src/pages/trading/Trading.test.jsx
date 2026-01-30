@@ -1,5 +1,5 @@
 import {render, screen} from "@testing-library/react";
-import Trading from "./Trading"; // adjust path as needed
+import Trading from "./Trading";
 import React from "react";
 import {HelmetProvider} from "react-helmet-async";
 
@@ -20,18 +20,21 @@ jest.mock("react-i18next", () => ({
     }),
 }));
 
-// Mock TradingPerformanceChart component
-jest.mock("../../components/ui/tradingPerformanceChart/TradingPerformanceChart", () => () => (
-    <div data-testid="mock-chart">[Mock TradingPerformanceChart]</div>
-));
+jest.mock("../../components/ui/tradingPerformanceChart/TradingPerformanceChart", () => ({
+    TradingPerformanceChart: () => (
+        <div data-testid="mock-chart">[Mock TradingPerformanceChart]</div>
+    ),
+}));
 
 // Mock PageSection component
-jest.mock("../../components/ui/pageSection/PageSection", () => ({title, children}) => (
-    <section>
-        <h2>{title}</h2>
-        {children}
-    </section>
-));
+jest.mock("../../components/ui/pageSection/PageSection", () => ({
+    PageSection: ({ title, children }) => (
+        <section>
+            <h2>{title}</h2>
+            {children}
+        </section>
+    ),
+}));
 
 describe("Trading component", () => {
     beforeEach(() => {
