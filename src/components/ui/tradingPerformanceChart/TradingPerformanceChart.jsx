@@ -52,6 +52,7 @@ export function TradingPerformanceChart() {
         6.54, -1.86, 2.85, -0.81, 1.96, 3.78, 2.68, -3.01, -3.98, -2.98, 8.07, 4.73,
         -1.26, 2.19, 2.16, -2.68, 4.98, -0.01, 3.18, 2.5, 1.89, -2.89, 1.48, -2.68,
         1.87, -0.41, -1.84, 0.93, 5.78, 4.38, 1.51, 1.48, 3.43, 2.75, -0.03, 1.20,
+        2.24, null, null, null, null, null, null, null, null, null, null, null
     ];
     const totalMonths = monthlyReturns.length;
     const lastMonthIndex = totalMonths - 1;
@@ -219,7 +220,7 @@ export function TradingPerformanceChart() {
         },
     };
 
-    const [selectedYear, setSelectedYear] = useState("2025");
+    const [selectedYear, setSelectedYear] = useState("2026");
 
     function renderSummary() {
         const years = Object.fromEntries(
