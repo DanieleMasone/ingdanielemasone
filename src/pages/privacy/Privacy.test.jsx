@@ -1,9 +1,10 @@
 import {render, screen, within} from '@testing-library/react';
 import Privacy from './Privacy';
-import {HelmetProvider} from "react-helmet-async";
+import {MemoryRouter} from 'react-router-dom';
+import {vi} from 'vitest';
 import React from "react";
 
-jest.mock('react-i18next', () => ({
+vi.mock('react-i18next', () => ({
     useTranslation: () => ({
         t: (key) => {
             const translations = {
@@ -53,9 +54,9 @@ jest.mock('react-i18next', () => ({
 describe('Privacy component', () => {
     beforeEach(() => {
         render(
-            <HelmetProvider>
-                <Privacy/>
-            </HelmetProvider>
+            <MemoryRouter initialEntries={['/privacy']}>
+                <Privacy />
+            </MemoryRouter>
         );
     });
 
@@ -108,9 +109,9 @@ describe('Privacy component', () => {
 
     test("matches snapshot", () => {
         const {asFragment} = render(
-            <HelmetProvider>
-                <Privacy/>
-            </HelmetProvider>
+            <MemoryRouter initialEntries={['/privacy']}>
+                <Privacy />
+            </MemoryRouter>
         );
         expect(asFragment()).toMatchSnapshot();
     });

@@ -1,48 +1,49 @@
 import React from "react";
 import {fireEvent, render, screen, waitFor, within} from "@testing-library/react";
 import Testimonials from "./Testimonials";
-import {I18nextProvider, initReactI18next} from "react-i18next";
-import i18n from "i18next";
-import {HelmetProvider} from "react-helmet-async";
+import {MemoryRouter} from 'react-router-dom';
+import {vi} from 'vitest';
 
 // Minimal translations
-const resources = {
-    en: {
-        translation: {
-            "testimonials_people.mirko.name": "Mirko",
-            "testimonials_people.mirko.role": "Developer",
-            "testimonials_people.mirko.quote": "Great work!",
-            "testimonials_people.alessia.name": "Alessia",
-            "testimonials_people.alessia.role": "Designer",
-            "testimonials_people.alessia.quote": "Amazing service!",
-            "testimonials_people.federico.name": "Federico",
-            "testimonials_people.federico.role": "Manager",
-            "testimonials_people.federico.quote": "Highly recommend!",
-            "testimonials_people.daniela.name": "Daniela",
-            "testimonials_people.daniela.role": "QA",
-            "testimonials_people.daniela.quote": "Thorough testing.",
-            "testimonials_page.title": "Testimonials",
-            "previous": "Prev",
-            "next": "Next"
+vi.mock('react-i18next', () => ({
+    useTranslation: () => ({
+        t: (key) => {
+            const translations = {
+                "testimonials_people.mirko.name": "Mirko",
+                "testimonials_people.mirko.role": "Developer",
+                "testimonials_people.mirko.quote": "Great work!",
+                "testimonials_people.alessia.name": "Alessia",
+                "testimonials_people.alessia.role": "Designer",
+                "testimonials_people.alessia.quote": "Amazing service!",
+                "testimonials_people.federico.name": "Federico",
+                "testimonials_people.federico.role": "Manager",
+                "testimonials_people.federico.quote": "Highly recommend!",
+                "testimonials_people.daniela.name": "Daniela",
+                "testimonials_people.daniela.role": "QA",
+                "testimonials_people.daniela.quote": "Thorough testing.",
+                "testimonials_page.title": "Testimonials",
+                "previous": "Prev",
+                "next": "Next"
+            };
+            return translations[key] || key;
+        },
+        i18n: {
+            changeLanguage: vi.fn(() => Promise.resolve())
         }
+    }),
+    // Mock to avoid initReactI18next warnings
+    initReactI18next: {
+        type: '3rdParty',
+        init: vi.fn()
     }
-};
-
-i18n.use(initReactI18next).init({
-    lng: "en",
-    fallbackLng: "en",
-    resources,
-    interpolation: {escapeValue: false}
-});
+}));
 
 describe("Testimonials component with mobile + desktop paginators", () => {
     beforeEach(() => {
         render(
-            <HelmetProvider>
-                <I18nextProvider i18n={i18n}>
-                    <Testimonials/>
-                </I18nextProvider>
-            </HelmetProvider>
+            <MemoryRouter initialEntries={['/testimonials']}>
+                <Testimonials />
+            </MemoryRouter>
         );
     });
 
@@ -102,8 +103,8 @@ describe("Testimonials component with mobile + desktop paginators", () => {
         const firstCard = cards[0];
         const {getByRole, queryByText} = within(firstCard);
 
-        const name = resources.en.translation["testimonials_people.mirko.name"];
-        const quote = resources.en.translation["testimonials_people.mirko.quote"];
+        const name = "Mirko";
+        const quote = "Great work!";
 
         const disclosureButton = getByRole("button", {name: new RegExp(name, "i")});
         expect(queryByText(quote)).not.toBeInTheDocument();
@@ -117,11 +118,9 @@ describe("Testimonials component with mobile + desktop paginators", () => {
 
     test("matches snapshot", () => {
         const {asFragment} = render(
-            <HelmetProvider>
-                <I18nextProvider i18n={i18n}>
-                    <Testimonials/>
-                </I18nextProvider>
-            </HelmetProvider>
+            <MemoryRouter initialEntries={['/testimonials']}>
+                <Testimonials />
+            </MemoryRouter>
         );
         expect(asFragment()).toMatchSnapshot();
     });

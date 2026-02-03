@@ -1,10 +1,11 @@
 import {render, screen} from '@testing-library/react';
 import Home from './Home';
 import React from 'react';
-import {HelmetProvider} from 'react-helmet-async';
+import {MemoryRouter} from 'react-router-dom';
+import {vi} from 'vitest';
 
 // Mock i18n
-jest.mock('react-i18next', () => ({
+vi.mock('react-i18next', () => ({
     useTranslation: () => ({
         t: (key) => {
             const translations = {
@@ -18,24 +19,24 @@ jest.mock('react-i18next', () => ({
 }));
 
 // Mock AvatarCard
-jest.mock('../../components/ui/avatarCard/AvatarCard', () => ({
+vi.mock('../../components/ui/avatarCard/AvatarCard', () => ({
     AvatarCard: () => <div data-testid="avatar-card">Avatar</div>,
 }));
 
 // Mock SeoHead to prevent Helmet manipulation
-jest.mock('../../components/seoHead/SeoHead', () => ({
+vi.mock('../../components/seoHead/SeoHead', () => ({
     SeoHead: ({ pageKey, path }) => <div data-testid="seo-head" />,
 }));
 
 // Mock image import if needed
-jest.mock('../../assets/daniele.jpg', () => 'daniele.jpg');
+vi.mock('../../assets/daniele.jpg', () => 'daniele.jpg');
 
 describe('Home component', () => {
     beforeEach(() => {
         render(
-            <HelmetProvider>
-                <Home/>
-            </HelmetProvider>
+            <MemoryRouter initialEntries={['/']}>
+                <Home />
+            </MemoryRouter>
         );
     });
 
@@ -67,9 +68,9 @@ describe('Home component', () => {
 
     test("matches snapshot", () => {
         const {asFragment} = render(
-            <HelmetProvider>
-                <Home/>
-            </HelmetProvider>
+            <MemoryRouter initialEntries={['/']}>
+                <Home />
+            </MemoryRouter>
         );
         expect(asFragment()).toMatchSnapshot();
     });

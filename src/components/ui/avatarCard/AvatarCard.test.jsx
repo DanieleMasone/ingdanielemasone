@@ -1,9 +1,10 @@
 import {render, screen} from "@testing-library/react";
 import {AvatarCard} from "./AvatarCard";
 import React from "react";
+import {vi} from 'vitest';
 
-// Mock di react-i18next
-jest.mock("react-i18next", () => ({
+// Mock of react-i18next
+vi.mock("react-i18next", () => ({
     useTranslation: () => ({
         t: (key, options) => {
             const translations = {

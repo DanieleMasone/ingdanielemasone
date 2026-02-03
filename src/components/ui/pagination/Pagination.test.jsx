@@ -2,9 +2,10 @@ import React from "react";
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {Pagination} from "./Pagination";
+import {vi} from 'vitest';
 
 // Mock i18next
-jest.mock("react-i18next", () => ({
+vi.mock("react-i18next", () => ({
     useTranslation: () => ({
         t: (key) => {
             const translations = {
@@ -52,7 +53,7 @@ describe("Pagination component", () => {
 
     test("calls onPageChange with previous page when clicking 'Previous'", async () => {
         const user = userEvent.setup();
-        const onPageChange = jest.fn();
+        const onPageChange = vi.fn();
 
         render(<Pagination page={3} totalPages={5} onPageChange={onPageChange}/>);
 
@@ -62,7 +63,7 @@ describe("Pagination component", () => {
 
     test("calls onPageChange with next page when clicking 'Next'", async () => {
         const user = userEvent.setup();
-        const onPageChange = jest.fn();
+        const onPageChange = vi.fn();
 
         render(<Pagination page={2} totalPages={5} onPageChange={onPageChange}/>);
 
@@ -72,7 +73,7 @@ describe("Pagination component", () => {
 
     test("does not go below page 1 or above totalPages", async () => {
         const user = userEvent.setup();
-        const onPageChange = jest.fn();
+        const onPageChange = vi.fn();
 
         render(<Pagination page={1} totalPages={3} onPageChange={onPageChange}/>);
 

@@ -2,8 +2,9 @@ import React from "react";
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {BrandIcon, Footer} from "./Footer";
+import {vi} from 'vitest';
 
-jest.mock("react-i18next", () => ({
+vi.mock("react-i18next", () => ({
     useTranslation: () => ({
         t: (key) => (key === "footer_copyright" ? "© 2025 Daniele Masone" : key),
     }),
@@ -11,7 +12,7 @@ jest.mock("react-i18next", () => ({
 
 describe("Footer component - additional tests", () => {
     beforeEach(() => {
-        jest.clearAllMocks();
+        vi.clearAllMocks();
     });
 
     it("footer has correct CSS classes for styling", () => {

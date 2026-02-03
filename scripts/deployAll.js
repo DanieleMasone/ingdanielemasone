@@ -12,8 +12,8 @@ fs.ensureDirSync(outDir);
 // === COPY SECTIONS ===
 
 // Copy React build directly (will go to root of GH Pages)
-console.log('📦 Copying React app from /build...');
-fs.copySync(path.join(__dirname, '..', 'build'), outDir);
+console.log('📦 Copying React app from /dist...');
+fs.copySync(path.join(__dirname, '..', 'dist'), outDir);
 
 // Copy JSDoc from /docs to /docs
 console.log('📄 Copying JSDoc from /docs...');

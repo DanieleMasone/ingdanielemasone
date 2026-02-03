@@ -28,6 +28,7 @@ export function NotFound() {
     return (
         <section className="px-4 py-8 sm:px-6 md:px-8 max-w-4xl mx-auto">
             <div
+                data-testid="not-found"
                 className={`bg-gradient-to-br from-red-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl p-6 sm:p-8 md:p-10 shadow-lg text-center transition-opacity duration-700 ${
                     isVisible ? 'opacity-100' : 'opacity-0'
                 }`}

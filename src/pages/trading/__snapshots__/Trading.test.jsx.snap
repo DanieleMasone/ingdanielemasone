@@ -1,4 +1,62 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Trading component > matches snapshot 1`] = `
+<DocumentFragment>
+  <section>
+    <h2>
+      Trading Performance
+    </h2>
+    <div
+      class="flex flex-col justify-start mb-8"
+    >
+      <p
+        class="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed"
+      >
+        Welcome to my trading performance overview.
+      </p>
+      <p
+        class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4"
+      >
+        Here you can find detailed metrics about my trading results.
+      </p>
+      <p
+        class="text-xs text-gray-500 dark:text-gray-400 mt-6 leading-relaxed"
+      >
+        Trading involves risk. Past performance is not indicative of future results.
+      </p>
+      <div
+        class="mt-6 flex flex-row gap-4"
+      >
+        <a
+          class="flex-1 min-w-[140px] flex items-center justify-center text-center bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-white font-semibold rounded-lg px-6 py-3 text-base transition-colors focus:outline-none focus:ring-2 focus:ring-green-400 dark:focus:ring-green-300 shadow-md"
+          href="https://www.etoro.com/people/danielemasone"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          My eToro profile
+        </a>
+        <a
+          class="flex-1 min-w-[140px] flex items-center justify-center text-center bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-semibold rounded-lg px-6 py-3 text-base transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-300 shadow-md"
+          href="https://etoro.tw/44k4LJg"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Sign up on eToro
+        </a>
+      </div>
+    </div>
+    <div
+      class="flex-grow w-full"
+    >
+      <div
+        data-testid="mock-chart"
+      >
+        [Mock TradingPerformanceChart]
+      </div>
+    </div>
+  </section>
+</DocumentFragment>
+`;
 
 exports[`Trading component matches snapshot 1`] = `
 <DocumentFragment>

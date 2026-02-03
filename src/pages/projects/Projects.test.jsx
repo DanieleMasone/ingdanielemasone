@@ -1,10 +1,11 @@
 import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import Projects from "./Projects";
 import React from "react";
-import {HelmetProvider} from "react-helmet-async";
+import {MemoryRouter} from 'react-router-dom';
+import {vi} from 'vitest';
 
 // Mock react-i18next
-jest.mock("react-i18next", () => ({
+vi.mock("react-i18next", () => ({
     useTranslation: () => ({
         t: (key, fallback) => {
             const translations = {
@@ -45,9 +46,9 @@ jest.mock("react-i18next", () => ({
 describe("Projects Component", () => {
     beforeEach(() => {
         render(
-            <HelmetProvider>
-                <Projects/>
-            </HelmetProvider>
+            <MemoryRouter initialEntries={['/projects']}>
+                <Projects />
+            </MemoryRouter>
         );
     });
 
@@ -173,9 +174,9 @@ describe("Projects Component", () => {
 
     test("matches snapshot", () => {
         const {asFragment} = render(
-            <HelmetProvider>
-                <Projects/>
-            </HelmetProvider>
+            <MemoryRouter initialEntries={['/projects']}>
+                <Projects />
+            </MemoryRouter>
         );
         expect(asFragment()).toMatchSnapshot();
     });

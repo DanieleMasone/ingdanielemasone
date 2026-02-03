@@ -1,22 +1,19 @@
 import React from 'react';
-import {Helmet} from 'react-helmet-async';
 import {useTranslation} from "react-i18next";
 
 /**
  * SeoHead is a React component for injecting SEO-related meta tags into the document head
- * using `react-helmet`. It supports dynamic title and description localization via `react-i18next`,
- * and constructs canonical/Open Graph/Twitter metadata based on the provided `pageKey` and `path`.
+ * using React 19 native <head> support. Supports dynamic title and description localization.
  *
  * @component
  * @module components/seoHead/SeoHead
  * @example
- * // Inside a page component
  * <SeoHead pageKey="home" path="/" />
  *
- * @param {string} pageKey - The translation key suffix for fetching SEO title and description.
- * @param {string} path - The relative URL path of the page (e.g., "/projects").
+ * @param {string} pageKey - Translation key suffix for SEO title and description.
+ * @param {string} path - Relative URL path of the page (e.g., "/projects").
  *
- * @returns {JSX.Element} A Helmet component injecting meta tags into the <head>.
+ * @returns {JSX.Element} Meta tags injected into <head>.
  */
 export function SeoHead({pageKey, path}) {
     const {t} = useTranslation();
@@ -27,7 +24,7 @@ export function SeoHead({pageKey, path}) {
     const logo = "https://danielemasone.github.io/ingdanielemasone/logo.png";
 
     return (
-        <Helmet>
+        <>
             <title>{title}</title>
             <meta name="description" content={description}/>
             <link rel="canonical" href={url}/>
@@ -44,6 +41,6 @@ export function SeoHead({pageKey, path}) {
             <meta name="twitter:title" content={title}/>
             <meta name="twitter:description" content={description}/>
             <meta name="twitter:image" content={logo}/>
-        </Helmet>
+        </>
     );
 }

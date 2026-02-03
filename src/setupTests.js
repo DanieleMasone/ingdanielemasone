@@ -1,43 +1,36 @@
-// jest-dom adds custom jest matchers for asserting on DOM nodes.
-// allows you to do things like:
-// expect(element).toHaveTextContent(/react/i)
-// learn more: https://github.com/testing-library/jest-dom
+// vitest.setup.js - JavaScript PURO per Vitest
 import '@testing-library/jest-dom';
-import {TextDecoder, TextEncoder} from 'util';
 
+// Polyfill TextEncoder/TextDecoder
 if (typeof global.TextEncoder === 'undefined') {
-    global.TextEncoder = TextEncoder;
+    global.TextEncoder = require('util').TextEncoder;
 }
 if (typeof global.TextDecoder === 'undefined') {
-    global.TextDecoder = TextDecoder;
+    global.TextDecoder = require('util').TextDecoder;
 }
 
-// Mock getContext on HTMLCanvasElement
-HTMLCanvasElement.prototype.getContext = jest.fn(() => {
-    return {
-        // mock methods used by Chart.js
-        fillRect: jest.fn(),
-        clearRect: jest.fn(),
-        getImageData: jest.fn(() => ({data: []})),
-        putImageData: jest.fn(),
-        createImageData: jest.fn(),
-        save: jest.fn(),
-        restore: jest.fn(),
-        beginPath: jest.fn(),
-        moveTo: jest.fn(),
-        lineTo: jest.fn(),
-        closePath: jest.fn(),
-        stroke: jest.fn(),
-        fillText: jest.fn(),
-        measureText: jest.fn(() => ({width: 100})),
-        fill: jest.fn(),
-        arc: jest.fn(),
-        clip: jest.fn(),
-        setTransform: jest.fn(),
-        transform: jest.fn(),
-        translate: jest.fn(),
-        scale: jest.fn(),
-        rotate: jest.fn(),
-    };
+// Canvas mock COMPLETO per Chart.js (no jest.fn - solo funzioni pure)
+HTMLCanvasElement.prototype.getContext = () => ({
+    fillRect: () => {},
+    clearRect: () => {},
+    getImageData: () => ({data: []}),
+    putImageData: () => {},
+    createImageData: () => {},
+    save: () => {},
+    restore: () => {},
+    beginPath: () => {},
+    moveTo: () => {},
+    lineTo: () => {},
+    closePath: () => {},
+    stroke: () => {},
+    fillText: () => {},
+    measureText: () => ({width: 100}),
+    fill: () => {},
+    arc: () => {},
+    clip: () => {},
+    setTransform: () => {},
+    transform: () => {},
+    translate: () => {},
+    scale: () => {},
+    rotate: () => {}
 });
-

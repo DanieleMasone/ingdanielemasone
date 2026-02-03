@@ -1,9 +1,10 @@
 import React from 'react';
 import {fireEvent, render, screen, waitFor} from '@testing-library/react';
 import Courses from './Courses';
-import {HelmetProvider} from "react-helmet-async";
+import {MemoryRouter} from 'react-router-dom';
+import {vi} from 'vitest';
 
-jest.mock('react-i18next', () => ({
+vi.mock('react-i18next', () => ({
     useTranslation: () => ({
         t: (key) => {
             const map = {
@@ -30,9 +31,9 @@ jest.mock('react-i18next', () => ({
 describe('Courses component', () => {
     beforeEach(() => {
         render(
-            <HelmetProvider>
+            <MemoryRouter initialEntries={['/courses']}>
                 <Courses/>
-            </HelmetProvider>
+            </MemoryRouter>
         );
     });
 
@@ -127,9 +128,9 @@ describe('Courses component', () => {
 
     test("matches snapshot", () => {
         const {asFragment} = render(
-            <HelmetProvider>
+            <MemoryRouter initialEntries={['/courses']}>
                 <Courses/>
-            </HelmetProvider>
+            </MemoryRouter>
         );
         expect(asFragment()).toMatchSnapshot();
     });

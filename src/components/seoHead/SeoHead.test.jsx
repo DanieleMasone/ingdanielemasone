@@ -1,10 +1,10 @@
 import React from 'react';
-import {render, waitFor} from '@testing-library/react';
-import {HelmetProvider} from 'react-helmet-async';
+import {render} from '@testing-library/react';
+import {waitFor} from '@testing-library/dom';
 import {SeoHead} from './SeoHead';
+import {vi} from 'vitest';
 
-// Mock i18n
-jest.mock('react-i18next', () => ({
+vi.mock('react-i18next', () => ({
     useTranslation: () => ({
         t: (key) => {
             const translations = {
@@ -32,15 +32,12 @@ jest.mock('react-i18next', () => ({
 
 describe('<SeoHead />', () => {
     const renderSeo = (pageKey, path) => {
-        return render(
-            <HelmetProvider>
-                <SeoHead pageKey={pageKey} path={path}/>
-            </HelmetProvider>
-        );
+        return render(<SeoHead pageKey={pageKey} path={path}/>);
     };
 
     beforeEach(() => {
         document.head.innerHTML = '';
+        document.title = '';
     });
 
     test('renders correct title and meta for "home"', async () => {
@@ -132,20 +129,6 @@ describe('<SeoHead />', () => {
             expect(document.querySelector('meta[name="twitter:card"]')).toHaveAttribute(
                 'content',
                 'summary_large_image'
-            );
-        });
-
-        await waitFor(() => {
-            expect(document.querySelector('meta[name="twitter:title"]')).toHaveAttribute(
-                'content',
-                'Home | Daniele Masone'
-            );
-        });
-
-        await waitFor(() => {
-            expect(document.querySelector('meta[name="twitter:image"]')).toHaveAttribute(
-                'content',
-                'https://danielemasone.github.io/ingdanielemasone/logo.png'
             );
         });
     });

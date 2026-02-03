@@ -1,10 +1,11 @@
 import React from 'react';
 import {render, screen} from '@testing-library/react';
 import CookiePolicy from './CookiePolicy';
-import {HelmetProvider} from "react-helmet-async";
+import {MemoryRouter} from 'react-router-dom';
+import {vi} from 'vitest';
 
 // Mock of react-i18next with t() returning fixed texts
-jest.mock('react-i18next', () => ({
+vi.mock('react-i18next', () => ({
     useTranslation: () => ({
         t: (key) => {
             const translations = {
@@ -35,9 +36,9 @@ jest.mock('react-i18next', () => ({
 describe('CookiePolicy component', () => {
     beforeEach(() => {
         render(
-            <HelmetProvider>
+            <MemoryRouter initialEntries={['/cookiePolicy']}>
                 <CookiePolicy/>
-            </HelmetProvider>
+            </MemoryRouter>
         );
     });
 
@@ -67,9 +68,9 @@ describe('CookiePolicy component', () => {
 
     test("matches snapshot", () => {
         const {asFragment} = render(
-            <HelmetProvider>
+            <MemoryRouter initialEntries={['/cookiePolicy']}>
                 <CookiePolicy/>
-            </HelmetProvider>
+            </MemoryRouter>
         );
         expect(asFragment()).toMatchSnapshot();
     });

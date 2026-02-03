@@ -1,6 +1,7 @@
 import React from "react";
 import {fireEvent, render, screen} from "@testing-library/react";
 import {SelectableButton} from "./SelectableButton";
+import {vi} from 'vitest';
 
 describe("SelectableButton component", () => {
     it("renders the correct label", () => {
@@ -10,7 +11,7 @@ describe("SelectableButton component", () => {
     });
 
     it("calls onClick when clicked", () => {
-        const handleClick = jest.fn();
+        const handleClick = vi.fn();
         render(<SelectableButton label="2022" isSelected={false} onClick={handleClick}/>);
         fireEvent.click(screen.getByText("2022"));
         expect(handleClick).toHaveBeenCalledTimes(1);

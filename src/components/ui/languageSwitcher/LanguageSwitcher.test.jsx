@@ -1,20 +1,46 @@
 import React from 'react';
 import {fireEvent, render, screen, waitFor} from '@testing-library/react';
 import {LanguageSwitcher} from './LanguageSwitcher';
-import {I18nextProvider} from 'react-i18next';
-import i18n from '../../../i18n/i18n';
+import {vi} from 'vitest';
+import {useTranslation} from "react-i18next";
+
+const mockI18n = {
+    language: 'en',
+    changeLanguage: vi.fn((lang) => {
+        mockI18n.language = lang;
+        return Promise.resolve();
+    })
+};
+
+// Mock i18next completely (replaces I18nextProvider + i18n.changeLanguage)
+vi.mock('react-i18next', () => ({
+    useTranslation: () => ({
+        t: (key) => {
+            const translations = {
+                'select_language': 'seleziona lingua',
+                'english': 'English',
+                'italiano': 'Italiano',
+                'français': 'Français',
+                'deutsch': 'Deutsch',
+                'español': 'Español'
+            };
+            return translations[key] || key;
+        },
+        i18n: mockI18n
+    }),
+    initReactI18next: { type: '3rdParty', init: vi.fn() }
+}));
 
 describe('LanguageSwitcher', () => {
-    function renderWithI18n(ui) {
-        return render(<I18nextProvider i18n={i18n}>{ui}</I18nextProvider>);
-    }
 
-    beforeEach(async () => {
-        await i18n.changeLanguage('en'); // wait for the language to be set
+    beforeEach(() => {
+        vi.clearAllMocks();
+        // Reset current language
+        vi.mocked(useTranslation().i18n).language = 'en';
     });
 
     test('renders current language button with flag and code', () => {
-        renderWithI18n(<LanguageSwitcher/>);
+        render(<LanguageSwitcher/>);
         const button = screen.getByRole('button', {name: /seleziona lingua/i});
         expect(button).toBeInTheDocument();
         expect(button).toHaveTextContent(/EN/i);
@@ -22,7 +48,7 @@ describe('LanguageSwitcher', () => {
     });
 
     test('aria-expanded toggles correctly on button click', () => {
-        renderWithI18n(<LanguageSwitcher/>);
+        render(<LanguageSwitcher/>);
         const toggleBtn = screen.getByRole('button', {name: /seleziona lingua/i});
 
         expect(toggleBtn).toHaveAttribute('aria-expanded', 'false');
@@ -33,7 +59,7 @@ describe('LanguageSwitcher', () => {
     });
 
     test('dropdown closes when clicking outside', () => {
-        renderWithI18n(
+        render(
             <>
                 <LanguageSwitcher/>
                 <div data-testid="outside">Outside area</div>
@@ -50,7 +76,7 @@ describe('LanguageSwitcher', () => {
     });
 
     test('dropdown shows language options with flags and labels', () => {
-        renderWithI18n(<LanguageSwitcher/>);
+        render(<LanguageSwitcher/>);
         const toggleBtn = screen.getByRole('button', {name: /seleziona lingua/i});
 
         fireEvent.click(toggleBtn);
@@ -76,25 +102,25 @@ describe('LanguageSwitcher', () => {
     });
 
     test('changes language when selecting a different option', async () => {
-        renderWithI18n(<LanguageSwitcher/>);
-        const toggleBtn = screen.getByRole('button', {name: /seleziona lingua/i});
-
+        render(<LanguageSwitcher />);
+        const toggleBtn = screen.getByRole('button', { name: /seleziona lingua/i });
         fireEvent.click(toggleBtn);
 
-        const itOption = screen.getByRole('menuitem', {name: /italiano/i});
+        const itOption = screen.getByRole('menuitem', { name: /italiano/i });
         fireEvent.click(itOption);
 
         await waitFor(() => {
-            expect(i18n.language).toBe('it');
+            expect(mockI18n.changeLanguage).toHaveBeenCalledWith('it');
+            expect(mockI18n.language).toBe('it');
         });
 
-        // After changing language, it should show "IT"
-        const updatedBtn = screen.getByRole('button', {name: /seleziona lingua/i});
+        // Check updated UI (if component uses i18n.language)
+        const updatedBtn = screen.getByRole('button', { name: /seleziona lingua/i });
         expect(updatedBtn).toHaveTextContent(/IT/i);
     });
 
     test('active language option is visually highlighted but still clickable', async () => {
-        renderWithI18n(<LanguageSwitcher/>);
+        render(<LanguageSwitcher/>);
         const toggleBtn = screen.getByRole('button', {name: /seleziona lingua/i});
         fireEvent.click(toggleBtn);
 
@@ -105,8 +131,8 @@ describe('LanguageSwitcher', () => {
     });
 
     test('inactive language options are clickable and not marked', () => {
-        i18n.changeLanguage('it'); // Set active language to "it"
-        renderWithI18n(<LanguageSwitcher/>);
+        vi.mocked(useTranslation().i18n).language = 'it'; // Set active language to "it"
+        render(<LanguageSwitcher/>);
         fireEvent.click(screen.getByRole('button', {name: /seleziona lingua/i}));
 
         const enOption = screen.getByRole('menuitem', {name: /english/i});
@@ -115,10 +141,10 @@ describe('LanguageSwitcher', () => {
     });
 
     test('closes dropdown when clicking outside and cleans up event listener', () => {
-        const addSpy = jest.spyOn(document, 'addEventListener');
-        const removeSpy = jest.spyOn(document, 'removeEventListener');
+        const addSpy = vi.spyOn(document, 'addEventListener');
+        const removeSpy = vi.spyOn(document, 'removeEventListener');
 
-        renderWithI18n(
+        render(
             <>
                 <LanguageSwitcher/>
                 <div data-testid="outside">Outside</div>

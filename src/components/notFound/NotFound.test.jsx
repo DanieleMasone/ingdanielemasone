@@ -1,9 +1,10 @@
 import {render, screen} from '@testing-library/react';
 import {NotFound} from './NotFound';
 import React from 'react';
+import {vi} from 'vitest';
 
 // Mock by react-i18next
-jest.mock('react-i18next', () => ({
+vi.mock('react-i18next', () => ({
     useTranslation: () => ({
         t: (key) => {
             const translations = {

@@ -2,8 +2,9 @@ import React from "react";
 import {fireEvent, render, screen, within} from "@testing-library/react";
 import {MemoryRouter} from "react-router";
 import {Header} from "./Header";
+import {vi} from 'vitest';
 
-jest.mock("react-i18next", () => ({
+vi.mock("react-i18next", () => ({
     useTranslation: () => ({
         t: (key) => ({
             home: "Home",
@@ -18,11 +19,11 @@ jest.mock("react-i18next", () => ({
     }),
 }));
 
-jest.mock("../ui/languageSwitcher/LanguageSwitcher", () => ({
+vi.mock("../ui/languageSwitcher/LanguageSwitcher", () => ({
     LanguageSwitcher: () => <div data-testid="language-switcher" />,
 }));
 
-jest.mock("../ui/darkModeToggle/DarkModeToggle", () => ({
+vi.mock("../ui/darkModeToggle/DarkModeToggle", () => ({
     DarkModeToggle: () => <div data-testid="dark-mode-toggle" />,
 }));
 

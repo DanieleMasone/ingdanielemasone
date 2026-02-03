@@ -1,8 +1,9 @@
 import {fireEvent, render, screen, within} from '@testing-library/react';
 import {TradingPerformanceChart} from './TradingPerformanceChart';
 import React from 'react';
+import {vi} from 'vitest';
 
-jest.mock('react-i18next', () => ({
+vi.mock('react-i18next', () => ({
     useTranslation: () => ({
         t: (key) => {
             const map = {
@@ -52,17 +53,17 @@ jest.mock('react-i18next', () => ({
     }),
 }));
 
-jest.mock('react-chartjs-2', () => ({
+vi.mock('react-chartjs-2', () => ({
     Line: () => <div data-testid="mock-line-chart"/>
 }));
 
 describe('TradingPerformanceChart', () => {
     beforeEach(() => {
-        jest.spyOn(document.documentElement.classList, 'contains').mockImplementation(cls => cls === 'dark');
+        vi.spyOn(document.documentElement.classList, 'contains').mockImplementation(cls => cls === 'dark');
     });
 
     afterEach(() => {
-        jest.restoreAllMocks();
+        vi.restoreAllMocks();
     });
 
     test('renders chart title and view selector', () => {

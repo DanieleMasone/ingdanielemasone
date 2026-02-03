@@ -1,55 +1,49 @@
 import React from "react";
 import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import {ExpandableText} from "./ExpandableText";
-import {I18nextProvider, initReactI18next} from "react-i18next";
-import i18n from "i18next";
+import {vi} from 'vitest';
 
 // Setup i18n mock
-const initTestI18n = () => {
-    i18n.use(initReactI18next).init({
-        lng: "en",
-        fallbackLng: "en",
-        resources: {
-            en: {translation: {showMore: "Show more", showLess: "Show less"}},
+vi.mock('react-i18next', () => ({
+    useTranslation: () => ({
+        t: (key) => {
+            const translations = {
+                showMore: "Show more",
+                showLess: "Show less"
+            };
+            return translations[key] || key;
         },
-        interpolation: {escapeValue: false},
-        react: {useSuspense: false},
-    });
-};
+        i18n: { changeLanguage: vi.fn(() => Promise.resolve()) }
+    }),
+    initReactI18next: { type: '3rdParty', init: vi.fn() }
+}));
 
 describe("ExpandableText", () => {
-    beforeAll(() => {
-        initTestI18n();
-    });
-
     beforeEach(() => {
-        // Mock layout and DOM metrics
-        Object.defineProperty(HTMLElement.prototype, "scrollHeight", {
+        Object.defineProperty(HTMLElement.prototype, 'scrollHeight', {
             configurable: true,
             get() {
-                if (this.textContent && this.textContent.includes("Riga")) {
-                    return 100; // long text case
-                }
-                return 20; // short text case
-            },
+                return this.textContent?.includes('Riga') ? 100 : 20;
+            }
         });
 
-        Object.defineProperty(window, "getComputedStyle", {
-            value: () => ({
-                lineHeight: "16px",
-                getPropertyValue: () => "16px",
-            }),
+        Object.defineProperty(window, 'getComputedStyle', {
+            value: vi.fn(() => ({
+                lineHeight: '16px',
+                getPropertyValue: vi.fn(() => '16px')
+            }))
         });
     });
 
-    const renderWithI18n = (ui) =>
-        render(<I18nextProvider i18n={i18n}>{ui}</I18nextProvider>);
+    afterEach(() => {
+        vi.restoreAllMocks();
+    });
 
     const longText = "Riga 1\nRiga 2\nRiga 3\nRiga 4\nRiga 5";
     const shortText = "Breve testo";
 
     test("renders long text and shows 'Show more' button", async () => {
-        renderWithI18n(<ExpandableText value={longText} maxLines={2}/>);
+        render(<ExpandableText value={longText} maxLines={2}/>);
 
         expect(screen.getByText(/Riga 1/)).toBeInTheDocument();
 
@@ -58,13 +52,13 @@ describe("ExpandableText", () => {
     });
 
     test("renders short text without toggle button", async () => {
-        renderWithI18n(<ExpandableText value={shortText} maxLines={3}/>);
+        render(<ExpandableText value={shortText} maxLines={3}/>);
         expect(screen.getByText(shortText)).toBeInTheDocument();
         await waitFor(() => expect(screen.queryByRole("button")).not.toBeInTheDocument());
     });
 
     test("expands and collapses text correctly with aria-expanded toggle", async () => {
-        renderWithI18n(<ExpandableText value={longText} maxLines={2}/>);
+        render(<ExpandableText value={longText} maxLines={2}/>);
 
         const expandBtn = await screen.findByRole("button", {name: /Show more/i});
         const paragraph = expandBtn.closest("div").previousSibling;
@@ -90,7 +84,7 @@ describe("ExpandableText", () => {
     });
 
     test("shows fade overlay when collapsed and hides when expanded", async () => {
-        renderWithI18n(<ExpandableText value={longText} maxLines={2}/>);
+        render(<ExpandableText value={longText} maxLines={2}/>);
         const expandBtn = await screen.findByRole("button", {name: /Show more/i});
 
         // Initially collapsed — fade should be visible
@@ -109,13 +103,13 @@ describe("ExpandableText", () => {
     });
 
     test("applies custom className to the paragraph container", async () => {
-        renderWithI18n(<ExpandableText value={longText} className="custom-class"/>);
+        render(<ExpandableText value={longText} className="custom-class"/>);
         const paragraph = screen.getByText(/Riga 1/).closest("div");
         expect(paragraph).toHaveClass("custom-class");
     });
 
     test("handles missing ref element gracefully (branch coverage)", () => {
-        const {unmount} = renderWithI18n(<ExpandableText value=""/>);
+        const {unmount} = render(<ExpandableText value=""/>);
         // Force unmount before ref exists — triggers the early return in useLayoutEffect
         unmount();
         expect(true).toBe(true); // just to confirm no crash

@@ -1,10 +1,11 @@
 import {render, screen} from "@testing-library/react";
 import Trading from "./Trading";
 import React from "react";
-import {HelmetProvider} from "react-helmet-async";
+import {MemoryRouter} from 'react-router-dom';
+import {vi} from 'vitest';
 
 // Mock react-i18next
-jest.mock("react-i18next", () => ({
+vi.mock("react-i18next", () => ({
     useTranslation: () => ({
         t: (key) => {
             const translations = {
@@ -20,14 +21,14 @@ jest.mock("react-i18next", () => ({
     }),
 }));
 
-jest.mock("../../components/ui/tradingPerformanceChart/TradingPerformanceChart", () => ({
+vi.mock("../../components/ui/tradingPerformanceChart/TradingPerformanceChart", () => ({
     TradingPerformanceChart: () => (
         <div data-testid="mock-chart">[Mock TradingPerformanceChart]</div>
     ),
 }));
 
 // Mock PageSection component
-jest.mock("../../components/ui/pageSection/PageSection", () => ({
+vi.mock("../../components/ui/pageSection/PageSection", () => ({
     PageSection: ({ title, children }) => (
         <section>
             <h2>{title}</h2>
@@ -39,9 +40,9 @@ jest.mock("../../components/ui/pageSection/PageSection", () => ({
 describe("Trading component", () => {
     beforeEach(() => {
         render(
-            <HelmetProvider>
-                <Trading/>
-            </HelmetProvider>
+        <MemoryRouter initialEntries={['/Trading']}>
+            <Trading />
+        </MemoryRouter>
         );
     });
 
@@ -77,9 +78,9 @@ describe("Trading component", () => {
 
     test("matches snapshot", () => {
         const {asFragment} = render(
-            <HelmetProvider>
-                <Trading/>
-            </HelmetProvider>
+            <MemoryRouter initialEntries={['/Trading']}>
+                <Trading />
+            </MemoryRouter>
         );
         expect(asFragment()).toMatchSnapshot();
     });
