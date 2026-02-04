@@ -1,0 +1,6 @@
+import{u as d,j as e}from"./index-C8p7ajkB.js";function o({page:r,totalPages:t,onPageChange:a,className:i=""}){const{t:n}=d();return t<=1?null:e.jsxs("div",{className:`flex flex-wrap justify-center items-center gap-3 mt-8 ${i}`,children:[e.jsxs("button",{onClick:()=>a(Math.max(r-1,1)),disabled:r===1,className:`min-w-[110px] px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium\r
+                           text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900\r
+                           hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition text-center`,children:["← ",n("previous")]}),e.jsxs("span",{"data-testid":"pagination-info",className:"px-4 py-2 text-sm text-gray-600 dark:text-gray-300 whitespace-nowrap",children:[r," / ",t]}),e.jsxs("button",{onClick:()=>a(Math.min(r+1,t)),disabled:r===t,className:`min-w-[110px] px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium\r
+                           text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900\r
+                           hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition text-center`,children:[n("next")," →"]})]})}export{o as P};
+//# sourceMappingURL=Pagination-DYLaNy30.js.map
