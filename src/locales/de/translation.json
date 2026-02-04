@@ -66,6 +66,11 @@
       "GroupPolicyLibrary": "Entwicklung einer maßgeschneiderten Bibliothek für Policenprozesse im Kollektivbereich, inklusive Wartungs- und Erweiterungsrichtlinien.",
       "AfterLife": "Entwicklung wiederverwendbarer Komponenten für den Lebensversicherungsbereich, inklusive Best Practices für Architektur und Entwicklung."
     },
+    "intesa": {
+      "exp_rpg_local_systems":"Wartung und Erweiterung von Kern-AS/400-Anwendungen für Proprietary Trading; Verbesserung der Systemzuverlässigkeit durch Code-Refactoring, Sicherstellung vollständiger Compliance und null Ausfallzeiten in Produktion.",
+      "exp_hybrid_fullstack": "Beitrag zu BE/FE-Pipelines für Finanzberichterstattung, Integration moderner APIs mit Legacy-Systemen; Anwendung von Best Practices für architektonische Stabilität in globalen Teams.",
+      "exp_as400_frontend": "Gestaltung und Implementierung skalierbarer Frontend-Architekturen, integriert mit Legacy-RPG-Systemen für Fremdnetzwerk-Reporting; Optimierung der UI/UX."
+    },
     "Enterprise Portal": "Entwicklung des Fastweb Enterprise Portals.",
     "Insurance Web Portal": "Webportal für Versicherungsdienstleistungen.",
     "Mobility Portal": "Entwicklung des AXA-Mobilitätsportals.",
@@ -74,7 +79,7 @@
     "Architect": "Front-End Architect"
   },
   "about_title": "Wer ich bin",
-  "about_intro": "Ich bin ein Softwareingenieur mit einem soliden Hintergrund in der Softwareentwicklung und in Enterprise-Architekturen. Derzeit arbeite ich als Expert Software Engineer innerhalb von Group Technology & Services – Global ICT und entwickle komplexe und skalierbare Softwarelösungen in unternehmensweiten und regulierten Umgebungen mit besonderem Fokus auf Codequalität, Systemzuverlässigkeit und architektonische Nachhaltigkeit.",
+  "about_intro": "Ich bin ein Softwareingenieur mit einem soliden Hintergrund in der Softwareentwicklung und in Enterprise-Architekturen. Derzeit arbeite ich als Expert Software Engineer innerhalb von Intesa Sanpaolo und entwickle komplexe und skalierbare Softwarelösungen in unternehmensweiten und regulierten Umgebungen mit besonderem Fokus auf Codequalität, Systemzuverlässigkeit und architektonische Nachhaltigkeit.",
   "about_experience": "Im Laufe meiner Karriere habe ich für Unternehmen wie RGI Group, Italiaonline, Fastweb, AXA, HPE und weitere gearbeitet und dabei Rollen vom Full-Stack-Entwickler bis hin zum Softwarearchitekten übernommen. Ich verfüge über Erfahrung in der Konzeption und Entwicklung von Enterprise-Anwendungen, Webportalen, REST-APIs, wiederverwendbaren Komponenten, UI-Bibliotheken und SPA-Anwendungen.\n\nMeine Kompetenzen decken den gesamten Technologie-Stack ab: Front-End (React, Angular, TypeScript), Back-End (Java EE, PHP, NodeJS), Containerisierung mit Docker und Orchestrierung mit Kubernetes. Ich arbeite nach agilen Methoden, wende Clean-Code-Prinzipien an und beteilige mich aktiv an Code-Reviews, technischer Dokumentation und der Definition von Projektstandards.\n\nParallel zu meiner beruflichen Tätigkeit biete ich auch Online- (Udemy) und private Schulungen an, mit Schwerpunkt auf Programmierung, Vorbereitung auf technische Interviews sowie Optimierung von LinkedIn-Profilen und technischen Lebensläufen.",
   "contact_title": "Kontakt",
   "contact_name_placeholder": "Dein Name",
@@ -88,7 +93,7 @@
   "exp_label_end": "Ende",
   "exp_label_single": "Nur dieses Jahr",
   "exp_intesa_role": "Expert Software Engineer – Group Technology & Services",
-  "exp_intesa_description": "Expert Software Engineer im Bereich Group Technology & Services – Global ICT, Teil der Organisation des Chief Data, AI & Technology Officer.\nSchwerpunkt auf Softwareentwicklung in komplexen, großskaligen und regulierten Umgebungen.",
+  "exp_intesa_description": "Expert Software Engineer innerhalb von Group Technology & Services – Global ICT, Teil der Organisation des Chief Data, AI & Technology Officer, im Bereich Proprietary Trading (Foreign Network Reporting and Local Systems).\n\nIch beschäftige mich mit Software-Engineering in komplexen, großmaßstäblichen und stark regulierten Umgebungen: Entwicklung und Wartung auf AS/400-Systemen mit RPG-Sprache, Frontend-Architektur und Backend-Entwicklung. Fokus auf Code-Qualität, Systemzuverlässigkeit, architektonische Stabilität und Lieferung in kritischen Finanzkontexten.",
   "exp_rgi_role": "Front-End Architect / Team Leader",
   "exp_rgi_description": "Ich leite die Gestaltung, Optimierung und Wartung der Front-End-Architekturen, sowohl strategisch als auch operativ:\n\n- Code Review: Qualität, Effizienz, Standardkonformität\n- Standards & Guidelines: architektonische Aufsicht\n- Anwendungssicherheit: präventive Maßnahmen\n- JavaScript/TypeScript-Optimierung\n- Technische Dokumentation\n- Anforderungsanalyse\n- Technologiebewertung\n- Workflow-Optimierung: Builds, Tests, Qualität\n- Wiederverwendbare Patterns\n- Testing & Troubleshooting",
   "exp_iol_role": "Full Stack Software Engineer",

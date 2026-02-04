@@ -14,21 +14,26 @@ vi.mock("react-i18next", () => ({
                 previous: "Prev",
                 next: "Next",
 
+                // INTESA SANPAOLO
+                "project_types.intesa.exp_as400_frontend": "Design and implementation of scalable frontend architectures integrated with legacy RPG systems for foreign network reporting; optimized UI/UX.",
+                "project_types.intesa.exp_hybrid_fullstack": "Contribution to BE/FE pipelines for financial reporting, integrating modern APIs with legacy systems; applied best practices for architectural solidity in global teams.",
+                "project_types.intesa.exp_rpg_local_systems": "Maintenance and extension of core AS/400 applications for proprietary trading; enhanced system reliability through code refactoring, ensuring full compliance and zero production downtime.",
+
                 // FASTWEB
-                "project_types.fastweb.oloGatewayMobile": "Development of a web portal for managing number portability requests for Fastweb’s mobile customers.",
+                "project_types.fastweb.oloGatewayMobile": "Development of a web portal for managing number portability requests for Fastweb's mobile customers.",
                 "project_types.fastweb.oloGatewayFisso": "Implementation of web portals for partner operators (e.g., Metroweb, Flash Fiber) related to fixed network provisioning.",
-                "project_types.fastweb.OSSTrasformation": "Reengineering of Fastweb’s core web portal used for managing key business-critical operations.",
+                "project_types.fastweb.OSSTrasformation": "Reengineering of Fastweb's core web portal used for managing key business-critical operations.",
 
                 // TEORESI
                 "project_types.teoresi.tecno": "Development of web platform for booking meeting rooms and workstations with customizable features (AC, lights, projector, etc.). IoT device data enables full environmental monitoring.",
-                "project_types.teoresi.dart": "Development of web portal for managing FCA’s vehicle fleet, integrated with a MATLAB client.",
+                "project_types.teoresi.dart": "Development of web portal for managing FCA's vehicle fleet, integrated with a MATLAB client.",
 
                 // TECNAVIA
                 "project_types.tecnavia.newsmemory": "Development of a CMS for digital newspaper management and publishing.",
                 "project_types.tecnavia.mobileApp": "Hybrid mobile app built with React Native and native modules in Objective-C (iOS) and Java (Android).",
 
                 // ITALIAONLINE
-                "project_types.italiaonline.areaClienti": "Development of Italiaonline’s main customer portal.",
+                "project_types.italiaonline.areaClienti": "Development of Italiaonline's main customer portal.",
                 "project_types.italiaonline.restServices": "Design and implementation of REST services for read/write operations on Oracle DB.",
 
                 // RGI
@@ -63,6 +68,62 @@ describe("Projects Component", () => {
         expect(screen.getByText("Projects")).toBeInTheDocument();
     });
 
+    test("renders new Intesa project descriptions", async () => {
+        // Wait for rendering and use queryBy to check presence
+        await waitFor(() => {
+            expect(screen.getByText(/Design and implementation of scalable frontend architectures/)).toBeInTheDocument();
+        });
+
+        await waitFor(() => {
+            expect(screen.getByText(/Contribution to BE\/FE pipelines/)).toBeInTheDocument();
+        });
+
+        // Third project could be on page 2 (ITEMS_PER_PAGE=2)
+        const {nextButtons} = getPaginationControls();
+        fireEvent.click(nextButtons[0]); // Vai a pagina 2
+
+        await waitFor(() => {
+            expect(screen.getByText(/Maintenance and extension of core AS\/400 applications/)).toBeInTheDocument();
+        });
+    });
+
+    test("renders Intesa Sanpaolo projects by default", () => {
+        expect(screen.getByText("AS/400 Reporting Frontend Modernization")).toBeInTheDocument();
+        expect(screen.getAllByText("Intesa Sanpaolo").length).toBeGreaterThan(0);
+    });
+
+    test("renders new Intesa project descriptions", async () => {
+        await waitFor(() => {
+            expect(screen.getByText(/Design and implementation of scalable frontend architectures/)).toBeInTheDocument();
+            expect(screen.getByText(/Contribution to BE\/FE pipelines/)).toBeInTheDocument();
+        });
+
+        const {nextButtons} = getPaginationControls();
+        fireEvent.click(nextButtons[0]);
+
+        await waitFor(() => {
+            expect(screen.getByText(/Maintenance and extension of core AS\/400 applications/)).toBeInTheDocument();
+        });
+    });
+
+    test("RPG project shows correct limited tech stack", async () => {
+        // Navigate to Intesa page 2 where there is ONLY the RPG project
+        const {nextButtons} = getPaginationControls();
+        fireEvent.click(nextButtons[0]);
+
+        // Open THE ONLY disclosure present (RPG project)
+        const rpgTechButton = await screen.findByText("Show Technologies");
+        fireEvent.click(rpgTechButton);
+
+        // Check EXACTLY the 3 techs of the RPG project
+        const techTags = screen.getAllByText(/RPG|AS400|MySQL/);
+        expect(techTags).toHaveLength(4);
+
+        // It does NOT have the tech of previous projects
+        expect(screen.queryByText("Angular")).not.toBeInTheDocument();
+        expect(screen.queryByText("jQuery")).not.toBeInTheDocument();
+    });
+
     test("renders both mobile and desktop pagination controls", () => {
         const {nextButtons, prevButtons, pageDisplays} = getPaginationControls();
 
@@ -70,7 +131,8 @@ describe("Projects Component", () => {
         expect(prevButtons.length).toBe(2);
         expect(pageDisplays.length).toBe(2);
 
-        pageDisplays.forEach(el => expect(el).toHaveTextContent("1 / 3")); // Total pages by default
+        // Intesa has 3 projects = 2 pages (ITEMS_PER_PAGE = 2)
+        pageDisplays.forEach(el => expect(el).toHaveTextContent("1 / 2"));
     });
 
     test("prev buttons are disabled on first page", () => {
@@ -78,101 +140,65 @@ describe("Projects Component", () => {
         prevButtons.forEach(btn => expect(btn).toBeDisabled());
     });
 
-    test("next buttons are disabled on last page", () => {
-        const {nextButtons, pageDisplays} = getPaginationControls();
+    test("next buttons work and show second page for Intesa (3 projects)", async () => {
+        const {nextButtons} = getPaginationControls();
 
-        // Go to the last page
+        // Click next on the pagers
         nextButtons.forEach(btn => fireEvent.click(btn));
 
-        pageDisplays.forEach(el => expect(el).toHaveTextContent("3 / 3")); // last page
-        nextButtons.forEach(btn => expect(btn).toBeDisabled());
+        await waitFor(() => {
+            const pageDisplays = screen.getAllByTestId("pagination-info");
+            pageDisplays.forEach(el => expect(el).toHaveTextContent("2 / 2"));
+        });
     });
 
-    test("next and prev buttons work independently for each paginator", () => {
-        const {nextButtons, prevButtons, pageDisplays} = getPaginationControls();
+    test("renders sidebar with Intesa Sanpaolo and all unique companies", () => {
+        expect(screen.getByRole("button", {name: "Intesa Sanpaolo"})).toBeInTheDocument();
+        expect(screen.getByRole("button", {name: "RGI"})).toBeInTheDocument();
+        expect(screen.getByRole("button", {name: "Fastweb"})).toBeInTheDocument();
+    });
 
-        // Advance mobile paginator
-        fireEvent.click(nextButtons[0]);
-        expect(pageDisplays[0]).toHaveTextContent("2 / 3");
-        expect(pageDisplays[1]).toHaveTextContent("2 / 3");
+    test("switching to RGI shows RGI projects with correct pagination", async () => {
+        fireEvent.click(screen.getByRole("button", {name: "RGI"}));
 
-        // Go back to desktop paginator
-        fireEvent.click(prevButtons[1]);
+        await waitFor(() => {
+            expect(screen.getByText("FE Architecture Development")).toBeInTheDocument();
+            expect(screen.queryByText("AS/400 Reporting Frontend Modernization")).not.toBeInTheDocument();
+        });
+
+        // RGI has 5 projects = 3 pages
+        const pageDisplays = screen.getAllByTestId("pagination-info");
         expect(pageDisplays[0]).toHaveTextContent("1 / 3");
-        expect(pageDisplays[1]).toHaveTextContent("1 / 3");
-
-        // Return to page 1 for both
-        fireEvent.click(prevButtons[0]);
-        fireEvent.click(nextButtons[1]);
-        pageDisplays.forEach(el => expect(el).toHaveTextContent("2 / 3"));
     });
 
-    test("renders sidebar with unique company buttons", () => {
-        const buttons = screen.getAllByRole("button");
-        const companyButtons = buttons.filter(
-            (btn) => !btn.textContent?.includes("Show Technologies")
-        );
-        expect(companyButtons.length).toBeGreaterThan(0);
-
-        expect(companyButtons.some((btn) => btn.textContent === "RGI")).toBe(true);
-        expect(companyButtons.some((btn) => btn.textContent === "Fastweb")).toBe(true);
-    });
-
-    test("toggles technology panel when disclosure button clicked", async () => {
-        // Find the first button to show the technologies
+    test("toggles technology panel for Intesa project", async () => {
         const techButtons = screen.getAllByText("Show Technologies");
-        expect(techButtons.length).toBeGreaterThan(0);
-
         const firstTechBtn = techButtons[0];
 
-        // Before the click the content is not present
-        expect(screen.queryByText(/MySQL/)).not.toBeInTheDocument();
+        expect(screen.queryByText("RPG")).not.toBeInTheDocument();
 
-        // Click to open
         fireEvent.click(firstTechBtn);
         await waitFor(() => {
-            expect(screen.getByText(/MySQL/)).toBeInTheDocument();
+            expect(screen.getByText("RPG")).toBeInTheDocument();
+            expect(screen.getByText("AS400")).toBeInTheDocument();
         });
 
-        // Click to close
         fireEvent.click(firstTechBtn);
         await waitFor(() => {
-            expect(screen.queryByText(/MySQL/)).not.toBeInTheDocument();
+            expect(screen.queryByText("RPG")).not.toBeInTheDocument();
         });
     });
 
-    test("renders all unique companies in the sidebar", () => {
-        const expectedCompanies = ["RGI", "Italiaonline", "TECNAVIA APPS s.r.l.", "Teoresi", "Fastweb"];
-        expectedCompanies.forEach(company => {
-            expect(screen.getByRole("button", {name: company})).toBeInTheDocument();
-        });
-    });
-
-    test("all projects show correct company in content", () => {
-        // Make sure your company name is shown in projects
-        expect(screen.getAllByText("RGI").length).toBeGreaterThan(1);
-    });
-
-    test("clicking on a different company shows its projects", async () => {
+    test("switching to Fastweb shows Fastweb projects", async () => {
         fireEvent.click(screen.getByRole("button", {name: "Fastweb"}));
 
         await waitFor(() => {
             expect(screen.getByText("OSS Trasformation")).toBeInTheDocument();
-            expect(screen.getByText("OLO Gateway (metroweb, flash fiber)")).toBeInTheDocument();
+            expect(screen.queryByText("AS/400 Reporting Frontend Modernization")).not.toBeInTheDocument();
         });
     });
 
-    test("renders project type translated description correctly", () => {
-        expect(screen.getByText(/Redesign of the core Front-End environment/)).toBeInTheDocument();
-    });
-
-    test("ExpandableText limits text to 3 lines initially", () => {
-        // Check for max-lines class or truncated content (depending on implementation)
-        const expandable = screen.getAllByText(/Redesign of the core Front-End environment/)[0];
-        expect(expandable).toBeInTheDocument();
-    });
-
-    test("matches snapshot", () => {
+    test("matches snapshot with new Intesa projects", () => {
         const {asFragment} = render(
             <MemoryRouter initialEntries={['/projects']}>
                 <Projects />

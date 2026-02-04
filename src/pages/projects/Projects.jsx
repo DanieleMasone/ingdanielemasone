@@ -15,11 +15,32 @@ const ITEMS_PER_PAGE = 2;
 
 const projects = [
     {
+        name: "AS/400 Reporting Frontend Modernization",
+        tech: "RPG, AS400, Angular, REST APIs, jQuery, Maven, Git, HTML5, Java, JavaScript, Framework Spring, MySQL",
+        type: "intesa.exp_as400_frontend",
+        company: "Intesa Sanpaolo",
+        period: "12/2025 - Present",
+    },
+    {
+        name: "Hybrid Full-Stack Architecture",
+        tech: "RPG, AS400, Angular, REST APIs, jQuery, Maven, Git, HTML5, Java, JavaScript, Framework Spring, MySQL",
+        type: "intesa.exp_hybrid_fullstack",
+        company: "Intesa Sanpaolo",
+        period: "12/2025 - Present",
+    },
+    {
+        name: "RPG Development for Local Systems",
+        tech: "RPG, AS400, MySQL",
+        type: "intesa.exp_rpg_local_systems",
+        company: "Intesa Sanpaolo",
+        period: "12/2025 - Present",
+    },
+    {
         name: "FE Architecture Development",
         tech: "MySQL, REST APIs, SQL, JSON, JBoss Application Server, HTML, Docker, Node.js, HTML5, JEE, AngularJS, Git, Java, Maven, OOP, JavaScript, CSS, XML",
         type: "rgi.FEArchitecture",
         company: "RGI",
-        period: "03/2023"
+        period: "03/2023 - 12/2025"
     },
     {
         name: "HalfLife",
@@ -129,7 +150,7 @@ const projects = [
  */
 export default function Projects() {
     const {t} = useTranslation();
-    const [selectedCompany, setSelectedCompany] = useState("RGI");
+    const [selectedCompany, setSelectedCompany] = useState("Intesa Sanpaolo");
     const [page, setPage] = useState(1);
 
     const companies = [...new Set(projects.map(p => p.company))];

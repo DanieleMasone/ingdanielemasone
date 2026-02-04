@@ -16,14 +16,14 @@ const experiences = [
         company: "Intesa Sanpaolo",
         period: "12/2025 – Present",
         description: "exp_intesa_description",
-        tech: "MySQL, Java, Angular, JavaScript, Framework Spring, Maven, HTML5, CSS, Server Windows, JSON, Node.js, Docker, XML, Git"
+        tech: "RPG, AS400, MySQL, Java, Angular, JavaScript, Framework Spring, Maven, HTML5, CSS, Server Windows, JSON, Node.js, Docker, XML, Git, jQuery"
     },
     {
         role: "exp_rgi_role",
         company: "RGI Group",
         period: "09/2021 – 12/2025",
         description: "exp_rgi_description",
-        tech: "MySQL, JavaScript, Docker, JSON, REST APIs, HTML5, Node.js, XML, CSS, HTML, OOP, Openapi, AngularJS, Git, Mapstruct"
+        tech: "Enterprise architecture, MySQL, JavaScript, Docker, JSON, REST APIs, HTML5, Node.js, XML, CSS, HTML, OOP, Openapi, AngularJS, Git, Mapstruct"
     },
     {
         role: "exp_iol_role",
