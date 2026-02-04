@@ -147,7 +147,6 @@ describe("Experience component", () => {
         });
     });
 
-
     test("getExperienceLabel returns correct label types", () => {
         const t = (key) => key;
 

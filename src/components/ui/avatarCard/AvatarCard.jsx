@@ -17,7 +17,8 @@ export function AvatarCard() {
     const {t} = useTranslation();
 
     return (
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-full max-w-xs sm:max-w-sm overflow-hidden">
+        <section
+            className="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-full max-w-xs sm:max-w-sm overflow-hidden">
 
             {/* Cover brand */}
             <div className="h-16 sm:h-20 w-full relative">
@@ -50,7 +51,6 @@ export function AvatarCard() {
                     {t("avatar.bio")}
                 </p>
             </div>
-
-        </div>
+        </section>
     );
 }

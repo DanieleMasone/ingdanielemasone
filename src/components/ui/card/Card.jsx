@@ -14,14 +14,16 @@ import React from "react";
  */
 export function Card({children, className = "", ...rest}) {
     return (
-        <div
+        <section
             {...rest}
-            className={
-                "rounded-2xl bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 w-full " +
-                className
-            }
+            className={`  // Template literal più leggibile
+                rounded-2xl bg-gray-100 dark:bg-gray-800 
+                border border-gray-300 dark:border-gray-700 
+                shadow-md hover:shadow-lg transition-shadow 
+                p-4 sm:p-6 w-full ${className}
+            `.trim()}
         >
             {children}
-        </div>
+        </section>
     );
 }

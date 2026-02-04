@@ -43,8 +43,12 @@ exports[`Certifications component > matches snapshot 1`] = `
       class="flex flex-col items-center gap-6"
       style="opacity: 0; transform: translateY(40px);"
     >
-      <div
-        class="rounded-2xl bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 w-full relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
+      <section
+        class="// Template literal più leggibile
+                rounded-2xl bg-gray-100 dark:bg-gray-800 
+                border border-gray-300 dark:border-gray-700 
+                shadow-md hover:shadow-lg transition-shadow 
+                p-4 sm:p-6 w-full relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
                                    dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
                                    rounded-xl hover:shadow-lg transition-all duration-300"
       >
@@ -76,12 +80,10 @@ exports[`Certifications component > matches snapshot 1`] = `
           </svg>
         </div>
         <div
-          class="
-                p-4 sm:p-6 md:p-8
+          class="p-4 sm:p-6 md:p-8
                 text-sm sm:text-base
                 text-gray-900 dark:text-gray-300
-                p-0
-            "
+                p-0"
         >
           <h3
             class="text-lg font-semibold text-gray-900 dark:text-white mb-1"
@@ -130,9 +132,13 @@ exports[`Certifications component > matches snapshot 1`] = `
           class="absolute inset-0 pointer-events-none opacity-0 hover:opacity-100 transition-opacity
                                         duration-500 bg-gradient-to-r from-blue-50/30 to-transparent dark:from-blue-900/10"
         />
-      </div>
-      <div
-        class="rounded-2xl bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 w-full relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
+      </section>
+      <section
+        class="// Template literal più leggibile
+                rounded-2xl bg-gray-100 dark:bg-gray-800 
+                border border-gray-300 dark:border-gray-700 
+                shadow-md hover:shadow-lg transition-shadow 
+                p-4 sm:p-6 w-full relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
                                    dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
                                    rounded-xl hover:shadow-lg transition-all duration-300"
       >
@@ -164,12 +170,10 @@ exports[`Certifications component > matches snapshot 1`] = `
           </svg>
         </div>
         <div
-          class="
-                p-4 sm:p-6 md:p-8
+          class="p-4 sm:p-6 md:p-8
                 text-sm sm:text-base
                 text-gray-900 dark:text-gray-300
-                p-0
-            "
+                p-0"
         >
           <h3
             class="text-lg font-semibold text-gray-900 dark:text-white mb-1"
@@ -218,9 +222,13 @@ exports[`Certifications component > matches snapshot 1`] = `
           class="absolute inset-0 pointer-events-none opacity-0 hover:opacity-100 transition-opacity
                                         duration-500 bg-gradient-to-r from-blue-50/30 to-transparent dark:from-blue-900/10"
         />
-      </div>
-      <div
-        class="rounded-2xl bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 w-full relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
+      </section>
+      <section
+        class="// Template literal più leggibile
+                rounded-2xl bg-gray-100 dark:bg-gray-800 
+                border border-gray-300 dark:border-gray-700 
+                shadow-md hover:shadow-lg transition-shadow 
+                p-4 sm:p-6 w-full relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
                                    dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
                                    rounded-xl hover:shadow-lg transition-all duration-300"
       >
@@ -252,12 +260,10 @@ exports[`Certifications component > matches snapshot 1`] = `
           </svg>
         </div>
         <div
-          class="
-                p-4 sm:p-6 md:p-8
+          class="p-4 sm:p-6 md:p-8
                 text-sm sm:text-base
                 text-gray-900 dark:text-gray-300
-                p-0
-            "
+                p-0"
         >
           <h3
             class="text-lg font-semibold text-gray-900 dark:text-white mb-1"
@@ -306,7 +312,7 @@ exports[`Certifications component > matches snapshot 1`] = `
           class="absolute inset-0 pointer-events-none opacity-0 hover:opacity-100 transition-opacity
                                         duration-500 bg-gradient-to-r from-blue-50/30 to-transparent dark:from-blue-900/10"
         />
-      </div>
+      </section>
     </div>
     <div
       class="hidden md:block mt-4"
@@ -332,347 +338,6 @@ exports[`Certifications component > matches snapshot 1`] = `
           class="min-w-[110px] px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
                            text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
                            hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition text-center"
-        >
-          next →
-        </button>
-      </div>
-    </div>
-  </section>
-</DocumentFragment>
-`;
-
-exports[`Certifications component matches snapshot 1`] = `
-<DocumentFragment>
-  <section
-    class="px-4 py-6 sm:px-6 md:px-8 max-w-7xl mx-auto"
-  >
-    <h2
-      class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-gray-900 dark:text-white"
-    >
-      Certifications
-    </h2>
-    <div
-      class="md:hidden sticky top-0 z-20 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md py-2 mb-4 border-b border-gray-200 dark:border-gray-700"
-    >
-      <div
-        class="flex flex-wrap justify-center items-center gap-3 mt-8 "
-      >
-        <button
-          class="min-w-[110px] px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
- text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
- hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition text-center"
-          disabled=""
-        >
-          ← previous
-        </button>
-        <span
-          class="px-4 py-2 text-sm text-gray-600 dark:text-gray-300 whitespace-nowrap"
-          data-testid="pagination-info"
-        >
-          1 / 2
-        </span>
-        <button
-          class="min-w-[110px] px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
- text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
- hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition text-center"
-        >
-          next →
-        </button>
-      </div>
-    </div>
-    <div
-      class="flex flex-col items-center gap-6"
-      style="opacity: 0; transform: translateY(40px);"
-    >
-      <div
-        class="rounded-2xl bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 w-full relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
- dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
- rounded-xl hover:shadow-lg transition-all duration-300"
-      >
-        <div
-          class="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-full
- bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 shadow-sm"
-        >
-          <svg
-            aria-hidden="true"
-            class="lucide lucide-award w-5 h-5"
-            fill="none"
-            height="24"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"
-            />
-            <circle
-              cx="12"
-              cy="8"
-              r="6"
-            />
-          </svg>
-        </div>
-        <div
-          class="
-                p-4 sm:p-6 md:p-8
-                text-sm sm:text-base
-                text-gray-900 dark:text-gray-300
-                p-0
-            "
-        >
-          <h3
-            class="text-lg font-semibold text-gray-900 dark:text-white mb-1"
-          >
-            English CEFR Level B2.2
-          </h3>
-          <p
-            class="text-sm text-gray-500 dark:text-gray-400 font-mono mb-3"
-          >
-            Speexx — 2024
-          </p>
-          <a
-            class="inline-flex items-center text-sm text-blue-600 dark:text-blue-400
- hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
-            href="https://portal.speexx.com/certificate/ZTAxY2Y5ZTktNGRjMi00Yzc0LWFjYmQtZjAzOTIyZDNmZjdmOjo4Mg=="
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            View Certificate
-            <svg
-              aria-hidden="true"
-              class="lucide lucide-external-link w-4 h-4 ml-1"
-              fill="none"
-              height="24"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-              width="24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M15 3h6v6"
-              />
-              <path
-                d="M10 14 21 3"
-              />
-              <path
-                d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-              />
-            </svg>
-          </a>
-        </div>
-        <div
-          class="absolute inset-0 pointer-events-none opacity-0 hover:opacity-100 transition-opacity
- duration-500 bg-gradient-to-r from-blue-50/30 to-transparent dark:from-blue-900/10"
-        />
-      </div>
-      <div
-        class="rounded-2xl bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 w-full relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
- dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
- rounded-xl hover:shadow-lg transition-all duration-300"
-      >
-        <div
-          class="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-full
- bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 shadow-sm"
-        >
-          <svg
-            aria-hidden="true"
-            class="lucide lucide-award w-5 h-5"
-            fill="none"
-            height="24"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"
-            />
-            <circle
-              cx="12"
-              cy="8"
-              r="6"
-            />
-          </svg>
-        </div>
-        <div
-          class="
-                p-4 sm:p-6 md:p-8
-                text-sm sm:text-base
-                text-gray-900 dark:text-gray-300
-                p-0
-            "
-        >
-          <h3
-            class="text-lg font-semibold text-gray-900 dark:text-white mb-1"
-          >
-            English CEFR Level B2.1
-          </h3>
-          <p
-            class="text-sm text-gray-500 dark:text-gray-400 font-mono mb-3"
-          >
-            Speexx — 2024
-          </p>
-          <a
-            class="inline-flex items-center text-sm text-blue-600 dark:text-blue-400
- hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
-            href="https://portal.speexx.com/certificate/ZTAxY2Y5ZTktNGRjMi00Yzc0LWFjYmQtZjAzOTIyZDNmZjdmOjo4MQ=="
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            View Certificate
-            <svg
-              aria-hidden="true"
-              class="lucide lucide-external-link w-4 h-4 ml-1"
-              fill="none"
-              height="24"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-              width="24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M15 3h6v6"
-              />
-              <path
-                d="M10 14 21 3"
-              />
-              <path
-                d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-              />
-            </svg>
-          </a>
-        </div>
-        <div
-          class="absolute inset-0 pointer-events-none opacity-0 hover:opacity-100 transition-opacity
- duration-500 bg-gradient-to-r from-blue-50/30 to-transparent dark:from-blue-900/10"
-        />
-      </div>
-      <div
-        class="rounded-2xl bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 w-full relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
- dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
- rounded-xl hover:shadow-lg transition-all duration-300"
-      >
-        <div
-          class="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-full
- bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 shadow-sm"
-        >
-          <svg
-            aria-hidden="true"
-            class="lucide lucide-award w-5 h-5"
-            fill="none"
-            height="24"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"
-            />
-            <circle
-              cx="12"
-              cy="8"
-              r="6"
-            />
-          </svg>
-        </div>
-        <div
-          class="
-                p-4 sm:p-6 md:p-8
-                text-sm sm:text-base
-                text-gray-900 dark:text-gray-300
-                p-0
-            "
-        >
-          <h3
-            class="text-lg font-semibold text-gray-900 dark:text-white mb-1"
-          >
-            English CEFR Level B1.2
-          </h3>
-          <p
-            class="text-sm text-gray-500 dark:text-gray-400 font-mono mb-3"
-          >
-            Speexx — 2024
-          </p>
-          <a
-            class="inline-flex items-center text-sm text-blue-600 dark:text-blue-400
- hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
-            href="https://portal.speexx.com/certificate/ZTAxY2Y5ZTktNGRjMi00Yzc0LWFjYmQtZjAzOTIyZDNmZjdmOjo4MA=="
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            View Certificate
-            <svg
-              aria-hidden="true"
-              class="lucide lucide-external-link w-4 h-4 ml-1"
-              fill="none"
-              height="24"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-              width="24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M15 3h6v6"
-              />
-              <path
-                d="M10 14 21 3"
-              />
-              <path
-                d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-              />
-            </svg>
-          </a>
-        </div>
-        <div
-          class="absolute inset-0 pointer-events-none opacity-0 hover:opacity-100 transition-opacity
- duration-500 bg-gradient-to-r from-blue-50/30 to-transparent dark:from-blue-900/10"
-        />
-      </div>
-    </div>
-    <div
-      class="hidden md:block mt-4"
-    >
-      <div
-        class="flex flex-wrap justify-center items-center gap-3 mt-8 "
-      >
-        <button
-          class="min-w-[110px] px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
- text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
- hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition text-center"
-          disabled=""
-        >
-          ← previous
-        </button>
-        <span
-          class="px-4 py-2 text-sm text-gray-600 dark:text-gray-300 whitespace-nowrap"
-          data-testid="pagination-info"
-        >
-          1 / 2
-        </span>
-        <button
-          class="min-w-[110px] px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
- text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
- hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition text-center"
         >
           next →
         </button>

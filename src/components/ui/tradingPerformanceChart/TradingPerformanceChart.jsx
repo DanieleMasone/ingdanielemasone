@@ -141,6 +141,16 @@ export function TradingPerformanceChart() {
     const positive = useMemo(() => dataSet.map(v => (v != null && v > 0 ? v : 0)), [dataSet]);
     const negative = useMemo(() => dataSet.map(v => (v != null && v < 0 ? v : 0)), [dataSet]);
 
+    const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1024);
+
+    // Resize listener
+    useEffect(() => {
+        if (typeof window === 'undefined') return;
+        const handleResize = () => setWindowWidth(window.innerWidth);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     const chartData = {
         labels,
         datasets: [
@@ -151,8 +161,8 @@ export function TradingPerformanceChart() {
                 borderColor: cumulativeColor,
                 backgroundColor: 'transparent',
                 borderWidth: 3,
-                pointRadius: window.innerWidth < 640 ? 1 : 4,
-                pointHoverRadius: window.innerWidth < 640 ? 3 : 6,
+                pointRadius: windowWidth < 640 ? 1 : 4,
+                pointHoverRadius: windowWidth < 640 ? 3 : 6,
                 spanGaps: true,
                 tension: isMonthly ? 0.3 : 0,
             },
@@ -193,7 +203,7 @@ export function TradingPerformanceChart() {
                 ticks: {
                     color: isDark ? '#ddd' : '#333',
                     autoSkip: true,
-                    maxTicksLimit: window.innerWidth < 640 ? 6 : 20 // mobile: 6 tick max
+                    maxTicksLimit: windowWidth < 640 ? 6 : 20 // mobile: 6 tick max
                 },
                 grid: {
                     color: isDark ? '#444' : '#ddd',

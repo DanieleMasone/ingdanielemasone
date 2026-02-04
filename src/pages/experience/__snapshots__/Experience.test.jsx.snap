@@ -17,58 +17,70 @@ exports[`Experience component > matches snapshot 1`] = `
         class="flex flex-row sm:flex-wrap sm:justify-center gap-2 sm:gap-3 overflow-x-auto sm:overflow-visible px-1 sm:px-0 scrollbar-hide"
       >
         <button
-          class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap
-                bg-blue-600 text-white dark:bg-blue-500"
+          aria-pressed="true"
+          class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap transition-all bg-blue-600 text-white shadow-md hover:shadow-lg dark:bg-blue-500"
         >
-          2022
+          2025
         </button>
         <button
-          class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap
-                bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200"
+          aria-pressed="false"
+          class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap transition-all bg-gray-200 hover:bg-gray-300 shadow-sm dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200"
         >
-          2020
+          2021
         </button>
         <button
-          class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap
-                bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200"
+          aria-pressed="false"
+          class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap transition-all bg-gray-200 hover:bg-gray-300 shadow-sm dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200"
+        >
+          2019
+        </button>
+        <button
+          aria-pressed="false"
+          class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap transition-all bg-gray-200 hover:bg-gray-300 shadow-sm dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200"
         >
           2018
         </button>
         <button
-          class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap
-                bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200"
+          aria-pressed="false"
+          class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap transition-all bg-gray-200 hover:bg-gray-300 shadow-sm dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200"
+        >
+          2017
+        </button>
+        <button
+          aria-pressed="false"
+          class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap transition-all bg-gray-200 hover:bg-gray-300 shadow-sm dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200"
         >
           2016
         </button>
         <button
-          class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap
-                bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200"
+          aria-pressed="false"
+          class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap transition-all bg-gray-200 hover:bg-gray-300 shadow-sm dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200"
+        >
+          2015
+        </button>
+        <button
+          aria-pressed="false"
+          class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap transition-all bg-gray-200 hover:bg-gray-300 shadow-sm dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200"
         >
           2014
         </button>
         <button
-          class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap
-                bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200"
-        >
-          2012
-        </button>
-        <button
-          class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap
-                bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200"
+          aria-pressed="false"
+          class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap transition-all bg-gray-200 hover:bg-gray-300 shadow-sm dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200"
         >
           2010
         </button>
         <button
-          class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap
-                bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200"
+          aria-pressed="false"
+          class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap transition-all bg-gray-200 hover:bg-gray-300 shadow-sm dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200"
         >
-          2008
+          2009
         </button>
         <button
-          class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap
-                bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200"
+          aria-pressed="false"
+          class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap transition-all bg-gray-200 hover:bg-gray-300 shadow-sm dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200"
         >
-          2006
+          2005
         </button>
       </div>
     </div>
@@ -76,23 +88,24 @@ exports[`Experience component > matches snapshot 1`] = `
       class="flex flex-col items-center gap-6"
       style="opacity: 0; transform: translateY(40px);"
     >
-      <div
-        class="rounded-2xl bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 w-full relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
+      <section
+        class="// Template literal più leggibile
+                rounded-2xl bg-gray-100 dark:bg-gray-800 
+                border border-gray-300 dark:border-gray-700 
+                shadow-md hover:shadow-lg transition-shadow 
+                p-4 sm:p-6 w-full relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
                                          dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
                                            rounded-xl hover:shadow-lg transition-all duration-300 flex flex-col md:flex-row items-start gap-4"
       >
         <div
-          class="
-                p-4 sm:p-6 md:p-8
+          class="p-4 sm:p-6 md:p-8
                 text-sm sm:text-base
-                text-gray-900 dark:text-gray-300
-                
-            "
+                text-gray-900 dark:text-gray-300"
         >
           <h3
             class="text-lg font-semibold"
           >
-            Developer
+            exp_intesa_role
           </h3>
           <div
             class="flex items-center gap-2 mb-2"
@@ -100,18 +113,18 @@ exports[`Experience component > matches snapshot 1`] = `
             <p
               class="text-gray-700 dark:text-gray-400"
             >
-              RGI Group
+              Intesa Sanpaolo
             </p>
             <span
-              class="inline-block mt-1 px-2 py-0.5 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300"
+              class="inline-block mt-1 px-2 py-0.5 text-xs font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300"
             >
-              End
+              Start
             </span>
           </div>
           <p
             class="text-sm mb-2 text-gray-600 dark:text-gray-500"
           >
-            2020 - 2022
+            12/2025 – Present
           </p>
           <div
             class="relative"
@@ -121,7 +134,7 @@ exports[`Experience component > matches snapshot 1`] = `
               class="text-sm sm:text-base whitespace-pre-line overflow-hidden transition-[max-height] duration-500 ease-in-out relative mb-2 text-sm"
               style="max-height: 3em;"
             >
-              Worked on backend development
+              exp_intesa_description
             </div>
           </div>
           <div
@@ -131,7 +144,7 @@ exports[`Experience component > matches snapshot 1`] = `
               aria-expanded="false"
               class="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
               data-headlessui-state=""
-              id="headlessui-disclosure-button-_r_1a_"
+              id="headlessui-disclosure-button-_r_1u_"
               type="button"
             >
               <span>
@@ -157,100 +170,20 @@ exports[`Experience component > matches snapshot 1`] = `
             </button>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-</DocumentFragment>
-`;
-
-exports[`Experience component matches snapshot 1`] = `
-<DocumentFragment>
-  <section
-    class="px-4 py-6 sm:px-6 md:px-8 max-w-7xl mx-auto"
-  >
-    <h2
-      class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-gray-900 dark:text-white"
-    >
-      Experience
-    </h2>
-    <div
-      class="mb-10"
-    >
-      <div
-        class="flex flex-row sm:flex-wrap sm:justify-center gap-2 sm:gap-3 overflow-x-auto sm:overflow-visible px-1 sm:px-0 scrollbar-hide"
-      >
-        <button
-          class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap
-                bg-blue-600 text-white dark:bg-blue-500"
-        >
-          2022
-        </button>
-        <button
-          class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap
-                bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200"
-        >
-          2020
-        </button>
-        <button
-          class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap
-                bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200"
-        >
-          2018
-        </button>
-        <button
-          class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap
-                bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200"
-        >
-          2016
-        </button>
-        <button
-          class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap
-                bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200"
-        >
-          2014
-        </button>
-        <button
-          class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap
-                bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200"
-        >
-          2012
-        </button>
-        <button
-          class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap
-                bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200"
-        >
-          2010
-        </button>
-        <button
-          class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap
-                bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200"
-        >
-          2008
-        </button>
-        <button
-          class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap
-                bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200"
-        >
-          2006
-        </button>
-      </div>
-    </div>
-    <div
-      class="flex flex-col items-center gap-6"
-      style="opacity: 0; transform: translateY(40px);"
-    >
-      <div
-        class="rounded-2xl bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 w-full relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
- dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
- rounded-xl hover:shadow-lg transition-all duration-300 flex flex-col md:flex-row items-start gap-4"
+      </section>
+      <section
+        class="// Template literal più leggibile
+                rounded-2xl bg-gray-100 dark:bg-gray-800 
+                border border-gray-300 dark:border-gray-700 
+                shadow-md hover:shadow-lg transition-shadow 
+                p-4 sm:p-6 w-full relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
+                                         dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
+                                           rounded-xl hover:shadow-lg transition-all duration-300 flex flex-col md:flex-row items-start gap-4"
       >
         <div
-          class="
-                p-4 sm:p-6 md:p-8
+          class="p-4 sm:p-6 md:p-8
                 text-sm sm:text-base
-                text-gray-900 dark:text-gray-300
-                
-            "
+                text-gray-900 dark:text-gray-300"
         >
           <h3
             class="text-lg font-semibold"
@@ -274,7 +207,7 @@ exports[`Experience component matches snapshot 1`] = `
           <p
             class="text-sm mb-2 text-gray-600 dark:text-gray-500"
           >
-            2020 - 2022
+            09/2021 – 12/2025
           </p>
           <div
             class="relative"
@@ -294,7 +227,7 @@ exports[`Experience component matches snapshot 1`] = `
               aria-expanded="false"
               class="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
               data-headlessui-state=""
-              id="headlessui-disclosure-button-:r1a:"
+              id="headlessui-disclosure-button-_r_20_"
               type="button"
             >
               <span>
@@ -320,7 +253,7 @@ exports[`Experience component matches snapshot 1`] = `
             </button>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   </section>
 </DocumentFragment>

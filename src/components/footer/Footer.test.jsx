@@ -79,4 +79,16 @@ describe("Footer component - additional tests", () => {
             expect(link).toHaveAttribute("rel", "noopener noreferrer");
         });
     });
+
+    it("BrandIcon receives accessible title via aria-label", () => {
+        render(<Footer />);
+        const links = screen.getAllByRole("link");
+        const labels = ["LinkedIn", "Instagram", "Facebook", "GitHub", "Udemy"];
+
+        links.forEach((link, index) => {
+            const svg = link.querySelector("svg");
+            expect(svg).toHaveAttribute("aria-label", labels[index]);
+            expect(svg).not.toHaveAttribute("aria-hidden", "true");
+        });
+    });
 });

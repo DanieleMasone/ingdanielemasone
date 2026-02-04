@@ -18,21 +18,25 @@ export function CookieBanner() {
     const [visible, setVisible] = useState(false);
 
     useEffect(() => {
+        // Client-side only check
+        if (typeof window === 'undefined') return;
+
         const consent = localStorage.getItem('cookieConsent');
-        if (!consent) {
-            setVisible(true);
-        }
+        if (!consent) setVisible(true);
     }, []);
 
     const acceptCookies = () => {
-        localStorage.setItem('cookieConsent', 'true');
+        localStorage.setItem('cookieConsent', new Date().toISOString());  // Timestamp
         setVisible(false);
     };
 
     if (!visible) return null;
 
     return (
-        <div
+        <section
+            role="banner"
+            aria-live="polite"
+            aria-label="Cookie consent banner"
             className="fixed bottom-0 left-0 right-0 bg-gray-200 text-gray-900 p-4 flex flex-col md:flex-row justify-between items-center shadow-lg z-50
                dark:bg-gray-900 dark:text-white"
         >
@@ -49,7 +53,7 @@ export function CookieBanner() {
             >
                 Accetta
             </button>
-        </div>
+        </section>
     );
 
 }

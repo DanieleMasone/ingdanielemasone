@@ -10,9 +10,10 @@ import {useTranslation} from "react-i18next";
  * @param {string} props.color - Fill color for the SVG.
  * @param {string} [props.className] - Additional CSS classes.
  * @param {number} [props.size=24] - Width and height of the icon.
+ * @param {string} [props.title] - Accessible title for screen readers.
  * @returns {JSX.Element|null} SVG element or null if no valid icon.
  */
-export function BrandIcon({icon, color, className, size = 24}) {
+export function BrandIcon({ icon, color, className, size = 24, title }) {
     if (!icon || !icon.svg) return null;
 
     return (
@@ -23,8 +24,10 @@ export function BrandIcon({icon, color, className, size = 24}) {
             height={size}
             fill={color}
             className={className}
-            dangerouslySetInnerHTML={{__html: icon.svg}}
             xmlns="http://www.w3.org/2000/svg"
+            aria-hidden={title ? undefined : "true"}
+            aria-label={title || undefined}
+            dangerouslySetInnerHTML={{ __html: icon.svg }}
         />
     );
 }
@@ -106,6 +109,7 @@ export function Footer() {
                                 color={color}
                                 className={className}
                                 size={26}
+                                title={label}
                             />
                             <span
                                 className="absolute left-1/2 -translate-x-1/2 bottom-8 opacity-0 group-hover:opacity-100 text-xs text-gray-700 dark:text-gray-300 transition">

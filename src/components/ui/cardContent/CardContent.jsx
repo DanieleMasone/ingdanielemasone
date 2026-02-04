@@ -21,7 +21,7 @@ export function CardContent({children, className = "", ...rest}) {
                 text-sm sm:text-base
                 text-gray-900 dark:text-gray-300
                 ${className}
-            `}
+            `.trim()}
         >
             {children}
         </div>
