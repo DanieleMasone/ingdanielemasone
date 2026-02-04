@@ -85,8 +85,8 @@ exports[`Courses component > matches snapshot 1`] = `
           >
             <div
               aria-expanded="false"
-              class="text-sm sm:text-base whitespace-pre-line overflow-hidden transition-[max-height] duration-500 ease-in-out relative my-2 cursor-default text-gray-700 dark:text-gray-300"
-              style="max-height: 3em;"
+              class="text-sm sm:text-base whitespace-pre-wrap overflow-hidden transition-all duration-500 ease-in-out relative my-2 cursor-default text-gray-700 dark:text-gray-300"
+              style="max-height: 4.5em;"
             >
               Learn Git basics and advanced usage.
             </div>
@@ -185,8 +185,8 @@ exports[`Courses component > matches snapshot 1`] = `
           >
             <div
               aria-expanded="false"
-              class="text-sm sm:text-base whitespace-pre-line overflow-hidden transition-[max-height] duration-500 ease-in-out relative my-2 cursor-default text-gray-700 dark:text-gray-300"
-              style="max-height: 3em;"
+              class="text-sm sm:text-base whitespace-pre-wrap overflow-hidden transition-all duration-500 ease-in-out relative my-2 cursor-default text-gray-700 dark:text-gray-300"
+              style="max-height: 4.5em;"
             >
               TypeScript fundamentals and advanced topics.
             </div>
@@ -285,8 +285,8 @@ exports[`Courses component > matches snapshot 1`] = `
           >
             <div
               aria-expanded="false"
-              class="text-sm sm:text-base whitespace-pre-line overflow-hidden transition-[max-height] duration-500 ease-in-out relative my-2 cursor-default text-gray-700 dark:text-gray-300"
-              style="max-height: 3em;"
+              class="text-sm sm:text-base whitespace-pre-wrap overflow-hidden transition-all duration-500 ease-in-out relative my-2 cursor-default text-gray-700 dark:text-gray-300"
+              style="max-height: 4.5em;"
             >
               Master jQuery selectors and events.
             </div>

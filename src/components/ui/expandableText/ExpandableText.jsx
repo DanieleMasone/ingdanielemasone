@@ -16,7 +16,6 @@ import {useTranslation} from "react-i18next";
  * @param {string} [props.className] - Additional CSS classes for styling.
  * @returns {JSX.Element} An expandable text block with a toggle button.
  */
-
 export function ExpandableText({value = "", maxLines = 3, className = ""}) {
     const [expanded, setExpanded] = useState(false);
     const [showButton, setShowButton] = useState(false);
@@ -28,31 +27,30 @@ export function ExpandableText({value = "", maxLines = 3, className = ""}) {
         const el = paragraphRef.current;
         if (!el) return;
 
-        const lineHeight = parseFloat(getComputedStyle(el).lineHeight || "16");
-        const maxHeightPx = maxLines * lineHeight;
+        const lineHeight = parseFloat(getComputedStyle(el).lineHeight);
+        const maxHeightCollapsed = maxLines * lineHeight;
 
         setContentHeight(el.scrollHeight);
-        setShowButton(el.scrollHeight > maxHeightPx);
-    }, [value, maxLines, paragraphRef]);
+        setShowButton(el.scrollHeight > maxHeightCollapsed);
+    }, [value, maxLines]);
 
     return (
         <div className="relative">
             <div
                 ref={paragraphRef}
                 className={clsx(
-                    "text-sm sm:text-base whitespace-pre-line overflow-hidden transition-[max-height] duration-500 ease-in-out relative",
+                    "text-sm sm:text-base whitespace-pre-wrap overflow-hidden transition-all duration-500 ease-in-out relative",
                     className
                 )}
                 style={{
-                    maxHeight: expanded ? `${contentHeight}px` : `${maxLines}em`,
+                    maxHeight: expanded ? `${contentHeight}px` : `${maxLines * 1.5}em`,
                 }}
                 aria-expanded={expanded}
             >
                 {value}
 
                 {!expanded && showButton && (
-                    <div
-                        className="absolute bottom-0 left-0 w-full h-6 bg-gradient-to-t from-white dark:from-slate-900 pointer-events-none"/>
+                    <div className="absolute bottom-0 left-0 w-full h-6 bg-gradient-to-t from-white dark:from-slate-900 pointer-events-none"/>
                 )}
             </div>
 

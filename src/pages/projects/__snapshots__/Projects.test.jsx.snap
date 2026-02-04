@@ -123,8 +123,8 @@ exports[`Projects Component > matches snapshot with new Intesa projects 1`] = `
               >
                 <div
                   aria-expanded="false"
-                  class="text-sm sm:text-base whitespace-pre-line overflow-hidden transition-[max-height] duration-500 ease-in-out relative mb-2 text-sm"
-                  style="max-height: 3em;"
+                  class="text-sm sm:text-base whitespace-pre-wrap overflow-hidden transition-all duration-500 ease-in-out relative mb-2 text-sm"
+                  style="max-height: 4.5em;"
                 >
                   Design and implementation of scalable frontend architectures integrated with legacy RPG systems for foreign network reporting; optimized UI/UX.
                 </div>
@@ -197,8 +197,8 @@ exports[`Projects Component > matches snapshot with new Intesa projects 1`] = `
               >
                 <div
                   aria-expanded="false"
-                  class="text-sm sm:text-base whitespace-pre-line overflow-hidden transition-[max-height] duration-500 ease-in-out relative mb-2 text-sm"
-                  style="max-height: 3em;"
+                  class="text-sm sm:text-base whitespace-pre-wrap overflow-hidden transition-all duration-500 ease-in-out relative mb-2 text-sm"
+                  style="max-height: 4.5em;"
                 >
                   Contribution to BE/FE pipelines for financial reporting, integrating modern APIs with legacy systems; applied best practices for architectural solidity in global teams.
                 </div>

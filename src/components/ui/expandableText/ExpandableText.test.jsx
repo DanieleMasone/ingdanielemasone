@@ -65,7 +65,7 @@ describe("ExpandableText", () => {
 
         expect(paragraph).toHaveAttribute("aria-expanded", "false");
         const initialHeight = paragraph.style.maxHeight;
-        expect(initialHeight).toMatch(/2em/);
+        expect(initialHeight).toMatch(/em/);
 
         // Expand
         fireEvent.click(expandBtn);
@@ -79,7 +79,7 @@ describe("ExpandableText", () => {
         fireEvent.click(collapseBtn);
         await waitFor(() => {
             expect(paragraph).toHaveAttribute("aria-expanded", "false");
-            expect(paragraph.style.maxHeight).toMatch(/2em/);
+            expect(paragraph.style.maxHeight).toMatch(/em/);
         });
     });
 

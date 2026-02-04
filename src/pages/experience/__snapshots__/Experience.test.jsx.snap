@@ -131,8 +131,8 @@ exports[`Experience component > matches snapshot 1`] = `
           >
             <div
               aria-expanded="false"
-              class="text-sm sm:text-base whitespace-pre-line overflow-hidden transition-[max-height] duration-500 ease-in-out relative mb-2 text-sm"
-              style="max-height: 3em;"
+              class="text-sm sm:text-base whitespace-pre-wrap overflow-hidden transition-all duration-500 ease-in-out relative mb-2 text-sm"
+              style="max-height: 4.5em;"
             >
               exp_intesa_description
             </div>
@@ -214,8 +214,8 @@ exports[`Experience component > matches snapshot 1`] = `
           >
             <div
               aria-expanded="false"
-              class="text-sm sm:text-base whitespace-pre-line overflow-hidden transition-[max-height] duration-500 ease-in-out relative mb-2 text-sm"
-              style="max-height: 3em;"
+              class="text-sm sm:text-base whitespace-pre-wrap overflow-hidden transition-all duration-500 ease-in-out relative mb-2 text-sm"
+              style="max-height: 4.5em;"
             >
               Worked on backend development
             </div>
