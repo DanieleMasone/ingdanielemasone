@@ -168,7 +168,10 @@ export default function Projects() {
             <PageSection title={t("projects_title")}>
                 <div className="flex flex-col md:flex-row gap-6">
                     {/* Sidebar Tabs */}
-                    <div className="md:w-1/4 flex flex-row md:flex-col overflow-x-auto gap-2 md:gap-4">
+                    <div className="md:w-1/4">
+                        <div
+                            className="flex flex-row md:flex-col gap-2 md:gap-4 overflow-x-auto md:overflow-visible no-scrollbar snap-x md:snap-none px-1 pb-3 md:pb-0"
+                        >
                         {companies.map((company) => (
                             <SelectableButton
                                 key={company}
@@ -180,6 +183,7 @@ export default function Projects() {
                                 }}
                             />
                         ))}
+                        </div>
                     </div>
 
                     {/* Content */}

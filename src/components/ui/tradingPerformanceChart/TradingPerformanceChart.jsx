@@ -243,10 +243,10 @@ export function TradingPerformanceChart() {
                     {/* Tabs by year */}
                     <div className="mb-4">
                         <div
-                            className="flex flex-row sm:flex-wrap sm:justify-center gap-2 sm:gap-3 overflow-x-auto sm:overflow-visible px-1 sm:px-0 scrollbar-hide"
+                            className="relative flex flex-row sm:flex-wrap sm:justify-center gap-2 sm:gap-3 overflow-x-auto sm:overflow-visible no-scrollbar snap-x snap-mandatory sm:snap-none px-2 sm:px-0 pb-3 sm:pb-0"
                         >
                             {[...allYears].reverse().map((year) => (
-                                <div key={year} className="snap-start">
+                                <div key={year} className="snap-start shrink-0 sm:shrink">
                                     <SelectableButton
                                         key={year}
                                         label={year}
@@ -256,7 +256,6 @@ export function TradingPerformanceChart() {
                                 </div>
                             ))}
                         </div>
-
                     </div>
 
                     {/* Cards for the selected year */}

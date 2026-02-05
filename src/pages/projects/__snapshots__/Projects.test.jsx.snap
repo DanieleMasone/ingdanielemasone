@@ -14,44 +14,48 @@ exports[`Projects Component > matches snapshot with new Intesa projects 1`] = `
       class="flex flex-col md:flex-row gap-6"
     >
       <div
-        class="md:w-1/4 flex flex-row md:flex-col overflow-x-auto gap-2 md:gap-4"
+        class="md:w-1/4"
       >
-        <button
-          aria-pressed="true"
-          class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap transition-all bg-blue-600 text-white shadow-md hover:shadow-lg dark:bg-blue-500"
+        <div
+          class="flex flex-row md:flex-col gap-2 md:gap-4 overflow-x-auto md:overflow-visible no-scrollbar snap-x md:snap-none px-1 pb-3 md:pb-0"
         >
-          Intesa Sanpaolo
-        </button>
-        <button
-          aria-pressed="false"
-          class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap transition-all bg-gray-200 hover:bg-gray-300 shadow-sm dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200"
-        >
-          RGI
-        </button>
-        <button
-          aria-pressed="false"
-          class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap transition-all bg-gray-200 hover:bg-gray-300 shadow-sm dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200"
-        >
-          Italiaonline
-        </button>
-        <button
-          aria-pressed="false"
-          class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap transition-all bg-gray-200 hover:bg-gray-300 shadow-sm dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200"
-        >
-          TECNAVIA APPS s.r.l.
-        </button>
-        <button
-          aria-pressed="false"
-          class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap transition-all bg-gray-200 hover:bg-gray-300 shadow-sm dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200"
-        >
-          Teoresi
-        </button>
-        <button
-          aria-pressed="false"
-          class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap transition-all bg-gray-200 hover:bg-gray-300 shadow-sm dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200"
-        >
-          Fastweb
-        </button>
+          <button
+            aria-pressed="true"
+            class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap transition-all bg-blue-600 text-white shadow-md hover:shadow-lg dark:bg-blue-500"
+          >
+            Intesa Sanpaolo
+          </button>
+          <button
+            aria-pressed="false"
+            class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap transition-all bg-gray-200 hover:bg-gray-300 shadow-sm dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200"
+          >
+            RGI
+          </button>
+          <button
+            aria-pressed="false"
+            class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap transition-all bg-gray-200 hover:bg-gray-300 shadow-sm dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200"
+          >
+            Italiaonline
+          </button>
+          <button
+            aria-pressed="false"
+            class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap transition-all bg-gray-200 hover:bg-gray-300 shadow-sm dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200"
+          >
+            TECNAVIA APPS s.r.l.
+          </button>
+          <button
+            aria-pressed="false"
+            class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap transition-all bg-gray-200 hover:bg-gray-300 shadow-sm dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200"
+          >
+            Teoresi
+          </button>
+          <button
+            aria-pressed="false"
+            class="px-4 py-2 rounded-lg border text-sm whitespace-nowrap transition-all bg-gray-200 hover:bg-gray-300 shadow-sm dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200"
+          >
+            Fastweb
+          </button>
+        </div>
       </div>
       <div
         class="flex-1 relative"
