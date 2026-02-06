@@ -29,7 +29,7 @@
 <nav >
     
     
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-components_footer_Footer.html">components/footer/Footer</a></li><li><a href="module-components_header_Header.html">components/header/Header</a></li><li><a href="module-components_notFound_NotFound.html">components/notFound/NotFound</a></li><li><a href="module-components_seoHead_SeoHead.html">components/seoHead/SeoHead</a></li><li><a href="module-components_ui_avatarCard_AvatarCard.html">components/ui/avatarCard/AvatarCard</a></li><li><a href="module-components_ui_card_Card.html">components/ui/card/Card</a></li><li><a href="module-components_ui_cardContent_CardContent.html">components/ui/cardContent/CardContent</a></li><li><a href="module-components_ui_darkModeToggle_DarkModeToggle.html">components/ui/darkModeToggle/DarkModeToggle</a></li><li><a href="module-components_ui_expandableText_ExpandableText.html">components/ui/expandableText/ExpandableText</a></li><li><a href="module-components_ui_pageSection_PageSection.html">components/ui/pageSection/PageSection</a></li><li><a href="module-components_ui_pagination_Pagination.html">components/ui/pagination/Pagination</a></li><li><a href="module-components_ui_selectableButton_SelectableButton.html">components/ui/selectableButton/SelectableButton</a></li><li><a href="module-components_ui_tradingPerformanceChart_TradingPerformanceChart.html">components/ui/tradingPerformanceChart/TradingPerformanceChart</a></li><li><a href="module-pages_certifications_Certifications.html">pages/certifications/Certifications</a></li><li><a href="module-pages_cookiePolicy_CookiePolicy.html">pages/cookiePolicy/CookiePolicy</a></li><li><a href="module-pages_courses_Courses.html">pages/courses/Courses</a></li><li><a href="module-pages_experience_Experience.html">pages/experience/Experience</a></li><li><a href="module-pages_home_Home.html">pages/home/Home</a></li><li><a href="module-pages_privacy_Privacy.html">pages/privacy/Privacy</a></li><li><a href="module-pages_projects_Projects.html">pages/projects/Projects</a></li><li><a href="module-pages_testimonials_Testimonials.html">pages/testimonials/Testimonials</a></li><li><a href="module-pages_trading_Trading.html">pages/trading/Trading</a></li><li><a href="module-pages_ui_cookieBanner_CookieBanner.html">pages/ui/cookieBanner/CookieBanner</a></li></ul><h3>Global</h3><ul><li><a href="global.html#BrandIcon">BrandIcon</a></li><li><a href="global.html#getExperienceLabel">getExperienceLabel</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-components_footer_Footer.html">components/footer/Footer</a></li><li><a href="module-components_header_Header.html">components/header/Header</a></li><li><a href="module-components_notFound_NotFound.html">components/notFound/NotFound</a></li><li><a href="module-components_seoHead_SeoHead.html">components/seoHead/SeoHead</a></li><li><a href="module-components_ui_PageGrid.html">components/ui/PageGrid</a></li><li><a href="module-components_ui_avatarCard_AvatarCard.html">components/ui/avatarCard/AvatarCard</a></li><li><a href="module-components_ui_card_Card.html">components/ui/card/Card</a></li><li><a href="module-components_ui_cardContent_CardContent.html">components/ui/cardContent/CardContent</a></li><li><a href="module-components_ui_darkModeToggle_DarkModeToggle.html">components/ui/darkModeToggle/DarkModeToggle</a></li><li><a href="module-components_ui_expandableText_ExpandableText.html">components/ui/expandableText/ExpandableText</a></li><li><a href="module-components_ui_pageSection_PageSection.html">components/ui/pageSection/PageSection</a></li><li><a href="module-components_ui_pagination_Pagination.html">components/ui/pagination/Pagination</a></li><li><a href="module-components_ui_selectableButton_SelectableButton.html">components/ui/selectableButton/SelectableButton</a></li><li><a href="module-components_ui_tradingPerformanceChart_TradingPerformanceChart.html">components/ui/tradingPerformanceChart/TradingPerformanceChart</a></li><li><a href="module-pages_certifications_Certifications.html">pages/certifications/Certifications</a></li><li><a href="module-pages_cookiePolicy_CookiePolicy.html">pages/cookiePolicy/CookiePolicy</a></li><li><a href="module-pages_courses_Courses.html">pages/courses/Courses</a></li><li><a href="module-pages_experience_Experience.html">pages/experience/Experience</a></li><li><a href="module-pages_home_Home.html">pages/home/Home</a></li><li><a href="module-pages_privacy_Privacy.html">pages/privacy/Privacy</a></li><li><a href="module-pages_projects_Projects.html">pages/projects/Projects</a></li><li><a href="module-pages_testimonials_Testimonials.html">pages/testimonials/Testimonials</a></li><li><a href="module-pages_trading_Trading.html">pages/trading/Trading</a></li><li><a href="module-pages_ui_cookieBanner_CookieBanner.html">pages/ui/cookieBanner/CookieBanner</a></li></ul><h3>Global</h3><ul><li><a href="global.html#BrandIcon">BrandIcon</a></li><li><a href="global.html#getExperienceLabel">getExperienceLabel</a></li></ul>
     
 </nav>
 
@@ -52,10 +52,10 @@ import {ChevronDown} from "lucide-react";
 import {Card} from "@/components/ui/card/Card";
 import {CardContent} from "@/components/ui/cardContent/CardContent";
 import {PageSection} from "@/components/ui/pageSection/PageSection";
-import {AnimatePresence, motion} from "framer-motion";
 import {SeoHead} from "@/components/seoHead/SeoHead";
 import {BrandIcon, linkedinIcon} from "@/components/footer/Footer";
 import {Pagination} from "@/components/ui/pagination/Pagination";
+import {PageGrid} from "@/components/ui/pageGrid/PageGrid";
 
 const ITEMS_PER_PAGE = 4;
 
@@ -237,71 +237,61 @@ export default function Testimonials() {
                     />
                 &lt;/div>
 
-                &lt;AnimatePresence mode="wait">
-                    &lt;motion.div
-                        key={`page-${page}`}
-                        initial={{ opacity: 0, scale: 0.96 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.96 }}
-                        transition={{ duration: 0.3, ease: "easeOut" }}
-                        layout
-                        className="grid grid-cols-1 md:grid-cols-2 gap-6"
-                    >
-                        {displayedTestimonials.map((texts, idx) => (
-                            &lt;Card
-                                data-testid="testimonial-card"
-                                key={idx}
-                                className="h-full relative w-full p-5 sm:p-6 border border-gray-200/60
-                                         dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
-                                           rounded-xl hover:shadow-lg transition-all duration-300 flex flex-col"
-                            >
-                                &lt;CardContent>
-                                    &lt;Disclosure>
-                                        {({open}) => (
-                                            &lt;>
-                                                &lt;Disclosure.Button
-                                                    className="flex justify-between items-center w-full text-left py-1"
-                                                >
-                                                    &lt;div className="flex items-center space-x-3">
-                                                        &lt;img
-                                                            src={`https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(t(texts.nameKey))}`}
-                                                            alt={`${t(texts.nameKey)} avatar`}
-                                                            className="w-10 h-10 rounded-full ring-1 ring-gray-300 dark:ring-gray-700 bg-white"
-                                                        />
-                                                        &lt;div>
-                                                            &lt;p className="font-semibold flex items-center gap-2">
-                                                                {t(texts.nameKey)}
-                                                                {texts.linkedinUrl &amp;&amp; (
-                                                                    &lt;a
-                                                                        href={texts.linkedinUrl}
-                                                                        target="_blank"
-                                                                        rel="noopener noreferrer"
-                                                                    >
-                                                                        &lt;BrandIcon icon={linkedinIcon} color="#0A66C2"
-                                                                                   size={18}/>
-                                                                    &lt;/a>
-                                                                )}
-                                                            &lt;/p>
-                                                            &lt;p className="text-xs text-gray-500 dark:text-gray-400">{t(texts.roleKey)}&lt;/p>
-                                                        &lt;/div>
-                                                    &lt;/div>
-                                                    &lt;ChevronDown
-                                                        className={`w-5 h-5 transition-transform ${open ? "rotate-180" : ""}`}
-                                                    />
-                                                &lt;/Disclosure.Button>
-                                                &lt;Disclosure.Panel
-                                                    className="mt-3 border-l-2 border-blue-500 pl-3 italic text-gray-700 dark:text-gray-300"
-                                                >
-                                                    {t(texts.quoteKey)}
-                                                &lt;/Disclosure.Panel>
-                                            &lt;/>
-                                        )}
-                                    &lt;/Disclosure>
-                                &lt;/CardContent>
-                            &lt;/Card>
-                        ))}
-                    &lt;/motion.div>
-                &lt;/AnimatePresence>
+                &lt;PageGrid page={page} className="[&amp;>*]:h-72">
+                    {displayedTestimonials.map((texts, idx) => (
+                        &lt;Card
+                            key={idx}
+                            data-testid="testimonial-card"
+                            className="relative w-full p-5 sm:p-6 border border-gray-200/60
+                                     dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
+                                       rounded-xl hover:shadow-lg transition-all duration-300 flex flex-col"
+                        >
+                            {/* Fixed header */}
+                            &lt;div className="flex-shrink-0 mb-4 pb-2 border-b border-gray-200/50 dark:border-gray-700/50">
+                                &lt;div className="flex items-center justify-between">
+                                    &lt;div className="flex items-center space-x-3">
+                                        &lt;img
+                                            src={`https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(t(texts.nameKey))}`}
+                                            alt={`${t(texts.nameKey)} avatar`}
+                                            className="w-12 h-12 rounded-full ring-2 ring-gray-200 dark:ring-gray-600 bg-white shadow-md"
+                                        />
+                                        &lt;div>
+                                            &lt;p className="font-semibold text-gray-900 dark:text-white flex items-center gap-2">
+                                                {t(texts.nameKey)}
+                                                {texts.linkedinUrl &amp;&amp; (
+                                                    &lt;a href={texts.linkedinUrl} target="_blank" rel="noopener noreferrer">
+                                                        &lt;BrandIcon icon={linkedinIcon} color="#0A66C2" size={20} />
+                                                    &lt;/a>
+                                                )}
+                                            &lt;/p>
+                                            &lt;p className="text-sm text-gray-500 dark:text-gray-400 font-medium">{t(texts.roleKey)}&lt;/p>
+                                        &lt;/div>
+                                    &lt;/div>
+                                &lt;/div>
+                            &lt;/div>
+
+                            {/* Body - takes ALL the remaining height */}
+                            &lt;div className="flex-1 flex p-4">
+                                &lt;Disclosure as="div" className="w-full h-full flex flex-col">
+                                    {({ open }) => (
+                                        &lt;div className="h-full flex flex-col">
+                                            &lt;Disclosure.Button as="button" className="flex justify-between items-center text-left mb-4 self-start p-3 -m-3 rounded-xl hover:bg-gray-50/50 dark:hover:bg-gray-800/50 transition-all border border-gray-200/30 dark:border-gray-700/30 hover:border-blue-200/50 hover:shadow-sm">
+                                              &lt;span className="text-lg font-semibold text-blue-600 dark:text-blue-400 tracking-tight">
+                                                  {t("testimonials_page.open")}
+                                              &lt;/span>
+                                                &lt;ChevronDown className={`w-6 h-6 shrink-0 transition-transform duration-200 ease-in-out ${open ? "rotate-180" : ""}`} />
+                                            &lt;/Disclosure.Button>
+
+                                            &lt;Disclosure.Panel as="div" className="flex-1 mt-3 border-l-4 border-blue-500/80 pl-5 pr-4 py-3 bg-blue-50/30 dark:bg-blue-900/20 rounded-2xl backdrop-blur-sm italic text-lg text-gray-800 dark:text-gray-200 leading-relaxed font-light tracking-wide overflow-auto">
+                                                "{t(texts.quoteKey)}"
+                                            &lt;/Disclosure.Panel>
+                                        &lt;/div>
+                                    )}
+                                &lt;/Disclosure>
+                            &lt;/div>
+                        &lt;/Card>
+                    ))}
+                &lt;/PageGrid>
 
                 {/* Pagination desktop normal */}
                 &lt;div className="hidden md:block mt-4">
@@ -329,7 +319,7 @@ export default function Testimonials() {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Fri Feb 06 2026 11:58:21 GMT+0100 (Ora standard dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Fri Feb 06 2026 15:33:30 GMT+0100 (Ora standard dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

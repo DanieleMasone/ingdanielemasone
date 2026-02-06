@@ -29,7 +29,7 @@
 <nav >
     
     
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-components_footer_Footer.html">components/footer/Footer</a></li><li><a href="module-components_header_Header.html">components/header/Header</a></li><li><a href="module-components_notFound_NotFound.html">components/notFound/NotFound</a></li><li><a href="module-components_seoHead_SeoHead.html">components/seoHead/SeoHead</a></li><li><a href="module-components_ui_avatarCard_AvatarCard.html">components/ui/avatarCard/AvatarCard</a></li><li><a href="module-components_ui_card_Card.html">components/ui/card/Card</a></li><li><a href="module-components_ui_cardContent_CardContent.html">components/ui/cardContent/CardContent</a></li><li><a href="module-components_ui_darkModeToggle_DarkModeToggle.html">components/ui/darkModeToggle/DarkModeToggle</a></li><li><a href="module-components_ui_expandableText_ExpandableText.html">components/ui/expandableText/ExpandableText</a></li><li><a href="module-components_ui_pageSection_PageSection.html">components/ui/pageSection/PageSection</a></li><li><a href="module-components_ui_pagination_Pagination.html">components/ui/pagination/Pagination</a></li><li><a href="module-components_ui_selectableButton_SelectableButton.html">components/ui/selectableButton/SelectableButton</a></li><li><a href="module-components_ui_tradingPerformanceChart_TradingPerformanceChart.html">components/ui/tradingPerformanceChart/TradingPerformanceChart</a></li><li><a href="module-pages_certifications_Certifications.html">pages/certifications/Certifications</a></li><li><a href="module-pages_cookiePolicy_CookiePolicy.html">pages/cookiePolicy/CookiePolicy</a></li><li><a href="module-pages_courses_Courses.html">pages/courses/Courses</a></li><li><a href="module-pages_experience_Experience.html">pages/experience/Experience</a></li><li><a href="module-pages_home_Home.html">pages/home/Home</a></li><li><a href="module-pages_privacy_Privacy.html">pages/privacy/Privacy</a></li><li><a href="module-pages_projects_Projects.html">pages/projects/Projects</a></li><li><a href="module-pages_testimonials_Testimonials.html">pages/testimonials/Testimonials</a></li><li><a href="module-pages_trading_Trading.html">pages/trading/Trading</a></li><li><a href="module-pages_ui_cookieBanner_CookieBanner.html">pages/ui/cookieBanner/CookieBanner</a></li></ul><h3>Global</h3><ul><li><a href="global.html#BrandIcon">BrandIcon</a></li><li><a href="global.html#getExperienceLabel">getExperienceLabel</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-components_footer_Footer.html">components/footer/Footer</a></li><li><a href="module-components_header_Header.html">components/header/Header</a></li><li><a href="module-components_notFound_NotFound.html">components/notFound/NotFound</a></li><li><a href="module-components_seoHead_SeoHead.html">components/seoHead/SeoHead</a></li><li><a href="module-components_ui_PageGrid.html">components/ui/PageGrid</a></li><li><a href="module-components_ui_avatarCard_AvatarCard.html">components/ui/avatarCard/AvatarCard</a></li><li><a href="module-components_ui_card_Card.html">components/ui/card/Card</a></li><li><a href="module-components_ui_cardContent_CardContent.html">components/ui/cardContent/CardContent</a></li><li><a href="module-components_ui_darkModeToggle_DarkModeToggle.html">components/ui/darkModeToggle/DarkModeToggle</a></li><li><a href="module-components_ui_expandableText_ExpandableText.html">components/ui/expandableText/ExpandableText</a></li><li><a href="module-components_ui_pageSection_PageSection.html">components/ui/pageSection/PageSection</a></li><li><a href="module-components_ui_pagination_Pagination.html">components/ui/pagination/Pagination</a></li><li><a href="module-components_ui_selectableButton_SelectableButton.html">components/ui/selectableButton/SelectableButton</a></li><li><a href="module-components_ui_tradingPerformanceChart_TradingPerformanceChart.html">components/ui/tradingPerformanceChart/TradingPerformanceChart</a></li><li><a href="module-pages_certifications_Certifications.html">pages/certifications/Certifications</a></li><li><a href="module-pages_cookiePolicy_CookiePolicy.html">pages/cookiePolicy/CookiePolicy</a></li><li><a href="module-pages_courses_Courses.html">pages/courses/Courses</a></li><li><a href="module-pages_experience_Experience.html">pages/experience/Experience</a></li><li><a href="module-pages_home_Home.html">pages/home/Home</a></li><li><a href="module-pages_privacy_Privacy.html">pages/privacy/Privacy</a></li><li><a href="module-pages_projects_Projects.html">pages/projects/Projects</a></li><li><a href="module-pages_testimonials_Testimonials.html">pages/testimonials/Testimonials</a></li><li><a href="module-pages_trading_Trading.html">pages/trading/Trading</a></li><li><a href="module-pages_ui_cookieBanner_CookieBanner.html">pages/ui/cookieBanner/CookieBanner</a></li></ul><h3>Global</h3><ul><li><a href="global.html#BrandIcon">BrandIcon</a></li><li><a href="global.html#getExperienceLabel">getExperienceLabel</a></li></ul>
     
 </nav>
 
@@ -50,10 +50,10 @@ import {useTranslation} from "react-i18next";
 import {Card} from "@/components/ui/card/Card";
 import {CardContent} from "@/components/ui/cardContent/CardContent";
 import {PageSection} from "@/components/ui/pageSection/PageSection";
-import {AnimatePresence, motion} from "framer-motion";
 import {SeoHead} from "@/components/seoHead/SeoHead";
 import {useState} from "react";
 import {Pagination} from "@/components/ui/pagination/Pagination";
+import {PageGrid} from "@/components/ui/pageGrid/PageGrid";
 
 const ITEMS_PER_PAGE = 4;
 
@@ -136,57 +136,58 @@ export default function Certifications() {
                     />
                 &lt;/div>
 
-                &lt;AnimatePresence mode="wait">
-                    &lt;motion.div
-                        key={`page-${page}`}
-                        initial={{ opacity: 0, scale: 0.96 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.96 }}
-                        transition={{ duration: 0.3, ease: "easeOut" }}
-                        layout
-                        className="grid grid-cols-1 md:grid-cols-2 gap-6"
-                    >
-                        {displayedCerts.map((cert, idx) => (
-                            &lt;Card
-                                key={idx}
-                                className="relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
-                                   dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
-                                   rounded-xl hover:shadow-lg transition-all duration-300"
-                            >
-                                {/* Decorative icon at the top right */}
-                                &lt;div className="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-full
-                                      bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 shadow-sm">
-                                    &lt;Award className="w-5 h-5"/>
-                                &lt;/div>
+                &lt;PageGrid page={page}>
+                    {displayedCerts.map((cert, idx) => (
+                        &lt;Card
+                            key={idx}
+                            className="relative w-full p-4 sm:p-6 border border-gray-200/60 dark:border-gray-700/60
+                                     bg-white/60 dark:bg-gray-800/40 backdrop-blur-md rounded-xl hover:shadow-xl
+                                       transition-all duration-300 flex flex-col justify-between"
+                        >
+                            {/* Icon */}
+                            &lt;div className="absolute -top-3 right-4 w-12 h-12 rounded-full bg-gradient-to-r from-blue-100 to-blue-200
+                                          dark:from-blue-900/40 dark:to-blue-800/40 flex items-center justify-center shadow-lg z-20 ring-4 ring-background">
+                                &lt;Award className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                            &lt;/div>
 
-                                &lt;CardContent className="p-0">
-                                    &lt;h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+                            &lt;CardContent className="p-0 pt-8 relative z-0 flex flex-col h-full justify-between">
+                                {/* Header */}
+                                &lt;div className="space-y-1.5 mb-4">
+                                    &lt;h3 className="text-lg font-bold text-gray-900 dark:text-white leading-tight">
                                         {t(cert.nameKey)}
                                     &lt;/h3>
-
-                                    &lt;p className="text-sm text-gray-500 dark:text-gray-400 font-mono mb-3">
-                                        {cert.issuer} — {cert.date}
+                                    &lt;p className="text-sm font-mono text-gray-600 dark:text-gray-400 leading-tight">
+                                        {cert.issuer}
                                     &lt;/p>
+                                    &lt;p className="text-xs text-gray-500 dark:text-gray-500 font-mono">
+                                        {cert.date}
+                                    &lt;/p>
+                                &lt;/div>
 
+                                {/* CTA */}
+                                &lt;div className="mt-auto">
                                     &lt;a
                                         href={cert.link}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center text-sm text-blue-600 dark:text-blue-400
-                                         hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
+                                        className="group inline-flex items-center text-sm font-semibold text-blue-600 dark:text-blue-400
+                                                   hover:text-blue-700 dark:hover:text-blue-300 transition-all duration-300
+                                                   hover:underline underline-offset-4 hover:shadow-md hover:shadow-blue-100 dark:hover:shadow-blue-900/50
+                                                   px-3 py-2 rounded-lg border border-blue-200/50 dark:border-blue-800/50 hover:border-blue-300"
                                     >
                                         {t("certifications_page.view_certificate")}
-                                        &lt;ExternalLink className="w-4 h-4 ml-1"/>
+                                        &lt;ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                                     &lt;/a>
-                                &lt;/CardContent>
+                                &lt;/div>
+                            &lt;/CardContent>
 
-                                {/* Hover effect */}
-                                &lt;div className="absolute inset-0 pointer-events-none opacity-0 hover:opacity-100 transition-opacity
-                                        duration-500 bg-gradient-to-r from-blue-50/30 to-transparent dark:from-blue-900/10"/>
-                            &lt;/Card>
-                        ))}
-                    &lt;/motion.div>
-                &lt;/AnimatePresence>
+                            {/* Hover overlay */}
+                            &lt;div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100
+                                            transition-all duration-500 bg-gradient-to-br from-blue-50/80 via-transparent to-transparent
+                                            dark:from-blue-900/30 rounded-xl backdrop-blur-sm" />
+                        &lt;/Card>
+                    ))}
+                &lt;/PageGrid>
 
                 {/* Pagination desktop normal */}
                 &lt;div className="hidden md:block mt-4">
@@ -214,7 +215,7 @@ export default function Certifications() {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Fri Feb 06 2026 11:58:21 GMT+0100 (Ora standard dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Fri Feb 06 2026 15:33:30 GMT+0100 (Ora standard dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

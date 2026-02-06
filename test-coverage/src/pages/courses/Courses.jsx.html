@@ -319,25 +319,7 @@
 <a name='L254'></a><a href='#L254'>254</a>
 <a name='L255'></a><a href='#L255'>255</a>
 <a name='L256'></a><a href='#L256'>256</a>
-<a name='L257'></a><a href='#L257'>257</a>
-<a name='L258'></a><a href='#L258'>258</a>
-<a name='L259'></a><a href='#L259'>259</a>
-<a name='L260'></a><a href='#L260'>260</a>
-<a name='L261'></a><a href='#L261'>261</a>
-<a name='L262'></a><a href='#L262'>262</a>
-<a name='L263'></a><a href='#L263'>263</a>
-<a name='L264'></a><a href='#L264'>264</a>
-<a name='L265'></a><a href='#L265'>265</a>
-<a name='L266'></a><a href='#L266'>266</a>
-<a name='L267'></a><a href='#L267'>267</a>
-<a name='L268'></a><a href='#L268'>268</a>
-<a name='L269'></a><a href='#L269'>269</a>
-<a name='L270'></a><a href='#L270'>270</a>
-<a name='L271'></a><a href='#L271'>271</a>
-<a name='L272'></a><a href='#L272'>272</a>
-<a name='L273'></a><a href='#L273'>273</a>
-<a name='L274'></a><a href='#L274'>274</a>
-<a name='L275'></a><a href='#L275'>275</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L257'></a><a href='#L257'>257</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -489,15 +471,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">18x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -552,14 +525,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">100x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -609,8 +575,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {useTranslation} from 'react-i18next';
 import {Card} from "@/components/ui/card/Card";
 import {CardContent} from "@/components/ui/cardContent/CardContent";
@@ -619,7 +583,6 @@ import {ChevronDown} from 'lucide-react';
 import {useState} from "react";
 import {PageSection} from "@/components/ui/pageSection/PageSection";
 import {ExpandableText} from "@/components/ui/expandableText/ExpandableText";
-import {AnimatePresence, motion} from "framer-motion";
 import gitPhoto from '../../assets/courses/GIT.png';
 import cPhoto from '../../assets/courses/C.png';
 import angularjsPhoto from '../../assets/courses/ANGULARJS.png';
@@ -634,6 +597,7 @@ import sqlPhoto from '../../assets/courses/SQL.png';
 import typescriptPhoto from '../../assets/courses/TYPESCRIPT.png';
 import {SeoHead} from "@/components/seoHead/SeoHead";
 import {Pagination} from "@/components/ui/pagination/Pagination";
+import {PageGrid} from "@/components/ui/pageGrid/PageGrid";
 &nbsp;
 const ITEMS_PER_PAGE = 4;
 &nbsp;
@@ -777,101 +741,83 @@ export default function Courses() {
                     /&gt;
                 &lt;/div&gt;
 &nbsp;
-                &lt;AnimatePresence mode="wait"&gt;
-                    &lt;motion.div
-                        key={`page-${page}`}
-                        initial={{ opacity: 0, scale: 0.96 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.96 }}
-                        transition={{ duration: 0.3, ease: "easeOut" }}
-                        layout
-                        className="grid grid-cols-1 md:grid-cols-2 gap-6"
-                    &gt;
-                        {displayedCourses.map((course, idx) =&gt; (
-                            &lt;Card
-                                key={idx}
-                                className="h-full relative w-full p-5 sm:p-6 border border-gray-200/60
-                                         dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
-                                         rounded-xl hover:shadow-lg transition-all duration-300
-                                         flex flex-col md:flex-row items-start gap-4"
+                &lt;PageGrid page={page}&gt;
+                    {displayedCourses.map((course, idx) =&gt; (
+                        &lt;Card
+                            key={idx}
+                            className="h-full relative w-full p-5 sm:p-6 border border-gray-200/60
+                                     dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
+                                     rounded-xl hover:shadow-lg transition-all duration-300
+                                     flex flex-col md:flex-row items-start gap-4"
+                        &gt;
+                            &lt;CardContent className="p-0 flex-1"&gt;
+                                &lt;div className="flex items-center justify-between mb-2"&gt;
+                                    &lt;h3 className="text-lg font-semibold"&gt;{t(course.nameKey)}&lt;/h3&gt;
+&nbsp;
+                                    &lt;a
+                                        href={course.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="block md:hidden shrink-0 ml-4"
+                                    &gt;
+                                        &lt;img
+                                            src={course.image}
+                                            alt={t(course.nameKey)}
+                                            className="rounded-full w-16 h-16 object-cover shadow-md hover:scale-105 transition-transform duration-300"
+                                            loading="lazy"
+                                        /&gt;
+                                    &lt;/a&gt;
+                                &lt;/div&gt;
+&nbsp;
+                                &lt;ExpandableText
+                                    value={t(course.descKey)}
+                                    maxLines={3}
+                                    className="my-2 cursor-default text-gray-700 dark:text-gray-300"
+                                /&gt;
+&nbsp;
+                                &lt;p className="text-sm text-gray-500 dark:text-gray-400 font-mono mb-2"&gt;
+                                    {t("courses_page.duration")}: {t(course.durationKey)}
+                                &lt;/p&gt;
+&nbsp;
+                                &lt;Disclosure&gt;
+                                    {({ open }) =&gt; (
+                                        &lt;div&gt;
+                                            &lt;Disclosure.Button className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline mt-2"&gt;
+                                                &lt;span&gt;{t("show_technologies")}&lt;/span&gt;
+                                                &lt;ChevronDown className={`ml-1 w-4 h-4 transition-transform ${open ? <span class="branch-0 cbranch-no" title="branch not covered" >"rotate-180" : "</span>"}`} /&gt;
+                                            &lt;/Disclosure.Button&gt;
+&nbsp;
+                                            &lt;Disclosure.Panel className="mt-2 flex flex-wrap gap-2"&gt;
+                                                {course.tech.split(",").map((t, i) =&gt; (
+                                                    &lt;span
+                                                        key={i}
+                                                        className="text-xs px-2 py-1 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300"
+                                                    &gt;
+                                                      {t.trim()}
+                                                    &lt;/span&gt;
+                                                ))}
+                                            &lt;/Disclosure.Panel&gt;
+                                        &lt;/div&gt;
+                                    )}
+                                &lt;/Disclosure&gt;
+                            &lt;/CardContent&gt;
+&nbsp;
+                            &lt;a
+                                href={course.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hidden md:block shrink-0"
                             &gt;
-                                &lt;CardContent className="p-0 flex-1"&gt;
-                                    {/* Title + mobile image */}
-                                    &lt;div className="flex items-center justify-between mb-2"&gt;
-                                        &lt;h3 className="text-lg font-semibold"&gt;{t(course.nameKey)}&lt;/h3&gt;
-&nbsp;
-                                        {/* Mobile small image */}
-                                        &lt;a
-                                            href={course.link}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="block md:hidden shrink-0 ml-4"
-                                        &gt;
-                                            &lt;img
-                                                src={course.image}
-                                                alt={t(course.nameKey)}
-                                                className="rounded-full w-16 h-16 object-cover shadow-md hover:scale-105 transition-transform duration-300"
-                                                loading="lazy"
-                                            /&gt;
-                                        &lt;/a&gt;
-                                    &lt;/div&gt;
-&nbsp;
-                                    {/* Description */}
-                                    &lt;ExpandableText
-                                        value={t(course.descKey)}
-                                        maxLines={3}
-                                        className="my-2 cursor-default text-gray-700 dark:text-gray-300"
-                                    /&gt;
-&nbsp;
-                                    {/* Duration */}
-                                    &lt;p className="text-sm text-gray-500 dark:text-gray-400 font-mono mb-2"&gt;
-                                        {t("courses_page.duration")}: {t(course.durationKey)}
-                                    &lt;/p&gt;
-&nbsp;
-                                    {/* Technologies */}
-                                    &lt;Disclosure&gt;
-                                        {({open}) =&gt; (
-                                            &lt;div&gt;
-                                                &lt;Disclosure.Button
-                                                    className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"&gt;
-                                                    &lt;span&gt;{t("show_technologies")}&lt;/span&gt;
-                                                    &lt;ChevronDown
-                                                        className={`ml-1 w-4 h-4 transition-transform ${open ? <span class="branch-0 cbranch-no" title="branch not covered" >"rotate-180" : "</span>"}`}
-                                                    /&gt;
-                                                &lt;/Disclosure.Button&gt;
-                                                &lt;Disclosure.Panel className="mt-2 flex flex-wrap gap-2"&gt;
-                                                    {course.tech.split(",").map((t, i) =&gt; (
-                                                        &lt;span
-                                                            key={i}
-                                                            className="text-xs px-2 py-1 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300"
-                                                        &gt;
-                                                {t.trim()}
-                                              &lt;/span&gt;
-                                                    ))}
-                                                &lt;/Disclosure.Panel&gt;
-                                            &lt;/div&gt;
-                                        )}
-                                    &lt;/Disclosure&gt;
-                                &lt;/CardContent&gt;
-&nbsp;
-                                {/* Desktop large image */}
-                                &lt;a
-                                    href={course.link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="hidden md:block shrink-0"
-                                &gt;
-                                    &lt;img
-                                        src={course.image}
-                                        alt={t(course.nameKey)}
-                                        className="rounded-full w-48 h-48 object-cover shadow-md hover:scale-105 transition-transform duration-300"
-                                        loading="lazy"
-                                    /&gt;
-                                &lt;/a&gt;
-                            &lt;/Card&gt;
-                        ))}
-                    &lt;/motion.div&gt;
-                &lt;/AnimatePresence&gt;
+                                &lt;img
+                                    src={course.image}
+                                    alt={t(course.nameKey)}
+                                    className="rounded-full w-48 h-48 object-cover shadow-md hover:scale-105 transition-transform duration-300"
+                                    loading="lazy"
+                                /&gt;
+                            &lt;/a&gt;
+                        &lt;/Card&gt;
+                    ))}
+                &lt;/PageGrid&gt;
 &nbsp;
                 {/* Pagination desktop normal */}
                 &lt;div className="hidden md:block mt-4"&gt;
@@ -892,7 +838,7 @@ export default function Courses() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-02-06T10:58:15.912Z
+                at 2026-02-06T14:33:22.380Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

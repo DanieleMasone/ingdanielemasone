@@ -337,17 +337,7 @@
 <a name='L272'></a><a href='#L272'>272</a>
 <a name='L273'></a><a href='#L273'>273</a>
 <a name='L274'></a><a href='#L274'>274</a>
-<a name='L275'></a><a href='#L275'>275</a>
-<a name='L276'></a><a href='#L276'>276</a>
-<a name='L277'></a><a href='#L277'>277</a>
-<a name='L278'></a><a href='#L278'>278</a>
-<a name='L279'></a><a href='#L279'>279</a>
-<a name='L280'></a><a href='#L280'>280</a>
-<a name='L281'></a><a href='#L281'>281</a>
-<a name='L282'></a><a href='#L282'>282</a>
-<a name='L283'></a><a href='#L283'>283</a>
-<a name='L284'></a><a href='#L284'>284</a>
-<a name='L285'></a><a href='#L285'>285</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L275'></a><a href='#L275'>275</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -559,15 +549,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">36x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -587,7 +568,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">78x</span>
+<span class="cline-any cline-yes">74x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -599,8 +580,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">878x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">814x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -639,10 +619,10 @@ import {ChevronDown} from 'lucide-react';
 import {useState} from "react";
 import {PageSection} from "@/components/ui/pageSection/PageSection";
 import {ExpandableText} from "@/components/ui/expandableText/ExpandableText";
-import {AnimatePresence, motion} from "framer-motion";
 import {SeoHead} from "@/components/seoHead/SeoHead";
 import {SelectableButton} from "@/components/ui/selectableButton/SelectableButton";
 import {Pagination} from "@/components/ui/pagination/Pagination";
+import {PageGrid} from "@/components/ui/pageGrid/PageGrid";
 &nbsp;
 const ITEMS_PER_PAGE = 2;
 &nbsp;
@@ -841,62 +821,52 @@ export default function Projects() {
                                         /&gt;
                                     &lt;/div&gt;
 &nbsp;
-                                    &lt;AnimatePresence mode="wait"&gt;
-                                        &lt;motion.div
-                                            key={selectedCompany + page}
-                                            initial={{ opacity: 0, scale: 0.96 }}
-                                            animate={{ opacity: 1, scale: 1 }}
-                                            exit={{ opacity: 0, scale: 0.96 }}
-                                            transition={{ duration: 0.3, ease: "easeOut" }}
-                                            layout
-                                            className="flex flex-col items-center gap-6"
-                                        &gt;
-                                            {paginated.map((proj, idx) =&gt; (
-                                                &lt;Card
-                                                    key={idx}
-                                                    className="relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
+                                    &lt;PageGrid page={page}&gt;
+                                        {paginated.map((proj, idx) =&gt; (
+                                            &lt;Card
+                                                key={idx}
+                                                className="relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
                                                        dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
                                                        rounded-xl hover:shadow-lg transition-all duration-300"
-                                                &gt;
-                                                    &lt;CardContent&gt;
-                                                        &lt;h3 className="text-lg font-semibold"&gt;{proj.name}&lt;/h3&gt;
-                                                        &lt;p className="text-gray-700 dark:text-gray-400"&gt;{proj.company}&lt;/p&gt;
-                                                        &lt;p className="text-sm mb-2 text-gray-600 dark:text-gray-500"&gt;{proj.period}&lt;/p&gt;
-                                                        {proj.type &amp;&amp; (
-                                                            &lt;ExpandableText
-                                                                value={t(`project_types.${proj.type}`)}
-                                                                maxLines={3}
-                                                                className="mb-2 text-sm"
-                                                            /&gt;
-                                                        )}
-                                                        &lt;Disclosure&gt;
-                                                            {({open}) =&gt; (
-                                                                &lt;div&gt;
-                                                                    &lt;Disclosure.Button
-                                                                        className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
-                                                                    &gt;
-                                                                        &lt;span&gt;{t("show_technologies")}&lt;/span&gt;
-                                                                        &lt;ChevronDown
-                                                                            className={`ml-1 w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}
-                                                                        /&gt;
-                                                                    &lt;/Disclosure.Button&gt;
-                                                                    &lt;Disclosure.Panel
-                                                                        className="mt-2 flex flex-wrap gap-2"&gt;
-                                                                        {proj.tech.split(",").map((t, i) =&gt; (
-                                                                            &lt;span key={i}
-                                                                                  className="text-xs px-2 py-1 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300"&gt;
+                                            &gt;
+                                                &lt;CardContent&gt;
+                                                    &lt;h3 className="text-lg font-semibold"&gt;{proj.name}&lt;/h3&gt;
+                                                    &lt;p className="text-gray-700 dark:text-gray-400"&gt;{proj.company}&lt;/p&gt;
+                                                    &lt;p className="text-sm mb-2 text-gray-600 dark:text-gray-500"&gt;{proj.period}&lt;/p&gt;
+                                                    {proj.type &amp;&amp; (
+                                                        &lt;ExpandableText
+                                                            value={t(`project_types.${proj.type}`)}
+                                                            maxLines={3}
+                                                            className="mb-2 text-sm"
+                                                        /&gt;
+                                                    )}
+                                                    &lt;Disclosure&gt;
+                                                        {({open}) =&gt; (
+                                                            &lt;div&gt;
+                                                                &lt;Disclosure.Button
+                                                                    className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
+                                                                &gt;
+                                                                    &lt;span&gt;{t("show_technologies")}&lt;/span&gt;
+                                                                    &lt;ChevronDown
+                                                                        className={`ml-1 w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}
+                                                                    /&gt;
+                                                                &lt;/Disclosure.Button&gt;
+                                                                &lt;Disclosure.Panel
+                                                                    className="mt-2 flex flex-wrap gap-2"&gt;
+                                                                    {proj.tech.split(",").map((t, i) =&gt; (
+                                                                        &lt;span key={i}
+                                                                              className="text-xs px-2 py-1 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300"&gt;
                                                                       {t.trim()}
                                                                     &lt;/span&gt;
-                                                                        ))}
-                                                                    &lt;/Disclosure.Panel&gt;
-                                                                &lt;/div&gt;
-                                                            )}
-                                                        &lt;/Disclosure&gt;
-                                                    &lt;/CardContent&gt;
-                                                &lt;/Card&gt;
-                                            ))}
-                                        &lt;/motion.div&gt;
-                                    &lt;/AnimatePresence&gt;
+                                                                    ))}
+                                                                &lt;/Disclosure.Panel&gt;
+                                                            &lt;/div&gt;
+                                                        )}
+                                                    &lt;/Disclosure&gt;
+                                                &lt;/CardContent&gt;
+                                            &lt;/Card&gt;
+                                        ))}
+                                    &lt;/PageGrid&gt;
 &nbsp;
                                     {/* Pagination desktop normal */}
                                     &lt;div className="hidden md:block mt-4"&gt;
@@ -922,7 +892,7 @@ export default function Projects() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-02-06T10:58:15.912Z
+                at 2026-02-06T14:33:22.380Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

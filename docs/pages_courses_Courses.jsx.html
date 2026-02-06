@@ -29,7 +29,7 @@
 <nav >
     
     
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-components_footer_Footer.html">components/footer/Footer</a></li><li><a href="module-components_header_Header.html">components/header/Header</a></li><li><a href="module-components_notFound_NotFound.html">components/notFound/NotFound</a></li><li><a href="module-components_seoHead_SeoHead.html">components/seoHead/SeoHead</a></li><li><a href="module-components_ui_avatarCard_AvatarCard.html">components/ui/avatarCard/AvatarCard</a></li><li><a href="module-components_ui_card_Card.html">components/ui/card/Card</a></li><li><a href="module-components_ui_cardContent_CardContent.html">components/ui/cardContent/CardContent</a></li><li><a href="module-components_ui_darkModeToggle_DarkModeToggle.html">components/ui/darkModeToggle/DarkModeToggle</a></li><li><a href="module-components_ui_expandableText_ExpandableText.html">components/ui/expandableText/ExpandableText</a></li><li><a href="module-components_ui_pageSection_PageSection.html">components/ui/pageSection/PageSection</a></li><li><a href="module-components_ui_pagination_Pagination.html">components/ui/pagination/Pagination</a></li><li><a href="module-components_ui_selectableButton_SelectableButton.html">components/ui/selectableButton/SelectableButton</a></li><li><a href="module-components_ui_tradingPerformanceChart_TradingPerformanceChart.html">components/ui/tradingPerformanceChart/TradingPerformanceChart</a></li><li><a href="module-pages_certifications_Certifications.html">pages/certifications/Certifications</a></li><li><a href="module-pages_cookiePolicy_CookiePolicy.html">pages/cookiePolicy/CookiePolicy</a></li><li><a href="module-pages_courses_Courses.html">pages/courses/Courses</a></li><li><a href="module-pages_experience_Experience.html">pages/experience/Experience</a></li><li><a href="module-pages_home_Home.html">pages/home/Home</a></li><li><a href="module-pages_privacy_Privacy.html">pages/privacy/Privacy</a></li><li><a href="module-pages_projects_Projects.html">pages/projects/Projects</a></li><li><a href="module-pages_testimonials_Testimonials.html">pages/testimonials/Testimonials</a></li><li><a href="module-pages_trading_Trading.html">pages/trading/Trading</a></li><li><a href="module-pages_ui_cookieBanner_CookieBanner.html">pages/ui/cookieBanner/CookieBanner</a></li></ul><h3>Global</h3><ul><li><a href="global.html#BrandIcon">BrandIcon</a></li><li><a href="global.html#getExperienceLabel">getExperienceLabel</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-components_footer_Footer.html">components/footer/Footer</a></li><li><a href="module-components_header_Header.html">components/header/Header</a></li><li><a href="module-components_notFound_NotFound.html">components/notFound/NotFound</a></li><li><a href="module-components_seoHead_SeoHead.html">components/seoHead/SeoHead</a></li><li><a href="module-components_ui_PageGrid.html">components/ui/PageGrid</a></li><li><a href="module-components_ui_avatarCard_AvatarCard.html">components/ui/avatarCard/AvatarCard</a></li><li><a href="module-components_ui_card_Card.html">components/ui/card/Card</a></li><li><a href="module-components_ui_cardContent_CardContent.html">components/ui/cardContent/CardContent</a></li><li><a href="module-components_ui_darkModeToggle_DarkModeToggle.html">components/ui/darkModeToggle/DarkModeToggle</a></li><li><a href="module-components_ui_expandableText_ExpandableText.html">components/ui/expandableText/ExpandableText</a></li><li><a href="module-components_ui_pageSection_PageSection.html">components/ui/pageSection/PageSection</a></li><li><a href="module-components_ui_pagination_Pagination.html">components/ui/pagination/Pagination</a></li><li><a href="module-components_ui_selectableButton_SelectableButton.html">components/ui/selectableButton/SelectableButton</a></li><li><a href="module-components_ui_tradingPerformanceChart_TradingPerformanceChart.html">components/ui/tradingPerformanceChart/TradingPerformanceChart</a></li><li><a href="module-pages_certifications_Certifications.html">pages/certifications/Certifications</a></li><li><a href="module-pages_cookiePolicy_CookiePolicy.html">pages/cookiePolicy/CookiePolicy</a></li><li><a href="module-pages_courses_Courses.html">pages/courses/Courses</a></li><li><a href="module-pages_experience_Experience.html">pages/experience/Experience</a></li><li><a href="module-pages_home_Home.html">pages/home/Home</a></li><li><a href="module-pages_privacy_Privacy.html">pages/privacy/Privacy</a></li><li><a href="module-pages_projects_Projects.html">pages/projects/Projects</a></li><li><a href="module-pages_testimonials_Testimonials.html">pages/testimonials/Testimonials</a></li><li><a href="module-pages_trading_Trading.html">pages/trading/Trading</a></li><li><a href="module-pages_ui_cookieBanner_CookieBanner.html">pages/ui/cookieBanner/CookieBanner</a></li></ul><h3>Global</h3><ul><li><a href="global.html#BrandIcon">BrandIcon</a></li><li><a href="global.html#getExperienceLabel">getExperienceLabel</a></li></ul>
     
 </nav>
 
@@ -53,7 +53,6 @@ import {ChevronDown} from 'lucide-react';
 import {useState} from "react";
 import {PageSection} from "@/components/ui/pageSection/PageSection";
 import {ExpandableText} from "@/components/ui/expandableText/ExpandableText";
-import {AnimatePresence, motion} from "framer-motion";
 import gitPhoto from '../../assets/courses/GIT.png';
 import cPhoto from '../../assets/courses/C.png';
 import angularjsPhoto from '../../assets/courses/ANGULARJS.png';
@@ -68,6 +67,7 @@ import sqlPhoto from '../../assets/courses/SQL.png';
 import typescriptPhoto from '../../assets/courses/TYPESCRIPT.png';
 import {SeoHead} from "@/components/seoHead/SeoHead";
 import {Pagination} from "@/components/ui/pagination/Pagination";
+import {PageGrid} from "@/components/ui/pageGrid/PageGrid";
 
 const ITEMS_PER_PAGE = 4;
 
@@ -211,101 +211,83 @@ export default function Courses() {
                     />
                 &lt;/div>
 
-                &lt;AnimatePresence mode="wait">
-                    &lt;motion.div
-                        key={`page-${page}`}
-                        initial={{ opacity: 0, scale: 0.96 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.96 }}
-                        transition={{ duration: 0.3, ease: "easeOut" }}
-                        layout
-                        className="grid grid-cols-1 md:grid-cols-2 gap-6"
-                    >
-                        {displayedCourses.map((course, idx) => (
-                            &lt;Card
-                                key={idx}
-                                className="h-full relative w-full p-5 sm:p-6 border border-gray-200/60
-                                         dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
-                                         rounded-xl hover:shadow-lg transition-all duration-300
-                                         flex flex-col md:flex-row items-start gap-4"
+                &lt;PageGrid page={page}>
+                    {displayedCourses.map((course, idx) => (
+                        &lt;Card
+                            key={idx}
+                            className="h-full relative w-full p-5 sm:p-6 border border-gray-200/60
+                                     dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
+                                     rounded-xl hover:shadow-lg transition-all duration-300
+                                     flex flex-col md:flex-row items-start gap-4"
+                        >
+                            &lt;CardContent className="p-0 flex-1">
+                                &lt;div className="flex items-center justify-between mb-2">
+                                    &lt;h3 className="text-lg font-semibold">{t(course.nameKey)}&lt;/h3>
+
+                                    &lt;a
+                                        href={course.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="block md:hidden shrink-0 ml-4"
+                                    >
+                                        &lt;img
+                                            src={course.image}
+                                            alt={t(course.nameKey)}
+                                            className="rounded-full w-16 h-16 object-cover shadow-md hover:scale-105 transition-transform duration-300"
+                                            loading="lazy"
+                                        />
+                                    &lt;/a>
+                                &lt;/div>
+
+                                &lt;ExpandableText
+                                    value={t(course.descKey)}
+                                    maxLines={3}
+                                    className="my-2 cursor-default text-gray-700 dark:text-gray-300"
+                                />
+
+                                &lt;p className="text-sm text-gray-500 dark:text-gray-400 font-mono mb-2">
+                                    {t("courses_page.duration")}: {t(course.durationKey)}
+                                &lt;/p>
+
+                                &lt;Disclosure>
+                                    {({ open }) => (
+                                        &lt;div>
+                                            &lt;Disclosure.Button className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline mt-2">
+                                                &lt;span>{t("show_technologies")}&lt;/span>
+                                                &lt;ChevronDown className={`ml-1 w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`} />
+                                            &lt;/Disclosure.Button>
+
+                                            &lt;Disclosure.Panel className="mt-2 flex flex-wrap gap-2">
+                                                {course.tech.split(",").map((t, i) => (
+                                                    &lt;span
+                                                        key={i}
+                                                        className="text-xs px-2 py-1 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300"
+                                                    >
+                                                      {t.trim()}
+                                                    &lt;/span>
+                                                ))}
+                                            &lt;/Disclosure.Panel>
+                                        &lt;/div>
+                                    )}
+                                &lt;/Disclosure>
+                            &lt;/CardContent>
+
+                            &lt;a
+                                href={course.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hidden md:block shrink-0"
                             >
-                                &lt;CardContent className="p-0 flex-1">
-                                    {/* Title + mobile image */}
-                                    &lt;div className="flex items-center justify-between mb-2">
-                                        &lt;h3 className="text-lg font-semibold">{t(course.nameKey)}&lt;/h3>
-
-                                        {/* Mobile small image */}
-                                        &lt;a
-                                            href={course.link}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="block md:hidden shrink-0 ml-4"
-                                        >
-                                            &lt;img
-                                                src={course.image}
-                                                alt={t(course.nameKey)}
-                                                className="rounded-full w-16 h-16 object-cover shadow-md hover:scale-105 transition-transform duration-300"
-                                                loading="lazy"
-                                            />
-                                        &lt;/a>
-                                    &lt;/div>
-
-                                    {/* Description */}
-                                    &lt;ExpandableText
-                                        value={t(course.descKey)}
-                                        maxLines={3}
-                                        className="my-2 cursor-default text-gray-700 dark:text-gray-300"
-                                    />
-
-                                    {/* Duration */}
-                                    &lt;p className="text-sm text-gray-500 dark:text-gray-400 font-mono mb-2">
-                                        {t("courses_page.duration")}: {t(course.durationKey)}
-                                    &lt;/p>
-
-                                    {/* Technologies */}
-                                    &lt;Disclosure>
-                                        {({open}) => (
-                                            &lt;div>
-                                                &lt;Disclosure.Button
-                                                    className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2">
-                                                    &lt;span>{t("show_technologies")}&lt;/span>
-                                                    &lt;ChevronDown
-                                                        className={`ml-1 w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}
-                                                    />
-                                                &lt;/Disclosure.Button>
-                                                &lt;Disclosure.Panel className="mt-2 flex flex-wrap gap-2">
-                                                    {course.tech.split(",").map((t, i) => (
-                                                        &lt;span
-                                                            key={i}
-                                                            className="text-xs px-2 py-1 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300"
-                                                        >
-                                                {t.trim()}
-                                              &lt;/span>
-                                                    ))}
-                                                &lt;/Disclosure.Panel>
-                                            &lt;/div>
-                                        )}
-                                    &lt;/Disclosure>
-                                &lt;/CardContent>
-
-                                {/* Desktop large image */}
-                                &lt;a
-                                    href={course.link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="hidden md:block shrink-0"
-                                >
-                                    &lt;img
-                                        src={course.image}
-                                        alt={t(course.nameKey)}
-                                        className="rounded-full w-48 h-48 object-cover shadow-md hover:scale-105 transition-transform duration-300"
-                                        loading="lazy"
-                                    />
-                                &lt;/a>
-                            &lt;/Card>
-                        ))}
-                    &lt;/motion.div>
-                &lt;/AnimatePresence>
+                                &lt;img
+                                    src={course.image}
+                                    alt={t(course.nameKey)}
+                                    className="rounded-full w-48 h-48 object-cover shadow-md hover:scale-105 transition-transform duration-300"
+                                    loading="lazy"
+                                />
+                            &lt;/a>
+                        &lt;/Card>
+                    ))}
+                &lt;/PageGrid>
 
                 {/* Pagination desktop normal */}
                 &lt;div className="hidden md:block mt-4">
@@ -333,7 +315,7 @@ export default function Courses() {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Fri Feb 06 2026 11:58:21 GMT+0100 (Ora standard dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Fri Feb 06 2026 15:33:30 GMT+0100 (Ora standard dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
