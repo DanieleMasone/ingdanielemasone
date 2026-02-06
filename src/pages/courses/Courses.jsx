@@ -22,7 +22,7 @@ import typescriptPhoto from '../../assets/courses/TYPESCRIPT.png';
 import {SeoHead} from "@/components/seoHead/SeoHead";
 import {Pagination} from "@/components/ui/pagination/Pagination";
 
-const ITEMS_PER_PAGE = 3;
+const ITEMS_PER_PAGE = 4;
 
 const courses = [
     {
@@ -37,7 +37,7 @@ const courses = [
         nameKey: "courses_page.typescript.title",
         descKey: "courses_page.typescript.description",
         durationKey: "courses_page.typescript.duration",
-        tech: "Typescript, data types, module, OOP, ...",
+        tech: "Typescript, data types, module, OOP",
         link: "https://www.udemy.com/course/typescript-da-zero/",
         image: typescriptPhoto
     },
@@ -45,7 +45,7 @@ const courses = [
         nameKey: "courses_page.jQuery.title",
         descKey: "courses_page.jQuery.description",
         durationKey: "courses_page.jQuery.duration",
-        tech: "jQuery, Selectors, Classes management, Traversing, Manipulating CSS, Bind, Events, ...",
+        tech: "jQuery, Selectors, Classes management, Traversing, Manipulating CSS, Bind, Events",
         link: "https://www.udemy.com/course/corso-jquery/",
         image: jqueryPhoto
     },
@@ -53,7 +53,7 @@ const courses = [
         nameKey: "courses_page.php.title",
         descKey: "courses_page.php.description",
         durationKey: "courses_page.php.duration",
-        tech: "Php, data types, Control flow statements, iterations, Regular expressions, Arrays, OOP, HTTP calls, File system, ...",
+        tech: "Php, data types, Control flow statements, iterations, Regular expressions, Arrays, OOP, HTTP calls, File system",
         link: "https://www.udemy.com/course/corso-di-programmazione-php/",
         image: phpPhoto
     },
@@ -61,7 +61,7 @@ const courses = [
         nameKey: "courses_page.cpp.title",
         descKey: "courses_page.cpp.description",
         durationKey: "courses_page.cpp.duration",
-        tech: "C++, data types, control flow statements, iterations, I/O system, arrays and structs, OOP, lambda expressions, ...",
+        tech: "C++, data types, control flow statements, iterations, I/O system, arrays and structs, OOP, lambda expressions",
         link: "https://www.udemy.com/course/corso-di-programmazione-c-plus-plus/",
         image: cplusplusPhoto
     },
@@ -69,7 +69,7 @@ const courses = [
         nameKey: "courses_page.html5.title",
         descKey: "courses_page.html5.description",
         durationKey: "courses_page.html5.duration",
-        tech: "HTML5, APIs (WebStorage, Web Workers, Drag & Drop, ...), Canvas & Multimedia, Header, Footer, Aside, ...",
+        tech: "HTML5, APIs (WebStorage, Web Workers, Drag & Drop), Canvas & Multimedia, Header, Footer, Aside",
         link: "https://www.udemy.com/course/corso-html5/",
         image: html5Photo
     },
@@ -77,7 +77,7 @@ const courses = [
         nameKey: "courses_page.angularJS.title",
         descKey: "courses_page.angularJS.description",
         durationKey: "courses_page.angularJS.duration",
-        tech: "AngularJS, scope (the hierarchy), services ($http), control flow statement, directives (bind, ng-class, ng-repeat...), filters, custom directives, ...",
+        tech: "AngularJS, scope (the hierarchy), services ($http), control flow statement, directives (bind, ng-class, ng-repeat...), filters, custom directives",
         link: "https://www.udemy.com/course/corso-angularjs/",
         image: angularjsPhoto
     },
@@ -85,7 +85,7 @@ const courses = [
         nameKey: "courses_page.java.title",
         descKey: "courses_page.java.description",
         durationKey: "courses_page.java.duration",
-        tech: "Java, Control flow statements, iterations, arrays, OOP, File management, Lambda expressions, MySQL, MongoDB , ...",
+        tech: "Java, Control flow statements, iterations, arrays, OOP, File management, Lambda expressions, MySQL, MongoDB ",
         link: "https://www.udemy.com/course/corso-di-programmazione-java/",
         image: javaPhoto
     },
@@ -93,7 +93,7 @@ const courses = [
         nameKey: "courses_page.javascript.title",
         descKey: "courses_page.javascript.description",
         durationKey: "courses_page.javascript.duration",
-        tech: "Javascript, control flow statements, iterations, arrays, DOM, Design patterns, Arrow function, ...",
+        tech: "Javascript, control flow statements, iterations, arrays, DOM, Design patterns, Arrow function",
         link: "https://www.udemy.com/course/corso-di-programmazione-javascript/",
         image: javascriptPhoto
     },
@@ -101,7 +101,7 @@ const courses = [
         nameKey: "courses_page.c.title",
         descKey: "courses_page.c.description",
         durationKey: "courses_page.c.duration",
-        tech: "C, data types, control flow statements, iterations, arrays, structs, ...",
+        tech: "C, data types, control flow statements, iterations, arrays, structs",
         link: "https://www.udemy.com/course/corso-di-programmazione-c/",
         image: cPhoto
     },
@@ -109,7 +109,7 @@ const courses = [
         nameKey: "courses_page.assembler.title",
         descKey: "courses_page.assembler.description",
         durationKey: "courses_page.assembler.duration",
-        tech: "AssemblerX86, data types, control flow statement, iterations, arrays, ...",
+        tech: "AssemblerX86, data types, control flow statement, iterations, arrays",
         link: "https://www.udemy.com/course/corso-di-programmazione-assembler-8086/",
         image: assemblyPhoto
     },
@@ -117,7 +117,7 @@ const courses = [
         nameKey: "courses_page.sql.title",
         descKey: "courses_page.sql.description",
         durationKey: "courses_page.sql.duration",
-        tech: "SQL, C, E/R, DB design, ...",
+        tech: "SQL, C, E/R, DB design",
         link: "https://www.udemy.com/course/corso-sulle-basi-di-dati-dallo-schema-er-allsql/",
         image: sqlPhoto
     }
@@ -167,19 +167,20 @@ export default function Courses() {
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={`page-${page}`}
-                        initial={{opacity: 0, y: 40}}
-                        animate={{opacity: 1, y: 0}}
-                        exit={{opacity: 0, y: -40}}
-                        transition={{duration: 0.4}}
+                        initial={{ opacity: 0, scale: 0.96 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.96 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
                         layout
-                        className="flex flex-col items-center gap-6"
+                        className="grid grid-cols-1 md:grid-cols-2 gap-6"
                     >
                         {displayedCourses.map((course, idx) => (
                             <Card
                                 key={idx}
-                                className="relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
+                                className="h-full relative w-full p-5 sm:p-6 border border-gray-200/60
                                          dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
-                                           rounded-xl hover:shadow-lg transition-all duration-300 flex flex-col md:flex-row items-start gap-4"
+                                         rounded-xl hover:shadow-lg transition-all duration-300
+                                         flex flex-col md:flex-row items-start gap-4"
                             >
                                 <CardContent className="p-0 flex-1">
                                     {/* Title + mobile image */}

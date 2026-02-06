@@ -77,7 +77,7 @@ describe('Courses component', () => {
         fireEvent.click(nextButtons[0]); // mobile
         fireEvent.click(nextButtons[1]); // desktop
 
-        pageInfos.forEach(info => expect(info).toHaveTextContent("3 / 4"));
+        pageInfos.forEach(info => expect(info).toHaveTextContent("3 / 3"));
     });
 
     test('each course image has correct alt text', () => {
@@ -113,17 +113,17 @@ describe('Courses component', () => {
 
         // Advance mobile
         fireEvent.click(nextButtons[0]);
-        expect(pageInfos[0]).toHaveTextContent("2 / 4");
-        expect(pageInfos[1]).toHaveTextContent("2 / 4");
+        expect(pageInfos[0]).toHaveTextContent("2 / 3");
+        expect(pageInfos[1]).toHaveTextContent("2 / 3");
 
         // Advance desktop
         fireEvent.click(nextButtons[1]);
-        expect(pageInfos[1]).toHaveTextContent("3 / 4");
+        expect(pageInfos[1]).toHaveTextContent("3 / 3");
 
         // Go back to page 1 for both
         fireEvent.click(prevButtons[0]);
         fireEvent.click(prevButtons[1]);
-        pageInfos.forEach(info => expect(info).toHaveTextContent("1 / 4"));
+        pageInfos.forEach(info => expect(info).toHaveTextContent("1 / 3"));
     });
 
     test("matches snapshot", () => {

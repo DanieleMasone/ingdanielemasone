@@ -10,7 +10,7 @@ import {SeoHead} from "@/components/seoHead/SeoHead";
 import {BrandIcon, linkedinIcon} from "@/components/footer/Footer";
 import {Pagination} from "@/components/ui/pagination/Pagination";
 
-const ITEMS_PER_PAGE = 3;
+const ITEMS_PER_PAGE = 4;
 
 const testimonials = [
     {
@@ -193,20 +193,20 @@ export default function Testimonials() {
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={`page-${page}`}
-                        initial={{opacity: 0, scale: 0.96}}
-                        animate={{opacity: 1, scale: 1}}
-                        exit={{opacity: 0, scale: 0.96}}
-                        transition={{duration: 0.3, ease: "easeOut"}}
+                        initial={{ opacity: 0, scale: 0.96 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.96 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
                         layout
-                        className="flex flex-col items-center gap-6"
+                        className="grid grid-cols-1 md:grid-cols-2 gap-6"
                     >
                         {displayedTestimonials.map((texts, idx) => (
                             <Card
                                 data-testid="testimonial-card"
                                 key={idx}
-                                className="relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
-                                   dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
-                                   rounded-xl hover:shadow-lg transition-all duration-300"
+                                className="h-full relative w-full p-5 sm:p-6 border border-gray-200/60
+                                         dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
+                                           rounded-xl hover:shadow-lg transition-all duration-300 flex flex-col"
                             >
                                 <CardContent>
                                     <Disclosure>

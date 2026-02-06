@@ -423,8 +423,8 @@
   },
   "avatar": {
     "name": "Daniele Masone",
-    "tagline": "Ingeniero de software senior | Arquitecto técnico | Profesor",
+    "tagline": "Senior Software Engineer & Technical Architect | Front-End Specialist | Tech Trainer",
     "skills": ["Java", "JavaScript", "Angular", "C", "MySQL"],
-    "bio": "Experto en arquitectura de software, desarrollo front-end y back-end, y formación de desarrolladores."
+    "bio": "Experto en desarrollo full stack y arquitecturas empresariales escalables. Apasionado por el clean code, las buenas prácticas y la formación técnica."
   }
 }

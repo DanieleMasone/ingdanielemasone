@@ -8,7 +8,7 @@ import {SeoHead} from "@/components/seoHead/SeoHead";
 import {useState} from "react";
 import {Pagination} from "@/components/ui/pagination/Pagination";
 
-const ITEMS_PER_PAGE = 3;
+const ITEMS_PER_PAGE = 4;
 
 const certifications = [
     {
@@ -92,12 +92,12 @@ export default function Certifications() {
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={`page-${page}`}
-                        initial={{opacity: 0, y: 40}}
-                        animate={{opacity: 1, y: 0}}
-                        exit={{opacity: 0, y: -40}}
-                        transition={{duration: 0.4}}
+                        initial={{ opacity: 0, scale: 0.96 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.96 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
                         layout
-                        className="flex flex-col items-center gap-6"
+                        className="grid grid-cols-1 md:grid-cols-2 gap-6"
                     >
                         {displayedCerts.map((cert, idx) => (
                             <Card

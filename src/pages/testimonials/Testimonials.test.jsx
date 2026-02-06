@@ -60,7 +60,7 @@ describe("Testimonials component with mobile + desktop paginators", () => {
         expect(prevButtons.length).toBe(2);
         expect(pageDisplays.length).toBe(2);
 
-        pageDisplays.forEach(el => expect(el).toHaveTextContent("1 / 8"));
+        pageDisplays.forEach(el => expect(el).toHaveTextContent("1 / 6"));
     });
 
     test("prev buttons are disabled on first page", () => {
@@ -75,7 +75,7 @@ describe("Testimonials component with mobile + desktop paginators", () => {
             nextButtons.forEach(btn => fireEvent.click(btn));
         }
 
-        pageDisplays.forEach(el => expect(el).toHaveTextContent("8 / 8"));
+        pageDisplays.forEach(el => expect(el).toHaveTextContent("6 / 6"));
         nextButtons.forEach(btn => expect(btn).toBeDisabled());
     });
 
@@ -84,18 +84,18 @@ describe("Testimonials component with mobile + desktop paginators", () => {
 
         // Advance mobile paginator
         fireEvent.click(nextButtons[0]);
-        expect(pageDisplays[0]).toHaveTextContent("2 / 8");
-        expect(pageDisplays[1]).toHaveTextContent("2 / 8");
+        expect(pageDisplays[0]).toHaveTextContent("2 / 6");
+        expect(pageDisplays[1]).toHaveTextContent("2 / 6");
 
         // Advance desktop paginator
         fireEvent.click(nextButtons[1]);
-        expect(pageDisplays[0]).toHaveTextContent("3 / 8");
-        expect(pageDisplays[1]).toHaveTextContent("3 / 8");
+        expect(pageDisplays[0]).toHaveTextContent("3 / 6");
+        expect(pageDisplays[1]).toHaveTextContent("3 / 6");
 
         // Return to page 1
         fireEvent.click(prevButtons[0]);
         fireEvent.click(prevButtons[1]);
-        pageDisplays.forEach(el => expect(el).toHaveTextContent("1 / 8"));
+        pageDisplays.forEach(el => expect(el).toHaveTextContent("1 / 6"));
     });
 
     test("toggles testimonial quote visibility on disclosure click", async () => {

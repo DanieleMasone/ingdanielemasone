@@ -24,10 +24,12 @@ export default function Home() {
 
             <section className="px-4 py-8 sm:px-6 md:px-12 max-w-7xl mx-auto">
                 <motion.div
+                    initial={{ opacity: 0, scale: 0.96 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.96 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                    layout
                     className="grid grid-cols-1 md:grid-cols-2 gap-10 bg-gradient-to-br from-blue-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl p-6 sm:p-8 md:p-10 shadow-lg"
-                    initial={{opacity: 0, y: 40}}
-                    animate={{opacity: 1, y: 0}}
-                    transition={{duration: 0.6, ease: "easeOut"}}
                 >
                     {/* Avatar mobile */}
                     <div className="md:hidden flex justify-center mb-6">
