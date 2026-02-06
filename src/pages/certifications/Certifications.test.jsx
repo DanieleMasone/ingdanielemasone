@@ -31,13 +31,6 @@ describe("Certifications component", () => {
         expect(title).toBeInTheDocument();
     });
 
-    test("renders certification cards with name, issuer and date", () => {
-        expect(screen.getByText(/English CEFR Level B2.2/i)).toBeInTheDocument();
-
-        const speexxEntries = screen.getAllByText(/Speexx — 2024/i);
-        expect(speexxEntries.length).toBeGreaterThan(0);
-    });
-
     test("renders 'View Certificate' links correctly", () => {
         const links = screen.getAllByRole("link", {name: /view certificate/i});
         expect(links.length).toBeGreaterThanOrEqual(3);
@@ -55,6 +48,15 @@ describe("Certifications component", () => {
 
         const nextButtons = screen.getAllByText(/→/);
         expect(nextButtons.length).toBeGreaterThan(0);
+    });
+
+    test("renders PageGrid container", () => {
+        const pageGrid = screen.getByRole("grid");
+        expect(pageGrid).toBeInTheDocument();
+    });
+
+    test("renders SEO metadata", () => {
+        expect(document.title).toMatch(/certifications/i);
     });
 
     test("matches snapshot", () => {

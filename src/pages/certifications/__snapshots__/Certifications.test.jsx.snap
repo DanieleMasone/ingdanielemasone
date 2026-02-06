@@ -40,71 +40,29 @@ exports[`Certifications component > matches snapshot 1`] = `
       </div>
     </div>
     <div
-      class="grid grid-cols-1 md:grid-cols-2 gap-6"
-      style="opacity: 0; transform: scale(0.96);"
+      class="min-h-[70vh] flex flex-col "
     >
-      <section
-        class="rounded-2xl bg-gray-100 dark:bg-gray-800 
+      <div
+        aria-label="Page 1"
+        class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6 pt-4"
+        role="grid"
+        style="opacity: 0; transform: scale(0.96);"
+      >
+        <section
+          class="rounded-2xl bg-gray-100 dark:bg-gray-800 
                 border border-gray-300 dark:border-gray-700 
                 shadow-md hover:shadow-lg transition-shadow 
-                p-4 sm:p-6 w-full relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
-                                   dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
-                                   rounded-xl hover:shadow-lg transition-all duration-300"
-      >
-        <div
-          class="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-full
-                                      bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 shadow-sm"
+                p-4 sm:p-6 w-full relative w-full p-4 sm:p-6 border border-gray-200/60 dark:border-gray-700/60
+                                     bg-white/60 dark:bg-gray-800/40 backdrop-blur-md rounded-xl hover:shadow-xl
+                                       transition-all duration-300 flex flex-col justify-between"
         >
-          <svg
-            aria-hidden="true"
-            class="lucide lucide-award w-5 h-5"
-            fill="none"
-            height="24"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
+          <div
+            class="absolute -top-3 right-4 w-12 h-12 rounded-full bg-gradient-to-r from-blue-100 to-blue-200
+                                          dark:from-blue-900/40 dark:to-blue-800/40 flex items-center justify-center shadow-lg z-20 ring-4 ring-background"
           >
-            <path
-              d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"
-            />
-            <circle
-              cx="12"
-              cy="8"
-              r="6"
-            />
-          </svg>
-        </div>
-        <div
-          class="p-4 sm:p-6 md:p-8
-                text-sm sm:text-base
-                text-gray-900 dark:text-gray-300
-                p-0"
-        >
-          <h3
-            class="text-lg font-semibold text-gray-900 dark:text-white mb-1"
-          >
-            English CEFR Level B2.2
-          </h3>
-          <p
-            class="text-sm text-gray-500 dark:text-gray-400 font-mono mb-3"
-          >
-            Speexx — 2024
-          </p>
-          <a
-            class="inline-flex items-center text-sm text-blue-600 dark:text-blue-400
-                                         hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
-            href="https://portal.speexx.com/certificate/ZTAxY2Y5ZTktNGRjMi00Yzc0LWFjYmQtZjAzOTIyZDNmZjdmOjo4Mg=="
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            View Certificate
             <svg
               aria-hidden="true"
-              class="lucide lucide-external-link w-4 h-4 ml-1"
+              class="lucide lucide-award w-6 h-6 text-blue-600 dark:text-blue-400"
               fill="none"
               height="24"
               stroke="currentColor"
@@ -116,84 +74,100 @@ exports[`Certifications component > matches snapshot 1`] = `
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M15 3h6v6"
+                d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"
               />
-              <path
-                d="M10 14 21 3"
-              />
-              <path
-                d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+              <circle
+                cx="12"
+                cy="8"
+                r="6"
               />
             </svg>
-          </a>
-        </div>
-        <div
-          class="absolute inset-0 pointer-events-none opacity-0 hover:opacity-100 transition-opacity
-                                        duration-500 bg-gradient-to-r from-blue-50/30 to-transparent dark:from-blue-900/10"
-        />
-      </section>
-      <section
-        class="rounded-2xl bg-gray-100 dark:bg-gray-800 
-                border border-gray-300 dark:border-gray-700 
-                shadow-md hover:shadow-lg transition-shadow 
-                p-4 sm:p-6 w-full relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
-                                   dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
-                                   rounded-xl hover:shadow-lg transition-all duration-300"
-      >
-        <div
-          class="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-full
-                                      bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 shadow-sm"
-        >
-          <svg
-            aria-hidden="true"
-            class="lucide lucide-award w-5 h-5"
-            fill="none"
-            height="24"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"
-            />
-            <circle
-              cx="12"
-              cy="8"
-              r="6"
-            />
-          </svg>
-        </div>
-        <div
-          class="p-4 sm:p-6 md:p-8
+          </div>
+          <div
+            class="p-4 sm:p-6 md:p-8
                 text-sm sm:text-base
                 text-gray-900 dark:text-gray-300
-                p-0"
+                p-0 pt-8 relative z-0 flex flex-col h-full justify-between"
+          >
+            <div
+              class="space-y-1.5 mb-4"
+            >
+              <h3
+                class="text-lg font-bold text-gray-900 dark:text-white leading-tight"
+              >
+                English CEFR Level B2.2
+              </h3>
+              <p
+                class="text-sm font-mono text-gray-600 dark:text-gray-400 leading-tight"
+              >
+                Speexx
+              </p>
+              <p
+                class="text-xs text-gray-500 dark:text-gray-500 font-mono"
+              >
+                2024
+              </p>
+            </div>
+            <div
+              class="mt-auto"
+            >
+              <a
+                class="group inline-flex items-center text-sm font-semibold text-blue-600 dark:text-blue-400
+                                                   hover:text-blue-700 dark:hover:text-blue-300 transition-all duration-300
+                                                   hover:underline underline-offset-4 hover:shadow-md hover:shadow-blue-100 dark:hover:shadow-blue-900/50
+                                                   px-3 py-2 rounded-lg border border-blue-200/50 dark:border-blue-800/50 hover:border-blue-300"
+                href="https://portal.speexx.com/certificate/ZTAxY2Y5ZTktNGRjMi00Yzc0LWFjYmQtZjAzOTIyZDNmZjdmOjo4Mg=="
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                View Certificate
+                <svg
+                  aria-hidden="true"
+                  class="lucide lucide-external-link w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15 3h6v6"
+                  />
+                  <path
+                    d="M10 14 21 3"
+                  />
+                  <path
+                    d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div
+            class="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100
+                                            transition-all duration-500 bg-gradient-to-br from-blue-50/80 via-transparent to-transparent
+                                            dark:from-blue-900/30 rounded-xl backdrop-blur-sm"
+          />
+        </section>
+        <section
+          class="rounded-2xl bg-gray-100 dark:bg-gray-800 
+                border border-gray-300 dark:border-gray-700 
+                shadow-md hover:shadow-lg transition-shadow 
+                p-4 sm:p-6 w-full relative w-full p-4 sm:p-6 border border-gray-200/60 dark:border-gray-700/60
+                                     bg-white/60 dark:bg-gray-800/40 backdrop-blur-md rounded-xl hover:shadow-xl
+                                       transition-all duration-300 flex flex-col justify-between"
         >
-          <h3
-            class="text-lg font-semibold text-gray-900 dark:text-white mb-1"
+          <div
+            class="absolute -top-3 right-4 w-12 h-12 rounded-full bg-gradient-to-r from-blue-100 to-blue-200
+                                          dark:from-blue-900/40 dark:to-blue-800/40 flex items-center justify-center shadow-lg z-20 ring-4 ring-background"
           >
-            English CEFR Level B2.1
-          </h3>
-          <p
-            class="text-sm text-gray-500 dark:text-gray-400 font-mono mb-3"
-          >
-            Speexx — 2024
-          </p>
-          <a
-            class="inline-flex items-center text-sm text-blue-600 dark:text-blue-400
-                                         hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
-            href="https://portal.speexx.com/certificate/ZTAxY2Y5ZTktNGRjMi00Yzc0LWFjYmQtZjAzOTIyZDNmZjdmOjo4MQ=="
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            View Certificate
             <svg
               aria-hidden="true"
-              class="lucide lucide-external-link w-4 h-4 ml-1"
+              class="lucide lucide-award w-6 h-6 text-blue-600 dark:text-blue-400"
               fill="none"
               height="24"
               stroke="currentColor"
@@ -205,84 +179,100 @@ exports[`Certifications component > matches snapshot 1`] = `
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M15 3h6v6"
+                d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"
               />
-              <path
-                d="M10 14 21 3"
-              />
-              <path
-                d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+              <circle
+                cx="12"
+                cy="8"
+                r="6"
               />
             </svg>
-          </a>
-        </div>
-        <div
-          class="absolute inset-0 pointer-events-none opacity-0 hover:opacity-100 transition-opacity
-                                        duration-500 bg-gradient-to-r from-blue-50/30 to-transparent dark:from-blue-900/10"
-        />
-      </section>
-      <section
-        class="rounded-2xl bg-gray-100 dark:bg-gray-800 
-                border border-gray-300 dark:border-gray-700 
-                shadow-md hover:shadow-lg transition-shadow 
-                p-4 sm:p-6 w-full relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
-                                   dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
-                                   rounded-xl hover:shadow-lg transition-all duration-300"
-      >
-        <div
-          class="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-full
-                                      bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 shadow-sm"
-        >
-          <svg
-            aria-hidden="true"
-            class="lucide lucide-award w-5 h-5"
-            fill="none"
-            height="24"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"
-            />
-            <circle
-              cx="12"
-              cy="8"
-              r="6"
-            />
-          </svg>
-        </div>
-        <div
-          class="p-4 sm:p-6 md:p-8
+          </div>
+          <div
+            class="p-4 sm:p-6 md:p-8
                 text-sm sm:text-base
                 text-gray-900 dark:text-gray-300
-                p-0"
+                p-0 pt-8 relative z-0 flex flex-col h-full justify-between"
+          >
+            <div
+              class="space-y-1.5 mb-4"
+            >
+              <h3
+                class="text-lg font-bold text-gray-900 dark:text-white leading-tight"
+              >
+                English CEFR Level B2.1
+              </h3>
+              <p
+                class="text-sm font-mono text-gray-600 dark:text-gray-400 leading-tight"
+              >
+                Speexx
+              </p>
+              <p
+                class="text-xs text-gray-500 dark:text-gray-500 font-mono"
+              >
+                2024
+              </p>
+            </div>
+            <div
+              class="mt-auto"
+            >
+              <a
+                class="group inline-flex items-center text-sm font-semibold text-blue-600 dark:text-blue-400
+                                                   hover:text-blue-700 dark:hover:text-blue-300 transition-all duration-300
+                                                   hover:underline underline-offset-4 hover:shadow-md hover:shadow-blue-100 dark:hover:shadow-blue-900/50
+                                                   px-3 py-2 rounded-lg border border-blue-200/50 dark:border-blue-800/50 hover:border-blue-300"
+                href="https://portal.speexx.com/certificate/ZTAxY2Y5ZTktNGRjMi00Yzc0LWFjYmQtZjAzOTIyZDNmZjdmOjo4MQ=="
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                View Certificate
+                <svg
+                  aria-hidden="true"
+                  class="lucide lucide-external-link w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15 3h6v6"
+                  />
+                  <path
+                    d="M10 14 21 3"
+                  />
+                  <path
+                    d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div
+            class="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100
+                                            transition-all duration-500 bg-gradient-to-br from-blue-50/80 via-transparent to-transparent
+                                            dark:from-blue-900/30 rounded-xl backdrop-blur-sm"
+          />
+        </section>
+        <section
+          class="rounded-2xl bg-gray-100 dark:bg-gray-800 
+                border border-gray-300 dark:border-gray-700 
+                shadow-md hover:shadow-lg transition-shadow 
+                p-4 sm:p-6 w-full relative w-full p-4 sm:p-6 border border-gray-200/60 dark:border-gray-700/60
+                                     bg-white/60 dark:bg-gray-800/40 backdrop-blur-md rounded-xl hover:shadow-xl
+                                       transition-all duration-300 flex flex-col justify-between"
         >
-          <h3
-            class="text-lg font-semibold text-gray-900 dark:text-white mb-1"
+          <div
+            class="absolute -top-3 right-4 w-12 h-12 rounded-full bg-gradient-to-r from-blue-100 to-blue-200
+                                          dark:from-blue-900/40 dark:to-blue-800/40 flex items-center justify-center shadow-lg z-20 ring-4 ring-background"
           >
-            English CEFR Level B1.2
-          </h3>
-          <p
-            class="text-sm text-gray-500 dark:text-gray-400 font-mono mb-3"
-          >
-            Speexx — 2024
-          </p>
-          <a
-            class="inline-flex items-center text-sm text-blue-600 dark:text-blue-400
-                                         hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
-            href="https://portal.speexx.com/certificate/ZTAxY2Y5ZTktNGRjMi00Yzc0LWFjYmQtZjAzOTIyZDNmZjdmOjo4MA=="
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            View Certificate
             <svg
               aria-hidden="true"
-              class="lucide lucide-external-link w-4 h-4 ml-1"
+              class="lucide lucide-award w-6 h-6 text-blue-600 dark:text-blue-400"
               fill="none"
               height="24"
               stroke="currentColor"
@@ -294,84 +284,100 @@ exports[`Certifications component > matches snapshot 1`] = `
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M15 3h6v6"
+                d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"
               />
-              <path
-                d="M10 14 21 3"
-              />
-              <path
-                d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+              <circle
+                cx="12"
+                cy="8"
+                r="6"
               />
             </svg>
-          </a>
-        </div>
-        <div
-          class="absolute inset-0 pointer-events-none opacity-0 hover:opacity-100 transition-opacity
-                                        duration-500 bg-gradient-to-r from-blue-50/30 to-transparent dark:from-blue-900/10"
-        />
-      </section>
-      <section
-        class="rounded-2xl bg-gray-100 dark:bg-gray-800 
-                border border-gray-300 dark:border-gray-700 
-                shadow-md hover:shadow-lg transition-shadow 
-                p-4 sm:p-6 w-full relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
-                                   dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
-                                   rounded-xl hover:shadow-lg transition-all duration-300"
-      >
-        <div
-          class="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-full
-                                      bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 shadow-sm"
-        >
-          <svg
-            aria-hidden="true"
-            class="lucide lucide-award w-5 h-5"
-            fill="none"
-            height="24"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"
-            />
-            <circle
-              cx="12"
-              cy="8"
-              r="6"
-            />
-          </svg>
-        </div>
-        <div
-          class="p-4 sm:p-6 md:p-8
+          </div>
+          <div
+            class="p-4 sm:p-6 md:p-8
                 text-sm sm:text-base
                 text-gray-900 dark:text-gray-300
-                p-0"
+                p-0 pt-8 relative z-0 flex flex-col h-full justify-between"
+          >
+            <div
+              class="space-y-1.5 mb-4"
+            >
+              <h3
+                class="text-lg font-bold text-gray-900 dark:text-white leading-tight"
+              >
+                English CEFR Level B1.2
+              </h3>
+              <p
+                class="text-sm font-mono text-gray-600 dark:text-gray-400 leading-tight"
+              >
+                Speexx
+              </p>
+              <p
+                class="text-xs text-gray-500 dark:text-gray-500 font-mono"
+              >
+                2024
+              </p>
+            </div>
+            <div
+              class="mt-auto"
+            >
+              <a
+                class="group inline-flex items-center text-sm font-semibold text-blue-600 dark:text-blue-400
+                                                   hover:text-blue-700 dark:hover:text-blue-300 transition-all duration-300
+                                                   hover:underline underline-offset-4 hover:shadow-md hover:shadow-blue-100 dark:hover:shadow-blue-900/50
+                                                   px-3 py-2 rounded-lg border border-blue-200/50 dark:border-blue-800/50 hover:border-blue-300"
+                href="https://portal.speexx.com/certificate/ZTAxY2Y5ZTktNGRjMi00Yzc0LWFjYmQtZjAzOTIyZDNmZjdmOjo4MA=="
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                View Certificate
+                <svg
+                  aria-hidden="true"
+                  class="lucide lucide-external-link w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15 3h6v6"
+                  />
+                  <path
+                    d="M10 14 21 3"
+                  />
+                  <path
+                    d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div
+            class="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100
+                                            transition-all duration-500 bg-gradient-to-br from-blue-50/80 via-transparent to-transparent
+                                            dark:from-blue-900/30 rounded-xl backdrop-blur-sm"
+          />
+        </section>
+        <section
+          class="rounded-2xl bg-gray-100 dark:bg-gray-800 
+                border border-gray-300 dark:border-gray-700 
+                shadow-md hover:shadow-lg transition-shadow 
+                p-4 sm:p-6 w-full relative w-full p-4 sm:p-6 border border-gray-200/60 dark:border-gray-700/60
+                                     bg-white/60 dark:bg-gray-800/40 backdrop-blur-md rounded-xl hover:shadow-xl
+                                       transition-all duration-300 flex flex-col justify-between"
         >
-          <h3
-            class="text-lg font-semibold text-gray-900 dark:text-white mb-1"
+          <div
+            class="absolute -top-3 right-4 w-12 h-12 rounded-full bg-gradient-to-r from-blue-100 to-blue-200
+                                          dark:from-blue-900/40 dark:to-blue-800/40 flex items-center justify-center shadow-lg z-20 ring-4 ring-background"
           >
-            English CEFR Level B1.1
-          </h3>
-          <p
-            class="text-sm text-gray-500 dark:text-gray-400 font-mono mb-3"
-          >
-            Speexx — 2023
-          </p>
-          <a
-            class="inline-flex items-center text-sm text-blue-600 dark:text-blue-400
-                                         hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
-            href="https://portal.speexx.com/certificate/ZTAxY2Y5ZTktNGRjMi00Yzc0LWFjYmQtZjAzOTIyZDNmZjdmOjo3OQ=="
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            View Certificate
             <svg
               aria-hidden="true"
-              class="lucide lucide-external-link w-4 h-4 ml-1"
+              class="lucide lucide-award w-6 h-6 text-blue-600 dark:text-blue-400"
               fill="none"
               height="24"
               stroke="currentColor"
@@ -383,22 +389,86 @@ exports[`Certifications component > matches snapshot 1`] = `
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M15 3h6v6"
+                d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"
               />
-              <path
-                d="M10 14 21 3"
-              />
-              <path
-                d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+              <circle
+                cx="12"
+                cy="8"
+                r="6"
               />
             </svg>
-          </a>
-        </div>
-        <div
-          class="absolute inset-0 pointer-events-none opacity-0 hover:opacity-100 transition-opacity
-                                        duration-500 bg-gradient-to-r from-blue-50/30 to-transparent dark:from-blue-900/10"
-        />
-      </section>
+          </div>
+          <div
+            class="p-4 sm:p-6 md:p-8
+                text-sm sm:text-base
+                text-gray-900 dark:text-gray-300
+                p-0 pt-8 relative z-0 flex flex-col h-full justify-between"
+          >
+            <div
+              class="space-y-1.5 mb-4"
+            >
+              <h3
+                class="text-lg font-bold text-gray-900 dark:text-white leading-tight"
+              >
+                English CEFR Level B1.1
+              </h3>
+              <p
+                class="text-sm font-mono text-gray-600 dark:text-gray-400 leading-tight"
+              >
+                Speexx
+              </p>
+              <p
+                class="text-xs text-gray-500 dark:text-gray-500 font-mono"
+              >
+                2023
+              </p>
+            </div>
+            <div
+              class="mt-auto"
+            >
+              <a
+                class="group inline-flex items-center text-sm font-semibold text-blue-600 dark:text-blue-400
+                                                   hover:text-blue-700 dark:hover:text-blue-300 transition-all duration-300
+                                                   hover:underline underline-offset-4 hover:shadow-md hover:shadow-blue-100 dark:hover:shadow-blue-900/50
+                                                   px-3 py-2 rounded-lg border border-blue-200/50 dark:border-blue-800/50 hover:border-blue-300"
+                href="https://portal.speexx.com/certificate/ZTAxY2Y5ZTktNGRjMi00Yzc0LWFjYmQtZjAzOTIyZDNmZjdmOjo3OQ=="
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                View Certificate
+                <svg
+                  aria-hidden="true"
+                  class="lucide lucide-external-link w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15 3h6v6"
+                  />
+                  <path
+                    d="M10 14 21 3"
+                  />
+                  <path
+                    d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div
+            class="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100
+                                            transition-all duration-500 bg-gradient-to-br from-blue-50/80 via-transparent to-transparent
+                                            dark:from-blue-900/30 rounded-xl backdrop-blur-sm"
+          />
+        </section>
+      </div>
     </div>
     <div
       class="hidden md:block mt-4"

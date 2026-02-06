@@ -6,10 +6,10 @@ import {ChevronDown} from 'lucide-react';
 import {useState} from "react";
 import {PageSection} from "@/components/ui/pageSection/PageSection";
 import {ExpandableText} from "@/components/ui/expandableText/ExpandableText";
-import {AnimatePresence, motion} from "framer-motion";
 import {SeoHead} from "@/components/seoHead/SeoHead";
 import {SelectableButton} from "@/components/ui/selectableButton/SelectableButton";
 import {Pagination} from "@/components/ui/pagination/Pagination";
+import {PageGrid} from "@/components/ui/pageGrid/PageGrid";
 
 const ITEMS_PER_PAGE = 2;
 
@@ -208,62 +208,52 @@ export default function Projects() {
                                         />
                                     </div>
 
-                                    <AnimatePresence mode="wait">
-                                        <motion.div
-                                            key={selectedCompany + page}
-                                            initial={{ opacity: 0, scale: 0.96 }}
-                                            animate={{ opacity: 1, scale: 1 }}
-                                            exit={{ opacity: 0, scale: 0.96 }}
-                                            transition={{ duration: 0.3, ease: "easeOut" }}
-                                            layout
-                                            className="flex flex-col items-center gap-6"
-                                        >
-                                            {paginated.map((proj, idx) => (
-                                                <Card
-                                                    key={idx}
-                                                    className="relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
+                                    <PageGrid page={page}>
+                                        {paginated.map((proj, idx) => (
+                                            <Card
+                                                key={idx}
+                                                className="relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
                                                        dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
                                                        rounded-xl hover:shadow-lg transition-all duration-300"
-                                                >
-                                                    <CardContent>
-                                                        <h3 className="text-lg font-semibold">{proj.name}</h3>
-                                                        <p className="text-gray-700 dark:text-gray-400">{proj.company}</p>
-                                                        <p className="text-sm mb-2 text-gray-600 dark:text-gray-500">{proj.period}</p>
-                                                        {proj.type && (
-                                                            <ExpandableText
-                                                                value={t(`project_types.${proj.type}`)}
-                                                                maxLines={3}
-                                                                className="mb-2 text-sm"
-                                                            />
-                                                        )}
-                                                        <Disclosure>
-                                                            {({open}) => (
-                                                                <div>
-                                                                    <Disclosure.Button
-                                                                        className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
-                                                                    >
-                                                                        <span>{t("show_technologies")}</span>
-                                                                        <ChevronDown
-                                                                            className={`ml-1 w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}
-                                                                        />
-                                                                    </Disclosure.Button>
-                                                                    <Disclosure.Panel
-                                                                        className="mt-2 flex flex-wrap gap-2">
-                                                                        {proj.tech.split(",").map((t, i) => (
-                                                                            <span key={i}
-                                                                                  className="text-xs px-2 py-1 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300">
+                                            >
+                                                <CardContent>
+                                                    <h3 className="text-lg font-semibold">{proj.name}</h3>
+                                                    <p className="text-gray-700 dark:text-gray-400">{proj.company}</p>
+                                                    <p className="text-sm mb-2 text-gray-600 dark:text-gray-500">{proj.period}</p>
+                                                    {proj.type && (
+                                                        <ExpandableText
+                                                            value={t(`project_types.${proj.type}`)}
+                                                            maxLines={3}
+                                                            className="mb-2 text-sm"
+                                                        />
+                                                    )}
+                                                    <Disclosure>
+                                                        {({open}) => (
+                                                            <div>
+                                                                <Disclosure.Button
+                                                                    className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
+                                                                >
+                                                                    <span>{t("show_technologies")}</span>
+                                                                    <ChevronDown
+                                                                        className={`ml-1 w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}
+                                                                    />
+                                                                </Disclosure.Button>
+                                                                <Disclosure.Panel
+                                                                    className="mt-2 flex flex-wrap gap-2">
+                                                                    {proj.tech.split(",").map((t, i) => (
+                                                                        <span key={i}
+                                                                              className="text-xs px-2 py-1 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300">
                                                                       {t.trim()}
                                                                     </span>
-                                                                        ))}
-                                                                    </Disclosure.Panel>
-                                                                </div>
-                                                            )}
-                                                        </Disclosure>
-                                                    </CardContent>
-                                                </Card>
-                                            ))}
-                                        </motion.div>
-                                    </AnimatePresence>
+                                                                    ))}
+                                                                </Disclosure.Panel>
+                                                            </div>
+                                                        )}
+                                                    </Disclosure>
+                                                </CardContent>
+                                            </Card>
+                                        ))}
+                                    </PageGrid>
 
                                     {/* Pagination desktop normal */}
                                     <div className="hidden md:block mt-4">

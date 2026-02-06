@@ -5,10 +5,10 @@ import {ChevronDown} from "lucide-react";
 import {Card} from "@/components/ui/card/Card";
 import {CardContent} from "@/components/ui/cardContent/CardContent";
 import {PageSection} from "@/components/ui/pageSection/PageSection";
-import {AnimatePresence, motion} from "framer-motion";
 import {SeoHead} from "@/components/seoHead/SeoHead";
 import {BrandIcon, linkedinIcon} from "@/components/footer/Footer";
 import {Pagination} from "@/components/ui/pagination/Pagination";
+import {PageGrid} from "@/components/ui/pageGrid/PageGrid";
 
 const ITEMS_PER_PAGE = 4;
 
@@ -190,71 +190,61 @@ export default function Testimonials() {
                     />
                 </div>
 
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        key={`page-${page}`}
-                        initial={{ opacity: 0, scale: 0.96 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.96 }}
-                        transition={{ duration: 0.3, ease: "easeOut" }}
-                        layout
-                        className="grid grid-cols-1 md:grid-cols-2 gap-6"
-                    >
-                        {displayedTestimonials.map((texts, idx) => (
-                            <Card
-                                data-testid="testimonial-card"
-                                key={idx}
-                                className="h-full relative w-full p-5 sm:p-6 border border-gray-200/60
-                                         dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
-                                           rounded-xl hover:shadow-lg transition-all duration-300 flex flex-col"
-                            >
-                                <CardContent>
-                                    <Disclosure>
-                                        {({open}) => (
-                                            <>
-                                                <Disclosure.Button
-                                                    className="flex justify-between items-center w-full text-left py-1"
-                                                >
-                                                    <div className="flex items-center space-x-3">
-                                                        <img
-                                                            src={`https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(t(texts.nameKey))}`}
-                                                            alt={`${t(texts.nameKey)} avatar`}
-                                                            className="w-10 h-10 rounded-full ring-1 ring-gray-300 dark:ring-gray-700 bg-white"
-                                                        />
-                                                        <div>
-                                                            <p className="font-semibold flex items-center gap-2">
-                                                                {t(texts.nameKey)}
-                                                                {texts.linkedinUrl && (
-                                                                    <a
-                                                                        href={texts.linkedinUrl}
-                                                                        target="_blank"
-                                                                        rel="noopener noreferrer"
-                                                                    >
-                                                                        <BrandIcon icon={linkedinIcon} color="#0A66C2"
-                                                                                   size={18}/>
-                                                                    </a>
-                                                                )}
-                                                            </p>
-                                                            <p className="text-xs text-gray-500 dark:text-gray-400">{t(texts.roleKey)}</p>
-                                                        </div>
-                                                    </div>
-                                                    <ChevronDown
-                                                        className={`w-5 h-5 transition-transform ${open ? "rotate-180" : ""}`}
-                                                    />
-                                                </Disclosure.Button>
-                                                <Disclosure.Panel
-                                                    className="mt-3 border-l-2 border-blue-500 pl-3 italic text-gray-700 dark:text-gray-300"
-                                                >
-                                                    {t(texts.quoteKey)}
-                                                </Disclosure.Panel>
-                                            </>
-                                        )}
-                                    </Disclosure>
-                                </CardContent>
-                            </Card>
-                        ))}
-                    </motion.div>
-                </AnimatePresence>
+                <PageGrid page={page} className="[&>*]:h-72">
+                    {displayedTestimonials.map((texts, idx) => (
+                        <Card
+                            key={idx}
+                            data-testid="testimonial-card"
+                            className="relative w-full p-5 sm:p-6 border border-gray-200/60
+                                     dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
+                                       rounded-xl hover:shadow-lg transition-all duration-300 flex flex-col"
+                        >
+                            {/* Fixed header */}
+                            <div className="flex-shrink-0 mb-4 pb-2 border-b border-gray-200/50 dark:border-gray-700/50">
+                                <div className="flex items-center justify-between">
+                                    <div className="flex items-center space-x-3">
+                                        <img
+                                            src={`https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(t(texts.nameKey))}`}
+                                            alt={`${t(texts.nameKey)} avatar`}
+                                            className="w-12 h-12 rounded-full ring-2 ring-gray-200 dark:ring-gray-600 bg-white shadow-md"
+                                        />
+                                        <div>
+                                            <p className="font-semibold text-gray-900 dark:text-white flex items-center gap-2">
+                                                {t(texts.nameKey)}
+                                                {texts.linkedinUrl && (
+                                                    <a href={texts.linkedinUrl} target="_blank" rel="noopener noreferrer">
+                                                        <BrandIcon icon={linkedinIcon} color="#0A66C2" size={20} />
+                                                    </a>
+                                                )}
+                                            </p>
+                                            <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">{t(texts.roleKey)}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Body - takes ALL the remaining height */}
+                            <div className="flex-1 flex p-4">
+                                <Disclosure as="div" className="w-full h-full flex flex-col">
+                                    {({ open }) => (
+                                        <div className="h-full flex flex-col">
+                                            <Disclosure.Button as="button" className="flex justify-between items-center text-left mb-4 self-start p-3 -m-3 rounded-xl hover:bg-gray-50/50 dark:hover:bg-gray-800/50 transition-all border border-gray-200/30 dark:border-gray-700/30 hover:border-blue-200/50 hover:shadow-sm">
+                                              <span className="text-lg font-semibold text-blue-600 dark:text-blue-400 tracking-tight">
+                                                  {t("testimonials_page.open")}
+                                              </span>
+                                                <ChevronDown className={`w-6 h-6 shrink-0 transition-transform duration-200 ease-in-out ${open ? "rotate-180" : ""}`} />
+                                            </Disclosure.Button>
+
+                                            <Disclosure.Panel as="div" className="flex-1 mt-3 border-l-4 border-blue-500/80 pl-5 pr-4 py-3 bg-blue-50/30 dark:bg-blue-900/20 rounded-2xl backdrop-blur-sm italic text-lg text-gray-800 dark:text-gray-200 leading-relaxed font-light tracking-wide overflow-auto">
+                                                "{t(texts.quoteKey)}"
+                                            </Disclosure.Panel>
+                                        </div>
+                                    )}
+                                </Disclosure>
+                            </div>
+                        </Card>
+                    ))}
+                </PageGrid>
 
                 {/* Pagination desktop normal */}
                 <div className="hidden md:block mt-4">

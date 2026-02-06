@@ -3,10 +3,10 @@ import {useTranslation} from "react-i18next";
 import {Card} from "@/components/ui/card/Card";
 import {CardContent} from "@/components/ui/cardContent/CardContent";
 import {PageSection} from "@/components/ui/pageSection/PageSection";
-import {AnimatePresence, motion} from "framer-motion";
 import {SeoHead} from "@/components/seoHead/SeoHead";
 import {useState} from "react";
 import {Pagination} from "@/components/ui/pagination/Pagination";
+import {PageGrid} from "@/components/ui/pageGrid/PageGrid";
 
 const ITEMS_PER_PAGE = 4;
 
@@ -89,57 +89,58 @@ export default function Certifications() {
                     />
                 </div>
 
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        key={`page-${page}`}
-                        initial={{ opacity: 0, scale: 0.96 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.96 }}
-                        transition={{ duration: 0.3, ease: "easeOut" }}
-                        layout
-                        className="grid grid-cols-1 md:grid-cols-2 gap-6"
-                    >
-                        {displayedCerts.map((cert, idx) => (
-                            <Card
-                                key={idx}
-                                className="relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
-                                   dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
-                                   rounded-xl hover:shadow-lg transition-all duration-300"
-                            >
-                                {/* Decorative icon at the top right */}
-                                <div className="absolute top-4 right-4 flex items-center justify-center w-10 h-10 rounded-full
-                                      bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 shadow-sm">
-                                    <Award className="w-5 h-5"/>
-                                </div>
+                <PageGrid page={page}>
+                    {displayedCerts.map((cert, idx) => (
+                        <Card
+                            key={idx}
+                            className="relative w-full p-4 sm:p-6 border border-gray-200/60 dark:border-gray-700/60
+                                     bg-white/60 dark:bg-gray-800/40 backdrop-blur-md rounded-xl hover:shadow-xl
+                                       transition-all duration-300 flex flex-col justify-between"
+                        >
+                            {/* Icon */}
+                            <div className="absolute -top-3 right-4 w-12 h-12 rounded-full bg-gradient-to-r from-blue-100 to-blue-200
+                                          dark:from-blue-900/40 dark:to-blue-800/40 flex items-center justify-center shadow-lg z-20 ring-4 ring-background">
+                                <Award className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                            </div>
 
-                                <CardContent className="p-0">
-                                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+                            <CardContent className="p-0 pt-8 relative z-0 flex flex-col h-full justify-between">
+                                {/* Header */}
+                                <div className="space-y-1.5 mb-4">
+                                    <h3 className="text-lg font-bold text-gray-900 dark:text-white leading-tight">
                                         {t(cert.nameKey)}
                                     </h3>
-
-                                    <p className="text-sm text-gray-500 dark:text-gray-400 font-mono mb-3">
-                                        {cert.issuer} — {cert.date}
+                                    <p className="text-sm font-mono text-gray-600 dark:text-gray-400 leading-tight">
+                                        {cert.issuer}
                                     </p>
+                                    <p className="text-xs text-gray-500 dark:text-gray-500 font-mono">
+                                        {cert.date}
+                                    </p>
+                                </div>
 
+                                {/* CTA */}
+                                <div className="mt-auto">
                                     <a
                                         href={cert.link}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center text-sm text-blue-600 dark:text-blue-400
-                                         hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
+                                        className="group inline-flex items-center text-sm font-semibold text-blue-600 dark:text-blue-400
+                                                   hover:text-blue-700 dark:hover:text-blue-300 transition-all duration-300
+                                                   hover:underline underline-offset-4 hover:shadow-md hover:shadow-blue-100 dark:hover:shadow-blue-900/50
+                                                   px-3 py-2 rounded-lg border border-blue-200/50 dark:border-blue-800/50 hover:border-blue-300"
                                     >
                                         {t("certifications_page.view_certificate")}
-                                        <ExternalLink className="w-4 h-4 ml-1"/>
+                                        <ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                                     </a>
-                                </CardContent>
+                                </div>
+                            </CardContent>
 
-                                {/* Hover effect */}
-                                <div className="absolute inset-0 pointer-events-none opacity-0 hover:opacity-100 transition-opacity
-                                        duration-500 bg-gradient-to-r from-blue-50/30 to-transparent dark:from-blue-900/10"/>
-                            </Card>
-                        ))}
-                    </motion.div>
-                </AnimatePresence>
+                            {/* Hover overlay */}
+                            <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100
+                                            transition-all duration-500 bg-gradient-to-br from-blue-50/80 via-transparent to-transparent
+                                            dark:from-blue-900/30 rounded-xl backdrop-blur-sm" />
+                        </Card>
+                    ))}
+                </PageGrid>
 
                 {/* Pagination desktop normal */}
                 <div className="hidden md:block mt-4">

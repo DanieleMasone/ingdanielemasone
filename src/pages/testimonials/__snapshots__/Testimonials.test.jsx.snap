@@ -40,333 +40,419 @@ exports[`Testimonials component with mobile + desktop paginators > matches snaps
       </div>
     </div>
     <div
-      class="grid grid-cols-1 md:grid-cols-2 gap-6"
-      style="opacity: 0; transform: scale(0.96);"
+      class="min-h-[70vh] flex flex-col [&>*]:h-72"
     >
-      <section
-        class="rounded-2xl bg-gray-100 dark:bg-gray-800 
+      <div
+        aria-label="Page 1"
+        class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6 pt-4"
+        role="grid"
+        style="opacity: 0; transform: scale(0.96);"
+      >
+        <section
+          class="rounded-2xl bg-gray-100 dark:bg-gray-800 
                 border border-gray-300 dark:border-gray-700 
                 shadow-md hover:shadow-lg transition-shadow 
-                p-4 sm:p-6 w-full h-full relative w-full p-5 sm:p-6 border border-gray-200/60
-                                         dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
-                                           rounded-xl hover:shadow-lg transition-all duration-300 flex flex-col"
-        data-testid="testimonial-card"
-      >
-        <div
-          class="p-4 sm:p-6 md:p-8
-                text-sm sm:text-base
-                text-gray-900 dark:text-gray-300"
+                p-4 sm:p-6 w-full relative w-full p-5 sm:p-6 border border-gray-200/60
+                                     dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
+                                       rounded-xl hover:shadow-lg transition-all duration-300 flex flex-col"
+          data-testid="testimonial-card"
         >
-          <button
-            aria-expanded="false"
-            class="flex justify-between items-center w-full text-left py-1"
-            data-headlessui-state=""
-            id="headlessui-disclosure-button-_r_1u_"
-            type="button"
+          <div
+            class="flex-shrink-0 mb-4 pb-2 border-b border-gray-200/50 dark:border-gray-700/50"
           >
             <div
-              class="flex items-center space-x-3"
+              class="flex items-center justify-between"
             >
-              <img
-                alt="Mirko avatar"
-                class="w-10 h-10 rounded-full ring-1 ring-gray-300 dark:ring-gray-700 bg-white"
-                src="https://api.dicebear.com/7.x/bottts/svg?seed=Mirko"
-              />
-              <div>
-                <p
-                  class="font-semibold flex items-center gap-2"
-                >
-                  Mirko
-                  <a
-                    href="https://www.linkedin.com/in/mirko-buccoliero-5a552615a"
-                    rel="noopener noreferrer"
-                    target="_blank"
+              <div
+                class="flex items-center space-x-3"
+              >
+                <img
+                  alt="Mirko avatar"
+                  class="w-12 h-12 rounded-full ring-2 ring-gray-200 dark:ring-gray-600 bg-white shadow-md"
+                  src="https://api.dicebear.com/7.x/bottts/svg?seed=Mirko"
+                />
+                <div>
+                  <p
+                    class="font-semibold text-gray-900 dark:text-white flex items-center gap-2"
                   >
-                    <svg
-                      aria-hidden="true"
-                      fill="#0A66C2"
-                      height="18"
-                      role="img"
-                      viewBox="0 0 24 24"
-                      width="18"
-                      xmlns="http://www.w3.org/2000/svg"
+                    Mirko
+                    <a
+                      href="https://www.linkedin.com/in/mirko-buccoliero-5a552615a"
+                      rel="noopener noreferrer"
+                      target="_blank"
                     >
-                      <path
-                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.85-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667h-3.554V9h3.414v1.561h.049c.477-.9 1.637-1.85 3.367-1.85 3.598 0 4.265 2.368 4.265 5.452v6.289zM5.337 7.433a2.063 2.063 0 1 1 0-4.126 2.063 2.063 0 0 1 0 4.126zM6.814 20.452H3.861V9h2.953v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.723v20.549C0 23.226.792 24 1.771 24h20.451C23.2 24 24 23.226 24 22.272V1.723C24 .774 23.2 0 22.225 0z"
-                      />
-                    </svg>
-                  </a>
-                </p>
-                <p
-                  class="text-xs text-gray-500 dark:text-gray-400"
-                >
-                  Developer
-                </p>
+                      <svg
+                        aria-hidden="true"
+                        fill="#0A66C2"
+                        height="20"
+                        role="img"
+                        viewBox="0 0 24 24"
+                        width="20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.85-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667h-3.554V9h3.414v1.561h.049c.477-.9 1.637-1.85 3.367-1.85 3.598 0 4.265 2.368 4.265 5.452v6.289zM5.337 7.433a2.063 2.063 0 1 1 0-4.126 2.063 2.063 0 0 1 0 4.126zM6.814 20.452H3.861V9h2.953v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.723v20.549C0 23.226.792 24 1.771 24h20.451C23.2 24 24 23.226 24 22.272V1.723C24 .774 23.2 0 22.225 0z"
+                        />
+                      </svg>
+                    </a>
+                  </p>
+                  <p
+                    class="text-sm text-gray-500 dark:text-gray-400 font-medium"
+                  >
+                    Developer
+                  </p>
+                </div>
               </div>
             </div>
-            <svg
-              aria-hidden="true"
-              class="lucide lucide-chevron-down w-5 h-5 transition-transform"
-              fill="none"
-              height="24"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-              width="24"
-              xmlns="http://www.w3.org/2000/svg"
+          </div>
+          <div
+            class="flex-1 flex p-4"
+          >
+            <div
+              class="w-full h-full flex flex-col"
+              data-headlessui-state=""
             >
-              <path
-                d="m6 9 6 6 6-6"
-              />
-            </svg>
-          </button>
-        </div>
-      </section>
-      <section
-        class="rounded-2xl bg-gray-100 dark:bg-gray-800 
+              <div
+                class="h-full flex flex-col"
+              >
+                <button
+                  aria-expanded="false"
+                  class="flex justify-between items-center text-left mb-4 self-start p-3 -m-3 rounded-xl hover:bg-gray-50/50 dark:hover:bg-gray-800/50 transition-all border border-gray-200/30 dark:border-gray-700/30 hover:border-blue-200/50 hover:shadow-sm"
+                  data-headlessui-state=""
+                  id="headlessui-disclosure-button-_r_3g_"
+                  type="button"
+                >
+                  <span
+                    class="text-lg font-semibold text-blue-600 dark:text-blue-400 tracking-tight"
+                  >
+                    testimonials_page.open
+                  </span>
+                  <svg
+                    aria-hidden="true"
+                    class="lucide lucide-chevron-down w-6 h-6 shrink-0 transition-transform duration-200 ease-in-out"
+                    fill="none"
+                    height="24"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="m6 9 6 6 6-6"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section
+          class="rounded-2xl bg-gray-100 dark:bg-gray-800 
                 border border-gray-300 dark:border-gray-700 
                 shadow-md hover:shadow-lg transition-shadow 
-                p-4 sm:p-6 w-full h-full relative w-full p-5 sm:p-6 border border-gray-200/60
-                                         dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
-                                           rounded-xl hover:shadow-lg transition-all duration-300 flex flex-col"
-        data-testid="testimonial-card"
-      >
-        <div
-          class="p-4 sm:p-6 md:p-8
-                text-sm sm:text-base
-                text-gray-900 dark:text-gray-300"
+                p-4 sm:p-6 w-full relative w-full p-5 sm:p-6 border border-gray-200/60
+                                     dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
+                                       rounded-xl hover:shadow-lg transition-all duration-300 flex flex-col"
+          data-testid="testimonial-card"
         >
-          <button
-            aria-expanded="false"
-            class="flex justify-between items-center w-full text-left py-1"
-            data-headlessui-state=""
-            id="headlessui-disclosure-button-_r_20_"
-            type="button"
+          <div
+            class="flex-shrink-0 mb-4 pb-2 border-b border-gray-200/50 dark:border-gray-700/50"
           >
             <div
-              class="flex items-center space-x-3"
+              class="flex items-center justify-between"
             >
-              <img
-                alt="Alessia avatar"
-                class="w-10 h-10 rounded-full ring-1 ring-gray-300 dark:ring-gray-700 bg-white"
-                src="https://api.dicebear.com/7.x/bottts/svg?seed=Alessia"
-              />
-              <div>
-                <p
-                  class="font-semibold flex items-center gap-2"
-                >
-                  Alessia
-                  <a
-                    href="https://www.linkedin.com/in/alessiapecorarohr"
-                    rel="noopener noreferrer"
-                    target="_blank"
+              <div
+                class="flex items-center space-x-3"
+              >
+                <img
+                  alt="Alessia avatar"
+                  class="w-12 h-12 rounded-full ring-2 ring-gray-200 dark:ring-gray-600 bg-white shadow-md"
+                  src="https://api.dicebear.com/7.x/bottts/svg?seed=Alessia"
+                />
+                <div>
+                  <p
+                    class="font-semibold text-gray-900 dark:text-white flex items-center gap-2"
                   >
-                    <svg
-                      aria-hidden="true"
-                      fill="#0A66C2"
-                      height="18"
-                      role="img"
-                      viewBox="0 0 24 24"
-                      width="18"
-                      xmlns="http://www.w3.org/2000/svg"
+                    Alessia
+                    <a
+                      href="https://www.linkedin.com/in/alessiapecorarohr"
+                      rel="noopener noreferrer"
+                      target="_blank"
                     >
-                      <path
-                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.85-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667h-3.554V9h3.414v1.561h.049c.477-.9 1.637-1.85 3.367-1.85 3.598 0 4.265 2.368 4.265 5.452v6.289zM5.337 7.433a2.063 2.063 0 1 1 0-4.126 2.063 2.063 0 0 1 0 4.126zM6.814 20.452H3.861V9h2.953v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.723v20.549C0 23.226.792 24 1.771 24h20.451C23.2 24 24 23.226 24 22.272V1.723C24 .774 23.2 0 22.225 0z"
-                      />
-                    </svg>
-                  </a>
-                </p>
-                <p
-                  class="text-xs text-gray-500 dark:text-gray-400"
-                >
-                  Designer
-                </p>
+                      <svg
+                        aria-hidden="true"
+                        fill="#0A66C2"
+                        height="20"
+                        role="img"
+                        viewBox="0 0 24 24"
+                        width="20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.85-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667h-3.554V9h3.414v1.561h.049c.477-.9 1.637-1.85 3.367-1.85 3.598 0 4.265 2.368 4.265 5.452v6.289zM5.337 7.433a2.063 2.063 0 1 1 0-4.126 2.063 2.063 0 0 1 0 4.126zM6.814 20.452H3.861V9h2.953v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.723v20.549C0 23.226.792 24 1.771 24h20.451C23.2 24 24 23.226 24 22.272V1.723C24 .774 23.2 0 22.225 0z"
+                        />
+                      </svg>
+                    </a>
+                  </p>
+                  <p
+                    class="text-sm text-gray-500 dark:text-gray-400 font-medium"
+                  >
+                    Designer
+                  </p>
+                </div>
               </div>
             </div>
-            <svg
-              aria-hidden="true"
-              class="lucide lucide-chevron-down w-5 h-5 transition-transform"
-              fill="none"
-              height="24"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-              width="24"
-              xmlns="http://www.w3.org/2000/svg"
+          </div>
+          <div
+            class="flex-1 flex p-4"
+          >
+            <div
+              class="w-full h-full flex flex-col"
+              data-headlessui-state=""
             >
-              <path
-                d="m6 9 6 6 6-6"
-              />
-            </svg>
-          </button>
-        </div>
-      </section>
-      <section
-        class="rounded-2xl bg-gray-100 dark:bg-gray-800 
+              <div
+                class="h-full flex flex-col"
+              >
+                <button
+                  aria-expanded="false"
+                  class="flex justify-between items-center text-left mb-4 self-start p-3 -m-3 rounded-xl hover:bg-gray-50/50 dark:hover:bg-gray-800/50 transition-all border border-gray-200/30 dark:border-gray-700/30 hover:border-blue-200/50 hover:shadow-sm"
+                  data-headlessui-state=""
+                  id="headlessui-disclosure-button-_r_3i_"
+                  type="button"
+                >
+                  <span
+                    class="text-lg font-semibold text-blue-600 dark:text-blue-400 tracking-tight"
+                  >
+                    testimonials_page.open
+                  </span>
+                  <svg
+                    aria-hidden="true"
+                    class="lucide lucide-chevron-down w-6 h-6 shrink-0 transition-transform duration-200 ease-in-out"
+                    fill="none"
+                    height="24"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="m6 9 6 6 6-6"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section
+          class="rounded-2xl bg-gray-100 dark:bg-gray-800 
                 border border-gray-300 dark:border-gray-700 
                 shadow-md hover:shadow-lg transition-shadow 
-                p-4 sm:p-6 w-full h-full relative w-full p-5 sm:p-6 border border-gray-200/60
-                                         dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
-                                           rounded-xl hover:shadow-lg transition-all duration-300 flex flex-col"
-        data-testid="testimonial-card"
-      >
-        <div
-          class="p-4 sm:p-6 md:p-8
-                text-sm sm:text-base
-                text-gray-900 dark:text-gray-300"
+                p-4 sm:p-6 w-full relative w-full p-5 sm:p-6 border border-gray-200/60
+                                     dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
+                                       rounded-xl hover:shadow-lg transition-all duration-300 flex flex-col"
+          data-testid="testimonial-card"
         >
-          <button
-            aria-expanded="false"
-            class="flex justify-between items-center w-full text-left py-1"
-            data-headlessui-state=""
-            id="headlessui-disclosure-button-_r_22_"
-            type="button"
+          <div
+            class="flex-shrink-0 mb-4 pb-2 border-b border-gray-200/50 dark:border-gray-700/50"
           >
             <div
-              class="flex items-center space-x-3"
+              class="flex items-center justify-between"
             >
-              <img
-                alt="Federico avatar"
-                class="w-10 h-10 rounded-full ring-1 ring-gray-300 dark:ring-gray-700 bg-white"
-                src="https://api.dicebear.com/7.x/bottts/svg?seed=Federico"
-              />
-              <div>
-                <p
-                  class="font-semibold flex items-center gap-2"
-                >
-                  Federico
-                  <a
-                    href="https://www.linkedin.com/in/federico-s-62a333110"
-                    rel="noopener noreferrer"
-                    target="_blank"
+              <div
+                class="flex items-center space-x-3"
+              >
+                <img
+                  alt="Federico avatar"
+                  class="w-12 h-12 rounded-full ring-2 ring-gray-200 dark:ring-gray-600 bg-white shadow-md"
+                  src="https://api.dicebear.com/7.x/bottts/svg?seed=Federico"
+                />
+                <div>
+                  <p
+                    class="font-semibold text-gray-900 dark:text-white flex items-center gap-2"
                   >
-                    <svg
-                      aria-hidden="true"
-                      fill="#0A66C2"
-                      height="18"
-                      role="img"
-                      viewBox="0 0 24 24"
-                      width="18"
-                      xmlns="http://www.w3.org/2000/svg"
+                    Federico
+                    <a
+                      href="https://www.linkedin.com/in/federico-s-62a333110"
+                      rel="noopener noreferrer"
+                      target="_blank"
                     >
-                      <path
-                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.85-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667h-3.554V9h3.414v1.561h.049c.477-.9 1.637-1.85 3.367-1.85 3.598 0 4.265 2.368 4.265 5.452v6.289zM5.337 7.433a2.063 2.063 0 1 1 0-4.126 2.063 2.063 0 0 1 0 4.126zM6.814 20.452H3.861V9h2.953v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.723v20.549C0 23.226.792 24 1.771 24h20.451C23.2 24 24 23.226 24 22.272V1.723C24 .774 23.2 0 22.225 0z"
-                      />
-                    </svg>
-                  </a>
-                </p>
-                <p
-                  class="text-xs text-gray-500 dark:text-gray-400"
-                >
-                  Manager
-                </p>
+                      <svg
+                        aria-hidden="true"
+                        fill="#0A66C2"
+                        height="20"
+                        role="img"
+                        viewBox="0 0 24 24"
+                        width="20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.85-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667h-3.554V9h3.414v1.561h.049c.477-.9 1.637-1.85 3.367-1.85 3.598 0 4.265 2.368 4.265 5.452v6.289zM5.337 7.433a2.063 2.063 0 1 1 0-4.126 2.063 2.063 0 0 1 0 4.126zM6.814 20.452H3.861V9h2.953v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.723v20.549C0 23.226.792 24 1.771 24h20.451C23.2 24 24 23.226 24 22.272V1.723C24 .774 23.2 0 22.225 0z"
+                        />
+                      </svg>
+                    </a>
+                  </p>
+                  <p
+                    class="text-sm text-gray-500 dark:text-gray-400 font-medium"
+                  >
+                    Manager
+                  </p>
+                </div>
               </div>
             </div>
-            <svg
-              aria-hidden="true"
-              class="lucide lucide-chevron-down w-5 h-5 transition-transform"
-              fill="none"
-              height="24"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-              width="24"
-              xmlns="http://www.w3.org/2000/svg"
+          </div>
+          <div
+            class="flex-1 flex p-4"
+          >
+            <div
+              class="w-full h-full flex flex-col"
+              data-headlessui-state=""
             >
-              <path
-                d="m6 9 6 6 6-6"
-              />
-            </svg>
-          </button>
-        </div>
-      </section>
-      <section
-        class="rounded-2xl bg-gray-100 dark:bg-gray-800 
+              <div
+                class="h-full flex flex-col"
+              >
+                <button
+                  aria-expanded="false"
+                  class="flex justify-between items-center text-left mb-4 self-start p-3 -m-3 rounded-xl hover:bg-gray-50/50 dark:hover:bg-gray-800/50 transition-all border border-gray-200/30 dark:border-gray-700/30 hover:border-blue-200/50 hover:shadow-sm"
+                  data-headlessui-state=""
+                  id="headlessui-disclosure-button-_r_3k_"
+                  type="button"
+                >
+                  <span
+                    class="text-lg font-semibold text-blue-600 dark:text-blue-400 tracking-tight"
+                  >
+                    testimonials_page.open
+                  </span>
+                  <svg
+                    aria-hidden="true"
+                    class="lucide lucide-chevron-down w-6 h-6 shrink-0 transition-transform duration-200 ease-in-out"
+                    fill="none"
+                    height="24"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="m6 9 6 6 6-6"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section
+          class="rounded-2xl bg-gray-100 dark:bg-gray-800 
                 border border-gray-300 dark:border-gray-700 
                 shadow-md hover:shadow-lg transition-shadow 
-                p-4 sm:p-6 w-full h-full relative w-full p-5 sm:p-6 border border-gray-200/60
-                                         dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
-                                           rounded-xl hover:shadow-lg transition-all duration-300 flex flex-col"
-        data-testid="testimonial-card"
-      >
-        <div
-          class="p-4 sm:p-6 md:p-8
-                text-sm sm:text-base
-                text-gray-900 dark:text-gray-300"
+                p-4 sm:p-6 w-full relative w-full p-5 sm:p-6 border border-gray-200/60
+                                     dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
+                                       rounded-xl hover:shadow-lg transition-all duration-300 flex flex-col"
+          data-testid="testimonial-card"
         >
-          <button
-            aria-expanded="false"
-            class="flex justify-between items-center w-full text-left py-1"
-            data-headlessui-state=""
-            id="headlessui-disclosure-button-_r_24_"
-            type="button"
+          <div
+            class="flex-shrink-0 mb-4 pb-2 border-b border-gray-200/50 dark:border-gray-700/50"
           >
             <div
-              class="flex items-center space-x-3"
+              class="flex items-center justify-between"
             >
-              <img
-                alt="Daniela avatar"
-                class="w-10 h-10 rounded-full ring-1 ring-gray-300 dark:ring-gray-700 bg-white"
-                src="https://api.dicebear.com/7.x/bottts/svg?seed=Daniela"
-              />
-              <div>
-                <p
-                  class="font-semibold flex items-center gap-2"
-                >
-                  Daniela
-                  <a
-                    href="https://www.linkedin.com/in/danielatagliaviadaragona"
-                    rel="noopener noreferrer"
-                    target="_blank"
+              <div
+                class="flex items-center space-x-3"
+              >
+                <img
+                  alt="Daniela avatar"
+                  class="w-12 h-12 rounded-full ring-2 ring-gray-200 dark:ring-gray-600 bg-white shadow-md"
+                  src="https://api.dicebear.com/7.x/bottts/svg?seed=Daniela"
+                />
+                <div>
+                  <p
+                    class="font-semibold text-gray-900 dark:text-white flex items-center gap-2"
                   >
-                    <svg
-                      aria-hidden="true"
-                      fill="#0A66C2"
-                      height="18"
-                      role="img"
-                      viewBox="0 0 24 24"
-                      width="18"
-                      xmlns="http://www.w3.org/2000/svg"
+                    Daniela
+                    <a
+                      href="https://www.linkedin.com/in/danielatagliaviadaragona"
+                      rel="noopener noreferrer"
+                      target="_blank"
                     >
-                      <path
-                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.85-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667h-3.554V9h3.414v1.561h.049c.477-.9 1.637-1.85 3.367-1.85 3.598 0 4.265 2.368 4.265 5.452v6.289zM5.337 7.433a2.063 2.063 0 1 1 0-4.126 2.063 2.063 0 0 1 0 4.126zM6.814 20.452H3.861V9h2.953v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.723v20.549C0 23.226.792 24 1.771 24h20.451C23.2 24 24 23.226 24 22.272V1.723C24 .774 23.2 0 22.225 0z"
-                      />
-                    </svg>
-                  </a>
-                </p>
-                <p
-                  class="text-xs text-gray-500 dark:text-gray-400"
-                >
-                  QA
-                </p>
+                      <svg
+                        aria-hidden="true"
+                        fill="#0A66C2"
+                        height="20"
+                        role="img"
+                        viewBox="0 0 24 24"
+                        width="20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.85-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667h-3.554V9h3.414v1.561h.049c.477-.9 1.637-1.85 3.367-1.85 3.598 0 4.265 2.368 4.265 5.452v6.289zM5.337 7.433a2.063 2.063 0 1 1 0-4.126 2.063 2.063 0 0 1 0 4.126zM6.814 20.452H3.861V9h2.953v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.723v20.549C0 23.226.792 24 1.771 24h20.451C23.2 24 24 23.226 24 22.272V1.723C24 .774 23.2 0 22.225 0z"
+                        />
+                      </svg>
+                    </a>
+                  </p>
+                  <p
+                    class="text-sm text-gray-500 dark:text-gray-400 font-medium"
+                  >
+                    QA
+                  </p>
+                </div>
               </div>
             </div>
-            <svg
-              aria-hidden="true"
-              class="lucide lucide-chevron-down w-5 h-5 transition-transform"
-              fill="none"
-              height="24"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-              width="24"
-              xmlns="http://www.w3.org/2000/svg"
+          </div>
+          <div
+            class="flex-1 flex p-4"
+          >
+            <div
+              class="w-full h-full flex flex-col"
+              data-headlessui-state=""
             >
-              <path
-                d="m6 9 6 6 6-6"
-              />
-            </svg>
-          </button>
-        </div>
-      </section>
+              <div
+                class="h-full flex flex-col"
+              >
+                <button
+                  aria-expanded="false"
+                  class="flex justify-between items-center text-left mb-4 self-start p-3 -m-3 rounded-xl hover:bg-gray-50/50 dark:hover:bg-gray-800/50 transition-all border border-gray-200/30 dark:border-gray-700/30 hover:border-blue-200/50 hover:shadow-sm"
+                  data-headlessui-state=""
+                  id="headlessui-disclosure-button-_r_3m_"
+                  type="button"
+                >
+                  <span
+                    class="text-lg font-semibold text-blue-600 dark:text-blue-400 tracking-tight"
+                  >
+                    testimonials_page.open
+                  </span>
+                  <svg
+                    aria-hidden="true"
+                    class="lucide lucide-chevron-down w-6 h-6 shrink-0 transition-transform duration-200 ease-in-out"
+                    fill="none"
+                    height="24"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="m6 9 6 6 6-6"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
     <div
       class="hidden md:block mt-4"

@@ -264,7 +264,8 @@
   "testimonials_page": {
     "title": "Testimonianze",
     "prev": "Precedente",
-    "next": "Successivo"
+    "next": "Successivo",
+    "open": "Apri recensione"
   },
   "testimonials_people": {
     "mirko": {

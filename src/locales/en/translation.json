@@ -264,7 +264,8 @@
   "testimonials_page": {
     "title": "Testimonials",
     "prev": "Previous",
-    "next": "Next"
+    "next": "Next",
+    "open": "Open review"
   },
   "testimonials_people": {
     "mirko": {

@@ -40,409 +40,415 @@ exports[`Courses component > matches snapshot 1`] = `
       </div>
     </div>
     <div
-      class="grid grid-cols-1 md:grid-cols-2 gap-6"
-      style="opacity: 0; transform: scale(0.96);"
+      class="min-h-[70vh] flex flex-col "
     >
-      <section
-        class="rounded-2xl bg-gray-100 dark:bg-gray-800 
+      <div
+        aria-label="Page 1"
+        class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6 pt-4"
+        role="grid"
+        style="opacity: 0; transform: scale(0.96);"
+      >
+        <section
+          class="rounded-2xl bg-gray-100 dark:bg-gray-800 
                 border border-gray-300 dark:border-gray-700 
                 shadow-md hover:shadow-lg transition-shadow 
                 p-4 sm:p-6 w-full h-full relative w-full p-5 sm:p-6 border border-gray-200/60
-                                         dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
-                                         rounded-xl hover:shadow-lg transition-all duration-300
-                                         flex flex-col md:flex-row items-start gap-4"
-      >
-        <div
-          class="p-4 sm:p-6 md:p-8
+                                     dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
+                                     rounded-xl hover:shadow-lg transition-all duration-300
+                                     flex flex-col md:flex-row items-start gap-4"
+        >
+          <div
+            class="p-4 sm:p-6 md:p-8
                 text-sm sm:text-base
                 text-gray-900 dark:text-gray-300
                 p-0 flex-1"
-        >
-          <div
-            class="flex items-center justify-between mb-2"
-          >
-            <h3
-              class="text-lg font-semibold"
-            >
-              Git Course
-            </h3>
-            <a
-              class="block md:hidden shrink-0 ml-4"
-              href="https://www.udemy.com/course/corso-git/"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <img
-                alt="Git Course"
-                class="rounded-full w-16 h-16 object-cover shadow-md hover:scale-105 transition-transform duration-300"
-                loading="lazy"
-                src="/src/assets/courses/GIT.png"
-              />
-            </a>
-          </div>
-          <div
-            class="relative"
           >
             <div
-              aria-expanded="false"
-              class="text-sm sm:text-base whitespace-pre-wrap overflow-hidden transition-all duration-500 ease-in-out relative my-2 cursor-default text-gray-700 dark:text-gray-300"
-              style="max-height: 4.5em;"
+              class="flex items-center justify-between mb-2"
             >
-              Learn Git basics and advanced usage.
+              <h3
+                class="text-lg font-semibold"
+              >
+                Git Course
+              </h3>
+              <a
+                class="block md:hidden shrink-0 ml-4"
+                href="https://www.udemy.com/course/corso-git/"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <img
+                  alt="Git Course"
+                  class="rounded-full w-16 h-16 object-cover shadow-md hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                  src="/src/assets/courses/GIT.png"
+                />
+              </a>
+            </div>
+            <div
+              class="relative"
+            >
+              <div
+                aria-expanded="false"
+                class="text-sm sm:text-base whitespace-pre-wrap overflow-hidden transition-all duration-500 ease-in-out relative my-2 cursor-default text-gray-700 dark:text-gray-300"
+                style="max-height: 4.5em;"
+              >
+                Learn Git basics and advanced usage.
+              </div>
+            </div>
+            <p
+              class="text-sm text-gray-500 dark:text-gray-400 font-mono mb-2"
+            >
+              Duration: 3h 20m
+            </p>
+            <div
+              data-headlessui-state=""
+            >
+              <button
+                aria-expanded="false"
+                class="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline mt-2"
+                data-headlessui-state=""
+                id="headlessui-disclosure-button-_r_3g_"
+                type="button"
+              >
+                <span>
+                  Show technologies
+                </span>
+                <svg
+                  aria-hidden="true"
+                  class="lucide lucide-chevron-down ml-1 w-4 h-4 transition-transform"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6 9 6 6 6-6"
+                  />
+                </svg>
+              </button>
             </div>
           </div>
-          <p
-            class="text-sm text-gray-500 dark:text-gray-400 font-mono mb-2"
+          <a
+            class="hidden md:block shrink-0"
+            href="https://www.udemy.com/course/corso-git/"
+            rel="noopener noreferrer"
+            target="_blank"
           >
-            Duration: 3h 20m
-          </p>
-          <div
-            data-headlessui-state=""
-          >
-            <button
-              aria-expanded="false"
-              class="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
-              data-headlessui-state=""
-              id="headlessui-disclosure-button-_r_3g_"
-              type="button"
-            >
-              <span>
-                Show technologies
-              </span>
-              <svg
-                aria-hidden="true"
-                class="lucide lucide-chevron-down ml-1 w-4 h-4 transition-transform"
-                fill="none"
-                height="24"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                width="24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="m6 9 6 6 6-6"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-        <a
-          class="hidden md:block shrink-0"
-          href="https://www.udemy.com/course/corso-git/"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <img
-            alt="Git Course"
-            class="rounded-full w-48 h-48 object-cover shadow-md hover:scale-105 transition-transform duration-300"
-            loading="lazy"
-            src="/src/assets/courses/GIT.png"
-          />
-        </a>
-      </section>
-      <section
-        class="rounded-2xl bg-gray-100 dark:bg-gray-800 
+            <img
+              alt="Git Course"
+              class="rounded-full w-48 h-48 object-cover shadow-md hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+              src="/src/assets/courses/GIT.png"
+            />
+          </a>
+        </section>
+        <section
+          class="rounded-2xl bg-gray-100 dark:bg-gray-800 
                 border border-gray-300 dark:border-gray-700 
                 shadow-md hover:shadow-lg transition-shadow 
                 p-4 sm:p-6 w-full h-full relative w-full p-5 sm:p-6 border border-gray-200/60
-                                         dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
-                                         rounded-xl hover:shadow-lg transition-all duration-300
-                                         flex flex-col md:flex-row items-start gap-4"
-      >
-        <div
-          class="p-4 sm:p-6 md:p-8
+                                     dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
+                                     rounded-xl hover:shadow-lg transition-all duration-300
+                                     flex flex-col md:flex-row items-start gap-4"
+        >
+          <div
+            class="p-4 sm:p-6 md:p-8
                 text-sm sm:text-base
                 text-gray-900 dark:text-gray-300
                 p-0 flex-1"
-        >
-          <div
-            class="flex items-center justify-between mb-2"
-          >
-            <h3
-              class="text-lg font-semibold"
-            >
-              TypeScript Course
-            </h3>
-            <a
-              class="block md:hidden shrink-0 ml-4"
-              href="https://www.udemy.com/course/typescript-da-zero/"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <img
-                alt="TypeScript Course"
-                class="rounded-full w-16 h-16 object-cover shadow-md hover:scale-105 transition-transform duration-300"
-                loading="lazy"
-                src="/src/assets/courses/TYPESCRIPT.png"
-              />
-            </a>
-          </div>
-          <div
-            class="relative"
           >
             <div
-              aria-expanded="false"
-              class="text-sm sm:text-base whitespace-pre-wrap overflow-hidden transition-all duration-500 ease-in-out relative my-2 cursor-default text-gray-700 dark:text-gray-300"
-              style="max-height: 4.5em;"
+              class="flex items-center justify-between mb-2"
             >
-              TypeScript fundamentals and advanced topics.
+              <h3
+                class="text-lg font-semibold"
+              >
+                TypeScript Course
+              </h3>
+              <a
+                class="block md:hidden shrink-0 ml-4"
+                href="https://www.udemy.com/course/typescript-da-zero/"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <img
+                  alt="TypeScript Course"
+                  class="rounded-full w-16 h-16 object-cover shadow-md hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                  src="/src/assets/courses/TYPESCRIPT.png"
+                />
+              </a>
+            </div>
+            <div
+              class="relative"
+            >
+              <div
+                aria-expanded="false"
+                class="text-sm sm:text-base whitespace-pre-wrap overflow-hidden transition-all duration-500 ease-in-out relative my-2 cursor-default text-gray-700 dark:text-gray-300"
+                style="max-height: 4.5em;"
+              >
+                TypeScript fundamentals and advanced topics.
+              </div>
+            </div>
+            <p
+              class="text-sm text-gray-500 dark:text-gray-400 font-mono mb-2"
+            >
+              Duration: 4h 10m
+            </p>
+            <div
+              data-headlessui-state=""
+            >
+              <button
+                aria-expanded="false"
+                class="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline mt-2"
+                data-headlessui-state=""
+                id="headlessui-disclosure-button-_r_3i_"
+                type="button"
+              >
+                <span>
+                  Show technologies
+                </span>
+                <svg
+                  aria-hidden="true"
+                  class="lucide lucide-chevron-down ml-1 w-4 h-4 transition-transform"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6 9 6 6 6-6"
+                  />
+                </svg>
+              </button>
             </div>
           </div>
-          <p
-            class="text-sm text-gray-500 dark:text-gray-400 font-mono mb-2"
+          <a
+            class="hidden md:block shrink-0"
+            href="https://www.udemy.com/course/typescript-da-zero/"
+            rel="noopener noreferrer"
+            target="_blank"
           >
-            Duration: 4h 10m
-          </p>
-          <div
-            data-headlessui-state=""
-          >
-            <button
-              aria-expanded="false"
-              class="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
-              data-headlessui-state=""
-              id="headlessui-disclosure-button-_r_3i_"
-              type="button"
-            >
-              <span>
-                Show technologies
-              </span>
-              <svg
-                aria-hidden="true"
-                class="lucide lucide-chevron-down ml-1 w-4 h-4 transition-transform"
-                fill="none"
-                height="24"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                width="24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="m6 9 6 6 6-6"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-        <a
-          class="hidden md:block shrink-0"
-          href="https://www.udemy.com/course/typescript-da-zero/"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <img
-            alt="TypeScript Course"
-            class="rounded-full w-48 h-48 object-cover shadow-md hover:scale-105 transition-transform duration-300"
-            loading="lazy"
-            src="/src/assets/courses/TYPESCRIPT.png"
-          />
-        </a>
-      </section>
-      <section
-        class="rounded-2xl bg-gray-100 dark:bg-gray-800 
+            <img
+              alt="TypeScript Course"
+              class="rounded-full w-48 h-48 object-cover shadow-md hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+              src="/src/assets/courses/TYPESCRIPT.png"
+            />
+          </a>
+        </section>
+        <section
+          class="rounded-2xl bg-gray-100 dark:bg-gray-800 
                 border border-gray-300 dark:border-gray-700 
                 shadow-md hover:shadow-lg transition-shadow 
                 p-4 sm:p-6 w-full h-full relative w-full p-5 sm:p-6 border border-gray-200/60
-                                         dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
-                                         rounded-xl hover:shadow-lg transition-all duration-300
-                                         flex flex-col md:flex-row items-start gap-4"
-      >
-        <div
-          class="p-4 sm:p-6 md:p-8
+                                     dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
+                                     rounded-xl hover:shadow-lg transition-all duration-300
+                                     flex flex-col md:flex-row items-start gap-4"
+        >
+          <div
+            class="p-4 sm:p-6 md:p-8
                 text-sm sm:text-base
                 text-gray-900 dark:text-gray-300
                 p-0 flex-1"
-        >
-          <div
-            class="flex items-center justify-between mb-2"
-          >
-            <h3
-              class="text-lg font-semibold"
-            >
-              jQuery Course
-            </h3>
-            <a
-              class="block md:hidden shrink-0 ml-4"
-              href="https://www.udemy.com/course/corso-jquery/"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <img
-                alt="jQuery Course"
-                class="rounded-full w-16 h-16 object-cover shadow-md hover:scale-105 transition-transform duration-300"
-                loading="lazy"
-                src="/src/assets/courses/JQUERY.png"
-              />
-            </a>
-          </div>
-          <div
-            class="relative"
           >
             <div
-              aria-expanded="false"
-              class="text-sm sm:text-base whitespace-pre-wrap overflow-hidden transition-all duration-500 ease-in-out relative my-2 cursor-default text-gray-700 dark:text-gray-300"
-              style="max-height: 4.5em;"
+              class="flex items-center justify-between mb-2"
             >
-              Master jQuery selectors and events.
+              <h3
+                class="text-lg font-semibold"
+              >
+                jQuery Course
+              </h3>
+              <a
+                class="block md:hidden shrink-0 ml-4"
+                href="https://www.udemy.com/course/corso-jquery/"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <img
+                  alt="jQuery Course"
+                  class="rounded-full w-16 h-16 object-cover shadow-md hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                  src="/src/assets/courses/JQUERY.png"
+                />
+              </a>
+            </div>
+            <div
+              class="relative"
+            >
+              <div
+                aria-expanded="false"
+                class="text-sm sm:text-base whitespace-pre-wrap overflow-hidden transition-all duration-500 ease-in-out relative my-2 cursor-default text-gray-700 dark:text-gray-300"
+                style="max-height: 4.5em;"
+              >
+                Master jQuery selectors and events.
+              </div>
+            </div>
+            <p
+              class="text-sm text-gray-500 dark:text-gray-400 font-mono mb-2"
+            >
+              Duration: 2h 45m
+            </p>
+            <div
+              data-headlessui-state=""
+            >
+              <button
+                aria-expanded="false"
+                class="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline mt-2"
+                data-headlessui-state=""
+                id="headlessui-disclosure-button-_r_3k_"
+                type="button"
+              >
+                <span>
+                  Show technologies
+                </span>
+                <svg
+                  aria-hidden="true"
+                  class="lucide lucide-chevron-down ml-1 w-4 h-4 transition-transform"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6 9 6 6 6-6"
+                  />
+                </svg>
+              </button>
             </div>
           </div>
-          <p
-            class="text-sm text-gray-500 dark:text-gray-400 font-mono mb-2"
+          <a
+            class="hidden md:block shrink-0"
+            href="https://www.udemy.com/course/corso-jquery/"
+            rel="noopener noreferrer"
+            target="_blank"
           >
-            Duration: 2h 45m
-          </p>
-          <div
-            data-headlessui-state=""
-          >
-            <button
-              aria-expanded="false"
-              class="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
-              data-headlessui-state=""
-              id="headlessui-disclosure-button-_r_3k_"
-              type="button"
-            >
-              <span>
-                Show technologies
-              </span>
-              <svg
-                aria-hidden="true"
-                class="lucide lucide-chevron-down ml-1 w-4 h-4 transition-transform"
-                fill="none"
-                height="24"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                width="24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="m6 9 6 6 6-6"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-        <a
-          class="hidden md:block shrink-0"
-          href="https://www.udemy.com/course/corso-jquery/"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <img
-            alt="jQuery Course"
-            class="rounded-full w-48 h-48 object-cover shadow-md hover:scale-105 transition-transform duration-300"
-            loading="lazy"
-            src="/src/assets/courses/JQUERY.png"
-          />
-        </a>
-      </section>
-      <section
-        class="rounded-2xl bg-gray-100 dark:bg-gray-800 
+            <img
+              alt="jQuery Course"
+              class="rounded-full w-48 h-48 object-cover shadow-md hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+              src="/src/assets/courses/JQUERY.png"
+            />
+          </a>
+        </section>
+        <section
+          class="rounded-2xl bg-gray-100 dark:bg-gray-800 
                 border border-gray-300 dark:border-gray-700 
                 shadow-md hover:shadow-lg transition-shadow 
                 p-4 sm:p-6 w-full h-full relative w-full p-5 sm:p-6 border border-gray-200/60
-                                         dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
-                                         rounded-xl hover:shadow-lg transition-all duration-300
-                                         flex flex-col md:flex-row items-start gap-4"
-      >
-        <div
-          class="p-4 sm:p-6 md:p-8
+                                     dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
+                                     rounded-xl hover:shadow-lg transition-all duration-300
+                                     flex flex-col md:flex-row items-start gap-4"
+        >
+          <div
+            class="p-4 sm:p-6 md:p-8
                 text-sm sm:text-base
                 text-gray-900 dark:text-gray-300
                 p-0 flex-1"
-        >
-          <div
-            class="flex items-center justify-between mb-2"
-          >
-            <h3
-              class="text-lg font-semibold"
-            >
-              courses_page.php.title
-            </h3>
-            <a
-              class="block md:hidden shrink-0 ml-4"
-              href="https://www.udemy.com/course/corso-di-programmazione-php/"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <img
-                alt="courses_page.php.title"
-                class="rounded-full w-16 h-16 object-cover shadow-md hover:scale-105 transition-transform duration-300"
-                loading="lazy"
-                src="/src/assets/courses/PHP.png"
-              />
-            </a>
-          </div>
-          <div
-            class="relative"
           >
             <div
-              aria-expanded="false"
-              class="text-sm sm:text-base whitespace-pre-wrap overflow-hidden transition-all duration-500 ease-in-out relative my-2 cursor-default text-gray-700 dark:text-gray-300"
-              style="max-height: 4.5em;"
+              class="flex items-center justify-between mb-2"
             >
-              courses_page.php.description
+              <h3
+                class="text-lg font-semibold"
+              >
+                courses_page.php.title
+              </h3>
+              <a
+                class="block md:hidden shrink-0 ml-4"
+                href="https://www.udemy.com/course/corso-di-programmazione-php/"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <img
+                  alt="courses_page.php.title"
+                  class="rounded-full w-16 h-16 object-cover shadow-md hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                  src="/src/assets/courses/PHP.png"
+                />
+              </a>
+            </div>
+            <div
+              class="relative"
+            >
+              <div
+                aria-expanded="false"
+                class="text-sm sm:text-base whitespace-pre-wrap overflow-hidden transition-all duration-500 ease-in-out relative my-2 cursor-default text-gray-700 dark:text-gray-300"
+                style="max-height: 4.5em;"
+              >
+                courses_page.php.description
+              </div>
+            </div>
+            <p
+              class="text-sm text-gray-500 dark:text-gray-400 font-mono mb-2"
+            >
+              Duration: courses_page.php.duration
+            </p>
+            <div
+              data-headlessui-state=""
+            >
+              <button
+                aria-expanded="false"
+                class="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline mt-2"
+                data-headlessui-state=""
+                id="headlessui-disclosure-button-_r_3m_"
+                type="button"
+              >
+                <span>
+                  Show technologies
+                </span>
+                <svg
+                  aria-hidden="true"
+                  class="lucide lucide-chevron-down ml-1 w-4 h-4 transition-transform"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m6 9 6 6 6-6"
+                  />
+                </svg>
+              </button>
             </div>
           </div>
-          <p
-            class="text-sm text-gray-500 dark:text-gray-400 font-mono mb-2"
+          <a
+            class="hidden md:block shrink-0"
+            href="https://www.udemy.com/course/corso-di-programmazione-php/"
+            rel="noopener noreferrer"
+            target="_blank"
           >
-            Duration: courses_page.php.duration
-          </p>
-          <div
-            data-headlessui-state=""
-          >
-            <button
-              aria-expanded="false"
-              class="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
-              data-headlessui-state=""
-              id="headlessui-disclosure-button-_r_3m_"
-              type="button"
-            >
-              <span>
-                Show technologies
-              </span>
-              <svg
-                aria-hidden="true"
-                class="lucide lucide-chevron-down ml-1 w-4 h-4 transition-transform"
-                fill="none"
-                height="24"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                width="24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="m6 9 6 6 6-6"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-        <a
-          class="hidden md:block shrink-0"
-          href="https://www.udemy.com/course/corso-di-programmazione-php/"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <img
-            alt="courses_page.php.title"
-            class="rounded-full w-48 h-48 object-cover shadow-md hover:scale-105 transition-transform duration-300"
-            loading="lazy"
-            src="/src/assets/courses/PHP.png"
-          />
-        </a>
-      </section>
+            <img
+              alt="courses_page.php.title"
+              class="rounded-full w-48 h-48 object-cover shadow-md hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+              src="/src/assets/courses/PHP.png"
+            />
+          </a>
+        </section>
+      </div>
     </div>
     <div
       class="hidden md:block mt-4"

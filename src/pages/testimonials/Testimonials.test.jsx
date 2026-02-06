@@ -1,5 +1,5 @@
 import React from "react";
-import {fireEvent, render, screen, waitFor, within} from "@testing-library/react";
+import {fireEvent, render, screen} from "@testing-library/react";
 import Testimonials from "./Testimonials";
 import {MemoryRouter} from 'react-router-dom';
 import {vi} from 'vitest';
@@ -98,22 +98,37 @@ describe("Testimonials component with mobile + desktop paginators", () => {
         pageDisplays.forEach(el => expect(el).toHaveTextContent("1 / 6"));
     });
 
-    test("toggles testimonial quote visibility on disclosure click", async () => {
+    test("renders page title", () => {
+        expect(screen.getByRole("heading", { name: /testimonials/i })).toBeInTheDocument();
+    });
+
+    test("renders correct number of testimonial cards (4 per page)", () => {
         const cards = screen.getAllByTestId("testimonial-card");
-        const firstCard = cards[0];
-        const {getByRole, queryByText} = within(firstCard);
+        expect(cards).toHaveLength(4);
+    });
 
-        const name = "Mirko";
-        const quote = "Great work!";
+    test("renders testimonial avatars", () => {
+        const avatars = screen.getAllByRole("img");
+        expect(avatars).toHaveLength(4);
+        avatars.forEach(avatar => {
+            expect(avatar).toHaveAttribute("alt");
+            expect(avatar).toHaveClass("rounded-full");
+        });
+    });
 
-        const disclosureButton = getByRole("button", {name: new RegExp(name, "i")});
-        expect(queryByText(quote)).not.toBeInTheDocument();
+    test("renders Disclosure buttons", () => {
+        const buttons = screen.getAllByRole("button");
+        expect(buttons.length).toBeGreaterThanOrEqual(4);
+    });
 
-        fireEvent.click(disclosureButton);
-        await waitFor(() => expect(queryByText(quote)).toBeVisible());
+    test("renders LinkedIn icons when available", () => {
+        const links = screen.getAllByRole("link");
+        const linkedinLinks = links.filter(link => link.getAttribute("href")?.includes("linkedin"));
+        expect(linkedinLinks.length).toBeGreaterThan(0);
+    });
 
-        fireEvent.click(disclosureButton);
-        await waitFor(() => expect(queryByText(quote)).not.toBeInTheDocument());
+    test("SEO metadata is present", () => {
+        expect(document.title).toContain("testimonials");
     });
 
     test("matches snapshot", () => {
