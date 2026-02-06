@@ -260,7 +260,7 @@ export function TradingPerformanceChart() {
 
                     {/* Cards for the selected year */}
                     <div className="p-4">
-                        {/* Desktop: 12-card grid su una riga */}
+                        {/* Desktop: 12-card grid on one line */}
                         <div className="hidden sm:grid grid-cols-12 gap-3">
                             {monthlyReturns
                                 .slice(years[selectedYear], years[selectedYear] + 12)

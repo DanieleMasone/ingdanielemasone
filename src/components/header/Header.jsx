@@ -125,10 +125,10 @@ export function Header() {
                         </div>
                     </div>
 
-                    {/* Nav items (escluso home) */}
+                    {/* Nav items (excluding home) */}
                     <div className="space-y-2">
                         {navMain
-                            .filter(item => item.to !== '/') // evitiamo doppio "home"
+                            .filter(item => item.to !== '/') // Avoid double "home"
                             .map(item => (
                                 <Link
                                     key={item.to}
@@ -145,7 +145,7 @@ export function Header() {
                             ))}
                     </div>
 
-                    {/* Portfolio in basso a sinistra */}
+                    {/* Portfolio at the bottom left */}
                     <div className="pt-4">
                         <Disclosure>
                             {({open}) => (

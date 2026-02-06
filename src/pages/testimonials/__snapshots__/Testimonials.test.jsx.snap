@@ -44,8 +44,7 @@ exports[`Testimonials component with mobile + desktop paginators > matches snaps
       style="opacity: 0; transform: scale(0.96);"
     >
       <section
-        class="// Template literal più leggibile
-                rounded-2xl bg-gray-100 dark:bg-gray-800 
+        class="rounded-2xl bg-gray-100 dark:bg-gray-800 
                 border border-gray-300 dark:border-gray-700 
                 shadow-md hover:shadow-lg transition-shadow 
                 p-4 sm:p-6 w-full h-full relative w-full p-5 sm:p-6 border border-gray-200/60
@@ -126,8 +125,7 @@ exports[`Testimonials component with mobile + desktop paginators > matches snaps
         </div>
       </section>
       <section
-        class="// Template literal più leggibile
-                rounded-2xl bg-gray-100 dark:bg-gray-800 
+        class="rounded-2xl bg-gray-100 dark:bg-gray-800 
                 border border-gray-300 dark:border-gray-700 
                 shadow-md hover:shadow-lg transition-shadow 
                 p-4 sm:p-6 w-full h-full relative w-full p-5 sm:p-6 border border-gray-200/60
@@ -208,8 +206,7 @@ exports[`Testimonials component with mobile + desktop paginators > matches snaps
         </div>
       </section>
       <section
-        class="// Template literal più leggibile
-                rounded-2xl bg-gray-100 dark:bg-gray-800 
+        class="rounded-2xl bg-gray-100 dark:bg-gray-800 
                 border border-gray-300 dark:border-gray-700 
                 shadow-md hover:shadow-lg transition-shadow 
                 p-4 sm:p-6 w-full h-full relative w-full p-5 sm:p-6 border border-gray-200/60
@@ -290,8 +287,7 @@ exports[`Testimonials component with mobile + desktop paginators > matches snaps
         </div>
       </section>
       <section
-        class="// Template literal più leggibile
-                rounded-2xl bg-gray-100 dark:bg-gray-800 
+        class="rounded-2xl bg-gray-100 dark:bg-gray-800 
                 border border-gray-300 dark:border-gray-700 
                 shadow-md hover:shadow-lg transition-shadow 
                 p-4 sm:p-6 w-full h-full relative w-full p-5 sm:p-6 border border-gray-200/60

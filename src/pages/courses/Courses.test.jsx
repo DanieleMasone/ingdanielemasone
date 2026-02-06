@@ -65,7 +65,7 @@ describe('Courses component', () => {
 
     test('disables "Previous" on first page', () => {
         const prevButtons = screen.getAllByRole('button', {name: /previous/i});
-        // mobile e desktop hanno entrambi il pulsante "Previous" sulla pagina 1
+        // Mobile and desktop both have a "Previous" button on page 1
         prevButtons.forEach(btn => expect(btn).toBeDisabled());
     });
 
@@ -73,7 +73,7 @@ describe('Courses component', () => {
         const nextButtons = screen.getAllByRole('button', {name: /next/i});
         const pageInfos = screen.getAllByTestId("pagination-info");
 
-        // Avanza pagina usando entrambi i paginatori
+        // Advance page using both pagers
         fireEvent.click(nextButtons[0]); // mobile
         fireEvent.click(nextButtons[1]); // desktop
 

@@ -80,7 +80,7 @@ describe("Projects Component", () => {
 
         // Third project could be on page 2 (ITEMS_PER_PAGE=2)
         const {nextButtons} = getPaginationControls();
-        fireEvent.click(nextButtons[0]); // Vai a pagina 2
+        fireEvent.click(nextButtons[0]); // Go to page 2
 
         await waitFor(() => {
             expect(screen.getByText(/Maintenance and extension of core AS\/400 applications/)).toBeInTheDocument();

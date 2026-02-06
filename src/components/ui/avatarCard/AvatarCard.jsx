@@ -27,7 +27,7 @@ export function AvatarCard() {
                     alt="Cover"
                     className="w-full h-full object-cover"
                 />
-                {/* overlay only on the cover */}
+                {/* Overlay only on the cover */}
                 <div className="absolute inset-0 bg-black/20 z-0"></div>
             </div>
 
