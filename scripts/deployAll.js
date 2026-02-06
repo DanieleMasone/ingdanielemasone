@@ -19,10 +19,10 @@ fs.copySync(path.join(__dirname, '..', 'dist'), outDir);
 console.log('📄 Copying JSDoc from /docs...');
 fs.copySync(path.join(__dirname, '..', 'docs'), path.join(outDir, 'docs'));
 
-// Copy coverage report from /coverage/lcov-report to /test-coverage
-const coveragePath = path.join(__dirname, '..', 'coverage', 'lcov-report');
+// Copy coverage report from /coverage to /test-coverage
+const coveragePath = path.join(__dirname, '..', 'coverage');
 if (fs.existsSync(coveragePath)) {
-    console.log('🧪 Copying coverage from /coverage/lcov-report...');
+    console.log('🧪 Copying Coverage from /coverage...');
     fs.copySync(coveragePath, path.join(outDir, 'test-coverage'));
 } else {
     console.warn('⚠️ Coverage not found, skipping...');
