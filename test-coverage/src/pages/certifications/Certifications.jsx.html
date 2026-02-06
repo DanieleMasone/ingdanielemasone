@@ -228,8 +228,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -245,10 +246,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -286,15 +284,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -320,7 +320,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">21x</span>
+<span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -383,7 +383,46 @@ import {SeoHead} from "@/components/seoHead/SeoHead";
 import {useState} from "react";
 import {Pagination} from "@/components/ui/pagination/Pagination";
 &nbsp;
-const ITEMS_PER_PAGE = 3;
+const ITEMS_PER_PAGE = 4;
+&nbsp;
+const certifications = [
+    {
+        nameKey: "English CEFR Level B2.2",
+        issuer: "Speexx",
+        date: "2024",
+        link: "https://portal.speexx.com/certificate/ZTAxY2Y5ZTktNGRjMi00Yzc0LWFjYmQtZjAzOTIyZDNmZjdmOjo4Mg=="
+    },
+    {
+        nameKey: "English CEFR Level B2.1",
+        issuer: "Speexx",
+        date: "2024",
+        link: "https://portal.speexx.com/certificate/ZTAxY2Y5ZTktNGRjMi00Yzc0LWFjYmQtZjAzOTIyZDNmZjdmOjo4MQ=="
+    },
+    {
+        nameKey: "English CEFR Level B1.2",
+        issuer: "Speexx",
+        date: "2024",
+        link: "https://portal.speexx.com/certificate/ZTAxY2Y5ZTktNGRjMi00Yzc0LWFjYmQtZjAzOTIyZDNmZjdmOjo4MA=="
+    },
+    {
+        nameKey: "English CEFR Level B1.1",
+        issuer: "Speexx",
+        date: "2023",
+        link: "https://portal.speexx.com/certificate/ZTAxY2Y5ZTktNGRjMi00Yzc0LWFjYmQtZjAzOTIyZDNmZjdmOjo3OQ=="
+    },
+    {
+        nameKey: "Codemotion Milan",
+        issuer: "Codemotion",
+        date: "2023",
+        link: "https://credsverse.com/credentials/070cb7c9-c2c8-4bf5-b27b-df66298f9561",
+    },
+    {
+        nameKey: "Codemotion Workshop Fest",
+        issuer: "Codemotion",
+        date: "2023",
+        link: "https://credsverse.com/credentials/98c00e0e-8cb8-41d1-96b0-515b1b2842ef",
+    }
+];
 &nbsp;
 /**
  * Certifications component.
@@ -402,45 +441,6 @@ const ITEMS_PER_PAGE = 3;
 export default function Certifications() {
     const {t} = useTranslation();
     const [page, setPage] = useState(1);
-&nbsp;
-    const certifications = [
-        {
-            nameKey: "English CEFR Level B2.2",
-            issuer: "Speexx",
-            date: "2024",
-            link: "https://portal.speexx.com/certificate/ZTAxY2Y5ZTktNGRjMi00Yzc0LWFjYmQtZjAzOTIyZDNmZjdmOjo4Mg=="
-        },
-        {
-            nameKey: "English CEFR Level B2.1",
-            issuer: "Speexx",
-            date: "2024",
-            link: "https://portal.speexx.com/certificate/ZTAxY2Y5ZTktNGRjMi00Yzc0LWFjYmQtZjAzOTIyZDNmZjdmOjo4MQ=="
-        },
-        {
-            nameKey: "English CEFR Level B1.2",
-            issuer: "Speexx",
-            date: "2024",
-            link: "https://portal.speexx.com/certificate/ZTAxY2Y5ZTktNGRjMi00Yzc0LWFjYmQtZjAzOTIyZDNmZjdmOjo4MA=="
-        },
-        {
-            nameKey: "English CEFR Level B1.1",
-            issuer: "Speexx",
-            date: "2023",
-            link: "https://portal.speexx.com/certificate/ZTAxY2Y5ZTktNGRjMi00Yzc0LWFjYmQtZjAzOTIyZDNmZjdmOjo3OQ=="
-        },
-        {
-            nameKey: "Codemotion Milan",
-            issuer: "Codemotion",
-            date: "2023",
-            link: "https://credsverse.com/credentials/070cb7c9-c2c8-4bf5-b27b-df66298f9561",
-        },
-        {
-            nameKey: "Codemotion Workshop Fest",
-            issuer: "Codemotion",
-            date: "2023",
-            link: "https://credsverse.com/credentials/98c00e0e-8cb8-41d1-96b0-515b1b2842ef",
-        }
-    ];
 &nbsp;
     const totalPages = Math.ceil(certifications.length / ITEMS_PER_PAGE);
 &nbsp;
@@ -467,12 +467,12 @@ export default function Certifications() {
                 &lt;AnimatePresence mode="wait"&gt;
                     &lt;motion.div
                         key={`page-${page}`}
-                        initial={{opacity: 0, y: 40}}
-                        animate={{opacity: 1, y: 0}}
-                        exit={{opacity: 0, y: -40}}
-                        transition={{duration: 0.4}}
+                        initial={{ opacity: 0, scale: 0.96 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.96 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
                         layout
-                        className="flex flex-col items-center gap-6"
+                        className="grid grid-cols-1 md:grid-cols-2 gap-6"
                     &gt;
                         {displayedCerts.map((cert, idx) =&gt; (
                             &lt;Card
@@ -535,7 +535,7 @@ export default function Certifications() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-02-02T08:05:04.946Z
+                at 2026-02-06T10:45:17.402Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

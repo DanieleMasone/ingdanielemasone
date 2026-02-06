@@ -1,0 +1,1375 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for src/locales/es/translation.json</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/locales/es</a> translation.json</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>0/0</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>0/0</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>0/0</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>0/0</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input type="search" id="fileSearch">
+            </div>
+        </template>
+    </div>
+    <div class='status-line low'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a>
+<a name='L3'></a><a href='#L3'>3</a>
+<a name='L4'></a><a href='#L4'>4</a>
+<a name='L5'></a><a href='#L5'>5</a>
+<a name='L6'></a><a href='#L6'>6</a>
+<a name='L7'></a><a href='#L7'>7</a>
+<a name='L8'></a><a href='#L8'>8</a>
+<a name='L9'></a><a href='#L9'>9</a>
+<a name='L10'></a><a href='#L10'>10</a>
+<a name='L11'></a><a href='#L11'>11</a>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a>
+<a name='L104'></a><a href='#L104'>104</a>
+<a name='L105'></a><a href='#L105'>105</a>
+<a name='L106'></a><a href='#L106'>106</a>
+<a name='L107'></a><a href='#L107'>107</a>
+<a name='L108'></a><a href='#L108'>108</a>
+<a name='L109'></a><a href='#L109'>109</a>
+<a name='L110'></a><a href='#L110'>110</a>
+<a name='L111'></a><a href='#L111'>111</a>
+<a name='L112'></a><a href='#L112'>112</a>
+<a name='L113'></a><a href='#L113'>113</a>
+<a name='L114'></a><a href='#L114'>114</a>
+<a name='L115'></a><a href='#L115'>115</a>
+<a name='L116'></a><a href='#L116'>116</a>
+<a name='L117'></a><a href='#L117'>117</a>
+<a name='L118'></a><a href='#L118'>118</a>
+<a name='L119'></a><a href='#L119'>119</a>
+<a name='L120'></a><a href='#L120'>120</a>
+<a name='L121'></a><a href='#L121'>121</a>
+<a name='L122'></a><a href='#L122'>122</a>
+<a name='L123'></a><a href='#L123'>123</a>
+<a name='L124'></a><a href='#L124'>124</a>
+<a name='L125'></a><a href='#L125'>125</a>
+<a name='L126'></a><a href='#L126'>126</a>
+<a name='L127'></a><a href='#L127'>127</a>
+<a name='L128'></a><a href='#L128'>128</a>
+<a name='L129'></a><a href='#L129'>129</a>
+<a name='L130'></a><a href='#L130'>130</a>
+<a name='L131'></a><a href='#L131'>131</a>
+<a name='L132'></a><a href='#L132'>132</a>
+<a name='L133'></a><a href='#L133'>133</a>
+<a name='L134'></a><a href='#L134'>134</a>
+<a name='L135'></a><a href='#L135'>135</a>
+<a name='L136'></a><a href='#L136'>136</a>
+<a name='L137'></a><a href='#L137'>137</a>
+<a name='L138'></a><a href='#L138'>138</a>
+<a name='L139'></a><a href='#L139'>139</a>
+<a name='L140'></a><a href='#L140'>140</a>
+<a name='L141'></a><a href='#L141'>141</a>
+<a name='L142'></a><a href='#L142'>142</a>
+<a name='L143'></a><a href='#L143'>143</a>
+<a name='L144'></a><a href='#L144'>144</a>
+<a name='L145'></a><a href='#L145'>145</a>
+<a name='L146'></a><a href='#L146'>146</a>
+<a name='L147'></a><a href='#L147'>147</a>
+<a name='L148'></a><a href='#L148'>148</a>
+<a name='L149'></a><a href='#L149'>149</a>
+<a name='L150'></a><a href='#L150'>150</a>
+<a name='L151'></a><a href='#L151'>151</a>
+<a name='L152'></a><a href='#L152'>152</a>
+<a name='L153'></a><a href='#L153'>153</a>
+<a name='L154'></a><a href='#L154'>154</a>
+<a name='L155'></a><a href='#L155'>155</a>
+<a name='L156'></a><a href='#L156'>156</a>
+<a name='L157'></a><a href='#L157'>157</a>
+<a name='L158'></a><a href='#L158'>158</a>
+<a name='L159'></a><a href='#L159'>159</a>
+<a name='L160'></a><a href='#L160'>160</a>
+<a name='L161'></a><a href='#L161'>161</a>
+<a name='L162'></a><a href='#L162'>162</a>
+<a name='L163'></a><a href='#L163'>163</a>
+<a name='L164'></a><a href='#L164'>164</a>
+<a name='L165'></a><a href='#L165'>165</a>
+<a name='L166'></a><a href='#L166'>166</a>
+<a name='L167'></a><a href='#L167'>167</a>
+<a name='L168'></a><a href='#L168'>168</a>
+<a name='L169'></a><a href='#L169'>169</a>
+<a name='L170'></a><a href='#L170'>170</a>
+<a name='L171'></a><a href='#L171'>171</a>
+<a name='L172'></a><a href='#L172'>172</a>
+<a name='L173'></a><a href='#L173'>173</a>
+<a name='L174'></a><a href='#L174'>174</a>
+<a name='L175'></a><a href='#L175'>175</a>
+<a name='L176'></a><a href='#L176'>176</a>
+<a name='L177'></a><a href='#L177'>177</a>
+<a name='L178'></a><a href='#L178'>178</a>
+<a name='L179'></a><a href='#L179'>179</a>
+<a name='L180'></a><a href='#L180'>180</a>
+<a name='L181'></a><a href='#L181'>181</a>
+<a name='L182'></a><a href='#L182'>182</a>
+<a name='L183'></a><a href='#L183'>183</a>
+<a name='L184'></a><a href='#L184'>184</a>
+<a name='L185'></a><a href='#L185'>185</a>
+<a name='L186'></a><a href='#L186'>186</a>
+<a name='L187'></a><a href='#L187'>187</a>
+<a name='L188'></a><a href='#L188'>188</a>
+<a name='L189'></a><a href='#L189'>189</a>
+<a name='L190'></a><a href='#L190'>190</a>
+<a name='L191'></a><a href='#L191'>191</a>
+<a name='L192'></a><a href='#L192'>192</a>
+<a name='L193'></a><a href='#L193'>193</a>
+<a name='L194'></a><a href='#L194'>194</a>
+<a name='L195'></a><a href='#L195'>195</a>
+<a name='L196'></a><a href='#L196'>196</a>
+<a name='L197'></a><a href='#L197'>197</a>
+<a name='L198'></a><a href='#L198'>198</a>
+<a name='L199'></a><a href='#L199'>199</a>
+<a name='L200'></a><a href='#L200'>200</a>
+<a name='L201'></a><a href='#L201'>201</a>
+<a name='L202'></a><a href='#L202'>202</a>
+<a name='L203'></a><a href='#L203'>203</a>
+<a name='L204'></a><a href='#L204'>204</a>
+<a name='L205'></a><a href='#L205'>205</a>
+<a name='L206'></a><a href='#L206'>206</a>
+<a name='L207'></a><a href='#L207'>207</a>
+<a name='L208'></a><a href='#L208'>208</a>
+<a name='L209'></a><a href='#L209'>209</a>
+<a name='L210'></a><a href='#L210'>210</a>
+<a name='L211'></a><a href='#L211'>211</a>
+<a name='L212'></a><a href='#L212'>212</a>
+<a name='L213'></a><a href='#L213'>213</a>
+<a name='L214'></a><a href='#L214'>214</a>
+<a name='L215'></a><a href='#L215'>215</a>
+<a name='L216'></a><a href='#L216'>216</a>
+<a name='L217'></a><a href='#L217'>217</a>
+<a name='L218'></a><a href='#L218'>218</a>
+<a name='L219'></a><a href='#L219'>219</a>
+<a name='L220'></a><a href='#L220'>220</a>
+<a name='L221'></a><a href='#L221'>221</a>
+<a name='L222'></a><a href='#L222'>222</a>
+<a name='L223'></a><a href='#L223'>223</a>
+<a name='L224'></a><a href='#L224'>224</a>
+<a name='L225'></a><a href='#L225'>225</a>
+<a name='L226'></a><a href='#L226'>226</a>
+<a name='L227'></a><a href='#L227'>227</a>
+<a name='L228'></a><a href='#L228'>228</a>
+<a name='L229'></a><a href='#L229'>229</a>
+<a name='L230'></a><a href='#L230'>230</a>
+<a name='L231'></a><a href='#L231'>231</a>
+<a name='L232'></a><a href='#L232'>232</a>
+<a name='L233'></a><a href='#L233'>233</a>
+<a name='L234'></a><a href='#L234'>234</a>
+<a name='L235'></a><a href='#L235'>235</a>
+<a name='L236'></a><a href='#L236'>236</a>
+<a name='L237'></a><a href='#L237'>237</a>
+<a name='L238'></a><a href='#L238'>238</a>
+<a name='L239'></a><a href='#L239'>239</a>
+<a name='L240'></a><a href='#L240'>240</a>
+<a name='L241'></a><a href='#L241'>241</a>
+<a name='L242'></a><a href='#L242'>242</a>
+<a name='L243'></a><a href='#L243'>243</a>
+<a name='L244'></a><a href='#L244'>244</a>
+<a name='L245'></a><a href='#L245'>245</a>
+<a name='L246'></a><a href='#L246'>246</a>
+<a name='L247'></a><a href='#L247'>247</a>
+<a name='L248'></a><a href='#L248'>248</a>
+<a name='L249'></a><a href='#L249'>249</a>
+<a name='L250'></a><a href='#L250'>250</a>
+<a name='L251'></a><a href='#L251'>251</a>
+<a name='L252'></a><a href='#L252'>252</a>
+<a name='L253'></a><a href='#L253'>253</a>
+<a name='L254'></a><a href='#L254'>254</a>
+<a name='L255'></a><a href='#L255'>255</a>
+<a name='L256'></a><a href='#L256'>256</a>
+<a name='L257'></a><a href='#L257'>257</a>
+<a name='L258'></a><a href='#L258'>258</a>
+<a name='L259'></a><a href='#L259'>259</a>
+<a name='L260'></a><a href='#L260'>260</a>
+<a name='L261'></a><a href='#L261'>261</a>
+<a name='L262'></a><a href='#L262'>262</a>
+<a name='L263'></a><a href='#L263'>263</a>
+<a name='L264'></a><a href='#L264'>264</a>
+<a name='L265'></a><a href='#L265'>265</a>
+<a name='L266'></a><a href='#L266'>266</a>
+<a name='L267'></a><a href='#L267'>267</a>
+<a name='L268'></a><a href='#L268'>268</a>
+<a name='L269'></a><a href='#L269'>269</a>
+<a name='L270'></a><a href='#L270'>270</a>
+<a name='L271'></a><a href='#L271'>271</a>
+<a name='L272'></a><a href='#L272'>272</a>
+<a name='L273'></a><a href='#L273'>273</a>
+<a name='L274'></a><a href='#L274'>274</a>
+<a name='L275'></a><a href='#L275'>275</a>
+<a name='L276'></a><a href='#L276'>276</a>
+<a name='L277'></a><a href='#L277'>277</a>
+<a name='L278'></a><a href='#L278'>278</a>
+<a name='L279'></a><a href='#L279'>279</a>
+<a name='L280'></a><a href='#L280'>280</a>
+<a name='L281'></a><a href='#L281'>281</a>
+<a name='L282'></a><a href='#L282'>282</a>
+<a name='L283'></a><a href='#L283'>283</a>
+<a name='L284'></a><a href='#L284'>284</a>
+<a name='L285'></a><a href='#L285'>285</a>
+<a name='L286'></a><a href='#L286'>286</a>
+<a name='L287'></a><a href='#L287'>287</a>
+<a name='L288'></a><a href='#L288'>288</a>
+<a name='L289'></a><a href='#L289'>289</a>
+<a name='L290'></a><a href='#L290'>290</a>
+<a name='L291'></a><a href='#L291'>291</a>
+<a name='L292'></a><a href='#L292'>292</a>
+<a name='L293'></a><a href='#L293'>293</a>
+<a name='L294'></a><a href='#L294'>294</a>
+<a name='L295'></a><a href='#L295'>295</a>
+<a name='L296'></a><a href='#L296'>296</a>
+<a name='L297'></a><a href='#L297'>297</a>
+<a name='L298'></a><a href='#L298'>298</a>
+<a name='L299'></a><a href='#L299'>299</a>
+<a name='L300'></a><a href='#L300'>300</a>
+<a name='L301'></a><a href='#L301'>301</a>
+<a name='L302'></a><a href='#L302'>302</a>
+<a name='L303'></a><a href='#L303'>303</a>
+<a name='L304'></a><a href='#L304'>304</a>
+<a name='L305'></a><a href='#L305'>305</a>
+<a name='L306'></a><a href='#L306'>306</a>
+<a name='L307'></a><a href='#L307'>307</a>
+<a name='L308'></a><a href='#L308'>308</a>
+<a name='L309'></a><a href='#L309'>309</a>
+<a name='L310'></a><a href='#L310'>310</a>
+<a name='L311'></a><a href='#L311'>311</a>
+<a name='L312'></a><a href='#L312'>312</a>
+<a name='L313'></a><a href='#L313'>313</a>
+<a name='L314'></a><a href='#L314'>314</a>
+<a name='L315'></a><a href='#L315'>315</a>
+<a name='L316'></a><a href='#L316'>316</a>
+<a name='L317'></a><a href='#L317'>317</a>
+<a name='L318'></a><a href='#L318'>318</a>
+<a name='L319'></a><a href='#L319'>319</a>
+<a name='L320'></a><a href='#L320'>320</a>
+<a name='L321'></a><a href='#L321'>321</a>
+<a name='L322'></a><a href='#L322'>322</a>
+<a name='L323'></a><a href='#L323'>323</a>
+<a name='L324'></a><a href='#L324'>324</a>
+<a name='L325'></a><a href='#L325'>325</a>
+<a name='L326'></a><a href='#L326'>326</a>
+<a name='L327'></a><a href='#L327'>327</a>
+<a name='L328'></a><a href='#L328'>328</a>
+<a name='L329'></a><a href='#L329'>329</a>
+<a name='L330'></a><a href='#L330'>330</a>
+<a name='L331'></a><a href='#L331'>331</a>
+<a name='L332'></a><a href='#L332'>332</a>
+<a name='L333'></a><a href='#L333'>333</a>
+<a name='L334'></a><a href='#L334'>334</a>
+<a name='L335'></a><a href='#L335'>335</a>
+<a name='L336'></a><a href='#L336'>336</a>
+<a name='L337'></a><a href='#L337'>337</a>
+<a name='L338'></a><a href='#L338'>338</a>
+<a name='L339'></a><a href='#L339'>339</a>
+<a name='L340'></a><a href='#L340'>340</a>
+<a name='L341'></a><a href='#L341'>341</a>
+<a name='L342'></a><a href='#L342'>342</a>
+<a name='L343'></a><a href='#L343'>343</a>
+<a name='L344'></a><a href='#L344'>344</a>
+<a name='L345'></a><a href='#L345'>345</a>
+<a name='L346'></a><a href='#L346'>346</a>
+<a name='L347'></a><a href='#L347'>347</a>
+<a name='L348'></a><a href='#L348'>348</a>
+<a name='L349'></a><a href='#L349'>349</a>
+<a name='L350'></a><a href='#L350'>350</a>
+<a name='L351'></a><a href='#L351'>351</a>
+<a name='L352'></a><a href='#L352'>352</a>
+<a name='L353'></a><a href='#L353'>353</a>
+<a name='L354'></a><a href='#L354'>354</a>
+<a name='L355'></a><a href='#L355'>355</a>
+<a name='L356'></a><a href='#L356'>356</a>
+<a name='L357'></a><a href='#L357'>357</a>
+<a name='L358'></a><a href='#L358'>358</a>
+<a name='L359'></a><a href='#L359'>359</a>
+<a name='L360'></a><a href='#L360'>360</a>
+<a name='L361'></a><a href='#L361'>361</a>
+<a name='L362'></a><a href='#L362'>362</a>
+<a name='L363'></a><a href='#L363'>363</a>
+<a name='L364'></a><a href='#L364'>364</a>
+<a name='L365'></a><a href='#L365'>365</a>
+<a name='L366'></a><a href='#L366'>366</a>
+<a name='L367'></a><a href='#L367'>367</a>
+<a name='L368'></a><a href='#L368'>368</a>
+<a name='L369'></a><a href='#L369'>369</a>
+<a name='L370'></a><a href='#L370'>370</a>
+<a name='L371'></a><a href='#L371'>371</a>
+<a name='L372'></a><a href='#L372'>372</a>
+<a name='L373'></a><a href='#L373'>373</a>
+<a name='L374'></a><a href='#L374'>374</a>
+<a name='L375'></a><a href='#L375'>375</a>
+<a name='L376'></a><a href='#L376'>376</a>
+<a name='L377'></a><a href='#L377'>377</a>
+<a name='L378'></a><a href='#L378'>378</a>
+<a name='L379'></a><a href='#L379'>379</a>
+<a name='L380'></a><a href='#L380'>380</a>
+<a name='L381'></a><a href='#L381'>381</a>
+<a name='L382'></a><a href='#L382'>382</a>
+<a name='L383'></a><a href='#L383'>383</a>
+<a name='L384'></a><a href='#L384'>384</a>
+<a name='L385'></a><a href='#L385'>385</a>
+<a name='L386'></a><a href='#L386'>386</a>
+<a name='L387'></a><a href='#L387'>387</a>
+<a name='L388'></a><a href='#L388'>388</a>
+<a name='L389'></a><a href='#L389'>389</a>
+<a name='L390'></a><a href='#L390'>390</a>
+<a name='L391'></a><a href='#L391'>391</a>
+<a name='L392'></a><a href='#L392'>392</a>
+<a name='L393'></a><a href='#L393'>393</a>
+<a name='L394'></a><a href='#L394'>394</a>
+<a name='L395'></a><a href='#L395'>395</a>
+<a name='L396'></a><a href='#L396'>396</a>
+<a name='L397'></a><a href='#L397'>397</a>
+<a name='L398'></a><a href='#L398'>398</a>
+<a name='L399'></a><a href='#L399'>399</a>
+<a name='L400'></a><a href='#L400'>400</a>
+<a name='L401'></a><a href='#L401'>401</a>
+<a name='L402'></a><a href='#L402'>402</a>
+<a name='L403'></a><a href='#L403'>403</a>
+<a name='L404'></a><a href='#L404'>404</a>
+<a name='L405'></a><a href='#L405'>405</a>
+<a name='L406'></a><a href='#L406'>406</a>
+<a name='L407'></a><a href='#L407'>407</a>
+<a name='L408'></a><a href='#L408'>408</a>
+<a name='L409'></a><a href='#L409'>409</a>
+<a name='L410'></a><a href='#L410'>410</a>
+<a name='L411'></a><a href='#L411'>411</a>
+<a name='L412'></a><a href='#L412'>412</a>
+<a name='L413'></a><a href='#L413'>413</a>
+<a name='L414'></a><a href='#L414'>414</a>
+<a name='L415'></a><a href='#L415'>415</a>
+<a name='L416'></a><a href='#L416'>416</a>
+<a name='L417'></a><a href='#L417'>417</a>
+<a name='L418'></a><a href='#L418'>418</a>
+<a name='L419'></a><a href='#L419'>419</a>
+<a name='L420'></a><a href='#L420'>420</a>
+<a name='L421'></a><a href='#L421'>421</a>
+<a name='L422'></a><a href='#L422'>422</a>
+<a name='L423'></a><a href='#L423'>423</a>
+<a name='L424'></a><a href='#L424'>424</a>
+<a name='L425'></a><a href='#L425'>425</a>
+<a name='L426'></a><a href='#L426'>426</a>
+<a name='L427'></a><a href='#L427'>427</a>
+<a name='L428'></a><a href='#L428'>428</a>
+<a name='L429'></a><a href='#L429'>429</a>
+<a name='L430'></a><a href='#L430'>430</a>
+<a name='L431'></a><a href='#L431'>431</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">{
+  "home": "Inicio",
+  "about": "Sobre mí",
+  "experience": "Experiencia",
+  "projects": "Proyectos",
+  "contact": "Contáctame",
+  "courses": "Cursos",
+  "certifications": "Certificaciones",
+  "previous": "Anterior",
+  "next": "Siguiente",
+  "all": "Todas",
+  "trading": "Trading",
+  "testimonials": "Testimonios",
+  "portfolio": "Portfolio",
+  "footer_copyright": "© 2025 Daniele Masone. Todos los derechos reservados.",
+  "home_subtitle": "Senior Software Engineer, Arquitecto Front-End y Technical Team Leader.",
+  "home_description": "Diseño y desarrollo aplicaciones escalables, seguras y mantenibles siguiendo los principios de arquitectura limpia y metodologías ágiles. Tengo una sólida experiencia tanto en el ámbito de sistemas como en desarrollo full stack, con competencias que abarcan desde el front-end al back-end, pasando por la contenerización y la orquestación de microservicios. Trabajo diariamente con una amplia gama de tecnologías modernas, contribuyendo a la definición de estándares, la revisión de código, la optimización del rendimiento y la documentación técnica. También ofrezco formación en programación, preparación para entrevistas y optimización del perfil profesional.",
+  "projects_title": "Proyectos",
+  "show_technologies": "Mostrar tecnologías",
+  "showMore": "Mostrar todo",
+  "showLess": "Mostrar menos",
+  "performance_positive": "Positivo",
+  "performance_negative": "Negativo",
+  "performance_cumulative": "Acumulado",
+  "notfound_title": "Página no encontrada",
+  "notfound_description": "La página que buscas no existe o ha sido eliminada.",
+  "go_home": "Volver al inicio",
+  "trading_signup": "Regístrate en eToro",
+  "months": {
+    "jan": "Ene",
+    "feb": "Feb",
+    "mar": "Mar",
+    "apr": "Abr",
+    "may": "May",
+    "jun": "Jun",
+    "jul": "Jul",
+    "aug": "Ago",
+    "sep": "Sep",
+    "oct": "Oct",
+    "nov": "Nov",
+    "dec": "Dic"
+  },
+  "partial": "parcial",
+  "project_types": {
+    "fastweb": {
+      "oloGatewayMobile": "Desarrollo de un portal web para gestionar solicitudes de portabilidad de clientes Fastweb en el ámbito móvil.",
+      "oloGatewayFisso": "Desarrollo de portales web para operadores socios (ej. Metroweb, Flash Fiber) en el contexto de activaciones de red fija.",
+      "OSSTrasformation": "Reingeniería del portal web principal de Fastweb, utilizado para gestionar actividades críticas del negocio."
+    },
+    "teoresi": {
+      "tecno": "Desarrollo de un portal web para reservar salas de reuniones y puestos de trabajo, con personalización (aire acondicionado, luces, proyector, etc.). Los datos recogidos por dispositivos IoT permiten un monitoreo completo del entorno.",
+      "dart": "Desarrollo de un portal para gestionar la flota de vehículos de FCA, integrado con un cliente MATLAB."
+    },
+    "tecnavia": {
+      "newsmemory": "Desarrollo de un CMS para gestión y publicación de periódicos digitales.",
+      "mobileApp": "Desarrollo de una app móvil híbrida en React Native, con componentes nativos en Objective-C (iOS) y Java (Android)."
+    },
+    "italiaonline": {
+      "areaClienti": "Desarrollo del área principal de clientes de Italiaonline.",
+      "restServices": "Diseño y desarrollo de servicios REST para operaciones de lectura y escritura sobre bases Oracle."
+    },
+    "rgi": {
+      "FEArchitecture": "Reingeniería del entorno core Front-End (portal client), definiendo la nueva arquitectura de referencia y responsabilidades técnicas.",
+      "HalfLife": "Desarrollo de librerías front-end personalizadas para flujos de seguros de vida, actuando como Team Leader y referente técnico.",
+      "AXAmobility": "Desarrollo de un portal web para operadores AXA dedicado a la gestión de flujos aseguradores, con entregas, guías arquitectónicas y supervisión técnica.",
+      "GroupPolicyLibrary": "Desarrollo de una librería personalizada para flujos asociados a pólizas colectivas, incluyendo guías de mantenimiento y extensibilidad.",
+      "AfterLife": "Desarrollo de componentes reutilizables para el sector de vida, con definición de buenas prácticas y arquitectura front-end."
+    },
+    "intesa": {
+      "exp_rpg_local_systems":"Mantenimiento y extensión de aplicaciones core AS/400 para proprietary trading; mejorada la fiabilidad de sistemas mediante refactoring de código, asegurando cumplimiento total y cero tiempo de inactividad en producción.",
+      "exp_hybrid_fullstack": "Contribución a pipelines BE/FE para reporting financiero, integrando APIs modernas con sistemas legacy; aplicadas mejores prácticas para solidez arquitectónica en equipos globales.",
+      "exp_as400_frontend": "Diseño e implementación de arquitecturas frontend escalables integradas con sistemas legacy RPG para reporting de red extranjera; optimización UI/UX."
+    },
+    "Enterprise Portal": "Desarrollo del portal Enterprise de Fastweb.",
+    "Insurance Web Portal": "Portal web para servicios aseguradores.",
+    "Mobility Portal": "Desarrollo del portal de movilidad corporativa de AXA.",
+    "UI Library": "Desarrollo de una librería UI personalizada y reutilizable.",
+    "Enterprise Application": "Aplicación enterprise para entornos empresariales complejos.",
+    "Architect": "Front-End Architect"
+  },
+  "about_title": "Quién soy",
+  "about_intro": "Soy un ingeniero informático con una sólida experiencia en desarrollo de software y arquitecturas enterprise. Actualmente desempeño el rol de Expert Software Engineer dentro de Intesa Sanpaolo, trabajando en soluciones de software complejas y escalables en entornos empresariales y regulados, con especial atención a la calidad del código, la fiabilidad de los sistemas y la sostenibilidad arquitectónica.",
+  "about_experience": "A lo largo de mi carrera he trabajado para empresas como RGI Group, Italiaonline, Fastweb, AXA, HPE y otras, desempeñando roles que van desde el desarrollo full stack hasta la arquitectura de software. Tengo experiencia en el diseño y desarrollo de aplicaciones enterprise, portales web, APIs REST, componentes reutilizables, librerías UI y aplicaciones SPA.\n\nMis competencias abarcan todo el stack tecnológico: front-end (React, Angular, TypeScript), back-end (Java EE, PHP, NodeJS), contenedorización con Docker y orquestación con Kubernetes. Trabajo con metodologías Agile, aplico principios de clean code y contribuyo activamente a code reviews, documentación técnica y definición de estándares de proyecto.\n\nDe forma paralela a mi actividad profesional, también realizo formación online (Udemy) y privada, centrada en programación, preparación para entrevistas técnicas y optimización del perfil de LinkedIn y del CV técnico.",
+  "contact_title": "Contáctame",
+  "contact_name_placeholder": "Tu nombre",
+  "contact_email_placeholder": "Tu email",
+  "contact_message_placeholder": "Tu mensaje",
+  "contact_submit": "Enviar",
+  "contact_success": "¡Mensaje enviado!",
+  "experience_title": "Experiencia",
+  "experience_show_stack": "Mostrar stack",
+  "exp_label_start": "Inicio",
+  "exp_label_end": "Fin",
+  "exp_label_single": "Solo este año",
+  "exp_intesa_role": "Expert Software Engineer – Group Technology &amp; Services",
+  "exp_intesa_description": "Expert Software Engineer dentro de Group Technology &amp; Services – Global ICT, parte de la organización del Chief Data, AI &amp; Technology Officer, en el dominio Proprietary Trading (Foreign Network Reporting and Local Systems).\n\nMe encargo de ingeniería de software en entornos complejos, a gran escala y altamente regulados: desarrollo y mantenimiento en sistemas AS/400 con lenguaje RPG, arquitectura frontend y desarrollo backend. Enfoque en calidad de código, fiabilidad de sistemas, solidez arquitectónica y entrega en contextos financieros críticos.",
+  "exp_rgi_role": "Front-End Architect / Team Leader",
+  "exp_rgi_description": "Dirijo el diseño, optimización y mantenimiento de arquitecturas front-end, tanto a nivel estratégico como operativo:\n\n- Code Review: calidad, eficiencia y estándares\n- Estándares y guías: supervisión arquitectónica\n- Seguridad aplicativa: prácticas preventivas\n- Optimización JS/TS\n- Documentación técnica\n- Recolección de requisitos\n- Evaluación tecnológica\n- Optimización del workflow: builds, tests, calidad\n- Patrones reutilizables\n- Testing y troubleshooting",
+  "exp_iol_role": "Full Stack Software Engineer",
+  "exp_iol_description": "Como Java Analyst Developer, gestioné desarrollo full stack con tecnologías modernas y metodologías Ágiles.\n\nFront-End: JavaScript, jQuery, Angular 10, TypeScript, Node.js\nBack-End: Java EE, Spring, Hibernate\nMicroservicios: JHipster, Docker, Docker Swarm\nBases de datos: MySQL, Oracle\nAgile: Jira\nServidor de aplicaciones: Tomcat\nControl de versiones: Git, SVN\nGestión de dependencias: Maven",
+  "exp_tecnavia_role": "Full Stack Software Engineer",
+  "exp_tecnavia_description": "Desarrollo front-end, back-end y móvil para iOS y Android.\n\nFront-End: JavaScript, jQuery, CSS, HTML, Bootstrap\nBack-End: PHP (Zend Framework), Java\nMobile: React Native, Objective-C, Java, Node.js\nBases de datos: MySQL, SQLite\nServidor local: MAMP\nVersionado: SVN",
+  "exp_teoresi_role": "Full Stack Software Engineer",
+  "exp_teoresi_description": "Como Java Analyst Developer, participé en el desarrollo full-stack en entorno Java, gestionando todas las fases del ciclo de vida del software.\n\nDesarrollo Front-End:\n- Tecnologías: JavaScript (jQuery, AngularJS, Node.js), HTML5, CSS, Bootstrap\n- Enfoque: diseño de interfaces dinámicas y responsivas\n\nDesarrollo Back-End:\n- Tecnologías: Java, Spring, Hibernate\n- Objetivo: creación de aplicaciones robustas y escalables\n\nGestión de Base de Datos:\n- Herramienta: MySQL\n- Uso: diseño y optimización de bases de datos relacionales\n\nServidor de Aplicaciones:\n- Herramienta: Tomcat\n- Rol: despliegue de aplicaciones web Java\n\nControl de Versiones:\n- Herramienta: Git\n- Objetivo: gestión del código y colaboración entre equipos\n\nGestión de Dependencias:\n- Herramienta: Maven\n- Función: simplificación de procesos de build y coherencia de entornos\n\nDeployment:\n- Proceso: distribución de archivos .war en entornos de desarrollo, pruebas y producción\n\nMetodología de Desarrollo:\n- Modelo: Waterfall\n- Herramienta: Jira para seguimiento y planificación de proyectos",
+  "exp_hpe_role": "Junior Software Engineer",
+  "exp_hpe_description": "Como Technical Consultant en HPE, apoyé el desarrollo de software front-end y back-end para satisfacer necesidades específicas de los clientes.\n\nDesarrollo Front-End:\n- Herramientas: JavaScript (Knockout.js, jQuery, AngularJS, Node.js), CSS, Bootstrap, HTML5\n\nDesarrollo Back-End:\n- Tecnologías: Java EE, Spring, Hibernate\n- Objetivo: aplicaciones de alto rendimiento y escalabilidad\n\nGestión de Base de Datos:\n- Herramientas: PostgreSQL, CouchDB, Oracle\n\nServidor de Aplicaciones:\n- Herramienta: WildFly\n- Uso: despliegue de aplicaciones Java EE\n\nMetodología Agile:\n- Herramienta: Trello\n- Función: gestión de tareas e iteraciones\n\nControl de Versiones:\n- Herramienta: SVN\n- Objetivo: trazabilidad del código y colaboración\n\nGestión de Dependencias:\n- Herramienta: Maven\n\nDeployment:\n- Formatos: .ear, .rpm\n- Entornos: desarrollo, QA, producción\n\nSoporte a Clientes:\n- Actividades: demostraciones de proyecto y asistencia según requisitos\n\nFormación y Mentoring:\n- Enfoque: soporte técnico y acompañamiento a desarrolladores junior",
+  "exp_digiCamere_role": "Junior System Engineer",
+  "exp_digiCamere_description": "Como Junior System Engineer, participé en el mantenimiento y la automatización de sistemas con el objetivo de mejorar su eficiencia operativa.\n\nScripting y Automatización:\n- Lenguajes: PowerShell, PHP\n- Objetivo: automatización de tareas en el servidor\n\nMonitorización de Sistemas:\n- Herramienta: EveryStep\n- Actividades: control del estado de los sistemas e identificación de anomalías\n- Análisis de Logs: resolución de problemas mediante registros del sistema\n\nDesarrollo Android:\n- Enfoque: creación de apps Android para mejorar la usabilidad de los sistemas\n\nBases de Datos:\n- Lenguaje: SQL\n- Actividades: escritura y optimización de consultas\n\nMonitorización de Sitios Web:\n- Herramienta: HTTrack\n- Uso: backup y control de disponibilidad de servicios web\n\nInstalación y Configuración:\n- Tareas: instalación y configuración de hardware y software en servidores",
+  "exp_piksel_role": "Junior System Engineer",
+  "exp_piksel_description": "Como Junior System Engineer, gestioné y supervisé sistemas IT en entornos empresariales, prestando especial atención a seguridad y disponibilidad.\n\nMonitorización de Sistemas:\n- Herramienta: Nagios\n- Objetivo: detección y resolución rápida de problemas para garantizar la integridad de la infraestructura\n\nGestión de Backups:\n- Actividades: planificación y ejecución de copias de seguridad periódicas para garantizar la continuidad de los datos\n\nAnálisis de Logs:\n- Tareas: análisis de registros del sistema para identificar y corregir anomalías\n\nGestión de Usuarios y Seguridad:\n- Plataforma: Windows Server\n- Acciones: creación de cuentas, restablecimiento de contraseñas, gestión de permisos\n\nInstalación y Configuración:\n- Rol: preparación de servidores con el hardware y software necesarios\n\nActive Directory:\n- Responsabilidades: gestión de usuarios de dominio y recursos para mejorar la seguridad y la organización",
+  "exp_coach_role": "Profesor particular",
+  "exp_coach_description": "Durante mis estudios, ofrecí clases particulares a estudiantes de secundaria y universitarios en las siguientes áreas:\n\nMatemáticas:\n- Temas: álgebra, geometría, cálculo diferencial e integral\n- Enfoque: adaptación del método según las necesidades individuales\n\nEstadística:\n- Temas: análisis de datos, probabilidad, inferencia estadística, métodos de regresión\n\nInformática:\n- Temas: lenguajes de programación, algoritmos, estructuras de datos, sistemas operativos, bases de datos\n- Método: ejemplos prácticos y explicaciones claras\n\nSistemas Informáticos:\n- Temas: diseño de sistemas, redes, seguridad informática\n- Enfoque: aplicaciones prácticas y resolución de problemas\n\nEsta experiencia fortaleció mis habilidades comunicativas y mi capacidad para adaptarme a distintos estilos de aprendizaje.",
+  "exp_salesiani_role": "Estudiante de Informática",
+  "exp_salesiani_description": "Adquirí una sólida formación en C, C++, C#, Assembly x86, HTML, CSS, PHP y MySQL.\nExperiencias principales:\n- Sistema de gestión de login en C# con base de datos e interfaz gráfica en Visual Studio.\n- Funciones Assembly x86 integradas con código C en Linux.\n- Uso de Matlab para análisis numérico y estadístico.",
+  "exp_polimi_role": "Grado en Ingeniería Informática",
+  "exp_polimi_description": "Durante mi carrera universitaria adquirí competencias prácticas y teóricas en varios ámbitos.\nExperiencias principales:\n- Desarrollo de una app Android en Java con interacción API y optimización del rendimiento.\n- Programación de la placa STM32VLDISCOVERY en C/C++ en Linux, con comunicación USB de bajo nivel.",
+  "trading_title": "Mi actividad de Trading",
+  "trading_intro": "En paralelo a mi trabajo en tecnología, invierto en bolsa con método y disciplina.",
+  "trading_description": "Desde 2020 opero en eToro como inversor a largo plazo, centrado en acciones con dividendos y ETF diversificados. Construyo carteras sostenibles orientadas al crecimiento, reinvirtiendo constantemente los dividendos. Sin operaciones de alto riesgo y sin especulación a corto plazo.",
+  "trading_cta": "Mi perfil de eToro",
+  "trading_role": "Inversor y Dividend Trader en eToro",
+  "disclaimer_text": "Este sitio no ofrece asesoramiento financiero ni recomendaciones de inversión. No estoy inscrito en ningún registro profesional y no puedo proporcionar consejos personalizados. La información aquí mostrada es solo con fines informativos y no constituye una invitación a invertir.",
+  "performance_title": "Rendimiento",
+  "performance_cumulative_return": "Rendimiento acumulado a 2 años",
+  "performance_risk_score": "Puntuación de riesgo medio (últimos 7 días)",
+  "performance_profitable_weeks": "Semanas en beneficio",
+  "performance_partial_label": "2025 (parcial)",
+  "performance_dataset_label": "Rendimiento (%)",
+  "performance_view_selector_aria": "Seleccionar vista del gráfico",
+  "performance_view_monthly": "Vista mensual",
+  "performance_view_annual": "Vista anual",
+  "performance_return_label": "Rendimiento",
+  "certifications_page": {
+    "title": "Certificaciones",
+    "description": "Lista de certificaciones profesionales obtenidas, con enlaces a los certificados oficiales.",
+    "view_certificate": "Ver certificado",
+    "issuer": "Entidad emisora",
+    "date": "Fecha de emisión"
+  },
+  "privacy": {
+    "title": "Política de Privacidad",
+    "intro_title": "Introducción",
+    "intro_text1": "Esta Política de Privacidad describe cómo recopilamos, utilizamos y protegemos los datos personales de los usuarios que visitan nuestro sitio web.",
+    "intro_text2": "El tratamiento de los datos se realiza conforme al Reglamento (UE) 2016/679 (GDPR) y a la normativa española aplicable.",
+    "owner_title": "Responsable del tratamiento",
+    "data_types_title": "Tipos de datos recopilados",
+    "browsing_data": "Datos de navegación",
+    "browsing_data_details": "direcciones IP, navegador, páginas visitadas, tiempo de permanencia.",
+    "voluntary_data": "Datos proporcionados voluntariamente",
+    "voluntary_data_details": "nombre, correo electrónico, mensajes enviados a través del formulario de contacto.",
+    "purpose_title": "Finalidades del tratamiento",
+    "purpose_1": "Proporcionar los servicios solicitados (por ejemplo, responder a solicitudes de contacto).",
+    "purpose_2": "Analizar el uso del sitio para mejorar la experiencia del usuario.",
+    "purpose_3": "Enviar comunicaciones relacionadas con los servicios, con consentimiento previo.",
+    "legal_basis_title": "Base jurídica",
+    "legal_1": "Ejecución de un contrato o medidas precontractuales.",
+    "legal_2": "Consentimiento explícito para fines de marketing.",
+    "legal_3": "Interés legítimo para análisis y mejora.",
+    "recipients_title": "Destinatarios de los datos",
+    "recipients_text": "Los datos pueden ser comunicados a proveedores técnicos, consultores y autoridades competentes, siempre cumpliendo con el GDPR.",
+    "transfer_title": "Transferencia de datos",
+    "transfer_text": "Los datos no se transfieren fuera de la Unión Europea.",
+    "retention_title": "Periodo de conservación",
+    "retention_text": "Conservamos los datos solo durante el tiempo estrictamente necesario para sus finalidades.",
+    "rights_title": "Derechos del interesado",
+    "rights_1": "Acceso, rectificación, supresión, limitación, oposición y portabilidad de los datos.",
+    "rights_2": "Revocación del consentimiento en cualquier momento.",
+    "rights_3": "Reclamación ante la autoridad de control.",
+    "rights_exercise": "Para ejercer estos derechos, escribir a:",
+    "cookie_title": "Política de Cookies",
+    "cookie_text": "El sitio utiliza cookies para mejorar la experiencia del usuario y analizar el tráfico. Para más información, consulta nuestra",
+    "cookie_link": "Política de Cookies",
+    "changes_title": "Cambios en la Política de Privacidad",
+    "changes_text": "Podemos actualizar esta política. Los cambios serán publicados aquí con la fecha correspondiente.",
+    "last_updated": "Última actualización",
+    "last_date_updated": "Junio 2025",
+    "address": "Via Policarpo Petrocchi 44, 20127 Milán, Italia"
+  },
+  "cookie": {
+    "title": "Política de Cookies",
+    "what_title": "¿Qué son las cookies?",
+    "what_text": "Las cookies son pequeños archivos de texto que los sitios web guardan en tu dispositivo para almacenar información.",
+    "types_title": "Tipos de cookies utilizados",
+    "technical_title": "Cookies técnicas",
+    "technical_text": "Necesarias para el correcto funcionamiento del sitio y para proporcionar los servicios ofrecidos.",
+    "analytics_title": "Cookies analíticas",
+    "analytics_text": "Utilizadas para recopilar estadísticas agregadas y anónimas sobre el uso del sitio.",
+    "profiling_title": "Cookies de perfilado",
+    "profiling_text": "Se utilizan para rastrear el comportamiento del usuario y mostrar anuncios personalizados. Requieren consentimiento.",
+    "consent_title": "Consentimiento para el uso de cookies",
+    "consent_text": "En tu primera visita se te pedirá aceptar o rechazar las cookies no esenciales. Puedes cambiar tus preferencias en cualquier momento.",
+    "manage_title": "Gestión de cookies",
+    "manage_text": "Puedes administrar o desactivar las cookies desde la configuración de tu navegador. A continuación encontrarás enlaces a las instrucciones de los navegadores más comunes:",
+    "rights_title": "Derechos del usuario",
+    "rights_text": "Tienes derecho a acceder, rectificar, eliminar tus datos y revocar tu consentimiento en cualquier momento.",
+    "contact_text": "Para ejercer tus derechos, contáctanos en",
+    "last_updated": "Última actualización"
+  },
+  "courses_page": {
+    "title": "Mis cursos online",
+    "duration": "Duración",
+    "learn_more": "Saber más",
+    "git": {
+      "title": "Curso de Git",
+      "description": "Aprende a usar Git para gestionar versiones y colaborar en proyectos de software.",
+      "duration": "2,5 horas"
+    },
+    "typescript": {
+      "title": "Curso de TypeScript",
+      "description": "Introducción completa al lenguaje TypeScript y sus ventajas en el desarrollo moderno.",
+      "duration": "1,5 horas"
+    },
+    "jQuery": {
+      "title": "Curso de jQuery",
+      "description": "Descubre cómo usar jQuery para simplificar la manipulación del DOM y gestionar eventos.",
+      "duration": "3 horas"
+    },
+    "php": {
+      "title": "Curso de PHP",
+      "description": "Aprende los fundamentos de la programación del lado del servidor con PHP.",
+      "duration": "11,5 horas"
+    },
+    "cpp": {
+      "title": "Curso de C++",
+      "description": "Un curso completo para aprender programación en C++ desde cero.",
+      "duration": "14,5 horas"
+    },
+    "html5": {
+      "title": "Curso de HTML5",
+      "description": "Aprende a crear páginas web modernas y semánticas con HTML5.",
+      "duration": "5 horas"
+    },
+    "angularJS": {
+      "title": "Curso de AngularJS",
+      "description": "Descubre cómo desarrollar aplicaciones web dinámicas con AngularJS.",
+      "duration": "3,5 horas"
+    },
+    "java": {
+      "title": "Curso de Java",
+      "description": "Los fundamentos del lenguaje Java y de la programación orientada a objetos.",
+      "duration": "7,5 horas"
+    },
+    "javascript": {
+      "title": "Curso de JavaScript",
+      "description": "Aprende a desarrollar aplicaciones web interactivas con JavaScript.",
+      "duration": "10,5 horas"
+    },
+    "c": {
+      "title": "Curso de C",
+      "description": "Introducción a la programación en C. Ideal para principiantes.",
+      "duration": "6,5 horas"
+    },
+    "assembler": {
+      "title": "Curso de Assembler 8086",
+      "description": "Aprende el lenguaje ensamblador para microprocesadores 8086 y la lógica de bajo nivel.",
+      "duration": "6 horas"
+    },
+    "sql": {
+      "title": "Curso de Bases de Datos y SQL",
+      "description": "Del modelo E/R al lenguaje SQL: diseño, consultas, teoría y práctica de bases de datos relacionales.",
+      "duration": "6 horas"
+    }
+  },
+  "testimonials_page": {
+    "title": "Testimonios",
+    "prev": "Anterior",
+    "next": "Siguiente"
+  },
+  "testimonials_people": {
+    "mirko": {
+      "name": "Mirko Buccoliero",
+      "role": "Cyber Security Engineer @ Repower Italia",
+      "quote": "Daniele ist immer verfügbar, um zu helfen und alles zu erklären, was man im IT-Bereich wissen muss. Sehr kompetent und freundlich."
+    },
+    "alessia": {
+      "name": "Alessia Pecoraro",
+      "role": "HR Generalist @ Etjca S.p.A.",
+      "quote": "Daniele ist ein echter Profi in seinem Bereich. Er war sehr hilfsbereit."
+    },
+    "federico": {
+      "name": "Federico Selva",
+      "role": "Cybersecurity Report Assistant (Einsteiger)",
+      "quote": "Immer freundlich in den Antworten und sehr kompetent in technischen Themen! Wirklich großartig, klar in der Erklärung seiner Kurse. Ich kann ihn nur empfehlen!"
+    },
+    "daniela": {
+      "name": "Daniela Tagliavia d'Aragona",
+      "role": "Bereich Dienstleistungen und Allgemeine Angelegenheiten – Bereich Beamte und hohe Qualifikation",
+      "quote": "Ich habe Daniele persönlich kennengelernt und konnte immer mit ihm sprechen, um Ratschläge und Meinungen zur Arbeitswelt, zu Bewerbungsgesprächen und zur Weiterbildung (Kurse, Präsenzunterricht usw.) zu erhalten. Leidenschaftlich, beständig und lernbegeistert zeigt er sich aufmerksam, gewissenhaft, kompetent und informiert. Er hat mich proaktiv während des Karriereorientierungsprozesses begleitet und dabei meine Fähigkeiten und beruflichen Wünsche berücksichtigt."
+    },
+    "fabio": {
+      "name": "Fabio Lo Guasto",
+      "role": "Store Manager",
+      "quote": "Daniele ist mein Lehrer, mit dem ich das Studium von Spring-Boot, Maven, Git und SQL von Grund auf begonnen habe. Außerdem habe ich seine Udemy-Kurse zu Java und SQL besucht. Ich bin sehr zufrieden, weil er in allem sehr kompetent, immer pünktlich und hilfsbereit ist. In 5 Monaten Unterricht hat er nie eine Lektion ausgelassen. Ich habe zwei teure Privatschulen besucht, aber keine kann mit ihm mithalten; außerdem habe ich mich sehr wohl mit seiner Lehrmethode gefühlt. Ich hatte großes Glück, er ist wirklich eine Garantie. Vielen Dank und auf zum nächsten Ziel."
+    },
+    "antonio": {
+      "name": "Antonio Signorello",
+      "role": "HR Senior Recruiter/ Arbeitspsychologe/ HR-Spezialist",
+      "quote": "Daniele ist ein großartiger Coach: Motivator, Kommunikator, Problemlöser. Zuerst auf LinkedIn kennengelernt, dann als Java-Trainer, von Anfang an bescheiden und höflich. Solides Know-how rundet ihn als Profi ab."
+    },
+    "andrea": {
+      "name": "Andrea Motta",
+      "role": "Consultant Risk Advisory @ Deloitte",
+      "quote": "Sehr hilfsbereit, um die Bedürfnisse des Studenten zu verstehen und bereit, Fragen zum Kursprogramm zu beantworten."
+    },
+    "francescaM": {
+      "name": "Francesca Marasco",
+      "role": "Corporate Packaging Specialist @ Mapei",
+      "quote": "Daniele ist eine hilfsbereite und sehr kompetente Person. Es war eine positive Erfahrung!"
+    },
+    "luca": {
+      "name": "Luca Sartorio",
+      "role": "Software Developer",
+      "quote": "Daniele war mein Java-Lehrer, die Lektionen begannen bei den Grundlagen und gingen bis zu komplexen Themen. Ich fühlte mich sehr wohl. Extrem kompetent und professionell."
+    },
+    "antonino": {
+      "name": "Antonino De Maio",
+      "role": "Frontend Developer",
+      "quote": "Ich habe mit Daniele an Angular gearbeitet, er ist ein hervorragender Programmierer, sehr fachkundig in RxJS und JavaScript 6."
+    },
+    "romolo": {
+      "name": "Romolo Velati",
+      "role": "Chief Technology Officer",
+      "quote": "Daniele hat Leidenschaft und Kompetenz als Entwickler von Microservices für ItalienOnline-Anwendungen gezeigt. Immer aktiv und neugierig auf neue Technologien."
+    },
+    "riccardo": {
+      "name": "Riccardo Di Chello",
+      "role": "Technical Lead @ Unicredit",
+      "quote": "Ich habe mit Daniele im selben Team gearbeitet und kann sagen, dass er von Anfang an ein ausgezeichneter Teamkollege und ein fähiger Frontend-Entwickler ist. Immer bereit zu helfen und ein gutes Arbeitsumfeld zu schaffen. Leidenschaftlich und bodenständig. Ich freue mich, dass er hier ist!"
+    },
+    "lucaC": {
+      "name": "Luca Cainarca",
+      "role": "Senior Software Solution Developer",
+      "quote": "Ich arbeite mit Daniele im selben Team. Er ist Frontend-Entwickler, aber auch ein fähiger Full-Stack-Entwickler mit exzellenten Fähigkeiten. Sehr kooperativ, leidenschaftlich und zielorientiert. Kann Projekte pünktlich liefern und ist immer hilfsbereit. Ich empfehle ihn jedem, der eine verlässliche und kompetente Person sucht."
+    },
+    "ivan": {
+      "name": "Ivan Giurato",
+      "role": "Business Manager",
+      "quote": "Daniele war ein Jahr als Full-Stack-Entwickler in unserem Team. Er ist kooperativ, liebt, was er tut, und ist sehr fähig, sowohl beruflich als auch persönlich."
+    },
+    "andreaM": {
+      "name": "Andrea Montoli",
+      "role": "Leiter Global Systems Integration und Telco Cloud Practice @ HCLTech CTG.",
+      "quote": "Daniele hat in meinem Team gearbeitet und hervorragende technische Fähigkeiten gezeigt. Kompetent, fleißig und leidenschaftlich in Technologie. Ich unterstütze seine Kompetenz und stehe für Anfragen zur Verfügung."
+    },
+    "daniele": {
+      "name": "Daniele Montesano",
+      "role": "Software Engineer | VR Engineer",
+      "quote": "Ich habe den Informatik-Kurs mit Daniele besucht und während dieser Zeit an Projekten gearbeitet, darunter die digitale Umsetzung eines Brettspiels. Besonders beeindruckt hat mich seine Teamfähigkeit. Auch wenn wir nicht im selben Team waren, war er immer offen für Diskussionen und Ideenaustausch zur Softwareentwicklung."
+    },
+    "marco": {
+      "name": "Marco Gonella",
+      "role": "Lead Frontend @ Vedrai SpA",
+      "quote": "Daniele war mein Kollege in einem agilen Projekt mit SAFe, Implementierung einer komplexen reaktiven GUI mit Node.js + AngularJS. Full-Stack-Experte, engagiert, präzise, mit hoher Fähigkeit, in kritischen Situationen die besten Lösungen zu finden."
+    },
+    "raffaele": {
+      "name": "Raffaele Calandrella",
+      "role": "Software Architect",
+      "quote": "Kompetenter Profi, sehr ausdauernd. Hohe Arbeitsqualität und Teamfähigkeit. Ich hatte die Gelegenheit, mit Daniele zu arbeiten und schätze seine fachlichen und menschlichen Qualitäten."
+    },
+    "francescaR": {
+      "name": "Francesca Romagnoli",
+      "role": "Informatiklehrerin",
+      "quote": "Daniele war mein Kollege in einem Frontend-Entwicklungsteam. Freundlich, leidenschaftlich, kooperativ und kompetent. Ein ausgezeichneter Teamkollege, sowohl menschlich als auch fachlich."
+    },
+    "mattia": {
+      "name": "Mattia Capitanio",
+      "role": "Software Engineer @ SIO S.P.A.",
+      "quote": "Daniele ist ein technisch versierter, kooperativer und engagierter Informatik-Ingenieur. Immer motiviert und zielorientiert, liefert Projekte termingerecht. Ein sehr professioneller Kollege."
+    },
+    "davide": {
+      "name": "Davide Perini",
+      "role": "Enterprise Architect @ Sky",
+      "quote": "Daniele ist ein leidenschaftlicher, pragmatischer Informatik-Ingenieur, dessen Erfahrung in dynamischen Umgebungen sehr wertvoll ist. Ein großartiger Teamkollege, immer bereit für Wissensaustausch."
+    },
+    "jacopo": {
+      "name": "Jacopo Andrea La Torre",
+      "role": "Senior Technical Consultant @ Hewlett Packard Enterprise",
+      "quote": "Daniele war Mitglied meines Teams, Frontend-Entwickler in einem agilen Projekt mit SAFe. Engagiert, leidenschaftlich, kenntnisreich, präzise, lösungsorientiert. Empfohlen für seine Teamfähigkeit und positive Einstellung."
+    },
+    "yuri": {
+      "name": "Yuri Blanc",
+      "role": "Lead Architect @ RGI",
+      "quote": "Daniele ist ein hochkompetenter Entwickler, aufmerksam und leidenschaftlich. Ein hervorragender Lehrer, Udemy-Kurse erstellt. Sehr zielstrebig, auch bei schwierigen Aufgaben, reagiert gut auf Feedback und entwickelt eigenständig Verbesserungen."
+    }
+  },
+  "seo": {
+    "home": {
+      "title": "Daniele Masone - Portafolio",
+      "description": "Portafolio de Daniele Masone, ingeniero informático. Experiencias, proyectos, cursos y testimonios."
+    },
+    "experience": {
+      "title": "Experiencia profesional - Daniele Masone",
+      "description": "Experiencias laborales y profesionales de Daniele Masone, en desarrollo frontend, arquitectura y más."
+    },
+    "projects": {
+      "title": "Proyectos - Daniele Masone",
+      "description": "Proyectos personales y profesionales de Daniele Masone, con tecnologías modernas y buenas prácticas."
+    },
+    "courses": {
+      "title": "Cursos - Daniele Masone",
+      "description": "Cursos realizados y habilidades adquiridas por Daniele Masone en informática y tecnología."
+    },
+    "testimonials": {
+      "title": "Testimonios - Daniele Masone",
+      "description": "Lo que dicen colegas y colaboradores sobre la experiencia de trabajo con Daniele Masone."
+    },
+    "trading": {
+      "title": "Trading - Daniele Masone",
+      "description": "Análisis, estudios y reflexiones de Daniele Masone sobre el mundo del trading y los mercados financieros."
+    },
+    "privacy": {
+      "title": "Política de privacidad - Daniele Masone",
+      "description": "Información de privacidad del sitio portafolio de Daniele Masone."
+    },
+    "cookie": {
+      "title": "Política de cookies - Daniele Masone",
+      "description": "Política sobre el uso de cookies en el sitio portafolio de Daniele Masone."
+    },
+    "certifications": {
+      "title": "Certificaciones profesionales - Daniele Masone",
+      "description": "Certificaciones profesionales obtenidas por Daniele Masone en informática y tecnología, con enlaces a certificados oficiales."
+    }
+  },
+  "avatar": {
+    "name": "Daniele Masone",
+    "tagline": "Senior Software Engineer &amp; Technical Architect | Front-End Specialist | Tech Trainer",
+    "skills": ["Java", "JavaScript", "Angular", "C", "MySQL"],
+    "bio": "Experto en desarrollo full stack y arquitecturas empresariales escalables. Apasionado por el clean code, las buenas prácticas y la formación técnica."
+  }
+}
+&nbsp;</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2026-02-06T10:45:17.402Z
+            </div>
+        <script src="../../../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../../../sorter.js"></script>
+        <script src="../../../block-navigation.js"></script>
+    </body>
+</html>
+    
