@@ -1,14 +1,12 @@
 import {useState} from "react";
 import {useTranslation} from "react-i18next";
-import {Disclosure} from "@headlessui/react";
-import {ChevronDown} from "lucide-react";
 import {Card} from "@/components/ui/card/Card";
-import {CardContent} from "@/components/ui/cardContent/CardContent";
 import {PageSection} from "@/components/ui/pageSection/PageSection";
 import {SeoHead} from "@/components/seoHead/SeoHead";
 import {BrandIcon, linkedinIcon} from "@/components/footer/Footer";
 import {Pagination} from "@/components/ui/pagination/Pagination";
 import {PageGrid} from "@/components/ui/pageGrid/PageGrid";
+import {ExpandableText} from "@/components/ui/expandableText/ExpandableText";
 
 const ITEMS_PER_PAGE = 4;
 
@@ -223,24 +221,17 @@ export default function Testimonials() {
                                 </div>
                             </div>
 
-                            {/* Body - takes ALL the remaining height */}
-                            <div className="flex-1 flex p-4">
-                                <Disclosure as="div" className="w-full h-full flex flex-col">
-                                    {({ open }) => (
-                                        <div className="h-full flex flex-col">
-                                            <Disclosure.Button as="button" className="flex justify-between items-center text-left mb-4 self-start p-3 -m-3 rounded-xl hover:bg-gray-50/50 dark:hover:bg-gray-800/50 transition-all border border-gray-200/30 dark:border-gray-700/30 hover:border-blue-200/50 hover:shadow-sm">
-                                              <span className="text-lg font-semibold text-blue-600 dark:text-blue-400 tracking-tight">
-                                                  {t("testimonials_page.open")}
-                                              </span>
-                                                <ChevronDown className={`w-6 h-6 shrink-0 transition-transform duration-200 ease-in-out ${open ? "rotate-180" : ""}`} />
-                                            </Disclosure.Button>
-
-                                            <Disclosure.Panel as="div" className="flex-1 mt-3 border-l-4 border-blue-500/80 pl-5 pr-4 py-3 bg-blue-50/30 dark:bg-blue-900/20 rounded-2xl backdrop-blur-sm italic text-lg text-gray-800 dark:text-gray-200 leading-relaxed font-light tracking-wide overflow-auto">
-                                                "{t(texts.quoteKey)}"
-                                            </Disclosure.Panel>
-                                        </div>
-                                    )}
-                                </Disclosure>
+                            {/* Body */}
+                            <div className="flex-1 flex flex-col p-4 justify-center items-stretch">
+                                <div className="flex-1 flex items-center justify-center px-2">
+                                    <div className="w-full max-w-lg text-center">
+                                        <ExpandableText
+                                            value={t(texts.quoteKey)}
+                                            maxLines={3}
+                                            className="italic text-base md:text-lg text-gray-800 dark:text-gray-200 leading-relaxed font-light tracking-tight px-4 py-4 bg-gradient-to-b from-transparent via-white/70 to-transparent dark:via-gray-800/50 rounded-xl backdrop-blur-sm shadow-inner border border-gray-100/40 dark:border-gray-700/40"
+                                        />
+                                    </div>
+                                </div>
                             </div>
                         </Card>
                     ))}

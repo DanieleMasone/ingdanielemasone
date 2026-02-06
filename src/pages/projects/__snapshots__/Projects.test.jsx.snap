@@ -144,7 +144,7 @@ exports[`Projects Component > matches snapshot with new Intesa projects 1`] = `
                     aria-expanded="false"
                     class="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
                     data-headlessui-state=""
-                    id="headlessui-disclosure-button-_r_30_"
+                    id="headlessui-disclosure-button-_r_2s_"
                     type="button"
                   >
                     <span>
@@ -217,7 +217,7 @@ exports[`Projects Component > matches snapshot with new Intesa projects 1`] = `
                     aria-expanded="false"
                     class="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
                     data-headlessui-state=""
-                    id="headlessui-disclosure-button-_r_32_"
+                    id="headlessui-disclosure-button-_r_2u_"
                     type="button"
                   >
                     <span>
