@@ -117,14 +117,7 @@
 <a name='L52'></a><a href='#L52'>52</a>
 <a name='L53'></a><a href='#L53'>53</a>
 <a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a>
-<a name='L56'></a><a href='#L56'>56</a>
-<a name='L57'></a><a href='#L57'>57</a>
-<a name='L58'></a><a href='#L58'>58</a>
-<a name='L59'></a><a href='#L59'>59</a>
-<a name='L60'></a><a href='#L60'>60</a>
-<a name='L61'></a><a href='#L61'>61</a>
-<a name='L62'></a><a href='#L62'>62</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L55'></a><a href='#L55'>55</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -142,16 +135,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -187,8 +173,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {useTranslation} from 'react-i18next';
 import {SeoHead} from "@/components/seoHead/SeoHead"
-import {motion} from "framer-motion";
 import {AvatarCard} from "@/components/ui/avatarCard/AvatarCard";
+import {PageGrid} from "@/components/ui/pageGrid/PageGrid";
 &nbsp;
 /**
  * Home component displays an about section with a title, introductory text,
@@ -210,21 +196,19 @@ export default function Home() {
             &lt;SeoHead pageKey="home" path="/"/&gt;
 &nbsp;
             &lt;section className="px-4 py-8 sm:px-6 md:px-12 max-w-7xl mx-auto"&gt;
-                &lt;motion.div
-                    initial={{ opacity: 0, scale: 0.96 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.96 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                    layout
-                    className="grid grid-cols-1 md:grid-cols-2 gap-10 bg-gradient-to-br from-blue-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl p-6 sm:p-8 md:p-10 shadow-lg"
+                &lt;PageGrid
+                    page="home"
+                    columns={2}
+                    className="bg-gradient-to-br from-blue-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl p-6 sm:p-8 md:p-10 shadow-lg"
+                    data-testid="page-grid"
                 &gt;
-                    {/* Avatar mobile */}
-                    &lt;div className="md:hidden flex justify-center mb-6"&gt;
+                    {/* Avatar: First on mobile, second on desktop */}
+                    &lt;div className="flex justify-center md:justify-end items-center order-1 md:order-2"&gt;
                         &lt;AvatarCard/&gt;
                     &lt;/div&gt;
 &nbsp;
-                    {/* Left column: text */}
-                    &lt;div className="flex flex-col justify-center text-center md:text-left space-y-4"&gt;
+                    {/* Text: Second in order on mobile, first on desktop */}
+                    &lt;div className="flex flex-col justify-center text-center md:text-left space-y-4 order-2 md:order-1"&gt;
                         &lt;h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white tracking-tight leading-tight"&gt;
                             {t("about_title")}
                         &lt;/h2&gt;
@@ -236,12 +220,7 @@ export default function Home() {
                             {t("about_experience")}
                         &lt;/p&gt;
                     &lt;/div&gt;
-&nbsp;
-                    {/* Right column: avatar desktop */}
-                    &lt;div className="hidden md:flex items-center justify-center"&gt;
-                        &lt;AvatarCard/&gt;
-                    &lt;/div&gt;
-                &lt;/motion.div&gt;
+                &lt;/PageGrid&gt;
             &lt;/section&gt;
         &lt;/&gt;
     );
@@ -253,7 +232,7 @@ export default function Home() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-02-06T14:57:32.773Z
+                at 2026-02-09T11:10:42.909Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

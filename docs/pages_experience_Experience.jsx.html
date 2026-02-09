@@ -51,11 +51,11 @@ import {Card} from "@/components/ui/card/Card";
 import {CardContent} from "@/components/ui/cardContent/CardContent";
 import {Disclosure} from "@headlessui/react";
 import {ChevronDown} from "lucide-react";
-import {AnimatePresence, motion} from "framer-motion";
 import {PageSection} from "@/components/ui/pageSection/PageSection";
 import {ExpandableText} from "@/components/ui/expandableText/ExpandableText";
 import {SeoHead} from "@/components/seoHead/SeoHead";
 import {SelectableButton} from "@/components/ui/selectableButton/SelectableButton";
+import {PageGrid} from "@/components/ui/pageGrid/PageGrid";
 
 const experiences = [
     {
@@ -211,10 +211,10 @@ export default function Experience() {
             &lt;SeoHead pageKey="experience" path="/experience"/>
 
             &lt;PageSection title={t("experience_title")}>
-                &lt;div className="mb-10">
-                    {/* Mobile: horizontal scroll - Desktop: grid wrap */}
+                {/* Years */}
+                &lt;div className="mb-8">
                     &lt;div
-                        className="flex flex-row sm:flex-wrap sm:justify-center gap-2 sm:gap-3 overflow-x-auto sm:overflow-visible px-1 sm:px-0 pb-3 scrollbar-hide"
+                        className="flex flex-row sm:flex-wrap sm:justify-center gap-2 sm:gap-3 overflow-x-auto sm:overflow-visible px-2 sm:px-0 pb-3 scrollbar-hide"
                     >
                         {yearList.map((year) => (
                             &lt;SelectableButton
@@ -222,89 +222,96 @@ export default function Experience() {
                                 label={year}
                                 isSelected={selectedYear === year}
                                 onClick={() => setSelectedYear(year)}
+                                className={`transition-all duration-200 ${
+                                    selectedYear === year
+                                        ? "bg-blue-600 text-white shadow-md"
+                                        : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-blue-500 hover:text-white"
+                                }`}
                             />
                         ))}
                     &lt;/div>
                 &lt;/div>
 
-                &lt;AnimatePresence mode="wait">
-                    &lt;motion.div
-                        key={selectedYear || "none"}
-                        initial={{ opacity: 0, scale: 0.96 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.96 }}
-                        transition={{ duration: 0.3, ease: "easeOut" }}
-                        layout
-                        className="flex flex-col items-center gap-6"
-                    >
+                {filteredExperiences.length > 0 &amp;&amp; (
+                    &lt;PageGrid page={selectedYear || "none"} columns={2} className="flex-1">
                         {filteredExperiences.map((exp, i) => (
                             &lt;Card
                                 key={i}
-                                className="relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
-                                         dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
-                                           rounded-xl hover:shadow-lg transition-all duration-300 flex flex-col md:flex-row items-start gap-4"
+                                className="relative w-full p-5 sm:p-6 border-none bg-white/40 dark:bg-gray-800/30 backdrop-blur-lg
+                                   rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col md:flex-row items-start gap-4"
                             >
-                                &lt;CardContent>
-                                    &lt;h3 className="text-lg font-semibold">{t(exp.role)}&lt;/h3>
-                                    &lt;div className="flex items-center gap-2 mb-2">
-                                        &lt;p className="text-gray-700 dark:text-gray-400">{exp.company}&lt;/p>
-                                        {(() => {
-                                            const status = getExperienceLabel(exp.period, selectedYear, t);
-                                            if (!status) return null;
+                                &lt;CardContent className="flex flex-col flex-1 gap-2">
+                                    {/* Title and main info */}
+                                    &lt;div
+                                        className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4">
+                                        &lt;h3 className="text-lg md:text-xl font-semibold text-gray-900 dark:text-gray-100">
+                                            {t(exp.role)}
+                                        &lt;/h3>
 
-                                            const colorMap = {
-                                                start: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300",
-                                                end: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300",
-                                                single: "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300",
-                                            };
+                                        &lt;div className="flex items-center gap-2 flex-wrap">
+                                            &lt;p className="text-gray-600 dark:text-gray-400">{exp.company}&lt;/p>
+                                            {(() => {
+                                                const status = getExperienceLabel(exp.period, selectedYear, t);
+                                                if (!status) return null;
 
-                                            return (
-                                                &lt;span
-                                                    className={`inline-block mt-1 px-2 py-0.5 text-xs font-semibold rounded-full ${colorMap[status.type]}`}
-                                                >
+                                                const colorMap = {
+                                                    start: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300",
+                                                    end: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300",
+                                                    single: "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300",
+                                                };
+
+                                                return (
+                                                    &lt;span
+                                                        className={`inline-block mt-1 px-2 py-0.5 text-xs font-semibold rounded-full ${colorMap[status.type]}`}
+                                                    >
                                                 {status.label}
                                             &lt;/span>
-                                            );
-                                        })()}
+                                                );
+                                            })()}
+                                        &lt;/div>
                                     &lt;/div>
-                                    &lt;p className="text-sm mb-2 text-gray-600 dark:text-gray-500">{exp.period}&lt;/p>
 
+                                    {/* Period */}
+                                    &lt;p className="text-sm text-gray-500 dark:text-gray-400">{exp.period}&lt;/p>
+
+                                    {/* Description */}
                                     {exp.description &amp;&amp; (
                                         &lt;ExpandableText
                                             value={t(exp.description)}
-                                            maxLines={3}
-                                            className="mb-2 text-sm"
+                                            maxLines={4}
+                                            className="text-sm mb-2 px-4 py-3 bg-white/50 dark:bg-gray-900/50 rounded-xl shadow-inner italic text-gray-800 dark:text-gray-200"
                                         />
                                     )}
 
+                                    {/* Tech */}
                                     &lt;Disclosure>
                                         {({open}) => (
-                                            &lt;div>
+                                            &lt;div
+                                                className="pt-3 border-t border-gray-200/60 dark:border-gray-700/60">
                                                 &lt;Disclosure.Button
-                                                    className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
-                                                >
-                                                    &lt;span>{t("experience_show_stack")}&lt;/span>
+                                                    className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline">
+                                                    &lt;span>{t("show_technologies")}&lt;/span>
                                                     &lt;ChevronDown
-                                                        className={`ml-1 w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}
-                                                    />
+                                                        className={`ml-1 w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}/>
                                                 &lt;/Disclosure.Button>
                                                 &lt;Disclosure.Panel
                                                     className="mt-2 flex flex-wrap gap-2">
                                                     {exp.tech.split(",").map((t, i) => (
                                                         &lt;span key={i}
                                                               className="text-xs px-2 py-1 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300">
-                                                                      {t.trim()}
-                                                                    &lt;/span>
+                                                                              {t.trim()}
+                                                                            &lt;/span>
                                                     ))}
                                                 &lt;/Disclosure.Panel>
                                             &lt;/div>
                                         )}
                                     &lt;/Disclosure>
+
                                 &lt;/CardContent>
                             &lt;/Card>
                         ))}
-                    &lt;/motion.div>
-                &lt;/AnimatePresence>
+                    &lt;/PageGrid>
+                )}
             &lt;/PageSection>
         &lt;/>
     );
@@ -323,7 +330,7 @@ export default function Experience() {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Fri Feb 06 2026 15:57:41 GMT+0100 (Ora standard dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Mon Feb 09 2026 12:10:53 GMT+0100 (Ora standard dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

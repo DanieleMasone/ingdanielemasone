@@ -54,7 +54,6 @@ import {useState} from "react";
 import {PageSection} from "@/components/ui/pageSection/PageSection";
 import {ExpandableText} from "@/components/ui/expandableText/ExpandableText";
 import {SeoHead} from "@/components/seoHead/SeoHead";
-import {SelectableButton} from "@/components/ui/selectableButton/SelectableButton";
 import {Pagination} from "@/components/ui/pagination/Pagination";
 import {PageGrid} from "@/components/ui/pageGrid/PageGrid";
 
@@ -213,108 +212,154 @@ export default function Projects() {
             &lt;SeoHead pageKey="projects" path="/projects"/>
 
             &lt;PageSection title={t("projects_title")}>
-                &lt;div className="flex flex-col md:flex-row gap-6">
-                    {/* Sidebar Tabs */}
-                    &lt;div className="md:w-1/4">
-                        &lt;div
-                            className="flex flex-row md:flex-col gap-2 md:gap-4 overflow-x-auto md:overflow-visible no-scrollbar snap-x md:snap-none px-1 pb-3 md:pb-0"
-                        >
-                        {companies.map((company) => (
-                            &lt;SelectableButton
-                                key={company}
-                                label={company}
-                                isSelected={selectedCompany === company}
-                                onClick={() => {
-                                    setSelectedCompany(company);
-                                    setPage(1);
-                                }}
-                            />
-                        ))}
-                        &lt;/div>
-                    &lt;/div>
+                {(() => {
+                    const currentProjects = groupedProjects[selectedCompany] || [];
+                    const totalPages = Math.ceil(currentProjects.length / ITEMS_PER_PAGE);
+                    const paginated = currentProjects.slice(
+                        (page - 1) * ITEMS_PER_PAGE,
+                        page * ITEMS_PER_PAGE
+                    );
 
-                    {/* Content */}
-                    &lt;div className="flex-1 relative">
-                        {(() => {
-                            const currentProjects = groupedProjects[selectedCompany] || [];
-                            const totalPages = Math.ceil(currentProjects.length / ITEMS_PER_PAGE);
-                            const paginated = currentProjects.slice(
-                                (page - 1) * ITEMS_PER_PAGE,
-                                page * ITEMS_PER_PAGE
-                            );
+                    return (
+                        &lt;div className="flex flex-col md:flex-row gap-8">
 
-                            return (
-                                &lt;>
-                                    {/* Pagination mobile sticky */}
-                                    &lt;div
-                                        className="md:hidden sticky top-0 z-20 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md py-2 mb-4 border-b border-gray-200 dark:border-gray-700">
-                                        &lt;Pagination
-                                            page={page}
-                                            totalPages={totalPages}
-                                            onPageChange={setPage}
-                                        />
-                                    &lt;/div>
+                            {/*  SIDEBAR */}
+                            &lt;aside className="md:w-64 md:shrink-0 md:sticky md:top-24 h-fit">
+                                &lt;div
+                                    className="flex flex-row md:flex-col gap-2 md:gap-3 overflow-x-auto md:overflow-visible snap-x md:snap-none px-1 md:px-0 pb-3 scrollbar-hide"
+                                >
+                                    {companies.map((company) => {
+                                        const count = groupedProjects[company]?.length ?? 0;
 
-                                    &lt;PageGrid page={page}>
-                                        {paginated.map((proj, idx) => (
-                                            &lt;Card
-                                                key={idx}
-                                                className="relative w-full max-w-2xl md:max-w-3xl p-5 sm:p-6 border border-gray-200/60
-                                                       dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
-                                                       rounded-xl hover:shadow-lg transition-all duration-300"
+                                        return (
+                                            &lt;button
+                                                key={company}
+                                                onClick={() => {
+                                                    setSelectedCompany(company);
+                                                    setPage(1);
+                                                    window.scrollTo({top: 0, behavior: "smooth"});
+                                                }}
+                                                className={`snap-start text-left rounded-lg px-3 py-2 border transition-all duration-200 flex items-center justify-between gap-3
+                                                    ${selectedCompany === company
+                                                    ? "bg-blue-600 text-white border-blue-600 shadow-md"
+                                                    : "bg-white/70 dark:bg-gray-800/60 border-gray-200 dark:border-gray-700 hover:-translate-y-0.5 hover:shadow"
+                                                    }
+            `                                   }
                                             >
-                                                &lt;CardContent>
-                                                    &lt;h3 className="text-lg font-semibold">{proj.name}&lt;/h3>
-                                                    &lt;p className="text-gray-700 dark:text-gray-400">{proj.company}&lt;/p>
-                                                    &lt;p className="text-sm mb-2 text-gray-600 dark:text-gray-500">{proj.period}&lt;/p>
-                                                    {proj.type &amp;&amp; (
-                                                        &lt;ExpandableText
-                                                            value={t(`project_types.${proj.type}`)}
-                                                            maxLines={3}
-                                                            className="mb-2 text-sm"
-                                                        />
-                                                    )}
-                                                    &lt;Disclosure>
-                                                        {({open}) => (
-                                                            &lt;div>
-                                                                &lt;Disclosure.Button
-                                                                    className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline focus:outline-none mt-2"
-                                                                >
-                                                                    &lt;span>{t("show_technologies")}&lt;/span>
-                                                                    &lt;ChevronDown
-                                                                        className={`ml-1 w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}
-                                                                    />
-                                                                &lt;/Disclosure.Button>
-                                                                &lt;Disclosure.Panel
-                                                                    className="mt-2 flex flex-wrap gap-2">
-                                                                    {proj.tech.split(",").map((t, i) => (
-                                                                        &lt;span key={i}
-                                                                              className="text-xs px-2 py-1 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300">
-                                                                      {t.trim()}
-                                                                    &lt;/span>
-                                                                    ))}
-                                                                &lt;/Disclosure.Panel>
-                                                            &lt;/div>
-                                                        )}
-                                                    &lt;/Disclosure>
-                                                &lt;/CardContent>
-                                            &lt;/Card>
-                                        ))}
-                                    &lt;/PageGrid>
+                                                &lt;span className="truncate">{company}&lt;/span>
+                                                &lt;span className={`text-xs px-2 py-0.5 rounded-full
+                                                    ${selectedCompany === company
+                                                    ? "bg-white/20 text-white"
+                                                    : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
+                                                }
+                                                `}>
+                                                  {count}
+                                                &lt;/span>
+                                            &lt;/button>
+                                        );
+                                    })}
+                                &lt;/div>
+                            &lt;/aside>
 
-                                    {/* Pagination desktop normal */}
-                                    &lt;div className="hidden md:block mt-4">
+                            {/* MAIN */}
+                            &lt;main className="flex-1 min-w-0 h-[calc(100vh-6rem)]">
+                                &lt;div className="max-w-6xl mx-auto flex flex-col h-full">
+
+                                    {/* pagination mobile sticky */}
+                                    &lt;div
+                                        className="md:hidden sticky top-0 z-20 bg-white/85 dark:bg-gray-900/85 backdrop-blur border-b border-gray-200 dark:border-gray-700 py-2 mb-4">
                                         &lt;Pagination
                                             page={page}
                                             totalPages={totalPages}
                                             onPageChange={setPage}
                                         />
                                     &lt;/div>
-                                &lt;/>
-                            );
-                        })()}
-                    &lt;/div>
-                &lt;/div>
+
+                                    {/* GRID */}
+                                    {paginated.length > 0 &amp;&amp; (
+                                        &lt;PageGrid
+                                            page={`${selectedCompany}-${page}`}
+                                            columns={2}
+                                            className="pt-2 flex-1"
+                                        >
+                                            {paginated.map((proj, idx) => (
+                                                &lt;Card
+                                                    key={idx}
+                                                    className="relative w-full p-5 sm:p-6 border border-gray-200/60
+                                                             dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
+                                                               rounded-xl hover:shadow-lg transition-all duration-300 flex flex-col"
+                                                >
+                                                    &lt;CardContent className="flex flex-col h-full">
+
+                                                        &lt;div className="flex flex-col gap-3 flex-1">
+                                                            &lt;div className="flex flex-col gap-2">
+                                                                &lt;h3 className="text-lg md:text-xl font-semibold text-gray-900 dark:text-gray-100 leading-snug line-clamp-2">
+                                                                    {proj.name}
+                                                                &lt;/h3>
+
+                                                                {/* Meta info container */}
+                                                                &lt;div className="flex flex-wrap gap-2 items-center">
+                                                                    &lt;span
+                                                                        className="text-xs font-medium px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300">
+                                                                      {proj.period}
+                                                                    &lt;/span>
+                                                                &lt;/div>
+                                                            &lt;/div>
+
+                                                            {proj.type &amp;&amp; (
+                                                                &lt;ExpandableText
+                                                                    value={t(`project_types.${proj.type}`)}
+                                                                    maxLines={4}
+                                                                    className="text-sm mb-2 px-4 py-3 bg-white/50 dark:bg-gray-900/50 rounded-xl shadow-inner italic text-gray-800 dark:text-gray-200"
+                                                                />
+                                                            )}
+
+                                                        &lt;/div>
+
+                                                        {/* LOW BLOCK */}
+                                                        &lt;Disclosure>
+                                                            {({open}) => (
+                                                                &lt;div
+                                                                    className="pt-3 border-t border-gray-200/60 dark:border-gray-700/60">
+                                                                    &lt;Disclosure.Button
+                                                                        className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline">
+                                                                        &lt;span>{t("show_technologies")}&lt;/span>
+                                                                        &lt;ChevronDown
+                                                                            className={`ml-1 w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}/>
+                                                                    &lt;/Disclosure.Button>
+                                                                    &lt;Disclosure.Panel
+                                                                        className="mt-2 flex flex-wrap gap-2">
+                                                                        {proj.tech.split(",").map((t, i) => (
+                                                                            &lt;span key={i}
+                                                                                  className="text-xs px-2 py-1 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300">
+                                                                              {t.trim()}
+                                                                            &lt;/span>
+                                                                        ))}
+                                                                    &lt;/Disclosure.Panel>
+                                                                &lt;/div>
+                                                            )}
+                                                        &lt;/Disclosure>
+
+                                                    &lt;/CardContent>
+                                                &lt;/Card>
+                                            ))}
+                                        &lt;/PageGrid>
+                                    )}
+
+                                    {/* pagination desktop bottom */}
+                                    &lt;div className="hidden md:flex justify-center mt-8">
+                                        &lt;Pagination
+                                            page={page}
+                                            totalPages={totalPages}
+                                            onPageChange={setPage}
+                                        />
+                                    &lt;/div>
+                                &lt;/div>
+                            &lt;/main>
+
+                        &lt;/div>
+                    );
+                })()}
             &lt;/PageSection>
         &lt;/>
     );
@@ -333,7 +378,7 @@ export default function Projects() {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Fri Feb 06 2026 15:57:41 GMT+0100 (Ora standard dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Mon Feb 09 2026 12:10:53 GMT+0100 (Ora standard dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
