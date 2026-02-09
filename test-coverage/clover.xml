@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1770636487497" clover="3.2.0">
-  <project timestamp="1770636487497" name="All files">
-    <metrics statements="290" coveredstatements="279" conditionals="248" coveredconditionals="198" methods="129" coveredmethods="120" elements="667" coveredelements="597" complexity="0" loc="290" ncloc="290" packages="34" files="46" classes="46"/>
+<coverage generated="1770650707204" clover="3.2.0">
+  <project timestamp="1770650707206" name="All files">
+    <metrics statements="292" coveredstatements="281" conditionals="249" coveredconditionals="199" methods="130" coveredmethods="121" elements="671" coveredelements="601" complexity="0" loc="292" ncloc="292" packages="34" files="46" classes="46"/>
     <package name="src">
       <metrics statements="12" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="11" coveredmethods="11"/>
       <file name="App.jsx" path="C:\Users\U503185\Desktop\Esempi\ingdanielemasone\src\App.jsx">
@@ -17,7 +17,7 @@
         <line num="17" count="1" type="stmt"/>
         <line num="19" count="1" type="stmt"/>
         <line num="20" count="10" type="stmt"/>
-        <line num="29" count="11" type="stmt"/>
+        <line num="30" count="11" type="stmt"/>
       </file>
     </package>
     <package name="src.assets">
@@ -69,41 +69,43 @@
       </file>
     </package>
     <package name="src.components.footer">
-      <metrics statements="7" coveredstatements="7" conditionals="9" coveredconditionals="9" methods="3" coveredmethods="3"/>
+      <metrics statements="7" coveredstatements="7" conditionals="9" coveredconditionals="8" methods="3" coveredmethods="3"/>
       <file name="Footer.jsx" path="C:\Users\U503185\Desktop\Esempi\ingdanielemasone\src\components\footer\Footer.jsx">
-        <metrics statements="7" coveredstatements="7" conditionals="9" coveredconditionals="9" methods="3" coveredmethods="3"/>
-        <line num="17" count="71" type="cond" truecount="4" falsecount="0"/>
-        <line num="19" count="69" type="stmt"/>
+        <metrics statements="7" coveredstatements="7" conditionals="9" coveredconditionals="8" methods="3" coveredmethods="3"/>
+        <line num="17" count="84" type="cond" truecount="3" falsecount="1"/>
+        <line num="19" count="84" type="stmt"/>
         <line num="35" count="2" type="stmt"/>
-        <line num="48" count="5" type="stmt"/>
-        <line num="50" count="5" type="stmt"/>
-        <line num="89" count="5" type="stmt"/>
-        <line num="98" count="25" type="stmt"/>
+        <line num="39" count="2" type="stmt"/>
+        <line num="87" count="8" type="stmt"/>
+        <line num="89" count="8" type="stmt"/>
+        <line num="110" count="40" type="stmt"/>
       </file>
     </package>
     <package name="src.components.header">
-      <metrics statements="19" coveredstatements="17" conditionals="22" coveredconditionals="18" methods="13" coveredmethods="11"/>
+      <metrics statements="21" coveredstatements="19" conditionals="22" coveredconditionals="18" methods="14" coveredmethods="12"/>
       <file name="Header.jsx" path="C:\Users\U503185\Desktop\Esempi\ingdanielemasone\src\components\header\Header.jsx">
-        <metrics statements="19" coveredstatements="17" conditionals="22" coveredconditionals="18" methods="13" coveredmethods="11"/>
-        <line num="18" count="33" type="stmt"/>
-        <line num="19" count="33" type="stmt"/>
-        <line num="20" count="33" type="stmt"/>
-        <line num="21" count="33" type="stmt"/>
-        <line num="23" count="33" type="stmt"/>
-        <line num="27" count="33" type="stmt"/>
-        <line num="36" count="33" type="stmt"/>
-        <line num="42" count="33" type="stmt"/>
-        <line num="56" count="5" type="stmt"/>
-        <line num="70" count="24" type="stmt"/>
-        <line num="73" count="1" type="stmt"/>
-        <line num="95" count="8" type="stmt"/>
-        <line num="112" count="1" type="stmt"/>
-        <line num="131" count="7" type="stmt"/>
-        <line num="133" count="0" type="stmt"/>
-        <line num="136" count="0" type="stmt"/>
-        <line num="152" count="22" type="stmt"/>
-        <line num="161" count="132" type="stmt"/>
-        <line num="164" count="1" type="stmt"/>
+        <metrics statements="21" coveredstatements="19" conditionals="22" coveredconditionals="18" methods="14" coveredmethods="12"/>
+        <line num="19" count="36" type="stmt"/>
+        <line num="20" count="36" type="stmt"/>
+        <line num="21" count="36" type="stmt"/>
+        <line num="22" count="36" type="stmt"/>
+        <line num="24" count="36" type="stmt"/>
+        <line num="28" count="36" type="stmt"/>
+        <line num="37" count="36" type="stmt"/>
+        <line num="38" count="36" type="stmt"/>
+        <line num="42" count="36" type="stmt"/>
+        <line num="50" count="36" type="stmt"/>
+        <line num="58" count="5" type="stmt"/>
+        <line num="80" count="30" type="stmt"/>
+        <line num="83" count="1" type="stmt"/>
+        <line num="106" count="9" type="stmt"/>
+        <line num="128" count="1" type="stmt"/>
+        <line num="144" count="8" type="stmt"/>
+        <line num="146" count="0" type="stmt"/>
+        <line num="149" count="0" type="stmt"/>
+        <line num="163" count="24" type="stmt"/>
+        <line num="172" count="144" type="stmt"/>
+        <line num="175" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.components.notFound">
@@ -148,7 +150,7 @@
       <metrics statements="1" coveredstatements="1" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
       <file name="CardContent.jsx" path="C:\Users\U503185\Desktop\Esempi\ingdanielemasone\src\components\ui\cardContent\CardContent.jsx">
         <metrics statements="1" coveredstatements="1" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
-        <line num="16" count="112" type="stmt"/>
+        <line num="16" count="156" type="stmt"/>
       </file>
     </package>
     <package name="src.components.ui.cookieBanner">
@@ -208,25 +210,25 @@
       <metrics statements="19" coveredstatements="19" conditionals="16" coveredconditionals="14" methods="9" coveredmethods="9"/>
       <file name="LanguageSwitcher.jsx" path="C:\Users\U503185\Desktop\Esempi\ingdanielemasone\src\components\ui\languageSwitcher\LanguageSwitcher.jsx">
         <metrics statements="19" coveredstatements="19" conditionals="16" coveredconditionals="14" methods="9" coveredmethods="9"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="13" count="1" type="stmt"/>
-        <line num="22" count="21" type="stmt"/>
-        <line num="23" count="21" type="stmt"/>
-        <line num="24" count="21" type="stmt"/>
-        <line num="26" count="21" type="stmt"/>
-        <line num="28" count="21" type="stmt"/>
-        <line num="29" count="21" type="stmt"/>
-        <line num="30" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="31" count="1" type="stmt"/>
-        <line num="34" count="21" type="stmt"/>
-        <line num="35" count="21" type="stmt"/>
-        <line num="36" count="2" type="cond" truecount="3" falsecount="1"/>
-        <line num="38" count="21" type="cond" truecount="2" falsecount="0"/>
-        <line num="39" count="21" type="stmt"/>
-        <line num="42" count="21" type="stmt"/>
-        <line num="72" count="40" type="stmt"/>
-        <line num="73" count="40" type="stmt"/>
-        <line num="76" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="23" count="19" type="stmt"/>
+        <line num="24" count="19" type="stmt"/>
+        <line num="25" count="19" type="stmt"/>
+        <line num="27" count="19" type="stmt"/>
+        <line num="29" count="19" type="stmt"/>
+        <line num="30" count="19" type="stmt"/>
+        <line num="31" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="32" count="1" type="stmt"/>
+        <line num="35" count="19" type="stmt"/>
+        <line num="36" count="19" type="stmt"/>
+        <line num="37" count="2" type="cond" truecount="3" falsecount="1"/>
+        <line num="39" count="19" type="cond" truecount="2" falsecount="0"/>
+        <line num="40" count="19" type="stmt"/>
+        <line num="43" count="19" type="stmt"/>
+        <line num="78" count="35" type="stmt"/>
+        <line num="79" count="35" type="stmt"/>
+        <line num="82" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.components.ui.pageGrid">
@@ -239,9 +241,9 @@
       </file>
     </package>
     <package name="src.components.ui.pageSection">
-      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <metrics statements="1" coveredstatements="1" conditionals="3" coveredconditionals="3" methods="1" coveredmethods="1"/>
       <file name="PageSection.jsx" path="C:\Users\U503185\Desktop\Esempi\ingdanielemasone\src\components\ui\pageSection\PageSection.jsx">
-        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <metrics statements="1" coveredstatements="1" conditionals="3" coveredconditionals="3" methods="1" coveredmethods="1"/>
         <line num="17" count="68" type="stmt"/>
       </file>
     </package>
@@ -396,7 +398,7 @@
         <line num="70" count="5" type="stmt"/>
         <line num="72" count="5" type="stmt"/>
         <line num="77" count="5" type="stmt"/>
-        <line num="94" count="20" type="stmt"/>
+        <line num="95" count="20" type="stmt"/>
       </file>
     </package>
     <package name="src.pages.cookiePolicy">
@@ -420,13 +422,13 @@
         <line num="152" count="16" type="stmt"/>
         <line num="169" count="64" type="stmt"/>
         <line num="207" count="84" type="stmt"/>
-        <line num="215" count="441" type="stmt"/>
+        <line num="217" count="441" type="stmt"/>
       </file>
     </package>
     <package name="src.pages.experience">
-      <metrics statements="36" coveredstatements="36" conditionals="30" coveredconditionals="23" methods="12" coveredmethods="12"/>
+      <metrics statements="36" coveredstatements="36" conditionals="28" coveredconditionals="22" methods="12" coveredmethods="12"/>
       <file name="Experience.jsx" path="C:\Users\U503185\Desktop\Esempi\ingdanielemasone\src\pages\experience\Experience.jsx">
-        <metrics statements="36" coveredstatements="36" conditionals="30" coveredconditionals="23" methods="12" coveredmethods="12"/>
+        <metrics statements="36" coveredstatements="36" conditionals="28" coveredconditionals="22" methods="12" coveredmethods="12"/>
         <line num="13" count="1" type="stmt"/>
         <line num="107" count="1" type="stmt"/>
         <line num="108" count="20" type="stmt"/>
@@ -454,15 +456,15 @@
         <line num="158" count="8" type="cond" truecount="1" falsecount="1"/>
         <line num="159" count="88" type="stmt"/>
         <line num="162" count="8" type="stmt"/>
-        <line num="173" count="88" type="stmt"/>
-        <line num="177" count="2" type="stmt"/>
-        <line num="191" count="16" type="stmt"/>
-        <line num="207" count="16" type="stmt"/>
-        <line num="208" count="16" type="cond" truecount="1" falsecount="1"/>
-        <line num="210" count="16" type="stmt"/>
-        <line num="216" count="16" type="stmt"/>
-        <line num="242" count="32" type="stmt"/>
-        <line num="253" count="528" type="stmt"/>
+        <line num="172" count="88" type="stmt"/>
+        <line num="176" count="2" type="stmt"/>
+        <line num="190" count="16" type="stmt"/>
+        <line num="208" count="16" type="stmt"/>
+        <line num="209" count="16" type="cond" truecount="1" falsecount="1"/>
+        <line num="211" count="16" type="stmt"/>
+        <line num="217" count="16" type="stmt"/>
+        <line num="243" count="32" type="stmt"/>
+        <line num="254" count="528" type="stmt"/>
       </file>
     </package>
     <package name="src.pages.home">
@@ -514,14 +516,14 @@
       <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
       <file name="Testimonials.jsx" path="C:\Users\U503185\Desktop\Esempi\ingdanielemasone\src\pages\testimonials\Testimonials.jsx">
         <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
-        <line num="11" count="1" type="stmt"/>
-        <line num="13" count="1" type="stmt"/>
-        <line num="166" count="19" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
         <line num="167" count="19" type="stmt"/>
-        <line num="169" count="19" type="stmt"/>
-        <line num="171" count="19" type="stmt"/>
-        <line num="176" count="19" type="stmt"/>
-        <line num="193" count="75" type="stmt"/>
+        <line num="168" count="19" type="stmt"/>
+        <line num="170" count="19" type="stmt"/>
+        <line num="172" count="19" type="stmt"/>
+        <line num="177" count="19" type="stmt"/>
+        <line num="195" count="75" type="stmt"/>
       </file>
     </package>
     <package name="src.pages.trading">

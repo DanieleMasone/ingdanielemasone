@@ -314,7 +314,15 @@
 <a name='L249'></a><a href='#L249'>249</a>
 <a name='L250'></a><a href='#L250'>250</a>
 <a name='L251'></a><a href='#L251'>251</a>
-<a name='L252'></a><a href='#L252'>252</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L252'></a><a href='#L252'>252</a>
+<a name='L253'></a><a href='#L253'>253</a>
+<a name='L254'></a><a href='#L254'>254</a>
+<a name='L255'></a><a href='#L255'>255</a>
+<a name='L256'></a><a href='#L256'>256</a>
+<a name='L257'></a><a href='#L257'>257</a>
+<a name='L258'></a><a href='#L258'>258</a>
+<a name='L259'></a><a href='#L259'>259</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -490,6 +498,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -565,6 +574,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {useState} from "react";
 import {useTranslation} from "react-i18next";
 import {Card} from "@/components/ui/card/Card";
@@ -574,6 +588,7 @@ import {BrandIcon, linkedinIcon} from "@/components/footer/Footer";
 import {Pagination} from "@/components/ui/pagination/Pagination";
 import {PageGrid} from "@/components/ui/pageGrid/PageGrid";
 import {ExpandableText} from "@/components/ui/expandableText/ExpandableText";
+import {CardContent} from "@/components/ui/cardContent/CardContent";
 &nbsp;
 const ITEMS_PER_PAGE = 4;
 &nbsp;
@@ -747,7 +762,8 @@ export default function Testimonials() {
             &lt;PageSection title={t("testimonials_page.title")}&gt;
                 {/* Pagination mobile sticky */}
                 &lt;div
-                    className="md:hidden sticky top-0 z-20 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md py-2 mb-4 border-b border-gray-200 dark:border-gray-700"&gt;
+                    className="md:hidden sticky top-0 z-20 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md py-2 mb-4 border-b border-gray-200 dark:border-gray-700"
+                &gt;
                     &lt;Pagination
                         page={page}
                         totalPages={totalPages}
@@ -755,51 +771,56 @@ export default function Testimonials() {
                     /&gt;
                 &lt;/div&gt;
 &nbsp;
-                &lt;PageGrid page={page} className="[&amp;&gt;*]:h-72"&gt;
+                &lt;PageGrid page={page}&gt;
                     {displayedTestimonials.map((texts, idx) =&gt; (
                         &lt;Card
                             key={idx}
                             data-testid="testimonial-card"
                             className="relative w-full p-5 sm:p-6 border border-gray-200/60
-                                     dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
-                                       rounded-xl hover:shadow-lg transition-all duration-300 flex flex-col"
+                                       dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
+                                       rounded-xl hover:shadow-lg transition-all duration-300
+                                       flex flex-col md:flex-row items-start gap-4"
                         &gt;
-                            {/* Fixed header */}
-                            &lt;div className="flex-shrink-0 mb-4 pb-2 border-b border-gray-200/50 dark:border-gray-700/50"&gt;
-                                &lt;div className="flex items-center justify-between"&gt;
-                                    &lt;div className="flex items-center space-x-3"&gt;
+                            &lt;CardContent className="p-2"&gt;
+                                {/* Header */}
+                                &lt;div
+                                    className="flex-shrink-0 mb-3 pb-1 border-b border-gray-200/50 dark:border-gray-700/50 px-3 pt-3"&gt;
+                                    &lt;div className="flex items-center gap-2.5"&gt;
                                         &lt;img
                                             src={`https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(t(texts.nameKey))}`}
                                             alt={`${t(texts.nameKey)} avatar`}
-                                            className="w-12 h-12 rounded-full ring-2 ring-gray-200 dark:ring-gray-600 bg-white shadow-md"
+                                            className="w-10 h-10 rounded-full ring-2 ring-gray-200 dark:ring-gray-600 bg-white shadow-md"
                                         /&gt;
-                                        &lt;div&gt;
-                                            &lt;p className="font-semibold text-gray-900 dark:text-white flex items-center gap-2"&gt;
+                                        &lt;div className="flex flex-col"&gt;
+                                            &lt;p className="font-semibold text-gray-900 dark:text-white flex items-center gap-1.5 text-sm sm:text-base"&gt;
                                                 {t(texts.nameKey)}
                                                 {texts.linkedinUrl &amp;&amp; (
-                                                    &lt;a href={texts.linkedinUrl} target="_blank" rel="noopener noreferrer"&gt;
-                                                        &lt;BrandIcon icon={linkedinIcon} color="#0A66C2" size={20} /&gt;
+                                                    &lt;a href={texts.linkedinUrl} target="_blank"
+                                                       rel="noopener noreferrer"&gt;
+                                                        &lt;BrandIcon icon={linkedinIcon} color="#0A66C2" size={18}/&gt;
                                                     &lt;/a&gt;
                                                 )}
                                             &lt;/p&gt;
-                                            &lt;p className="text-sm text-gray-500 dark:text-gray-400 font-medium"&gt;{t(texts.roleKey)}&lt;/p&gt;
+                                            &lt;p className="text-xs text-gray-500 dark:text-gray-400 font-medium"&gt;
+                                                {t(texts.roleKey)}
+                                            &lt;/p&gt;
                                         &lt;/div&gt;
                                     &lt;/div&gt;
                                 &lt;/div&gt;
-                            &lt;/div&gt;
 &nbsp;
-                            {/* Body */}
-                            &lt;div className="flex-1 flex flex-col p-4 justify-center items-stretch"&gt;
-                                &lt;div className="flex-1 flex items-center justify-center px-2"&gt;
-                                    &lt;div className="w-full max-w-lg text-center"&gt;
-                                        &lt;ExpandableText
-                                            value={t(texts.quoteKey)}
-                                            maxLines={3}
-                                            className="italic text-base md:text-lg text-gray-800 dark:text-gray-200 leading-relaxed font-light tracking-tight px-4 py-4 bg-gradient-to-b from-transparent via-white/70 to-transparent dark:via-gray-800/50 rounded-xl backdrop-blur-sm shadow-inner border border-gray-100/40 dark:border-gray-700/40"
-                                        /&gt;
-                                    &lt;/div&gt;
+                                {/* Quote */}
+                                &lt;div className="flex flex-1 justify-center items-center px-3 py-4"&gt;
+                                    &lt;ExpandableText
+                                        value={t(texts.quoteKey)}
+                                        maxLines={4}
+                                        className="text-center italic text-sm md:text-base text-gray-800 dark:text-gray-200
+                                                 leading-snug font-light tracking-tight px-3 py-3 bg-gradient-to-b
+                                                 from-transparent via-white/70 to-transparent dark:via-gray-800/50
+                                                 rounded-xl backdrop-blur-sm shadow-inner border border-gray-100/40 dark:border-gray-700/40"
+                                    /&gt;
                                 &lt;/div&gt;
-                            &lt;/div&gt;
+                            &lt;/CardContent&gt;
+&nbsp;
                         &lt;/Card&gt;
                     ))}
                 &lt;/PageGrid&gt;
@@ -823,7 +844,7 @@ export default function Testimonials() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-02-09T11:28:07.129Z
+                at 2026-02-09T15:25:06.636Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

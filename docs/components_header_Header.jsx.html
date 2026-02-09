@@ -52,6 +52,7 @@ import {DarkModeToggle} from '../ui/darkModeToggle/DarkModeToggle';
 import {useTranslation} from 'react-i18next';
 import {ChevronDown, Menu, X} from 'lucide-react';
 import {Disclosure} from '@headlessui/react';
+import {AnimatePresence, motion} from "framer-motion";
 
 /**
  * Header component with navigation, language switcher, and dark mode toggle.
@@ -80,19 +81,20 @@ export function Header() {
         {to: '/trading', label: t('trading')}
     ];
 
+    const getLinkClasses = (path) =>
+        `transition font-medium hover:text-blue-600 dark:hover:text-blue-400 ${
+            pathname === path ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-gray-900 dark:text-white"
+        }`;
+
     return (
-        &lt;header className="bg-gray-200/70 dark:bg-gray-900 backdrop-blur-sm sticky top-0 z-50 shadow-md">
+        &lt;header
+            className="bg-gray-200/70 dark:bg-gray-900/70 backdrop-blur-sm sticky top-0 z-50 shadow-md transition-shadow duration-300">
             &lt;div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3 md:px-6 md:py-4">
+
                 {/* Desktop Nav */}
                 &lt;nav className="hidden md:flex items-center space-x-6">
-                    {navMain.map(item => (
-                        &lt;Link
-                            key={item.to}
-                            to={item.to}
-                            className={`transition font-medium hover:text-blue-600 dark:hover:text-blue-400 ${
-                                pathname === item.to ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'text-gray-900 dark:text-white'
-                            }`}
-                        >
+                    {navMain.map((item) => (
+                        &lt;Link key={item.to} to={item.to} className={getLinkClasses(item.to)}>
                             {item.label}
                         &lt;/Link>
                     ))}
@@ -102,35 +104,44 @@ export function Header() {
                         &lt;button
                             onClick={() => setPortfolioOpen(!portfolioOpen)}
                             className={`flex items-center space-x-1 font-medium hover:text-blue-600 dark:hover:text-blue-400 transition ${
-                                portfolioOpen ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'text-gray-900 dark:text-white'
+                                portfolioOpen ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-gray-900 dark:text-white"
                             }`}
+                            aria-haspopup="true"
+                            aria-expanded={portfolioOpen}
                         >
                             &lt;span>{t("portfolio")}&lt;/span>
                             &lt;ChevronDown
-                                className={`w-4 h-4 transition-transform ${portfolioOpen ? 'rotate-180' : ''}`}/>
+                                className={`w-4 h-4 transition-transform ${portfolioOpen ? "rotate-180" : ""}`}/>
                         &lt;/button>
 
-                        {portfolioOpen &amp;&amp; (
-                            &lt;div
-                                className="absolute left-0 mt-2 w-52 bg-white dark:bg-gray-800 shadow-lg rounded-lg border dark:border-gray-700 z-50">
-                                {navPortfolio.map(item => (
-                                    &lt;Link
-                                        key={item.to}
-                                        to={item.to}
-                                        onClick={() => setPortfolioOpen(false)}
-                                        className={`block px-4 py-2 text-sm rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition ${
-                                            pathname === item.to ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'text-gray-900 dark:text-white'
-                                        }`}
-                                    >
-                                        {item.label}
-                                    &lt;/Link>
-                                ))}
-                            &lt;/div>
-                        )}
+                        &lt;AnimatePresence>
+                            {portfolioOpen &amp;&amp; (
+                                &lt;motion.div
+                                    initial={{opacity: 0, y: -10}}
+                                    animate={{opacity: 1, y: 0}}
+                                    exit={{opacity: 0, y: -10}}
+                                    transition={{duration: 0.2}}
+                                    className="absolute left-0 mt-2 w-52 bg-white dark:bg-gray-800 shadow-lg rounded-lg border dark:border-gray-700 z-50"
+                                >
+                                    {navPortfolio.map((item) => (
+                                        &lt;Link
+                                            key={item.to}
+                                            to={item.to}
+                                            onClick={() => setPortfolioOpen(false)}
+                                            className={`block px-4 py-2 text-sm rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition ${
+                                                pathname === item.to ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-gray-900 dark:text-white"
+                                            }`}
+                                        >
+                                            {item.label}
+                                        &lt;/Link>
+                                    ))}
+                                &lt;/motion.div>
+                            )}
+                        &lt;/AnimatePresence>
                     &lt;/div>
                 &lt;/nav>
 
-                {/* Language/DarkMode (Desktop) */}
+                {/* Desktop Lang + Theme */}
                 &lt;div className="hidden md:flex items-center space-x-4">
                     &lt;LanguageSwitcher/>
                     &lt;DarkModeToggle/>
@@ -147,84 +158,83 @@ export function Header() {
             &lt;/div>
 
             {/* Mobile menu */}
-            {menuOpen &amp;&amp; (
-                &lt;div
-                    data-testid="mobile-menu"
-                    className="md:hidden px-4 pt-4 pb-6 bg-gray-100 dark:bg-gray-800 border-t border-gray-300 dark:border-gray-700 space-y-4">
+            &lt;AnimatePresence>
+                {menuOpen &amp;&amp; (
+                    &lt;motion.div
+                        key="mobile-menu"
+                        data-testid="mobile-menu"
+                        initial={{opacity: 0, y: -16}}
+                        animate={{opacity: 1, y: 0}}
+                        exit={{opacity: 0, y: -16}}
+                        transition={{duration: 0.2}}
+                        className="md:hidden px-4 pt-4 pb-6 bg-gray-100 dark:bg-gray-800 border-t border-gray-300 dark:border-gray-700 space-y-4"
+                    >
+                        &lt;div className="flex justify-between items-center">
+                            &lt;Link
+                                to="/"
+                                onClick={() => setMenuOpen(false)}
+                                className={`text-base font-medium transition ${
+                                    pathname === "/" ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-gray-900 dark:text-white"
+                                } hover:text-blue-600 dark:hover:text-blue-400`}
+                            >
+                                {t("home")}
+                            &lt;/Link>
 
-                    {/* Top row: Home on left, Lang &amp; Theme on right */}
-                    &lt;div className="flex justify-between items-center">
-                        &lt;Link
-                            to="/"
-                            onClick={() => setMenuOpen(false)}
-                            className={`text-base font-medium transition ${
-                                pathname === '/'
-                                    ? 'text-blue-600 dark:text-blue-400 font-semibold'
-                                    : 'text-gray-900 dark:text-white'
-                            } hover:text-blue-600 dark:hover:text-blue-400`}
-                        >
-                            {t("home")}
-                        &lt;/Link>
-
-                        &lt;div className="flex items-center space-x-4">
-                            &lt;LanguageSwitcher/>
-                            &lt;DarkModeToggle/>
+                            &lt;div className="flex items-center space-x-4">
+                                &lt;LanguageSwitcher/>
+                                &lt;DarkModeToggle/>
+                            &lt;/div>
                         &lt;/div>
-                    &lt;/div>
 
-                    {/* Nav items (excluding home) */}
-                    &lt;div className="space-y-2">
-                        {navMain
-                            .filter(item => item.to !== '/') // Avoid double "home"
-                            .map(item => (
-                                &lt;Link
-                                    key={item.to}
-                                    to={item.to}
-                                    onClick={() => setMenuOpen(false)}
-                                    className={`block py-2 rounded text-base font-medium transition ${
-                                        pathname === item.to
-                                            ? 'text-blue-600 dark:text-blue-400 font-semibold'
-                                            : 'text-gray-900 dark:text-white'
-                                    } hover:bg-gray-200 dark:hover:bg-gray-700`}
-                                >
-                                    {item.label}
-                                &lt;/Link>
-                            ))}
-                    &lt;/div>
+                        &lt;div className="space-y-2">
+                            {navMain
+                                .filter((item) => item.to !== "/")
+                                .map((item) => (
+                                    &lt;Link
+                                        key={item.to}
+                                        to={item.to}
+                                        onClick={() => setMenuOpen(false)}
+                                        className={`block py-2 rounded text-base font-medium transition ${
+                                            pathname === item.to ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-gray-900 dark:text-white"
+                                        } hover:bg-gray-200 dark:hover:bg-gray-700`}
+                                    >
+                                        {item.label}
+                                    &lt;/Link>
+                                ))}
+                        &lt;/div>
 
-                    {/* Portfolio at the bottom left */}
-                    &lt;div className="pt-4">
-                        &lt;Disclosure>
-                            {({open}) => (
-                                &lt;>
-                                    &lt;Disclosure.Button
-                                        className="flex items-center justify-between w-full py-2 text-base font-medium text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">
-                                        &lt;span>{t("portfolio")}&lt;/span>
-                                        &lt;ChevronDown
-                                            className={`w-5 h-5 transition-transform ${open ? 'rotate-180' : ''}`}/>
-                                    &lt;/Disclosure.Button>
-                                    &lt;Disclosure.Panel className="pl-4 space-y-1">
-                                        {navPortfolio.map(item => (
-                                            &lt;Link
-                                                key={item.to}
-                                                to={item.to}
-                                                onClick={() => setMenuOpen(false)}
-                                                className={`block py-1 text-sm font-normal transition ${
-                                                    pathname === item.to
-                                                        ? 'text-blue-600 dark:text-blue-400 font-semibold'
-                                                        : 'text-gray-900 dark:text-white'
-                                                } hover:text-blue-600 dark:hover:text-blue-400`}
-                                            >
-                                                {item.label}
-                                            &lt;/Link>
-                                        ))}
-                                    &lt;/Disclosure.Panel>
-                                &lt;/>
-                            )}
-                        &lt;/Disclosure>
-                    &lt;/div>
-                &lt;/div>
-            )}
+                        {/* Portfolio mobile dropdown */}
+                        &lt;div className="pt-4">
+                            &lt;Disclosure>
+                                {({open}) => (
+                                    &lt;>
+                                        &lt;Disclosure.Button
+                                            className="flex items-center justify-between w-full py-2 text-base font-medium text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">
+                                            &lt;span>{t("portfolio")}&lt;/span>
+                                            &lt;ChevronDown
+                                                className={`w-5 h-5 transition-transform ${open ? "rotate-180" : ""}`}/>
+                                        &lt;/Disclosure.Button>
+                                        &lt;Disclosure.Panel className="pl-4 space-y-1">
+                                            {navPortfolio.map((item) => (
+                                                &lt;Link
+                                                    key={item.to}
+                                                    to={item.to}
+                                                    onClick={() => setMenuOpen(false)}
+                                                    className={`block py-1 text-sm font-normal transition ${
+                                                        pathname === item.to ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-gray-900 dark:text-white"
+                                                    } hover:text-blue-600 dark:hover:text-blue-400`}
+                                                >
+                                                    {item.label}
+                                                &lt;/Link>
+                                            ))}
+                                        &lt;/Disclosure.Panel>
+                                    &lt;/>
+                                )}
+                            &lt;/Disclosure>
+                        &lt;/div>
+                    &lt;/motion.div>
+                )}
+            &lt;/AnimatePresence>
         &lt;/header>
     );
 }
@@ -242,7 +252,7 @@ export function Header() {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Mon Feb 09 2026 12:28:11 GMT+0100 (Ora standard dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Mon Feb 09 2026 16:25:14 GMT+0100 (Ora standard dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

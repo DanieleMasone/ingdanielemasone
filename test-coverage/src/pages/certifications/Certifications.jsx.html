@@ -219,7 +219,10 @@
 <a name='L154'></a><a href='#L154'>154</a>
 <a name='L155'></a><a href='#L155'>155</a>
 <a name='L156'></a><a href='#L156'>156</a>
-<a name='L157'></a><a href='#L157'>157</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L157'></a><a href='#L157'>157</a>
+<a name='L158'></a><a href='#L158'>158</a>
+<a name='L159'></a><a href='#L159'>159</a>
+<a name='L160'></a><a href='#L160'>160</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -296,6 +299,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -313,6 +317,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -458,7 +464,8 @@ export default function Certifications() {
             &lt;PageSection title={t("certifications_page.title")}&gt;
                 {/* Pagination mobile sticky */}
                 &lt;div
-                    className="md:hidden sticky top-0 z-20 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md py-2 mb-4 border-b border-gray-200 dark:border-gray-700"&gt;
+                    className="md:hidden sticky top-0 z-20 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md py-2 mb-4 border-b border-gray-200 dark:border-gray-700"
+                &gt;
                     &lt;Pagination
                         page={page}
                         totalPages={totalPages}
@@ -470,17 +477,18 @@ export default function Certifications() {
                     {displayedCerts.map((cert, idx) =&gt; (
                         &lt;Card
                             key={idx}
-                            className="relative w-full p-4 sm:p-6 border border-gray-200/60 dark:border-gray-700/60
-                                     bg-white/60 dark:bg-gray-800/40 backdrop-blur-md rounded-xl hover:shadow-xl
-                                       transition-all duration-300 flex flex-col justify-between"
+                            className="relative w-full p-5 sm:p-6 border border-gray-200/60
+                                       dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
+                                       rounded-xl hover:shadow-lg transition-all duration-300
+                                       flex flex-col md:flex-row items-start gap-4"
                         &gt;
                             {/* Icon */}
                             &lt;div className="absolute -top-3 right-4 w-12 h-12 rounded-full bg-gradient-to-r from-blue-100 to-blue-200
                                           dark:from-blue-900/40 dark:to-blue-800/40 flex items-center justify-center shadow-lg z-20 ring-4 ring-background"&gt;
-                                &lt;Award className="w-6 h-6 text-blue-600 dark:text-blue-400" /&gt;
+                                &lt;Award className="w-6 h-6 text-blue-600 dark:text-blue-400"/&gt;
                             &lt;/div&gt;
 &nbsp;
-                            &lt;CardContent className="p-0 pt-8 relative z-0 flex flex-col h-full justify-between"&gt;
+                            &lt;CardContent className="p-0 flex flex-col gap-3"&gt;
                                 {/* Header */}
                                 &lt;div className="space-y-1.5 mb-4"&gt;
                                     &lt;h3 className="text-lg font-bold text-gray-900 dark:text-white leading-tight"&gt;
@@ -495,26 +503,27 @@ export default function Certifications() {
                                 &lt;/div&gt;
 &nbsp;
                                 {/* CTA */}
-                                &lt;div className="mt-auto"&gt;
-                                    &lt;a
-                                        href={cert.link}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="group inline-flex items-center text-sm font-semibold text-blue-600 dark:text-blue-400
-                                                   hover:text-blue-700 dark:hover:text-blue-300 transition-all duration-300
-                                                   hover:underline underline-offset-4 hover:shadow-md hover:shadow-blue-100 dark:hover:shadow-blue-900/50
-                                                   px-3 py-2 rounded-lg border border-blue-200/50 dark:border-blue-800/50 hover:border-blue-300"
-                                    &gt;
-                                        {t("certifications_page.view_certificate")}
-                                        &lt;ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" /&gt;
-                                    &lt;/a&gt;
-                                &lt;/div&gt;
+                                &lt;a
+                                    href={cert.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="group inline-flex items-center text-sm font-semibold text-blue-600 dark:text-blue-400
+                                               hover:text-blue-700 dark:hover:text-blue-300 transition-all duration-300
+                                               hover:underline underline-offset-4 hover:shadow-md hover:shadow-blue-100 dark:hover:shadow-blue-900/50
+                                               px-3 py-2 rounded-lg border border-blue-200/50 dark:border-blue-800/50 hover:border-blue-300"
+                                &gt;
+                                    {t("certifications_page.view_certificate")}
+                                    &lt;ExternalLink
+                                        className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"/&gt;
+                                &lt;/a&gt;
                             &lt;/CardContent&gt;
 &nbsp;
                             {/* Hover overlay */}
-                            &lt;div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100
-                                            transition-all duration-500 bg-gradient-to-br from-blue-50/80 via-transparent to-transparent
-                                            dark:from-blue-900/30 rounded-xl backdrop-blur-sm" /&gt;
+                            &lt;div
+                                className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100
+                                           transition-all duration-500 bg-gradient-to-br from-blue-50/80 via-transparent to-transparent
+                                         dark:from-blue-900/30 rounded-xl backdrop-blur-sm"
+                            /&gt;
                         &lt;/Card&gt;
                     ))}
                 &lt;/PageGrid&gt;
@@ -538,7 +547,7 @@ export default function Certifications() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-02-09T11:28:07.129Z
+                at 2026-02-09T15:25:06.636Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

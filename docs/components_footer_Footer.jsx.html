@@ -60,7 +60,7 @@ import {useTranslation} from "react-i18next";
  * @param {string} [props.title] - Accessible title for screen readers.
  * @returns {JSX.Element|null} SVG element or null if no valid icon.
  */
-export function BrandIcon({ icon, color, className, size = 24, title }) {
+export function BrandIcon({icon, color, className, size = 24, title}) {
     if (!icon || !icon.svg) return null;
 
     return (
@@ -74,7 +74,7 @@ export function BrandIcon({ icon, color, className, size = 24, title }) {
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden={title ? undefined : "true"}
             aria-label={title || undefined}
-            dangerouslySetInnerHTML={{ __html: icon.svg }}
+            dangerouslySetInnerHTML={{__html: icon.svg}}
         />
     );
 }
@@ -82,6 +82,45 @@ export function BrandIcon({ icon, color, className, size = 24, title }) {
 export const linkedinIcon = {
     svg: `&lt;path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.85-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667h-3.554V9h3.414v1.561h.049c.477-.9 1.637-1.85 3.367-1.85 3.598 0 4.265 2.368 4.265 5.452v6.289zM5.337 7.433a2.063 2.063 0 1 1 0-4.126 2.063 2.063 0 0 1 0 4.126zM6.814 20.452H3.861V9h2.953v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.723v20.549C0 23.226.792 24 1.771 24h20.451C23.2 24 24 23.226 24 22.272V1.723C24 .774 23.2 0 22.225 0z"/>`,
 };
+
+const links = [
+    {
+        key: "linkedin",
+        href: "https://www.linkedin.com/in/ingdanielemasone/",
+        icon: linkedinIcon,
+        color: "#0A66C2",
+        label: "LinkedIn",
+    },
+    {
+        key: "instagram",
+        href: "https://www.instagram.com/ing_daniele_masone/",
+        icon: icons.siInstagram,
+        color: "#E4405F",
+        label: "Instagram",
+    },
+    {
+        key: "facebook",
+        href: "https://www.facebook.com/danieleMasone",
+        icon: icons.siFacebook,
+        color: "#1877F2",
+        label: "Facebook",
+    },
+    {
+        key: "github",
+        href: "https://github.com/DanieleMasone",
+        icon: icons.siGithub,
+        color: "currentColor",
+        label: "GitHub",
+        className: "text-[#181717] dark:text-gray-200",
+    },
+    {
+        key: "udemy",
+        href: "https://www.udemy.com/user/daniele-masone/",
+        icon: icons.siUdemy,
+        color: "#EC5252",
+        label: "Udemy",
+    },
+];
 
 /**
  * Footer component with social brand icons and copyright text.
@@ -94,81 +133,92 @@ export const linkedinIcon = {
 export function Footer() {
     const {t} = useTranslation();
 
-    const links = [
-        {
-            key: "linkedin",
-            href: "https://www.linkedin.com/in/ingdanielemasone/",
-            icon: linkedinIcon,
-            color: "#0A66C2",
-            label: "LinkedIn",
-        },
-        {
-            key: "instagram",
-            href: "https://www.instagram.com/ing_daniele_masone/",
-            icon: icons.siInstagram,
-            color: "#E4405F",
-            label: "Instagram",
-        },
-        {
-            key: "facebook",
-            href: "https://www.facebook.com/danieleMasone",
-            icon: icons.siFacebook,
-            color: "#1877F2",
-            label: "Facebook",
-        },
-        {
-            key: "github",
-            href: "https://github.com/DanieleMasone",
-            icon: icons.siGithub,
-            color: "currentColor",
-            label: "GitHub",
-            className: "text-[#181717] dark:text-gray-200",
-        },
-        {
-            key: "udemy",
-            href: "https://www.udemy.com/user/daniele-masone/",
-            icon: icons.siUdemy,
-            color: "#EC5252",
-            label: "Udemy",
-        },
-    ];
-
     return (
         &lt;footer
-            className="sticky bottom-0 z-40 backdrop-blur-md backdrop-saturate-150
-            bg-gray-200/40 dark:bg-gray-900/60 border-t border-white/20 dark:border-gray-700/40
-            text-gray-900 dark:text-gray-400 shadow-inner transition-colors duration-300"
+            role="contentinfo"
+            className="
+                sticky bottom-0 z-40
+                backdrop-blur-lg backdrop-saturate-150
+                bg-gray-200/50 dark:bg-gray-900/70
+                border-t border-black/5 dark:border-white/10
+                text-gray-900 dark:text-gray-300
+                shadow-[0_-4px_24px_rgba(0,0,0,0.06)]
+                transition-colors duration-300
+            "
         >
-            &lt;div className="max-w-6xl mx-auto px-4 py-3 sm:py-4 flex flex-col items-center space-y-2">
-                &lt;div className="flex flex-wrap justify-center gap-x-5 gap-y-3 sm:gap-x-6">
-                    {links.map(({key, href, icon, color, label, className}) => (
-                        &lt;a
-                            key={key}
-                            href={href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={label}
-                            className="group relative p-2 transition transform hover:scale-110"
-                        >
-                            &lt;span className="sr-only">{label}&lt;/span>
-                            &lt;BrandIcon
-                                icon={icon}
-                                color={color}
-                                className={className}
-                                size={26}
-                                title={label}
-                            />
-                            &lt;span
-                                className="absolute left-1/2 -translate-x-1/2 bottom-8 opacity-0 group-hover:opacity-100 text-xs text-gray-700 dark:text-gray-300 transition">
-                                {label}
-                            &lt;/span>
-                        &lt;/a>
-                    ))}
-                &lt;/div>
+            &lt;div className="max-w-6xl mx-auto px-4 py-3 sm:py-4">
+                &lt;nav
+                    aria-label="Social links"
+                    className="flex flex-col items-center gap-3"
+                >
+                    {/* Icon row */}
+                    &lt;div className="flex flex-wrap justify-center gap-3 sm:gap-4">
+                        {links.map(({key, href, icon, color, label, className}) => (
+                            &lt;a
+                                key={key}
+                                href={href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={label}
+                                className="
+                                    group relative
+                                    flex flex-col items-center justify-center
+                                    min-w-[44px] min-h-[44px]
+                                    rounded-xl
+                                    transition
+                                    hover:scale-110 active:scale-95
+                                    hover:bg-black/5 dark:hover:bg-white/10
+                                    focus:outline-none focus-visible:ring-2
+                                    focus-visible:ring-blue-500/70
+                                "
+                            >
+                                {/* icon */}
+                                &lt;BrandIcon
+                                    icon={icon}
+                                    color={color}
+                                    className={className}
+                                    size={26}
+                                    title={label}
+                                />
 
-                &lt;p className="text-xs sm:text-sm text-gray-700 dark:text-gray-400 text-center select-none">
-                    {t("footer_copyright")}
-                &lt;/p>
+                                {/* label mobile */}
+                                &lt;span className="mt-1 text-[11px] sm:hidden text-gray-700 dark:text-gray-400">
+                                    {label}
+                                &lt;/span>
+
+                                {/* tooltip desktop */}
+                                &lt;span
+                                    className="
+                                        pointer-events-none
+                                        absolute -top-9 left-1/2 -translate-x-1/2
+                                        whitespace-nowrap
+                                        rounded-md px-2 py-1 text-xs
+                                        bg-gray-900 text-gray-100
+                                        dark:bg-gray-100 dark:text-gray-900
+                                        opacity-0 translate-y-1
+                                        transition
+                                        group-hover:opacity-100
+                                        group-hover:translate-y-0
+                                        hidden sm:block
+                                    "
+                                >
+                                    {label}
+                                &lt;/span>
+                            &lt;/a>
+                        ))}
+                    &lt;/div>
+
+                    {/* copyright */}
+                    &lt;p
+                        className="
+                            text-xs sm:text-sm
+                            text-gray-700 dark:text-gray-400
+                            text-center select-none
+                        "
+                    >
+                        {t("footer_copyright")}
+                    &lt;/p>
+                &lt;/nav>
             &lt;/div>
         &lt;/footer>
     );
@@ -187,7 +237,7 @@ export function Footer() {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Mon Feb 09 2026 12:28:11 GMT+0100 (Ora standard dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Mon Feb 09 2026 16:25:14 GMT+0100 (Ora standard dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
