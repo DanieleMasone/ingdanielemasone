@@ -137,22 +137,18 @@ export function Footer() {
         &lt;footer
             role="contentinfo"
             className="
-                sticky bottom-0 z-40
-                backdrop-blur-lg backdrop-saturate-150
+                w-full
                 bg-gray-200/50 dark:bg-gray-900/70
+                backdrop-blur-lg backdrop-saturate-150
                 border-t border-black/5 dark:border-white/10
                 text-gray-900 dark:text-gray-300
-                shadow-[0_-4px_24px_rgba(0,0,0,0.06)]
+                shadow-[0_-4px_12px_rgba(0,0,0,0.06)]
                 transition-colors duration-300
             "
         >
-            &lt;div className="max-w-6xl mx-auto px-4 py-3 sm:py-4">
-                &lt;nav
-                    aria-label="Social links"
-                    className="flex flex-col items-center gap-3"
-                >
-                    {/* Icon row */}
-                    &lt;div className="flex flex-wrap justify-center gap-3 sm:gap-4">
+            &lt;div className="max-w-5xl mx-auto px-4 py-2 sm:py-3">
+                &lt;nav aria-label="Social links" className="flex flex-col items-center gap-2">
+                    &lt;div className="flex flex-wrap justify-center gap-2 sm:gap-3">
                         {links.map(({key, href, icon, color, label, className}) => (
                             &lt;a
                                 key={key}
@@ -161,61 +157,41 @@ export function Footer() {
                                 rel="noopener noreferrer"
                                 aria-label={label}
                                 className="
-                                    group relative
-                                    flex flex-col items-center justify-center
-                                    min-w-[44px] min-h-[44px]
-                                    rounded-xl
-                                    transition
+                                    group relative flex flex-col items-center justify-center
+                                    w-10 h-10 sm:w-11 sm:h-11
+                                    rounded-lg
+                                    transition-transform
                                     hover:scale-110 active:scale-95
                                     hover:bg-black/5 dark:hover:bg-white/10
                                     focus:outline-none focus-visible:ring-2
                                     focus-visible:ring-blue-500/70
                                 "
                             >
-                                {/* icon */}
-                                &lt;BrandIcon
-                                    icon={icon}
-                                    color={color}
-                                    className={className}
-                                    size={26}
-                                    title={label}
-                                />
+                                &lt;BrandIcon icon={icon} color={color} className={className} size={24} title={label}/>
 
-                                {/* label mobile */}
-                                &lt;span className="mt-1 text-[11px] sm:hidden text-gray-700 dark:text-gray-400">
+                                &lt;span className="mt-1 text-[10px] sm:hidden text-gray-700 dark:text-gray-400">
                                     {label}
                                 &lt;/span>
 
-                                {/* tooltip desktop */}
-                                &lt;span
-                                    className="
-                                        pointer-events-none
-                                        absolute -top-9 left-1/2 -translate-x-1/2
-                                        whitespace-nowrap
-                                        rounded-md px-2 py-1 text-xs
-                                        bg-gray-900 text-gray-100
-                                        dark:bg-gray-100 dark:text-gray-900
-                                        opacity-0 translate-y-1
-                                        transition
-                                        group-hover:opacity-100
-                                        group-hover:translate-y-0
-                                        hidden sm:block
-                                    "
-                                >
+                                &lt;span className="
+                                    pointer-events-none
+                                    absolute -top-8 left-1/2 -translate-x-1/2
+                                    whitespace-nowrap
+                                    rounded px-2 py-1 text-xs
+                                    bg-gray-900 text-gray-100
+                                    dark:bg-gray-100 dark:text-gray-900
+                                    opacity-0 translate-y-1
+                                    transition-all
+                                    group-hover:opacity-100 group-hover:translate-y-0
+                                    hidden sm:block
+                                ">
                                     {label}
                                 &lt;/span>
                             &lt;/a>
                         ))}
                     &lt;/div>
 
-                    {/* copyright */}
-                    &lt;p
-                        className="
-                            text-xs sm:text-sm
-                            text-gray-700 dark:text-gray-400
-                            text-center select-none
-                        "
-                    >
+                    &lt;p className="text-xs sm:text-sm text-gray-700 dark:text-gray-400 text-center select-none mt-2">
                         {t("footer_copyright")}
                     &lt;/p>
                 &lt;/nav>
@@ -223,6 +199,7 @@ export function Footer() {
         &lt;/footer>
     );
 }
+
 </code></pre>
         </article>
     </section>
@@ -237,7 +214,7 @@ export function Footer() {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Mon Feb 09 2026 16:32:49 GMT+0100 (Ora standard dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Tue Feb 10 2026 09:24:06 GMT+0100 (Ora standard dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
