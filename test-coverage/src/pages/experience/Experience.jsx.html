@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">95.12% </span>
+                <span class="strong">94.87% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>39/41</span>
+                <span class='fraction'>37/39</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">78.57% </span>
+                <span class="strong">80.76% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>22/28</span>
+                <span class='fraction'>21/26</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>12/12</span>
+                <span class='fraction'>10/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>36/36</span>
+                <span class='fraction'>34/34</span>
             </div>
         
             
@@ -313,30 +313,7 @@
 <a name='L248'></a><a href='#L248'>248</a>
 <a name='L249'></a><a href='#L249'>249</a>
 <a name='L250'></a><a href='#L250'>250</a>
-<a name='L251'></a><a href='#L251'>251</a>
-<a name='L252'></a><a href='#L252'>252</a>
-<a name='L253'></a><a href='#L253'>253</a>
-<a name='L254'></a><a href='#L254'>254</a>
-<a name='L255'></a><a href='#L255'>255</a>
-<a name='L256'></a><a href='#L256'>256</a>
-<a name='L257'></a><a href='#L257'>257</a>
-<a name='L258'></a><a href='#L258'>258</a>
-<a name='L259'></a><a href='#L259'>259</a>
-<a name='L260'></a><a href='#L260'>260</a>
-<a name='L261'></a><a href='#L261'>261</a>
-<a name='L262'></a><a href='#L262'>262</a>
-<a name='L263'></a><a href='#L263'>263</a>
-<a name='L264'></a><a href='#L264'>264</a>
-<a name='L265'></a><a href='#L265'>265</a>
-<a name='L266'></a><a href='#L266'>266</a>
-<a name='L267'></a><a href='#L267'>267</a>
-<a name='L268'></a><a href='#L268'>268</a>
-<a name='L269'></a><a href='#L269'>269</a>
-<a name='L270'></a><a href='#L270'>270</a>
-<a name='L271'></a><a href='#L271'>271</a>
-<a name='L272'></a><a href='#L272'>272</a>
-<a name='L273'></a><a href='#L273'>273</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L251'></a><a href='#L251'>251</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -577,27 +554,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">32x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">528x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -611,13 +567,12 @@
 import {useState} from "react";
 import {Card} from "@/components/ui/card/Card";
 import {CardContent} from "@/components/ui/cardContent/CardContent";
-import {Disclosure} from "@headlessui/react";
-import {ChevronDown} from "lucide-react";
 import {PageSection} from "@/components/ui/pageSection/PageSection";
 import {ExpandableText} from "@/components/ui/expandableText/ExpandableText";
 import {SeoHead} from "@/components/seoHead/SeoHead";
 import {SelectableButton} from "@/components/ui/selectableButton/SelectableButton";
 import {PageGrid} from "@/components/ui/pageGrid/PageGrid";
+import TechDisclosure from "@/components/ui/techDisclosure/TechDisclosure";
 &nbsp;
 const experiences = [
     {
@@ -795,7 +750,7 @@ export default function Experience() {
 &nbsp;
                 {filteredExperiences.length &gt; 0 &amp;&amp; (
                     &lt;PageGrid page={selectedYear} columns={2}&gt;
-                    {filteredExperiences.map((exp, i) =&gt; (
+                        {filteredExperiences.map((exp, i) =&gt; (
                             &lt;Card
                                 key={i}
                                 className="relative w-full p-5 sm:p-6 border border-gray-200/60
@@ -847,28 +802,7 @@ export default function Experience() {
                                     )}
 &nbsp;
                                     {/* Tech */}
-                                    &lt;Disclosure&gt;
-                                        {({open}) =&gt; (
-                                            &lt;div
-                                                className="pt-3 border-t border-gray-200/60 dark:border-gray-700/60"&gt;
-                                                &lt;Disclosure.Button
-                                                    className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline"&gt;
-                                                    &lt;span&gt;{t("show_technologies")}&lt;/span&gt;
-                                                    &lt;ChevronDown
-                                                        className={`ml-1 w-4 h-4 transition-transform ${open ? <span class="branch-0 cbranch-no" title="branch not covered" >"rotate-180" : "</span>"}`}/&gt;
-                                                &lt;/Disclosure.Button&gt;
-                                                &lt;Disclosure.Panel
-                                                    className="mt-2 flex flex-wrap gap-2"&gt;
-                                                    {exp.tech.split(",").map((t, i) =&gt; (
-                                                        &lt;span key={i}
-                                                              className="text-xs px-2 py-1 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300"&gt;
-                                                                              {t.trim()}
-                                                                            &lt;/span&gt;
-                                                    ))}
-                                                &lt;/Disclosure.Panel&gt;
-                                            &lt;/div&gt;
-                                        )}
-                                    &lt;/Disclosure&gt;
+                                    &lt;TechDisclosure techList={exp.tech} label={t("show_technologies")}/&gt;
 &nbsp;
                                 &lt;/CardContent&gt;
                             &lt;/Card&gt;
@@ -886,7 +820,7 @@ export default function Experience() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-02-10T08:23:55.150Z
+                at 2026-02-10T10:36:46.723Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

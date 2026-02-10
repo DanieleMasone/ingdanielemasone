@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.5% </span>
+                <span class="strong">86.36% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>21/24</span>
+                <span class='fraction'>19/22</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.5% </span>
+                <span class="strong">85.71% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>14/16</span>
+                <span class='fraction'>12/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.88% </span>
+                <span class="strong">85.71% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>8/9</span>
+                <span class='fraction'>6/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">86.95% </span>
+                <span class="strong">85.71% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>20/23</span>
+                <span class='fraction'>18/21</span>
             </div>
         
             
@@ -361,29 +361,7 @@
 <a name='L296'></a><a href='#L296'>296</a>
 <a name='L297'></a><a href='#L297'>297</a>
 <a name='L298'></a><a href='#L298'>298</a>
-<a name='L299'></a><a href='#L299'>299</a>
-<a name='L300'></a><a href='#L300'>300</a>
-<a name='L301'></a><a href='#L301'>301</a>
-<a name='L302'></a><a href='#L302'>302</a>
-<a name='L303'></a><a href='#L303'>303</a>
-<a name='L304'></a><a href='#L304'>304</a>
-<a name='L305'></a><a href='#L305'>305</a>
-<a name='L306'></a><a href='#L306'>306</a>
-<a name='L307'></a><a href='#L307'>307</a>
-<a name='L308'></a><a href='#L308'>308</a>
-<a name='L309'></a><a href='#L309'>309</a>
-<a name='L310'></a><a href='#L310'>310</a>
-<a name='L311'></a><a href='#L311'>311</a>
-<a name='L312'></a><a href='#L312'>312</a>
-<a name='L313'></a><a href='#L313'>313</a>
-<a name='L314'></a><a href='#L314'>314</a>
-<a name='L315'></a><a href='#L315'>315</a>
-<a name='L316'></a><a href='#L316'>316</a>
-<a name='L317'></a><a href='#L317'>317</a>
-<a name='L318'></a><a href='#L318'>318</a>
-<a name='L319'></a><a href='#L319'>319</a>
-<a name='L320'></a><a href='#L320'>320</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L299'></a><a href='#L299'>299</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -656,26 +634,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">68x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">708x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -704,14 +662,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {useTranslation} from 'react-i18next';
 import {Card} from "@/components/ui/card/Card";
 import {CardContent} from "@/components/ui/cardContent/CardContent";
-import {Disclosure} from '@headlessui/react';
-import {ChevronDown} from 'lucide-react';
 import {useState} from "react";
 import {PageSection} from "@/components/ui/pageSection/PageSection";
 import {ExpandableText} from "@/components/ui/expandableText/ExpandableText";
 import {SeoHead} from "@/components/seoHead/SeoHead";
 import {Pagination} from "@/components/ui/pagination/Pagination";
 import {PageGrid} from "@/components/ui/pageGrid/PageGrid";
+import TechDisclosure from "@/components/ui/techDisclosure/TechDisclosure";
 &nbsp;
 const ITEMS_PER_PAGE = 2;
 &nbsp;
@@ -900,7 +857,7 @@ export default function Projects() {
                                                     ? "bg-blue-600 text-white border-blue-600 shadow-md"
                                                     : "bg-white/70 dark:bg-gray-800/60 border-gray-200 dark:border-gray-700 hover:-translate-y-0.5 hover:shadow"
                                                 }
-            `}
+                                            `}
                                             &gt;
                                                 &lt;span className="truncate"&gt;{company}&lt;/span&gt;
                                                 &lt;span className={`text-xs px-2 py-0.5 rounded-full
@@ -972,29 +929,9 @@ export default function Projects() {
 &nbsp;
                                                         &lt;/div&gt;
 &nbsp;
-                                                        {/* LOW BLOCK */}
-                                                        &lt;Disclosure&gt;
-                                                            {({open}) =&gt; (
-                                                                &lt;div
-                                                                    className="pt-3 border-t border-gray-200/60 dark:border-gray-700/60"&gt;
-                                                                    &lt;Disclosure.Button
-                                                                        className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline"&gt;
-                                                                        &lt;span&gt;{t("show_technologies")}&lt;/span&gt;
-                                                                        &lt;ChevronDown
-                                                                            className={`ml-1 w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}/&gt;
-                                                                    &lt;/Disclosure.Button&gt;
-                                                                    &lt;Disclosure.Panel
-                                                                        className="mt-2 flex flex-wrap gap-2"&gt;
-                                                                        {proj.tech.split(",").map((t, i) =&gt; (
-                                                                            &lt;span key={i}
-                                                                                  className="text-xs px-2 py-1 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300"&gt;
-                                                                              {t.trim()}
-                                                                            &lt;/span&gt;
-                                                                        ))}
-                                                                    &lt;/Disclosure.Panel&gt;
-                                                                &lt;/div&gt;
-                                                            )}
-                                                        &lt;/Disclosure&gt;
+                                                        {/* LOW BLOCK - Tech */}
+                                                        &lt;TechDisclosure techList={proj.tech}
+                                                                        label={t("show_technologies")}/&gt;
 &nbsp;
                                                     &lt;/CardContent&gt;
                                                 &lt;/Card&gt;
@@ -1027,7 +964,7 @@ export default function Projects() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-02-10T08:23:55.150Z
+                at 2026-02-10T10:36:46.723Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
