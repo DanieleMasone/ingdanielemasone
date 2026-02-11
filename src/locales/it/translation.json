@@ -1,0 +1,431 @@
+{
+  "home": "Home",
+  "about": "Su di me",
+  "experience": "Esperienza",
+  "projects": "Progetti",
+  "contact": "Contattami",
+  "courses": "Corsi",
+  "certifications": "Certificazioni",
+  "previous": "Precedente",
+  "next": "Successivo",
+  "all": "Tutte",
+  "trading": "Trading",
+  "testimonials": "Testimonianze",
+  "portfolio": "Portfolio",
+  "footer_copyright": "© 2025 Daniele Masone. Tutti i diritti riservati.",
+  "home_subtitle": "Senior Software Engineer, Front-End Architect e Technical Team Leader.",
+  "home_description": "Progetto e sviluppo applicazioni scalabili, sicure e manutenibili, seguendo i principi dell'architettura pulita e le metodologie Agile. Ho una solida esperienza sia in ambito sistemistico che nello sviluppo full stack, con competenze che spaziano dal front-end al back-end, fino alla containerizzazione e all’orchestrazione di microservizi. Lavoro quotidianamente con una vasta gamma di tecnologie moderne, contribuendo alla definizione di standard, alla revisione del codice, all’ottimizzazione delle performance e alla documentazione tecnica. Offro anche formazione su programmazione, preparazione ai colloqui e ottimizzazione del profilo professionale.",
+  "projects_title": "Progetti",
+  "show_technologies": "Mostra tecnologie",
+  "showMore": "Mostra tutto",
+  "showLess": "Mostra meno",
+  "performance_positive": "Positivo",
+  "performance_negative": "Negativo",
+  "performance_cumulative": "Cumulato",
+  "notfound_title": "Pagina non trovata",
+  "notfound_description": "La pagina che stai cercando non esiste o è stata rimossa.",
+  "go_home": "Torna alla Home",
+  "trading_signup": "Iscriviti su eToro",
+  "months": {
+    "jan": "Gen",
+    "feb": "Feb",
+    "mar": "Mar",
+    "apr": "Apr",
+    "may": "Mag",
+    "jun": "Giu",
+    "jul": "Lug",
+    "aug": "Ago",
+    "sep": "Set",
+    "oct": "Ott",
+    "nov": "Nov",
+    "dec": "Dic"
+  },
+  "partial": "parziale",
+  "project_types": {
+    "fastweb": {
+      "oloGatewayMobile": "Sviluppo di un portale web per la gestione delle richieste di portabilità dei clienti Fastweb in ambito mobile.",
+      "oloGatewayFisso": "Realizzazione di portali web per operatori partner (es. Metroweb, Flash Fiber) nell’ambito delle attivazioni di rete fissa.",
+      "OSSTrasformation": "Reingegnerizzazione del portale web core di Fastweb, utilizzato per la gestione delle attività critiche legate al business aziendale."
+    },
+    "teoresi": {
+      "tecno": "Sviluppo di un portale web per la prenotazione di sale riunioni e postazioni di lavoro, con possibilità di personalizzazione (aria condizionata, luci, proiettore, ecc.). I dati raccolti dai dispositivi IoT permettono il monitoraggio completo dell’ambiente.",
+      "dart": "Sviluppo di un portale per la gestione della flotta auto FCA, integrato con client MATLAB."
+    },
+    "tecnavia": {
+      "newsmemory": "Sviluppo di un CMS per la gestione e pubblicazione di quotidiani digitali.",
+      "mobileApp": "Sviluppo di un'app mobile ibrida in React Native, con componenti nativi in Objective-C (iOS) e Java (Android)."
+    },
+    "italiaonline": {
+      "areaClienti": "Sviluppo dell'area clienti principale di Italiaonline.",
+      "restServices": "Progettazione e sviluppo di servizi REST per operazioni di lettura/scrittura su database Oracle."
+    },
+    "rgi": {
+      "FEArchitecture": "Reingegnerizzazione dell’ambiente Front-End core (portal client), con definizione della nuova architettura di riferimento e responsabilità tecniche da Technical Architect.",
+      "HalfLife": "Sviluppo di librerie front-end personalizzate per i flussi assicurativi ramo vita, con ruolo di Team Leader e coordinamento tecnico.",
+      "AXAmobility": "Sviluppo di un portale web per gli operatori AXA, dedicato alla gestione dei flussi assicurativi, con attività di rilascio, definizione delle linee guida architetturali e supervisione tecnica.",
+      "GroupPolicyLibrary": "Realizzazione di una libreria custom per la gestione dei flussi assicurativi legati alle polizze collettive, inclusa la definizione delle linee guida per la manutenzione e l’estendibilità.",
+      "AfterLife": "Sviluppo di componenti riusabili per il ramo vita, con definizione delle best practice di sviluppo e architettura front-end."
+    },
+    "intesa": {
+      "exp_rpg_local_systems":"Manutenzione ed estensione di applicazioni core AS/400 per proprietary trading; migliorata l'affidabilità dei sistemi tramite refactoring del codice, garantendo piena compliance e zero downtime in produzione.",
+      "exp_hybrid_fullstack": "Contributo a pipeline BE/FE per reporting finanziario, integrando API moderne con sistemi legacy; applicate best practice per solidità architetturale in team globali.",
+      "exp_as400_frontend": "Progettazione e implementazione di architetture frontend scalabili integrate con sistemi legacy RPG per reporting di rete estera; ottimizzazione UI/UX."
+    },
+    "Enterprise Portal": "Sviluppo del portale Enterprise di Fastweb.",
+    "Insurance Web Portal": "Portale web per la gestione di servizi assicurativi.",
+    "Mobility Portal": "Sviluppo del portale aziendale AXA dedicato alla mobilità.",
+    "UI Library": "Realizzazione di una libreria front-end personalizzata e riutilizzabile.",
+    "Enterprise Application": "Applicazione enterprise per contesti aziendali complessi.",
+    "Architect": "Front-End Architect"
+  },
+  "about_title": "Chi sono",
+  "about_intro": "Sono un ingegnere informatico con un solido background nello sviluppo software e nelle architetture enterprise. Attualmente ricopro il ruolo di Expert Software Engineer all’interno di Intesa Sanpaolo, lavorando su soluzioni software complesse e scalabili in contesti enterprise e regolamentati, con attenzione alla qualità del codice, all’affidabilità dei sistemi e alla sostenibilità architetturale.",
+  "about_experience": "Nel corso della mia carriera ho lavorato per realtà come RGI Group, Italiaonline, Fastweb, AXA, HPE e altre, ricoprendo ruoli che spaziano dallo sviluppo full stack all’architettura software. Ho esperienza nella progettazione e sviluppo di applicazioni enterprise, portali web, REST API, componenti riusabili, librerie UI e applicazioni SPA.\n\nLe mie competenze coprono l’intero stack tecnologico: front-end (React, Angular, TypeScript), back-end (Java EE, PHP, NodeJS), containerizzazione con Docker e orchestrazione con Kubernetes. Lavoro secondo metodologie Agile, applico principi di clean code e contribuisco attivamente a code review, documentazione tecnica e definizione di standard di progetto.\n\nParallelamente all’attività professionale, svolgo anche attività di formazione online (Udemy) e privata, occupandomi di programmazione, preparazione ai colloqui tecnici e ottimizzazione del profilo LinkedIn e del CV tecnico.",
+  "contact_title": "Contattami",
+  "contact_name_placeholder": "Il tuo nome",
+  "contact_email_placeholder": "La tua email",
+  "contact_message_placeholder": "Il tuo messaggio",
+  "contact_submit": "Invia",
+  "contact_success": "Messaggio inviato!",
+  "experience_title": "Esperienza",
+  "experience_show_stack": "Mostra stack",
+  "exp_label_start": "Inizio",
+  "exp_label_end": "Fine",
+  "exp_label_single": "Solo quest’anno",
+  "exp_intesa_role": "Expert Software Engineer – Group Technology & Services",
+  "exp_intesa_description": "Expert Software Engineer all’interno di Group Technology & Services – Global ICT, nell'organizzazione del Chief Data, AI & Technology Officer, nel dominio Proprietary Trading (Foreign Network Reporting and Local Systems).\n\nMi occupo di ingegneria del software in ambienti complessi, su larga scala e altamente regolamentati: sviluppo e manutenzione su sistemi AS/400 con linguaggio RPG, architettura FE e sviluppo BE. Focus su qualità del codice, affidabilità dei sistemi, solidità architetturale e delivery in contesti financial.",
+  "exp_rgi_role": "Front-End Architect / Team Leader",
+  "exp_rgi_description": "Guido la progettazione, l’ottimizzazione e la manutenzione delle architetture front-end, sia dal punto di vista strategico che operativo, attraverso le seguenti attività principali:\n\n- Code Review: revisione del codice per garantire qualità, efficienza e aderenza agli standard\n- Standard e Linee Guida: supervisione delle architetture secondo best practice aziendali\n- Sicurezza Applicativa: definizione di pratiche preventive per prevenire vulnerabilità\n- Ottimizzazione JavaScript/TypeScript: miglioramento continuo per prestazioni e scalabilità\n- Documentazione Tecnica: creazione di documenti dettagliati su UI e interazioni con API REST\n- Raccolta Requisiti: collaborazione con gli stakeholder per definire requisiti funzionali e tecnici\n- Valutazione Tecnologie: analisi e integrazione di nuovi strumenti e framework\n- Ottimizzazione Workflow: gestione di build automation, linting, test e qualità del codice\n- Linee Guida e Pattern: definizione di standard tecnici e pattern riutilizzabili\n- Testing e Troubleshooting: monitoraggio delle performance e risoluzione proattiva dei problemi",
+  "exp_iol_role": "Full Stack Software Engineer",
+  "exp_iol_description": "Come Java Analyst Developer, ho gestito lo sviluppo full-stack utilizzando tecnologie moderne e metodologie Agile. Le principali aree di competenza includono:\n\nFront-End:\n- Tecnologie: JavaScript, jQuery, Angular 10, TypeScript, Node.js\n- UI Design: interfacce responsive e dinamiche con HTML5, CSS e Bootstrap\n\nBack-End:\n- Tecnologie: Java EE, Spring, Hibernate\n- Focus: soluzioni robuste e scalabili lato server\n\nMicroservizi:\n- Strumenti: JHipster, Docker, Docker Swarm\n- Attività: progettazione e implementazione di architetture a microservizi\n\nDatabase:\n- Strumenti: MySQL, Oracle\n- Obiettivo: ottimizzazione della struttura dati e delle performance\n\nMetodologie Agile:\n- Strumenti: Jira\n- Approccio: gestione di progetti e workflow secondo principi Agile\n\nApplication Server:\n- Strumento: Tomcat\n- Uso: deploy e gestione di applicazioni web Java\n\nControllo Versione:\n- Strumenti: Git, SVN\n- Ruolo: versionamento del codice e collaborazione tra team\n\nGestione Dipendenze:\n- Strumento: Maven\n- Scopo: gestione delle librerie e ottimizzazione dei processi di build",
+  "exp_tecnavia_role": "Full Stack Software Engineer",
+  "exp_tecnavia_description": "Come Full Stack Software Engineer, mi sono occupato di sviluppo front-end, back-end e di applicazioni mobile per piattaforme iOS e Android.\n\nSviluppo Front-End:\n- Tecnologie: JavaScript, jQuery, CSS, HTML\n- Strumenti: Bootstrap per design responsive e prototipazione rapida\n\nSviluppo Back-End:\n- Tecnologie: PHP (Zend Framework), Java\n- Focus: sviluppo di applicazioni server scalabili e manutenibili\n\nSviluppo Mobile:\n- Strumenti: React Native, Objective-C, Java, Node.js\n- Ambito: sviluppo di app ibride e native cross-platform\n\nGestione Database:\n- Strumenti: MySQL, SQLite\n- Obiettivo: archiviazione efficiente dei dati e ottimizzazione degli accessi\n\nApplication Server:\n- Strumento: MAMP\n- Uso: configurazione ambiente locale per sviluppo e testing\n\nControllo Versione:\n- Strumento: SVN\n- Ruolo: integrità del codice e collaborazione nello sviluppo",
+  "exp_teoresi_role": "Full Stack Software Engineer",
+  "exp_teoresi_description": "Come Java Analyst Developer, ho seguito lo sviluppo full-stack in ambiente Java, gestendo tutte le fasi del ciclo di vita del software.\n\nSviluppo Front-End:\n- Tecnologie: JavaScript (jQuery, AngularJS, Node.js), HTML5, CSS, Bootstrap\n- Focus: progettazione di interfacce dinamiche e responsive\n\nSviluppo Back-End:\n- Tecnologie: Java, Spring, Hibernate\n- Obiettivo: creazione di applicazioni robuste e scalabili\n\nGestione Database:\n- Strumento: MySQL\n- Uso: progettazione e ottimizzazione di database relazionali\n\nApplication Server:\n- Strumento: Tomcat\n- Ruolo: deploy di applicazioni web Java\n\nControllo Versione:\n- Strumento: Git\n- Scopo: gestione del codice e collaborazione tra team\n\nGestione Dipendenze:\n- Strumento: Maven\n- Uso: semplificazione dei processi di build e coerenza degli ambienti\n\nDeployment:\n- Processo: distribuzione di file .war in ambienti di sviluppo, test e produzione\n\nMetodologia di Sviluppo:\n- Modello: Waterfall\n- Strumento: Jira per il tracciamento e la pianificazione dei progetti",
+  "exp_hpe_role": "Junior Software Engineer",
+  "exp_hpe_description": "Come Technical Consultant in HPE, ho supportato lo sviluppo software front-end e back-end per soddisfare esigenze specifiche dei clienti. Le competenze principali includono:\n\nSviluppo Front-End:\n- Strumenti: JavaScript (Knockout.js, jQuery, AngularJS, Node.js), CSS, Bootstrap, HTML5\n\nSviluppo Back-End:\n- Tecnologie: Java EE, Spring, Hibernate\n- Obiettivo: applicazioni ad alte prestazioni e scalabili\n\nGestione Database:\n- Strumenti: PostgreSQL, CouchDB, Oracle\n\nApplication Server:\n- Strumento: WildFly\n- Uso: deploy di applicazioni Java EE\n\nMetodologia Agile:\n- Strumento: Trello\n- Ruolo: gestione attività e iterazioni\n\nControllo Versione:\n- Strumento: SVN\n- Scopo: tracciamento del codice e collaborazione\n\nGestione Dipendenze:\n- Strumento: Maven\n\nDeployment:\n- Formati: .ear, .rpm\n- Ambienti: sviluppo, QA, produzione\n\nSupporto Clienti:\n- Attività: demo di progetto e assistenza secondo i requisiti\n\nFormazione & Mentoring:\n- Focus: supporto tecnico e mentoring a sviluppatori junior",
+  "exp_digiCamere_role": "Junior System Engineer",
+  "exp_digiCamere_description": "Come Junior System Engineer, ho contribuito alla manutenzione e all'automazione dei sistemi, con l'obiettivo di migliorarne l'efficienza operativa.\n\nScripting e Automazione:\n- Linguaggi: PowerShell, PHP\n- Obiettivo: automazione di attività lato server\n\nMonitoraggio Sistemi:\n- Strumento: EveryStep\n- Attività: controllo della salute dei sistemi e individuazione di anomalie\n- Analisi Log: risoluzione problemi tramite i log di sistema\n\nSviluppo Android:\n- Focus: creazione di app Android per migliorare l'usabilità dei sistemi\n\nDatabase:\n- Linguaggio: SQL\n- Attività: scrittura e ottimizzazione di query\n\nMonitoraggio Siti Web:\n- Strumento: HTTrack\n- Utilizzo: backup e monitoraggio della disponibilità dei servizi web\n\nInstallazione e Configurazione:\n- Compiti: installazione e configurazione di hardware e software su server",
+  "exp_piksel_role": "Junior System Engineer",
+  "exp_piksel_description": "Come Junior System Engineer, ho gestito e monitorato sistemi IT in ambiente enterprise, con particolare attenzione a sicurezza e disponibilità.\n\nMonitoraggio Sistemi:\n- Strumento: Nagios\n- Obiettivo: rilevamento e risoluzione tempestiva di problemi per garantire l'integrità dell'infrastruttura\n\nGestione Backup:\n- Attività: pianificazione ed esecuzione di backup regolari per garantire la continuità dei dati\n\nAnalisi Log:\n- Compiti: analisi dei log di sistema per identificare e correggere anomalie\n\nGestione Utenti & Sicurezza:\n- Piattaforma: Windows Server\n- Azioni: creazione account, reset password, gestione dei permessi\n\nInstallazione & Configurazione:\n- Ruolo: preparazione dei server con hardware e software necessari\n\nActive Directory:\n- Responsabilità: gestione utenti di dominio e risorse per migliorare sicurezza e organizzazione",
+  "exp_coach_role": "Insegnante privato",
+  "exp_coach_description": "Durante gli studi, ho offerto ripetizioni private a studenti delle scuole superiori e universitari nei seguenti ambiti:\n\nMatematica:\n- Argomenti: algebra, geometria, calcolo differenziale e integrale\n- Approccio: adattamento del metodo didattico alle esigenze individuali\n\nStatistica:\n- Argomenti: analisi dei dati, probabilità, inferenza statistica, metodi di regressione\n\nInformatica:\n- Argomenti: linguaggi di programmazione, algoritmi, strutture dati, sistemi operativi, basi di dati\n- Metodo: esempi pratici e spiegazioni chiare\n\nSistemi Informatici:\n- Argomenti: progettazione di sistemi, reti, sicurezza informatica\n- Focus: applicazioni pratiche e risoluzione di problemi\n\nQuesta esperienza ha rafforzato le mie competenze comunicative e la capacità di adattarmi a diversi stili di apprendimento.",
+  "exp_salesiani_role": "Studente di Informatica",
+  "exp_salesiani_description": "Ho acquisito una solida preparazione in C, C++, C#, Assembly x86, HTML, CSS, PHP e MySQL.\nEsperienze principali:\n- Sistema di gestione login in C# con database e interfaccia grafica in Visual Studio.\n- Funzioni Assembly x86 integrate con codice C in ambiente Linux.\n- Utilizzo di Matlab per analisi numerica e statistica.",
+  "exp_polimi_role": "Laurea in Ingegneria Informatica",
+  "exp_polimi_description": "Durante il mio percorso universitario ho acquisito competenze pratiche e teoriche in diversi ambiti.\nEsperienze principali:\n- Sviluppo di un'app Android in Java con interazione API e ottimizzazione delle performance.\n- Programmazione della scheda STM32VLDISCOVERY in C/C++ su Linux, con comunicazione USB a basso livello.",
+  "trading_title": "La mia attività di Trading",
+  "trading_intro": "Parallelamente al mio lavoro tech, investo in borsa con metodo e disciplina.",
+  "trading_description": "Dal 2020 opero su eToro come investitore di lungo termine, con focus su azioni a dividendo ed ETF diversificati. Costruisco portafogli sostenibili orientati alla crescita, reinvestendo costantemente i dividendi. Nessun trading ad alto rischio, nessuna speculazione a breve termine.",
+  "trading_cta": "Il mio profilo eToro",
+  "disclaimer_text": "Questo sito non fornisce consulenza finanziaria né raccomandazioni di investimento. Non sono iscritto all'albo dei consulenti finanziari né a nessun registro professionale e non posso fornire consigli personalizzati. Le informazioni qui fornite sono a solo scopo informativo e non costituiscono sollecitazioni all'investimento.",
+  "trading_role": "Investitore & Dividend Trader su eToro",
+  "performance_title": "Performance",
+  "performance_cumulative_return": "Rendimento cumulato a 2 anni",
+  "performance_risk_score": "Punteggio di rischio medio (ultimi 7 giorni)",
+  "performance_profitable_weeks": "Settimane in profitto",
+  "performance_partial_label": "2025 (parziale)",
+  "performance_dataset_label": "Rendimento (%)",
+  "performance_view_selector_aria": "Seleziona vista grafico",
+  "performance_view_monthly": "Vista Mensile",
+  "performance_view_annual": "Vista Annuale",
+  "performance_return_label": "Rendimento",
+  "certifications_page": {
+    "title": "Certificazioni",
+    "description": "Elenco delle certificazioni professionali conseguite, con link diretti ai certificati ufficiali.",
+    "view_certificate": "Vedi certificato",
+    "issuer": "Ente rilasciante",
+    "date": "Data di rilascio"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "intro_title": "Introduzione",
+    "intro_text1": "Questa Privacy Policy descrive come raccogliamo, utilizziamo e proteggiamo i dati personali degli utenti che visitano il nostro sito web",
+    "intro_text2": "Il trattamento dei dati è effettuato nel rispetto del Regolamento (UE) 2016/679 (GDPR) e delle normative italiane.",
+    "owner_title": "Titolare del trattamento",
+    "data_types_title": "Tipologie di dati raccolti",
+    "browsing_data": "Dati di navigazione",
+    "browsing_data_details": "indirizzi IP, browser, pagine visitate, tempo di permanenza.",
+    "voluntary_data": "Dati forniti volontariamente",
+    "voluntary_data_details": "nome, email, messaggi inviati tramite modulo di contatto.",
+    "purpose_title": "Finalità del trattamento",
+    "purpose_1": "Fornire i servizi richiesti (es. rispondere a richieste di contatto).",
+    "purpose_2": "Analizzare l’uso del sito per migliorare l’esperienza utente.",
+    "purpose_3": "Inviare comunicazioni relative ai servizi, previo consenso.",
+    "legal_basis_title": "Base giuridica",
+    "legal_1": "Esecuzione di un contratto o misure precontrattuali.",
+    "legal_2": "Consenso esplicito per finalità di marketing.",
+    "legal_3": "Legittimo interesse per analisi e miglioramento.",
+    "recipients_title": "Destinatari dei dati",
+    "recipients_text": "I dati possono essere comunicati a fornitori tecnici, consulenti e autorità competenti, sempre nel rispetto del GDPR.",
+    "transfer_title": "Trasferimento dati",
+    "transfer_text": "I dati non sono trasferiti fuori dall'Unione Europea.",
+    "retention_title": "Periodo di conservazione",
+    "retention_text": "Conserviamo i dati solo per il tempo strettamente necessario alle finalità di raccolta.",
+    "rights_title": "Diritti dell’interessato",
+    "rights_1": "Accesso, rettifica, cancellazione, limitazione, opposizione e portabilità dei dati.",
+    "rights_2": "Revoca del consenso in qualsiasi momento.",
+    "rights_3": "Reclamo all'autorità di controllo.",
+    "rights_exercise": "Per esercitare questi diritti, scrivere a:",
+    "cookie_title": "Cookie Policy",
+    "cookie_text": "Il sito utilizza cookie per migliorare l’esperienza utente e analizzare il traffico. Per maggiori informazioni, consulta la nostra",
+    "cookie_link": "Cookie Policy",
+    "changes_title": "Modifiche alla Privacy Policy",
+    "changes_text": "Potremmo aggiornare questa informativa. Le modifiche saranno pubblicate qui con la data di aggiornamento.",
+    "last_updated": "Ultimo aggiornamento",
+    "last_date_updated": "Giugno 2025",
+    "address": "Via Policarpo Petrocchi 44, 20127 Milano, Italia"
+  },
+  "cookie": {
+    "title": "Cookie Policy",
+    "what_title": "Cosa sono i cookie?",
+    "what_text": "I cookie sono piccoli file di testo che i siti web salvano sul tuo dispositivo per memorizzare informazioni.",
+    "types_title": "Tipologie di cookie utilizzati",
+    "technical_title": "Cookie tecnici",
+    "technical_text": "Necessari per il corretto funzionamento del sito e per fornire i servizi offerti.",
+    "analytics_title": "Cookie analitici",
+    "analytics_text": "Utilizzati per raccogliere informazioni statistiche aggregate e anonime sull'uso del sito.",
+    "profiling_title": "Cookie di profilazione",
+    "profiling_text": "Utilizzati per tracciare il comportamento dell’utente e mostrare annunci personalizzati. Richiedono il consenso.",
+    "consent_title": "Consenso all'uso dei cookie",
+    "consent_text": "Al primo accesso, ti verrà chiesto di accettare o rifiutare i cookie non essenziali. Puoi modificare le preferenze in qualsiasi momento.",
+    "manage_title": "Gestione dei cookie",
+    "manage_text": "Puoi gestire o disabilitare i cookie dalle impostazioni del tuo browser. Di seguito trovi i link alle istruzioni per i browser più comuni:",
+    "rights_title": "Diritti dell’utente",
+    "rights_text": "Hai il diritto di accedere, rettificare, cancellare i tuoi dati e revocare il consenso in qualsiasi momento.",
+    "contact_text": "Per esercitare i tuoi diritti, contattaci a",
+    "last_updated": "Ultimo aggiornamento"
+  },
+  "courses_page": {
+    "title": "I miei corsi online",
+    "duration": "Durata",
+    "learn_more": "Scopri di più",
+    "git": {
+      "title": "Corso Git",
+      "description": "Impara a usare Git per gestire versioni e collaborare in progetti software.",
+      "duration": "2,5 ore"
+    },
+    "typescript": {
+      "title": "Corso TypeScript",
+      "description": "Introduzione completa al linguaggio TypeScript e ai suoi vantaggi nello sviluppo moderno.",
+      "duration": "1,5 ore"
+    },
+    "jQuery": {
+      "title": "Corso jQuery",
+      "description": "Scopri come usare jQuery per semplificare la manipolazione del DOM e gestire eventi.",
+      "duration": "3 ore"
+    },
+    "php": {
+      "title": "Corso di PHP",
+      "description": "Apprendi le basi della programmazione server-side con il linguaggio PHP.",
+      "duration": "11,5 ore"
+    },
+    "cpp": {
+      "title": "Corso di C++",
+      "description": "Un corso approfondito per imparare la programmazione in C++ dalle basi.",
+      "duration": "14,5 ore"
+    },
+    "html5": {
+      "title": "Corso HTML5",
+      "description": "Impara a creare pagine web semantiche e moderne con HTML5.",
+      "duration": "5 ore"
+    },
+    "angularJS": {
+      "title": "Corso AngularJS",
+      "description": "Scopri come sviluppare applicazioni web dinamiche con AngularJS.",
+      "duration": "3,5 ore"
+    },
+    "java": {
+      "title": "Corso di Java",
+      "description": "Le basi del linguaggio Java e della programmazione a oggetti.",
+      "duration": "7,5 ore"
+    },
+    "javascript": {
+      "title": "Corso di JavaScript",
+      "description": "Impara a sviluppare applicazioni web interattive con JavaScript.",
+      "duration": "10,5 ore"
+    },
+    "c": {
+      "title": "Corso di C",
+      "description": "Introduzione alla programmazione in C. Ideale per chi parte da zero.",
+      "duration": "6,5 ore"
+    },
+    "assembler": {
+      "title": "Corso Assembler 8086",
+      "description": "Impara il linguaggio Assembly per microprocessori 8086 e la logica di basso livello.",
+      "duration": "6 ore"
+    },
+    "sql": {
+      "title": "Corso Basi di Dati e SQL",
+      "description": "Dal modello E/R al linguaggio SQL: progettazione, interrogazioni, teoria e pratica dei database relazionali.",
+      "duration": "6 ore"
+    }
+  },
+  "testimonials_page": {
+    "title": "Testimonianze",
+    "prev": "Precedente",
+    "next": "Successivo",
+    "open": "Apri recensione"
+  },
+  "testimonials_people": {
+    "mirko": {
+      "name": "Mirko Buccoliero",
+      "role": "Cyber Security Engineer @ Repower Italia",
+      "quote": "Daniele è sempre disponibile per aiutarti e farti comprendere tutto ciò di cui hai bisogno in ambito informatico. Molto preparato e gentile."
+    },
+    "alessia": {
+      "name": "Alessia Pecoraro",
+      "role": "HR Generalist @ Etjca S.p.A.",
+      "quote": "Daniele è un vero professionista del settore. Si è dimostrato molto disponibile."
+    },
+    "federico": {
+      "name": "Federico Selva",
+      "role": "Cybersecurity Report Assistant (Entry-Level)",
+      "quote": "Sempre gentile nelle risposte e molto preparato negli argomenti tecnici! Davvero un grande, chiaro nello spiegare nei suoi corsi. Lo consiglio vivamente!"
+    },
+    "daniela": {
+      "name": "Daniela Tagliavia d'Aragona",
+      "role": "Area Servizi e Affari Generali - Area Funzionari e Elevata Qualificazione",
+      "quote": "Ho conosciuto Daniele personalmente e ho sempre avuto modo di parlare con lui, chiedendogli consigli e pareri sul mondo del lavoro, su come svolgere i colloqui e sul tipo di formazione su cui investire (corsi, lezioni frontali, ecc.). Appassionato, costante, amante dello studio, si dimostra attento, scrupoloso, competente ed informato. Mi ha accompagnato proattivamente lungo il percorso di orientamento al lavoro, tenendo conto delle mie attitudini e dei miei desideri professionali."
+    },
+    "fabio": {
+      "name": "Fabio Lo Guasto",
+      "role": "Store Manager",
+      "quote": "Daniele è il mio insegnante con il quale ho iniziato da zero lo studio di Spring-boot , Maven, Git ed il linguaggio Sql. Inoltre ho seguito i suoi corsi su Udemy di Java ed Sql.\nSono davvero soddisfatto perchè è preparato davvero su tutto, sempre puntuale e sempre disponibile.\nIn 5 mesi di lezioni non ne ha mai saltata una.\nHo frequentato due scuole private pagate a caro prezzo facendo lezioni one to one, ma nessuna regge il confronto con lui, inoltre mi sono trovato molto bene con il suo metodo di insegnamento.\nSono stato molto fortunato perchè è davvero una garanzia.\nGrazie mille e andiamo avanti verso il prossimo obbiettivo."
+    },
+    "antonio": {
+      "name": "Antonio Signorello",
+      "role": "HR Senior Recruiter/ Psicologo del lavoro/ HR Specialist",
+      "quote": "Daniele, è un ottimo coach: motivatore, comunicatore, risolutore di problemi. Conosciuto prima su LinkedIn, poi come formatore al corso java, fin da subito apparso umile, garbato. Solido know- how lo completa come professionista"
+    },
+    "andrea": {
+      "name": "Andrea Motta",
+      "role": "Consultant Risk Advisory @ Deloitte",
+      "quote": "Molto disponibile nel comprendere le esigenze dello studente e pronto a rispondere alle domande relative al programma dei suoi corsi"
+    },
+    "francescaM": {
+      "name": "Francesca Marasco",
+      "role": "Corporate Packaging Specialist @ Mapei",
+      "quote": "Daniele è una persona disponibile e molto preparata. È stata un'esperienza positiva!"
+    },
+    "luca": {
+      "name": "Luca Sartorio",
+      "role": "Software Developer",
+      "quote": "Daniele è stato il mio insegnante di Java, le lezioni partivano dalle basi fino agli argomenti più complessi. Mi sono trovato molto bene. Persona estremamente competente e molto professionale"
+    },
+    "antonino": {
+      "name": "Antonino De Maio",
+      "role": "Frontend Developer",
+      "quote": "Ho lavorato insieme a Daniele con Angular, ottimo programmatore, ottima conoscenza della materia, rxjs e Javascript 6."
+    },
+    "romolo": {
+      "name": "Romolo Velati",
+      "role": "Chief Technology Officer",
+      "quote": "Daniele ha dimostrato passione e competenza come sviluppatore di microservizi per le applicazioni di Italiaonline. Sempre attivo e curioso verso le nuove tecnologie."
+    },
+    "riccardo": {
+      "name": "Riccardo Di Chello",
+      "role": "Technical Lead @ Unicredit",
+      "quote": "Ho lavorato con Daniele nello stesso team di sviluppo e posso dire fin dall'inizio che è un ottimo compagno di squadra oltre che un abile sviluppatore front-end. Sempre pronto ad aiutare e a contribuire a creare un buon ambiente lavorativo, è appassionato e concreto. Sono felice di trovarlo qui!"
+    },
+    "lucaC": {
+      "name": "Luca Cainarca",
+      "role": "Senior Software Solution Developer",
+      "quote": "Lavoro con Daniele nello stesso team di sviluppo. Il suo ruolo è quello di sviluppatore frontend, ma è un abile sviluppatore full-stack con competenze eccellenti. Ho trovato una persona collaborativa, molto appassionata del suo lavoro e orientata agli obiettivi, capace di consegnare un progetto in tempo e sempre disponibile ad aiutare. Posso dire che è un compagno di lavoro molto professionale con cui lavorare, ma anche un collega con cui scambiare idee, parlare e scherzare nelle pause. Consiglio Daniele a tutti coloro che cercano una persona affidabile con ottime capacità lavorative."
+    },
+    "ivan": {
+      "name": "Ivan Giurato",
+      "role": "Business Manager",
+      "quote": "Daniele è stato nostro dipendente per un anno in un team come sviluppatore full-stack. È collaborativo, gli piace quello che fa ed è molto in gamba. Un ragazzo capace sia professionalmente che umanamente."
+    },
+    "andreaM": {
+      "name": "Andrea Montoli",
+      "role": "Lead of Global Systems Integration and Telco Cloud Practice @ HCLTech CTG.",
+      "quote": "Daniele ha lavorato nel mio team e ha fornito ottime competenze tecniche. Ha dimostrato di essere competente, lavoratore e appassionato di tecnologia. Sponsorizzo la sua competenza e capacità e sono disponibile per qualsiasi richiesta."
+    },
+    "daniele": {
+      "name": "Daniele Montesano",
+      "role": "Sofware Engineer | VR Engineer",
+      "quote": "Ho frequentato il corso di ingegneria informatica con Daniele e durante questo periodo ho avuto la possibilità di lavorare su alcuni progetti, uno di questi è stata la trasposizione di un gioco da tavolo nella sua versione digitale, con lui. Ciò che mi ha colpito di più di lui, è la sua abilità nel lavoro di squadra. Anche se non eravamo nello stesso gruppo di lavoro, era sempre disponibile alla discussione e allo scambio di idee sulla progettazione e implementazione del software."
+    },
+    "marco": {
+      "name": "Marco Gonella",
+      "role": "Lead of front-end @ Vedrai SpA",
+      "quote": "Daniele era il mio collega del team di sviluppo che ha lavorato su un progetto agile (adottando la metodologia SAFe) per l'implementazione di una GUI web complessa e reattiva con Node.js + AngularJS, abbiamo lavorato insieme per 1 anno. Daniele è un esperto sviluppatore full-stack, persona dedicata e precisa e ha notevoli capacità nel relazionarsi a situazioni complicate e critiche, proponendo sempre le migliori soluzioni. È un compagno di lavoro molto professionale con cui lavorare."
+    },
+    "raffaele": {
+      "name": "Raffaele Calandrella",
+      "role": "Software Architect",
+      "quote": "Professionista competente e soprattutto molto perseverante. Con particolare attenzione alla qualità del lavoro e un'ottima attitudine al lavoro di squadra. Ho avuto l'opportunità di lavorare con Daniele e di apprezzarne sia le qualità professionali che umane. In breve tempo ha potuto inserirsi e dare il suo contributo, distinguendosi nel team per dedizione e qualità del lavoro."
+    },
+    "francescaR": {
+      "name": "Francesca Romagnoli",
+      "role": "Docente di Informatica",
+      "quote": "Daniele è stato mio collega in un team di sviluppo come sviluppatore front-end. È gentile, molto appassionato del suo lavoro, collaborativo all'interno del team e competente. Un ottimo compagno di lavoro sia umanamente che professionalmente."
+    },
+    "mattia": {
+      "name": "Mattia Capitanio",
+      "role": "Software Engineer @ SIO S.P.A.",
+      "quote": "Daniele è un ingegnere informatico tecnicamente preparato, una persona collaborativa e dedita, molto appassionato di nuove tecnologie. Ho avuto l'opportunità di lavorare con lui nello stesso team: è sempre stato fortemente motivato e orientato agli obiettivi, in grado di realizzare i suoi progetti in tempo! Un compagno di lavoro molto professionale con cui lavorare."
+    },
+    "davide": {
+      "name": "Davide Perini",
+      "role": "Enterprise Architect @ Sky",
+      "quote": "Daniele è un ingegnere informatico appassionato, prezioso e pragmatico, la cui esperienza è molto utile in ambienti dinamici e frenetici in cui una soluzione deve essere pensata, implementata e rilasciata rapidamente per apportare valore al cliente il prima possibile. È un bravo compagno di squadra, sempre pronto allo scambio di idee e alla condivisione di conoscenze, consiglio Daniele a tutti coloro che necessitano di un professionista affidabile."
+    },
+    "jacopo": {
+      "name": "Jacopo Andrea La Torre",
+      "role": "Senior Technical Consultant @ Hewlett Packard Enterprise",
+      "quote": "Daniele era un membro del mio team di sviluppo, lavorando come sviluppatore front-end su un progetto agile (adottando la metodologia SAFe) per l'implementazione di una GUI web responsive complessa con Node.js + Angular. Daniele è una persona dedicata, appassionata sull’apprendimento di nuove tecnologie, linguaggi e modelli di sviluppo. Ha dimostrato costante impegno e precisione nel rispetto degli obiettivi e delle scadenze, buone conoscenze tecniche, una solida autonomia nel problem solving e nello svolgimento dei compiti di programmazione assegnati. Raccomando Daniele anche per il suo atteggiamento costantemente positivo e la sua capacità di lavorare in squadra valorizzandosi sempre. Riconosciuto ed apprezzato dai colleghi per serietà e dedizione"
+    },
+    "yuri": {
+      "name": "Yuri Blanc",
+      "role": "Lead Architect @ RGI",
+      "quote": "Daniele è uno sviluppatore altamente competente, attento ai dettagli e molto appassionato. È anche un ottimo insegnante che ha prodotto diversi corsi online su Udemy. Lavorando insieme posso affermare che è molto determinato nello svolgere i compiti, anche quelli più difficili, con diligenza. Quando e se incontra difficoltà è molto ricettivo ai suggerimenti e successivamente propone nuove soluzioni o miglioramenti in autonomia."
+    }
+  },
+  "seo": {
+    "home": {
+      "title": "Daniele Masone - Portfolio",
+      "description": "Portfolio di Daniele Masone, ingegnere informatico. Esperienze, progetti, corsi e testimonianze."
+    },
+    "experience": {
+      "title": "Esperienza professionale - Daniele Masone",
+      "description": "Le esperienze lavorative e professionali di Daniele Masone, tra sviluppo frontend, architettura e altro."
+    },
+    "projects": {
+      "title": "Progetti - Daniele Masone",
+      "description": "Progetti personali e professionali di Daniele Masone, con tecnologie moderne e buone pratiche."
+    },
+    "courses": {
+      "title": "Corsi - Daniele Masone",
+      "description": "Corsi seguiti e competenze acquisite da Daniele Masone in ambito informatico e tecnologico."
+    },
+    "testimonials": {
+      "title": "Testimonianze - Daniele Masone",
+      "description": "Cosa dicono colleghi e collaboratori sull’esperienza lavorativa con Daniele Masone."
+    },
+    "trading": {
+      "title": "Trading - Daniele Masone",
+      "description": "Approfondimenti, studi e riflessioni di Daniele Masone sul mondo del trading e dei mercati finanziari."
+    },
+    "privacy": {
+      "title": "Privacy Policy - Daniele Masone",
+      "description": "Informativa sulla privacy relativa al sito portfolio di Daniele Masone."
+    },
+    "cookie": {
+      "title": "Cookie Policy - Daniele Masone",
+      "description": "Politica sull’uso dei cookie nel sito portfolio di Daniele Masone."
+    },
+    "certifications": {
+      "title": "Certificazioni professionali - Daniele Masone",
+      "description": "Le certificazioni professionali conseguite da Daniele Masone in ambito informatico e tecnologico, con i link ai certificati ufficiali."
+    }
+  },
+  "avatar": {
+    "name": "Daniele Masone",
+    "tagline": "Senior Software Engineer & Technical Architect | Front-End Specialist | Tech Trainer",
+    "skills": ["Java", "JavaScript", "Angular", "C", "MySQL"],
+    "bio": "Esperto in sviluppo full stack e architetture enterprise scalabili. Appassionato di clean code, best practices e formazione tecnica."
+  }
+}

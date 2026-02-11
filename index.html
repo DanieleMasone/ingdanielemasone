@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="icon" href="/logo.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!-- SEO base -->
+    <title>Daniele Masone – Senior Software Engineer & Technical Architect</title>
+    <meta name="description" content="Portfolio di Daniele Masone, Senior Software Engineer e Technical Architect, specializzato in front-end, JavaScript, Angular e architetture enterprise scalabili."/>
+
+    <!-- Dark mode script -->
+    <script>
+        (function () {
+            const theme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (theme === 'dark' || (!theme && prefersDark)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
+</head>
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-white">
+<div id="root"></div>
+<script type="module" src="/src/main.jsx"></script>
+</body>
+</html>
