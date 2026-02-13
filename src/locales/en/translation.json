@@ -67,7 +67,7 @@
       "AfterLife": "Development of reusable components for life insurance flows, with a focus on defining front-end architecture and best development practices."
     },
     "intesa": {
-      "exp_rpg_local_systems":"Maintenance and extension of core AS/400 applications for proprietary trading; enhanced system reliability through code refactoring, ensuring full compliance and zero production downtime.",
+      "exp_rpg_local_systems": "Maintenance and extension of core AS/400 applications for proprietary trading; enhanced system reliability through code refactoring, ensuring full compliance and zero production downtime.",
       "exp_hybrid_fullstack": "Contribution to BE/FE pipelines for financial reporting, integrating modern APIs with legacy systems; applied best practices for architectural solidity in global teams.",
       "exp_as400_frontend": "Design and implementation of scalable frontend architectures integrated with legacy RPG systems for foreign network reporting; optimized UI/UX."
     },
@@ -427,5 +427,8 @@
     "tagline": "Senior Software Engineer & Technical Architect | Front-End Specialist | Tech Trainer",
     "skills": ["Java", "JavaScript", "Angular", "C", "MySQL"],
     "bio": "Expert in full stack development and scalable enterprise architectures. Passionate about clean code, best practices, and technical training."
-  }
+  },
+  "error_title": "Error",
+  "error_retry": "Retry",
+  "error_generic": "Something went wrong"
 }

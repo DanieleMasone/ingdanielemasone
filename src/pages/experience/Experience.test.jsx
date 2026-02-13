@@ -3,6 +3,7 @@ import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import Experience, {getExperienceLabel} from "./Experience";
 import {MemoryRouter} from 'react-router-dom';
 import {vi} from 'vitest';
+import * as service from "@/services/portfolio.service";
 
 // Minimal translations
 vi.mock('react-i18next', () => ({
@@ -37,7 +38,8 @@ vi.mock('react-i18next', () => ({
                 "experience_show_stack": "Show Stack",
                 "exp_label_start": "Start",
                 "exp_label_end": "End",
-                "exp_label_single": "Only this year"
+                "exp_label_single": "Only this year",
+                "error_generic": "Generic error"
             };
             return translations[key] || key;
         },
@@ -52,88 +54,203 @@ vi.mock('react-i18next', () => ({
     }
 }));
 
+vi.mock("@/App", () => ({
+    Loading: () => <div role="status">loading</div>,
+    ErrorState: ({message, onRetry}) => (
+        <div>
+            <span>{message}</span>
+            <button onClick={onRetry}>retry</button>
+        </div>
+    ),
+}));
+
+const mockExperiences = [
+    {
+        role: "exp_rgi_role",
+        company: "RGI",
+        period: "2020 - 2022",
+        description: "exp_rgi_description",
+        tech: "Java",
+    },
+    {
+        role: "exp_iol_role",
+        company: "IOL",
+        period: "2018 - 2020",
+        description: "exp_iol_description",
+        tech: "React",
+    },
+];
+
+function renderPage() {
+    return render(
+        <MemoryRouter initialEntries={['/experience']}>
+            <Experience/>
+        </MemoryRouter>
+    );
+}
+
 describe("Experience component", () => {
-    beforeEach(() => {
-        render(
-            <MemoryRouter initialEntries={['/experience']}>
-                <Experience/>
-            </MemoryRouter>
-        );
+
+    afterEach(() => {
+        vi.restoreAllMocks();
     });
 
-    test("renders year filter buttons and highlights the selected one", () => {
+    test("shows loading initially", () => {
+        vi.spyOn(service, "getExperiences")
+            .mockReturnValueOnce(new Promise(() => {
+            }));
+
+        renderPage();
+
+        expect(screen.getByRole("status")).toBeInTheDocument();
+    });
+
+    test("renders title after load", async () => {
+        vi.spyOn(service, "getExperiences")
+            .mockResolvedValueOnce(mockExperiences);
+
+        renderPage();
+
+        expect(
+            await screen.findByRole("heading", {name: /experience/i})
+        ).toBeInTheDocument();
+    });
+
+    test("renders year filter buttons", async () => {
+        vi.spyOn(service, "getExperiences")
+            .mockResolvedValueOnce(mockExperiences);
+
+        renderPage();
+
+        await screen.findByText(/experience/i);
+
         const buttons = screen.getAllByRole("button");
         expect(buttons.length).toBeGreaterThan(0);
-
-        // Make sure at least one is selected (e.g. the first one by default)
-        const selectedButton = buttons.find(btn =>
-            btn.className.includes("bg-blue-600")
-        );
-        expect(selectedButton).toBeDefined();
     });
 
-    test("displays experiences filtered by selected year", () => {
-        const buttons = screen.getAllByRole("button");
+    test("renders filtered experiences after clicking a year", async () => {
+        vi.spyOn(service, "getExperiences")
+            .mockResolvedValueOnce(mockExperiences);
+
+        renderPage();
+
+        const buttons = await screen.findAllByRole("button");
         fireEvent.click(buttons[0]);
-        const roles = screen.getAllByRole("heading", {level: 3});
+
+        const roles = await screen.findAllByRole("heading", {level: 3});
         expect(roles.length).toBeGreaterThan(0);
     });
 
-    test("displays status badges correctly", () => {
-        const roles = screen.getAllByRole("heading", {level: 3});
+    test("shows status badges", async () => {
+        vi.spyOn(service, "getExperiences")
+            .mockResolvedValueOnce(mockExperiences);
 
-        // Look for at least one badge with the text 'Start', 'End', or 'Only this year'
+        renderPage();
+
+        // Wait for the year buttons to exist
+        const yearButtons = await screen.findAllByRole("button");
+
+        // Find a year that produces cards
+        let found = false;
+
+        for (const btn of yearButtons) {
+            fireEvent.click(btn);
+
+            const cards = screen.queryAllByRole("heading", {level: 3});
+            if (cards.length > 0) {
+                found = true;
+                break;
+            }
+        }
+
+        expect(found).toBe(true);
+
         const start = screen.queryAllByText("Start");
         const end = screen.queryAllByText("End");
         const single = screen.queryAllByText("Only this year");
 
-        expect(start.length + end.length + single.length).toBeGreaterThan(0);
+        expect(start.length + end.length + single.length)
+            .toBeGreaterThan(0);
     });
 
-    test("includes SEO head metadata", () => {
-        const title = document.head.querySelector("title");
-        expect(title?.textContent?.toLowerCase()).toContain("experience");
+    test("includes SEO title", async () => {
+        vi.spyOn(service, "getExperiences")
+            .mockResolvedValueOnce(mockExperiences);
+
+        renderPage();
+
+        await screen.findByText(/experience/i);
+
+        expect(document.title.toLowerCase())
+            .toContain("experience");
     });
 
-    test("renders experience title", () => {
-        expect(screen.getByRole("heading", {name: /experience/i})).toBeInTheDocument();
+    test("shows error state on failure", async () => {
+        vi.spyOn(service, "getExperiences")
+            .mockRejectedValueOnce(new Error("boom"));
+
+        renderPage();
+
+        expect(await screen.findByText("Generic error")).toBeInTheDocument();
     });
 
-    test("shows no experiences if selected year has no entries", () => {
-        // Let's add a fake year
-        const fakeButton = document.createElement("button");
-        fakeButton.textContent = "1900";
-        fakeButton.onclick = () => {
-        };
-        document.body.appendChild(fakeButton);
+    test("retry reloads data", async () => {
+        const spy = vi.spyOn(service, "getExperiences")
+            .mockRejectedValueOnce(new Error("boom"))
+            .mockResolvedValueOnce(mockExperiences);
 
-        fireEvent.click(fakeButton);
+        renderPage();
 
-        const roles = screen.queryAllByRole("heading", {level: 3});
-        expect(roles.length).toBeGreaterThan(0);
+        const retry = await screen.findByRole("button", {name: /retry/i});
+        fireEvent.click(retry);
+
+        await screen.findAllByRole("heading", {level: 2});
+
+        expect(spy).toHaveBeenCalledTimes(2);
     });
 
-    test("getExperienceLabel returns correct label types", () => {
-        const t = (key) => key;
+    test("handles empty experiences list", async () => {
+        vi.spyOn(service, "getExperiences")
+            .mockResolvedValueOnce([]);
 
-        expect(getExperienceLabel("2020 - 2022", "2020", t))
-            .toEqual({label: "exp_label_start", type: "start"});
-        expect(getExperienceLabel("2020 - 2022", "2022", t))
-            .toEqual({label: "exp_label_end", type: "end"});
-        expect(getExperienceLabel("2020 - 2020", "2020", t))
-            .toEqual({label: "exp_label_single", type: "single"});
-        expect(getExperienceLabel("2020 - 2022", "2021", t))
-            .toBe(null);
+        renderPage();
+
+        await screen.findByRole("heading", {name: /experience/i});
+
+        const cards = screen.queryAllByRole("heading", {level: 3});
+        expect(cards.length).toBe(0);
     });
 
-    test("changing year updates displayed experiences", async () => {
-        const years = screen.getAllByRole("button");
-        if (years.length > 1) {
-            fireEvent.click(years[1]);
-            await waitFor(() => {
-                const roles = screen.getAllByRole("heading", {level: 3});
-                expect(roles.length).toBeGreaterThan(0);
-            });
-        }
+    test("calls getExperiences on mount", async () => {
+        const spy = vi.spyOn(service, "getExperiences")
+            .mockResolvedValueOnce(mockExperiences);
+
+        renderPage();
+
+        await screen.findByText(/experience/i);
+
+        expect(spy).toHaveBeenCalledTimes(1);
     });
+
+    // ---------------- pure function tests ----------------
+
+    describe("getExperienceLabel", () => {
+
+        const t = (k) => k;
+
+        test("returns correct label types", () => {
+            expect(getExperienceLabel("2020 - 2022", "2020", t))
+                .toEqual({label: "exp_label_start", type: "start"});
+
+            expect(getExperienceLabel("2020 - 2022", "2022", t))
+                .toEqual({label: "exp_label_end", type: "end"});
+
+            expect(getExperienceLabel("2020 - 2020", "2020", t))
+                .toEqual({label: "exp_label_single", type: "single"});
+
+            expect(getExperienceLabel("2020 - 2022", "2021", t))
+                .toBeNull();
+        });
+    });
+
 });

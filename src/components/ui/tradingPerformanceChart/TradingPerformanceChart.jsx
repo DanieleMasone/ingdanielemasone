@@ -29,70 +29,68 @@ ChartJS.register(
 
 
 /**
- * TradingPerformanceChart component renders a line chart showing trading returns performance,
- * either monthly or annual, with light/dark theme support.
+ * TradingPerformanceChart component renders a combined line and bar chart showing
+ * trading returns performance, either on a monthly or annual basis, with support for
+ * light and dark themes.
  *
- * It listens for changes in the `dark` CSS class on the document element to update colors dynamically.
- * Users can switch between monthly and annual views via a select dropdown.
- * The chart is rendered with `react-chartjs-2` and `chart.js`.
- * Below the chart, a summary section shows detailed monthly returns by year or annual returns,
- * with color-coded positive/negative values.
+ * The component reacts to changes in the `dark` CSS class on the document element
+ * to dynamically update chart colors. Users can switch between monthly and annual
+ * views via a select dropdown. Below the chart, a summary section displays detailed
+ * returns with positive values in green and negative values in red.
  *
- * Translations are supported via react-i18next.
+ * Translations are supported via `react-i18nex
  *
  * @component
  * @module components/ui/tradingPerformanceChart/TradingPerformanceChart
+ *
+ * @param {Object} props - Component props.
+ * @param {number} [props.startYear=2022] - The first year of the dataset.
+ * @param {Array<number | null>} [props.monthlyReturns=Array(12).fill(0)] - Array of monthly returns.
+ *    Each entry represents the return for a month in percent. Use `null` for missing data.
+ *
  * @returns {JSX.Element} The trading performance chart section.
  */
-export function TradingPerformanceChart() {
+export function TradingPerformanceChart({
+                                            startYear = 2022,
+                                            monthlyReturns = Array(12).fill(0) // 12 months of default at 0%
+                                        }) {
     const {t} = useTranslation();
-    const startYear = 2022; // First year of the dataset
-    const monthlyReturns = [
-        -3.58, -1.38, 5.29, -6.27, 0.27, -8.29, 8.74, -3.13, -7.78, 3.44, 7.52, -4.44,
-        6.54, -1.86, 2.85, -0.81, 1.96, 3.78, 2.68, -3.01, -3.98, -2.98, 8.07, 4.73,
-        -1.26, 2.19, 2.16, -2.68, 4.98, -0.01, 3.18, 2.5, 1.89, -2.89, 1.48, -2.68,
-        1.87, -0.41, -1.84, 0.93, 5.78, 4.38, 1.51, 1.48, 3.43, 2.75, -0.03, 1.20,
-        2.24, null, null, null, null, null, null, null, null, null, null, null
-    ];
-    const totalMonths = monthlyReturns.length;
-    const lastMonthIndex = totalMonths - 1;
-    const currentYear = startYear + Math.floor(lastMonthIndex / 12);
 
-    const months = [
-        t('months.jan'),
-        t('months.feb'),
-        t('months.mar'),
-        t('months.apr'),
-        t('months.may'),
-        t('months.jun'),
-        t('months.jul'),
-        t('months.aug'),
-        t('months.sep'),
-        t('months.oct'),
-        t('months.nov'),
-        t('months.dec')
-    ];
-
-    const allYears = Array.from(
-        {length: currentYear - startYear + 1},
-        (_, i) => startYear + i
+// --- States ---
+    const [selectedYear, setSelectedYear] = useState("2026");
+    const [isDark, setIsDark] = useState(() =>
+        document.documentElement.classList.contains('dark')
+    );
+    const [view, setView] = useState('monthly');
+    const [windowWidth, setWindowWidth] = useState(
+        typeof window !== 'undefined' ? window.innerWidth : 1024
     );
 
-    const annualLabels = allYears.map((y, idx) => {
-        const validMonths = monthlyReturns.slice(idx * 12, (idx + 1) * 12).filter(v => v != null).length;
-        return validMonths < 12 ? `${y} (${t('partial')})` : String(y);
-    });
+// --- Effects ---
+// Dark mode observer
+    useEffect(() => {
+        const observer = new MutationObserver(() =>
+            setIsDark(document.documentElement.classList.contains('dark'))
+        );
+        observer.observe(document.documentElement, {attributes: true, attributeFilter: ['class']});
+        return () => observer.disconnect();
+    }, []);
 
-    const annualReturns = Array.from({length: allYears.length}, (_, i) =>
-        calcAnnualReturn(monthlyReturns.slice(i * 12, i * 12 + 12))
-    );
+// Window resize listener
+    useEffect(() => {
+        if (typeof window === 'undefined') return;
+        const handleResize = () => setWindowWidth(window.innerWidth);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
-    function calcAnnualReturn(months) {
+// --- Helper functions ---
+    const calcAnnualReturn = (months) => {
         const valid = months.filter((r) => r != null);
         let capital = 1;
         valid.forEach((r) => (capital *= 1 + r / 100));
         return +((capital - 1) * 100).toFixed(2);
-    }
+    };
 
     const getCumulativeSum = (returns) => {
         let capital = 100;
@@ -103,31 +101,48 @@ export function TradingPerformanceChart() {
         });
     };
 
-    const [isDark, setIsDark] = useState(() =>
-        document.documentElement.classList.contains('dark')
-    );
-    const [view, setView] = useState('monthly');
+// --- Derived values ---
+    const totalMonths = monthlyReturns.length;
+    const lastMonthIndex = totalMonths - 1;
+    const currentYear = startYear + Math.floor(lastMonthIndex / 12);
 
-    useEffect(() => {
-        const observer = new MutationObserver(() =>
-            setIsDark(document.documentElement.classList.contains('dark'))
-        );
-        observer.observe(document.documentElement, {attributes: true, attributeFilter: ['class']});
-        return () => observer.disconnect();
-    }, []);
+    const months = useMemo(() => [
+        t('months.jan'), t('months.feb'), t('months.mar'), t('months.apr'),
+        t('months.may'), t('months.jun'), t('months.jul'), t('months.aug'),
+        t('months.sep'), t('months.oct'), t('months.nov'), t('months.dec')
+    ], [t]);
+
+    const allYears = useMemo(
+        () => Array.from({length: currentYear - startYear + 1}, (_, i) => startYear + i),
+        [startYear, currentYear]
+    );
+
+    const annualLabels = useMemo(() =>
+            allYears.map((y, idx) => {
+                const validMonths = monthlyReturns.slice(idx * 12, (idx + 1) * 12).filter(v => v != null).length;
+                return validMonths < 12 ? `${y} (${t('partial')})` : String(y);
+            }),
+        [allYears, monthlyReturns, t]
+    );
+
+    const annualReturns = useMemo(
+        () => allYears.map((_, i) => calcAnnualReturn(monthlyReturns.slice(i * 12, i * 12 + 12))),
+        [allYears, monthlyReturns]
+    );
 
     const isMonthly = view === 'monthly';
 
-    const labels = isMonthly
-        ? allYears.flatMap((year, idx) => {
-            const start = idx * 12;
-            const remaining = monthlyReturns.slice(start, start + 12).filter(v => v != null);
-            return remaining.map((_, i) => `${months[i]} ${year}`);
-        })
-        : annualLabels;
+    const dataSet = useMemo(() => (isMonthly ? monthlyReturns : annualReturns), [isMonthly, monthlyReturns, annualReturns]);
 
-    const dataSet = isMonthly ? monthlyReturns : annualReturns;
-
+    const labels = useMemo(() => isMonthly
+            ? allYears.flatMap((year, idx) => {
+                const start = idx * 12;
+                const remaining = monthlyReturns.slice(start, start + 12).filter(v => v != null);
+                return remaining.map((_, i) => `${months[i]} ${year}`);
+            })
+            : annualLabels,
+        [isMonthly, allYears, monthlyReturns, months, annualLabels]
+    );
 
     const cumulative = useMemo(() => getCumulativeSum(dataSet), [dataSet]);
 
@@ -140,16 +155,6 @@ export function TradingPerformanceChart() {
 
     const positive = useMemo(() => dataSet.map(v => (v != null && v > 0 ? v : 0)), [dataSet]);
     const negative = useMemo(() => dataSet.map(v => (v != null && v < 0 ? v : 0)), [dataSet]);
-
-    const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1024);
-
-    // Resize listener
-    useEffect(() => {
-        if (typeof window === 'undefined') return;
-        const handleResize = () => setWindowWidth(window.innerWidth);
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
 
     const chartData = {
         labels,
@@ -229,8 +234,6 @@ export function TradingPerformanceChart() {
             },
         },
     };
-
-    const [selectedYear, setSelectedYear] = useState("2026");
 
     function renderSummary() {
         const years = Object.fromEntries(

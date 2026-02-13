@@ -8,7 +8,8 @@ import React, {useEffect, useState} from "react";
 import {Pagination} from "@/components/ui/pagination/Pagination";
 import {PageGrid} from "@/components/ui/pageGrid/PageGrid";
 import {getCertifications} from "@/services/portfolio.service";
-import {ErrorState, Loading} from "@/App";
+import {Loading} from "@/components/loading/Loading";
+import {ErrorState} from "@/components/errorState/ErrorState";
 
 const ITEMS_PER_PAGE = 4;
 
@@ -55,7 +56,7 @@ export default function Certifications() {
     );
 
     if (loading) return <Loading/>;
-    if (error) return <ErrorState message="Failed to load certifications" onRetry={loadCertifications}/>;
+    if (error) return <ErrorState message={t("error_generic")} onRetry={loadCertifications}/>;
 
     return (
         <>

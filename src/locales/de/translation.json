@@ -67,7 +67,7 @@
       "AfterLife": "Entwicklung wiederverwendbarer Komponenten für den Lebensversicherungsbereich, inklusive Best Practices für Architektur und Entwicklung."
     },
     "intesa": {
-      "exp_rpg_local_systems":"Wartung und Erweiterung von Kern-AS/400-Anwendungen für Proprietary Trading; Verbesserung der Systemzuverlässigkeit durch Code-Refactoring, Sicherstellung vollständiger Compliance und null Ausfallzeiten in Produktion.",
+      "exp_rpg_local_systems": "Wartung und Erweiterung von Kern-AS/400-Anwendungen für Proprietary Trading; Verbesserung der Systemzuverlässigkeit durch Code-Refactoring, Sicherstellung vollständiger Compliance und null Ausfallzeiten in Produktion.",
       "exp_hybrid_fullstack": "Beitrag zu BE/FE-Pipelines für Finanzberichterstattung, Integration moderner APIs mit Legacy-Systemen; Anwendung von Best Practices für architektonische Stabilität in globalen Teams.",
       "exp_as400_frontend": "Gestaltung und Implementierung skalierbarer Frontend-Architekturen, integriert mit Legacy-RPG-Systemen für Fremdnetzwerk-Reporting; Optimierung der UI/UX."
     },
@@ -427,5 +427,8 @@
     "tagline": "Senior Software Engineer & Technical Architect | Front-End Specialist | Tech Trainer",
     "skills": ["Java", "JavaScript", "Angular", "C", "MySQL"],
     "bio": "Experte für Full-Stack-Entwicklung und skalierbare Unternehmensarchitekturen. Leidenschaftlich über Clean Code, Best Practices und technische Schulung."
-  }
+  },
+  "error_title": "Fehler",
+  "error_retry": "Erneut versuchen",
+  "error_generic": "Etwas ist schiefgelaufen"
 }

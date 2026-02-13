@@ -9,7 +9,8 @@ import {Pagination} from "@/components/ui/pagination/Pagination";
 import {PageGrid} from "@/components/ui/pageGrid/PageGrid";
 import TechDisclosure from "@/components/ui/techDisclosure/TechDisclosure";
 import {getCourses} from "@/services/portfolio.service";
-import {ErrorState, Loading} from "@/App";
+import {Loading} from "@/components/loading/Loading";
+import {ErrorState} from "@/components/errorState/ErrorState";
 
 const ITEMS_PER_PAGE = 4;
 
@@ -57,7 +58,7 @@ export default function Courses() {
     );
 
     if (loading) return <Loading/>;
-    if (error) return <ErrorState message="Failed to load courses" onRetry={loadCourses}/>;
+    if (error) return <ErrorState message={t("error_generic")} onRetry={loadCourses}/>;
 
     return (
         <>

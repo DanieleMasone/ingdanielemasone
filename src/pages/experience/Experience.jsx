@@ -1,5 +1,5 @@
 import {useTranslation} from "react-i18next";
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import {Card} from "@/components/ui/card/Card";
 import {CardContent} from "@/components/ui/cardContent/CardContent";
 import {PageSection} from "@/components/ui/pageSection/PageSection";
@@ -9,7 +9,8 @@ import {SelectableButton} from "@/components/ui/selectableButton/SelectableButto
 import {PageGrid} from "@/components/ui/pageGrid/PageGrid";
 import TechDisclosure from "@/components/ui/techDisclosure/TechDisclosure";
 import {getExperiences} from "@/services/portfolio.service";
-import {ErrorState, Loading} from "@/App";
+import {Loading} from "@/components/loading/Loading";
+import {ErrorState} from "@/components/errorState/ErrorState";
 
 /**
  * Determines the experience label and type based on the selected year within a period string.
@@ -63,10 +64,14 @@ export const getExperienceLabel = (period, year, t) => {
  */
 export default function Experience() {
     const {t} = useTranslation();
+
+// --- State ---
     const [experiences, setExperiences] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [selectedYear, setSelectedYear] = useState(null);
 
+// --- Data fetching ---
     const loadExperiences = () => {
         setLoading(true);
         setError(null);
@@ -81,24 +86,36 @@ export default function Experience() {
         loadExperiences();
     }, []);
 
-    const getUniqueYears = (experiences) => {
+// --- Derived data: list of years ---
+    const yearList = useMemo(() => {
         const yearRegex = /\b(20\d{2}|19\d{2})\b/g;
         const years = new Set();
-        for (const exp of experiences) {
-            const match = exp.period.match(yearRegex);
-            if (match) match.forEach(y => years.add(y));
-        }
-        return Array.from(years).sort((a, b) => b - a);
-    };
 
-    const yearList = getUniqueYears(experiences);
-    const [selectedYear, setSelectedYear] = useState(yearList[0] || null);
-    const filteredExperiences = selectedYear
-        ? experiences.filter(exp => exp.period.includes(selectedYear))
-        : [];
+        experiences.forEach(exp => {
+            const match = exp.period.match(yearRegex);
+            if (match) {
+                match.forEach(y => years.add(y));
+            }
+        });
+
+        return Array.from(years).sort((a, b) => b - a);
+    }, [experiences]);
+
+// --- Auto-select latest year if none selected ---
+    useEffect(() => {
+        if (yearList.length > 0 && !selectedYear) {
+            setSelectedYear(yearList[0]);
+        }
+    }, [yearList, selectedYear]);
+
+// --- Filtered experiences by selected year ---
+    const filteredExperiences = useMemo(() => {
+        if (!selectedYear) return [];
+        return experiences.filter(exp => exp.period.includes(selectedYear));
+    }, [experiences, selectedYear]);
 
     if (loading) return <Loading/>;
-    if (error) return <ErrorState message="Failed to load certifications" onRetry={loadExperiences}/>;
+    if (error) return <ErrorState message={t("error_generic")} onRetry={loadExperiences}/>;
 
     return (
         <>

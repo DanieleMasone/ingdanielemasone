@@ -3,13 +3,15 @@ import {useTranslation} from "react-i18next";
 import {Card} from "@/components/ui/card/Card";
 import {PageSection} from "@/components/ui/pageSection/PageSection";
 import {SeoHead} from "@/components/seoHead/SeoHead";
-import {BrandIcon, linkedinIcon} from "@/components/footer/Footer";
+import {linkedinIcon} from "@/consts/Consts";
 import {Pagination} from "@/components/ui/pagination/Pagination";
 import {PageGrid} from "@/components/ui/pageGrid/PageGrid";
 import {ExpandableText} from "@/components/ui/expandableText/ExpandableText";
 import {CardContent} from "@/components/ui/cardContent/CardContent";
 import {getTestimonials} from "@/services/portfolio.service";
-import {ErrorState, Loading} from "@/App";
+import {Loading} from "@/components/loading/Loading";
+import {ErrorState} from "@/components/errorState/ErrorState";
+import {BrandIcon} from "@/components/ui/brandIcon/BrandIcon";
 
 const ITEMS_PER_PAGE = 4;
 
@@ -53,7 +55,7 @@ export default function Testimonials() {
     );
 
     if (loading) return <Loading/>;
-    if (error) return <ErrorState message="Failed to load testimonials" onRetry={loadTestimonials}/>;
+    if (error) return <ErrorState message={t("error_generic")} onRetry={loadTestimonials}/>;
 
     return (
         <>

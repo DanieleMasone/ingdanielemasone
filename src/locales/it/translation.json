@@ -67,7 +67,7 @@
       "AfterLife": "Sviluppo di componenti riusabili per il ramo vita, con definizione delle best practice di sviluppo e architettura front-end."
     },
     "intesa": {
-      "exp_rpg_local_systems":"Manutenzione ed estensione di applicazioni core AS/400 per proprietary trading; migliorata l'affidabilità dei sistemi tramite refactoring del codice, garantendo piena compliance e zero downtime in produzione.",
+      "exp_rpg_local_systems": "Manutenzione ed estensione di applicazioni core AS/400 per proprietary trading; migliorata l'affidabilità dei sistemi tramite refactoring del codice, garantendo piena compliance e zero downtime in produzione.",
       "exp_hybrid_fullstack": "Contributo a pipeline BE/FE per reporting finanziario, integrando API moderne con sistemi legacy; applicate best practice per solidità architetturale in team globali.",
       "exp_as400_frontend": "Progettazione e implementazione di architetture frontend scalabili integrate con sistemi legacy RPG per reporting di rete estera; ottimizzazione UI/UX."
     },
@@ -427,5 +427,8 @@
     "tagline": "Senior Software Engineer & Technical Architect | Front-End Specialist | Tech Trainer",
     "skills": ["Java", "JavaScript", "Angular", "C", "MySQL"],
     "bio": "Esperto in sviluppo full stack e architetture enterprise scalabili. Appassionato di clean code, best practices e formazione tecnica."
-  }
+  },
+  "error_title": "Errore",
+  "error_retry": "Riprova",
+  "error_generic": "Qualcosa è andato storto"
 }

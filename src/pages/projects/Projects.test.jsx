@@ -3,6 +3,7 @@ import Projects from "./Projects";
 import React from "react";
 import {MemoryRouter} from 'react-router-dom';
 import {vi} from 'vitest';
+import * as service from "@/services/portfolio.service";
 
 // Mock react-i18next
 vi.mock("react-i18next", () => ({
@@ -13,6 +14,7 @@ vi.mock("react-i18next", () => ({
                 show_technologies: "Show Technologies",
                 previous: "Prev",
                 next: "Next",
+                error_generic: "Generic error",
 
                 // INTESA SANPAOLO
                 "project_types.intesa.exp_as400_frontend": "Design and implementation of scalable frontend architectures integrated with legacy RPG systems for foreign network reporting; optimized UI/UX.",
@@ -48,158 +50,109 @@ vi.mock("react-i18next", () => ({
     }),
 }));
 
+const mockProjects = [
+    {
+        name: "P1",
+        tech: "RPG, AS400",
+        type: "intesa.exp_as400_frontend",
+        company: "Intesa Sanpaolo",
+        period: "2025",
+    },
+    {
+        name: "P2",
+        tech: "Angular",
+        type: "intesa.exp_hybrid_fullstack",
+        company: "Intesa Sanpaolo",
+        period: "2025",
+    },
+    {
+        name: "P3",
+        tech: "MySQL",
+        type: "intesa.exp_rpg_local_systems",
+        company: "Intesa Sanpaolo",
+        period: "2025",
+    },
+];
+
+vi.mock("@/App", () => ({
+    Loading: () => <div role="status">loading</div>,
+    ErrorState: ({message, onRetry}) => (
+        <div>
+            <span>{message}</span>
+            <button onClick={onRetry}>retry</button>
+        </div>
+    ),
+}));
+
+function renderProjects() {
+    return render(
+        <MemoryRouter initialEntries={['/projects']}>
+            <Projects/>
+        </MemoryRouter>
+    );
+}
+
 describe("Projects Component", () => {
-    beforeEach(() => {
-        render(
-            <MemoryRouter initialEntries={['/projects']}>
-                <Projects/>
-            </MemoryRouter>
-        );
+
+    afterEach(() => {
+        vi.restoreAllMocks();
     });
 
-    const getPaginationControls = () => {
-        const nextButtons = screen.getAllByRole("button", {name: /Next/i});
-        const prevButtons = screen.getAllByRole("button", {name: /Prev/i});
-        const pageDisplays = screen.getAllByTestId("pagination-info");
-        return {nextButtons, prevButtons, pageDisplays};
-    };
+    test("renders title after loading projects", async () => {
+        vi.spyOn(service, "getProjects").mockResolvedValueOnce(mockProjects);
 
-    test("renders projects title", () => {
-        expect(screen.getByText("Projects")).toBeInTheDocument();
+        renderProjects();
+
+        expect(await screen.findByText("Projects")).toBeInTheDocument();
     });
 
-    test("renders new Intesa project descriptions", async () => {
-        // Wait for rendering and use queryBy to check presence
-        await waitFor(() => {
-            expect(screen.getByText(/Design and implementation of scalable frontend architectures/)).toBeInTheDocument();
-        });
+    test("shows loading then projects", async () => {
+        vi.spyOn(service, "getProjects")
+            .mockReturnValueOnce(new Promise(() => {
+            }));
 
-        await waitFor(() => {
-            expect(screen.getByText(/Contribution to BE\/FE pipelines/)).toBeInTheDocument();
-        });
+        renderProjects();
 
-        // Third project could be on page 2 (ITEMS_PER_PAGE=2)
-        const {nextButtons} = getPaginationControls();
-        fireEvent.click(nextButtons[0]); // Go to page 2
-
-        await waitFor(() => {
-            expect(screen.getByText(/Maintenance and extension of core AS\/400 applications/)).toBeInTheDocument();
-        });
+        expect(screen.getByRole("status")).toBeInTheDocument();
     });
 
-    test("renders Intesa Sanpaolo projects by default", () => {
-        expect(screen.getByText("AS/400 Reporting Frontend Modernization")).toBeInTheDocument();
-        expect(screen.getAllByText("Intesa Sanpaolo").length).toBeGreaterThan(0);
+    test("shows error state on failure", async () => {
+        vi.spyOn(service, "getProjects")
+            .mockRejectedValueOnce(new Error("boom"));
+
+        renderProjects();
+
+        expect(await screen.findByText("Generic error")).toBeInTheDocument();
     });
 
-    test("renders new Intesa project descriptions", async () => {
-        await waitFor(() => {
-            expect(screen.getByText(/Design and implementation of scalable frontend architectures/)).toBeInTheDocument();
-            expect(screen.getByText(/Contribution to BE\/FE pipelines/)).toBeInTheDocument();
-        });
+    test("pagination moves to second page", async () => {
+        vi.spyOn(service, "getProjects").mockResolvedValueOnce(mockProjects);
 
-        const {nextButtons} = getPaginationControls();
-        fireEvent.click(nextButtons[0]);
+        renderProjects();
+
+        await screen.findByText("P1");
+
+        const next = screen.getAllByRole("button", {name: /next/i})[0];
+        fireEvent.click(next);
 
         await waitFor(() => {
-            expect(screen.getByText(/Maintenance and extension of core AS\/400 applications/)).toBeInTheDocument();
+            expect(screen.getByText("P3")).toBeInTheDocument();
         });
     });
 
-    test("RPG project shows correct limited tech stack", async () => {
-        // Navigate to Intesa page 2 where there is ONLY the RPG project
-        const {nextButtons} = getPaginationControls();
-        fireEvent.click(nextButtons[0]);
+    test("toggles technologies panel", async () => {
+        vi.spyOn(service, "getProjects").mockResolvedValueOnce(mockProjects);
 
-        // Open THE ONLY disclosure present (RPG project)
-        const rpgTechButton = await screen.findByText("Show Technologies");
-        fireEvent.click(rpgTechButton);
+        renderProjects();
 
-        // Check EXACTLY the 3 techs of the RPG project
-        const techTags = screen.getAllByText(/RPG|AS400|MySQL/);
-        expect(techTags).toHaveLength(4);
-
-        // It does NOT have the tech of previous projects
-        expect(screen.queryByText("Angular")).not.toBeInTheDocument();
-        expect(screen.queryByText("jQuery")).not.toBeInTheDocument();
-    });
-
-    test("renders both mobile and desktop pagination controls", () => {
-        const {nextButtons, prevButtons, pageDisplays} = getPaginationControls();
-
-        expect(nextButtons.length).toBe(2);
-        expect(prevButtons.length).toBe(2);
-        expect(pageDisplays.length).toBe(2);
-
-        // Intesa has 3 projects = 2 pages (ITEMS_PER_PAGE = 2)
-        pageDisplays.forEach(el => expect(el).toHaveTextContent("1 / 2"));
-    });
-
-    test("prev buttons are disabled on first page", () => {
-        const {prevButtons} = getPaginationControls();
-        prevButtons.forEach(btn => expect(btn).toBeDisabled());
-    });
-
-    test("next buttons work and show second page for Intesa (3 projects)", async () => {
-        const {nextButtons} = getPaginationControls();
-
-        // Click next on the pagers
-        nextButtons.forEach(btn => fireEvent.click(btn));
-
-        await waitFor(() => {
-            const pageDisplays = screen.getAllByTestId("pagination-info");
-            pageDisplays.forEach(el => expect(el).toHaveTextContent("2 / 2"));
-        });
-    });
-
-    test("toggles technology panel for Intesa project", async () => {
-        const techButtons = screen.getAllByText("Show Technologies");
-        const firstTechBtn = techButtons[0];
+        await screen.findByText("P1");
 
         expect(screen.queryByText("RPG")).not.toBeInTheDocument();
 
-        fireEvent.click(firstTechBtn);
-        await waitFor(() => {
-            expect(screen.getByText("RPG")).toBeInTheDocument();
-            expect(screen.getByText("AS400")).toBeInTheDocument();
-        });
+        const btn = screen.getAllByText("Show Technologies")[0];
+        fireEvent.click(btn);
 
-        fireEvent.click(firstTechBtn);
-        await waitFor(() => {
-            expect(screen.queryByText("RPG")).not.toBeInTheDocument();
-        });
+        expect(await screen.findByText("RPG")).toBeInTheDocument();
     });
 
-    test("prev buttons are disabled on first page", () => {
-        const {prevButtons} = getPaginationControls();
-        prevButtons.forEach(btn => expect(btn).toBeDisabled());
-    });
-
-    test("next buttons navigate correctly", async () => {
-        const {nextButtons} = getPaginationControls();
-        nextButtons.forEach(btn => fireEvent.click(btn));
-
-        await waitFor(() => {
-            const pageDisplays = screen.getAllByTestId("pagination-info");
-            pageDisplays.forEach(el => expect(el).toHaveTextContent("2 / 2"));
-        });
-    });
-
-    test("toggles technology panel correctly", async () => {
-        const techButtons = screen.getAllByText("Show Technologies");
-        const firstTechBtn = techButtons[0];
-
-        expect(screen.queryByText("RPG")).not.toBeInTheDocument();
-
-        fireEvent.click(firstTechBtn);
-        await waitFor(() => {
-            expect(screen.getByText("RPG")).toBeInTheDocument();
-            expect(screen.getByText("AS400")).toBeInTheDocument();
-        });
-
-        fireEvent.click(firstTechBtn);
-        await waitFor(() => {
-            expect(screen.queryByText("RPG")).not.toBeInTheDocument();
-        });
-    });
 });

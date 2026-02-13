@@ -1,8 +1,11 @@
 import {useTranslation} from "react-i18next";
 import {PageSection} from "@/components/ui/pageSection/PageSection";
 import {SeoHead} from "@/components/seoHead/SeoHead";
-import React, {lazy, Suspense} from "react";
-import {Loading} from "@/App";
+import React, {lazy, Suspense, useEffect, useState} from "react";
+import {Loading} from "@/components/loading/Loading";
+import {getExperiences, getTradingPerformance} from "@/services/portfolio.service";
+import {tradingPerformance} from "@/mock/trading";
+import {ErrorState} from "@/components/errorState/ErrorState";
 
 const TradingPerformanceChart = lazy(() =>
     import("@/components/ui/tradingPerformanceChart/TradingPerformanceChart").then(mod => ({default: mod.TradingPerformanceChart}))
@@ -20,6 +23,24 @@ const TradingPerformanceChart = lazy(() =>
  */
 export default function Trading() {
     const {t} = useTranslation();
+    const [tradingPerformance, setTradingPerformance] = useState({});
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    const loadTradingPerformance = () => {
+        setLoading(true);
+        setError(null);
+
+        getTradingPerformance()
+            .then(setTradingPerformance)
+            .catch(setError)
+            .finally(() => setLoading(false));
+    };
+
+    useEffect(() => {
+        loadTradingPerformance();
+    }, []);
+
     const paragraphs = [
         t("trading_intro"),
         t("trading_description"),
@@ -41,6 +62,9 @@ export default function Trading() {
             </a>
         );
     }
+
+    if (loading) return <Loading/>;
+    if (error) return <ErrorState message={t("error_generic")} onRetry={loadTradingPerformance}/>;
 
     return (
         <>
@@ -72,7 +96,10 @@ export default function Trading() {
                 {/* Graph below that takes up all the remaining space */}
                 <div className="flex-grow w-full">
                     <Suspense fallback={<Loading/>}>
-                        <TradingPerformanceChart/>
+                        <TradingPerformanceChart
+                            startYear={tradingPerformance.startYear}
+                            monthlyReturns={tradingPerformance.monthlyReturns}
+                        />
                     </Suspense>
                 </div>
             </PageSection>

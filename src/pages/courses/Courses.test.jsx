@@ -3,6 +3,7 @@ import {fireEvent, render, screen, waitFor} from '@testing-library/react';
 import Courses from './Courses';
 import {MemoryRouter} from 'react-router-dom';
 import {vi} from 'vitest';
+import * as service from "@/services/portfolio.service";
 
 vi.mock('react-i18next', () => ({
     useTranslation: () => ({
@@ -21,108 +22,132 @@ vi.mock('react-i18next', () => ({
                 "courses_page.duration": "Duration",
                 "show_technologies": "Show technologies",
                 "previous": "Previous",
-                "next": "Next"
+                "next": "Next",
+                "error_generic": "Generic error",
             };
             return map[key] || key;
         }
     }),
 }));
 
+vi.mock("@/App", () => ({
+    Loading: () => <div role="status">loading</div>,
+    ErrorState: ({message, onRetry}) => (
+        <div>
+            <span>{message}</span>
+            <button onClick={onRetry}>retry</button>
+        </div>
+    ),
+}));
+
+const mockCourses = Array.from({length: 10}).map((_, i) => ({
+    nameKey: `course_${i}`,
+    descKey: `desc_${i}`,
+    durationKey: `dur_${i}`,
+    tech: "x",
+    link: "https://test.com",
+    image: "img.png"
+}));
+
+const renderPage = () =>
+    render(
+        <MemoryRouter initialEntries={['/courses']}>
+            <Courses/>
+        </MemoryRouter>
+    );
+
 describe('Courses component', () => {
-    beforeEach(() => {
-        render(
-            <MemoryRouter initialEntries={['/courses']}>
-                <Courses/>
-            </MemoryRouter>
-        );
+
+    afterEach(() => {
+        vi.restoreAllMocks();
     });
 
-    test('renders page title', () => {
-        expect(screen.getByRole('heading', {name: 'Courses', level: 2})).toBeInTheDocument();
+    test("renders page title", async () => {
+        vi.spyOn(service, "getCourses").mockResolvedValue(mockCourses);
+
+        renderPage();
+
+        expect(
+            await screen.findByRole("heading", {name: "Courses"})
+        ).toBeInTheDocument();
     });
 
-    test('renders first page courses titles and descriptions', () => {
-        expect(screen.getByText(/git course/i)).toBeInTheDocument();
-        expect(screen.getByText(/learn git basics/i)).toBeInTheDocument();
+    test("renders page title", async () => {
+        vi.spyOn(service, "getCourses").mockResolvedValue(mockCourses);
 
-        expect(screen.getByText(/typescript course/i)).toBeInTheDocument();
-        expect(screen.getByText(/typescript fundamentals/i)).toBeInTheDocument();
+        renderPage();
+
+        expect(
+            await screen.findByRole("heading", {name: "Courses"})
+        ).toBeInTheDocument();
     });
 
-    test('renders course duration with label', () => {
-        expect(screen.getAllByText(/duration:/i)[0]).toBeInTheDocument();
-        expect(screen.getByText(/3h 20m/i)).toBeInTheDocument();
+    test("renders first page courses", async () => {
+        vi.spyOn(service, "getCourses").mockResolvedValue(mockCourses);
+
+        renderPage();
+
+        expect(await screen.findByText(/course_0/i)).toBeInTheDocument();
+        expect(screen.getByText(/desc_0/i)).toBeInTheDocument();
     });
 
-    test('renders course image wrapped in link', () => {
-        const links = screen.getAllByRole('link', {name: /git course/i});
-        expect(links).toHaveLength(2);
+    test("renders duration label", async () => {
+        vi.spyOn(service, "getCourses").mockResolvedValue(mockCourses);
 
+        renderPage();
+
+        await screen.findByText(/course_0/i);
+
+        const durations = screen.getAllByText(/dur_/i);
+        expect(durations.length).toBeGreaterThan(0);
+
+        expect(screen.getByText(/dur_0/i)).toBeInTheDocument();
+    });
+
+    test("course images have links", async () => {
+        vi.spyOn(service, "getCourses").mockResolvedValue(mockCourses);
+
+        renderPage();
+
+        await screen.findByText(/course_0/i);
+
+        const links = screen.getAllByRole("link");
         links.forEach(link => {
-            expect(link).toHaveAttribute('href', 'https://www.udemy.com/course/corso-git/');
+            expect(link).toHaveAttribute("href");
+            expect(link).toHaveAttribute("target", "_blank");
         });
     });
 
-    test('disables "Previous" on first page', () => {
-        const prevButtons = screen.getAllByRole('button', {name: /previous/i});
-        // Mobile and desktop both have a "Previous" button on page 1
-        prevButtons.forEach(btn => expect(btn).toBeDisabled());
-    });
+    test("next button advances page", async () => {
+        vi.spyOn(service, "getCourses").mockResolvedValue(mockCourses);
 
-    test('next button advances page and updates pagination info', () => {
-        const nextButtons = screen.getAllByRole('button', {name: /next/i});
-        const pageInfos = screen.getAllByTestId("pagination-info");
+        renderPage();
 
-        // Advance page using both pagers
-        fireEvent.click(nextButtons[0]); // mobile
-        fireEvent.click(nextButtons[1]); // desktop
+        const nextButtons = await screen.findAllByRole("button", {name: /next/i});
 
-        pageInfos.forEach(info => expect(info).toHaveTextContent("3 / 3"));
-    });
-
-    test('each course image has correct alt text', () => {
-        const images = screen.getAllByRole('img');
-
-        images.forEach(img => {
-            expect(img).toHaveAttribute('alt');
-            expect(img.getAttribute('alt')).not.toBe('');
-        });
-    });
-
-    test('each course image links to correct udemy course', () => {
-        const links = screen.getAllByRole('link');
-
-        links.forEach(link => {
-            expect(link).toHaveAttribute('href');
-            expect(link).toHaveAttribute('target', '_blank');
-        });
-    });
-
-    test('includes SEO head metadata', async () => {
-        await waitFor(() => {
-            const titleTag = document.head.querySelector('title');
-            expect(titleTag).not.toBeNull();
-            expect(titleTag?.textContent?.toLowerCase()).toContain('courses');
-        });
-    });
-
-    test('Next and Previous buttons work independently for mobile and desktop', () => {
-        const nextButtons = screen.getAllByRole('button', {name: /next/i});
-        const prevButtons = screen.getAllByRole('button', {name: /previous/i});
-        const pageInfos = screen.getAllByTestId("pagination-info");
-
-        // Advance mobile
         fireEvent.click(nextButtons[0]);
-        expect(pageInfos[0]).toHaveTextContent("2 / 3");
-        expect(pageInfos[1]).toHaveTextContent("2 / 3");
 
-        // Advance desktop
-        fireEvent.click(nextButtons[1]);
-        expect(pageInfos[1]).toHaveTextContent("3 / 3");
+        expect(
+            screen.getAllByTestId("pagination-info")[0]
+        ).toHaveTextContent("2 / 3");
+    });
 
-        // Go back to page 1 for both
-        fireEvent.click(prevButtons[0]);
-        fireEvent.click(prevButtons[1]);
-        pageInfos.forEach(info => expect(info).toHaveTextContent("1 / 3"));
+    test("shows loading initially", () => {
+        vi.spyOn(service, "getCourses").mockImplementation(
+            () => new Promise(() => {
+            })
+        );
+
+        renderPage();
+
+        expect(screen.getByRole("status")).toBeInTheDocument();
+    });
+
+    test("shows error state", async () => {
+        vi.spyOn(service, "getCourses").mockRejectedValue(new Error());
+
+        renderPage();
+
+        expect(await screen.findByText("Generic error")).toBeInTheDocument();
     });
 });

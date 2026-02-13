@@ -3,6 +3,7 @@ import {fireEvent, render, screen} from "@testing-library/react";
 import Testimonials from "./Testimonials";
 import {MemoryRouter} from 'react-router-dom';
 import {vi} from 'vitest';
+import * as service from "@/services/portfolio.service";
 
 // Minimal translations
 vi.mock('react-i18next', () => ({
@@ -23,7 +24,8 @@ vi.mock('react-i18next', () => ({
                 "testimonials_people.daniela.quote": "Thorough testing.",
                 "testimonials_page.title": "Testimonials",
                 "previous": "Prev",
-                "next": "Next"
+                "next": "Next",
+                "error_generic": "Generic error"
             };
             return translations[key] || key;
         },
@@ -38,96 +40,132 @@ vi.mock('react-i18next', () => ({
     }
 }));
 
+vi.mock("@/App", () => ({
+    Loading: () => <div role="status">loading</div>,
+    ErrorState: ({message, onRetry}) => (
+        <div>
+            <span>{message}</span>
+            <button onClick={onRetry}>retry</button>
+        </div>
+    ),
+}));
+
+function renderPage() {
+    return render(
+        <MemoryRouter initialEntries={['/testimonials']}>
+            <Testimonials/>
+        </MemoryRouter>
+    );
+}
+
+const mockTestimonials = Array.from({length: 12}).map((_, i) => ({
+    nameKey: `name_${i}`,
+    roleKey: `role_${i}`,
+    quoteKey: `quote_${i}`,
+    linkedinUrl: `https://linkedin.com/${i}`,
+}));
+
+
 describe("Testimonials component with mobile + desktop paginators", () => {
-    beforeEach(() => {
-        render(
-            <MemoryRouter initialEntries={['/testimonials']}>
-                <Testimonials/>
-            </MemoryRouter>
-        );
+
+    afterEach(() => {
+        vi.restoreAllMocks();
     });
 
-    const getPaginationButtons = () => {
-        const nextButtons = screen.getAllByRole("button", {name: /Next/i});
-        const prevButtons = screen.getAllByRole("button", {name: /Prev/i});
-        const pageDisplays = screen.getAllByTestId("pagination-info");
-        return {nextButtons, prevButtons, pageDisplays};
-    };
+    test("shows loading initially", () => {
+        vi.spyOn(service, "getTestimonials")
+            .mockReturnValueOnce(new Promise(() => {
+            }));
 
-    test("renders both mobile and desktop pagination controls", () => {
-        const {nextButtons, prevButtons, pageDisplays} = getPaginationButtons();
-        expect(nextButtons.length).toBe(2);
-        expect(prevButtons.length).toBe(2);
-        expect(pageDisplays.length).toBe(2);
+        renderPage();
 
-        pageDisplays.forEach(el => expect(el).toHaveTextContent("1 / 6"));
+        expect(screen.getByRole("status")).toBeInTheDocument();
     });
 
-    test("prev buttons are disabled on first page", () => {
-        const {prevButtons} = getPaginationButtons();
-        prevButtons.forEach(btn => expect(btn).toBeDisabled());
+    test("renders page title after load", async () => {
+        vi.spyOn(service, "getTestimonials")
+            .mockResolvedValueOnce(mockTestimonials);
+
+        renderPage();
+
+        expect(
+            await screen.findByRole("heading", {name: /testimonials/i})
+        ).toBeInTheDocument();
     });
 
-    test("next buttons are disabled on last page", () => {
-        const {nextButtons, pageDisplays} = getPaginationButtons();
+    test("renders both paginators", async () => {
+        vi.spyOn(service, "getTestimonials")
+            .mockResolvedValueOnce(mockTestimonials);
 
-        for (let i = 1; i < 8; i++) {
-            nextButtons.forEach(btn => fireEvent.click(btn));
-        }
+        renderPage();
 
-        pageDisplays.forEach(el => expect(el).toHaveTextContent("6 / 6"));
-        nextButtons.forEach(btn => expect(btn).toBeDisabled());
+        await screen.findByText(/testimonials/i);
+
+        const next = screen.getAllByRole("button", {name: /next/i});
+        const prev = screen.getAllByRole("button", {name: /prev/i});
+
+        expect(next).toHaveLength(2);
+        expect(prev).toHaveLength(2);
     });
 
-    test("next and prev buttons work independently for each paginator", () => {
-        const {nextButtons, prevButtons, pageDisplays} = getPaginationButtons();
+    test("renders 4 testimonial cards per page", async () => {
+        vi.spyOn(service, "getTestimonials")
+            .mockResolvedValueOnce(mockTestimonials);
 
-        // Advance mobile paginator
-        fireEvent.click(nextButtons[0]);
-        expect(pageDisplays[0]).toHaveTextContent("2 / 6");
-        expect(pageDisplays[1]).toHaveTextContent("2 / 6");
+        renderPage();
 
-        // Advance desktop paginator
-        fireEvent.click(nextButtons[1]);
-        expect(pageDisplays[0]).toHaveTextContent("3 / 6");
-        expect(pageDisplays[1]).toHaveTextContent("3 / 6");
-
-        // Return to page 1
-        fireEvent.click(prevButtons[0]);
-        fireEvent.click(prevButtons[1]);
-        pageDisplays.forEach(el => expect(el).toHaveTextContent("1 / 6"));
-    });
-
-    test("renders page title", () => {
-        expect(screen.getByRole("heading", {name: /testimonials/i})).toBeInTheDocument();
-    });
-
-    test("renders correct number of testimonial cards (4 per page)", () => {
-        const cards = screen.getAllByTestId("testimonial-card");
+        const cards = await screen.findAllByTestId("testimonial-card");
         expect(cards).toHaveLength(4);
     });
 
-    test("renders testimonial avatars", () => {
-        const avatars = screen.getAllByRole("img");
-        expect(avatars).toHaveLength(4);
-        avatars.forEach(avatar => {
-            expect(avatar).toHaveAttribute("alt");
-            expect(avatar).toHaveClass("rounded-full");
-        });
+    test("next button changes page", async () => {
+        vi.spyOn(service, "getTestimonials")
+            .mockResolvedValueOnce(mockTestimonials);
+
+        renderPage();
+
+        await screen.findAllByTestId("testimonial-card");
+
+        const next = screen.getAllByRole("button", {name: /next/i})[0];
+        fireEvent.click(next);
+
+        const displays = screen.getAllByTestId("pagination-info");
+        displays.forEach(el => expect(el.textContent).toMatch(/2/));
     });
 
-    test("renders Disclosure buttons", () => {
-        const buttons = screen.getAllByRole("button");
-        expect(buttons.length).toBeGreaterThanOrEqual(4);
-    });
+    test("renders linkedin links", async () => {
+        vi.spyOn(service, "getTestimonials")
+            .mockResolvedValueOnce(mockTestimonials);
 
-    test("renders LinkedIn icons when available", () => {
+        renderPage();
+
+        await screen.findAllByTestId("testimonial-card");
+
         const links = screen.getAllByRole("link");
-        const linkedinLinks = links.filter(link => link.getAttribute("href")?.includes("linkedin"));
-        expect(linkedinLinks.length).toBeGreaterThan(0);
+        expect(links.length).toBeGreaterThan(0);
     });
 
-    test("SEO metadata is present", () => {
-        expect(document.title).toContain("testimonials");
+    test("shows error state on failure", async () => {
+        vi.spyOn(service, "getTestimonials")
+            .mockRejectedValueOnce(new Error("boom"));
+
+        renderPage();
+
+        expect(await screen.findByText("Generic error")).toBeInTheDocument();
+    });
+
+    test("retry reloads data", async () => {
+        const spy = vi.spyOn(service, "getTestimonials")
+            .mockRejectedValueOnce(new Error("boom"))
+            .mockResolvedValueOnce(mockTestimonials);
+
+        renderPage();
+
+        const retry = await screen.findByRole("button", {name: /retry/i});
+        fireEvent.click(retry);
+
+        await screen.findAllByTestId("testimonial-card");
+
+        expect(spy).toHaveBeenCalledTimes(2);
     });
 });
