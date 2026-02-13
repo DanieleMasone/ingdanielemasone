@@ -7,7 +7,7 @@ import {SeoHead} from "@/components/seoHead/SeoHead";
 import React, {useEffect, useState} from "react";
 import {Pagination} from "@/components/ui/pagination/Pagination";
 import {PageGrid} from "@/components/ui/pageGrid/PageGrid";
-import {getCertifications} from "@/services/portfolio.service";
+import {getCertifications} from "@/services/portfolioService";
 import {Loading} from "@/components/loading/Loading";
 import {ErrorState} from "@/components/errorState/ErrorState";
 

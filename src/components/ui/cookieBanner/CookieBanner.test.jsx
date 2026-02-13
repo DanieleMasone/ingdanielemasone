@@ -9,20 +9,20 @@ describe('CookieBanner', () => {
     });
 
     it('shows banner if no cookie consent in localStorage', async () => {
-        render(<CookieBanner />);
+        render(<CookieBanner/>);
 
         // Wait for useEffect to display the banner
         await waitFor(() => {
             expect(screen.getByText(/questo sito utilizza cookie/i)).toBeInTheDocument();
         });
 
-        expect(screen.getByRole('button', { name: /accetta/i })).toBeInTheDocument();
+        expect(screen.getByRole('button', {name: /accetta/i})).toBeInTheDocument();
     });
 
     it('does not show banner if cookie consent is set', () => {
         // Test with both timestamp and boolean value
         localStorage.setItem('cookieConsent', '2026-02-04T09:47:52.401Z');
-        render(<CookieBanner />);
+        render(<CookieBanner/>);
 
         expect(screen.queryByText(/questo sito utilizza cookie/i)).not.toBeInTheDocument();
     });
@@ -31,14 +31,14 @@ describe('CookieBanner', () => {
         // Spy on PROTOTYPE Storage, not on localStorage directly
         const setItemSpy = vi.spyOn(Storage.prototype, 'setItem');
 
-        render(<CookieBanner />);
+        render(<CookieBanner/>);
 
         // Wait for the banner to be visible (useEffect)
         await waitFor(() => {
-            expect(screen.getByRole('button', { name: /accetta/i })).toBeInTheDocument();
+            expect(screen.getByRole('button', {name: /accetta/i})).toBeInTheDocument();
         });
 
-        const button = screen.getByRole('button', { name: /accetta/i });
+        const button = screen.getByRole('button', {name: /accetta/i});
         fireEvent.click(button);
 
         // Verify that setItem was called with an ISO timestamp
@@ -53,4 +53,33 @@ describe('CookieBanner', () => {
         // Cleanup
         setItemSpy.mockRestore();
     });
+
+    it('renders the privacy policy link with correct href', async () => {
+        render(<CookieBanner/>);
+
+        await waitFor(() => {
+            const link = screen.getByText(/Politica sulla Privacy/i);
+            expect(link).toBeInTheDocument();
+            expect(link).toHaveAttribute('href', '/privacy');
+        });
+    });
+
+    it('banner has proper ARIA attributes', async () => {
+        render(<CookieBanner/>);
+
+        await waitFor(() => {
+            const banner = screen.getByRole('banner');
+            expect(banner).toHaveAttribute('aria-live', 'polite');
+            expect(banner).toHaveAttribute('aria-label', 'Cookie consent banner');
+        });
+    });
+
+    it('handles non-standard localStorage values gracefully', () => {
+        localStorage.setItem('cookieConsent', 'not-a-timestamp');
+        render(<CookieBanner/>);
+
+        // The banner should still be hidden if the key exists
+        expect(screen.queryByText(/questo sito utilizza cookie/i)).not.toBeInTheDocument();
+    });
+
 });

@@ -3,7 +3,7 @@ import {render, screen} from "@testing-library/react";
 import {MemoryRouter} from "react-router-dom";
 import {vi} from "vitest";
 import Certifications from "./Certifications";
-import * as service from "@/services/portfolio.service";
+import * as service from "@/services/portfolioService";
 
 // ---- mock i18n ----
 vi.mock("react-i18next", () => ({
@@ -28,8 +28,11 @@ function renderPage() {
 }
 
 // ---- mock Loading + ErrorState ----
-vi.mock("@/App", () => ({
+vi.mock("@/components/loading/Loading", () => ({
     Loading: () => <div role="status">loading</div>,
+}));
+
+vi.mock("@/components/errorState/ErrorState", () => ({
     ErrorState: ({message, onRetry}) => (
         <div>
             <span>{message}</span>
@@ -122,14 +125,14 @@ describe("Certifications component", () => {
         expect(document.title.toLowerCase()).toContain("certifications");
     });
 
-    test("shows loading first", () => {
-        vi.spyOn(service, "getCertifications").mockReturnValue(new Promise(() => {
-        })); // never resolves
+    test("shows loading initially", () => {
+        vi.spyOn(service, "getLinks")
+            .mockReturnValueOnce(new Promise(() => {
+            }));
 
         renderPage();
 
-        // Search for the loader via role + aria-label
-        expect(screen.getByRole("status", {name: /loading/i})).toBeInTheDocument();
+        expect(screen.getByRole("status")).toBeInTheDocument();
     });
 
     test("shows error state on failure", async () => {

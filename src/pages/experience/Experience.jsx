@@ -8,7 +8,7 @@ import {SeoHead} from "@/components/seoHead/SeoHead";
 import {SelectableButton} from "@/components/ui/selectableButton/SelectableButton";
 import {PageGrid} from "@/components/ui/pageGrid/PageGrid";
 import TechDisclosure from "@/components/ui/techDisclosure/TechDisclosure";
-import {getExperiences} from "@/services/portfolio.service";
+import {getExperiences} from "@/services/portfolioService";
 import {Loading} from "@/components/loading/Loading";
 import {ErrorState} from "@/components/errorState/ErrorState";
 

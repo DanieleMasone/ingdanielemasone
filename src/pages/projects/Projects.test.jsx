@@ -3,7 +3,7 @@ import Projects from "./Projects";
 import React from "react";
 import {MemoryRouter} from 'react-router-dom';
 import {vi} from 'vitest';
-import * as service from "@/services/portfolio.service";
+import * as service from "@/services/portfolioService";
 
 // Mock react-i18next
 vi.mock("react-i18next", () => ({
@@ -74,8 +74,11 @@ const mockProjects = [
     },
 ];
 
-vi.mock("@/App", () => ({
+vi.mock("@/components/loading/Loading", () => ({
     Loading: () => <div role="status">loading</div>,
+}));
+
+vi.mock("@/components/errorState/ErrorState", () => ({
     ErrorState: ({message, onRetry}) => (
         <div>
             <span>{message}</span>
@@ -93,6 +96,13 @@ function renderProjects() {
 }
 
 describe("Projects Component", () => {
+
+    beforeAll(() => {
+        Object.defineProperty(window, "scrollTo", {
+            value: vi.fn(),
+            writable: true,
+        });
+    });
 
     afterEach(() => {
         vi.restoreAllMocks();
@@ -153,6 +163,124 @@ describe("Projects Component", () => {
         fireEvent.click(btn);
 
         expect(await screen.findByText("RPG")).toBeInTheDocument();
+    });
+
+    test("renders company sidebar buttons with counts", async () => {
+        vi.spyOn(service, "getProjects").mockResolvedValueOnce(mockProjects);
+
+        renderProjects();
+
+        await screen.findByText("P1");
+
+        expect(screen.getByRole("button", {name: /Intesa Sanpaolo/i}))
+            .toBeInTheDocument();
+
+        // badge count
+        expect(screen.getByText("3")).toBeInTheDocument();
+    });
+
+    test("filters projects when selecting another company", async () => {
+        const data = [
+            ...mockProjects,
+            {
+                name: "OtherCoProj",
+                tech: "React",
+                type: "x",
+                company: "OtherCo",
+                period: "2024",
+            }
+        ];
+
+        vi.spyOn(service, "getProjects").mockResolvedValueOnce(data);
+
+        renderProjects();
+
+        await screen.findByText("P1");
+
+        fireEvent.click(screen.getByRole("button", {name: /OtherCo/i}));
+
+        await waitFor(() => {
+            expect(screen.getByText("OtherCoProj")).toBeInTheDocument();
+            expect(screen.queryByText("P1")).not.toBeInTheDocument();
+        });
+    });
+
+    test("resets page to 1 when company changes", async () => {
+        vi.spyOn(service, "getProjects").mockResolvedValueOnce(mockProjects);
+
+        renderProjects();
+        await screen.findByText("P1");
+
+        const next = screen.getAllByRole("button", {name: /next/i})[0];
+        fireEvent.click(next);
+
+        await screen.findByText("P3");
+
+        // riclicco stessa company → reset page
+        fireEvent.click(screen.getByRole("button", {name: /Intesa Sanpaolo/i}));
+
+        await waitFor(() => {
+            expect(screen.getByText("P1")).toBeInTheDocument();
+        });
+    });
+
+    test("calls window.scrollTo when changing company", async () => {
+        vi.spyOn(service, "getProjects").mockResolvedValueOnce(mockProjects);
+        const scrollSpy = vi.spyOn(window, "scrollTo").mockImplementation(() => {
+        });
+
+        renderProjects();
+        await screen.findByText("P1");
+
+        fireEvent.click(screen.getByRole("button", {name: /Intesa Sanpaolo/i}));
+
+        expect(scrollSpy).toHaveBeenCalled();
+
+        scrollSpy.mockRestore();
+    });
+
+    test("retry button calls getProjects again after error", async () => {
+        const spy = vi.spyOn(service, "getProjects")
+            .mockRejectedValueOnce(new Error("boom"))
+            .mockResolvedValueOnce(mockProjects);
+
+        renderProjects();
+
+        await screen.findByText("Generic error");
+
+        fireEvent.click(screen.getByText("retry"));
+
+        await screen.findByText("P1");
+
+        expect(spy).toHaveBeenCalledTimes(2);
+    });
+
+    test("does not render grid when no projects for selected company", async () => {
+        vi.spyOn(service, "getProjects").mockResolvedValueOnce([]);
+
+        renderProjects();
+
+        await screen.findByText("Projects");
+
+        expect(screen.queryByText("P1")).not.toBeInTheDocument();
+    });
+
+    test("does not render ExpandableText when project has no type", async () => {
+        const data = [{
+            name: "NoType",
+            tech: "JS",
+            company: "Intesa Sanpaolo",
+            period: "2025",
+        }];
+
+        vi.spyOn(service, "getProjects").mockResolvedValueOnce(data);
+
+        renderProjects();
+
+        await screen.findByText("NoType");
+
+        expect(screen.queryByText(/Design and implementation/i))
+            .not.toBeInTheDocument();
     });
 
 });

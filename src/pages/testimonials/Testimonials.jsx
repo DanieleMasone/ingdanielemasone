@@ -8,7 +8,7 @@ import {Pagination} from "@/components/ui/pagination/Pagination";
 import {PageGrid} from "@/components/ui/pageGrid/PageGrid";
 import {ExpandableText} from "@/components/ui/expandableText/ExpandableText";
 import {CardContent} from "@/components/ui/cardContent/CardContent";
-import {getTestimonials} from "@/services/portfolio.service";
+import {getTestimonials} from "@/services/portfolioService";
 import {Loading} from "@/components/loading/Loading";
 import {ErrorState} from "@/components/errorState/ErrorState";
 import {BrandIcon} from "@/components/ui/brandIcon/BrandIcon";

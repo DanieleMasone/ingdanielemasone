@@ -8,7 +8,7 @@ import {SeoHead} from "@/components/seoHead/SeoHead";
 import {Pagination} from "@/components/ui/pagination/Pagination";
 import {PageGrid} from "@/components/ui/pageGrid/PageGrid";
 import TechDisclosure from "@/components/ui/techDisclosure/TechDisclosure";
-import {getCourses} from "@/services/portfolio.service";
+import {getCourses} from "@/services/portfolioService";
 import {Loading} from "@/components/loading/Loading";
 import {ErrorState} from "@/components/errorState/ErrorState";
 

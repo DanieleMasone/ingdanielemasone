@@ -3,7 +3,7 @@ import {render, screen, within} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {Footer} from "./Footer";
 import {vi} from 'vitest';
-import * as service from "@/services/portfolio.service";
+import * as service from "@/services/portfolioService";
 
 vi.mock("react-i18next", () => ({
     useTranslation: () => ({
@@ -30,8 +30,11 @@ vi.mock("../brandIcon/BrandIcon", () => ({
     ),
 }));
 
-vi.mock("@/App", () => ({
+vi.mock("@/components/loading/Loading", () => ({
     Loading: () => <div role="status">loading</div>,
+}));
+
+vi.mock("@/components/errorState/ErrorState", () => ({
     ErrorState: ({message, onRetry}) => (
         <div>
             <span>{message}</span>

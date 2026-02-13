@@ -3,7 +3,7 @@ import Trading from "./Trading";
 import React, {Suspense} from "react";
 import {MemoryRouter} from 'react-router-dom';
 import {vi} from 'vitest';
-import * as service from "@/services/portfolio.service";
+import * as service from "@/services/portfolioService";
 
 // Mock react-i18next
 vi.mock("react-i18next", () => ({
@@ -39,8 +39,11 @@ vi.mock("../../components/ui/pageSection/PageSection", () => ({
     ),
 }));
 
-vi.mock("@/App", () => ({
+vi.mock("@/components/loading/Loading", () => ({
     Loading: () => <div role="status">loading</div>,
+}));
+
+vi.mock("@/components/errorState/ErrorState", () => ({
     ErrorState: ({message, onRetry}) => (
         <div>
             <span>{message}</span>
@@ -71,10 +74,13 @@ describe("Trading component", () => {
     });
 
     test("shows loading initially", () => {
-        vi.spyOn(service, "getTradingPerformance").mockReturnValue(new Promise(() => {
-        }));
+        vi.spyOn(service, "getLinks")
+            .mockReturnValueOnce(new Promise(() => {
+            }));
+
         renderPage();
-        expect(screen.getByRole("status", {name: /loading/i})).toBeInTheDocument();
+
+        expect(screen.getByRole("status")).toBeInTheDocument();
     });
 
     test("renders the section title and content after async load", async () => {

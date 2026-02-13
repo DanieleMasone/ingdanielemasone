@@ -13,9 +13,9 @@ vi.mock('react-i18next', () => ({
             };
             return translations[key] || key;
         },
-        i18n: { changeLanguage: vi.fn(() => Promise.resolve()) }
+        i18n: {changeLanguage: vi.fn(() => Promise.resolve())}
     }),
-    initReactI18next: { type: '3rdParty', init: vi.fn() }
+    initReactI18next: {type: '3rdParty', init: vi.fn()}
 }));
 
 describe("ExpandableText", () => {
@@ -113,5 +113,86 @@ describe("ExpandableText", () => {
         // Force unmount before ref exists — triggers the early return in useLayoutEffect
         unmount();
         expect(true).toBe(true); // just to confirm no crash
+    });
+
+    test("recomputes when value changes", async () => {
+        const {rerender} = render(<ExpandableText value={shortText} maxLines={2}/>);
+
+        await waitFor(() => {
+            expect(screen.queryByRole("button")).not.toBeInTheDocument();
+        });
+
+        rerender(<ExpandableText value={longText} maxLines={2}/>);
+
+        const btn = await screen.findByRole("button", {name: /show more/i});
+        expect(btn).toBeInTheDocument();
+    });
+
+    test("recomputes when maxLines changes", async () => {
+        const {rerender} = render(<ExpandableText value={longText} maxLines={10}/>);
+
+        await waitFor(() => {
+            expect(screen.queryByRole("button")).not.toBeInTheDocument();
+        });
+
+        rerender(<ExpandableText value={longText} maxLines={2}/>);
+
+        const btn = await screen.findByRole("button", {name: /show more/i});
+        expect(btn).toBeInTheDocument();
+    });
+
+    test("collapsed maxHeight reflects maxLines prop", async () => {
+        render(<ExpandableText value={longText} maxLines={4}/>);
+
+        const btn = await screen.findByRole("button", {name: /show more/i});
+        const paragraph = btn.closest("div").previousSibling;
+
+        // maxHeight = maxLines * 1.5em
+        expect(paragraph.style.maxHeight).toBe("6em");
+    });
+
+    test("toggle button switches icon chevron down/up", async () => {
+        render(<ExpandableText value={longText} maxLines={2}/>);
+
+        const btn = await screen.findByRole("button", {name: /show more/i});
+
+        // collapsed → ChevronDown
+        expect(btn.querySelector("svg")).toBeInTheDocument();
+
+        fireEvent.click(btn);
+
+        const btnLess = await screen.findByRole("button", {name: /show less/i});
+        expect(btnLess.querySelector("svg")).toBeInTheDocument();
+    });
+
+    test("multiple rapid toggles keep state consistent", async () => {
+        render(<ExpandableText value={longText} maxLines={2}/>);
+
+        const btn = await screen.findByRole("button", {name: /show more/i});
+
+        fireEvent.click(btn);
+        fireEvent.click(btn);
+        fireEvent.click(btn);
+
+        await waitFor(() => {
+            // odd → expanded
+            expect(screen.getByRole("button", {name: /show less/i})).toBeInTheDocument();
+        });
+    });
+
+    test("does not show button when scrollHeight equals collapsed height", async () => {
+        // override scrollHeight for this test
+        Object.defineProperty(HTMLElement.prototype, 'scrollHeight', {
+            configurable: true,
+            get() {
+                return 32; // 2 lines * 16px lineHeight
+            }
+        });
+
+        render(<ExpandableText value={"Riga\nRiga"} maxLines={2}/>);
+
+        await waitFor(() => {
+            expect(screen.queryByRole("button")).not.toBeInTheDocument();
+        });
     });
 });

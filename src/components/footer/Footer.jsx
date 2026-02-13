@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useTranslation} from "react-i18next";
 import {BrandIcon} from "@/components/ui/brandIcon/BrandIcon";
-import {getLinks} from "@/services/portfolio.service";
+import {getLinks} from "@/services/portfolioService";
 import {Loading} from "@/components/loading/Loading";
 import {ErrorState} from "@/components/errorState/ErrorState";
 

@@ -1,6 +1,9 @@
 /**
  * BrandIcon renders an SVG icon from the simple-icons set or custom SVG data.
  *
+ * @component
+ * @module components/ui/brandIcon/BrandIcon
+ *
  * @param {object} props - Component props.
  * @param {object} props.icon - Icon object containing `svg` string.
  * @param {string} props.color - Fill color for the SVG.

@@ -3,7 +3,7 @@ import {fireEvent, render, screen} from "@testing-library/react";
 import Testimonials from "./Testimonials";
 import {MemoryRouter} from 'react-router-dom';
 import {vi} from 'vitest';
-import * as service from "@/services/portfolio.service";
+import * as service from "@/services/portfolioService";
 
 // Minimal translations
 vi.mock('react-i18next', () => ({
@@ -40,8 +40,11 @@ vi.mock('react-i18next', () => ({
     }
 }));
 
-vi.mock("@/App", () => ({
+vi.mock("@/components/loading/Loading", () => ({
     Loading: () => <div role="status">loading</div>,
+}));
+
+vi.mock("@/components/errorState/ErrorState", () => ({
     ErrorState: ({message, onRetry}) => (
         <div>
             <span>{message}</span>

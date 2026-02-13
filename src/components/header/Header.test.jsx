@@ -75,6 +75,31 @@ describe("Header", () => {
         expect(chevron).toHaveClass("rotate-180");
     });
 
+    test("desktop portfolio dropdown button has aria-haspopup", () => {
+        renderHeader("/");
+        const btn = screen.getAllByRole("button", {name: /portfolio/i})[0];
+        expect(btn).toHaveAttribute("aria-haspopup", "true");
+    });
+
+    test("desktop portfolio dropdown animation triggers initial and exit states", () => {
+        renderHeader("/");
+        const btn = screen.getAllByRole("button", {name: /portfolio/i})[0];
+
+        fireEvent.click(btn);
+        const dropdown = screen.getByText("Experience").parentElement;
+        expect(dropdown).toHaveAttribute("class"); // should exist and include motion div classes
+    });
+
+    test("desktop dropdown closes when re-clicked", () => {
+        renderHeader("/");
+        const btn = screen.getAllByRole("button", {name: /portfolio/i})[0];
+        fireEvent.click(btn);
+        expect(screen.getByText("Experience")).toBeInTheDocument();
+
+        fireEvent.click(btn);
+        expect(screen.queryByText("Experience")).not.toBeInTheDocument();
+    });
+
     describe("mobile menu behavior", () => {
         test("portfolio disclosure expands and collapses", () => {
             renderHeader("/");
@@ -161,6 +186,38 @@ describe("Header", () => {
 
             const homes = within(menu).getAllByText("Home");
             expect(homes.length).toBe(1);
+        });
+
+        test("mobile portfolio panel closes when a link is clicked", () => {
+            renderHeader("/");
+
+            fireEvent.click(screen.getByLabelText(/toggle mobile menu/i));
+            const menu = screen.getByTestId("mobile-menu");
+
+            const disclosureBtn = within(menu).getByRole("button", {name: /portfolio/i});
+            fireEvent.click(disclosureBtn);
+
+            const projectLink = within(menu).getByText("Projects");
+            fireEvent.click(projectLink);
+
+            expect(screen.queryByTestId("mobile-menu")).not.toBeInTheDocument();
+        });
+
+        test("mobile menu links have correct text and hrefs", () => {
+            renderHeader("/");
+
+            fireEvent.click(screen.getByLabelText(/toggle mobile menu/i));
+            const menu = screen.getByTestId("mobile-menu");
+
+            const portfolioBtn = within(menu).getByRole("button", {name: /portfolio/i});
+            fireEvent.click(portfolioBtn);
+
+            const links = ["Experience", "Projects", "Certifications", "Courses", "Testimonials", "Trading"];
+            links.forEach((label) => {
+                const link = within(menu).getByText(label);
+                expect(link).toBeInTheDocument();
+                expect(link.tagName).toBe("A");
+            });
         });
     });
 

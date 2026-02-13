@@ -3,7 +3,7 @@ import {PageSection} from "@/components/ui/pageSection/PageSection";
 import {SeoHead} from "@/components/seoHead/SeoHead";
 import React, {lazy, Suspense, useEffect, useState} from "react";
 import {Loading} from "@/components/loading/Loading";
-import {getExperiences, getTradingPerformance} from "@/services/portfolio.service";
+import {getExperiences, getTradingPerformance} from "@/services/portfolioService";
 import {tradingPerformance} from "@/mock/trading";
 import {ErrorState} from "@/components/errorState/ErrorState";
 
