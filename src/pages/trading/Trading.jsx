@@ -3,9 +3,9 @@ import {PageSection} from "@/components/ui/pageSection/PageSection";
 import {SeoHead} from "@/components/seoHead/SeoHead";
 import React, {lazy, Suspense, useEffect, useState} from "react";
 import {Loading} from "@/components/loading/Loading";
-import {getExperiences, getTradingPerformance} from "@/services/portfolioService";
-import {tradingPerformance} from "@/mock/trading";
+import {getTradingPerformance} from "@/services/portfolioService";
 import {ErrorState} from "@/components/errorState/ErrorState";
+import {ButtonLink} from "@/components/ui/buttonLink/ButtonLink";
 
 const TradingPerformanceChart = lazy(() =>
     import("@/components/ui/tradingPerformanceChart/TradingPerformanceChart").then(mod => ({default: mod.TradingPerformanceChart}))
@@ -46,22 +46,6 @@ export default function Trading() {
         t("trading_description"),
         t("disclaimer_text"),
     ];
-
-    function ButtonLink({href, children, color}) {
-        const baseClasses =
-            "flex-1 min-w-[140px] flex items-center justify-center text-center font-semibold rounded-lg px-6 py-3 text-base transition-colors focus:outline-none shadow-md";
-        const colorClasses = {
-            green: "bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-white focus:ring-2 focus:ring-green-400 dark:focus:ring-green-300",
-            blue: "bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-300",
-        };
-
-        return (
-            <a href={href} target="_blank" rel="noopener noreferrer"
-               className={`${baseClasses} ${colorClasses[color]}`}>
-                {children}
-            </a>
-        );
-    }
 
     if (loading) return <Loading/>;
     if (error) return <ErrorState message={t("error_generic")} onRetry={loadTradingPerformance}/>;
