@@ -1,4 +1,4 @@
-// vitest.setup.js - JavaScript PURO per Vitest
+// vitest.setup.js - JavaScript PURO for Vitest
 import '@testing-library/jest-dom';
 
 // Polyfill TextEncoder/TextDecoder
@@ -9,7 +9,7 @@ if (typeof global.TextDecoder === 'undefined') {
     global.TextDecoder = require('util').TextDecoder;
 }
 
-// Canvas mock COMPLETO per Chart.js (no jest.fn - solo funzioni pure)
+// Canvas COMPLETE mock for Chart.js (no jest.fn - just pure functions)
 HTMLCanvasElement.prototype.getContext = () => ({
     fillRect: () => {},
     clearRect: () => {},

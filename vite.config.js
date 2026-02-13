@@ -19,7 +19,17 @@ export default defineConfig({
         globals: true,
         environment: 'jsdom',
         setupFiles: './src/setupTests.js',
-        include: ['src/**/*.{test,spec}.{js,jsx}']
+        include: ['src/**/*.{test,spec}.{js,jsx}'],
+        coverage: {
+            reporter: ['text', 'html'],
+            exclude: [
+                'src/assets/**',
+                'src/i18n/**',
+                'src/locales/**',
+                '**/*.test.*',
+                '**/*.spec.*'
+            ]
+        }
     },
     build: {
         outDir: 'dist',
