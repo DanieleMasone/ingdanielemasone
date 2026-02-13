@@ -30,8 +30,26 @@ export default function Home() {
                     data-testid="page-grid"
                 >
                     {/* Avatar: First on mobile, second on desktop */}
-                    <div className="flex justify-center md:justify-end items-center order-1 md:order-2">
+                    <div
+                        className="flex flex-col justify-center items-center md:items-end space-y-4 order-1 md:order-2">
                         <AvatarCard/>
+
+                        {/* LinkedIn button */}
+                        <a
+                            href="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=ingdanielemasone"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex justify-center items-center
+                                        w-[200px] h-8 rounded-full
+                                        bg-[#0A66C2] dark:bg-[#0A66C2]/90
+                                        text-white
+                                        text-base font-sans no-underline
+                                        transition-colors duration-300
+                                        hover:bg-[#004182] dark:hover:bg-[#004182]/90
+                                    "
+                        >
+                            {t("follow_linkedin")}
+                        </a>
                     </div>
 
                     {/* Text: Second in order on mobile, first on desktop */}

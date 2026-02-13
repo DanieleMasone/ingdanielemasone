@@ -12,6 +12,7 @@ vi.mock('react-i18next', () => ({
                 about_title: 'About Me',
                 about_intro: 'Hello, I am a software engineer.',
                 about_experience: 'I have 10 years of experience in frontend development.',
+                follow_linkedin: 'Follow on LinkedIn'
             };
             return translations[key] || key;
         },
@@ -78,5 +79,30 @@ describe('Home component', () => {
     test('PageGrid contains two children', () => {
         const pageGrid = screen.getByTestId('page-grid');
         expect(pageGrid.children.length).toBe(1);
+    });
+
+    test('renders LinkedIn button with correct text', () => {
+        const linkedinButton = screen.getByRole('link', {name: /Follow on LinkedIn/i});
+        expect(linkedinButton).toBeInTheDocument();
+    });
+
+    test('LinkedIn button has correct href and target attributes', () => {
+        const linkedinButton = screen.getByRole('link', {name: /Follow on LinkedIn/i});
+        expect(linkedinButton).toHaveAttribute(
+            'href',
+            'https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=ingdanielemasone'
+        );
+        expect(linkedinButton).toHaveAttribute('target', '_blank');
+        expect(linkedinButton).toHaveAttribute('rel', 'noopener noreferrer');
+    });
+
+    test('LinkedIn button has proper Tailwind classes', () => {
+        const linkedinButton = screen.getByRole('link', {name: /Follow on LinkedIn/i});
+        expect(linkedinButton).toHaveClass(
+            'flex', 'justify-center', 'items-center',
+            'w-[200px]', 'h-8', 'rounded-full',
+            'bg-[#0A66C2]', 'dark:bg-[#0A66C2]/90',
+            'text-white', 'text-base', 'font-sans', 'no-underline'
+        );
     });
 });

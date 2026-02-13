@@ -430,5 +430,6 @@
   },
   "error_title": "Error",
   "error_retry": "Retry",
-  "error_generic": "Something went wrong"
+  "error_generic": "Something went wrong",
+  "follow_linkedin": "Follow me on LinkedIn"
 }
