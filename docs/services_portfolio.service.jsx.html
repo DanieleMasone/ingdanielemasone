@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>services/portfolio.service.jsx - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-components_errorState_ErrorState.html">components/errorState/ErrorState</a></li><li><a href="module-components_footer_Footer.html">components/footer/Footer</a></li><li><a href="module-components_header_Header.html">components/header/Header</a></li><li><a href="module-components_loading_Loading.html">components/loading/Loading</a></li><li><a href="module-components_notFound_NotFound.html">components/notFound/NotFound</a></li><li><a href="module-components_seoHead_SeoHead.html">components/seoHead/SeoHead</a></li><li><a href="module-components_ui_PageGrid.html">components/ui/PageGrid</a></li><li><a href="module-components_ui_avatarCard_AvatarCard.html">components/ui/avatarCard/AvatarCard</a></li><li><a href="module-components_ui_card_Card.html">components/ui/card/Card</a></li><li><a href="module-components_ui_cardContent_CardContent.html">components/ui/cardContent/CardContent</a></li><li><a href="module-components_ui_darkModeToggle_DarkModeToggle.html">components/ui/darkModeToggle/DarkModeToggle</a></li><li><a href="module-components_ui_expandableText_ExpandableText.html">components/ui/expandableText/ExpandableText</a></li><li><a href="module-components_ui_pageSection_PageSection.html">components/ui/pageSection/PageSection</a></li><li><a href="module-components_ui_pagination_Pagination.html">components/ui/pagination/Pagination</a></li><li><a href="module-components_ui_selectableButton_SelectableButton.html">components/ui/selectableButton/SelectableButton</a></li><li><a href="module-components_ui_techDisclosure_TechDisclosure.html">components/ui/techDisclosure/TechDisclosure</a></li><li><a href="module-components_ui_tradingPerformanceChart_TradingPerformanceChart.html">components/ui/tradingPerformanceChart/TradingPerformanceChart</a></li><li><a href="module-pages_certifications_Certifications.html">pages/certifications/Certifications</a></li><li><a href="module-pages_cookiePolicy_CookiePolicy.html">pages/cookiePolicy/CookiePolicy</a></li><li><a href="module-pages_courses_Courses.html">pages/courses/Courses</a></li><li><a href="module-pages_experience_Experience.html">pages/experience/Experience</a></li><li><a href="module-pages_home_Home.html">pages/home/Home</a></li><li><a href="module-pages_privacy_Privacy.html">pages/privacy/Privacy</a></li><li><a href="module-pages_projects_Projects.html">pages/projects/Projects</a></li><li><a href="module-pages_testimonials_Testimonials.html">pages/testimonials/Testimonials</a></li><li><a href="module-pages_trading_Trading.html">pages/trading/Trading</a></li><li><a href="module-pages_ui_cookieBanner_CookieBanner.html">pages/ui/cookieBanner/CookieBanner</a></li></ul><h3>Global</h3><ul><li><a href="global.html#BrandIcon">BrandIcon</a></li><li><a href="global.html#delay">delay</a></li><li><a href="global.html#getCertifications">getCertifications</a></li><li><a href="global.html#getCourses">getCourses</a></li><li><a href="global.html#getExperienceLabel">getExperienceLabel</a></li><li><a href="global.html#getExperiences">getExperiences</a></li><li><a href="global.html#getLinks">getLinks</a></li><li><a href="global.html#getProjects">getProjects</a></li><li><a href="global.html#getTestimonials">getTestimonials</a></li><li><a href="global.html#getTradingPerformance">getTradingPerformance</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">services/portfolio.service.jsx</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {courses} from "@/mock/courses";
+import {certifications} from "@/mock/certifications";
+import {experiences} from "@/mock/experiences";
+import {projects} from "@/mock/projects";
+import {testimonials} from "@/mock/testimonials";
+import {tradingPerformance} from "@/mock/trading";
+import {links} from "@/mock/links";
+
+/**
+ * Simulates network latency.
+ *
+ * @param ms - Milliseconds to wait before resolving.
+ * @returns Promise that resolves after the given delay.
+ */
+const delay = (ms) => new Promise(res => setTimeout(res, ms));
+
+/**
+ * Fetches course data.
+ *
+ * Simulates a remote API call and resolves with the list of courses.
+ *
+ * @returns Promise resolving to the courses dataset.
+ */
+export async function getCourses() {
+    await delay(300);
+    return courses;
+}
+
+/**
+ * Fetches certification data.
+ *
+ * Simulates a remote API call and resolves with the list of certifications.
+ *
+ * @returns Promise resolving to the certifications dataset.
+ */
+export async function getCertifications() {
+    await delay(300);
+    return certifications;
+}
+
+/**
+ * Fetches professional experience data.
+ *
+ * Simulates a remote API call and resolves with the list of experiences.
+ *
+ * @returns Promise resolving to the experiences dataset.
+ */
+export async function getExperiences() {
+    await delay(300);
+    return experiences;
+}
+
+/**
+ * Fetches project data.
+ *
+ * Simulates a remote API call and resolves with the list of projects.
+ *
+ * @returns Promise resolving to the projects dataset.
+ */
+export async function getProjects() {
+    await delay(300);
+    return projects;
+}
+
+/**
+ * Fetches testimonial data.
+ *
+ * Simulates a remote API call and resolves with the list of testimonials.
+ *
+ * @returns Promise resolving to the testimonials dataset.
+ */
+export async function getTestimonials() {
+    await delay(300);
+    return testimonials;
+}
+
+/**
+ * Fetches trading performance metrics.
+ *
+ * Simulates a remote API call and resolves with trading performance data.
+ *
+ * @returns Promise resolving to the trading performance dataset.
+ */
+export async function getTradingPerformance() {
+    await delay(300);
+    return tradingPerformance;
+}
+
+/**
+ * Fetches social and external link data.
+ *
+ * Simulates a remote API call and resolves with the list of links.
+ *
+ * @returns Promise resolving to the links dataset.
+ */
+export async function getLinks() {
+    await delay(300);
+    return links;
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Fri Feb 13 2026 11:58:01 GMT+0100 (Ora standard dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>
