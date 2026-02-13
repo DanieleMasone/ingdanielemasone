@@ -1,0 +1,2 @@
+import{j as s}from"./index-CJmyN7MX.js";import{c as g}from"./clsx-B-dksMZM.js";function l({label:a,isSelected:r,onClick:t,className:e="",disabled:o=!1}){return s.jsx("button",{onClick:t,disabled:o,className:g("px-4 py-2 rounded-lg border text-sm whitespace-nowrap transition-all",r?"bg-blue-600 text-white shadow-md hover:shadow-lg dark:bg-blue-500":"bg-gray-200 hover:bg-gray-300 shadow-sm dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200",e),"aria-pressed":r,children:a})}export{l as S};
+//# sourceMappingURL=SelectableButton-DUGf29HP.js.map
