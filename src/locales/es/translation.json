@@ -432,5 +432,11 @@
   "error_retry": "Reintentar",
   "error_generic": "Algo salió mal",
   "follow_linkedin": "Sígueme en LinkedIn",
-  "RGI_Certification": "Reconocimiento por el papel activo en la formación técnica de la academia interna. Responsable de las sesiones de capacitación dirigidas a los equipos de desarrollo para la adopción de la nueva arquitectura Front-End y las pautas de uso."
+  "RGI_Certification": "Reconocimiento por el papel activo en la formación técnica de la academia interna. Responsable de las sesiones de capacitación dirigidas a los equipos de desarrollo para la adopción de la nueva arquitectura Front-End y las pautas de uso.",
+  "Speexx_B2_2": "Certificación de inglés nivel B2.2: competencia avanzada en comunicación profesional escrita y oral.",
+  "Speexx_B2_1": "Certificación de inglés nivel B2.1: competencia sólida en comunicación profesional.",
+  "Speexx_B1_2": "Certificación de inglés nivel B1.2: habilidades de comunicación intermedia.",
+  "Speexx_B1_1": "Certificación de inglés nivel B1.1: habilidades de inglés básicas-intermedias.",
+  "Codemotion_Milan": "Participación en talleres de desarrollo de software y tecnologías modernas durante Codemotion Milan.",
+  "Codemotion_Workshop": "Finalización de sesiones prácticas sobre desarrollo web y metodologías de software en Codemotion Workshop Fest."
 }

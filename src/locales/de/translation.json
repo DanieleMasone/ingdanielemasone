@@ -432,5 +432,11 @@
   "error_retry": "Erneut versuchen",
   "error_generic": "Etwas ist schiefgelaufen",
   "follow_linkedin": "Folge mir auf LinkedIn",
-  "RGI_Certification": "Anerkennung für die aktive Rolle in der technischen Ausbildung der internen Akademie. Verantwortlich für Schulungssitzungen für die Entwicklungsteams zur Einführung der neuen Front-End-Architektur und der Nutzungsvorgaben."
+  "RGI_Certification": "Anerkennung für die aktive Rolle in der technischen Ausbildung der internen Akademie. Verantwortlich für Schulungssitzungen für die Entwicklungsteams zur Einführung der neuen Front-End-Architektur und der Nutzungsvorgaben.",
+  "Speexx_B2_2": "Englisch CEFR Niveau B2.2 Zertifizierung: fortgeschrittene Kenntnisse in schriftlicher und mündlicher beruflicher Kommunikation.",
+  "Speexx_B2_1": "Englisch CEFR Niveau B2.1 Zertifizierung: solide Kenntnisse in beruflicher Kommunikation.",
+  "Speexx_B1_2": "Englisch CEFR Niveau B1.2 Zertifizierung: mittlere Kommunikationsfähigkeiten.",
+  "Speexx_B1_1": "Englisch CEFR Niveau B1.1 Zertifizierung: grundlegende bis mittlere Englischkenntnisse.",
+  "Codemotion_Milan": "Teilnahme an Workshops zu Softwareentwicklung und modernen Technologien während Codemotion Milan.",
+  "Codemotion_Workshop": "Abschluss praxisnaher Sessions zu Webentwicklung und Softwaremethoden beim Codemotion Workshop Fest."
 }
