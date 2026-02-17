@@ -72,10 +72,6 @@ export function Footer() {
                             >
                                 <BrandIcon icon={icon} color={color} className={className} size={24} title={label}/>
 
-                                <span className="mt-1 text-[10px] sm:hidden text-gray-700 dark:text-gray-400">
-                                    {label}
-                                </span>
-
                                 <span className="
                                     pointer-events-none
                                     absolute -top-8 left-1/2 -translate-x-1/2

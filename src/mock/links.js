@@ -14,20 +14,6 @@ export const links = [
         label: "LinkedIn",
     },
     {
-        key: "instagram",
-        href: "https://www.instagram.com/ing_daniele_masone/",
-        icon: icons.siInstagram,
-        color: "#E4405F",
-        label: "Instagram",
-    },
-    {
-        key: "facebook",
-        href: "https://www.facebook.com/danieleMasone",
-        icon: icons.siFacebook,
-        color: "#1877F2",
-        label: "Facebook",
-    },
-    {
         key: "github",
         href: "https://github.com/DanieleMasone",
         icon: icons.siGithub,
@@ -42,4 +28,26 @@ export const links = [
         color: "#EC5252",
         label: "Udemy",
     },
+    {
+        key: "x",
+        href: "https://twitter.com/masone_daniele",
+        icon: icons.siX,
+        color: "currentColor",
+        label: "X",
+        className: "text-black dark:text-white scale-[0.88]"
+    },
+    {
+        key: "instagram",
+        href: "https://www.instagram.com/ing_daniele_masone/",
+        icon: icons.siInstagram,
+        color: "#E4405F",
+        label: "Instagram",
+    },
+    {
+        key: "facebook",
+        href: "https://www.facebook.com/danieleMasone",
+        icon: icons.siFacebook,
+        color: "#1877F2",
+        label: "Facebook",
+    }
 ];
