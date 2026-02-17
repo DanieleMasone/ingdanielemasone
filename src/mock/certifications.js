@@ -1,3 +1,5 @@
+import myCertPdf from "../assets/certifications/Attestato_Masone.pdf";
+
 export const certifications = [
     {
         nameKey: "English CEFR Level B2.2",
@@ -16,6 +18,13 @@ export const certifications = [
         issuer: "Speexx",
         date: "2024",
         link: "https://portal.speexx.com/certificate/ZTAxY2Y5ZTktNGRjMi00Yzc0LWFjYmQtZjAzOTIyZDNmZjdmOjo4MA=="
+    },
+    {
+        nameKey: "Academy Trainer",
+        issuer: "RGI Group",
+        date: "2023",
+        descriptionKey: "RGI_Certification",
+        link: myCertPdf
     },
     {
         nameKey: "English CEFR Level B1.1",

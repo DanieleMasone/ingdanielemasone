@@ -431,5 +431,6 @@
   "error_title": "Error",
   "error_retry": "Reintentar",
   "error_generic": "Algo salió mal",
-  "follow_linkedin": "Sígueme en LinkedIn"
+  "follow_linkedin": "Sígueme en LinkedIn",
+  "RGI_Certification": "Reconocimiento por el papel activo en la formación técnica de la academia interna. Responsable de las sesiones de capacitación dirigidas a los equipos de desarrollo para la adopción de la nueva arquitectura Front-End y las pautas de uso."
 }

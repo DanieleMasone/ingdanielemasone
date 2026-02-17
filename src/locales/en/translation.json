@@ -431,5 +431,6 @@
   "error_title": "Error",
   "error_retry": "Retry",
   "error_generic": "Something went wrong",
-  "follow_linkedin": "Follow me on LinkedIn"
+  "follow_linkedin": "Follow me on LinkedIn",
+  "RGI_Certification": "Recognition for the active role in technical training within the internal academy. Responsible for training sessions aimed at development teams for the adoption of the new Front-End architecture and usage guidelines."
 }

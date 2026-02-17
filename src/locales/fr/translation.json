@@ -431,5 +431,6 @@
   "error_title": "Erreur",
   "error_retry": "Réessayer",
   "error_generic": "Une erreur est survenue",
-  "follow_linkedin": "Suivez-moi sur LinkedIn"
+  "follow_linkedin": "Suivez-moi sur LinkedIn",
+  "RGI_Certification": "Reconnaissance pour le rôle actif dans la formation technique de l'académie interne. Responsable des sessions de formation destinées aux équipes de développement pour l'adoption de la nouvelle architecture Front-End et des directives d'utilisation."
 }

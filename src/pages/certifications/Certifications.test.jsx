@@ -143,4 +143,28 @@ describe("Certifications component", () => {
 
         expect(await screen.findByText("Generic error")).toBeInTheDocument();
     });
+
+    test("renders description if descriptionKey is provided", async () => {
+        const certsWithDescription = [
+            {...mockCerts[0], descriptionKey: "cert.desc.0"}
+        ];
+        vi.spyOn(service, "getCertifications").mockResolvedValueOnce(certsWithDescription);
+
+        renderPage();
+
+        const description = await screen.findByText("cert.desc.0");
+        expect(description).toBeInTheDocument();
+    });
+
+    test("does not render description if descriptionKey is missing", async () => {
+        vi.spyOn(service, "getCertifications").mockResolvedValueOnce([mockCerts[1]]);
+
+        renderPage();
+
+        // Wait for the certificates to be rendered
+        await screen.findAllByRole("link", {name: /view certificate/i});
+
+        const description = screen.queryByText(/cert.desc/i);
+        expect(description).not.toBeInTheDocument();
+    });
 });

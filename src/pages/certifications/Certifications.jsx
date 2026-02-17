@@ -89,9 +89,9 @@ export default function Certifications() {
                                 <Award className="w-6 h-6 text-blue-600 dark:text-blue-400"/>
                             </div>
 
-                            <CardContent className="p-0 flex flex-col gap-3">
+                            <CardContent className="p-0 flex flex-col gap-3 h-full">
                                 {/* Header */}
-                                <div className="space-y-1.5 mb-4">
+                                <div className="space-y-1.5">
                                     <h3 className="text-lg font-bold text-gray-900 dark:text-white leading-tight">
                                         {t(cert.nameKey)}
                                     </h3>
@@ -103,27 +103,43 @@ export default function Certifications() {
                                     </p>
                                 </div>
 
+                                {/* Description (optional) */}
+                                {cert.descriptionKey && (
+                                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                                        {t(cert.descriptionKey)}
+                                    </p>
+                                )}
+
                                 {/* CTA */}
-                                <a
-                                    href={cert.link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="group inline-flex items-center text-sm font-semibold text-blue-600 dark:text-blue-400
-                                               hover:text-blue-700 dark:hover:text-blue-300 transition-all duration-300
-                                               hover:underline underline-offset-4 hover:shadow-md hover:shadow-blue-100 dark:hover:shadow-blue-900/50
-                                               px-3 py-2 rounded-lg border border-blue-200/50 dark:border-blue-800/50 hover:border-blue-300"
-                                >
-                                    {t("certifications_page.view_certificate")}
-                                    <ExternalLink
-                                        className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"/>
-                                </a>
+                                <div className="mt-auto pt-2">
+                                    <a
+                                        href={cert.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center justify-center
+                                                    w-[200px] sm:w-[220px] h-10
+                                                    text-sm font-semibold
+                                                    text-blue-600 dark:text-blue-400
+                                                    hover:text-blue-700 dark:hover:text-blue-300
+                                                    transition-all duration-300
+                                                    hover:underline underline-offset-4
+                                                    hover:shadow-md hover:shadow-blue-100 dark:hover:shadow-blue-900/50
+                                                    rounded-lg
+                                                    border border-blue-200/50 dark:border-blue-800/50 hover:border-blue-300
+                        "
+                                    >
+                                        {t("certifications_page.view_certificate")}
+                                        <ExternalLink
+                                            className="w-4 h-4 ml-2 shrink-0 group-hover:translate-x-1 transition-transform duration-300"/>
+                                    </a>
+                                </div>
                             </CardContent>
 
                             {/* Hover overlay */}
                             <div
                                 className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100
                                            transition-all duration-500 bg-gradient-to-br from-blue-50/80 via-transparent to-transparent
-                                         dark:from-blue-900/30 rounded-xl backdrop-blur-sm"
+                                           dark:from-blue-900/30 rounded-xl backdrop-blur-sm"
                             />
                         </Card>
                     ))}
