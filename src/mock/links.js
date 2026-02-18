@@ -10,7 +10,7 @@ export const links = [
         key: "linkedin",
         href: "https://www.linkedin.com/in/ingdanielemasone/",
         icon: linkedinIcon,
-        color: "#0A66C2",
+        color: "currentColor",
         label: "LinkedIn",
     },
     {
@@ -25,7 +25,7 @@ export const links = [
         key: "udemy",
         href: "https://www.udemy.com/user/daniele-masone/",
         icon: icons.siUdemy,
-        color: "#EC5252",
+        color: "currentColor",
         label: "Udemy",
     },
     {
@@ -40,14 +40,14 @@ export const links = [
         key: "instagram",
         href: "https://www.instagram.com/ing_daniele_masone/",
         icon: icons.siInstagram,
-        color: "#E4405F",
+        color: "currentColor",
         label: "Instagram",
     },
     {
         key: "facebook",
         href: "https://www.facebook.com/danieleMasone",
         icon: icons.siFacebook,
-        color: "#1877F2",
+        color: "currentColor",
         label: "Facebook",
     }
 ];
