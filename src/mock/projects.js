@@ -1,5 +1,12 @@
 export const projects = [
     {
+        name: "AI-Assisted Refactoring for RPG on IBM i (AS/400)",
+        tech: "RPG, AS400, MySQL, AI",
+        type: "intesa.exp_ai_as400",
+        company: "Intesa Sanpaolo",
+        period: "03/2026 - Present",
+    },
+    {
         name: "AS/400 Reporting Frontend Modernization",
         tech: "RPG, AS400, Angular, REST APIs, jQuery, Maven, Git, HTML5, Java, JavaScript, Framework Spring, MySQL",
         type: "intesa.exp_as400_frontend",
