@@ -65,7 +65,9 @@ export default function Certifications() {
             <PageSection title={t("certifications_page.title")}>
                 {/* Pagination mobile sticky */}
                 <div
-                    className="md:hidden sticky top-0 z-20 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md py-2 mb-4 border-b border-gray-200 dark:border-gray-700"
+                    className="md:hidden sticky top-0 z-20 bg-white
+                             dark:bg-gray-900/80 backdrop-blur-md py-2 mb-4 border-b
+                             border-gray-200 dark:border-gray-700"
                 >
                     <Pagination
                         page={page}
