@@ -22,7 +22,7 @@ export function Pagination({
     if (totalPages <= 1) return null;
 
     return (
-        <div className={`flex flex-wrap justify-center items-center gap-3 mt-8 ${className}`}>
+        <div className={`flex flex-wrap justify-center items-center gap-3 ${className}`}>
             <button
                 onClick={() => onPageChange(Math.max(page - 1, 1))}
                 disabled={page === 1}
