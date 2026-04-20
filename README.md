@@ -24,13 +24,15 @@ The project features:
 
 Make sure you are using a modern Node.js environment:
 
-- Node.js: >= 20 (recommended: 22 or 24)
-- npm: >= 9
+- **Node.js**: >= 20 (recommended: 22 or 24)
+- **npm**: >= 9
 
 You can check your versions with:
 
+```bash
 node -v
 npm -v
+```
 
 ---
 
