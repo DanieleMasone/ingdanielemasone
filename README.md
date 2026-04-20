@@ -34,6 +34,14 @@ node -v
 npm -v
 ```
 
+This project relies on modern tooling:
+
+- **React**: 19.2.4
+- **Vite**: 7.3.1
+- **Vitest**: 4.x (testing framework)
+- **TypeScript types** (optional support): React 19 typings
+- **TailwindCSS**: 3.4.x
+
 ---
 
 ## Usage
