@@ -65,7 +65,7 @@ describe("ExpandableText", () => {
 
         expect(paragraph).toHaveAttribute("aria-expanded", "false");
         const initialHeight = paragraph.style.maxHeight;
-        expect(initialHeight).toMatch(/em/);
+        expect(initialHeight).toMatch(/px/);
 
         // Expand
         fireEvent.click(expandBtn);
@@ -79,7 +79,7 @@ describe("ExpandableText", () => {
         fireEvent.click(collapseBtn);
         await waitFor(() => {
             expect(paragraph).toHaveAttribute("aria-expanded", "false");
-            expect(paragraph.style.maxHeight).toMatch(/em/);
+            expect(paragraph.style.maxHeight).toMatch(/px/);
         });
     });
 
@@ -148,7 +148,7 @@ describe("ExpandableText", () => {
         const paragraph = btn.closest("div").previousSibling;
 
         // maxHeight = maxLines * 1.5em
-        expect(paragraph.style.maxHeight).toBe("6em");
+        expect(paragraph.style.maxHeight).toBe("64px");
     });
 
     test("toggle button switches icon chevron down/up", async () => {

@@ -20,6 +20,7 @@ export function ExpandableText({value = "", maxLines = 3, className = ""}) {
     const [expanded, setExpanded] = useState(false);
     const [showButton, setShowButton] = useState(false);
     const [contentHeight, setContentHeight] = useState(0);
+    const [collapsedHeight, setCollapsedHeight] = useState(0);
     const paragraphRef = useRef(null);
     const {t} = useTranslation();
 
@@ -31,19 +32,21 @@ export function ExpandableText({value = "", maxLines = 3, className = ""}) {
         const maxHeightCollapsed = maxLines * lineHeight;
 
         setContentHeight(el.scrollHeight);
+        setCollapsedHeight(maxHeightCollapsed);
         setShowButton(el.scrollHeight > maxHeightCollapsed);
     }, [value, maxLines]);
 
     return (
         <div className="relative">
             <div
+                data-testid="expandable-text"
                 ref={paragraphRef}
                 className={clsx(
                     "text-sm sm:text-base whitespace-pre-wrap overflow-hidden transition-all duration-500 ease-in-out relative",
                     className
                 )}
                 style={{
-                    maxHeight: expanded ? `${contentHeight}px` : `${maxLines * 1.5}em`,
+                    maxHeight: expanded ? `${contentHeight}px` : `${collapsedHeight}px`
                 }}
                 aria-expanded={expanded}
             >

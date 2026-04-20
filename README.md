@@ -20,6 +20,20 @@ The project features:
 
 ---
 
+## Requirements
+
+Make sure you are using a modern Node.js environment:
+
+- Node.js: >= 20 (recommended: 22 or 24)
+- npm: >= 9
+
+You can check your versions with:
+
+node -v
+npm -v
+
+---
+
 ## Usage
 
 Clone the repository:

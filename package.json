@@ -27,7 +27,6 @@
   },
   "scripts": {
     "start": "vite",
-    "start-node-opt": "set NODE_OPTIONS=--openssl-legacy-provider && vite",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
@@ -38,6 +37,9 @@
     "build:all": "npm run build && npm run coverage && npm run doc",
     "deploy": "node scripts/deployAll.js",
     "deploy:all": "npm run build:all && npm run deploy"
+  },
+  "engines": {
+    "node": ">=20"
   },
   "browserslist": {
     "production": [
@@ -67,7 +69,6 @@
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.19",
     "vite": "^7.3.1",
-    "vite-tsconfig-paths": "^6.0.5",
     "vitest": "^4.0.18"
   }
 }
