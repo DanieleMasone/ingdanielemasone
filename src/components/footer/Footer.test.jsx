@@ -196,4 +196,76 @@ describe("Footer – async UI", () => {
         expect(spy).toHaveBeenCalledTimes(2);
     });
 
+    test("renders docs and coverage links", async () => {
+        vi.spyOn(service, "getLinks")
+            .mockResolvedValueOnce(mockLinks);
+
+        renderFooter();
+
+        expect(await screen.findByRole("link", {name: "Docs"})).toBeInTheDocument();
+        expect(await screen.findByRole("link", {name: "Coverage"})).toBeInTheDocument();
+    });
+
+    test("docs and coverage links have correct href", async () => {
+        vi.spyOn(service, "getLinks")
+            .mockResolvedValueOnce(mockLinks);
+
+        renderFooter();
+
+        const docs = await screen.findByRole("link", {name: "Docs"});
+        const coverage = await screen.findByRole("link", {name: "Coverage"});
+
+        expect(docs).toHaveAttribute(
+            "href",
+            "https://danielemasone.github.io/ingdanielemasone/docs"
+        );
+
+        expect(coverage).toHaveAttribute(
+            "href",
+            "https://danielemasone.github.io/ingdanielemasone/test-coverage"
+        );
+    });
+
+    test("docs and coverage links have security attributes", async () => {
+        vi.spyOn(service, "getLinks")
+            .mockResolvedValueOnce(mockLinks);
+
+        renderFooter();
+
+        const links = [
+            await screen.findByRole("link", {name: "Docs"}),
+            await screen.findByRole("link", {name: "Coverage"}),
+        ];
+
+        links.forEach(link => {
+            expect(link).toHaveAttribute("target", "_blank");
+            expect(link).toHaveAttribute("rel", "noopener noreferrer");
+        });
+    });
+
+    test("docs and coverage links are reachable via keyboard", async () => {
+        vi.spyOn(service, "getLinks")
+            .mockResolvedValueOnce(mockLinks);
+
+        const user = userEvent.setup();
+        renderFooter();
+
+        const docs = await screen.findByRole("link", {name: "Docs"});
+        const coverage = await screen.findByRole("link", {name: "Coverage"});
+
+        // Tab fino a raggiungerli
+        let foundDocs = false;
+        let foundCoverage = false;
+
+        for (let i = 0; i < 20; i++) {
+            await user.tab();
+
+            if (docs === document.activeElement) foundDocs = true;
+            if (coverage === document.activeElement) foundCoverage = true;
+        }
+
+        expect(foundDocs).toBe(true);
+        expect(foundCoverage).toBe(true);
+    });
+
 });

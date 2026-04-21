@@ -89,11 +89,37 @@ export function Footer() {
                             </a>
                         ))}
                     </div>
-
-                    <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-400 text-center select-none mt-2">
-                        {t("footer_copyright")}
-                    </p>
                 </nav>
+
+                {/* COPYRIGHT */}
+                <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-400 text-center select-none mt-2">
+                    {t("footer_copyright")}
+                </p>
+
+                {/* DEV LINKS */}
+                <nav
+                    aria-label="Developer resources"
+                    className="mt-2 text-[11px] sm:text-xs text-gray-600 dark:text-gray-500 text-center"
+                >
+                    <a
+                        href="https://danielemasone.github.io/ingdanielemasone/docs"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:underline mx-1"
+                    >
+                        Docs
+                    </a>
+                    ·
+                    <a
+                        href="https://danielemasone.github.io/ingdanielemasone/test-coverage"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:underline mx-1"
+                    >
+                        Coverage
+                    </a>
+                </nav>
+
             </div>
         </footer>
     );
