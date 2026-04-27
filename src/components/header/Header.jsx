@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {Link, useLocation} from 'react-router';
 import {LanguageSwitcher} from '../ui/languageSwitcher/LanguageSwitcher';
 import {DarkModeToggle} from '../ui/darkModeToggle/DarkModeToggle';
@@ -20,6 +20,7 @@ export function Header() {
     const {pathname} = useLocation();
     const [menuOpen, setMenuOpen] = useState(false);
     const [portfolioOpen, setPortfolioOpen] = useState(false);
+    const portfolioRef = useRef(null);
 
     const navMain = [
         {to: '/', label: t('home')},
@@ -33,6 +34,34 @@ export function Header() {
         {to: '/testimonials', label: t('testimonials')},
         {to: '/trading', label: t('trading')}
     ];
+    const isPortfolioRoute = navPortfolio.some((item) => item.to === pathname);
+
+    useEffect(() => {
+        setMenuOpen(false);
+        setPortfolioOpen(false);
+    }, [pathname]);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (portfolioRef.current && !portfolioRef.current.contains(event.target)) {
+                setPortfolioOpen(false);
+            }
+        };
+
+        const handleEscape = (event) => {
+            if (event.key === "Escape") setPortfolioOpen(false);
+        };
+
+        if (portfolioOpen) {
+            document.addEventListener("mousedown", handleClickOutside);
+            document.addEventListener("keydown", handleEscape);
+        }
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+            document.removeEventListener("keydown", handleEscape);
+        };
+    }, [portfolioOpen]);
 
     const getLinkClasses = (path) =>
         `transition font-medium hover:text-blue-600 dark:hover:text-blue-400 ${
@@ -41,11 +70,21 @@ export function Header() {
 
     return (
         <header
-            className="bg-gray-200/70 dark:bg-gray-900/70 backdrop-blur-sm sticky top-0 z-50 shadow-md transition-shadow duration-300">
-            <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3 md:px-6 md:py-4">
+            className="bg-white/80 dark:bg-gray-950/80 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-200/80 dark:border-gray-800 transition-shadow duration-300">
+            <div className="max-w-7xl mx-auto flex items-center justify-between gap-4 px-4 py-3 md:px-6 md:py-4">
+                <Link
+                    to="/"
+                    className="flex min-w-0 flex-col text-gray-950 transition hover:text-blue-700 dark:text-white dark:hover:text-blue-300"
+                    aria-label="Daniele Masone home"
+                >
+                    <span className="truncate text-base font-extrabold leading-tight">Daniele Masone</span>
+                    <span className="truncate text-xs font-medium text-gray-600 dark:text-gray-400 sm:block">
+                        Senior Software Engineer
+                    </span>
+                </Link>
 
                 {/* Desktop Nav */}
-                <nav className="hidden md:flex items-center space-x-6">
+                <nav className="hidden md:flex items-center space-x-6" aria-label="Main navigation">
                     {navMain.map((item) => (
                         <Link key={item.to} to={item.to} className={getLinkClasses(item.to)}>
                             {item.label}
@@ -53,14 +92,15 @@ export function Header() {
                     ))}
 
                     {/* Portfolio Dropdown */}
-                    <div className="relative group">
+                    <div className="relative group" ref={portfolioRef}>
                         <button
                             onClick={() => setPortfolioOpen(!portfolioOpen)}
                             className={`flex items-center space-x-1 font-medium hover:text-blue-600 dark:hover:text-blue-400 transition ${
-                                portfolioOpen ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-gray-900 dark:text-white"
+                                portfolioOpen || isPortfolioRoute ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-gray-900 dark:text-white"
                             }`}
                             aria-haspopup="true"
                             aria-expanded={portfolioOpen}
+                            type="button"
                         >
                             <span>{t("portfolio")}</span>
                             <ChevronDown
@@ -102,9 +142,11 @@ export function Header() {
 
                 {/* Mobile menu toggle */}
                 <button
-                    className="md:hidden p-2 rounded focus:outline-none hover:bg-gray-300 dark:hover:bg-gray-700 transition"
+                    className="md:hidden p-2 rounded focus:outline-none hover:bg-gray-200 dark:hover:bg-gray-800 transition"
                     onClick={() => setMenuOpen(!menuOpen)}
                     aria-label="Toggle mobile menu"
+                    aria-expanded={menuOpen}
+                    type="button"
                 >
                     {menuOpen ? <X className="w-6 h-6"/> : <Menu className="w-6 h-6"/>}
                 </button>
@@ -120,7 +162,7 @@ export function Header() {
                         animate={{opacity: 1, y: 0}}
                         exit={{opacity: 0, y: -16}}
                         transition={{duration: 0.2}}
-                        className="md:hidden px-4 pt-4 pb-6 bg-gray-100 dark:bg-gray-800 border-t border-gray-300 dark:border-gray-700 space-y-4"
+                        className="md:hidden px-4 pt-4 pb-6 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 space-y-4"
                     >
                         <div className="flex justify-between items-center">
                             <Link

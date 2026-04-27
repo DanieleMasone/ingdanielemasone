@@ -1,3 +1,12 @@
+/**
+ * Static professional timeline entries displayed by the Experience page.
+ *
+ * Role and description fields are translation keys. Period strings are also used
+ * to derive the year filter, so keep years in a parsable four-digit format.
+ *
+ * @type {Array<{role: string, company: string, period: string, description: string, tech: string}>}
+ * @module mock/experiences
+ */
 export const experiences = [
     {
         role: "exp_intesa_role",

@@ -18,14 +18,15 @@ export function AvatarCard() {
 
     return (
         <section
-            className="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-full max-w-xs sm:max-w-sm overflow-hidden">
+            className="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-full max-w-xs sm:max-w-sm overflow-hidden border border-gray-200 dark:border-gray-700">
 
             {/* Cover brand */}
             <div className="h-16 sm:h-20 w-full relative">
                 <img
                     src={cover}
-                    alt="Cover"
+                    alt=""
                     className="w-full h-full object-cover"
+                    aria-hidden="true"
                 />
                 {/* Overlay only on the cover */}
                 <div className="absolute inset-0 bg-black/20 z-0"></div>
@@ -40,7 +41,10 @@ export function AvatarCard() {
                 />
             </div>
 
-            <div className="mt-4 pb-4 relative z-10 px-4 sm:px-6 md:px-8 max-w-2xl mx-auto text-center">
+            <div className="mt-4 pb-5 relative z-10 px-4 sm:px-6 md:px-8 max-w-2xl mx-auto text-center">
+                <h2 className="text-xl font-bold text-gray-950 dark:text-white">
+                    {t("avatar.name")}
+                </h2>
                 <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base mb-1">
                     {t("avatar.tagline")}
                 </p>

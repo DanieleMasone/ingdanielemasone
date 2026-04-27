@@ -8,6 +8,14 @@ import fr from "../locales/fr/translation.json";
 import de from "../locales/de/translation.json";
 import es from "../locales/es/translation.json";
 
+/**
+ * i18next instance used by the portfolio.
+ *
+ * The configuration loads all bundled translations, defaults to Italian, falls
+ * back to English, and stores the detected language in localStorage.
+ *
+ * @module i18n/i18n
+ */
 i18n
     .use(initReactI18next)
     .use(LanguageDetector)

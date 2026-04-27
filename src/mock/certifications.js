@@ -1,5 +1,13 @@
 import myCertPdf from "../assets/certifications/Attestato_Masone.pdf";
 
+/**
+ * Static certification entries displayed by the Certifications page.
+ *
+ * `descriptionKey` values map to localized copy in `src/locales`.
+ *
+ * @type {Array<{nameKey: string, issuer: string, date: string, descriptionKey: string, link: string}>}
+ * @module mock/certifications
+ */
 export const certifications = [
     {
         nameKey: "English CEFR Level B2.2",

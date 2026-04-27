@@ -1,3 +1,12 @@
+/**
+ * Static testimonial entries displayed by the Testimonials page.
+ *
+ * Textual fields are translation keys; LinkedIn URLs point to the public profile
+ * for each testimonial author.
+ *
+ * @type {Array<{nameKey: string, roleKey: string, quoteKey: string, linkedinUrl: string}>}
+ * @module mock/testimonials
+ */
 export const testimonials = [
     {
         nameKey: "testimonials_people.mirko.name",

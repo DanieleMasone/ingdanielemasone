@@ -29,16 +29,13 @@ ChartJS.register(
 
 
 /**
- * TradingPerformanceChart component renders a combined line and bar chart showing
- * trading returns performance, either on a monthly or annual basis, with support for
- * light and dark themes.
+ * TradingPerformanceChart renders the trading performance section.
  *
- * The component reacts to changes in the `dark` CSS class on the document element
- * to dynamically update chart colors. Users can switch between monthly and annual
- * views via a select dropdown. Below the chart, a summary section displays detailed
- * returns with positive values in green and negative values in red.
+ * It combines a cumulative line chart with monthly or annual return bars, adapts
+ * chart colors to the current light/dark theme, and renders a localized summary of
+ * returns below the chart.
  *
- * Translations are supported via `react-i18nex
+ * Translations are provided by `react-i18next`.
  *
  * @component
  * @module components/ui/tradingPerformanceChart/TradingPerformanceChart
@@ -48,7 +45,7 @@ ChartJS.register(
  * @param {Array<number | null>} [props.monthlyReturns=Array(12).fill(0)] - Array of monthly returns.
  *    Each entry represents the return for a month in percent. Use `null` for missing data.
  *
- * @returns {JSX.Element} The trading performance chart section.
+ * @returns {JSX.Element} The trading performance chart and return summary.
  */
 export function TradingPerformanceChart({
                                             startYear = 2022,

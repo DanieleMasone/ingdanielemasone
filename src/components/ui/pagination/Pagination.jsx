@@ -1,15 +1,19 @@
 import {useTranslation} from "react-i18next";
 
 /**
- * Reusable pagination component.
+ * Reusable pagination controls for paged portfolio sections.
  *
- * Displays Previous / Next buttons and the current page number.
- * - Handles disabled states automatically.
- * - Translations via i18next.
+ * Renders localized previous/next buttons, disables boundary actions, and reports
+ * the current page out of the total page count.
  *
  * @component
  * @module components/ui/pagination/Pagination
- * @returns {JSX.Element} The header element with navigation links and controls.
+ * @param {Object} props - Component props.
+ * @param {number} props.page - Current one-based page number.
+ * @param {number} props.totalPages - Total number of available pages.
+ * @param {function(number): void} props.onPageChange - Callback fired with the next page.
+ * @param {string} [props.className] - Optional layout classes for the wrapper.
+ * @returns {JSX.Element|null} Pagination controls, or null when only one page exists.
  */
 export function Pagination({
                                        page,

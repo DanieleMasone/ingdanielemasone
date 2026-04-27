@@ -18,6 +18,7 @@ export function Footer() {
     const [links, setLinks] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const currentYear = new Date().getFullYear();
 
     const loadLinks = () => {
         setLoading(true);
@@ -93,7 +94,7 @@ export function Footer() {
 
                 {/* COPYRIGHT */}
                 <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-400 text-center select-none mt-2">
-                    {t("footer_copyright")}
+                    {t("footer_copyright", {year: currentYear})}
                 </p>
 
                 {/* DEV LINKS */}

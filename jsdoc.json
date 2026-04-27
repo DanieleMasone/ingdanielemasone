@@ -5,7 +5,7 @@
   "source": {
     "include": ["src"],
     "includePattern": "\\.(js|jsx)$",
-    "excludePattern": "(node_modules|build|public)"
+    "excludePattern": "(node_modules|dist|build|public|coverage|docs|\\.test\\.|setupTests\\.js)"
   },
   "opts": {
     "destination": "./docs",

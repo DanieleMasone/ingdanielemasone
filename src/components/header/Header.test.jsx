@@ -240,7 +240,15 @@ describe("Header", () => {
         expect(header.className).toMatch(/sticky/);
         expect(header.className).toMatch(/top-0/);
         expect(header.className).toMatch(/backdrop-blur-sm/);
-        expect(header.className).toMatch(/dark:bg-gray-900/);
+        expect(header.className).toMatch(/dark:bg-gray-950/);
+    });
+
+    test("renders the personal brand link", () => {
+        renderHeader("/");
+
+        const brand = screen.getByRole("link", {name: /daniele masone home/i});
+        expect(brand).toHaveAttribute("href", "/");
+        expect(screen.getByText("Daniele Masone")).toBeInTheDocument();
     });
 
     test("desktop portfolio dropdown closes after clicking a link", () => {

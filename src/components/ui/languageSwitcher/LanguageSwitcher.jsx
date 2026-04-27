@@ -19,6 +19,16 @@ const languageLabels = {
     es: "Español"
 };
 
+/**
+ * Language selector for the portfolio.
+ *
+ * Shows the active language, opens a localized language menu, and persists the
+ * chosen language through the shared i18next instance.
+ *
+ * @component
+ * @module components/ui/languageSwitcher/LanguageSwitcher
+ * @returns {JSX.Element} Language dropdown control.
+ */
 export function LanguageSwitcher() {
     const {i18n} = useTranslation();
     const [open, setOpen] = useState(false);

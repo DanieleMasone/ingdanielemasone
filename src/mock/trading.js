@@ -1,3 +1,12 @@
+/**
+ * Static trading performance dataset displayed by the Trading page.
+ *
+ * Monthly returns are percentage values ordered from `startYear` onward. `null`
+ * values represent months where performance data is not available yet.
+ *
+ * @type {{startYear: number, monthlyReturns: Array<number|null>}}
+ * @module mock/trading
+ */
 export const tradingPerformance = {
     startYear: 2022,
     monthlyReturns: [

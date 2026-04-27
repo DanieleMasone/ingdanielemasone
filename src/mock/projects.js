@@ -1,3 +1,12 @@
+/**
+ * Static project entries displayed by the Projects page.
+ *
+ * `type` values map to localized descriptions under `project_types` in the
+ * translation files. `company` is used for sidebar grouping.
+ *
+ * @type {Array<{name: string, tech: string, type: string, company: string, period: string}>}
+ * @module mock/projects
+ */
 export const projects = [
     {
         name: "AI-Assisted Refactoring for RPG on IBM i (AS/400)",

@@ -11,6 +11,15 @@ import phpPhoto from '../assets/courses/PHP.png';
 import sqlPhoto from '../assets/courses/SQL.png';
 import typescriptPhoto from '../assets/courses/TYPESCRIPT.png';
 
+/**
+ * Static course entries displayed by the Courses page.
+ *
+ * Title, description, and duration are translation keys; images are bundled
+ * assets so the course cards remain available offline after deployment.
+ *
+ * @type {Array<{nameKey: string, descKey: string, durationKey: string, tech: string, link: string, image: string}>}
+ * @module mock/courses
+ */
 export const courses = [
     {
         nameKey: "courses_page.git.title",

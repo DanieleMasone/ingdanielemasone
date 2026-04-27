@@ -18,13 +18,26 @@ const Privacy = lazy(() => import('./pages/privacy/Privacy'));
 const CookiePolicy = lazy(() => import('./pages/cookiePolicy/CookiePolicy'));
 
 /**
- * Modern App with React 19 + Vite 7 + Lazy Loading
+ * Root layout for the portfolio application.
+ *
+ * Provides the persistent header, footer, cookie banner, route-level lazy loading,
+ * and a keyboard-accessible skip link to the main page content.
+ *
+ * @component
+ * @module App
+ * @returns {JSX.Element} The routed portfolio application shell.
  */
 export default function App() {
     return (
         <div className="flex flex-col min-h-screen">
+            <a
+                href="#main-content"
+                className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-blue-600 focus:px-4 focus:py-2 focus:text-white focus:shadow-lg"
+            >
+                Skip to content
+            </a>
             <Header/>
-            <main className="flex-grow overflow-auto">
+            <main id="main-content" className="flex-grow overflow-auto" tabIndex="-1">
                 <Suspense fallback={<Loading/>}>
                     <Routes>
                         <Route path="/" element={<Home/>}/>

@@ -2,16 +2,15 @@ import React, {useEffect, useState} from 'react';
 
 
 /**
- * CookieBanner component shows a banner at the bottom of the screen
- * prompting the user to accept cookies if they haven't already given consent.
+ * Cookie consent banner for the portfolio.
  *
  * Behavior:
- * - On mount, checks localStorage for 'cookieConsent' key.
- * - If consent not found, shows the banner.
- * - When user clicks "Accept", stores consent in localStorage and hides the banner.
+ * - Checks localStorage for a `cookieConsent` timestamp.
+ * - Shows the banner only when consent is missing.
+ * - Stores the acceptance timestamp and hides the banner after confirmation.
  *
  * @component
- * @module pages/ui/cookieBanner/CookieBanner
+ * @module components/ui/cookieBanner/CookieBanner
  * @returns {JSX.Element|null} The cookie consent banner or null if consent is already given.
  */
 export function CookieBanner() {

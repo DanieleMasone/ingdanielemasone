@@ -32,7 +32,18 @@ export default defineConfig({
     },
     build: {
         outDir: 'dist',
-        sourcemap: true
+        sourcemap: true,
+        rollupOptions: {
+            output: {
+                manualChunks: {
+                    react: ['react', 'react-dom', 'react-router', 'react-router-dom'],
+                    i18n: ['i18next', 'react-i18next', 'i18next-browser-languagedetector'],
+                    motion: ['framer-motion', '@headlessui/react'],
+                    charts: ['chart.js', 'react-chartjs-2'],
+                    icons: ['lucide-react', 'react-icons', 'simple-icons', 'boring-avatars']
+                }
+            }
+        }
     },
     preview: {
         port: 4173

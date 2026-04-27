@@ -1,4 +1,11 @@
-// vitest.setup.js - JavaScript PURO for Vitest
+/**
+ * Vitest setup for React component tests.
+ *
+ * Registers jest-dom matchers and provides the minimal browser features needed by
+ * jsdom-based tests, including a canvas context mock for Chart.js.
+ *
+ * @module setupTests
+ */
 import '@testing-library/jest-dom';
 
 // Polyfill TextEncoder/TextDecoder

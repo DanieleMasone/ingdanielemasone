@@ -22,11 +22,14 @@ export function SeoHead({pageKey, path}) {
     const description = t(`seo.${pageKey}.description`);
     const url = `https://danielemasone.github.io/ingdanielemasone/#${path}`;
     const logo = "https://danielemasone.github.io/ingdanielemasone/logo.png";
+    const keywords = "Daniele Masone, portfolio, CV online, software engineer, frontend architect, React, Angular, JavaScript";
 
     return (
         <>
             <title>{title}</title>
             <meta name="description" content={description}/>
+            <meta name="author" content="Daniele Masone"/>
+            <meta name="keywords" content={keywords}/>
             <link rel="canonical" href={url}/>
 
             {/* Open Graph */}
@@ -35,12 +38,14 @@ export function SeoHead({pageKey, path}) {
             <meta property="og:type" content="website"/>
             <meta property="og:url" content={url}/>
             <meta property="og:image" content={logo}/>
+            <meta property="og:site_name" content="Daniele Masone Portfolio"/>
 
             {/* Twitter */}
             <meta name="twitter:card" content="summary_large_image"/>
             <meta name="twitter:title" content={title}/>
             <meta name="twitter:description" content={description}/>
             <meta name="twitter:image" content={logo}/>
+            <meta name="twitter:creator" content="@masone_daniele"/>
         </>
     );
 }
