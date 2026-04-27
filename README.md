@@ -1,54 +1,65 @@
 # GitHub Pages – `gh-pages` Branch
 
-This branch contains the **compiled static assets** of the [Daniele Masone Portfolio Website](https://danielemasone.github.io/ingdanielemasone/), deployed via **GitHub Pages**.
+This branch contains the compiled static assets of the [Daniele Masone Portfolio & Online CV](https://danielemasone.github.io/ingdanielemasone/), deployed through GitHub Pages.
 
-> ⚠️ Do not edit files in this branch manually. All contents are auto-generated from the `main` branch.
+> Do not edit files in this branch manually.  
+> All contents are generated from the `main` branch during the deployment process.
 
----
+## Purpose of This Branch
 
-## 📁 What’s in this branch?
+The `gh-pages` branch is used only as the public deployment target for GitHub Pages.
 
-- `/index.html`: Main entry point for the site
-- `/docs/`: Auto-generated project documentation
-- `/test-coverage/`: Test coverage reports from the test suite
-- `/assets/`, `/static/`, etc.: JS/CSS/images bundled at build time
+Source code, application logic, tests, translations, configuration, and documentation sources are maintained in the `main` branch.
 
----
+## Contents
 
-## 🚀 Live URLs
+This branch may include:
 
-- **Website:**  
-  👉 [https://danielemasone.github.io/ingdanielemasone/](https://danielemasone.github.io/ingdanielemasone/)
+- `index.html`: main entry point for the deployed site
+- `assets/`: compiled JavaScript, CSS, images, and static assets
+- `docs/`: generated JSDoc documentation
+- `test-coverage/`: generated Vitest coverage report
+- other generated files required by the GitHub Pages deployment
 
-- **Documentation:**  
-  📚 [https://danielemasone.github.io/ingdanielemasone/docs](https://danielemasone.github.io/ingdanielemasone/docs)
+## Live URLs
 
-- **Test Coverage Report:**  
-  ✅ [https://danielemasone.github.io/ingdanielemasone/test-coverage](https://danielemasone.github.io/ingdanielemasone/test-coverage)
+- Website: [danielemasone.github.io/ingdanielemasone](https://danielemasone.github.io/ingdanielemasone/)
+- Documentation: [danielemasone.github.io/ingdanielemasone/docs](https://danielemasone.github.io/ingdanielemasone/docs)
+- Test coverage: [danielemasone.github.io/ingdanielemasone/test-coverage](https://danielemasone.github.io/ingdanielemasone/test-coverage)
 
----
+## Build and Deployment
 
-## 🛠️ How it's built
-
-The contents of this branch are generated automatically using the following command:
+The contents of this branch are generated from `main` using:
 
 ```bash
 npm run deploy:all
 ```
-This command builds:
 
-- The React app (`npm run build`)
-- JSDoc documentation (`npm run doc`)
-- Test coverage (`npm run coverage`)
-- Then pushes everything to `gh-pages` via the deployment script
+The deployment flow builds:
 
-## 🧼 Can I delete or modify this?
+- the React production bundle
+- JSDoc documentation
+- Vitest test coverage report
+- static assets required by GitHub Pages
 
-No. This branch should only be managed by automated deployment tools.
+The generated output is then published to this branch.
 
-To update the site, edit the source code in `main`, then run the deploy command.
+## Updating the Site
 
-# License & Permissions
-### © 2025 Daniele Masone. All rights reserved.
+To update the deployed website:
 
-This content is for deployment purposes only and may not be copied, modified, or redistributed.
+1. Apply changes on the `main` branch  
+2. Run the validation/build commands  
+3. Deploy using:
+ ```bash
+npm run deploy:all
+```
+
+Do not commit manual changes directly to gh-pages.
+
+## License & Permissions
+
+(c) 2026 Daniele Masone. All rights reserved.
+
+This branch contains generated deployment artifacts only.
+The content may not be copied, modified, redistributed, or reused without explicit permission.
