@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>mock/experiences.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-App.html">App</a></li><li><a href="module-components_errorState_ErrorState.html">components/errorState/ErrorState</a></li><li><a href="module-components_footer_Footer.html">components/footer/Footer</a></li><li><a href="module-components_header_Header.html">components/header/Header</a></li><li><a href="module-components_loading_Loading.html">components/loading/Loading</a></li><li><a href="module-components_notFound_NotFound.html">components/notFound/NotFound</a></li><li><a href="module-components_seoHead_SeoHead.html">components/seoHead/SeoHead</a></li><li><a href="module-components_ui_PageGrid.html">components/ui/PageGrid</a></li><li><a href="module-components_ui_avatarCard_AvatarCard.html">components/ui/avatarCard/AvatarCard</a></li><li><a href="module-components_ui_brandIcon_BrandIcon.html">components/ui/brandIcon/BrandIcon</a></li><li><a href="module-components_ui_buttonLink_ButtonLink.html">components/ui/buttonLink/ButtonLink</a></li><li><a href="module-components_ui_card_Card.html">components/ui/card/Card</a></li><li><a href="module-components_ui_cardContent_CardContent.html">components/ui/cardContent/CardContent</a></li><li><a href="module-components_ui_cookieBanner_CookieBanner.html">components/ui/cookieBanner/CookieBanner</a></li><li><a href="module-components_ui_darkModeToggle_DarkModeToggle.html">components/ui/darkModeToggle/DarkModeToggle</a></li><li><a href="module-components_ui_expandableText_ExpandableText.html">components/ui/expandableText/ExpandableText</a></li><li><a href="module-components_ui_languageSwitcher_LanguageSwitcher.html">components/ui/languageSwitcher/LanguageSwitcher</a></li><li><a href="module-components_ui_pageSection_PageSection.html">components/ui/pageSection/PageSection</a></li><li><a href="module-components_ui_pagination_Pagination.html">components/ui/pagination/Pagination</a></li><li><a href="module-components_ui_selectableButton_SelectableButton.html">components/ui/selectableButton/SelectableButton</a></li><li><a href="module-components_ui_techDisclosure_TechDisclosure.html">components/ui/techDisclosure/TechDisclosure</a></li><li><a href="module-components_ui_tradingPerformanceChart_TradingPerformanceChart.html">components/ui/tradingPerformanceChart/TradingPerformanceChart</a></li><li><a href="module-consts_Consts.html">consts/Consts</a></li><li><a href="module-i18n_i18n.html">i18n/i18n</a></li><li><a href="module-index.html">index</a></li><li><a href="module-main.html">main</a></li><li><a href="module-mock_certifications.html">mock/certifications</a></li><li><a href="module-mock_courses.html">mock/courses</a></li><li><a href="module-mock_experiences.html">mock/experiences</a></li><li><a href="module-mock_links.html">mock/links</a></li><li><a href="module-mock_projects.html">mock/projects</a></li><li><a href="module-mock_testimonials.html">mock/testimonials</a></li><li><a href="module-mock_trading.html">mock/trading</a></li><li><a href="module-pages_certifications_Certifications.html">pages/certifications/Certifications</a></li><li><a href="module-pages_cookiePolicy_CookiePolicy.html">pages/cookiePolicy/CookiePolicy</a></li><li><a href="module-pages_courses_Courses.html">pages/courses/Courses</a></li><li><a href="module-pages_experience_Experience.html">pages/experience/Experience</a></li><li><a href="module-pages_home_Home.html">pages/home/Home</a></li><li><a href="module-pages_privacy_Privacy.html">pages/privacy/Privacy</a></li><li><a href="module-pages_projects_Projects.html">pages/projects/Projects</a></li><li><a href="module-pages_testimonials_Testimonials.html">pages/testimonials/Testimonials</a></li><li><a href="module-pages_trading_Trading.html">pages/trading/Trading</a></li></ul><h3>Global</h3><ul><li><a href="global.html#delay">delay</a></li><li><a href="global.html#getCertifications">getCertifications</a></li><li><a href="global.html#getCourses">getCourses</a></li><li><a href="global.html#getExperienceLabel">getExperienceLabel</a></li><li><a href="global.html#getExperiences">getExperiences</a></li><li><a href="global.html#getLinks">getLinks</a></li><li><a href="global.html#getProjects">getProjects</a></li><li><a href="global.html#getTestimonials">getTestimonials</a></li><li><a href="global.html#getTradingPerformance">getTradingPerformance</a></li><li><a href="global.html#linkedinIcon">linkedinIcon</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">mock/experiences.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Static professional timeline entries displayed by the Experience page.
+ *
+ * Role and description fields are translation keys. Period strings are also used
+ * to derive the year filter, so keep years in a parsable four-digit format.
+ *
+ * @type {Array&lt;{role: string, company: string, period: string, description: string, tech: string}>}
+ * @module mock/experiences
+ */
+export const experiences = [
+    {
+        role: "exp_intesa_role",
+        company: "Intesa Sanpaolo",
+        period: "12/2025 – Present",
+        description: "exp_intesa_description",
+        tech: "RPG, AS400, MySQL, Java, Angular, JavaScript, Framework Spring, Maven, HTML5, CSS, Server Windows, JSON, Node.js, Docker, XML, Git, jQuery"
+    },
+    {
+        role: "exp_rgi_role",
+        company: "RGI Group",
+        period: "09/2021 – 12/2025",
+        description: "exp_rgi_description",
+        tech: "Enterprise architecture, MySQL, JavaScript, Docker, JSON, REST APIs, HTML5, Node.js, XML, CSS, HTML, OOP, Openapi, AngularJS, Git, Mapstruct"
+    },
+    {
+        role: "exp_iol_role",
+        company: "Italiaonline",
+        period: "05/2019 – 09/2021",
+        description: "exp_iol_description",
+        tech: "Spring, JavaScript, Docker, Hibernate, JSON, Java, JBoss Application Server, MySQL, REST APIs, Eclipse, HTML5, JEE, Node.js, XML, Machine learning, CSS, Tomcat, HTML, OOP, AngularJS, Maven, Git",
+    },
+    {
+        role: "exp_tecnavia_role",
+        company: "Tecnavia Apps",
+        period: "07/2018 – 05/2019",
+        description: "exp_tecnavia_description",
+        tech: "jQuery, React Native, JavaScript, JSON, Java, SQL, REST APIs, Eclipse, HTML5, XML, CSS, Android, HTML, OOP, SQLite, MySQL, PHP, Git",
+    },
+    {
+        role: "exp_teoresi_role",
+        company: "Teoresi",
+        period: "10/2017 – 07/2018",
+        description: "exp_teoresi_description",
+        tech: "jQuery, JavaScript, Hibernate, JSON, JBoss Application Server, SQL, REST APIs, HTML5, JEE, Node.js, XML, CSS, Tomcat, HTML, OOP, AngularJS, Maven, MySQL, Git"
+    },
+    {
+        role: "exp_hpe_role",
+        company: "Hewlett Packard Enterprise",
+        period: "09/2016 – 10/2017",
+        description: "exp_hpe_description",
+        tech: "jQuery, JavaScript, PostgreSQL, Hibernate, JSON, JBoss Application Server, SQL, REST APIs, Eclipse, HTML5, JEE, Node.js, XML, CSS, Tomcat, HTML, OOP, AngularJS, Maven, MySQL, Git"
+    },
+    {
+        role: "exp_digiCamere_role",
+        company: "DigiCamere",
+        period: "06/2016 – 09/2016",
+        description: "exp_digiCamere_description",
+        tech: "Server Windows, Bash, XML, Linux, Tomcat, Active Directory"
+    },
+    {
+        role: "exp_piksel_role",
+        company: "Piksel",
+        period: "10/2015 – 04/2016",
+        description: "exp_piksel_description",
+        tech: "Server Windows, Bash, XML, Linux, Tomcat, Active Directory"
+    },
+    {
+        role: "exp_coach_role",
+        company: "-",
+        period: "01/2009 – 10/2015",
+        description: "exp_coach_description",
+        tech: "Framework Spring, jQuery, C#, VBA, x86 Assembly, Bash, Matlab, .NET, HTML5, XML, C, PhpMyAdmin, CSS, HTML, Cisco Technologies, MySQL, PHP, Git, C++"
+    },
+    {
+        role: "exp_salesiani_role",
+        company: "Salesiani Sesto San Giovanni",
+        period: "2005 - 2010",
+        description: "exp_salesiani_description",
+        tech: "C, C++, C#, Assembly x86, PHP, MySQL, HTML, CSS, Matlab"
+    },
+    {
+        role: "exp_polimi_role",
+        company: "Politecnico di Milano",
+        period: "2010 - 2014",
+        description: "exp_polimi_description",
+        tech: "Java, C, C++, Android, STM32, USB communication, Embedded systems, Linux"
+    }
+];
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Mon Apr 27 2026 10:28:34 GMT+0200 (Ora legale dell’Europa centrale) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>

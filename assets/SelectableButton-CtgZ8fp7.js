@@ -1,0 +1,2 @@
+import{j as o,c as g}from"./motion-CG5jGWZC.js";function b({label:a,isSelected:r,onClick:e,className:t="",disabled:s=!1}){return o.jsx("button",{onClick:e,disabled:s,className:g("px-4 py-2 rounded-lg border text-sm whitespace-nowrap transition-all",r?"bg-blue-600 text-white shadow-md hover:shadow-lg dark:bg-blue-500":"bg-gray-200 hover:bg-gray-300 shadow-sm dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200",t),"aria-pressed":r,children:a})}export{b as S};
+//# sourceMappingURL=SelectableButton-CtgZ8fp7.js.map

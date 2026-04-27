@@ -148,21 +148,7 @@
 <a name='L83'></a><a href='#L83'>83</a>
 <a name='L84'></a><a href='#L84'>84</a>
 <a name='L85'></a><a href='#L85'>85</a>
-<a name='L86'></a><a href='#L86'>86</a>
-<a name='L87'></a><a href='#L87'>87</a>
-<a name='L88'></a><a href='#L88'>88</a>
-<a name='L89'></a><a href='#L89'>89</a>
-<a name='L90'></a><a href='#L90'>90</a>
-<a name='L91'></a><a href='#L91'>91</a>
-<a name='L92'></a><a href='#L92'>92</a>
-<a name='L93'></a><a href='#L93'>93</a>
-<a name='L94'></a><a href='#L94'>94</a>
-<a name='L95'></a><a href='#L95'>95</a>
-<a name='L96'></a><a href='#L96'>96</a>
-<a name='L97'></a><a href='#L97'>97</a>
-<a name='L98'></a><a href='#L98'>98</a>
-<a name='L99'></a><a href='#L99'>99</a>
-<a name='L100'></a><a href='#L100'>100</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L86'></a><a href='#L86'>86</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -184,12 +170,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -208,6 +190,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
@@ -220,24 +210,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -248,8 +222,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -270,19 +242,17 @@ import {tradingPerformance} from "@/mock/trading";
 import {links} from "@/mock/links";
 &nbsp;
 /**
- * Simulates network latency.
+ * Simulates a small loading delay for static portfolio datasets.
  *
- * @param ms - Milliseconds to wait before resolving.
- * @returns Promise that resolves after the given delay.
+ * @param {number} ms - Milliseconds to wait before resolving.
+ * @returns {Promise&lt;void&gt;} Promise resolved after the given delay.
  */
 const delay = (ms) =&gt; new Promise(res =&gt; setTimeout(res, ms));
 &nbsp;
 /**
- * Fetches course data.
+ * Loads course data for the Courses page.
  *
- * Simulates a remote API call and resolves with the list of courses.
- *
- * @returns Promise resolving to the courses dataset.
+ * @returns {Promise&lt;Array&gt;} Promise resolving to the courses dataset.
  */
 export async function getCourses() {
     await delay(300);
@@ -290,11 +260,9 @@ export async function getCourses() {
 }
 &nbsp;
 /**
- * Fetches certification data.
+ * Loads certification data for the Certifications page.
  *
- * Simulates a remote API call and resolves with the list of certifications.
- *
- * @returns Promise resolving to the certifications dataset.
+ * @returns {Promise&lt;Array&gt;} Promise resolving to the certifications dataset.
  */
 export async function getCertifications() {
     await delay(300);
@@ -302,11 +270,9 @@ export async function getCertifications() {
 }
 &nbsp;
 /**
- * Fetches professional experience data.
+ * Loads professional experience data for the Experience page.
  *
- * Simulates a remote API call and resolves with the list of experiences.
- *
- * @returns Promise resolving to the experiences dataset.
+ * @returns {Promise&lt;Array&gt;} Promise resolving to the experiences dataset.
  */
 export async function getExperiences() {
     await delay(300);
@@ -314,11 +280,9 @@ export async function getExperiences() {
 }
 &nbsp;
 /**
- * Fetches project data.
+ * Loads project data for the Projects page.
  *
- * Simulates a remote API call and resolves with the list of projects.
- *
- * @returns Promise resolving to the projects dataset.
+ * @returns {Promise&lt;Array&gt;} Promise resolving to the projects dataset.
  */
 export async function getProjects() {
     await delay(300);
@@ -326,11 +290,9 @@ export async function getProjects() {
 }
 &nbsp;
 /**
- * Fetches testimonial data.
+ * Loads testimonial data for the Testimonials page.
  *
- * Simulates a remote API call and resolves with the list of testimonials.
- *
- * @returns Promise resolving to the testimonials dataset.
+ * @returns {Promise&lt;Array&gt;} Promise resolving to the testimonials dataset.
  */
 export async function getTestimonials() {
     await delay(300);
@@ -338,11 +300,9 @@ export async function getTestimonials() {
 }
 &nbsp;
 /**
- * Fetches trading performance metrics.
+ * Loads trading performance metrics for the Trading page.
  *
- * Simulates a remote API call and resolves with trading performance data.
- *
- * @returns Promise resolving to the trading performance dataset.
+ * @returns {Promise&lt;Object&gt;} Promise resolving to the trading performance dataset.
  */
 export async function getTradingPerformance() {
     await delay(300);
@@ -350,11 +310,9 @@ export async function getTradingPerformance() {
 }
 &nbsp;
 /**
- * Fetches social and external link data.
+ * Loads social and external link data for the Footer.
  *
- * Simulates a remote API call and resolves with the list of links.
- *
- * @returns Promise resolving to the links dataset.
+ * @returns {Promise&lt;Array&gt;} Promise resolving to the links dataset.
  */
 export async function getLinks() {
     await delay(300);
@@ -367,7 +325,7 @@ export async function getLinks() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-04-21T09:09:55.587Z
+                at 2026-04-27T08:28:29.425Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
