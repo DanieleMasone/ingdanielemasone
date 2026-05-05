@@ -35,15 +35,55 @@ export default defineConfig({
         sourcemap: true,
         rollupOptions: {
             output: {
-                manualChunks: {
-                    react: ['react', 'react-dom', 'react-router', 'react-router-dom'],
-                    i18n: ['i18next', 'react-i18next', 'i18next-browser-languagedetector'],
-                    motion: ['framer-motion', '@headlessui/react'],
-                    charts: ['chart.js', 'react-chartjs-2'],
-                    icons: ['lucide-react', 'react-icons', 'simple-icons', 'boring-avatars']
-                }
-            }
-        }
+                manualChunks(id) {
+                    const normalizedId = id.replaceAll('\\', '/');
+
+                    if (!normalizedId.includes('node_modules')) return;
+
+                    if (
+                        normalizedId.includes('/react/') ||
+                        normalizedId.includes('/react-dom/') ||
+                        normalizedId.includes('/react-router/') ||
+                        normalizedId.includes('/react-router-dom/')
+                    ) {
+                        return 'react';
+                    }
+
+                    if (
+                        normalizedId.includes('/i18next/') ||
+                        normalizedId.includes('/react-i18next/') ||
+                        normalizedId.includes('/i18next-browser-languagedetector/')
+                    ) {
+                        return 'i18n';
+                    }
+
+                    if (
+                        normalizedId.includes('/framer-motion/') ||
+                        normalizedId.includes('/@headlessui/react/')
+                    ) {
+                        return 'motion';
+                    }
+
+                    if (
+                        normalizedId.includes('/chart.js/') ||
+                        normalizedId.includes('/react-chartjs-2/')
+                    ) {
+                        return 'charts';
+                    }
+
+                    if (
+                        normalizedId.includes('/lucide-react/') ||
+                        normalizedId.includes('/react-icons/') ||
+                        normalizedId.includes('/simple-icons/') ||
+                        normalizedId.includes('/boring-avatars/')
+                    ) {
+                        return 'icons';
+                    }
+
+                    return 'vendor';
+                },
+            },
+        },
     },
     preview: {
         port: 4173
