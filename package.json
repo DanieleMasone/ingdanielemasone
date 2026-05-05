@@ -34,9 +34,7 @@
     "test:watch": "vitest --watch",
     "coverage": "vitest --coverage",
     "doc": "jsdoc -c jsdoc.json -d docs",
-    "build:all": "npm run build && npm run coverage && npm run doc",
-    "deploy": "echo \"Use GitHub Actions: run Deploy portfolio, docs and coverage to GitHub Pages\"",
-    "deploy:all": "echo \"Use GitHub Actions on main push or manual workflow_dispatch\""
+    "build:all": "npm run build && npm run coverage && npm run doc"
   },
   "engines": {
     "node": ">=20"
