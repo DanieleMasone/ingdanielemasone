@@ -5,6 +5,9 @@ on:
     branches: ["main"]
   workflow_dispatch:
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 permissions:
   contents: read
   pages: write
@@ -41,10 +44,10 @@ jobs:
       - name: Prepare publish directory
         run: |
           rm -rf temp-publish
-          mkdir -p temp-publish
+          mkdir -p temp-publish/docs temp-publish/test-coverage
           cp -R dist/. temp-publish/
-          cp -R docs temp-publish/docs
-          cp -R coverage temp-publish/test-coverage
+          cp -R docs/. temp-publish/docs
+          cp -R coverage/. temp-publish/test-coverage
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
