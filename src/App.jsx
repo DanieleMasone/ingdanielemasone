@@ -37,7 +37,7 @@ export default function App() {
                 Skip to content
             </a>
             <Header/>
-            <main id="main-content" className="flex-grow overflow-auto" tabIndex="-1">
+            <main id="main-content" className="flex-grow overflow-auto" tabIndex={-1}>
                 <Suspense fallback={<Loading/>}>
                     <Routes>
                         <Route path="/" element={<Home/>}/>
