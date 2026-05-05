@@ -1,4 +1,4 @@
-name: Deploy portfolio, docs and coverage to GitHub Pages
+name: Portfolio CI/CD
 
 on:
   push:
