@@ -95,6 +95,8 @@ http://localhost:4173/ingdanielemasone/
 | `npm run coverage` | Generates the test coverage report |
 | `npm run doc` | Generates JSDoc documentation |
 | `npm run build:all` | Builds app, coverage, and documentation |
+| `npm run deploy` | Deprecated locally. Deployment is managed by GitHub Actions |
+| `npm run deploy:all` | Deprecated locally. Use GitHub Actions workflow |
 
 ## Project Structure
 
