@@ -22,7 +22,7 @@ The portfolio is built as a modern React single-page application with a focus on
 ## Tech Stack
 
 - React 19
-- Vite 7
+- Vite 8
 - React Router 7
 - Tailwind CSS 3
 - i18next and react-i18next
@@ -95,8 +95,8 @@ http://localhost:4173/ingdanielemasone/
 | `npm run coverage` | Generates the test coverage report |
 | `npm run doc` | Generates JSDoc documentation |
 | `npm run build:all` | Builds app, coverage, and documentation |
-| `npm run deploy` | Publishes generated artifacts to GitHub Pages |
-| `npm run deploy:all` | Runs the full build and deploy flow |
+| `npm run deploy` | Deprecated locally. Deployment is managed by GitHub Actions |
+| `npm run deploy:all` | Deprecated locally. Use GitHub Actions workflow |
 
 ## Project Structure
 
@@ -137,10 +137,25 @@ The project is configured for deployment to GitHub Pages at:
 https://danielemasone.github.io/ingdanielemasone/
 ```
 
-To build and deploy all generated artifacts:
+Deployment is now automated via GitHub Actions with the workflow:
+
+- `.github/workflows/deploy-pages.yml`
+
+What gets published:
+
+- App build from `dist/` at the site root
+- JSDoc output in `/docs`
+- Vitest coverage report in `/test-coverage`
+
+How to deploy:
+
+1. Push to `main` (automatic deploy), or
+2. Run the workflow manually from **Actions > Deploy portfolio, docs and coverage to GitHub Pages > Run workflow**.
+
+Local commands are still useful for validation before push:
 
 ```bash
-npm run deploy:all
+npm run build:all
 ```
 
 ## License & Permissions
