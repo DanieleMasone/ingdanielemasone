@@ -1,5 +1,11 @@
 # Daniele Masone - Portfolio & Online CV
 
+[![Deploy Pages](https://github.com/DanieleMasone/ingdanielemasone/actions/workflows/deploy-pages.yml/badge.svg?branch=main)](https://github.com/DanieleMasone/ingdanielemasone/actions/workflows/deploy-pages.yml)
+[![Coverage](https://img.shields.io/badge/Coverage-97.65%25-brightgreen)](https://danielemasone.github.io/ingdanielemasone/test-coverage)
+[![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=fff)](https://vitejs.dev/)
+[![React](https://img.shields.io/badge/React-19-20232A?logo=react&logoColor=61DAFB)](https://react.dev/)
+[![Vitest](https://img.shields.io/badge/Vitest-4-6E9F18?logo=vitest&logoColor=fff)](https://vitest.dev/)
+
 Personal portfolio and online CV for Daniele Masone, Senior Software Engineer and Front-End Architect.
 
 - Live site: [danielemasone.github.io/ingdanielemasone](https://danielemasone.github.io/ingdanielemasone/)
