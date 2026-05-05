@@ -5,6 +5,7 @@
 [![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=fff)](https://vitejs.dev/)
 [![React](https://img.shields.io/badge/React-19-20232A?logo=react&logoColor=61DAFB)](https://react.dev/)
 [![Vitest](https://img.shields.io/badge/Vitest-4-6E9F18?logo=vitest&logoColor=fff)](https://vitest.dev/)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
 Personal portfolio and online CV for Daniele Masone, Senior Software Engineer and Front-End Architect.
 
