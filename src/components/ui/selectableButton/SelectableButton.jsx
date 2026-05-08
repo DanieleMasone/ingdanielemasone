@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import {interactiveClasses} from "../../../styles/commonClasses";
 
 /**
  * SelectableButton is a reusable button that highlights itself when selected.
@@ -23,13 +24,14 @@ export function SelectableButton({
 }) {
     return (
         <button
+            type="button"
             onClick={onClick}
             disabled={disabled}
             className={clsx(
-                "px-4 py-2 rounded-lg border text-sm whitespace-nowrap transition-all",
-                isSelected
-                    ? "bg-blue-600 text-white shadow-md hover:shadow-lg dark:bg-blue-500"
-                    : "bg-gray-200 hover:bg-gray-300 shadow-sm dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200",
+                interactiveClasses.buttonBase,
+                interactiveClasses.focusRing,
+                "whitespace-nowrap",
+                isSelected ? interactiveClasses.selectedButton : interactiveClasses.unselectedButton,
                 className
             )}
             aria-pressed={isSelected}
