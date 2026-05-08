@@ -207,7 +207,7 @@ describe("Experience component", () => {
         const retry = await screen.findByRole("button", {name: /retry/i});
         fireEvent.click(retry);
 
-        await screen.findAllByRole("heading", {level: 2});
+        await screen.findAllByRole("heading", {level: 1});
 
         expect(spy).toHaveBeenCalledTimes(2);
     });

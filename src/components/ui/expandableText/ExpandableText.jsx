@@ -1,4 +1,4 @@
-import {useLayoutEffect, useRef, useState} from "react";
+import {useId, useLayoutEffect, useRef, useState} from "react";
 import clsx from "clsx";
 import {ChevronDown, ChevronUp} from "lucide-react";
 import {useTranslation} from "react-i18next";
@@ -7,7 +7,8 @@ import {useTranslation} from "react-i18next";
  * Expandable text block for long portfolio descriptions.
  *
  * Limits the visible text to a configurable number of lines and reveals a
- * localized expand/collapse button only when the content overflows.
+ * localized expand/collapse button only when the content overflows. The toggle
+ * button is linked to the expandable region with `aria-controls`.
  *
  * @component
  * @module components/ui/expandableText/ExpandableText
@@ -23,6 +24,7 @@ export function ExpandableText({value = "", maxLines = 3, className = ""}) {
     const [contentHeight, setContentHeight] = useState(0);
     const [collapsedHeight, setCollapsedHeight] = useState(0);
     const paragraphRef = useRef(null);
+    const contentId = useId();
     const {t} = useTranslation();
 
     useLayoutEffect(() => {
@@ -41,6 +43,7 @@ export function ExpandableText({value = "", maxLines = 3, className = ""}) {
         <div className="relative">
             <div
                 data-testid="expandable-text"
+                id={contentId}
                 ref={paragraphRef}
                 className={clsx(
                     "text-sm sm:text-base whitespace-pre-wrap overflow-hidden transition-all duration-500 ease-in-out relative",
@@ -49,7 +52,6 @@ export function ExpandableText({value = "", maxLines = 3, className = ""}) {
                 style={{
                     maxHeight: expanded ? `${contentHeight}px` : `${collapsedHeight}px`
                 }}
-                aria-expanded={expanded}
             >
                 {value}
 
@@ -63,6 +65,8 @@ export function ExpandableText({value = "", maxLines = 3, className = ""}) {
                     <button
                         type="button"
                         onClick={() => setExpanded(!expanded)}
+                        aria-expanded={expanded}
+                        aria-controls={contentId}
                         className="flex items-center gap-1 text-xs text-blue-600 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-blue-400 dark:focus-visible:ring-offset-slate-900"
                     >
                         {expanded ? (

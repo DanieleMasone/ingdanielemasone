@@ -28,16 +28,16 @@ describe("PageGrid component", () => {
         expect(screen.getByText("Card Two")).toBeInTheDocument();
     });
 
-    test("renders grid container with correct role and aria-label", () => {
-        render(
+    test("renders a visual grid without ARIA grid semantics", () => {
+        const {container} = render(
             <PageGrid page={2}>
                 <div>Item</div>
             </PageGrid>
         );
 
-        const grid = screen.getByRole("grid");
+        const grid = container.querySelector(".grid");
         expect(grid).toBeInTheDocument();
-        expect(grid).toHaveAttribute("aria-label", "Page 2");
+        expect(screen.queryByRole("grid")).not.toBeInTheDocument();
     });
 
     test("applies default layout classes", () => {
@@ -77,13 +77,13 @@ describe("PageGrid component", () => {
     });
 
     test("re-mounts animated grid when page changes (key changes)", () => {
-        const { rerender } = render(
+        const {rerender, container} = render(
             <PageGrid page={1}>
                 <div>One</div>
             </PageGrid>
         );
 
-        const firstGrid = screen.getByRole("grid");
+        const firstGrid = container.querySelector(".grid");
 
         rerender(
             <PageGrid page={2}>
@@ -91,25 +91,24 @@ describe("PageGrid component", () => {
             </PageGrid>
         );
 
-        const secondGrid = screen.getByRole("grid");
+        const secondGrid = container.querySelector(".grid");
 
         // different key → new node → triggerable animation
         expect(firstGrid).not.toBe(secondGrid);
     });
 
     test("handles empty children without crashing", () => {
-        render(<PageGrid page={5}>{null}</PageGrid>);
-        expect(screen.getByRole("grid")).toBeInTheDocument();
+        const {container} = render(<PageGrid page={5}>{null}</PageGrid>);
+        expect(container.querySelector(".grid")).toBeInTheDocument();
     });
 
     test("supports page as string identifier", () => {
-        render(
+        const {container} = render(
             <PageGrid page="alpha">
                 <div>Item</div>
             </PageGrid>
         );
 
-        expect(screen.getByRole("grid"))
-            .toHaveAttribute("aria-label", "Page alpha");
+        expect(container.querySelector(".grid")).toBeInTheDocument();
     });
 });

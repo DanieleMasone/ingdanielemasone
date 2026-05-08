@@ -88,7 +88,7 @@ export default function Home() {
                                            dark:focus-visible:ring-[#5AA7E8]
                                            dark:focus-visible:ring-offset-gray-900"
                             >
-                                <FolderGit2 className="h-5 w-5"/>
+                                <FolderGit2 className="h-5 w-5" aria-hidden="true"/>
                                 {t("home_cta_projects")}
                             </Link>
 
@@ -105,7 +105,7 @@ export default function Home() {
                                            dark:hover:border-blue-500 dark:hover:text-blue-300 dark:hover:bg-gray-800
                                            dark:focus-visible:ring-offset-gray-900"
                             >
-                                <BriefcaseBusiness className="h-5 w-5"/>
+                                <BriefcaseBusiness className="h-5 w-5" aria-hidden="true"/>
                                 {t("home_cta_experience")}
                             </Link>
 

@@ -14,6 +14,8 @@ import {
     Tooltip,
 } from 'chart.js';
 import {SelectableButton} from "../selectableButton/SelectableButton";
+import clsx from "clsx";
+import {interactiveClasses} from "../../../styles/commonClasses";
 
 ChartJS.register(
     CategoryScale,
@@ -32,8 +34,8 @@ ChartJS.register(
  * TradingPerformanceChart renders the trading performance section.
  *
  * It combines a cumulative line chart with monthly or annual return bars, adapts
- * chart colors to the current light/dark theme, and renders a localized summary of
- * returns below the chart.
+ * chart colors to the current light/dark theme, exposes the chart canvas with an
+ * accessible image label, and renders a localized summary of returns below the chart.
  *
  * Translations are provided by `react-i18next`.
  *
@@ -433,11 +435,14 @@ export function TradingPerformanceChart({
         <section
             className="max-w-6xl mx-auto px-4 sm:px-6 py-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg flex flex-col gap-6">
             <header className="text-center flex flex-col items-center gap-4">
-                <h3 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
                     {t('performance_title')}
-                </h3>
+                </h2>
                 <select
-                    className="rounded border border-gray-300 dark:border-gray-700 px-3 py-1 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 cursor-pointer"
+                    className={clsx(
+                        "cursor-pointer rounded border border-gray-300 bg-white px-3 py-1 text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100",
+                        interactiveClasses.focusRing
+                    )}
                     value={view}
                     onChange={(e) => setView(e.target.value === 'annual' ? 'annual' : 'monthly')}
                     aria-label={t('performance_view_selector_aria')}
@@ -448,7 +453,12 @@ export function TradingPerformanceChart({
             </header>
 
             <div className="w-full h-[300px] sm:h-[500px] md:h-[700px]">
-                <Line data={chartData} options={options}/>
+                <Line
+                    data={chartData}
+                    options={options}
+                    role="img"
+                    aria-label={t('performance_title')}
+                />
             </div>
 
             <div className="text-gray-800 dark:text-gray-300 text-sm space-y-6 text-center">

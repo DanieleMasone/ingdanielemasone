@@ -1,10 +1,13 @@
 import {useTranslation} from "react-i18next";
+import {ChevronLeft, ChevronRight} from "lucide-react";
+import clsx from "clsx";
+import {interactiveClasses} from "../../../styles/commonClasses";
 
 /**
  * Reusable pagination controls for paged portfolio sections.
  *
- * Renders localized previous/next buttons, disables boundary actions, and reports
- * the current page out of the total page count.
+ * Renders localized previous/next buttons inside a navigation landmark, disables
+ * boundary actions, and announces the current page out of the total page count.
  *
  * @component
  * @module components/ui/pagination/Pagination
@@ -13,7 +16,7 @@ import {useTranslation} from "react-i18next";
  * @param {number} props.totalPages - Total number of available pages.
  * @param {function(number): void} props.onPageChange - Callback fired with the next page.
  * @param {string} [props.className] - Optional layout classes for the wrapper.
- * @returns {JSX.Element|null} Pagination controls, or null when only one page exists.
+ * @returns {JSX.Element|null} Pagination navigation, or null when only one page exists.
  */
 export function Pagination({
                                        page,
@@ -26,20 +29,24 @@ export function Pagination({
     if (totalPages <= 1) return null;
 
     return (
-        <div className={`flex flex-wrap justify-center items-center gap-3 ${className}`}>
+        <nav
+            className={clsx("flex flex-wrap items-center justify-center gap-3", className)}
+            aria-label="Pagination"
+        >
             <button
                 type="button"
                 onClick={() => onPageChange(Math.max(page - 1, 1))}
                 disabled={page === 1}
-                className="min-w-[110px] px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
-                           text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
-                           hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900"
+                className={clsx(interactiveClasses.paginationButton, interactiveClasses.focusRing, "inline-flex items-center justify-center gap-1.5")}
             >
-                ← {t("previous")}
+                <ChevronLeft className="h-4 w-4" aria-hidden="true"/>
+                {t("previous")}
             </button>
 
             <span
                 data-testid="pagination-info"
+                aria-live="polite"
+                aria-current="page"
                 className="px-4 py-2 text-sm text-gray-600 dark:text-gray-300 whitespace-nowrap"
             >
                 {page} / {totalPages}
@@ -49,12 +56,11 @@ export function Pagination({
                 type="button"
                 onClick={() => onPageChange(Math.min(page + 1, totalPages))}
                 disabled={page === totalPages}
-                className="min-w-[110px] px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
-                           text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
-                           hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900"
+                className={clsx(interactiveClasses.paginationButton, interactiveClasses.focusRing, "inline-flex items-center justify-center gap-1.5")}
             >
-                {t("next")} →
+                {t("next")}
+                <ChevronRight className="h-4 w-4" aria-hidden="true"/>
             </button>
-        </div>
+        </nav>
     );
 }

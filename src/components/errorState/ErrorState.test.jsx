@@ -22,6 +22,7 @@ describe("ErrorState", () => {
     test("renders translated title and default message", () => {
         render(<ErrorState/>);
 
+        expect(screen.getByRole("alert")).toBeInTheDocument();
         expect(screen.getByText("Errore")).toBeInTheDocument();
         expect(
             screen.getByText("Qualcosa è andato storto")

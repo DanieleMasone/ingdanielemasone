@@ -105,10 +105,12 @@ describe("Certifications component", () => {
         vi.spyOn(service, "getCertifications")
             .mockResolvedValueOnce(mockCerts);
 
-        renderPage();
+        const {container} = renderPage();
 
-        const grid = await screen.findByRole("grid");
+        await screen.findAllByRole("link", {name: /view certificate/i});
+        const grid = container.querySelector(".grid");
         expect(grid).toBeInTheDocument();
+        expect(screen.queryByRole("grid")).not.toBeInTheDocument();
     });
 
     test("renders SEO metadata", async () => {

@@ -4,7 +4,8 @@ import React from "react";
  * Full-screen loading state for lazy routes and static data loaders.
  *
  * The layout fills the viewport height and centers a spinning indicator both
- * vertically and horizontally. It supports light and dark themes through Tailwind classes.
+ * vertically and horizontally. A screen-reader-only label announces the loading
+ * state while the visible spinner remains decorative.
  *
  * Intended usage:
  * - As a Suspense fallback for lazy-loaded routes or components
@@ -19,10 +20,12 @@ export function Loading() {
     return (
         <div
             role="status"
-            aria-label="loading"
+            aria-label="Loading content"
             className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
             <div
+                aria-hidden="true"
                 className="w-12 h-12 border-4 border-t-blue-500 border-gray-300 dark:border-gray-700 rounded-full animate-spin"/>
+            <span className="sr-only">Loading content</span>
         </div>
     );
 }

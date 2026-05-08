@@ -52,6 +52,8 @@ describe('LanguageSwitcher', () => {
         const toggleBtn = screen.getByRole('button', {name: /seleziona lingua/i});
 
         expect(toggleBtn).toHaveAttribute('aria-expanded', 'false');
+        expect(toggleBtn).toHaveAttribute('aria-haspopup', 'menu');
+        expect(toggleBtn).toHaveAttribute('aria-controls', 'language-menu');
         fireEvent.click(toggleBtn);
         expect(toggleBtn).toHaveAttribute('aria-expanded', 'true');
         fireEvent.click(toggleBtn);
@@ -128,7 +130,8 @@ describe('LanguageSwitcher', () => {
         const activeOption = await screen.findByRole('menuitem', {name: /english/i});
 
         expect(activeOption).not.toBeDisabled();    // It's not disabled
-        expect(activeOption.className).toMatch(/bg-blue-50|dark:bg-blue-900/);  // It's highlighted (specific classes)
+        expect(activeOption).toHaveAttribute('aria-current', 'true');
+        expect(activeOption.className).toMatch(/bg-blue-100|dark:bg-blue-900/);  // It's highlighted (specific classes)
     });
 
     test('inactive language options are clickable and not marked', () => {

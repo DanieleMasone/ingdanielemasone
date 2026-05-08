@@ -1,9 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {Moon, Sun} from 'lucide-react';
+import clsx from "clsx";
+import {interactiveClasses} from "../../../styles/commonClasses";
 
 /**
- * DarkModeToggle component toggles between dark and light theme modes.
- * It syncs the mode state with localStorage and adds/removes the 'dark' class on the root element.
+ * DarkModeToggle switches between dark and light theme modes.
+ *
+ * It syncs the mode state with localStorage, updates the root `dark` class, and
+ * exposes the current pressed state for assistive technologies.
  *
  * @component
  * @module components/ui/darkModeToggle/DarkModeToggle
@@ -29,14 +33,18 @@ export function DarkModeToggle() {
         <button
             type="button"
             onClick={() => setDarkMode(!darkMode)}
-            className="flex items-center space-x-2 px-3 py-1.5 rounded-md
-               bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-200
-               hover:bg-gray-300 dark:hover:bg-gray-600
-               transition-colors duration-200
-               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900"
+            className={clsx(
+                "flex items-center space-x-2 rounded-md bg-gray-200 px-3 py-1.5 text-gray-800 transition-colors duration-200 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600",
+                interactiveClasses.focusRing
+            )}
             aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+            aria-pressed={darkMode}
         >
-            {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            {darkMode ? (
+                <Sun className="h-5 w-5" aria-hidden="true"/>
+            ) : (
+                <Moon className="h-5 w-5" aria-hidden="true"/>
+            )}
         </button>
     );
 

@@ -12,6 +12,8 @@ import {getTestimonials} from "@/services/portfolioService";
 import {Loading} from "@/components/loading/Loading";
 import {ErrorState} from "@/components/errorState/ErrorState";
 import {BrandIcon} from "@/components/ui/brandIcon/BrandIcon";
+import clsx from "clsx";
+import {interactiveClasses} from "@/styles/commonClasses";
 
 const ITEMS_PER_PAGE = 4;
 
@@ -76,57 +78,66 @@ export default function Testimonials() {
                 </div>
 
                 <PageGrid page={page}>
-                    {displayedTestimonials.map((texts, idx) => (
-                        <Card
-                            key={idx}
-                            data-testid="testimonial-card"
-                            className="relative w-full p-5 sm:p-6 border border-gray-200/60
+                    {displayedTestimonials.map((texts, idx) => {
+                        const testimonialName = t(texts.nameKey);
+
+                        return (
+                            <Card
+                                key={idx}
+                                data-testid="testimonial-card"
+                                className="relative w-full p-5 sm:p-6 border border-gray-200/60
                                        dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
                                        rounded-xl hover:shadow-lg transition-all duration-300
                                        flex flex-col md:flex-row items-start gap-4"
-                        >
-                            <CardContent className="p-2">
-                                {/* Header */}
-                                <div
-                                    className="flex-shrink-0 mb-3 pb-1 border-b border-gray-200/50 dark:border-gray-700/50 px-3 pt-3">
-                                    <div className="flex items-center gap-2.5">
-                                        <img
-                                            src={`https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(t(texts.nameKey))}`}
-                                            alt={`${t(texts.nameKey)} avatar`}
-                                            className="w-10 h-10 rounded-full ring-2 ring-gray-200 dark:ring-gray-600 bg-white shadow-md"
-                                        />
-                                        <div className="flex flex-col">
-                                            <p className="font-semibold text-gray-900 dark:text-white flex items-center gap-1.5 text-sm sm:text-base">
-                                                {t(texts.nameKey)}
-                                                {texts.linkedinUrl && (
-                                                    <a href={texts.linkedinUrl} target="_blank"
-                                                       rel="noopener noreferrer">
-                                                        <BrandIcon icon={linkedinIcon} color="#0A66C2" size={18}/>
-                                                    </a>
-                                                )}
-                                            </p>
-                                            <p className="text-xs text-gray-500 dark:text-gray-400 font-medium">
-                                                {t(texts.roleKey)}
-                                            </p>
+                            >
+                                <CardContent className="p-2">
+                                    {/* Header */}
+                                    <div
+                                        className="flex-shrink-0 mb-3 pb-1 border-b border-gray-200/50 dark:border-gray-700/50 px-3 pt-3">
+                                        <div className="flex items-center gap-2.5">
+                                            <img
+                                                src={`https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(testimonialName)}`}
+                                                alt={`${testimonialName} avatar`}
+                                                className="w-10 h-10 rounded-full ring-2 ring-gray-200 dark:ring-gray-600 bg-white shadow-md"
+                                            />
+                                            <div className="flex flex-col">
+                                                <p className="font-semibold text-gray-900 dark:text-white flex items-center gap-1.5 text-sm sm:text-base">
+                                                    {testimonialName}
+                                                    {texts.linkedinUrl && (
+                                                        <a
+                                                            href={texts.linkedinUrl}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            aria-label={`LinkedIn - ${testimonialName}`}
+                                                            className={clsx("rounded", interactiveClasses.focusRing)}
+                                                        >
+                                                            <BrandIcon icon={linkedinIcon} color="#0A66C2" size={18}/>
+                                                        </a>
+                                                    )}
+                                                </p>
+                                                <p className="text-xs text-gray-500 dark:text-gray-400 font-medium">
+                                                    {t(texts.roleKey)}
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                {/* Quote */}
-                                <div className="flex flex-1 justify-center items-center px-3 py-4">
-                                    <ExpandableText
-                                        value={t(texts.quoteKey)}
-                                        maxLines={4}
-                                        className="text-center italic text-sm md:text-base text-gray-800 dark:text-gray-200
+                                    {/* Quote */}
+                                    <div className="flex flex-1 justify-center items-center px-3 py-4">
+                                        <ExpandableText
+                                            value={t(texts.quoteKey)}
+                                            maxLines={4}
+                                            className="text-center italic text-sm md:text-base text-gray-800 dark:text-gray-200
                                                  leading-snug font-light tracking-tight px-3 py-3 bg-gradient-to-b
                                                  from-transparent via-white/70 to-transparent dark:via-gray-800/50
                                                  rounded-xl backdrop-blur-sm shadow-inner border border-gray-100/40 dark:border-gray-700/40"
-                                    />
-                                </div>
-                            </CardContent>
+                                        />
+                                    </div>
+                                </CardContent>
 
-                        </Card>
-                    ))}
+                            </Card>
+                        );
+                    })}
                 </PageGrid>
 
                 {/* Pagination desktop normal */}

@@ -10,6 +10,8 @@ import {PageGrid} from "@/components/ui/pageGrid/PageGrid";
 import {getCertifications} from "@/services/portfolioService";
 import {Loading} from "@/components/loading/Loading";
 import {ErrorState} from "@/components/errorState/ErrorState";
+import clsx from "clsx";
+import {interactiveClasses} from "@/styles/commonClasses";
 
 const ITEMS_PER_PAGE = 4;
 
@@ -88,7 +90,7 @@ export default function Certifications() {
                             {/* Icon */}
                             <div className="absolute -top-3 right-4 w-12 h-12 rounded-full bg-gradient-to-r from-blue-100 to-blue-200
                                           dark:from-blue-900/40 dark:to-blue-800/40 flex items-center justify-center shadow-lg z-20 ring-4 ring-background">
-                                <Award className="w-6 h-6 text-blue-600 dark:text-blue-400"/>
+                                <Award className="w-6 h-6 text-blue-600 dark:text-blue-400" aria-hidden="true"/>
                             </div>
 
                             <CardContent className="p-0 flex flex-col gap-3 h-full">
@@ -118,7 +120,7 @@ export default function Certifications() {
                                         href={cert.link}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center justify-center
+                                        className={clsx(`inline-flex items-center justify-center
                                                     w-[200px] sm:w-[220px] h-10
                                                     text-sm font-semibold
                                                     text-blue-600 dark:text-blue-400
@@ -128,11 +130,13 @@ export default function Certifications() {
                                                     hover:shadow-md hover:shadow-blue-100 dark:hover:shadow-blue-900/50
                                                     rounded-lg
                                                     border border-blue-200/50 dark:border-blue-800/50 hover:border-blue-300
-                        "
+                        `, interactiveClasses.focusRing)}
                                     >
                                         {t("certifications_page.view_certificate")}
                                         <ExternalLink
-                                            className="w-4 h-4 ml-2 shrink-0 group-hover:translate-x-1 transition-transform duration-300"/>
+                                            className="w-4 h-4 ml-2 shrink-0 group-hover:translate-x-1 transition-transform duration-300"
+                                            aria-hidden="true"
+                                        />
                                     </a>
                                 </div>
                             </CardContent>

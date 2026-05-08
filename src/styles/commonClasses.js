@@ -47,12 +47,15 @@ export const surfaceClasses = {
  *
  * @typedef {Object} InteractiveClasses
  * @property {string} focusRing - Shared focus-visible ring for keyboard navigation.
+ * @property {string} focusRingInset - Shared inset focus-visible ring for menu items.
  * @property {string} buttonBase - Base layout and disabled styles for button controls.
+ * @property {string} paginationButton - Base style for pagination controls.
  * @property {string} selectedButton - Visual state for active selectable buttons.
  * @property {string} unselectedButton - Visual state for inactive selectable buttons.
  * @property {string} linkButtonBase - Base layout for anchor elements rendered as CTA buttons.
  * @property {string} linkButtonGreen - Green CTA theme used for primary external links.
  * @property {string} linkButtonBlue - Blue CTA theme used for secondary external links.
+ * @property {string} textLink - Accessible inline text link style for legal and policy pages.
  */
 
 /**
@@ -63,8 +66,12 @@ export const surfaceClasses = {
 export const interactiveClasses = {
   focusRing:
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900",
+  focusRingInset:
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/70 focus-visible:ring-inset",
   buttonBase:
     "inline-flex min-h-11 items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-60",
+  paginationButton:
+    "min-w-[110px] rounded-md border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium text-gray-800 transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800",
   selectedButton:
     "border bg-blue-600 text-white shadow-md hover:shadow-lg dark:bg-blue-500",
   unselectedButton:
@@ -75,4 +82,6 @@ export const interactiveClasses = {
     "bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 focus-visible:ring-green-400 dark:focus-visible:ring-green-300",
   linkButtonBlue:
     "bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 focus-visible:ring-blue-400 dark:focus-visible:ring-blue-300",
+  textLink:
+    "text-blue-600 underline underline-offset-2 transition-colors hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300",
 };

@@ -75,7 +75,7 @@ describe('TradingPerformanceChart', () => {
     });
 
     test('renders chart title and view selector', () => {
-        expect(screen.getByRole('heading', {level: 3})).toHaveTextContent(/performance/i);
+        expect(screen.getByRole('heading', {level: 2})).toHaveTextContent(/performance/i);
         expect(screen.getByLabelText(/view selector/i)).toBeInTheDocument();
         expect(screen.getByRole('combobox')).toHaveValue('monthly');
     });

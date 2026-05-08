@@ -46,6 +46,7 @@ describe("Header", () => {
         renderHeader("/");
         const home = screen.getAllByText("Home")[0];
         expect(home.className).toMatch(/text-blue-600/);
+        expect(home).toHaveAttribute("aria-current", "page");
         expect(screen.getAllByRole("button", {name: /portfolio/i})[0]).toBeInTheDocument();
     });
 
@@ -57,6 +58,7 @@ describe("Header", () => {
 
         const active = screen.getByText("Projects");
         expect(active.className).toMatch(/text-blue-600/);
+        expect(active).toHaveAttribute("aria-current", "page");
     });
 
     test("renders LanguageSwitcher and DarkModeToggle on desktop", () => {
@@ -78,7 +80,8 @@ describe("Header", () => {
     test("desktop portfolio dropdown button has aria-haspopup", () => {
         renderHeader("/");
         const btn = screen.getAllByRole("button", {name: /portfolio/i})[0];
-        expect(btn).toHaveAttribute("aria-haspopup", "true");
+        expect(btn).toHaveAttribute("aria-haspopup", "menu");
+        expect(btn).toHaveAttribute("aria-controls", "desktop-portfolio-menu");
     });
 
     test("desktop portfolio dropdown animation triggers initial and exit states", () => {
@@ -145,6 +148,7 @@ describe("Header", () => {
             renderHeader("/");
 
             const toggle = screen.getByLabelText(/toggle mobile menu/i);
+            expect(toggle).toHaveAttribute("aria-controls", "mobile-navigation");
 
             expect(screen.queryByTestId("mobile-menu")).not.toBeInTheDocument();
 

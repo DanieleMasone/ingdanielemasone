@@ -1,6 +1,13 @@
 import {fireEvent, render, screen, waitFor} from '@testing-library/react';
 import {beforeEach, describe, expect, it, vi} from 'vitest';
 import {CookieBanner} from './CookieBanner';
+import {MemoryRouter} from "react-router-dom";
+
+const renderBanner = () => render(
+    <MemoryRouter>
+        <CookieBanner/>
+    </MemoryRouter>
+);
 
 describe('CookieBanner', () => {
     beforeEach(() => {
@@ -9,7 +16,7 @@ describe('CookieBanner', () => {
     });
 
     it('shows banner if no cookie consent in localStorage', async () => {
-        render(<CookieBanner/>);
+        renderBanner();
 
         // Wait for useEffect to display the banner
         await waitFor(() => {
@@ -22,7 +29,7 @@ describe('CookieBanner', () => {
     it('does not show banner if cookie consent is set', () => {
         // Test with both timestamp and boolean value
         localStorage.setItem('cookieConsent', '2026-02-04T09:47:52.401Z');
-        render(<CookieBanner/>);
+        renderBanner();
 
         expect(screen.queryByText(/questo sito utilizza cookie/i)).not.toBeInTheDocument();
     });
@@ -31,7 +38,7 @@ describe('CookieBanner', () => {
         // Spy on PROTOTYPE Storage, not on localStorage directly
         const setItemSpy = vi.spyOn(Storage.prototype, 'setItem');
 
-        render(<CookieBanner/>);
+        renderBanner();
 
         // Wait for the banner to be visible (useEffect)
         await waitFor(() => {
@@ -55,7 +62,7 @@ describe('CookieBanner', () => {
     });
 
     it('renders the privacy policy link with correct href', async () => {
-        render(<CookieBanner/>);
+        renderBanner();
 
         await waitFor(() => {
             const link = screen.getByText(/Politica sulla Privacy/i);
@@ -65,18 +72,18 @@ describe('CookieBanner', () => {
     });
 
     it('banner has proper ARIA attributes', async () => {
-        render(<CookieBanner/>);
+        renderBanner();
 
         await waitFor(() => {
-            const banner = screen.getByRole('banner');
+            const banner = screen.getByRole('region', {name: /cookie consent/i});
             expect(banner).toHaveAttribute('aria-live', 'polite');
-            expect(banner).toHaveAttribute('aria-label', 'Cookie consent banner');
+            expect(banner).toHaveAttribute('aria-label', 'Cookie consent');
         });
     });
 
     it('handles non-standard localStorage values gracefully', () => {
         localStorage.setItem('cookieConsent', 'not-a-timestamp');
-        render(<CookieBanner/>);
+        renderBanner();
 
         // The banner should still be hidden if the key exists
         expect(screen.queryByText(/questo sito utilizza cookie/i)).not.toBeInTheDocument();

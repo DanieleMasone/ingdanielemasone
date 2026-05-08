@@ -1,5 +1,7 @@
 import {Disclosure} from "@headlessui/react";
 import {ChevronDown} from "lucide-react";
+import clsx from "clsx";
+import {interactiveClasses} from "../../../styles/commonClasses";
 
 /**
  * Collapsible technology list used by experience and project cards.
@@ -21,9 +23,14 @@ export default function TechDisclosure({techList, label}) {
             {({open}) => (
                 <div className="pt-3 border-t border-gray-200/60 dark:border-gray-700/60">
                     <Disclosure.Button
-                        className="flex items-center text-sm text-blue-600 dark:text-blue-400 hover:underline">
+                        className={clsx(
+                            "flex items-center rounded text-sm text-blue-600 hover:underline dark:text-blue-400",
+                            interactiveClasses.focusRing
+                        )}
+                    >
                         <span>{label}</span>
                         <ChevronDown
+                            aria-hidden="true"
                             className={`ml-1 w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}
                         />
                     </Disclosure.Button>

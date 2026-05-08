@@ -63,14 +63,15 @@ describe("ExpandableText", () => {
         const expandBtn = await screen.findByRole("button", {name: /Show more/i});
         const paragraph = expandBtn.closest("div").previousSibling;
 
-        expect(paragraph).toHaveAttribute("aria-expanded", "false");
+        expect(expandBtn).toHaveAttribute("aria-expanded", "false");
+        expect(expandBtn).toHaveAttribute("aria-controls", paragraph.id);
         const initialHeight = paragraph.style.maxHeight;
         expect(initialHeight).toMatch(/px/);
 
         // Expand
         fireEvent.click(expandBtn);
         await waitFor(() => {
-            expect(paragraph).toHaveAttribute("aria-expanded", "true");
+            expect(screen.getByRole("button", {name: /Show less/i})).toHaveAttribute("aria-expanded", "true");
             expect(paragraph.style.maxHeight).toMatch(/px/);
         });
 
@@ -78,7 +79,7 @@ describe("ExpandableText", () => {
         const collapseBtn = await screen.findByRole("button", {name: /Show less/i});
         fireEvent.click(collapseBtn);
         await waitFor(() => {
-            expect(paragraph).toHaveAttribute("aria-expanded", "false");
+            expect(screen.getByRole("button", {name: /Show more/i})).toHaveAttribute("aria-expanded", "false");
             expect(paragraph.style.maxHeight).toMatch(/px/);
         });
     });

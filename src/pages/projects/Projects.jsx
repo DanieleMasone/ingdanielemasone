@@ -11,6 +11,8 @@ import TechDisclosure from "@/components/ui/techDisclosure/TechDisclosure";
 import {getProjects} from "@/services/portfolioService";
 import {Loading} from "@/components/loading/Loading";
 import {ErrorState} from "@/components/errorState/ErrorState";
+import clsx from "clsx";
+import {interactiveClasses} from "@/styles/commonClasses";
 
 const ITEMS_PER_PAGE = 2;
 
@@ -18,7 +20,7 @@ const ITEMS_PER_PAGE = 2;
  * Projects component displays a list of projects grouped by company.
  *
  * Features:
- * - Sidebar with buttons to filter projects by company.
+ * - Sidebar with accessible toggle buttons to filter projects by company.
  * - Shows project details including name, company, period, type, and technologies used.
  * - Each project has a collapsible panel to toggle visibility of technology stack.
  * - Uses i18n translation for UI texts and project types.
@@ -77,7 +79,7 @@ export default function Projects() {
                         <div className="flex flex-col md:flex-row gap-8">
 
                             {/*  SIDEBAR */}
-                            <aside className="md:w-64 md:shrink-0 md:sticky md:top-24 h-fit">
+                            <aside className="md:w-64 md:shrink-0 md:sticky md:top-24 h-fit" aria-label={t("projects_title")}>
                                 <div
                                     className="flex flex-row md:flex-col gap-2 md:gap-3 overflow-x-auto md:overflow-visible snap-x md:snap-none px-1 md:px-0 pb-3 scrollbar-hide"
                                 >
@@ -93,12 +95,14 @@ export default function Projects() {
                                                     setPage(1);
                                                     window.scrollTo({top: 0, behavior: "smooth"});
                                                 }}
-                                                className={`snap-start flex items-center justify-between gap-3 rounded-lg border px-3 py-2 text-left transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900
-                                                    ${selectedCompany === company
-                                                    ? "bg-blue-600 text-white border-blue-600 shadow-md"
-                                                    : "bg-white/70 dark:bg-gray-800/60 border-gray-200 dark:border-gray-700 hover:-translate-y-0.5 hover:shadow"
-                                                }
-                                            `}
+                                                className={clsx(
+                                                    "snap-start flex items-center justify-between gap-3 rounded-lg border px-3 py-2 text-left transition-all duration-200",
+                                                    interactiveClasses.focusRing,
+                                                    selectedCompany === company
+                                                        ? "bg-blue-600 text-white border-blue-600 shadow-md"
+                                                        : "bg-white/70 dark:bg-gray-800/60 border-gray-200 dark:border-gray-700 hover:-translate-y-0.5 hover:shadow"
+                                                )}
+                                                aria-pressed={selectedCompany === company}
                                             >
                                                 <span className="truncate">{company}</span>
                                                 <span className={`text-xs px-2 py-0.5 rounded-full
@@ -116,7 +120,7 @@ export default function Projects() {
                             </aside>
 
                             {/* MAIN */}
-                            <main className="flex-1 min-w-0">
+                            <div className="flex-1 min-w-0">
                                 <div className="max-w-6xl mx-auto flex flex-col gap-6">
 
                                     {/* pagination mobile sticky */}
@@ -192,7 +196,7 @@ export default function Projects() {
                                         />
                                     </div>
                                 </div>
-                            </main>
+                            </div>
 
                         </div>
                     );

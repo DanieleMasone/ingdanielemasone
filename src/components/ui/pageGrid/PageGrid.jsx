@@ -11,7 +11,8 @@ const COLS = {
  * Responsive grid wrapper for paginated portfolio sections.
  *
  * Uses Framer Motion to animate page changes while keeping the column layout
- * consistent across route-level cards.
+ * consistent across route-level cards. The grid remains a visual layout only,
+ * avoiding ARIA grid semantics because children are not interactive grid cells.
  *
  * @component
  * @module components/ui/pageGrid/PageGrid
@@ -43,8 +44,6 @@ export function PageGrid({
                     transition={{duration: 0.3, ease: "easeOut"}}
                     layout
                     className={`grid ${colClass} gap-6 pt-4 items-start`}
-                    role="grid"
-                    aria-label={`Page ${page}`}
                 >
                     {children}
                 </motion.div>

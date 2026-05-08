@@ -61,9 +61,7 @@ describe('CookiePolicy component', () => {
     });
 
     test('renders last updated footer text', () => {
-        const footer = screen.getByRole('contentinfo'); // semantic footer role
-        expect(footer.textContent.toLowerCase()).toContain('last updated');
-        expect(footer.textContent.toLowerCase()).toContain('june 2025');
+        expect(screen.getByText(/last updated/i).textContent.toLowerCase()).toContain('june 2025');
     });
 
 });

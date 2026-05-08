@@ -1,9 +1,12 @@
 import React from "react";
 import {useTranslation} from "react-i18next";
 import {SeoHead} from "@/components/seoHead/SeoHead";
+import {Link} from "react-router-dom";
+import clsx from "clsx";
+import {interactiveClasses} from "@/styles/commonClasses";
 
 /**
- * Privacy component displays the privacy policy page.
+ * Privacy component displays the privacy policy article.
  *
  * It uses translations from `react-i18next` to render privacy information sections,
  * including owner details, data types collected, purposes, legal basis, recipients,
@@ -11,16 +14,17 @@ import {SeoHead} from "@/components/seoHead/SeoHead";
  *
  * @component
  * @module pages/privacy/Privacy
- * @returns {JSX.Element} The rendered privacy policy page
+ * @returns {JSX.Element} The rendered privacy policy page.
  */
 export default function Privacy() {
     const {t} = useTranslation();
+    const linkClass = clsx(interactiveClasses.textLink, interactiveClasses.focusRing, "rounded");
 
     return (
         <>
             <SeoHead pageKey="privacy" path="/privacy"/>
 
-            <main
+            <article
                 className="max-w-4xl mx-auto p-8 bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-300 min-h-screen">
                 <h1 className="text-4xl font-bold mb-6">{t("privacy.title")}</h1>
 
@@ -30,7 +34,7 @@ export default function Privacy() {
                         {t("privacy.intro_text1")}{" "}
                         <a
                             href="https://www.ingdanielemasone.com/"
-                            className="text-blue-600 dark:text-blue-400 underline hover:text-blue-800 dark:hover:text-blue-300"
+                            className={linkClass}
                         >
                             https://www.ingdanielemasone.com/
                         </a>. {t("privacy.intro_text2")}
@@ -47,7 +51,7 @@ export default function Privacy() {
                         Email:{" "}
                         <a
                             href="mailto:masone.daniele@gmail.com"
-                            className="text-blue-600 dark:text-blue-400 underline"
+                            className={linkClass}
                         >
                             masone.daniele@gmail.com
                         </a>
@@ -110,7 +114,7 @@ export default function Privacy() {
                         {t("privacy.rights_exercise")}{" "}
                         <a
                             href="mailto:masone.daniele@gmail.com"
-                            className="text-blue-600 dark:text-blue-400 underline"
+                            className={linkClass}
                         >
                             masone.daniele@gmail.com
                         </a>
@@ -121,12 +125,9 @@ export default function Privacy() {
                     <h2 className="text-2xl font-semibold mb-2">{t("privacy.cookie_title")}</h2>
                     <p>
                         {t("privacy.cookie_text")}{" "}
-                        <a
-                            href="/cookie-policy"
-                            className="text-blue-600 dark:text-blue-400 underline"
-                        >
+                        <Link to="/cookie-policy" className={linkClass}>
                             {t("privacy.cookie_link")}
-                        </a>.
+                        </Link>.
                     </p>
                 </section>
 
@@ -135,11 +136,11 @@ export default function Privacy() {
                     <p>{t("privacy.changes_text")}</p>
                 </section>
 
-                <footer
+                <p
                     className="border-t border-gray-300 dark:border-gray-700 pt-4 text-sm text-gray-500 dark:text-gray-600 text-center">
                     {t("privacy.last_updated")}: {t("privacy.last_date_updated")}
-                </footer>
-            </main>
+                </p>
+            </article>
         </>
     );
 }

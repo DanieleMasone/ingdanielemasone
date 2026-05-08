@@ -2,6 +2,8 @@ import React, {useEffect, useRef, useState} from "react";
 import {useTranslation} from "react-i18next";
 import {ChevronDown} from "lucide-react";
 import {AnimatePresence, motion} from "framer-motion";
+import clsx from "clsx";
+import {interactiveClasses} from "../../../styles/commonClasses";
 
 const flags = {
     en: "https://flagcdn.com/w20/gb.png",
@@ -22,7 +24,8 @@ const languageLabels = {
 /**
  * Language selector for the portfolio.
  *
- * Shows the active language, opens a localized language menu, and persists the
+ * Shows the active language, opens a language menu, marks the current choice
+ * with `aria-current`, closes on outside click or Escape, and persists the
  * chosen language through the shared i18next instance.
  *
  * @component
@@ -46,27 +49,40 @@ export function LanguageSwitcher() {
         const handleClickOutside = (event) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) setOpen(false);
         };
-        if (open) document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
+
+        const handleEscape = (event) => {
+            if (event.key === "Escape") setOpen(false);
+        };
+
+        if (open) {
+            document.addEventListener("mousedown", handleClickOutside);
+            document.addEventListener("keydown", handleEscape);
+        }
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+            document.removeEventListener("keydown", handleEscape);
+        };
     }, [open]);
 
     return (
         <div ref={dropdownRef} className="relative inline-block text-left z-20">
             <button
                 onClick={toggleDropdown}
-                aria-haspopup="true"
+                aria-haspopup="menu"
                 aria-expanded={open}
+                aria-controls="language-menu"
                 aria-label="Seleziona lingua"
-                className="flex items-center justify-between gap-2 rounded-md bg-gray-100/80 dark:bg-gray-700/70
-                           px-3 py-2 text-sm font-medium text-gray-900 dark:text-gray-100
-                           shadow-sm hover:bg-gray-200/80 dark:hover:bg-gray-600/60
-                           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 transition-all
-                           backdrop-blur-sm min-w-[6rem]"
+                className={clsx(
+                    "flex min-w-[6rem] items-center justify-between gap-2 rounded-md bg-gray-100/80 px-3 py-2 text-sm font-medium text-gray-900 shadow-sm backdrop-blur-sm transition-all hover:bg-gray-200/80 dark:bg-gray-700/70 dark:text-gray-100 dark:hover:bg-gray-600/60",
+                    interactiveClasses.focusRing
+                )}
                 type="button"
             >
-                <img src={flags[currentLang]} alt={`${currentLang} flag`} className="w-5 h-auto rounded-sm"/>
+                <img src={flags[currentLang]} alt="" aria-hidden="true" className="w-5 h-auto rounded-sm"/>
                 <span className="uppercase">{currentLang}</span>
                 <ChevronDown
+                    aria-hidden="true"
                     className={`w-4 h-4 text-gray-500 dark:text-gray-300 transition-transform ${open ? "rotate-180" : "rotate-0"}`}
                 />
             </button>
@@ -82,6 +98,7 @@ export function LanguageSwitcher() {
                                    shadow-lg ring-1 ring-black/10 backdrop-blur-md overflow-hidden
                                    w-40 sm:w-44 md:w-48 flex flex-col divide-y divide-gray-200 dark:divide-gray-700"
                         role="menu"
+                        id="language-menu"
                         aria-label="Selezione lingua"
                     >
                         {Object.entries(flags).map(([lang, flagUrl]) => {
@@ -90,16 +107,18 @@ export function LanguageSwitcher() {
                                 <button
                                     key={lang}
                                     onClick={() => handleChange(lang)}
-                                    className={`flex w-full items-center px-4 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/70 focus-visible:ring-inset
-                                               text-gray-800 dark:text-gray-100 transition-colors
-                                               hover:bg-gray-100/80 dark:hover:bg-gray-700/60
-                                               ${isActive ? "bg-blue-100/80 dark:bg-blue-900/40 text-blue-800 dark:text-blue-300 font-semibold" : ""}`}
+                                    className={clsx(
+                                        "flex w-full items-center px-4 py-2 text-sm text-gray-800 transition-colors hover:bg-gray-100/80 dark:text-gray-100 dark:hover:bg-gray-700/60",
+                                        interactiveClasses.focusRingInset,
+                                        isActive && "bg-blue-100/80 font-semibold text-blue-800 dark:bg-blue-900/40 dark:text-blue-300"
+                                    )}
                                     role="menuitem"
+                                    aria-current={isActive ? "true" : undefined}
                                     type="button"
                                 >
                                     <span
                                         className={`inline-block w-1 h-6 rounded-r-md mr-3 ${isActive ? "bg-blue-600 dark:bg-blue-400" : "bg-transparent"}`}/>
-                                    <img src={flagUrl} alt={`${lang} flag`} className="w-5 h-auto rounded-sm mr-3"/>
+                                    <img src={flagUrl} alt="" aria-hidden="true" className="w-5 h-auto rounded-sm mr-3"/>
                                     <span className="flex-1 text-left">{languageLabels[lang]}</span>
                                 </button>
                             );

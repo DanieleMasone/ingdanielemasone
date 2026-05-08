@@ -6,12 +6,15 @@ import {useTranslation} from 'react-i18next';
 import {ChevronDown, Menu, X} from 'lucide-react';
 import {Disclosure} from '@headlessui/react';
 import {AnimatePresence, motion} from "framer-motion";
+import clsx from "clsx";
+import {interactiveClasses} from "../../styles/commonClasses";
 
 /**
  * Portfolio header with primary navigation, language switcher, and theme toggle.
  *
- * Supports desktop navigation, a mobile menu, and a portfolio dropdown that
- * closes when the route changes or the user clicks outside the menu.
+ * Supports desktop navigation, a mobile menu, active route states, and a
+ * portfolio dropdown that closes when the route changes or the user clicks
+ * outside the menu.
  *
  * @component
  * @module components/header/Header
@@ -69,6 +72,7 @@ export function Header() {
         `transition font-medium hover:text-blue-600 dark:hover:text-blue-400 ${
             pathname === path ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-gray-900 dark:text-white"
         }`;
+    const getAriaCurrent = (path) => (pathname === path ? "page" : undefined);
 
     return (
         <header
@@ -88,7 +92,12 @@ export function Header() {
                 {/* Desktop Nav */}
                 <nav className="hidden md:flex items-center space-x-6" aria-label="Main navigation">
                     {navMain.map((item) => (
-                        <Link key={item.to} to={item.to} className={getLinkClasses(item.to)}>
+                        <Link
+                            key={item.to}
+                            to={item.to}
+                            className={clsx(getLinkClasses(item.to), "rounded", interactiveClasses.focusRing)}
+                            aria-current={getAriaCurrent(item.to)}
+                        >
                             {item.label}
                         </Link>
                     ))}
@@ -97,15 +106,17 @@ export function Header() {
                     <div className="relative group" ref={portfolioRef}>
                         <button
                             onClick={() => setPortfolioOpen(!portfolioOpen)}
-                            className={`flex items-center space-x-1 font-medium transition hover:text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:hover:text-blue-400 dark:focus-visible:ring-offset-gray-900 ${
+                            className={clsx(`flex items-center space-x-1 rounded font-medium transition hover:text-blue-600 dark:hover:text-blue-400 ${
                                 portfolioOpen || isPortfolioRoute ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-gray-900 dark:text-white"
-                            }`}
-                            aria-haspopup="true"
+                            }`, interactiveClasses.focusRing)}
+                            aria-haspopup="menu"
                             aria-expanded={portfolioOpen}
+                            aria-controls="desktop-portfolio-menu"
                             type="button"
                         >
                             <span>{t("portfolio")}</span>
                             <ChevronDown
+                                aria-hidden="true"
                                 className={`w-4 h-4 transition-transform ${portfolioOpen ? "rotate-180" : ""}`}/>
                         </button>
 
@@ -117,15 +128,17 @@ export function Header() {
                                     exit={{opacity: 0, y: -10}}
                                     transition={{duration: 0.2}}
                                     className="absolute left-0 mt-2 w-52 bg-white dark:bg-gray-800 shadow-lg rounded-lg border dark:border-gray-700 z-50"
+                                    id="desktop-portfolio-menu"
                                 >
                                     {navPortfolio.map((item) => (
                                         <Link
                                             key={item.to}
                                             to={item.to}
                                             onClick={() => setPortfolioOpen(false)}
-                                            className={`block px-4 py-2 text-sm rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition ${
+                                            className={clsx(`block rounded px-4 py-2 text-sm transition hover:bg-gray-100 dark:hover:bg-gray-700 ${
                                                 pathname === item.to ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-gray-900 dark:text-white"
-                                            }`}
+                                            }`, interactiveClasses.focusRingInset)}
+                                            aria-current={getAriaCurrent(item.to)}
                                         >
                                             {item.label}
                                         </Link>
@@ -144,13 +157,14 @@ export function Header() {
 
                 {/* Mobile menu toggle */}
                 <button
-                    className="rounded p-2 transition hover:bg-gray-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:hover:bg-gray-800 dark:focus-visible:ring-offset-gray-900 md:hidden"
+                    className={clsx("rounded p-2 transition hover:bg-gray-200 dark:hover:bg-gray-800 md:hidden", interactiveClasses.focusRing)}
                     onClick={() => setMenuOpen(!menuOpen)}
                     aria-label="Toggle mobile menu"
                     aria-expanded={menuOpen}
+                    aria-controls="mobile-navigation"
                     type="button"
                 >
-                    {menuOpen ? <X className="w-6 h-6"/> : <Menu className="w-6 h-6"/>}
+                    {menuOpen ? <X className="w-6 h-6" aria-hidden="true"/> : <Menu className="w-6 h-6" aria-hidden="true"/>}
                 </button>
             </div>
 
@@ -165,14 +179,16 @@ export function Header() {
                         exit={{opacity: 0, y: -16}}
                         transition={{duration: 0.2}}
                         className="md:hidden px-4 pt-4 pb-6 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 space-y-4"
+                        id="mobile-navigation"
                     >
                         <div className="flex justify-between items-center">
                             <Link
                                 to="/"
                                 onClick={() => setMenuOpen(false)}
-                                className={`text-base font-medium transition ${
+                                className={clsx(`rounded text-base font-medium transition ${
                                     pathname === "/" ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-gray-900 dark:text-white"
-                                } hover:text-blue-600 dark:hover:text-blue-400`}
+                                } hover:text-blue-600 dark:hover:text-blue-400`, interactiveClasses.focusRing)}
+                                aria-current={getAriaCurrent("/")}
                             >
                                 {t("home")}
                             </Link>
@@ -191,9 +207,10 @@ export function Header() {
                                         key={item.to}
                                         to={item.to}
                                         onClick={() => setMenuOpen(false)}
-                                        className={`block py-2 rounded text-base font-medium transition ${
+                                        className={clsx(`block rounded py-2 text-base font-medium transition ${
                                             pathname === item.to ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-gray-900 dark:text-white"
-                                        } hover:bg-gray-200 dark:hover:bg-gray-700`}
+                                        } hover:bg-gray-200 dark:hover:bg-gray-700`, interactiveClasses.focusRing)}
+                                        aria-current={getAriaCurrent(item.to)}
                                     >
                                         {item.label}
                                     </Link>
@@ -206,9 +223,14 @@ export function Header() {
                                 {({open}) => (
                                     <>
                                         <Disclosure.Button
-                                            className="flex items-center justify-between w-full py-2 text-base font-medium text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">
+                                            className={clsx(
+                                                "flex w-full items-center justify-between rounded py-2 text-base font-medium text-gray-900 hover:text-blue-600 dark:text-white dark:hover:text-blue-400",
+                                                interactiveClasses.focusRing
+                                            )}
+                                        >
                                             <span>{t("portfolio")}</span>
                                             <ChevronDown
+                                                aria-hidden="true"
                                                 className={`w-5 h-5 transition-transform ${open ? "rotate-180" : ""}`}/>
                                         </Disclosure.Button>
                                         <Disclosure.Panel className="pl-4 space-y-1">
@@ -217,9 +239,10 @@ export function Header() {
                                                     key={item.to}
                                                     to={item.to}
                                                     onClick={() => setMenuOpen(false)}
-                                                    className={`block py-1 text-sm font-normal transition ${
+                                                    className={clsx(`block rounded py-1 text-sm font-normal transition ${
                                                         pathname === item.to ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-gray-900 dark:text-white"
-                                                    } hover:text-blue-600 dark:hover:text-blue-400`}
+                                                    } hover:text-blue-600 dark:hover:text-blue-400`, interactiveClasses.focusRing)}
+                                                    aria-current={getAriaCurrent(item.to)}
                                                 >
                                                     {item.label}
                                                 </Link>

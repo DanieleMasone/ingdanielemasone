@@ -11,6 +11,8 @@ import TechDisclosure from "@/components/ui/techDisclosure/TechDisclosure";
 import {getCourses} from "@/services/portfolioService";
 import {Loading} from "@/components/loading/Loading";
 import {ErrorState} from "@/components/errorState/ErrorState";
+import clsx from "clsx";
+import {interactiveClasses} from "@/styles/commonClasses";
 
 const ITEMS_PER_PAGE = 4;
 
@@ -95,7 +97,7 @@ export default function Courses() {
                                         href={course.link}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="block md:hidden shrink-0 ml-4"
+                                        className={clsx("block md:hidden shrink-0 ml-4 rounded-full", interactiveClasses.focusRing)}
                                     >
                                         <img
                                             src={course.image}
@@ -125,7 +127,7 @@ export default function Courses() {
                                 href={course.link}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="hidden md:block shrink-0"
+                                className={clsx("hidden md:block shrink-0 rounded-full", interactiveClasses.focusRing)}
                             >
                                 <img
                                     src={course.image}

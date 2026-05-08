@@ -1,8 +1,11 @@
 import {useTranslation} from "react-i18next";
 import React from "react";
+import {CircleAlert} from "lucide-react";
+import clsx from "clsx";
+import {interactiveClasses} from "../../styles/commonClasses";
 
 /**
- * Full-screen error state for failed portfolio data loading.
+ * Full-screen alert state for failed portfolio data loading.
  *
  * Features:
  * - Centered error layout with icon, title and message
@@ -22,15 +25,21 @@ import React from "react";
  * @param {string} [props.message] - Custom error message translation key.
  * @param {function(): void} [props.onRetry] - Optional retry callback handler.
  *
- * @returns {JSX.Element} A full-screen error state view.
+ * @returns {JSX.Element} A full-screen alert-style error state view.
  */
 export function ErrorState({message = "error_generic", onRetry}) {
     const {t} = useTranslation();
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 px-4">
+        <div
+            role="alert"
+            className="flex min-h-screen flex-col items-center justify-center bg-gray-100 px-4 dark:bg-gray-900"
+        >
             <div className="text-center">
-                <div className="text-5xl mb-4">⚠️</div>
+                <CircleAlert
+                    className="mx-auto mb-4 h-12 w-12 text-amber-500 dark:text-amber-300"
+                    aria-hidden="true"
+                />
 
                 <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-2">
                     {t("error_title")}
@@ -44,9 +53,10 @@ export function ErrorState({message = "error_generic", onRetry}) {
                     <button
                         type="button"
                         onClick={onRetry}
-                        className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700
-                       text-white font-medium transition-colors
-                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/80 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-100 dark:focus-visible:ring-offset-gray-900"
+                        className={clsx(
+                            "rounded-lg bg-blue-600 px-4 py-2 font-medium text-white transition-colors hover:bg-blue-700",
+                            interactiveClasses.focusRing
+                        )}
                     >
                         {t("error_retry")}
                     </button>

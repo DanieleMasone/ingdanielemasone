@@ -13,6 +13,7 @@ describe("DarkModeToggle component", () => {
         render(<DarkModeToggle/>);
         const button = screen.getByRole("button");
         expect(button).toHaveAccessibleName("Switch to light mode");
+        expect(button).toHaveAttribute("aria-pressed", "true");
         expect(document.documentElement).toHaveClass("dark");
     });
 
@@ -21,6 +22,7 @@ describe("DarkModeToggle component", () => {
         render(<DarkModeToggle/>);
         const button = screen.getByRole("button");
         expect(button).toHaveAccessibleName("Switch to dark mode");
+        expect(button).toHaveAttribute("aria-pressed", "false");
         expect(document.documentElement).not.toHaveClass("dark");
     });
 
@@ -36,12 +38,14 @@ describe("DarkModeToggle component", () => {
         fireEvent.click(button);
         expect(document.documentElement).toHaveClass("dark");
         expect(button).toHaveAccessibleName("Switch to light mode");
+        expect(button).toHaveAttribute("aria-pressed", "true");
         expect(localStorage.getItem("theme")).toBe("dark");
 
         // Click again to switch to light
         fireEvent.click(button);
         expect(document.documentElement).not.toHaveClass("dark");
         expect(button).toHaveAccessibleName("Switch to dark mode");
+        expect(button).toHaveAttribute("aria-pressed", "false");
         expect(localStorage.getItem("theme")).toBe("light");
     });
 

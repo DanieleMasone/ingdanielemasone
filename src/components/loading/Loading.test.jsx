@@ -1,4 +1,4 @@
-import {render} from "@testing-library/react";
+import {render, screen} from "@testing-library/react";
 import {Loading} from "./Loading";
 import React from "react";
 
@@ -23,6 +23,8 @@ describe("Loading component", () => {
         const spinner = container.querySelector(".animate-spin");
 
         expect(spinner).toBeInTheDocument();
+        expect(spinner).toHaveAttribute("aria-hidden", "true");
+        expect(screen.getByRole("status")).toHaveAccessibleName("Loading content");
     });
 
     test("spinner has expected visual classes", () => {
