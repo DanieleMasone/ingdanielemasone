@@ -1,0 +1,93 @@
+{
+  "siteUrl": "https://danielemasone.github.io/ingdanielemasone",
+  "siteName": "Daniele Masone Portfolio",
+  "author": "Daniele Masone",
+  "defaultLanguage": "it-IT",
+  "defaultLocale": "it_IT",
+  "keywords": "Daniele Masone, portfolio, CV online, software engineer, frontend architect, React, Angular, JavaScript",
+  "twitterCreator": "@masone_daniele",
+  "image": {
+    "url": "https://danielemasone.github.io/ingdanielemasone/logo.png",
+    "width": 1254,
+    "height": 1254,
+    "alt": "Daniele Masone portfolio logo"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/in/ingdanielemasone/",
+    "https://github.com/DanieleMasone",
+    "https://www.udemy.com/user/daniele-masone/",
+    "https://twitter.com/masone_daniele"
+  ],
+  "locales": {
+    "it": "it_IT",
+    "en": "en_US",
+    "fr": "fr_FR",
+    "de": "de_DE",
+    "es": "es_ES"
+  },
+  "routes": [
+    {
+      "path": "/",
+      "pageKey": "home",
+      "priority": "1.0",
+      "robots": "index, follow",
+      "sitemap": true
+    },
+    {
+      "path": "/experience",
+      "pageKey": "experience",
+      "priority": "0.9",
+      "robots": "index, follow",
+      "sitemap": true
+    },
+    {
+      "path": "/projects",
+      "pageKey": "projects",
+      "priority": "0.9",
+      "robots": "index, follow",
+      "sitemap": true
+    },
+    {
+      "path": "/courses",
+      "pageKey": "courses",
+      "priority": "0.8",
+      "robots": "index, follow",
+      "sitemap": true
+    },
+    {
+      "path": "/certifications",
+      "pageKey": "certifications",
+      "priority": "0.8",
+      "robots": "index, follow",
+      "sitemap": true
+    },
+    {
+      "path": "/testimonials",
+      "pageKey": "testimonials",
+      "priority": "0.7",
+      "robots": "index, follow",
+      "sitemap": true
+    },
+    {
+      "path": "/trading",
+      "pageKey": "trading",
+      "priority": "0.6",
+      "robots": "index, follow",
+      "sitemap": true
+    },
+    {
+      "path": "/privacy",
+      "pageKey": "privacy",
+      "priority": "0.2",
+      "robots": "noindex, follow",
+      "sitemap": false
+    },
+    {
+      "path": "/cookie-policy",
+      "pageKey": "cookie",
+      "priority": "0.2",
+      "robots": "noindex, follow",
+      "sitemap": false
+    }
+  ]
+}

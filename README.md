@@ -22,7 +22,7 @@ The portfolio is built as a modern React single-page application with a focus on
 - Clear presentation of professional experience and technical positioning
 - Responsive UI for desktop, tablet, and mobile
 - Internationalization in Italian, English, French, German, and Spanish
-- SEO metadata for each main page
+- SEO metadata, structured data, clean canonical URLs, and GitHub Pages-friendly route files
 - Automated tests, coverage reports, and static source documentation for the portfolio
 - GitHub Pages deployment
 
@@ -130,6 +130,12 @@ npm run doc
 ```
 
 The generated pages describe the portfolio shell, route-level pages, reusable UI components, shared style presets, static datasets, and local data-loading helpers. This is a React/Vite portfolio, so the documentation tooling is intentionally lightweight and focused on source readability rather than framework-heavy application documentation.
+
+## SEO And GitHub Pages
+
+The portfolio is published as a GitHub Pages project site under `/ingdanielemasone/`. The production build uses clean URLs such as `/experience` and `/projects`, then the post-build step generates matching static `index.html` files inside `dist/` so those URLs return HTTP 200 on GitHub Pages.
+
+SEO data is centralized in `src/config/seo.json` and consumed by the route-level `SeoHead` component. The build also writes a clean sitemap, route-specific canonical URLs, Open Graph and Twitter card metadata, and JSON-LD structured data for the professional profile.
 
 ## Quality
 

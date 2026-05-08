@@ -6,6 +6,10 @@ import {vi} from 'vitest';
 
 vi.mock('react-i18next', () => ({
     useTranslation: () => ({
+        i18n: {
+            language: 'it',
+            resolvedLanguage: 'it'
+        },
         t: (key) => {
             const translations = {
                 seo: {
@@ -16,6 +20,10 @@ vi.mock('react-i18next', () => ({
                     projects: {
                         title: 'Projects | Daniele Masone',
                         description: 'Discover software projects and case studies by Daniele Masone.'
+                    },
+                    privacy: {
+                        title: 'Privacy Policy | Daniele Masone',
+                        description: 'Privacy information for the portfolio.'
                     }
                 }
             };
@@ -59,7 +67,7 @@ describe('<SeoHead />', () => {
             const canonical = document.querySelector('link[rel="canonical"]');
             expect(canonical).toHaveAttribute(
                 'href',
-                'https://danielemasone.github.io/ingdanielemasone/#/'
+                'https://danielemasone.github.io/ingdanielemasone/'
             );
         });
     });
@@ -83,7 +91,7 @@ describe('<SeoHead />', () => {
             const canonical = document.querySelector('link[rel="canonical"]');
             expect(canonical).toHaveAttribute(
                 'href',
-                'https://danielemasone.github.io/ingdanielemasone/#/projects'
+                'https://danielemasone.github.io/ingdanielemasone/projects'
             );
         });
     });
@@ -126,9 +134,49 @@ describe('<SeoHead />', () => {
         });
 
         await waitFor(() => {
+            expect(document.querySelector('meta[property="og:image:alt"]')).toHaveAttribute(
+                'content',
+                'Daniele Masone portfolio logo'
+            );
+        });
+
+        await waitFor(() => {
             expect(document.querySelector('meta[name="twitter:card"]')).toHaveAttribute(
                 'content',
                 'summary_large_image'
+            );
+        });
+    });
+
+    test('marks legal pages as noindex', async () => {
+        renderSeo('privacy', '/privacy');
+
+        await waitFor(() => {
+            expect(document.querySelector('meta[name="robots"]')).toHaveAttribute(
+                'content',
+                'noindex, follow'
+            );
+        });
+    });
+
+    test('includes structured data for the portfolio owner and page', async () => {
+        renderSeo('projects', '/projects');
+
+        await waitFor(() => {
+            const structuredData = JSON.parse(
+                document.querySelector('script[type="application/ld+json"]').textContent
+            );
+            expect(structuredData['@graph']).toEqual(
+                expect.arrayContaining([
+                    expect.objectContaining({
+                        '@type': 'Person',
+                        name: 'Daniele Masone'
+                    }),
+                    expect.objectContaining({
+                        '@type': 'WebPage',
+                        url: 'https://danielemasone.github.io/ingdanielemasone/projects'
+                    })
+                ])
             );
         });
     });

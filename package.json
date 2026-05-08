@@ -29,6 +29,7 @@
     "start": "vite",
     "dev": "vite",
     "build": "vite build",
+    "postbuild": "node scripts/prepare-github-pages.mjs",
     "preview": "vite preview",
     "test": "vitest",
     "test:watch": "vitest --watch",

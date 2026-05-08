@@ -9,7 +9,7 @@ import {render} from "@testing-library/react";
  * Test rendering helper kept for local test utilities.
  *
  * Wraps App with MemoryRouter so route-specific tests can render the portfolio
- * without depending on the browser HashRouter used in production.
+ * without depending on the browser router used in production.
  *
  * @module index
  */

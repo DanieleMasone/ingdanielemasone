@@ -239,7 +239,9 @@ describe("Footer – async UI", () => {
 
         links.forEach(link => {
             expect(link).toHaveAttribute("target", "_blank");
-            expect(link).toHaveAttribute("rel", "noopener noreferrer");
+            expect(link.getAttribute("rel")).toContain("noopener");
+            expect(link.getAttribute("rel")).toContain("noreferrer");
+            expect(link.getAttribute("rel")).toContain("nofollow");
         });
     });
 

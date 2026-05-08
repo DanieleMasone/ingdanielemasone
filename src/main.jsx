@@ -1,21 +1,26 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import {HashRouter} from "react-router";
+import {BrowserRouter} from "react-router";
 import App from './App.jsx'
 import './index.css'
+
+const routerBasename = import.meta.env.BASE_URL === "/"
+    ? "/"
+    : import.meta.env.BASE_URL.replace(/\/$/, "");
 
 /**
  * Browser entry point for the portfolio SPA.
  *
- * Mounts the React application into `#root` and uses HashRouter so the site can
- * be hosted safely on GitHub Pages without server-side route rewrites.
+ * Mounts the React application into `#root` and uses BrowserRouter with the
+ * Vite base path. The build step creates static route entry files so GitHub
+ * Pages can serve clean portfolio URLs without hash fragments.
  *
  * @module main
  */
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-        <HashRouter>
+        <BrowserRouter basename={routerBasename}>
             <App />
-        </HashRouter>
+        </BrowserRouter>
     </React.StrictMode>
 )

@@ -107,7 +107,7 @@ export function Footer() {
                     <a
                         href="https://danielemasone.github.io/ingdanielemasone/docs"
                         target="_blank"
-                        rel="noopener noreferrer"
+                        rel="noopener noreferrer nofollow"
                         className="hover:underline mx-1"
                     >
                         Docs
@@ -116,7 +116,7 @@ export function Footer() {
                     <a
                         href="https://danielemasone.github.io/ingdanielemasone/test-coverage"
                         target="_blank"
-                        rel="noopener noreferrer"
+                        rel="noopener noreferrer nofollow"
                         className="hover:underline mx-1"
                     >
                         Coverage
