@@ -42,10 +42,11 @@ export function ErrorState({message = "error_generic", onRetry}) {
 
                 {onRetry && (
                     <button
+                        type="button"
                         onClick={onRetry}
                         className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700
                        text-white font-medium transition-colors
-                       focus:outline-none focus:ring-2 focus:ring-blue-400"
+                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/80 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-100 dark:focus-visible:ring-offset-gray-900"
                     >
                         {t("error_retry")}
                     </button>

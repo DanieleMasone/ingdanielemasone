@@ -28,11 +28,12 @@ export function Pagination({
     return (
         <div className={`flex flex-wrap justify-center items-center gap-3 ${className}`}>
             <button
+                type="button"
                 onClick={() => onPageChange(Math.max(page - 1, 1))}
                 disabled={page === 1}
                 className="min-w-[110px] px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
                            text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
-                           hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition text-center"
+                           hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900"
             >
                 ← {t("previous")}
             </button>
@@ -45,11 +46,12 @@ export function Pagination({
             </span>
 
             <button
+                type="button"
                 onClick={() => onPageChange(Math.min(page + 1, totalPages))}
                 disabled={page === totalPages}
                 className="min-w-[110px] px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium
                            text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900
-                           hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition text-center"
+                           hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 transition text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900"
             >
                 {t("next")} →
             </button>

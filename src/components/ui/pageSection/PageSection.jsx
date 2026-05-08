@@ -1,4 +1,6 @@
 import React from "react";
+import clsx from "clsx";
+import {layoutClasses} from "../../../styles/commonClasses";
 
 /**
  * PageSection component renders a section element with a title and children content.
@@ -15,14 +17,8 @@ import React from "react";
  */
 export function PageSection({title, children, className = ""}) {
     return (
-        <section
-            className={`px-4 py-6 sm:px-6 md:px-12 max-w-7xl mx-auto flex flex-col gap-6 ${className}`}
-        >
-            {title && (
-                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
-                    {title}
-                </h2>
-            )}
+        <section className={clsx(layoutClasses.pageSection, className)}>
+            {title && <h2 className={layoutClasses.sectionTitle}>{title}</h2>}
             {children}
         </section>
     );

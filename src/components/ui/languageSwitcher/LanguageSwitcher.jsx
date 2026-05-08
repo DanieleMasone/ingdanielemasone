@@ -60,7 +60,7 @@ export function LanguageSwitcher() {
                 className="flex items-center justify-between gap-2 rounded-md bg-gray-100/80 dark:bg-gray-700/70
                            px-3 py-2 text-sm font-medium text-gray-900 dark:text-gray-100
                            shadow-sm hover:bg-gray-200/80 dark:hover:bg-gray-600/60
-                           focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all
+                           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 transition-all
                            backdrop-blur-sm min-w-[6rem]"
                 type="button"
             >
@@ -90,7 +90,7 @@ export function LanguageSwitcher() {
                                 <button
                                     key={lang}
                                     onClick={() => handleChange(lang)}
-                                    className={`flex items-center px-4 py-2 text-sm w-full
+                                    className={`flex w-full items-center px-4 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/70 focus-visible:ring-inset
                                                text-gray-800 dark:text-gray-100 transition-colors
                                                hover:bg-gray-100/80 dark:hover:bg-gray-700/60
                                                ${isActive ? "bg-blue-100/80 dark:bg-blue-900/40 text-blue-800 dark:text-blue-300 font-semibold" : ""}`}

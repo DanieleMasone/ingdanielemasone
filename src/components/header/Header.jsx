@@ -95,7 +95,7 @@ export function Header() {
                     <div className="relative group" ref={portfolioRef}>
                         <button
                             onClick={() => setPortfolioOpen(!portfolioOpen)}
-                            className={`flex items-center space-x-1 font-medium hover:text-blue-600 dark:hover:text-blue-400 transition ${
+                            className={`flex items-center space-x-1 font-medium transition hover:text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:hover:text-blue-400 dark:focus-visible:ring-offset-gray-900 ${
                                 portfolioOpen || isPortfolioRoute ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-gray-900 dark:text-white"
                             }`}
                             aria-haspopup="true"
@@ -142,7 +142,7 @@ export function Header() {
 
                 {/* Mobile menu toggle */}
                 <button
-                    className="md:hidden p-2 rounded focus:outline-none hover:bg-gray-200 dark:hover:bg-gray-800 transition"
+                    className="rounded p-2 transition hover:bg-gray-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:hover:bg-gray-800 dark:focus-visible:ring-offset-gray-900 md:hidden"
                     onClick={() => setMenuOpen(!menuOpen)}
                     aria-label="Toggle mobile menu"
                     aria-expanded={menuOpen}
