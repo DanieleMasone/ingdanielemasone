@@ -1,8 +1,15 @@
 import * as icons from "simple-icons";
 
 /**
+ * Static social and external profile links displayed by the portfolio footer.
+ *
+ * @module mock/links
+ */
+
+/**
  * Inline LinkedIn icon definition used by the social links list.
  *
+ * @private
  * @type {{svg: string}}
  */
 const linkedinIcon = {
@@ -16,7 +23,6 @@ const linkedinIcon = {
  * BrandIcon.
  *
  * @type {Array<Object>}
- * @module mock/links
  */
 export const links = [
     {

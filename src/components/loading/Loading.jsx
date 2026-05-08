@@ -1,7 +1,7 @@
 import React from "react";
 
 /**
- * Loading component – displays a centered spinner used as a global loading state.
+ * Full-screen loading state for lazy routes and static data loaders.
  *
  * The layout fills the viewport height and centers a spinning indicator both
  * vertically and horizontally. It supports light and dark themes through Tailwind classes.
@@ -13,7 +13,7 @@ import React from "react";
  * @component
  * @module components/loading/Loading
  *
- * @returns {JSX.Element} A full-screen loading spinner view
+ * @returns {JSX.Element} A full-screen loading spinner view.
  */
 export function Loading() {
     return (

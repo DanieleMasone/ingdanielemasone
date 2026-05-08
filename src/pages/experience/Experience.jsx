@@ -13,6 +13,12 @@ import {Loading} from "@/components/loading/Loading";
 import {ErrorState} from "@/components/errorState/ErrorState";
 
 /**
+ * Experience route for the portfolio timeline.
+ *
+ * @module pages/experience/Experience
+ */
+
+/**
  * Determines the experience label and type based on the selected year within a period string.
  *
  * Parses the given period string to extract start and end years, then compares with the selected year.
@@ -59,7 +65,6 @@ export const getExperienceLabel = (period, year, t) => {
  * Uses i18next for translations.
  *
  * @component
- * @module pages/experience/Experience
  * @returns {JSX.Element} The rendered experience section with filtering and animated transitions.
  */
 export default function Experience() {

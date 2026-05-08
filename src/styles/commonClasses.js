@@ -1,12 +1,65 @@
+/**
+ * Shared Tailwind class presets for the portfolio UI.
+ *
+ * These objects keep recurring layout, surface, and interaction styles in one
+ * place so reusable components can stay visually consistent without adding a
+ * larger design-system layer.
+ *
+ * @module styles/commonClasses
+ */
+
+/**
+ * Layout class presets for page sections and section headings.
+ *
+ * @typedef {Object} LayoutClasses
+ * @property {string} pageSection - Responsive wrapper used by route-level content sections.
+ * @property {string} sectionTitle - Heading style used by titled portfolio sections.
+ */
+
+/**
+ * Reusable layout classes used by PageSection and similar page containers.
+ *
+ * @type {LayoutClasses}
+ */
 export const layoutClasses = {
   pageSection: "mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-6 sm:px-6 md:px-12",
   sectionTitle: "text-2xl font-bold text-gray-900 dark:text-white sm:text-3xl",
 };
 
+/**
+ * Surface class presets for reusable content containers.
+ *
+ * @typedef {Object} SurfaceClasses
+ * @property {string} card - Responsive card surface with border, shadow, backdrop blur, and dark-mode styles.
+ */
+
+/**
+ * Reusable surface classes used by portfolio cards.
+ *
+ * @type {SurfaceClasses}
+ */
 export const surfaceClasses = {
   card: "flex w-full flex-col rounded-3xl border border-gray-200 bg-white/60 p-4 shadow-md backdrop-blur-md transition-shadow duration-300 hover:shadow-xl dark:border-gray-700 dark:bg-gray-800/60",
 };
 
+/**
+ * Interaction class presets for accessible buttons and links.
+ *
+ * @typedef {Object} InteractiveClasses
+ * @property {string} focusRing - Shared focus-visible ring for keyboard navigation.
+ * @property {string} buttonBase - Base layout and disabled styles for button controls.
+ * @property {string} selectedButton - Visual state for active selectable buttons.
+ * @property {string} unselectedButton - Visual state for inactive selectable buttons.
+ * @property {string} linkButtonBase - Base layout for anchor elements rendered as CTA buttons.
+ * @property {string} linkButtonGreen - Green CTA theme used for primary external links.
+ * @property {string} linkButtonBlue - Blue CTA theme used for secondary external links.
+ */
+
+/**
+ * Reusable interaction classes used by buttons, links, and focusable surfaces.
+ *
+ * @type {InteractiveClasses}
+ */
 export const interactiveClasses = {
   focusRing:
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900",

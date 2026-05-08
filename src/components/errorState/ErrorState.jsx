@@ -2,7 +2,7 @@ import {useTranslation} from "react-i18next";
 import React from "react";
 
 /**
- * ErrorState component – displays a full-screen error view with optional retry action.
+ * Full-screen error state for failed portfolio data loading.
  *
  * Features:
  * - Centered error layout with icon, title and message
@@ -18,11 +18,11 @@ import React from "react";
  * @component
  * @module components/errorState/ErrorState
  *
- * @param {Object} props - Component props
- * @param {string} [props.message] - Custom error message translation key
- * @param {Function} [props.onRetry] - Optional retry callback handler
+ * @param {Object} props - Component props.
+ * @param {string} [props.message] - Custom error message translation key.
+ * @param {function(): void} [props.onRetry] - Optional retry callback handler.
  *
- * @returns {JSX.Element} A full-screen error state view
+ * @returns {JSX.Element} A full-screen error state view.
  */
 export function ErrorState({message = "error_generic", onRetry}) {
     const {t} = useTranslation();

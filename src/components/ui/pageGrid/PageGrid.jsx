@@ -8,18 +8,20 @@ const COLS = {
 };
 
 /**
- * PageGrid component for consistent grid layouts with page transitions.
+ * Responsive grid wrapper for paginated portfolio sections.
+ *
+ * Uses Framer Motion to animate page changes while keeping the column layout
+ * consistent across route-level cards.
  *
  * @component
- * @module components/ui/PageGrid
+ * @module components/ui/pageGrid/PageGrid
  *
  * @param {object} props - Component properties.
- * @param {React.ReactNode} props.children - Grid items (Cards) to render inside the layout.
- * @param {string | number} props.page - Unique page identifier for AnimatePresence key and smooth transitions.
+ * @param {React.ReactNode} props.children - Grid items to render inside the layout.
+ * @param {string | number} props.page - Unique page identifier used as the animation key.
+ * @param {1 | 2 | 3 | 4} [props.columns=2] - Maximum responsive column count.
  * @param {string} [props.className] - Additional CSS classes for the wrapper div.
- * @param {object} [props.rest] - Other props to spread on the wrapper div (e.g., data attributes).
- *
- * @returns {JSX.Element} Responsive 2-column grid with Framer Motion animations that fills viewport height uniformly.
+ * @returns {JSX.Element} Responsive grid with animated page transitions.
  */
 export function PageGrid({
                              children,

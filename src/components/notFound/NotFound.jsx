@@ -2,20 +2,20 @@ import {useTranslation} from 'react-i18next';
 import {useEffect, useState} from 'react';
 
 /**
- * NotFound component – displays a custom 404 page with support for light/dark mode.
+ * NotFound component - displays a custom 404 page with support for light/dark mode.
  *
  * The content includes:
  * - A title with the error code
  * - A brief error description
  * - A link to return to the home page
- *  *
+ *
  * The section features a fade-in effect managed via `useState` and `useEffect`.
  * Strings are localized using `react-i18next`.
  *
  * @component
  * @module components/notFound/NotFound
  *
- * @returns {JSX.Element} The rendered 404 page
+ * @returns {JSX.Element} The rendered 404 page.
  */
 export function NotFound() {
     const {t} = useTranslation();

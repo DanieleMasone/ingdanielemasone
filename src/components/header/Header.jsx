@@ -8,12 +8,14 @@ import {Disclosure} from '@headlessui/react';
 import {AnimatePresence, motion} from "framer-motion";
 
 /**
- * Header component with navigation, language switcher, and dark mode toggle.
- * Supports desktop and mobile layouts with responsive menus.
+ * Portfolio header with primary navigation, language switcher, and theme toggle.
+ *
+ * Supports desktop navigation, a mobile menu, and a portfolio dropdown that
+ * closes when the route changes or the user clicks outside the menu.
  *
  * @component
  * @module components/header/Header
- * @returns {JSX.Element} The header element with navigation links and controls.
+ * @returns {JSX.Element} Responsive portfolio header with navigation controls.
  */
 export function Header() {
     const {t} = useTranslation();

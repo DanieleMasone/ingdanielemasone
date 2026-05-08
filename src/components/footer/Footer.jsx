@@ -6,12 +6,14 @@ import {Loading} from "@/components/loading/Loading";
 import {ErrorState} from "@/components/errorState/ErrorState";
 
 /**
- * Footer component with social brand icons and copyright text.
- * Uses i18next for translations.
+ * Portfolio footer with social links, resource links, and localized copyright.
+ *
+ * Loads public profile links from the static portfolio service and shows
+ * loading or error states while that data is being resolved.
  *
  * @component
  * @module components/footer/Footer
- * @returns {JSX.Element} The Footer element with icon links and copyright.
+ * @returns {JSX.Element} Footer with social icons and documentation links.
  */
 export function Footer() {
     const {t} = useTranslation();

@@ -23,7 +23,7 @@ The portfolio is built as a modern React single-page application with a focus on
 - Responsive UI for desktop, tablet, and mobile
 - Internationalization in Italian, English, French, German, and Spanish
 - SEO metadata for each main page
-- Automated tests, coverage reports, and JSDoc documentation
+- Automated tests, coverage reports, and static source documentation for the portfolio
 - GitHub Pages deployment
 
 ## Tech Stack
@@ -37,7 +37,7 @@ The portfolio is built as a modern React single-page application with a focus on
 - Headless UI
 - Lucide React and Simple Icons
 - Vitest and Testing Library
-- JSDoc with Docdash
+- JSDoc with Docdash for static source documentation
 
 ## Requirements
 
@@ -100,13 +100,14 @@ http://localhost:4173/ingdanielemasone/
 | `npm test` | Runs the Vitest test suite |
 | `npm run test:watch` | Runs tests in watch mode |
 | `npm run coverage` | Generates the test coverage report |
-| `npm run doc` | Generates JSDoc documentation |
-| `npm run build:all` | Builds app, coverage, and documentation |
+| `npm run doc` | Generates static source documentation in `docs/` |
+| `npm run build:all` | Builds app, coverage, and source documentation |
 
 ## Project Structure
 
 ```text
 src/
+  @types/         Local ambient type declarations
   assets/          Images and static assets used by the app
   components/      Shared UI and layout components
   consts/          Shared constants
@@ -114,10 +115,21 @@ src/
   locales/         Translation files
   mock/            Portfolio datasets used by the UI
   pages/           Main route-level pages
-  services/        Data access helpers
+  services/        Static portfolio data loading helpers
+  styles/          Shared Tailwind class presets for reusable components
 ```
 
 Generated folders such as `dist`, `docs`, `coverage`, and `node_modules` are intentionally excluded from version control.
+
+## Documentation
+
+The static documentation is generated from JSDoc comments with Docdash:
+
+```bash
+npm run doc
+```
+
+The generated pages describe the portfolio shell, route-level pages, reusable UI components, shared style presets, static datasets, and local data-loading helpers. This is a React/Vite portfolio, so the documentation tooling is intentionally lightweight and focused on source readability rather than framework-heavy application documentation.
 
 ## Quality
 
@@ -128,7 +140,7 @@ npm test -- --run
 npm run build
 ```
 
-For a full local validation including documentation and coverage:
+For a full local validation including portfolio documentation and coverage:
 
 ```bash
 npm run build:all
@@ -149,7 +161,7 @@ Deployment is now automated via GitHub Actions with the workflow:
 What gets published:
 
 - App build from `dist/` at the site root
-- JSDoc output in `/docs`
+- Source documentation output in `/docs`
 - Vitest coverage report in `/test-coverage`
 
 How to deploy:
@@ -163,8 +175,8 @@ Local commands are still useful for validation before push:
 npm run build:all
 ```
 
-## License & Permissions
+## License
 
-(c) 2026 Daniele Masone. All rights reserved.
+This project is released under the MIT License. See [LICENSE](LICENSE).
 
-This code may not be copied, modified, redistributed, or reused without explicit permission.
+Copyright (c) 2026 Daniele Masone.

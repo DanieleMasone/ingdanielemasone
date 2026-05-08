@@ -4,13 +4,14 @@ import {ChevronDown, ChevronUp} from "lucide-react";
 import {useTranslation} from "react-i18next";
 
 /**
- * ExpandableText component
+ * Expandable text block for long portfolio descriptions.
  *
- * Displays a text block limited to a maximum number of lines, with the ability to expand or collapse.
+ * Limits the visible text to a configurable number of lines and reveals a
+ * localized expand/collapse button only when the content overflows.
  *
  * @component
  * @module components/ui/expandableText/ExpandableText
- * @param {Object} props - Component props
+ * @param {Object} props - Component props.
  * @param {string} props.value - The text content to display.
  * @param {number} [props.maxLines=3] - Maximum number of visible lines when collapsed.
  * @param {string} [props.className] - Additional CSS classes for styling.

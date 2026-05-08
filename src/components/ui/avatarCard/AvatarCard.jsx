@@ -4,14 +4,14 @@ import cover from '../../../assets/cover.png';
 import {useTranslation} from "react-i18next";
 
 /**
- * AvatarCard component
+ * Personal profile card shown on the portfolio home page.
  *
- * Displays a personal avatar card with a branded cover, photo, name, tagline, skills, and a short bio.
+ * Displays a branded cover, profile photo, name, tagline, skills, and short bio.
  * Supports dark mode and responsive design for mobile and desktop.
  *
  * @component
  * @module components/ui/avatarCard/AvatarCard
- * @returns {JSX.Element} A card showing the avatar, name, and role of the user.
+ * @returns {JSX.Element} Profile card for Daniele Masone.
  */
 export function AvatarCard() {
     const {t} = useTranslation();

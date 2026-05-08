@@ -2,18 +2,21 @@ import clsx from "clsx";
 import {interactiveClasses} from "../../../styles/commonClasses";
 
 /**
- * SelectableButton is a reusable button that highlights itself when selected.
+ * Reusable filter button that exposes its selected state to assistive tech.
+ *
+ * Uses shared interaction classes for consistent spacing, focus state, and
+ * selected/unselected visual styles across portfolio filters.
  *
  * @component
  * @module components/ui/selectableButton/SelectableButton
  *
- * @param {Object} props
- * @param {string | number} props.label - Text to display inside the button
- * @param {boolean} props.isSelected - Whether the button is currently selected
- * @param {Function} props.onClick - Callback when the button is clicked
- * @param {string} [props.className=""] - Additional CSS classes
- * @param {boolean} [props.disabled=false] - Disable button interaction
- * @returns {JSX.Element}
+ * @param {Object} props - Component props.
+ * @param {string | number} props.label - Visible button label.
+ * @param {boolean} props.isSelected - Whether the button is currently selected.
+ * @param {function(): void} props.onClick - Callback fired when the button is clicked.
+ * @param {string} [props.className=""] - Additional CSS classes.
+ * @param {boolean} [props.disabled=false] - Whether interaction is disabled.
+ * @returns {JSX.Element} Accessible selectable button.
  */
 export function SelectableButton({
                                      label,

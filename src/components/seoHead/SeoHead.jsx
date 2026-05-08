@@ -2,8 +2,10 @@ import React from 'react';
 import {useTranslation} from "react-i18next";
 
 /**
- * SeoHead is a React component for injecting SEO-related meta tags into the document head
- * using React 19 native <head> support. Supports dynamic title and description localization.
+ * SEO metadata for a portfolio route.
+ *
+ * Uses React 19 native head support to render localized title, description,
+ * canonical URL, Open Graph tags, and Twitter card metadata.
  *
  * @component
  * @module components/seoHead/SeoHead
@@ -13,7 +15,7 @@ import {useTranslation} from "react-i18next";
  * @param {string} pageKey - Translation key suffix for SEO title and description.
  * @param {string} path - Relative URL path of the page (e.g., "/projects").
  *
- * @returns {JSX.Element} Meta tags injected into <head>.
+ * @returns {JSX.Element} Route metadata rendered into the document head.
  */
 export function SeoHead({pageKey, path}) {
     const {t} = useTranslation();

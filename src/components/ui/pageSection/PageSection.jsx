@@ -3,17 +3,19 @@ import clsx from "clsx";
 import {layoutClasses} from "../../../styles/commonClasses";
 
 /**
- * PageSection component renders a section element with a title and children content.
+ * PageSection renders a titled content section for route-level portfolio pages.
  *
- * It applies consistent padding and max-width styles and displays the title prominently.
+ * It applies the shared layout and heading classes from commonClasses so page
+ * spacing stays consistent across the online CV.
  *
  * @component
  * @module components/ui/pageSection/PageSection
  *
- * @param {Object} props
- * @param {string} props.title - The title text displayed as a section heading.
+ * @param {Object} props - Component props.
+ * @param {string} props.title - Section heading text.
  * @param {React.ReactNode} props.children - The content inside the section.
- * @returns {JSX.Element} The rendered section element.
+ * @param {string} [props.className] - Optional classes added to the section wrapper.
+ * @returns {JSX.Element} Titled portfolio section.
  */
 export function PageSection({title, children, className = ""}) {
     return (

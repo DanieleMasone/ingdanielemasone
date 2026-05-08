@@ -2,16 +2,18 @@ import {Disclosure} from "@headlessui/react";
 import {ChevronDown} from "lucide-react";
 
 /**
- * techDisclosure is a collapsible UI component that displays a list of technologies.
- * It shows a label that can be clicked to expand or collapse the list.
+ * Collapsible technology list used by experience and project cards.
+ *
+ * Converts a comma-separated technology string into compact badges inside a
+ * Headless UI disclosure panel.
  *
  * @component
  * @module components/ui/techDisclosure/TechDisclosure
  *
- * @param {Object} props
+ * @param {Object} props - Component props.
  * @param {string} props.techList - Comma-separated list of technologies to display.
  * @param {string} props.label - Text label for the disclosure button.
- * @returns {JSX.Element}
+ * @returns {JSX.Element} Collapsible list of technology badges.
  */
 export default function TechDisclosure({techList, label}) {
     return (

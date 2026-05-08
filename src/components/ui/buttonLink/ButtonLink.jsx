@@ -2,9 +2,10 @@ import clsx from "clsx";
 import {interactiveClasses} from "../../../styles/commonClasses";
 
 /**
- * ButtonLink renders a styled anchor element that looks like a button.
- * Supports predefined color themes and opens the link in a new tab
- * with secure rel attributes.
+ * Styled external link rendered as a call-to-action button.
+ *
+ * Uses shared interaction classes, supports predefined color themes, and opens
+ * the link in a new tab with secure rel attributes.
  *
  * @component
  * @module components/ui/buttonLink/ButtonLink
@@ -14,7 +15,7 @@ import {interactiveClasses} from "../../../styles/commonClasses";
  * @param {React.ReactNode} props.children - Content inside the button.
  * @param {"green" | "blue"} props.color - Visual theme color variant.
  *
- * @returns {JSX.Element} Styled anchor element rendered as a button-like link.
+ * @returns {JSX.Element} External anchor styled as a CTA button.
  */
 export function ButtonLink({href, children, color}) {
     const colorClasses = {

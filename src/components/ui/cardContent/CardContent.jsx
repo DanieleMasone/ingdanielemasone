@@ -1,16 +1,18 @@
 import React from "react";
 
 /**
- * CardContent component for content section inside a card with padding and text styling.
+ * Content wrapper used inside portfolio cards.
+ *
+ * Adds responsive padding and readable text colors while forwarding additional
+ * props to the underlying div.
  *
  * @component
  * @module components/ui/cardContent/CardContent
  *
  * @param {object} props - Component properties.
- * @param {React.ReactNode} props.children - Inner content of the CardContent.
- * @param {string} [props.className] - Additional CSS classes to add to the content div.
- * @param {object} [props.rest] - Other props to spread on the container div (e.g., event handlers, data attributes).
- * @returns {JSX.Element} Content container with padding and text styles.
+ * @param {React.ReactNode} props.children - Content rendered inside the card body.
+ * @param {string} [props.className] - Additional CSS classes for the content wrapper.
+ * @returns {JSX.Element} Content container with responsive padding and text styles.
  */
 export function CardContent({children, className = "", ...rest}) {
     return (

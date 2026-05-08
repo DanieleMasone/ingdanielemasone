@@ -7,6 +7,16 @@ import {tradingPerformance} from "@/mock/trading";
 import {links} from "@/mock/links";
 
 /**
+ * Local data loader helpers for the portfolio.
+ *
+ * The site uses bundled static datasets. These helpers keep page components
+ * decoupled from the dataset files and preserve the same loading/error UI flow
+ * a remote source would use, without introducing a backend dependency.
+ *
+ * @module services/portfolioService
+ */
+
+/**
  * Simulates a small loading delay for static portfolio datasets.
  *
  * @param {number} ms - Milliseconds to wait before resolving.
@@ -15,9 +25,9 @@ import {links} from "@/mock/links";
 const delay = (ms) => new Promise(res => setTimeout(res, ms));
 
 /**
- * Loads course data for the Courses page.
+ * Loads static course entries for the Courses page.
  *
- * @returns {Promise<Array>} Promise resolving to the courses dataset.
+ * @returns {Promise<Array<object>>} Promise resolving to the courses dataset.
  */
 export async function getCourses() {
     await delay(300);
@@ -25,9 +35,9 @@ export async function getCourses() {
 }
 
 /**
- * Loads certification data for the Certifications page.
+ * Loads static certification entries for the Certifications page.
  *
- * @returns {Promise<Array>} Promise resolving to the certifications dataset.
+ * @returns {Promise<Array<object>>} Promise resolving to the certifications dataset.
  */
 export async function getCertifications() {
     await delay(300);
@@ -35,9 +45,9 @@ export async function getCertifications() {
 }
 
 /**
- * Loads professional experience data for the Experience page.
+ * Loads static professional experience entries for the Experience page.
  *
- * @returns {Promise<Array>} Promise resolving to the experiences dataset.
+ * @returns {Promise<Array<object>>} Promise resolving to the experiences dataset.
  */
 export async function getExperiences() {
     await delay(300);
@@ -45,9 +55,9 @@ export async function getExperiences() {
 }
 
 /**
- * Loads project data for the Projects page.
+ * Loads static project entries for the Projects page.
  *
- * @returns {Promise<Array>} Promise resolving to the projects dataset.
+ * @returns {Promise<Array<object>>} Promise resolving to the projects dataset.
  */
 export async function getProjects() {
     await delay(300);
@@ -55,9 +65,9 @@ export async function getProjects() {
 }
 
 /**
- * Loads testimonial data for the Testimonials page.
+ * Loads static testimonial entries for the Testimonials page.
  *
- * @returns {Promise<Array>} Promise resolving to the testimonials dataset.
+ * @returns {Promise<Array<object>>} Promise resolving to the testimonials dataset.
  */
 export async function getTestimonials() {
     await delay(300);
@@ -65,7 +75,7 @@ export async function getTestimonials() {
 }
 
 /**
- * Loads trading performance metrics for the Trading page.
+ * Loads static trading performance metrics for the Trading page.
  *
  * @returns {Promise<Object>} Promise resolving to the trading performance dataset.
  */
@@ -75,9 +85,9 @@ export async function getTradingPerformance() {
 }
 
 /**
- * Loads social and external link data for the Footer.
+ * Loads static social and external link entries for the Footer.
  *
- * @returns {Promise<Array>} Promise resolving to the links dataset.
+ * @returns {Promise<Array<object>>} Promise resolving to the links dataset.
  */
 export async function getLinks() {
     await delay(300);
