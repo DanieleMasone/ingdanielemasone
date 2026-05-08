@@ -1,4 +1,6 @@
 import React from "react";
+import clsx from "clsx";
+import {interactiveClasses, surfaceClasses} from "../../../styles/commonClasses";
 
 /**
  * Generic Card component for containers with default styling.
@@ -16,18 +18,7 @@ export function Card({children, className = "", ...rest}) {
     return (
         <section
             {...rest}
-            className={`
-                flex flex-col
-                rounded-3xl
-                bg-white/60 dark:bg-gray-800/60
-                backdrop-blur-md
-                border border-gray-200 dark:border-gray-700
-                shadow-md hover:shadow-xl transition-shadow duration-300
-                p-4 sm:p-6
-                w-full
-                focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/70
-                ${className}
-            `}
+            className={clsx(surfaceClasses.card, interactiveClasses.focusRing, "sm:p-6", className)}
         >
             {children}
         </section>
