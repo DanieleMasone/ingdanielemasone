@@ -46,9 +46,10 @@ export function CookieBanner() {
                 </a>.
             </p>
             <button
+                type="button"
                 onClick={acceptCookies}
                 className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors
-                 dark:bg-blue-500 dark:hover:bg-blue-600"
+                 dark:bg-blue-500 dark:hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/80 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-200 dark:focus-visible:ring-offset-gray-900"
             >
                 Accetta
             </button>

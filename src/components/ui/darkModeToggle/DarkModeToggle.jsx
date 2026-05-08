@@ -27,12 +27,13 @@ export function DarkModeToggle() {
 
     return (
         <button
+            type="button"
             onClick={() => setDarkMode(!darkMode)}
             className="flex items-center space-x-2 px-3 py-1.5 rounded-md
                bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-200
                hover:bg-gray-300 dark:hover:bg-gray-600
                transition-colors duration-200
-               focus:outline-none focus:ring-2 focus:ring-blue-500"
+               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900"
             aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
         >
             {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}

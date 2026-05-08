@@ -62,7 +62,7 @@ export function ExpandableText({value = "", maxLines = 3, className = ""}) {
                     <button
                         type="button"
                         onClick={() => setExpanded(!expanded)}
-                        className="text-xs text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1"
+                        className="flex items-center gap-1 text-xs text-blue-600 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-blue-400 dark:focus-visible:ring-offset-slate-900"
                     >
                         {expanded ? (
                             <>
