@@ -21,7 +21,7 @@
  * @property {string} horizontalFilterBar - Horizontal filter controls with compact scrolling on small screens.
  * @property {string} sidebarFilterBar - Sidebar filter controls that switch from horizontal scrolling to a vertical desktop rail.
  * @property {string} focusList - Responsive list layout for compact portfolio focus items.
- * @property {string} focusMarker - Decorative marker used inside portfolio focus items.
+ * @property {string} focusMarker - Decorative marker aligned with the first text line of portfolio focus items.
  */
 
 /**
@@ -43,7 +43,7 @@ export const layoutClasses = {
     "flex flex-row gap-2 overflow-x-auto snap-x pb-2 scrollbar-hide md:flex-col md:overflow-visible md:snap-none md:pb-0",
   focusList:
     "grid grid-cols-1 gap-2 text-left sm:grid-cols-3 md:flex md:flex-wrap md:justify-start",
-  focusMarker: "h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500 dark:bg-blue-300",
+  focusMarker: "mt-[0.42em] h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500 dark:bg-blue-300 md:mt-0",
 };
 
 /**

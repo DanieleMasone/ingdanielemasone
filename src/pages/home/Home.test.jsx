@@ -154,6 +154,9 @@ describe('Home component', () => {
         focusItems.forEach((item) => {
             expect(item).toHaveClass('w-full', 'rounded-lg', 'text-sm', 'leading-snug');
             expect(item).toHaveClass('md:w-auto', 'md:rounded-full');
+
+            const marker = item.querySelector('span[aria-hidden="true"]');
+            expect(marker).toHaveClass('mt-[0.42em]', 'md:mt-0');
         });
     });
 
