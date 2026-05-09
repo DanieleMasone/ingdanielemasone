@@ -43,5 +43,3 @@ yarn-debug.log*
 yarn-error.log*
 
 *.iml
-
-package-lock.json

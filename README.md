@@ -50,10 +50,8 @@ npm -v
 
 Recommended versions:
 
-- Node.js >= 20
+- Node.js 20.19+, 22.13+, or 24+ (the GitHub Pages workflow uses Node 24)
 - npm >= 9
-
-Node 22 LTS is recommended for local development and CI-like checks.
 
 ## Local Setup
 
@@ -62,7 +60,7 @@ Clone the repository and install dependencies.
 ```bash
 git clone https://github.com/DanieleMasone/ingdanielemasone.git
 cd ingdanielemasone
-npm install
+npm ci
 ```
 
 Start the development server.

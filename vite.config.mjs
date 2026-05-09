@@ -38,6 +38,9 @@ export default defineConfig({
         outDir: 'dist',
         sourcemap: true,
         rollupOptions: {
+            checks: {
+                pluginTimings: false,
+            },
             output: {
                 manualChunks(id) {
                     const normalizedId = id.replaceAll('\\', '/');
@@ -84,7 +87,7 @@ export default defineConfig({
                         return 'icons';
                     }
 
-                    return 'vendor';
+                    return undefined;
                 },
             },
         },
