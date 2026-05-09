@@ -146,6 +146,8 @@
   "performance_view_monthly": "Vue mensuelle",
   "performance_view_annual": "Vue annuelle",
   "performance_return_label": "Rendement",
+  "performance_period_label": "Période",
+  "performance_no_data": "Donnée indisponible",
   "certifications_page": {
     "title": "Certifications",
     "description": "Liste des certifications professionnelles obtenues, avec liens vers les certificats officiels.",
