@@ -88,7 +88,8 @@ const getCumulativeReturns = (returns) => {
  * accessible image label, provides a visually hidden data table for assistive
  * technologies, and renders a localized summary of returns below the chart. Missing
  * values use compact visible labels and extended assistive labels. The legend uses
- * filled markers and moves below the chart on small screens to preserve readable
+ * filled markers, keeps cumulative returns blue to distinguish them from positive
+ * and negative bars, and moves below the chart on small screens to preserve readable
  * axis spacing.
  *
  * Translations are provided by `react-i18next`.
@@ -209,13 +210,11 @@ export function TradingPerformanceChart({
         [isMonthly, monthlyPoints, annualReturns]
     );
     const cumulative = useMemo(() => getCumulativeReturns(chartReturns), [chartReturns]);
-    const cumulativeColor = useMemo(() => {
-        const last = cumulative.filter(isValidReturn).at(-1) ?? 0;
-
-        return last >= 0
-            ? isDark ? '#7ee787' : '#16a34a'
-            : isDark ? '#ff6b81' : '#dc2626';
-    }, [cumulative, isDark]);
+    const chartColors = useMemo(() => ({
+        cumulative: isDark ? '#93c5fd' : '#2563eb',
+        positive: isDark ? 'rgba(126, 231, 135, 0.8)' : 'rgba(74, 222, 128, 0.8)',
+        negative: isDark ? 'rgba(255, 99, 132, 0.8)' : 'rgba(239, 68, 68, 0.8)',
+    }), [isDark]);
     const positive = useMemo(() => chartReturns.map(value => value > 0 ? value : null), [chartReturns]);
     const negative = useMemo(() => chartReturns.map(value => value < 0 ? value : null), [chartReturns]);
     const chartAriaLabel = `${t('performance_title')} - ${t(isMonthly ? 'performance_view_monthly' : 'performance_view_annual')}`;
@@ -233,13 +232,13 @@ export function TradingPerformanceChart({
                 type: 'line',
                 label: String(t('performance_cumulative')),
                 data: cumulative,
-                borderColor: cumulativeColor,
-                backgroundColor: cumulativeColor,
+                borderColor: chartColors.cumulative,
+                backgroundColor: chartColors.cumulative,
                 borderWidth: 3,
                 fill: false,
                 order: 1,
-                pointBackgroundColor: cumulativeColor,
-                pointBorderColor: cumulativeColor,
+                pointBackgroundColor: chartColors.cumulative,
+                pointBorderColor: chartColors.cumulative,
                 pointBorderWidth: 2,
                 pointRadius: windowWidth < 640 ? 1 : 4,
                 pointHoverRadius: windowWidth < 640 ? 3 : 6,
@@ -251,7 +250,7 @@ export function TradingPerformanceChart({
                 type: 'bar',
                 label: String(t('performance_positive')),
                 data: positive,
-                backgroundColor: isDark ? 'rgba(126, 231, 135, 0.8)' : 'rgba(74, 222, 128, 0.8)',
+                backgroundColor: chartColors.positive,
                 borderRadius: 6,
                 borderSkipped: false,
                 grouped: false,
@@ -263,7 +262,7 @@ export function TradingPerformanceChart({
                 type: 'bar',
                 label: String(t('performance_negative')),
                 data: negative,
-                backgroundColor: isDark ? 'rgba(255, 99, 132, 0.8)' : 'rgba(239, 68, 68, 0.8)',
+                backgroundColor: chartColors.negative,
                 borderRadius: 6,
                 borderSkipped: false,
                 grouped: false,
@@ -271,7 +270,7 @@ export function TradingPerformanceChart({
                 order: 2,
             },
         ],
-    }), [chartLabels, cumulative, cumulativeColor, isDark, isMonthly, negative, positive, t, windowWidth]);
+    }), [chartColors, chartLabels, cumulative, isMonthly, negative, positive, t, windowWidth]);
 
     const options = useMemo(() => ({
         responsive: true,

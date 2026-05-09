@@ -118,8 +118,8 @@ describe('TradingPerformanceChart', () => {
 
         expect(chart).toHaveAttribute('data-type', 'bar');
         expect(chart).toHaveAttribute('data-dataset-types', 'line,bar,bar');
-        expect(chart).toHaveAttribute('data-cumulative-background', '#7ee787');
-        expect(chart).toHaveAttribute('data-cumulative-point-background', '#7ee787');
+        expect(chart).toHaveAttribute('data-cumulative-background', '#93c5fd');
+        expect(chart).toHaveAttribute('data-cumulative-point-background', '#93c5fd');
         expect(chart).toHaveAttribute('data-label-count', '49');
         expect(chart).toHaveAttribute('data-first-label', 'Jan 2022');
         expect(chart).toHaveAttribute('data-last-label', 'Jan 2026');
