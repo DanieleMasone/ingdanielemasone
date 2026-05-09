@@ -12,7 +12,7 @@ import {getProjects} from "@/services/portfolioService";
 import {Loading} from "@/components/loading/Loading";
 import {ErrorState} from "@/components/errorState/ErrorState";
 import clsx from "clsx";
-import {interactiveClasses} from "@/styles/commonClasses";
+import {interactiveClasses, layoutClasses, surfaceClasses} from "@/styles/commonClasses";
 
 const ITEMS_PER_PAGE = 2;
 
@@ -76,12 +76,12 @@ export default function Projects() {
                     );
 
                     return (
-                        <div className="flex flex-col md:flex-row gap-8">
+                        <div className="flex flex-col gap-4 md:flex-row md:gap-6">
 
                             {/*  SIDEBAR */}
                             <aside className="md:w-64 md:shrink-0 md:sticky md:top-24 h-fit" aria-label={t("projects_title")}>
                                 <div
-                                    className="flex flex-row md:flex-col gap-2 md:gap-3 overflow-x-auto md:overflow-visible snap-x md:snap-none px-1 md:px-0 pb-3 scrollbar-hide"
+                                    className={layoutClasses.sidebarFilterBar}
                                 >
                                     {companies.map((company) => {
                                         const count = groupedProjects[company]?.length ?? 0;
@@ -121,13 +121,11 @@ export default function Projects() {
 
                             {/* MAIN */}
                             <div className="flex-1 min-w-0">
-                                <div className="max-w-6xl mx-auto flex flex-col gap-6">
+                                <div className="mx-auto flex max-w-6xl flex-col gap-4">
 
                                     {/* pagination mobile sticky */}
                                     <div
-                                        className="md:hidden sticky top-0 z-20 bg-white
-                                                 dark:bg-gray-900/80 backdrop-blur-md py-2 mb-4 border-b
-                                                 border-gray-200 dark:border-gray-700"
+                                        className={layoutClasses.mobilePagination}
                                     >
                                         <Pagination
                                             page={page}
@@ -141,15 +139,11 @@ export default function Projects() {
                                         <PageGrid
                                             page={`${selectedCompany}-${page}`}
                                             columns={2}
-                                            className="pt-2"
                                         >
                                             {paginated.map((proj, idx) => (
                                                 <Card
                                                     key={idx}
-                                                    className="relative w-full p-5 sm:p-6 border border-gray-200/60
-                                                               dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
-                                                               rounded-xl hover:shadow-lg transition-all duration-300
-                                                               flex flex-col md:flex-row items-start gap-4"
+                                                    className="relative items-start gap-4 md:flex-row"
                                                 >
                                                     <CardContent className="p-0">
                                                         <div className="flex flex-col gap-3">
@@ -171,7 +165,7 @@ export default function Projects() {
                                                                 <ExpandableText
                                                                     value={t(`project_types.${proj.type}`)}
                                                                     maxLines={4}
-                                                                    className="text-sm mb-2 px-4 py-3 bg-white/50 dark:bg-gray-900/50 rounded-xl shadow-inner italic text-gray-800 dark:text-gray-200"
+                                                                    className={clsx(surfaceClasses.insetText, "mb-2 italic")}
                                                                 />
                                                             )}
 
@@ -188,7 +182,7 @@ export default function Projects() {
                                     )}
 
                                     {/* pagination desktop bottom */}
-                                    <div className="hidden md:flex justify-center mt-8">
+                                    <div className={layoutClasses.desktopPagination}>
                                         <Pagination
                                             page={page}
                                             totalPages={totalPages}

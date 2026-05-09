@@ -1,4 +1,6 @@
 import {AnimatePresence, motion} from "framer-motion";
+import clsx from "clsx";
+import {layoutClasses} from "../../../styles/commonClasses";
 
 const COLS = {
     1: "grid-cols-1",
@@ -11,8 +13,10 @@ const COLS = {
  * Responsive grid wrapper for paginated portfolio sections.
  *
  * Uses Framer Motion to animate page changes while keeping the column layout
- * consistent across route-level cards. The grid remains a visual layout only,
- * avoiding ARIA grid semantics because children are not interactive grid cells.
+ * consistent across route-level cards. Spacing is centralized in commonClasses
+ * to keep paginated pages compact on mobile and desktop. The grid remains a
+ * visual layout only, avoiding ARIA grid semantics because children are not
+ * interactive grid cells.
  *
  * @component
  * @module components/ui/pageGrid/PageGrid
@@ -34,7 +38,7 @@ export function PageGrid({
     const colClass = COLS[columns] ?? COLS[2];
 
     return (
-        <div className={`flex flex-col ${className}`} {...rest}>
+        <div className={clsx(layoutClasses.pageGridWrapper, className)} {...rest}>
             <AnimatePresence mode="wait">
                 <motion.div
                     key={`page-${page}`}
@@ -43,7 +47,7 @@ export function PageGrid({
                     exit={{opacity: 0, scale: 0.96}}
                     transition={{duration: 0.3, ease: "easeOut"}}
                     layout
-                    className={`grid ${colClass} gap-6 pt-4 items-start`}
+                    className={clsx(layoutClasses.pageGrid, colClass)}
                 >
                     {children}
                 </motion.div>

@@ -11,7 +11,7 @@ import {getCertifications} from "@/services/portfolioService";
 import {Loading} from "@/components/loading/Loading";
 import {ErrorState} from "@/components/errorState/ErrorState";
 import clsx from "clsx";
-import {interactiveClasses} from "@/styles/commonClasses";
+import {interactiveClasses, layoutClasses} from "@/styles/commonClasses";
 
 const ITEMS_PER_PAGE = 4;
 
@@ -67,9 +67,7 @@ export default function Certifications() {
             <PageSection title={t("certifications_page.title")}>
                 {/* Pagination mobile sticky */}
                 <div
-                    className="md:hidden sticky top-0 z-20 bg-white
-                             dark:bg-gray-900/80 backdrop-blur-md py-2 mb-4 border-b
-                             border-gray-200 dark:border-gray-700"
+                    className={layoutClasses.mobilePagination}
                 >
                     <Pagination
                         page={page}
@@ -82,10 +80,7 @@ export default function Certifications() {
                     {displayedCerts.map((cert, idx) => (
                         <Card
                             key={idx}
-                            className="relative w-full p-5 sm:p-6 border border-gray-200/60
-                                       dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
-                                       rounded-xl hover:shadow-lg transition-all duration-300
-                                       flex flex-col md:flex-row items-start gap-4"
+                            className="relative items-start gap-4 md:flex-row"
                         >
                             {/* Icon */}
                             <div className="absolute -top-3 right-4 w-12 h-12 rounded-full bg-gradient-to-r from-blue-100 to-blue-200
@@ -152,7 +147,7 @@ export default function Certifications() {
                 </PageGrid>
 
                 {/* Pagination desktop normal */}
-                <div className="hidden md:block mt-4">
+                <div className={layoutClasses.desktopPagination}>
                     <Pagination
                         page={page}
                         totalPages={totalPages}

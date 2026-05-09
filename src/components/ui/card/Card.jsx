@@ -6,7 +6,9 @@ import {interactiveClasses, surfaceClasses} from "../../../styles/commonClasses"
  * Reusable card surface for portfolio content blocks.
  *
  * Applies the shared card surface and keyboard focus styles from commonClasses.
- * Additional props are forwarded to the underlying section element.
+ * The shared surface keeps portfolio list pages compact and consistent across
+ * desktop and mobile. Additional props are forwarded to the underlying section
+ * element.
  *
  * @component
  * @module components/ui/card/Card
@@ -20,7 +22,7 @@ export function Card({children, className = "", ...rest}) {
     return (
         <section
             {...rest}
-            className={clsx(surfaceClasses.card, interactiveClasses.focusRing, "sm:p-6", className)}
+            className={clsx(surfaceClasses.card, interactiveClasses.focusRing, className)}
         >
             {children}
         </section>

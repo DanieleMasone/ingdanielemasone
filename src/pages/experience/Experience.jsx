@@ -11,6 +11,8 @@ import TechDisclosure from "@/components/ui/techDisclosure/TechDisclosure";
 import {getExperiences} from "@/services/portfolioService";
 import {Loading} from "@/components/loading/Loading";
 import {ErrorState} from "@/components/errorState/ErrorState";
+import clsx from "clsx";
+import {layoutClasses, surfaceClasses} from "@/styles/commonClasses";
 
 /**
  * Experience route for the portfolio timeline.
@@ -128,9 +130,10 @@ export default function Experience() {
 
             <PageSection title={t("experience_title")}>
                 {/* Years */}
-                <div className="mb-8">
+                <div>
                     <div
-                        className="flex flex-row sm:flex-wrap sm:justify-center gap-2 sm:gap-3 overflow-x-auto sm:overflow-visible px-2 sm:px-0 pb-3 scrollbar-hide">
+                        className={layoutClasses.horizontalFilterBar}
+                    >
                         {yearList.map(year => (
                             <SelectableButton
                                 key={year}
@@ -152,10 +155,7 @@ export default function Experience() {
                         {filteredExperiences.map((exp, i) => (
                             <Card
                                 key={i}
-                                className="relative w-full p-5 sm:p-6 border border-gray-200/60
-                                           dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
-                                           rounded-xl hover:shadow-lg transition-all duration-300
-                                           flex flex-col md:flex-row items-start gap-4"
+                                className="relative items-start gap-4 md:flex-row"
                             >
                                 <CardContent className="p-0">
                                     {/* Title and main info */}
@@ -196,7 +196,7 @@ export default function Experience() {
                                         <ExpandableText
                                             value={t(exp.description)}
                                             maxLines={4}
-                                            className="text-sm mb-2 px-4 py-3 bg-white/50 dark:bg-gray-900/50 rounded-xl shadow-inner italic text-gray-800 dark:text-gray-200"
+                                            className={clsx(surfaceClasses.insetText, "mb-2 italic")}
                                         />
                                     )}
 

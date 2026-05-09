@@ -12,7 +12,7 @@ import {getCourses} from "@/services/portfolioService";
 import {Loading} from "@/components/loading/Loading";
 import {ErrorState} from "@/components/errorState/ErrorState";
 import clsx from "clsx";
-import {interactiveClasses} from "@/styles/commonClasses";
+import {interactiveClasses, layoutClasses} from "@/styles/commonClasses";
 
 const ITEMS_PER_PAGE = 4;
 
@@ -69,9 +69,7 @@ export default function Courses() {
             <PageSection title={t("courses_page.title")}>
                 {/* Pagination mobile sticky */}
                 <div
-                    className="md:hidden sticky top-0 z-20 bg-white
-                             dark:bg-gray-900/80 backdrop-blur-md py-2 mb-4 border-b
-                             border-gray-200 dark:border-gray-700"
+                    className={layoutClasses.mobilePagination}
                 >
                     <Pagination
                         page={page}
@@ -84,10 +82,7 @@ export default function Courses() {
                     {displayedCourses.map((course, idx) => (
                         <Card
                             key={idx}
-                            className="relative w-full p-5 sm:p-6 border border-gray-200/60
-                                       dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
-                                       rounded-xl hover:shadow-lg transition-all duration-300
-                                       flex flex-col md:flex-row items-start gap-4"
+                            className="relative items-start gap-4 md:flex-row"
                         >
                             <CardContent className="p-0">
                                 <div className="flex items-center justify-between mb-2">
@@ -141,7 +136,7 @@ export default function Courses() {
                 </PageGrid>
 
                 {/* Pagination desktop normal */}
-                <div className="hidden md:block mt-4">
+                <div className={layoutClasses.desktopPagination}>
                     <Pagination
                         page={page}
                         totalPages={totalPages}

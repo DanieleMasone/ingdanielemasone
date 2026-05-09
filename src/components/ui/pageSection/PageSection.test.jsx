@@ -31,8 +31,9 @@ describe('PageSection', () => {
 
         expect(section).toBeInTheDocument();
         expect(section).toHaveAttribute('aria-labelledby', heading.id);
-        expect(section).toHaveClass('px-4 sm:px-6 md:px-12 max-w-7xl mx-auto flex flex-col gap-6');
+        expect(section).toHaveClass('px-4 sm:px-6 md:px-12 max-w-7xl mx-auto flex flex-col gap-4');
+        expect(section).toHaveClass('py-4 sm:py-5 md:py-6');
         expect(heading).toBeInTheDocument();
-        expect(heading).toHaveClass('text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white');
+        expect(heading).toHaveClass('text-2xl sm:text-3xl font-bold leading-tight text-gray-900 dark:text-white');
     });
 });

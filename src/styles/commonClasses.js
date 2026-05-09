@@ -14,6 +14,12 @@
  * @typedef {Object} LayoutClasses
  * @property {string} pageSection - Responsive wrapper used by route-level content sections.
  * @property {string} sectionTitle - Heading style used by titled portfolio sections.
+ * @property {string} pageGridWrapper - Outer wrapper for animated paginated grids.
+ * @property {string} pageGrid - Compact responsive spacing for route-level card grids.
+ * @property {string} mobilePagination - Sticky mobile pagination wrapper that avoids extra vertical margins.
+ * @property {string} desktopPagination - Desktop pagination wrapper aligned with section spacing.
+ * @property {string} horizontalFilterBar - Horizontal filter controls with compact scrolling on small screens.
+ * @property {string} sidebarFilterBar - Sidebar filter controls that switch from horizontal scrolling to a vertical desktop rail.
  */
 
 /**
@@ -22,8 +28,17 @@
  * @type {LayoutClasses}
  */
 export const layoutClasses = {
-  pageSection: "mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-6 sm:px-6 md:px-12",
-  sectionTitle: "text-2xl font-bold text-gray-900 dark:text-white sm:text-3xl",
+  pageSection: "mx-auto flex w-full max-w-7xl flex-col gap-4 px-4 py-4 sm:px-6 sm:py-5 md:px-12 md:py-6",
+  sectionTitle: "text-2xl font-bold leading-tight text-gray-900 dark:text-white sm:text-3xl",
+  pageGridWrapper: "flex flex-col",
+  pageGrid: "grid items-start gap-4 sm:gap-5 lg:gap-6",
+  mobilePagination:
+    "md:hidden sticky top-0 z-20 -mx-4 border-b border-gray-200 bg-white/95 px-4 py-2 shadow-sm backdrop-blur-md dark:border-gray-700 dark:bg-gray-900/90 sm:-mx-6 sm:px-6",
+  desktopPagination: "hidden md:flex justify-center",
+  horizontalFilterBar:
+    "flex flex-row gap-2 overflow-x-auto pb-2 scrollbar-hide sm:flex-wrap sm:justify-center sm:overflow-visible sm:pb-0",
+  sidebarFilterBar:
+    "flex flex-row gap-2 overflow-x-auto snap-x pb-2 scrollbar-hide md:flex-col md:overflow-visible md:snap-none md:pb-0",
 };
 
 /**
@@ -31,6 +46,7 @@ export const layoutClasses = {
  *
  * @typedef {Object} SurfaceClasses
  * @property {string} card - Responsive card surface with border, shadow, backdrop blur, and dark-mode styles.
+ * @property {string} insetText - Compact inset surface for descriptive text inside cards.
  */
 
 /**
@@ -39,7 +55,10 @@ export const layoutClasses = {
  * @type {SurfaceClasses}
  */
 export const surfaceClasses = {
-  card: "flex w-full flex-col rounded-3xl border border-gray-200 bg-white/60 p-4 shadow-md backdrop-blur-md transition-shadow duration-300 hover:shadow-xl dark:border-gray-700 dark:bg-gray-800/60",
+  card:
+    "flex w-full flex-col rounded-xl border border-gray-200/60 bg-white/70 p-4 shadow-md backdrop-blur-md transition-all duration-300 hover:shadow-lg dark:border-gray-700/60 dark:bg-gray-800/50 sm:p-5",
+  insetText:
+    "rounded-lg bg-white/50 px-3 py-2 text-sm text-gray-800 shadow-inner dark:bg-gray-900/50 dark:text-gray-200",
 };
 
 /**

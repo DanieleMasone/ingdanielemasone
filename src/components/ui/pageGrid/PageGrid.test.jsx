@@ -51,6 +51,10 @@ describe("PageGrid component", () => {
         expect(wrapper).toHaveClass("flex flex-col");
         expect(wrapper).toHaveClass("flex");
         expect(wrapper).toHaveClass("flex-col");
+
+        const grid = container.querySelector(".grid");
+        expect(grid).toHaveClass("gap-4", "sm:gap-5", "lg:gap-6");
+        expect(grid).not.toHaveClass("pt-4");
     });
 
     test("applies custom className to wrapper", () => {

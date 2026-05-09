@@ -13,7 +13,7 @@ import {Loading} from "@/components/loading/Loading";
 import {ErrorState} from "@/components/errorState/ErrorState";
 import {BrandIcon} from "@/components/ui/brandIcon/BrandIcon";
 import clsx from "clsx";
-import {interactiveClasses} from "@/styles/commonClasses";
+import {interactiveClasses, layoutClasses} from "@/styles/commonClasses";
 
 const ITEMS_PER_PAGE = 4;
 
@@ -66,9 +66,7 @@ export default function Testimonials() {
             <PageSection title={t("testimonials_page.title")}>
                 {/* Pagination mobile sticky */}
                 <div
-                    className="md:hidden sticky top-0 z-20 bg-white
-                             dark:bg-gray-900/80 backdrop-blur-md py-2 mb-4 border-b
-                             border-gray-200 dark:border-gray-700"
+                    className={layoutClasses.mobilePagination}
                 >
                     <Pagination
                         page={page}
@@ -85,15 +83,12 @@ export default function Testimonials() {
                             <Card
                                 key={idx}
                                 data-testid="testimonial-card"
-                                className="relative w-full p-5 sm:p-6 border border-gray-200/60
-                                       dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/40 backdrop-blur-md
-                                       rounded-xl hover:shadow-lg transition-all duration-300
-                                       flex flex-col md:flex-row items-start gap-4"
+                                className="relative items-start gap-4 md:flex-row"
                             >
-                                <CardContent className="p-2">
+                                <CardContent className="p-0">
                                     {/* Header */}
                                     <div
-                                        className="flex-shrink-0 mb-3 pb-1 border-b border-gray-200/50 dark:border-gray-700/50 px-3 pt-3">
+                                        className="mb-2 flex-shrink-0 border-b border-gray-200/50 px-2 pb-2 dark:border-gray-700/50">
                                         <div className="flex items-center gap-2.5">
                                             <img
                                                 src={`https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(testimonialName)}`}
@@ -123,7 +118,7 @@ export default function Testimonials() {
                                     </div>
 
                                     {/* Quote */}
-                                    <div className="flex flex-1 justify-center items-center px-3 py-4">
+                                    <div className="flex flex-1 items-center justify-center px-2 py-2">
                                         <ExpandableText
                                             value={t(texts.quoteKey)}
                                             maxLines={4}
@@ -141,7 +136,7 @@ export default function Testimonials() {
                 </PageGrid>
 
                 {/* Pagination desktop normal */}
-                <div className="hidden md:block mt-4">
+                <div className={layoutClasses.desktopPagination}>
                     <Pagination
                         page={page}
                         totalPages={totalPages}
