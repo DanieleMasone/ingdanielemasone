@@ -2,12 +2,36 @@ import React from 'react';
 import {useTranslation} from "react-i18next";
 import seoConfig from "../../config/seo.json";
 
+/**
+ * SEO settings for a configured portfolio route.
+ *
+ * @typedef {object} SeoRouteConfig
+ * @property {string} [path] - Clean route path.
+ * @property {string} [pageKey] - Translation key suffix for route metadata.
+ * @property {string} [priority] - Sitemap priority value.
+ * @property {string} [robots] - Robots directive rendered for the route.
+ * @property {boolean} [sitemap] - Whether the route should be included in the sitemap.
+ */
+
+/**
+ * Normalizes a route path to the clean pathname format used by GitHub Pages.
+ *
+ * @param {string} [path="/"] - Route path received by SeoHead.
+ * @returns {string} A pathname that always starts with `/` and has no trailing slash, except for the root path.
+ */
 const getNormalizedPath = (path = "/") => {
     if (!path || path === "/") return "/";
 
     return `/${path.replace(/^\/+|\/+$/g, "")}`;
 };
 
+/**
+ * Finds the SEO route configuration that matches the current page.
+ *
+ * @param {string} pageKey - Translation key suffix used by the route SEO metadata.
+ * @param {string} path - Route path associated with the current page.
+ * @returns {SeoRouteConfig} Matching route SEO settings.
+ */
 const getRouteConfig = (pageKey, path) => {
     const normalizedPath = getNormalizedPath(path);
 
@@ -16,14 +40,32 @@ const getRouteConfig = (pageKey, path) => {
         || {};
 };
 
+/**
+ * Builds the canonical public URL for a route.
+ *
+ * @param {string} path - Route path associated with the current page.
+ * @returns {string} Absolute canonical URL without hash fragments.
+ */
 const getCanonicalUrl = (path) => {
     const normalizedPath = getNormalizedPath(path);
 
     return `${seoConfig.siteUrl}${normalizedPath === "/" ? "/" : normalizedPath}`;
 };
 
+/**
+ * Extracts the base language code from a browser or i18next locale.
+ *
+ * @param {string} language - Language value such as `it`, `it-IT`, or `en-US`.
+ * @returns {string} Base language code used to resolve Open Graph locale metadata.
+ */
 const getLanguageCode = (language) => (language || seoConfig.defaultLanguage).split("-")[0];
 
+/**
+ * Creates JSON-LD structured data for the portfolio owner, website, and page.
+ *
+ * @param {{title: string, description: string, url: string, language: string}} params - Structured data inputs.
+ * @returns {{'@context': string, '@graph': Array<object>}} Schema.org graph rendered in the document head.
+ */
 const buildStructuredData = ({title, description, url, language}) => ({
     "@context": "https://schema.org",
     "@graph": [

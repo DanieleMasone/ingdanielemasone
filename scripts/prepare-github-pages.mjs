@@ -2,6 +2,12 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import {fileURLToPath} from "node:url";
 
+/**
+ * Generates GitHub Pages-friendly route files and SEO artifacts after Vite builds the portfolio.
+ *
+ * @module scripts/prepare-github-pages
+ */
+
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const distDir = path.join(rootDir, "dist");
 const seoConfigPath = path.join(rootDir, "src", "config", "seo.json");
@@ -9,26 +15,57 @@ const translationsPath = path.join(rootDir, "src", "locales", "it", "translation
 const seoStart = "<!-- SEO_START -->";
 const seoEnd = "<!-- SEO_END -->";
 
+/**
+ * Reads and parses a UTF-8 JSON file.
+ *
+ * @param {string} filePath - Absolute path of the JSON file.
+ * @returns {Promise<object>} Parsed JSON content.
+ */
 const readJson = async (filePath) => JSON.parse(await fs.readFile(filePath, "utf8"));
 
+/**
+ * Escapes text that will be injected into HTML attributes or tags.
+ *
+ * @param {unknown} value - Value to escape for HTML output.
+ * @returns {string} HTML-safe string.
+ */
 const escapeHtml = (value) => String(value)
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;");
 
+/**
+ * Normalizes a route path to a clean pathname.
+ *
+ * @param {string} routePath - Route path from the SEO configuration.
+ * @returns {string} Normalized path with a leading slash and no trailing slash, except `/`.
+ */
 const normalizePath = (routePath) => {
     if (!routePath || routePath === "/") return "/";
 
     return `/${routePath.replace(/^\/+|\/+$/g, "")}`;
 };
 
+/**
+ * Builds the absolute public URL for a configured route.
+ *
+ * @param {string} siteUrl - Absolute GitHub Pages site URL.
+ * @param {string} routePath - Route path from the SEO configuration.
+ * @returns {string} Absolute route URL without hash fragments.
+ */
 const getRouteUrl = (siteUrl, routePath) => {
     const normalizedPath = normalizePath(routePath);
 
     return `${siteUrl}${normalizedPath === "/" ? "/" : normalizedPath}`;
 };
 
+/**
+ * Creates JSON-LD structured data for a static route entry.
+ *
+ * @param {{config: object, title: string, description: string, url: string}} params - Route metadata inputs.
+ * @returns {{'@context': string, '@graph': Array<object>}} Schema.org graph for the rendered route.
+ */
 const buildStructuredData = ({config, title, description, url}) => ({
     "@context": "https://schema.org",
     "@graph": [
@@ -74,6 +111,12 @@ const buildStructuredData = ({config, title, description, url}) => ({
     ]
 });
 
+/**
+ * Builds the full SEO head block for a static route.
+ *
+ * @param {{config: object, route: object, translations: object}} params - SEO config, route config, and Italian translations.
+ * @returns {string} HTML fragment that replaces the SEO marker block in the Vite template.
+ */
 const buildSeoBlock = ({config, route, translations}) => {
     const pageSeo = translations.seo[route.pageKey];
     const url = getRouteUrl(config.siteUrl, route.path);
@@ -108,6 +151,13 @@ const buildSeoBlock = ({config, route, translations}) => {
     ].join("\n");
 };
 
+/**
+ * Replaces the SEO marker block in the built index template.
+ *
+ * @param {{html: string, config: object, route: object, translations: object}} params - Static HTML and route metadata inputs.
+ * @returns {string} HTML with route-specific SEO metadata.
+ * @throws {Error} When the SEO markers are missing from the built template.
+ */
 const injectSeoBlock = ({html, config, route, translations}) => {
     const block = `${seoStart}\n${buildSeoBlock({config, route, translations})}\n    ${seoEnd}`;
     const pattern = new RegExp(`${seoStart}[\\s\\S]*?${seoEnd}`);
@@ -119,6 +169,12 @@ const injectSeoBlock = ({html, config, route, translations}) => {
     return html.replace(pattern, block);
 };
 
+/**
+ * Resolves where a route-specific `index.html` file should be written.
+ *
+ * @param {string} routePath - Route path from the SEO configuration.
+ * @returns {string} Absolute output path in the `dist` folder.
+ */
 const getRouteOutputPath = (routePath) => {
     const normalizedPath = normalizePath(routePath);
 
@@ -127,6 +183,12 @@ const getRouteOutputPath = (routePath) => {
     return path.join(distDir, normalizedPath.slice(1), "index.html");
 };
 
+/**
+ * Builds the XML sitemap from indexable routes.
+ *
+ * @param {{config: object}} params - SEO configuration containing route priorities and sitemap flags.
+ * @returns {string} XML sitemap content.
+ */
 const buildSitemap = ({config}) => {
     const today = new Date().toISOString().slice(0, 10);
     const urls = config.routes
@@ -151,6 +213,12 @@ const buildSitemap = ({config}) => {
     ].join("\n");
 };
 
+/**
+ * Builds a robots file for the GitHub Pages project path.
+ *
+ * @param {{config: object}} params - SEO configuration containing the public site URL.
+ * @returns {string} Robots file content.
+ */
 const buildRobots = ({config}) => [
     "User-agent: *",
     "Allow: /ingdanielemasone/",
@@ -161,6 +229,11 @@ const buildRobots = ({config}) => [
     ""
 ].join("\n");
 
+/**
+ * Writes route-specific HTML files, sitemap, and robots artifacts into `dist`.
+ *
+ * @returns {Promise<void>}
+ */
 const prepareGithubPages = async () => {
     const [config, translations, templateHtml] = await Promise.all([
         readJson(seoConfigPath),

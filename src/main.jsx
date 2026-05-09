@@ -4,6 +4,12 @@ import {BrowserRouter} from "react-router";
 import App from './App.jsx'
 import './index.css'
 
+/**
+ * Basename passed to React Router so clean routes work under the GitHub Pages
+ * project path configured by Vite.
+ *
+ * @type {string}
+ */
 const routerBasename = import.meta.env.BASE_URL === "/"
     ? "/"
     : import.meta.env.BASE_URL.replace(/\/$/, "");

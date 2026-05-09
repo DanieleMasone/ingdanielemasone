@@ -8,6 +8,12 @@ import fr from "../locales/fr/translation.json";
 import de from "../locales/de/translation.json";
 import es from "../locales/es/translation.json";
 
+/**
+ * Keeps the root HTML language attribute aligned with the active i18next locale.
+ *
+ * @param {string} language - Current language emitted by i18next.
+ * @returns {void}
+ */
 const updateDocumentLanguage = (language) => {
     if (typeof document === "undefined") return;
 
