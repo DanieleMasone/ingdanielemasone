@@ -19,7 +19,9 @@ const heroMetrics = [
 
 const focusItems = [
     "home_focus_frontend",
+    "home_focus_leadership",
     "home_focus_enterprise",
+    "home_focus_accessibility",
     "home_focus_training",
 ];
 

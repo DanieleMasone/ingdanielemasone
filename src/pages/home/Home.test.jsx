@@ -23,7 +23,9 @@ vi.mock('react-i18next', () => ({
                 home_metric_testimonials_label: 'testimonials',
                 home_focus_label: 'Focus areas',
                 home_focus_frontend: 'Front-end architecture',
+                home_focus_leadership: 'Technical leadership',
                 home_focus_enterprise: 'Enterprise & regulated domains',
+                home_focus_accessibility: 'Accessibility & performance',
                 home_focus_training: 'Mentoring and training',
                 about_title: 'About Me',
                 about_intro: 'Hello, I am a software engineer.',
@@ -139,7 +141,9 @@ describe('Home component', () => {
 
     test('renders focus areas', () => {
         expect(screen.getByText('Front-end architecture')).toBeInTheDocument();
+        expect(screen.getByText('Technical leadership')).toBeInTheDocument();
         expect(screen.getByText('Enterprise & regulated domains')).toBeInTheDocument();
+        expect(screen.getByText('Accessibility & performance')).toBeInTheDocument();
         expect(screen.getByText('Mentoring and training')).toBeInTheDocument();
     });
 
@@ -150,7 +154,7 @@ describe('Home component', () => {
         expect(focusList).not.toHaveClass('overflow-x-auto');
 
         const focusItems = screen.getAllByRole('listitem');
-        expect(focusItems).toHaveLength(3);
+        expect(focusItems).toHaveLength(5);
         focusItems.forEach((item) => {
             expect(item).toHaveClass('w-full', 'rounded-lg', 'text-sm', 'leading-snug');
             expect(item).toHaveClass('md:w-auto', 'md:rounded-full');
