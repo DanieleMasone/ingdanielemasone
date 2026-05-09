@@ -37,7 +37,7 @@ const isValidReturn = (value) => Number.isFinite(value);
  * Formats a return value with sign and percentage symbol.
  *
  * @param {number|null|undefined} value - Return value in percent.
- * @param {string} noDataLabel - Localized fallback for missing values.
+ * @param {string} noDataLabel - Compact localized fallback for missing values.
  * @returns {string} Localized display value.
  */
 const formatReturn = (value, noDataLabel) => {
@@ -86,7 +86,10 @@ const getCumulativeReturns = (returns) => {
  * It combines a cumulative line chart with monthly or annual return bars, adapts
  * chart colors to the current light/dark theme, exposes the chart canvas with an
  * accessible image label, provides a visually hidden data table for assistive
- * technologies, and renders a localized summary of returns below the chart.
+ * technologies, and renders a localized summary of returns below the chart. Missing
+ * values use compact visible labels and extended assistive labels. The legend uses
+ * filled markers and moves below the chart on small screens to preserve readable
+ * axis spacing.
  *
  * Translations are provided by `react-i18next`.
  *
@@ -194,6 +197,7 @@ export function TradingPerformanceChart({
 
     const isMonthly = view === 'monthly';
     const noDataLabel = t("performance_no_data");
+    const noDataAccessibleLabel = t("performance_no_data_accessible");
     const chartLabels = useMemo(() => isMonthly
             ? monthlyPoints.map(({monthIndex, year}) => `${months[monthIndex]} ${year}`)
             : annualLabels,
@@ -230,10 +234,13 @@ export function TradingPerformanceChart({
                 label: String(t('performance_cumulative')),
                 data: cumulative,
                 borderColor: cumulativeColor,
-                backgroundColor: 'transparent',
+                backgroundColor: cumulativeColor,
                 borderWidth: 3,
                 fill: false,
                 order: 1,
+                pointBackgroundColor: cumulativeColor,
+                pointBorderColor: cumulativeColor,
+                pointBorderWidth: 2,
                 pointRadius: windowWidth < 640 ? 1 : 4,
                 pointHoverRadius: windowWidth < 640 ? 3 : 6,
                 spanGaps: false,
@@ -269,6 +276,12 @@ export function TradingPerformanceChart({
     const options = useMemo(() => ({
         responsive: true,
         maintainAspectRatio: false,
+        layout: {
+            padding: {
+                top: windowWidth < 640 ? 4 : 0,
+                bottom: windowWidth < 640 ? 4 : 0,
+            },
+        },
         interaction: {
             mode: 'index',
             intersect: false,
@@ -307,17 +320,26 @@ export function TradingPerformanceChart({
         },
         plugins: {
             legend: {
+                position: windowWidth < 640 ? 'bottom' : 'top',
+                align: 'center',
                 labels: {
                     color: isDark ? '#eee' : '#333',
                     font: {size: 14, weight: 'bold'},
                     usePointStyle: true,
+                    pointStyleWidth: windowWidth < 640 ? 18 : 20,
+                    boxHeight: 8,
+                    padding: windowWidth < 640 ? 18 : 12,
                 },
             },
             tooltip: {
                 mode: 'index',
                 intersect: false,
                 callbacks: {
-                    label: (context) => `${context.dataset.label}: ${formatReturn(context.raw, noDataLabel)}`,
+                    label: (context) => {
+                        if (!isValidReturn(context.raw)) return null;
+
+                        return `${context.dataset.label}: ${formatReturn(context.raw, noDataLabel)}`;
+                    },
                 },
             },
         },
@@ -349,6 +371,14 @@ export function TradingPerformanceChart({
                 : "text-red-600 dark:text-red-400"
             : "text-gray-500 dark:text-gray-400"
     );
+
+    const renderReturnValue = (value) => {
+        const label = formatReturn(value, noDataLabel);
+
+        if (isValidReturn(value)) return label;
+
+        return <span aria-label={noDataAccessibleLabel}>{label}</span>;
+    };
 
     function renderSummary() {
         if (isMonthly) {
@@ -384,7 +414,7 @@ export function TradingPerformanceChart({
                                             {t("performance_return_label")}
                                         </p>
                                         <p className={clsx(getReturnTextClass(value), "mt-1 break-words text-sm font-bold")}>
-                                            {formatReturn(value, noDataLabel)}
+                                            {renderReturnValue(value)}
                                         </p>
                                     </div>
                                 );
@@ -405,7 +435,7 @@ export function TradingPerformanceChart({
                                                 {t("performance_return_label")}
                                             </p>
                                             <p className={clsx(getReturnTextClass(value), "mt-1 break-words text-sm font-bold")}>
-                                                {formatReturn(value, noDataLabel)}
+                                                {renderReturnValue(value)}
                                             </p>
                                         </div>
                                     );
@@ -432,7 +462,7 @@ export function TradingPerformanceChart({
                                     {t("performance_return_label")}
                                 </p>
                                 <p className={clsx(getReturnTextClass(value), "mt-1 text-xl font-bold")}>
-                                    {formatReturn(value, noDataLabel)}
+                                    {renderReturnValue(value)}
                                 </p>
                             </div>
                         );
@@ -484,8 +514,8 @@ export function TradingPerformanceChart({
                     {chartRows.map((row) => (
                         <tr key={row.label}>
                             <th scope="row">{row.label}</th>
-                            <td>{formatReturn(row.returnValue, noDataLabel)}</td>
-                            <td>{formatReturn(row.cumulativeValue, noDataLabel)}</td>
+                            <td>{formatReturn(row.returnValue, noDataAccessibleLabel)}</td>
+                            <td>{formatReturn(row.cumulativeValue, noDataAccessibleLabel)}</td>
                         </tr>
                     ))}
                     </tbody>

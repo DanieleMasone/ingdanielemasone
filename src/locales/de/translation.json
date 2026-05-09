@@ -147,7 +147,8 @@
   "performance_view_annual": "Jährlich",
   "performance_return_label": "Rendite",
   "performance_period_label": "Zeitraum",
-  "performance_no_data": "Keine Daten",
+  "performance_no_data": "k.A.",
+  "performance_no_data_accessible": "Keine Daten",
   "certifications_page": {
     "title": "Zertifizierungen",
     "description": "Liste beruflicher Zertifizierungen mit Links zu offiziellen Dokumenten.",

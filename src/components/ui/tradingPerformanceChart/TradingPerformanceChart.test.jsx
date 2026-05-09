@@ -26,7 +26,8 @@ vi.mock('react-i18next', () => ({
                 performance_cumulative: 'Cumulative',
                 performance_positive: 'Positive',
                 performance_negative: 'Negative',
-                performance_no_data: 'No data',
+                performance_no_data: 'N/A',
+                performance_no_data_accessible: 'No data',
                 months: {
                     jan: 'Jan',
                     feb: 'Feb',
@@ -60,14 +61,18 @@ vi.mock('react-i18next', () => ({
 }));
 
 vi.mock('react-chartjs-2', () => ({
-    Chart: ({type, data, role, 'aria-label': ariaLabel, 'aria-describedby': ariaDescribedBy}) => (
+    Chart: ({type, data, options, role, 'aria-label': ariaLabel, 'aria-describedby': ariaDescribedBy}) => (
         <div
             data-testid="mock-chart"
             data-type={type}
             data-dataset-types={data.datasets.map((dataset) => dataset.type).join(',')}
+            data-cumulative-background={data.datasets[0].backgroundColor}
+            data-cumulative-point-background={data.datasets[0].pointBackgroundColor}
             data-label-count={data.labels.length}
             data-first-label={data.labels[0]}
             data-last-label={data.labels.at(-1)}
+            data-legend-position={options.plugins.legend.position}
+            data-legend-label-padding={options.plugins.legend.labels.padding}
             role={role}
             aria-label={ariaLabel}
             aria-describedby={ariaDescribedBy}
@@ -77,11 +82,13 @@ vi.mock('react-chartjs-2', () => ({
 
 describe('TradingPerformanceChart', () => {
     beforeEach(() => {
+        Object.defineProperty(window, 'innerWidth', {writable: true, configurable: true, value: 1024});
         vi.spyOn(document.documentElement.classList, 'contains').mockImplementation(cls => cls === 'dark');
         render(<TradingPerformanceChart startYear={2022} monthlyReturns={monthlyReturns}/>);
     });
 
     afterEach(() => {
+        Object.defineProperty(window, 'innerWidth', {writable: true, configurable: true, value: 1024});
         vi.restoreAllMocks();
     });
 
@@ -111,9 +118,20 @@ describe('TradingPerformanceChart', () => {
 
         expect(chart).toHaveAttribute('data-type', 'bar');
         expect(chart).toHaveAttribute('data-dataset-types', 'line,bar,bar');
+        expect(chart).toHaveAttribute('data-cumulative-background', '#7ee787');
+        expect(chart).toHaveAttribute('data-cumulative-point-background', '#7ee787');
         expect(chart).toHaveAttribute('data-label-count', '49');
         expect(chart).toHaveAttribute('data-first-label', 'Jan 2022');
         expect(chart).toHaveAttribute('data-last-label', 'Jan 2026');
+    });
+
+    test('keeps mobile legend away from the top y-axis tick', () => {
+        Object.defineProperty(window, 'innerWidth', {writable: true, configurable: true, value: 390});
+
+        fireEvent(window, new Event('resize'));
+
+        expect(screen.getByTestId('mock-chart')).toHaveAttribute('data-legend-position', 'bottom');
+        expect(screen.getByTestId('mock-chart')).toHaveAttribute('data-legend-label-padding', '18');
     });
 
     test('provides a screen-reader table as the non-canvas chart alternative', () => {
@@ -125,9 +143,10 @@ describe('TradingPerformanceChart', () => {
         expect(within(summary).getByRole('columnheader', {name: /period/i})).toBeInTheDocument();
     });
 
-    test('renders monthly summary values and missing-data labels', () => {
+    test('renders monthly summary values and compact accessible missing-data labels', () => {
         expect(screen.getAllByText('+2,24%').length).toBeGreaterThan(0);
-        expect(screen.getAllByText('No data').length).toBeGreaterThan(0);
+        expect(screen.getAllByText('N/A').length).toBeGreaterThan(0);
+        expect(screen.getAllByLabelText('No data').length).toBeGreaterThan(0);
     });
 
     test('renders annual summary when annual view is selected', () => {

@@ -147,7 +147,8 @@
   "performance_view_annual": "Vista Annuale",
   "performance_return_label": "Rendimento",
   "performance_period_label": "Periodo",
-  "performance_no_data": "Dato non disponibile",
+  "performance_no_data": "N/D",
+  "performance_no_data_accessible": "Dato non disponibile",
   "certifications_page": {
     "title": "Certificazioni",
     "description": "Elenco delle certificazioni professionali conseguite, con link diretti ai certificati ufficiali.",
