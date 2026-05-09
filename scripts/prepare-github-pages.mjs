@@ -52,12 +52,12 @@ const normalizePath = (routePath) => {
  *
  * @param {string} siteUrl - Absolute GitHub Pages site URL.
  * @param {string} routePath - Route path from the SEO configuration.
- * @returns {string} Absolute route URL without hash fragments.
+ * @returns {string} Absolute route URL without hash fragments, using a trailing slash for route directories.
  */
 const getRouteUrl = (siteUrl, routePath) => {
     const normalizedPath = normalizePath(routePath);
 
-    return `${siteUrl}${normalizedPath === "/" ? "/" : normalizedPath}`;
+    return `${siteUrl}${normalizedPath === "/" ? "/" : `${normalizedPath}/`}`;
 };
 
 /**

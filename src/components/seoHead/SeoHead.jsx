@@ -44,12 +44,12 @@ const getRouteConfig = (pageKey, path) => {
  * Builds the canonical public URL for a route.
  *
  * @param {string} path - Route path associated with the current page.
- * @returns {string} Absolute canonical URL without hash fragments.
+ * @returns {string} Absolute canonical URL without hash fragments, using a trailing slash for route directories.
  */
 const getCanonicalUrl = (path) => {
     const normalizedPath = getNormalizedPath(path);
 
-    return `${seoConfig.siteUrl}${normalizedPath === "/" ? "/" : normalizedPath}`;
+    return `${seoConfig.siteUrl}${normalizedPath === "/" ? "/" : `${normalizedPath}/`}`;
 };
 
 /**

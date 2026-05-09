@@ -91,7 +91,7 @@ describe('<SeoHead />', () => {
             const canonical = document.querySelector('link[rel="canonical"]');
             expect(canonical).toHaveAttribute(
                 'href',
-                'https://danielemasone.github.io/ingdanielemasone/projects'
+                'https://danielemasone.github.io/ingdanielemasone/projects/'
             );
         });
     });
@@ -174,7 +174,7 @@ describe('<SeoHead />', () => {
                     }),
                     expect.objectContaining({
                         '@type': 'WebPage',
-                        url: 'https://danielemasone.github.io/ingdanielemasone/projects'
+                        url: 'https://danielemasone.github.io/ingdanielemasone/projects/'
                     })
                 ])
             );
