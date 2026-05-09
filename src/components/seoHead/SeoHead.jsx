@@ -160,6 +160,8 @@ export function SeoHead({pageKey, path}) {
             <meta property="og:type" content="website"/>
             <meta property="og:url" content={url}/>
             <meta property="og:image" content={seoConfig.image.url}/>
+            <meta property="og:image:secure_url" content={seoConfig.image.url}/>
+            <meta property="og:image:type" content={seoConfig.image.type}/>
             <meta property="og:image:alt" content={seoConfig.image.alt}/>
             <meta property="og:image:width" content={String(seoConfig.image.width)}/>
             <meta property="og:image:height" content={String(seoConfig.image.height)}/>

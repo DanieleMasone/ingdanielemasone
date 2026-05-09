@@ -129,14 +129,35 @@ describe('<SeoHead />', () => {
         await waitFor(() => {
             expect(document.querySelector('meta[property="og:image"]')).toHaveAttribute(
                 'content',
-                'https://danielemasone.github.io/ingdanielemasone/logo.png'
+                'https://danielemasone.github.io/ingdanielemasone/social-preview.png'
+            );
+        });
+
+        await waitFor(() => {
+            expect(document.querySelector('meta[property="og:image:type"]')).toHaveAttribute(
+                'content',
+                'image/png'
+            );
+        });
+
+        await waitFor(() => {
+            expect(document.querySelector('meta[property="og:image:width"]')).toHaveAttribute(
+                'content',
+                '1200'
+            );
+        });
+
+        await waitFor(() => {
+            expect(document.querySelector('meta[property="og:image:height"]')).toHaveAttribute(
+                'content',
+                '630'
             );
         });
 
         await waitFor(() => {
             expect(document.querySelector('meta[property="og:image:alt"]')).toHaveAttribute(
                 'content',
-                'Daniele Masone portfolio logo'
+                'Daniele Masone portfolio social preview'
             );
         });
 

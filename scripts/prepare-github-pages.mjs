@@ -136,6 +136,8 @@ const buildSeoBlock = ({config, route, translations}) => {
         `    <meta property="og:type" content="website"/>`,
         `    <meta property="og:url" content="${escapeHtml(url)}"/>`,
         `    <meta property="og:image" content="${escapeHtml(config.image.url)}"/>`,
+        `    <meta property="og:image:secure_url" content="${escapeHtml(config.image.url)}"/>`,
+        `    <meta property="og:image:type" content="${escapeHtml(config.image.type)}"/>`,
         `    <meta property="og:image:alt" content="${escapeHtml(config.image.alt)}"/>`,
         `    <meta property="og:image:width" content="${escapeHtml(config.image.width)}"/>`,
         `    <meta property="og:image:height" content="${escapeHtml(config.image.height)}"/>`,

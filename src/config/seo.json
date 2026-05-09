@@ -7,10 +7,11 @@
   "keywords": "Daniele Masone, portfolio, CV online, software engineer, frontend architect, React, Angular, JavaScript",
   "twitterCreator": "@masone_daniele",
   "image": {
-    "url": "https://danielemasone.github.io/ingdanielemasone/logo.png",
-    "width": 1254,
-    "height": 1254,
-    "alt": "Daniele Masone portfolio logo"
+    "url": "https://danielemasone.github.io/ingdanielemasone/social-preview.png",
+    "type": "image/png",
+    "width": 1200,
+    "height": 630,
+    "alt": "Daniele Masone portfolio social preview"
   },
   "sameAs": [
     "https://www.linkedin.com/in/ingdanielemasone/",

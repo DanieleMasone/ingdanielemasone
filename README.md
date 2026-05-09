@@ -133,7 +133,7 @@ The generated pages describe the portfolio shell, route-level pages, reusable UI
 
 The portfolio is published as a GitHub Pages project site under `/ingdanielemasone/`. The production build uses clean URLs such as `/experience/` and `/projects/`, then the post-build step generates matching static `index.html` files inside `dist/` so those URLs return HTTP 200 on GitHub Pages.
 
-SEO data is centralized in `src/config/seo.json` and consumed by the route-level `SeoHead` component. The build also writes a clean sitemap, route-specific canonical URLs, Open Graph and Twitter card metadata, and JSON-LD structured data for the professional profile.
+SEO data is centralized in `src/config/seo.json` and consumed by the route-level `SeoHead` component. The build also writes a clean sitemap, route-specific canonical URLs, Open Graph and Twitter card metadata, and JSON-LD structured data for the professional profile. Social link previews use `public/social-preview.png` as the 1200x630 Open Graph image.
 
 For Google Search Console, use a URL-prefix property for `https://danielemasone.github.io/ingdanielemasone/`, keep the generated verification file in `public/`, and submit `https://danielemasone.github.io/ingdanielemasone/sitemap.xml` after deployment.
 
