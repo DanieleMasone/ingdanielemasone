@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 import {ArrowRight, BriefcaseBusiness, FolderGit2, Sparkles} from "lucide-react";
 import {BrandIcon} from "@/components/ui/brandIcon/BrandIcon";
 import React from "react";
+import {layoutClasses, surfaceClasses} from "@/styles/commonClasses";
 
 const LINKEDIN_URL = "https://www.linkedin.com/in/ingdanielemasone/";
 const linkedinIcon = {
@@ -152,24 +153,17 @@ export default function Home() {
                         </dl>
 
                         <ul
-                            className="flex gap-2.5 overflow-x-auto no-scrollbar px-1 pb-2
-                                       md:flex-wrap md:justify-start md:overflow-visible md:pb-0"
+                            className={layoutClasses.focusList}
                             aria-label={t("home_focus_label")}
+                            data-testid="home-focus-list"
                         >
                             {focusItems.map((item) => (
                                 <li
                                     key={item}
-                                    className="inline-flex shrink-0 items-center gap-2 rounded-full
-                                               border border-blue-200/80 bg-white/70 px-3.5 py-1.5
-                                               text-xs sm:text-sm font-semibold text-blue-900
-                                               shadow-sm backdrop-blur-sm transition
-                                               hover:border-blue-300 hover:bg-blue-50 hover:text-blue-800
-                                               dark:border-blue-400/20 dark:bg-blue-400/10
-                                               dark:text-blue-100 dark:hover:border-blue-300/40
-                                               dark:hover:bg-blue-400/15"
+                                    className={surfaceClasses.focusItem}
                                 >
                                     <span
-                                        className="h-1.5 w-1.5 rounded-full bg-blue-500 dark:bg-blue-300"
+                                        className={layoutClasses.focusMarker}
                                         aria-hidden="true"
                                     />
                                     {t(item)}

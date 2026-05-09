@@ -20,6 +20,8 @@
  * @property {string} desktopPagination - Desktop pagination wrapper aligned with section spacing.
  * @property {string} horizontalFilterBar - Horizontal filter controls with compact scrolling on small screens.
  * @property {string} sidebarFilterBar - Sidebar filter controls that switch from horizontal scrolling to a vertical desktop rail.
+ * @property {string} focusList - Responsive list layout for compact portfolio focus items.
+ * @property {string} focusMarker - Decorative marker used inside portfolio focus items.
  */
 
 /**
@@ -39,6 +41,9 @@ export const layoutClasses = {
     "flex flex-row gap-2 overflow-x-auto pb-2 scrollbar-hide sm:flex-wrap sm:justify-center sm:overflow-visible sm:pb-0",
   sidebarFilterBar:
     "flex flex-row gap-2 overflow-x-auto snap-x pb-2 scrollbar-hide md:flex-col md:overflow-visible md:snap-none md:pb-0",
+  focusList:
+    "grid grid-cols-1 gap-2 text-left sm:grid-cols-3 md:flex md:flex-wrap md:justify-start",
+  focusMarker: "h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500 dark:bg-blue-300",
 };
 
 /**
@@ -47,6 +52,7 @@ export const layoutClasses = {
  * @typedef {Object} SurfaceClasses
  * @property {string} card - Responsive card surface with border, shadow, backdrop blur, and dark-mode styles.
  * @property {string} insetText - Compact inset surface for descriptive text inside cards.
+ * @property {string} focusItem - Responsive focus item surface used by the home page focus list.
  */
 
 /**
@@ -59,6 +65,8 @@ export const surfaceClasses = {
     "flex w-full flex-col rounded-xl border border-gray-200/60 bg-white/70 p-4 shadow-md backdrop-blur-md transition-all duration-300 hover:shadow-lg dark:border-gray-700/60 dark:bg-gray-800/50 sm:p-5",
   insetText:
     "rounded-lg bg-white/50 px-3 py-2 text-sm text-gray-800 shadow-inner dark:bg-gray-900/50 dark:text-gray-200",
+  focusItem:
+    "inline-flex w-full items-start gap-2 rounded-lg border border-blue-200/80 bg-white/70 px-3 py-2 text-sm font-semibold leading-snug text-blue-900 shadow-sm backdrop-blur-sm transition dark:border-blue-400/20 dark:bg-blue-400/10 dark:text-blue-100 md:w-auto md:items-center md:rounded-full md:px-3.5 md:py-1.5",
 };
 
 /**

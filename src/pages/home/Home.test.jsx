@@ -143,6 +143,20 @@ describe('Home component', () => {
         expect(screen.getByText('Mentoring and training')).toBeInTheDocument();
     });
 
+    test('renders focus areas as a mobile-friendly list without horizontal scrolling', () => {
+        const focusList = screen.getByTestId('home-focus-list');
+        expect(focusList).toHaveClass('grid', 'grid-cols-1', 'gap-2');
+        expect(focusList).toHaveClass('md:flex', 'md:flex-wrap');
+        expect(focusList).not.toHaveClass('overflow-x-auto');
+
+        const focusItems = screen.getAllByRole('listitem');
+        expect(focusItems).toHaveLength(3);
+        focusItems.forEach((item) => {
+            expect(item).toHaveClass('w-full', 'rounded-lg', 'text-sm', 'leading-snug');
+            expect(item).toHaveClass('md:w-auto', 'md:rounded-full');
+        });
+    });
+
     test('renders avatar section with AvatarCard', () => {
         const avatarSection = screen.getByTestId('page-grid');
 
