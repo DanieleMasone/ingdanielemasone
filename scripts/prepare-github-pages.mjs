@@ -57,9 +57,7 @@ const normalizePath = (routePath) => {
 const getRouteUrl = (siteUrl, routePath) => {
     const normalizedPath = normalizePath(routePath);
 
-    return normalizedPath === "/"
-        ? `${siteUrl}/`
-        : `${siteUrl}${normalizedPath}`;
+    return `${siteUrl}${normalizedPath === "/" ? "/" : `${normalizedPath}/`}`;
 };
 
 /**

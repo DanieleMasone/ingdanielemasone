@@ -41,14 +41,14 @@ export default function App() {
                 <Suspense fallback={<Loading/>}>
                     <Routes>
                         <Route path="/" element={<Home/>}/>
-                        <Route path="/experience" element={<Experience/>}/>
-                        <Route path="/projects" element={<Projects/>}/>
-                        <Route path="/courses" element={<Courses/>}/>
-                        <Route path="/certifications" element={<Certifications/>}/>
-                        <Route path="/trading" element={<Trading/>}/>
-                        <Route path="/testimonials" element={<Testimonials/>}/>
-                        <Route path="/privacy" element={<Privacy/>}/>
-                        <Route path="/cookie-policy" element={<CookiePolicy/>}/>
+                        <Route path="/experience/" element={<Experience/>}/>
+                        <Route path="/projects/" element={<Projects/>}/>
+                        <Route path="/courses/" element={<Courses/>}/>
+                        <Route path="/certifications/" element={<Certifications/>}/>
+                        <Route path="/trading/" element={<Trading/>}/>
+                        <Route path="/testimonials/" element={<Testimonials/>}/>
+                        <Route path="/privacy/" element={<Privacy/>}/>
+                        <Route path="/cookie-policy/" element={<CookiePolicy/>}/>
                         <Route path="*" element={<NotFound/>}/>
                     </Routes>
                 </Suspense>
