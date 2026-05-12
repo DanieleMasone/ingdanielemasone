@@ -10,6 +10,7 @@ import {Loading} from "@/components/loading/Loading";
 const Home = lazy(() => import('./pages/home/Home'));
 const Experience = lazy(() => import('./pages/experience/Experience'));
 const Projects = lazy(() => import('./pages/projects/Projects'));
+const GithubProjects = lazy(() => import('./pages/githubProjects/GithubProjects'));
 const Courses = lazy(() => import('./pages/courses/Courses'));
 const Certifications = lazy(() => import('./pages/certifications/Certifications'));
 const Trading = lazy(() => import('./pages/trading/Trading'));
@@ -43,6 +44,7 @@ export default function App() {
                         <Route path="/" element={<Home/>}/>
                         <Route path="/experience/" element={<Experience/>}/>
                         <Route path="/projects/" element={<Projects/>}/>
+                        <Route path="/github-projects/" element={<GithubProjects/>}/>
                         <Route path="/courses/" element={<Courses/>}/>
                         <Route path="/certifications/" element={<Certifications/>}/>
                         <Route path="/trading/" element={<Trading/>}/>

@@ -5,6 +5,7 @@ import {projects} from "@/mock/projects";
 import {testimonials} from "@/mock/testimonials";
 import {tradingPerformance} from "@/mock/trading";
 import {links} from "@/mock/links";
+import {githubProjects} from "@/mock/githubProjects";
 
 /**
  * Local data loader helpers for the portfolio.
@@ -62,6 +63,16 @@ export async function getExperiences() {
 export async function getProjects() {
     await delay(300);
     return projects;
+}
+
+/**
+ * Loads static GitHub repository entries for the GitHub Projects page.
+ *
+ * @returns {Promise<Array<object>>} Promise resolving to the GitHub projects dataset.
+ */
+export async function getGithubProjects() {
+    await delay(300);
+    return githubProjects;
 }
 
 /**

@@ -21,6 +21,7 @@ This repository is meant to be a technical showcase for people who land on my Gi
 - Responsive UX for desktop and mobile portfolio browsing
 - Accessibility-minded controls, focus states, semantic sections, and non-canvas chart alternatives
 - Internationalization in Italian, English, French, German, and Spanish
+- A dedicated GitHub projects page for inspectable public repositories, live demos, docs, and coverage reports
 - SEO metadata, structured data, sitemap, robots, social preview, and GitHub Pages-friendly routing
 - Automated tests, coverage output, and generated source documentation
 - CI/CD deployment to GitHub Pages
@@ -34,6 +35,7 @@ The application includes the main pages a visitor would expect from a profession
 - **Home** - positioning, focus areas, social links, and first impression
 - **Experience** - professional roles and responsibilities
 - **Projects** - enterprise and technical project highlights
+- **GitHub Projects** - public repositories with architecture, tests, documentation, and deploy links
 - **Courses** - teaching and course material
 - **Certifications** - professional certifications and certificates
 - **Testimonials** - feedback from students and collaborators
@@ -48,6 +50,7 @@ The application includes the main pages a visitor would expect from a profession
 - React Router 7 with lazy-loaded route modules
 - Shared UI primitives for cards, grids, sections, pagination, buttons, language switching, and disclosure content
 - Tailwind CSS class presets centralized in `src/styles/commonClasses.js`
+- Local fake-service data loading for both CV content and public repository showcases
 - Manual chunking in Vite to keep large dependency groups readable in the production bundle
 
 ### SEO and GitHub Pages

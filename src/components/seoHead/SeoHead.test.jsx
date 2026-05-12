@@ -21,6 +21,10 @@ vi.mock('react-i18next', () => ({
                         title: 'Projects | Daniele Masone',
                         description: 'Discover software projects and case studies by Daniele Masone.'
                     },
+                    githubProjects: {
+                        title: 'GitHub Projects | Daniele Masone',
+                        description: 'Inspect public GitHub repositories by Daniele Masone.'
+                    },
                     privacy: {
                         title: 'Privacy Policy | Daniele Masone',
                         description: 'Privacy information for the portfolio.'
@@ -92,6 +96,28 @@ describe('<SeoHead />', () => {
             expect(canonical).toHaveAttribute(
                 'href',
                 'https://danielemasone.github.io/ingdanielemasone/projects/'
+            );
+        });
+    });
+
+    test('renders correct canonical and robots for "githubProjects"', async () => {
+        renderSeo('githubProjects', '/github-projects');
+
+        await waitFor(() => {
+            expect(document.title).toBe('GitHub Projects | Daniele Masone');
+        });
+
+        await waitFor(() => {
+            expect(document.querySelector('link[rel="canonical"]')).toHaveAttribute(
+                'href',
+                'https://danielemasone.github.io/ingdanielemasone/github-projects/'
+            );
+        });
+
+        await waitFor(() => {
+            expect(document.querySelector('meta[name="robots"]')).toHaveAttribute(
+                'content',
+                'index, follow'
             );
         });
     });

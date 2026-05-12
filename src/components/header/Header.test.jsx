@@ -11,6 +11,7 @@ vi.mock("react-i18next", () => ({
             portfolio: "Portfolio",
             experience: "Experience",
             projects: "Projects",
+            github_projects: "GitHub Projects",
             courses: "Courses",
             testimonials: "Testimonials",
             trading: "Trading",
@@ -57,6 +58,17 @@ describe("Header", () => {
         fireEvent.click(btn);
 
         const active = screen.getByText("Projects");
+        expect(active.className).toMatch(/text-blue-600/);
+        expect(active).toHaveAttribute("aria-current", "page");
+    });
+
+    test("highlights portfolio links when GitHub Pages keeps a trailing slash", () => {
+        renderHeader("/github-projects/");
+
+        const btn = screen.getAllByRole("button", {name: /portfolio/i})[0];
+        fireEvent.click(btn);
+
+        const active = screen.getByText("GitHub Projects");
         expect(active.className).toMatch(/text-blue-600/);
         expect(active).toHaveAttribute("aria-current", "page");
     });
@@ -216,7 +228,7 @@ describe("Header", () => {
             const portfolioBtn = within(menu).getByRole("button", {name: /portfolio/i});
             fireEvent.click(portfolioBtn);
 
-            const links = ["Experience", "Projects", "Certifications", "Courses", "Testimonials", "Trading"];
+            const links = ["Experience", "Projects", "GitHub Projects", "Certifications", "Courses", "Testimonials", "Trading"];
             links.forEach((label) => {
                 const link = within(menu).getByText(label);
                 expect(link).toBeInTheDocument();
@@ -285,6 +297,7 @@ describe("Header", () => {
         const labels = [
             "Experience",
             "Projects",
+            "GitHub Projects",
             "Certifications",
             "Courses",
             "Testimonials",

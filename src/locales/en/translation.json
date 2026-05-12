@@ -3,6 +3,7 @@
   "about": "About",
   "experience": "Experience",
   "projects": "Projects",
+  "github_projects": "GitHub Projects",
   "contact": "Contact",
   "courses": "Courses",
   "certifications": "Certifications",
@@ -32,6 +33,49 @@
   "home_focus_training": "Mentoring and training",
   "projects_title": "Projects",
   "show_technologies": "Show technologies",
+  "github_projects_page": {
+    "title": "GitHub Projects",
+    "intro": "A curated view of public repositories that show code quality, architecture, testing, documentation and GitHub Pages delivery beyond the professional projects listed in the online CV.",
+    "filter_label": "Filter GitHub projects by category",
+    "highlights_label": "Highlights for {{project}}",
+    "categories": {
+      "all": "All",
+      "frontend": "Frontend",
+      "backend": "Backend"
+    },
+    "links": {
+      "repository": "Repository",
+      "live": "Live",
+      "documentation": "Docs",
+      "coverage": "Coverage"
+    },
+    "projects": {
+      "identity_service": {
+        "summary": "Production-style identity backend built to demonstrate API-first design, versioned contracts and a tested Spring architecture.",
+        "highlights": {
+          "contract": "OpenAPI contract as source of truth, with generated interfaces and models.",
+          "architecture": "Layered Spring Boot service with JPA persistence, Flyway migrations and typed mapping.",
+          "quality": "Docker Compose, Testcontainers and CI-friendly documentation for repeatable verification."
+        }
+      },
+      "saas_analytics_dashboard": {
+        "summary": "SaaS management dashboard focused on product-grade frontend decisions, typed mock APIs and accessible analytics views.",
+        "highlights": {
+          "product": "Operational dashboard flows designed for scanning, comparison and repeated use.",
+          "data": "Typed mock APIs, TanStack Query states and chart components for realistic frontend integration.",
+          "delivery": "Static GitHub Pages export with TypeDoc, coverage reports and automated quality checks."
+        }
+      },
+      "portfolio": {
+        "summary": "This portfolio itself, treated as a production-minded online CV with localization, SEO, documentation and test coverage.",
+        "highlights": {
+          "positioning": "Separates professional delivery, public repositories, courses, certifications and testimonials.",
+          "seo": "GitHub Pages-compatible SEO with canonical URLs, social preview metadata, sitemap and robots files.",
+          "documentation": "JSDoc reference and coverage reports published beside the live website."
+        }
+      }
+    }
+  },
   "showMore": "Show more",
   "showLess": "Show less",
   "performance_positive": "Positive",
@@ -415,6 +459,10 @@
     "projects": {
       "title": "Projects - Daniele Masone",
       "description": "Personal and professional projects by Daniele Masone, using modern tech and best practices."
+    },
+    "githubProjects": {
+      "title": "GitHub Projects - Daniele Masone",
+      "description": "Public GitHub repositories by Daniele Masone, with inspectable code, architecture, tests, documentation and GitHub Pages delivery."
     },
     "courses": {
       "title": "Courses - Daniele Masone",

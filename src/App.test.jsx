@@ -36,6 +36,10 @@ vi.mock('./pages/projects/Projects', () => ({
     default: () => <div data-testid="projects"><h1>Projects</h1></div>
 }));
 
+vi.mock('./pages/githubProjects/GithubProjects', () => ({
+    default: () => <div data-testid="github-projects"><h1>GitHub Projects</h1></div>
+}));
+
 vi.mock('./pages/courses/Courses', () => ({
     default: () => <div data-testid="courses"><h1>My Online Courses</h1></div>
 }));
@@ -105,7 +109,7 @@ describe('App.jsx', () => {
     });
 
     test('renders portfolio routes', async () => {
-        const routes = ['/experience', '/projects', '/courses', '/certifications'];
+        const routes = ['/experience', '/projects', '/github-projects', '/courses', '/certifications'];
 
         for (const route of routes) {
             const {unmount} = renderWithRouter([route]);

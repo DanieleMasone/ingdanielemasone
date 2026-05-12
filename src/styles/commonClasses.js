@@ -62,6 +62,8 @@ export const layoutClasses = {
  * @typedef {Object} SurfaceClasses
  * @property {string} card - Responsive card surface with border, shadow, backdrop blur, and dark-mode styles.
  * @property {string} insetText - Compact inset surface for descriptive text inside cards.
+ * @property {string} metaBadge - Compact badge for card metadata such as category, period, or publication state.
+ * @property {string} mutedMetaBadge - Compact neutral badge for secondary card metadata.
  * @property {string} focusItem - Responsive focus item surface used by the home page focus list.
  */
 
@@ -75,6 +77,10 @@ export const surfaceClasses = {
     "flex w-full flex-col rounded-xl border border-gray-200/60 bg-white/70 p-4 shadow-md backdrop-blur-md transition-all duration-300 hover:shadow-lg dark:border-gray-700/60 dark:bg-gray-800/50 sm:p-5",
   insetText:
     "rounded-lg bg-white/50 px-3 py-2 text-sm text-gray-800 shadow-inner dark:bg-gray-900/50 dark:text-gray-200",
+  metaBadge:
+    "inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700 dark:bg-blue-900/30 dark:text-blue-300",
+  mutedMetaBadge:
+    "inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700 dark:bg-gray-700 dark:text-gray-200",
   focusItem:
     "inline-flex w-full items-start gap-2 rounded-lg border border-blue-200/80 bg-white/70 px-3 py-2 text-sm font-semibold leading-snug text-blue-900 shadow-sm backdrop-blur-sm transition dark:border-blue-400/20 dark:bg-blue-400/10 dark:text-blue-100 md:w-auto md:items-center md:rounded-full md:px-3.5 md:py-1.5",
 };
@@ -92,6 +98,7 @@ export const surfaceClasses = {
  * @property {string} linkButtonBase - Base layout for anchor elements rendered as CTA buttons.
  * @property {string} linkButtonGreen - Green CTA theme used for primary external links.
  * @property {string} linkButtonBlue - Blue CTA theme used for secondary external links.
+ * @property {string} resourceLink - Compact external resource link used inside project cards.
  * @property {string} textLink - Accessible inline text link style for legal and policy pages.
  */
 
@@ -119,6 +126,8 @@ export const interactiveClasses = {
     "bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 focus-visible:ring-green-400 dark:focus-visible:ring-green-300",
   linkButtonBlue:
     "bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 focus-visible:ring-blue-400 dark:focus-visible:ring-blue-300",
+  resourceLink:
+    "inline-flex min-h-10 items-center justify-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-semibold text-gray-800 transition-colors hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800",
   textLink:
     "text-blue-600 underline underline-offset-2 transition-colors hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300",
 };

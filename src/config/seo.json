@@ -49,6 +49,13 @@
       "sitemap": true
     },
     {
+      "path": "/github-projects",
+      "pageKey": "githubProjects",
+      "priority": "0.85",
+      "robots": "index, follow",
+      "sitemap": true
+    },
+    {
       "path": "/courses",
       "pageKey": "courses",
       "priority": "0.8",

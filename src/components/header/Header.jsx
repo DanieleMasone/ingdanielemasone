@@ -23,6 +23,7 @@ import {interactiveClasses} from "../../styles/commonClasses";
 export function Header() {
     const {t} = useTranslation();
     const {pathname} = useLocation();
+    const currentPath = pathname === "/" ? "/" : pathname.replace(/\/+$/g, "");
     const [menuOpen, setMenuOpen] = useState(false);
     const [portfolioOpen, setPortfolioOpen] = useState(false);
     const portfolioRef = useRef(null);
@@ -34,12 +35,13 @@ export function Header() {
     const navPortfolio = [
         {to: '/experience', label: t('experience')},
         {to: '/projects', label: t('projects')},
+        {to: '/github-projects', label: t('github_projects')},
         {to: '/certifications', label: t('certifications')},
         {to: '/courses', label: t('courses')},
         {to: '/testimonials', label: t('testimonials')},
         {to: '/trading', label: t('trading')}
     ];
-    const isPortfolioRoute = navPortfolio.some((item) => item.to === pathname);
+    const isPortfolioRoute = navPortfolio.some((item) => item.to === currentPath);
 
     useEffect(() => {
         setMenuOpen(false);
@@ -70,9 +72,9 @@ export function Header() {
 
     const getLinkClasses = (path) =>
         `transition font-medium hover:text-blue-600 dark:hover:text-blue-400 ${
-            pathname === path ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-gray-900 dark:text-white"
+            currentPath === path ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-gray-900 dark:text-white"
         }`;
-    const getAriaCurrent = (path) => (pathname === path ? "page" : undefined);
+    const getAriaCurrent = (path) => (currentPath === path ? "page" : undefined);
 
     return (
         <header
@@ -136,7 +138,7 @@ export function Header() {
                                             to={item.to}
                                             onClick={() => setPortfolioOpen(false)}
                                             className={clsx(`block rounded px-4 py-2 text-sm transition hover:bg-gray-100 dark:hover:bg-gray-700 ${
-                                                pathname === item.to ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-gray-900 dark:text-white"
+                                                currentPath === item.to ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-gray-900 dark:text-white"
                                             }`, interactiveClasses.focusRingInset)}
                                             aria-current={getAriaCurrent(item.to)}
                                         >
@@ -186,7 +188,7 @@ export function Header() {
                                 to="/"
                                 onClick={() => setMenuOpen(false)}
                                 className={clsx(`rounded text-base font-medium transition ${
-                                    pathname === "/" ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-gray-900 dark:text-white"
+                                    currentPath === "/" ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-gray-900 dark:text-white"
                                 } hover:text-blue-600 dark:hover:text-blue-400`, interactiveClasses.focusRing)}
                                 aria-current={getAriaCurrent("/")}
                             >
@@ -208,7 +210,7 @@ export function Header() {
                                         to={item.to}
                                         onClick={() => setMenuOpen(false)}
                                         className={clsx(`block rounded py-2 text-base font-medium transition ${
-                                            pathname === item.to ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-gray-900 dark:text-white"
+                                            currentPath === item.to ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-gray-900 dark:text-white"
                                         } hover:bg-gray-200 dark:hover:bg-gray-700`, interactiveClasses.focusRing)}
                                         aria-current={getAriaCurrent(item.to)}
                                     >
@@ -240,7 +242,7 @@ export function Header() {
                                                     to={item.to}
                                                     onClick={() => setMenuOpen(false)}
                                                     className={clsx(`block rounded py-1 text-sm font-normal transition ${
-                                                        pathname === item.to ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-gray-900 dark:text-white"
+                                                        currentPath === item.to ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-gray-900 dark:text-white"
                                                     } hover:text-blue-600 dark:hover:text-blue-400`, interactiveClasses.focusRing)}
                                                     aria-current={getAriaCurrent(item.to)}
                                                 >

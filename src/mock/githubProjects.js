@@ -1,0 +1,111 @@
+/**
+ * Public GitHub repositories highlighted by the portfolio.
+ *
+ * The data mirrors a real remote payload: page components load it through the
+ * portfolio service, while translated copy keeps the same project list reusable
+ * across every supported locale.
+ *
+ * @module mock/githubProjects
+ */
+
+/**
+ * Inspectable GitHub portfolio projects.
+ *
+ * @type {Array<{
+ *   id: string,
+ *   name: string,
+ *   category: "backend" | "frontend",
+ *   year: string,
+ *   summaryKey: string,
+ *   highlightsKeys: string[],
+ *   tech: string,
+ *   links: Array<{type: "repository" | "live" | "documentation" | "coverage", href: string}>
+ * }>}
+ */
+export const githubProjects = [
+    {
+        id: "identity-service",
+        name: "Identity Service API",
+        category: "backend",
+        year: "2026",
+        summaryKey: "github_projects_page.projects.identity_service.summary",
+        highlightsKeys: [
+            "github_projects_page.projects.identity_service.highlights.contract",
+            "github_projects_page.projects.identity_service.highlights.architecture",
+            "github_projects_page.projects.identity_service.highlights.quality"
+        ],
+        tech: "Java 21, Spring Boot 4, OpenAPI, PostgreSQL, Flyway, MapStruct, Testcontainers, Docker, Maven, GitHub Actions",
+        links: [
+            {
+                type: "repository",
+                href: "https://github.com/DanieleMasone/identity-service"
+            },
+            {
+                type: "documentation",
+                href: "https://danielemasone.github.io/identity-service/"
+            }
+        ]
+    },
+    {
+        id: "saas-analytics-dashboard",
+        name: "SaaS Analytics Dashboard",
+        category: "frontend",
+        year: "2026",
+        summaryKey: "github_projects_page.projects.saas_analytics_dashboard.summary",
+        highlightsKeys: [
+            "github_projects_page.projects.saas_analytics_dashboard.highlights.product",
+            "github_projects_page.projects.saas_analytics_dashboard.highlights.data",
+            "github_projects_page.projects.saas_analytics_dashboard.highlights.delivery"
+        ],
+        tech: "Next.js 16, React 19, TypeScript, TanStack Query, Recharts, Tailwind CSS, Vitest, TypeDoc, GitHub Pages",
+        links: [
+            {
+                type: "repository",
+                href: "https://github.com/DanieleMasone/saas-analytics-dashboard"
+            },
+            {
+                type: "live",
+                href: "https://danielemasone.github.io/saas-analytics-dashboard/"
+            },
+            {
+                type: "documentation",
+                href: "https://danielemasone.github.io/saas-analytics-dashboard/reference/"
+            },
+            {
+                type: "coverage",
+                href: "https://danielemasone.github.io/saas-analytics-dashboard/coverage/"
+            }
+        ]
+    },
+    {
+        id: "portfolio-online-cv",
+        name: "Portfolio & Online CV",
+        category: "frontend",
+        year: "2026",
+        summaryKey: "github_projects_page.projects.portfolio.summary",
+        highlightsKeys: [
+            "github_projects_page.projects.portfolio.highlights.positioning",
+            "github_projects_page.projects.portfolio.highlights.seo",
+            "github_projects_page.projects.portfolio.highlights.documentation"
+        ],
+        tech: "React 19, Vite 8, React Router 7, Tailwind CSS, i18next, Chart.js, Vitest, JSDoc, GitHub Pages",
+        links: [
+            {
+                type: "repository",
+                href: "https://github.com/DanieleMasone/ingdanielemasone"
+            },
+            {
+                type: "live",
+                href: "https://danielemasone.github.io/ingdanielemasone/"
+            },
+            {
+                type: "documentation",
+                href: "https://danielemasone.github.io/ingdanielemasone/docs"
+            },
+            {
+                type: "coverage",
+                href: "https://danielemasone.github.io/ingdanielemasone/test-coverage"
+            }
+        ]
+    }
+];
