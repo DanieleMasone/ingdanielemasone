@@ -329,7 +329,9 @@
     "title": "Testimonials",
     "prev": "Previous",
     "next": "Next",
-    "open": "Open review"
+    "open": "Open review",
+    "results_summary": "Showing {{start}}-{{end}} of {{total}} testimonials",
+    "linkedin_label": "LinkedIn profile"
   },
   "testimonials_people": {
     "mirko": {

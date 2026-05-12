@@ -329,7 +329,9 @@
     "title": "Témoignages",
     "prev": "Précédent",
     "next": "Suivant",
-    "open": "Ouvrir l'avis"
+    "open": "Ouvrir l'avis",
+    "results_summary": "Affichage de {{start}} à {{end}} sur {{total}} témoignages",
+    "linkedin_label": "Profil LinkedIn"
   },
   "testimonials_people": {
     "mirko": {

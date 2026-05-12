@@ -329,7 +329,9 @@
     "title": "Referenzen",
     "prev": "Zurück",
     "next": "Weiter",
-    "open": "Bewertung öffnen"
+    "open": "Bewertung öffnen",
+    "results_summary": "Zeige {{start}}-{{end}} von {{total}} Referenzen",
+    "linkedin_label": "LinkedIn-Profil"
   },
   "testimonials_people": {
     "mirko": {

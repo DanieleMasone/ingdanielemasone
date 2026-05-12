@@ -329,7 +329,9 @@
     "title": "Testimonianze",
     "prev": "Precedente",
     "next": "Successivo",
-    "open": "Apri recensione"
+    "open": "Apri recensione",
+    "results_summary": "Mostro {{start}}-{{end}} di {{total}} testimonianze",
+    "linkedin_label": "Profilo LinkedIn"
   },
   "testimonials_people": {
     "mirko": {

@@ -66,6 +66,8 @@ export const layoutClasses = {
  * @property {string} insetText - Compact inset surface for descriptive text inside cards.
  * @property {string} metaBadge - Compact badge for card metadata such as category, period, or publication state.
  * @property {string} mutedMetaBadge - Compact neutral badge for secondary card metadata.
+ * @property {string} initialAvatar - Local initials avatar used when a real portrait is not available.
+ * @property {string} testimonialQuote - Readable quote surface used inside testimonial cards.
  * @property {string} focusItem - Responsive focus item surface used by the home page focus list.
  */
 
@@ -83,6 +85,10 @@ export const surfaceClasses = {
     "inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700 dark:bg-blue-900/30 dark:text-blue-300",
   mutedMetaBadge:
     "inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700 dark:bg-gray-700 dark:text-gray-200",
+  initialAvatar:
+    "inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-blue-50 text-sm font-bold uppercase text-blue-700 ring-1 ring-blue-100 dark:bg-blue-500/10 dark:text-blue-200 dark:ring-blue-400/20",
+  testimonialQuote:
+    "relative rounded-lg border border-gray-100/70 bg-white/60 px-3 py-3 shadow-inner dark:border-gray-700/60 dark:bg-gray-900/40",
   focusItem:
     "inline-flex w-full items-start gap-2 rounded-lg border border-blue-200/80 bg-white/70 px-3 py-2 text-sm font-semibold leading-snug text-blue-900 shadow-sm backdrop-blur-sm transition dark:border-blue-400/20 dark:bg-blue-400/10 dark:text-blue-100 md:w-auto md:items-center md:rounded-full md:px-3.5 md:py-1.5",
 };
@@ -101,6 +107,7 @@ export const surfaceClasses = {
  * @property {string} linkButtonGreen - Green CTA theme used for primary external links.
  * @property {string} linkButtonBlue - Blue CTA theme used for secondary external links.
  * @property {string} resourceLink - Compact external resource link used inside project cards.
+ * @property {string} iconLink - Square icon-only link used for compact profile actions.
  * @property {string} textLink - Accessible inline text link style for legal and policy pages.
  */
 
@@ -130,6 +137,8 @@ export const interactiveClasses = {
     "bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 focus-visible:ring-blue-400 dark:focus-visible:ring-blue-300",
   resourceLink:
     "inline-flex min-h-10 items-center justify-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-semibold text-gray-800 transition-colors hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800",
+  iconLink:
+    "inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-700 shadow-sm transition-colors hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800",
   textLink:
     "text-blue-600 underline underline-offset-2 transition-colors hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300",
 };

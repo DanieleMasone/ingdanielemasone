@@ -8,7 +8,7 @@ import * as service from "@/services/portfolioService";
 // Minimal translations
 vi.mock('react-i18next', () => ({
     useTranslation: () => ({
-        t: (key) => {
+        t: (key, options = {}) => {
             const translations = {
                 "testimonials_people.mirko.name": "Mirko",
                 "testimonials_people.mirko.role": "Developer",
@@ -23,6 +23,8 @@ vi.mock('react-i18next', () => ({
                 "testimonials_people.daniela.role": "QA",
                 "testimonials_people.daniela.quote": "Thorough testing.",
                 "testimonials_page.title": "Testimonials",
+                "testimonials_page.results_summary": `Showing ${options.start}-${options.end} of ${options.total} testimonials`,
+                "testimonials_page.linkedin_label": "LinkedIn profile",
                 "previous": "Prev",
                 "next": "Next",
                 "error_generic": "Generic error"
@@ -102,7 +104,7 @@ describe("Testimonials component with mobile + desktop paginators", () => {
 
         renderPage();
 
-        await screen.findByText(/testimonials/i);
+        await screen.findByRole("heading", {name: /testimonials/i});
 
         const next = screen.getAllByRole("button", {name: /next/i});
         const prev = screen.getAllByRole("button", {name: /prev/i});
@@ -111,14 +113,23 @@ describe("Testimonials component with mobile + desktop paginators", () => {
         expect(prev).toHaveLength(2);
     });
 
-    test("renders 4 testimonial cards per page", async () => {
+    test("renders 6 testimonial cards per page", async () => {
         vi.spyOn(service, "getTestimonials")
             .mockResolvedValueOnce(mockTestimonials);
 
         renderPage();
 
         const cards = await screen.findAllByTestId("testimonial-card");
-        expect(cards).toHaveLength(4);
+        expect(cards).toHaveLength(6);
+    });
+
+    test("renders a live result summary", async () => {
+        vi.spyOn(service, "getTestimonials")
+            .mockResolvedValueOnce(mockTestimonials);
+
+        renderPage();
+
+        expect(await screen.findByText("Showing 1-6 of 12 testimonials")).toBeInTheDocument();
     });
 
     test("next button changes page", async () => {
@@ -134,9 +145,10 @@ describe("Testimonials component with mobile + desktop paginators", () => {
 
         const displays = screen.getAllByTestId("pagination-info");
         displays.forEach(el => expect(el.textContent).toMatch(/2/));
+        expect(screen.getByText("Showing 7-12 of 12 testimonials")).toBeInTheDocument();
     });
 
-    test("renders linkedin links", async () => {
+    test("renders accessible linkedin profile links", async () => {
         vi.spyOn(service, "getTestimonials")
             .mockResolvedValueOnce(mockTestimonials);
 
@@ -144,8 +156,20 @@ describe("Testimonials component with mobile + desktop paginators", () => {
 
         await screen.findAllByTestId("testimonial-card");
 
-        const links = screen.getAllByRole("link");
-        expect(links.length).toBeGreaterThan(0);
+        expect(screen.getByRole("link", {name: "LinkedIn profile - name_0"}))
+            .toHaveAttribute("href", "https://linkedin.com/0");
+    });
+
+    test("uses local initials avatars and semantic quote blocks", async () => {
+        vi.spyOn(service, "getTestimonials")
+            .mockResolvedValueOnce(mockTestimonials);
+
+        const {container} = renderPage();
+
+        await screen.findAllByTestId("testimonial-card");
+
+        expect(screen.queryByRole("img", {name: /avatar/i})).not.toBeInTheDocument();
+        expect(container.querySelectorAll("blockquote")).toHaveLength(6);
     });
 
     test("shows error state on failure", async () => {
