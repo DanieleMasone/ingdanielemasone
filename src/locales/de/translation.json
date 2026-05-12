@@ -38,6 +38,7 @@
     "intro": "Eine kuratierte Auswahl öffentlicher Repositories, die Codequalität, Architektur, Tests, Dokumentation und GitHub-Pages-Auslieferung zusätzlich zu den beruflichen Projekten im Online-CV zeigen.",
     "filter_label": "GitHub-Projekte nach Kategorie filtern",
     "highlights_label": "Highlights für {{project}}",
+    "results_summary": "Zeige {{start}}-{{end}} von {{total}} Repositories",
     "categories": {
       "all": "Alle",
       "frontend": "Frontend",

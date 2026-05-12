@@ -13,6 +13,7 @@ vi.mock("react-i18next", () => ({
                 "github_projects_page.intro": "Inspectable repositories with code, tests and documentation.",
                 "github_projects_page.filter_label": "Filter GitHub projects by category",
                 "github_projects_page.highlights_label": `Highlights for ${options.project}`,
+                "github_projects_page.results_summary": `Showing ${options.start}-${options.end} of ${options.total} repositories`,
                 "github_projects_page.categories.all": "All",
                 "github_projects_page.categories.frontend": "Frontend",
                 "github_projects_page.categories.backend": "Backend",
@@ -31,6 +32,8 @@ vi.mock("react-i18next", () => ({
                 "seo.githubProjects.title": "GitHub Projects - Daniele Masone",
                 "seo.githubProjects.description": "Public GitHub repositories.",
                 show_technologies: "Show technologies",
+                previous: "Previous",
+                next: "Next",
                 error_generic: "Generic error"
             };
 
@@ -147,6 +150,71 @@ describe("GithubProjects", () => {
         await waitFor(() => {
             expect(screen.getByText("Identity Service API")).toBeInTheDocument();
             expect(screen.queryByText("Portfolio & Online CV")).not.toBeInTheDocument();
+        });
+    });
+
+    test("paginates long repository lists and announces the visible range", async () => {
+        const longList = [
+            ...mockGithubProjects,
+            {
+                ...mockGithubProjects[1],
+                id: "frontend-playground",
+                name: "Frontend Playground"
+            },
+            {
+                ...mockGithubProjects[1],
+                id: "design-system-lab",
+                name: "Design System Lab"
+            }
+        ];
+        vi.spyOn(service, "getGithubProjects").mockResolvedValueOnce(longList);
+
+        renderGithubProjects();
+
+        await screen.findByText("Identity Service API");
+
+        expect(screen.getByText("Showing 1-3 of 4 repositories")).toBeInTheDocument();
+        expect(screen.getByText("Frontend Playground")).toBeInTheDocument();
+        expect(screen.queryByText("Design System Lab")).not.toBeInTheDocument();
+
+        fireEvent.click(screen.getAllByRole("button", {name: /next/i})[0]);
+
+        await waitFor(() => {
+            expect(screen.getByText("Showing 4-4 of 4 repositories")).toBeInTheDocument();
+            expect(screen.getByText("Design System Lab")).toBeInTheDocument();
+            expect(screen.queryByText("Identity Service API")).not.toBeInTheDocument();
+        });
+    });
+
+    test("resets pagination when changing category", async () => {
+        const longList = [
+            ...mockGithubProjects,
+            {
+                ...mockGithubProjects[1],
+                id: "frontend-playground",
+                name: "Frontend Playground"
+            },
+            {
+                ...mockGithubProjects[1],
+                id: "design-system-lab",
+                name: "Design System Lab"
+            }
+        ];
+        vi.spyOn(service, "getGithubProjects").mockResolvedValueOnce(longList);
+
+        renderGithubProjects();
+
+        await screen.findByText("Identity Service API");
+        fireEvent.click(screen.getAllByRole("button", {name: /next/i})[0]);
+
+        await screen.findByText("Design System Lab");
+
+        fireEvent.click(screen.getByRole("button", {name: "Backend"}));
+
+        await waitFor(() => {
+            expect(screen.getByText("Showing 1-1 of 1 repositories")).toBeInTheDocument();
+            expect(screen.getByText("Identity Service API")).toBeInTheDocument();
+            expect(screen.queryByText("Design System Lab")).not.toBeInTheDocument();
         });
     });
 

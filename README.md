@@ -35,7 +35,7 @@ The application includes the main pages a visitor would expect from a profession
 - **Home** - positioning, focus areas, social links, and first impression
 - **Experience** - professional roles and responsibilities
 - **Projects** - enterprise and technical project highlights
-- **GitHub Projects** - public repositories with architecture, tests, documentation, and deploy links
+- **GitHub Projects** - paginated public repositories with architecture, tests, documentation, and deploy links
 - **Courses** - teaching and course material
 - **Certifications** - professional certifications and certificates
 - **Testimonials** - feedback from students and collaborators

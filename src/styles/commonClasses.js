@@ -18,6 +18,7 @@
  * @property {string} pageGrid - Compact responsive spacing for route-level card grids.
  * @property {string} mobilePagination - Sticky mobile pagination wrapper that avoids extra vertical margins.
  * @property {string} desktopPagination - Desktop pagination wrapper aligned with section spacing.
+ * @property {string} resultSummary - Compact live result summary used near filters and paginated grids.
  * @property {string} horizontalFilterBar - Horizontal filter controls with compact scrolling on small screens.
  * @property {string} sidebarFilterBar - Sidebar filter controls that switch from horizontal scrolling to a vertical desktop rail.
  * @property {string} focusList - Responsive list layout for compact portfolio focus items.
@@ -41,6 +42,7 @@ export const layoutClasses = {
   mobilePagination:
     "md:hidden sticky top-0 z-20 -mx-4 border-b border-gray-200 bg-white/95 px-4 py-2 shadow-sm backdrop-blur-md dark:border-gray-700 dark:bg-gray-900/90 sm:-mx-6 sm:px-6",
   desktopPagination: "hidden md:flex justify-center",
+  resultSummary: "text-sm font-medium text-gray-600 dark:text-gray-300",
   horizontalFilterBar:
     "flex flex-row gap-2 overflow-x-auto pb-2 scrollbar-hide sm:flex-wrap sm:justify-center sm:overflow-visible sm:pb-0",
   sidebarFilterBar:

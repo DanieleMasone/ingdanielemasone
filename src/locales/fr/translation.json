@@ -38,6 +38,7 @@
     "intro": "Une sélection de dépôts publics qui montrent la qualité du code, l'architecture, les tests, la documentation et la publication GitHub Pages au-delà des projets professionnels du CV en ligne.",
     "filter_label": "Filtrer les projets GitHub par catégorie",
     "highlights_label": "Points clés de {{project}}",
+    "results_summary": "Affichage de {{start}} à {{end}} sur {{total}} dépôts",
     "categories": {
       "all": "Tous",
       "frontend": "Frontend",

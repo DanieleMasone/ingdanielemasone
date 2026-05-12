@@ -8,6 +8,7 @@ import {PageGrid} from "@/components/ui/pageGrid/PageGrid";
 import {Card} from "@/components/ui/card/Card";
 import {CardContent} from "@/components/ui/cardContent/CardContent";
 import {SelectableButton} from "@/components/ui/selectableButton/SelectableButton";
+import {Pagination} from "@/components/ui/pagination/Pagination";
 import TechDisclosure from "@/components/ui/techDisclosure/TechDisclosure";
 import {Loading} from "@/components/loading/Loading";
 import {ErrorState} from "@/components/errorState/ErrorState";
@@ -15,6 +16,7 @@ import {getGithubProjects} from "@/services/portfolioService";
 import {interactiveClasses, layoutClasses, surfaceClasses} from "@/styles/commonClasses";
 
 const CATEGORY_ORDER = ["all", "frontend", "backend"];
+const ITEMS_PER_PAGE = 3;
 
 const RESOURCE_ICONS = {
     repository: Github,
@@ -57,6 +59,23 @@ const getCategoryLabel = (t, category) => {
 };
 
 /**
+ * Calculates the visible one-based item range for a paginated result set.
+ *
+ * @param {number} page - Current one-based page number.
+ * @param {number} totalItems - Number of filtered items.
+ * @param {number} itemsPerPage - Maximum number of items shown on each page.
+ * @returns {{start: number, end: number}} Visible result range for summaries.
+ */
+const getVisibleRange = (page, totalItems, itemsPerPage) => {
+    if (totalItems === 0) return {start: 0, end: 0};
+
+    return {
+        start: (page - 1) * itemsPerPage + 1,
+        end: Math.min(page * itemsPerPage, totalItems)
+    };
+};
+
+/**
  * External resource link rendered inside a GitHub project card.
  *
  * @param {object} props - Component props.
@@ -88,7 +107,8 @@ function ProjectResourceLink({link, label, projectName}) {
  *
  * The page loads static data through the same fake service layer used by the
  * rest of the portfolio, supports category filtering, exposes external
- * resources with specific accessible names, and uses localized SEO metadata.
+ * resources with specific accessible names, paginates dense result sets, and
+ * uses localized SEO metadata.
  *
  * @component
  * @module pages/githubProjects/GithubProjects
@@ -98,6 +118,7 @@ export default function GithubProjects() {
     const {t} = useTranslation();
     const [projects, setProjects] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("all");
+    const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -120,6 +141,17 @@ export default function GithubProjects() {
         () => projects.filter((project) => selectedCategory === "all" || project.category === selectedCategory),
         [projects, selectedCategory]
     );
+    const totalPages = Math.ceil(filteredProjects.length / ITEMS_PER_PAGE);
+    const currentPage = Math.min(page, totalPages || 1);
+    const visibleRange = getVisibleRange(currentPage, filteredProjects.length, ITEMS_PER_PAGE);
+    const paginatedProjects = filteredProjects.slice(
+        (currentPage - 1) * ITEMS_PER_PAGE,
+        currentPage * ITEMS_PER_PAGE
+    );
+
+    useEffect(() => {
+        setPage(1);
+    }, [selectedCategory]);
 
     if (loading) return <Loading/>;
     if (error) return <ErrorState message={t("error_generic")} onRetry={loadProjects}/>;
@@ -150,61 +182,89 @@ export default function GithubProjects() {
                     </div>
 
                     {filteredProjects.length > 0 && (
-                        <PageGrid page={selectedCategory} columns={3}>
-                            {filteredProjects.map((project) => (
-                                <Card
-                                    key={project.id}
-                                    aria-labelledby={`${project.id}-title`}
-                                    className="h-full gap-4"
-                                >
-                                    <CardContent className="flex h-full flex-col gap-4 p-0">
-                                        <div className="flex flex-wrap items-center gap-2">
-                                            <span className={surfaceClasses.metaBadge}>
-                                                {getCategoryLabel(t, project.category)}
-                                            </span>
-                                            <span className={surfaceClasses.mutedMetaBadge}>{project.year}</span>
-                                        </div>
+                        <>
+                            <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                                <p className={layoutClasses.resultSummary} aria-live="polite">
+                                    {t("github_projects_page.results_summary", {
+                                        start: visibleRange.start,
+                                        end: visibleRange.end,
+                                        total: filteredProjects.length
+                                    })}
+                                </p>
+                            </div>
 
-                                        <div className="flex flex-col gap-2">
-                                            <h2
-                                                id={`${project.id}-title`}
-                                                className="text-lg font-semibold leading-snug text-gray-900 dark:text-gray-100 md:text-xl"
-                                            >
-                                                {project.name}
-                                            </h2>
-                                            <p className={surfaceClasses.insetText}>{t(project.summaryKey)}</p>
-                                        </div>
+                            <div className={layoutClasses.mobilePagination}>
+                                <Pagination
+                                    page={currentPage}
+                                    totalPages={totalPages}
+                                    onPageChange={setPage}
+                                />
+                            </div>
 
-                                        <ul
-                                            className="flex flex-col gap-2 text-sm leading-6 text-gray-700 dark:text-gray-300"
-                                            aria-label={t("github_projects_page.highlights_label", {project: project.name})}
-                                        >
-                                            {project.highlightsKeys.map((highlightKey) => (
-                                                <li key={highlightKey} className="flex gap-2">
-                                                    <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500"/>
-                                                    <span>{t(highlightKey)}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
-
-                                        <div className="mt-auto flex flex-col gap-4">
-                                            <TechDisclosure techList={project.tech} label={t("show_technologies")}/>
-
-                                            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-                                                {project.links.map((link) => (
-                                                    <ProjectResourceLink
-                                                        key={`${project.id}-${link.type}`}
-                                                        link={link}
-                                                        label={t(`github_projects_page.links.${link.type}`)}
-                                                        projectName={project.name}
-                                                    />
-                                                ))}
+                            <PageGrid page={`${selectedCategory}-${currentPage}`} columns={3}>
+                                {paginatedProjects.map((project) => (
+                                    <Card
+                                        key={project.id}
+                                        aria-labelledby={`${project.id}-title`}
+                                        className="h-full gap-4"
+                                    >
+                                        <CardContent className="flex h-full flex-col gap-4 p-0">
+                                            <div className="flex flex-wrap items-center gap-2">
+                                                <span className={surfaceClasses.metaBadge}>
+                                                    {getCategoryLabel(t, project.category)}
+                                                </span>
+                                                <span className={surfaceClasses.mutedMetaBadge}>{project.year}</span>
                                             </div>
-                                        </div>
-                                    </CardContent>
-                                </Card>
-                            ))}
-                        </PageGrid>
+
+                                            <div className="flex flex-col gap-2">
+                                                <h2
+                                                    id={`${project.id}-title`}
+                                                    className="text-lg font-semibold leading-snug text-gray-900 dark:text-gray-100 md:text-xl"
+                                                >
+                                                    {project.name}
+                                                </h2>
+                                                <p className={surfaceClasses.insetText}>{t(project.summaryKey)}</p>
+                                            </div>
+
+                                            <ul
+                                                className="flex flex-col gap-2 text-sm leading-6 text-gray-700 dark:text-gray-300"
+                                                aria-label={t("github_projects_page.highlights_label", {project: project.name})}
+                                            >
+                                                {project.highlightsKeys.map((highlightKey) => (
+                                                    <li key={highlightKey} className="flex gap-2">
+                                                        <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500"/>
+                                                        <span>{t(highlightKey)}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+
+                                            <div className="mt-auto flex flex-col gap-4">
+                                                <TechDisclosure techList={project.tech} label={t("show_technologies")}/>
+
+                                                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                                                    {project.links.map((link) => (
+                                                        <ProjectResourceLink
+                                                            key={`${project.id}-${link.type}`}
+                                                            link={link}
+                                                            label={t(`github_projects_page.links.${link.type}`)}
+                                                            projectName={project.name}
+                                                        />
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        </CardContent>
+                                    </Card>
+                                ))}
+                            </PageGrid>
+
+                            <div className={layoutClasses.desktopPagination}>
+                                <Pagination
+                                    page={currentPage}
+                                    totalPages={totalPages}
+                                    onPageChange={setPage}
+                                />
+                            </div>
+                        </>
                     )}
                 </div>
             </PageSection>

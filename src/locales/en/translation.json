@@ -38,6 +38,7 @@
     "intro": "A curated view of public repositories that show code quality, architecture, testing, documentation and GitHub Pages delivery beyond the professional projects listed in the online CV.",
     "filter_label": "Filter GitHub projects by category",
     "highlights_label": "Highlights for {{project}}",
+    "results_summary": "Showing {{start}}-{{end}} of {{total}} repositories",
     "categories": {
       "all": "All",
       "frontend": "Frontend",
