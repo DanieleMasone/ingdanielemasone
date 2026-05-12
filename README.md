@@ -1,188 +1,185 @@
 # Daniele Masone - Portfolio & Online CV
 
-[![Deploy Portfolio](https://github.com/DanieleMasone/ingdanielemasone/actions/workflows/deploy-pages.yml/badge.svg?branch=main)](https://github.com/DanieleMasone/ingdanielemasone/actions/workflows/deploy-pages.yml)
-[![Coverage](https://img.shields.io/badge/Coverage-97.65%25-brightgreen)](https://danielemasone.github.io/ingdanielemasone/test-coverage)
-[![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=fff)](https://vitejs.dev/)
+[![Portfolio CI/CD](https://github.com/DanieleMasone/ingdanielemasone/actions/workflows/deploy-pages.yml/badge.svg?branch=main)](https://github.com/DanieleMasone/ingdanielemasone/actions/workflows/deploy-pages.yml)
 [![React](https://img.shields.io/badge/React-19-20232A?logo=react&logoColor=61DAFB)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=fff)](https://vite.dev/)
 [![Vitest](https://img.shields.io/badge/Vitest-4-6E9F18?logo=vitest&logoColor=fff)](https://vitest.dev/)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
-Personal portfolio and online CV for Daniele Masone, Senior Software Engineer and Front-End Architect.
+Personal portfolio and online CV for **Daniele Masone**, built as a production-minded React application rather than a static resume page.
 
-- Live site: [danielemasone.github.io/ingdanielemasone](https://danielemasone.github.io/ingdanielemasone/)
-- Documentation: [danielemasone.github.io/ingdanielemasone/docs](https://danielemasone.github.io/ingdanielemasone/docs)
-- Test coverage: [danielemasone.github.io/ingdanielemasone/test-coverage](https://danielemasone.github.io/ingdanielemasone/test-coverage)
+- **Live site:** [danielemasone.github.io/ingdanielemasone](https://danielemasone.github.io/ingdanielemasone/)
+- **Source documentation:** [danielemasone.github.io/ingdanielemasone/docs](https://danielemasone.github.io/ingdanielemasone/docs)
+- **Coverage report:** [danielemasone.github.io/ingdanielemasone/test-coverage](https://danielemasone.github.io/ingdanielemasone/test-coverage)
 
-## Overview
+## What This Repository Shows
 
-This repository contains the source code for my personal portfolio website. The site presents my professional experience, enterprise projects, certifications, courses, testimonials, and selected public links.
+This repository is meant to be a technical showcase for people who land on my GitHub profile. It presents my professional background, but it also demonstrates how I approach front-end engineering in a real project:
 
-The portfolio is built as a modern React single-page application with a focus on:
-
-- Clear presentation of professional experience and technical positioning
-- Responsive UI for desktop, tablet, and mobile
+- React application architecture with route-level code splitting
+- Reusable UI components and centralized Tailwind class presets
+- Responsive UX for desktop and mobile portfolio browsing
+- Accessibility-minded controls, focus states, semantic sections, and non-canvas chart alternatives
 - Internationalization in Italian, English, French, German, and Spanish
-- SEO metadata, structured data, clean canonical URLs, and GitHub Pages-friendly route files
-- Automated tests, coverage reports, and static source documentation for the portfolio
-- GitHub Pages deployment
+- SEO metadata, structured data, sitemap, robots, social preview, and GitHub Pages-friendly routing
+- Automated tests, coverage output, and generated source documentation
+- CI/CD deployment to GitHub Pages
+
+There is no backend API in this project. Portfolio data is intentionally static and local, because the repository is a front-end showcase and online CV.
+
+## Product Surface
+
+The application includes the main pages a visitor would expect from a professional portfolio:
+
+- **Home** - positioning, focus areas, social links, and first impression
+- **Experience** - professional roles and responsibilities
+- **Projects** - enterprise and technical project highlights
+- **Courses** - teaching and course material
+- **Certifications** - professional certifications and certificates
+- **Testimonials** - feedback from students and collaborators
+- **Trading** - investment-performance section with an accessible Chart.js visualization
+- **Privacy / Cookie policy** - legal pages with SEO `noindex`
+
+## Engineering Highlights
+
+### Front-end architecture
+
+- React 19 with Vite 8
+- React Router 7 with lazy-loaded route modules
+- Shared UI primitives for cards, grids, sections, pagination, buttons, language switching, and disclosure content
+- Tailwind CSS class presets centralized in `src/styles/commonClasses.js`
+- Manual chunking in Vite to keep large dependency groups readable in the production bundle
+
+### SEO and GitHub Pages
+
+SEO configuration is centralized in `src/config/seo.json` and consumed by `SeoHead`.
+
+The post-build script `scripts/prepare-github-pages.mjs` generates:
+
+- route-specific `index.html` files for clean GitHub Pages URLs
+- canonical URLs
+- Open Graph and Twitter card metadata
+- JSON-LD structured data
+- `sitemap.xml`
+- `robots.txt`
+
+This keeps the SPA compatible with GitHub Pages while still serving indexable, route-specific HTML for portfolio pages.
+
+### Accessibility and UX
+
+The UI is built around keyboard-friendly controls, visible focus states, semantic headings, responsive spacing, and localized labels.
+
+The trading performance chart uses Chart.js for visual exploration and also exposes a hidden data table for assistive technologies, so the chart is not the only way to access the information.
+
+### Quality
+
+The project uses Vitest and Testing Library to cover:
+
+- route-level pages
+- reusable UI components
+- SEO metadata behavior
+- i18n-sensitive rendering
+- data-loading helpers
+- GitHub Pages-related behavior where practical
+
+Source documentation is generated with JSDoc and Docdash. It documents components, helpers, static data, and build scripts; it is source documentation for the portfolio, not API documentation.
 
 ## Tech Stack
 
-- React 19
-- Vite 8
-- React Router 7
-- Tailwind CSS 3
-- i18next and react-i18next
-- Framer Motion
-- Headless UI
-- Lucide React and Simple Icons
-- Vitest and Testing Library
-- JSDoc with Docdash for static source documentation
-
-## Requirements
-
-Use a modern Node.js runtime.
-
-```bash
-node -v
-npm -v
-```
-
-Recommended versions:
-
-- Node.js 20.19+, 22.13+, or 24+ (the GitHub Pages workflow uses Node 24)
-- npm >= 9
-
-## Local Setup
-
-Clone the repository and install dependencies.
-
-```bash
-git clone https://github.com/DanieleMasone/ingdanielemasone.git
-cd ingdanielemasone
-npm ci
-```
-
-Start the development server.
-
-```bash
-npm run dev
-```
-
-Build the production bundle.
-
-```bash
-npm run build
-```
-
-Preview the production build locally.
-
-```bash
-npm run preview
-```
-
-Because the project is configured for GitHub Pages under `/ingdanielemasone/`, the preview URL is typically:
-
-```text
-http://localhost:4173/ingdanielemasone/
-```
-
-## Available Scripts
-
-| Command | Description |
+| Area | Tools |
 | --- | --- |
-| `npm run dev` | Starts the Vite development server |
-| `npm start` | Alias for the Vite development server |
-| `npm run build` | Builds the production bundle |
-| `npm run preview` | Serves the production build locally |
-| `npm test` | Runs the Vitest test suite |
-| `npm run test:watch` | Runs tests in watch mode |
-| `npm run coverage` | Generates the test coverage report |
-| `npm run doc` | Generates static source documentation in `docs/` |
-| `npm run build:all` | Builds app, coverage, and source documentation |
+| UI | React 19, React DOM, React Router 7 |
+| Build | Vite 8, npm |
+| Styling | Tailwind CSS, clsx |
+| Motion and UI utilities | Framer Motion, Headless UI |
+| Internationalization | i18next, react-i18next, browser language detector |
+| Charts | Chart.js, react-chartjs-2 |
+| Icons and visuals | Lucide React, React Icons, Simple Icons, Boring Avatars |
+| Testing | Vitest, Testing Library, jsdom, V8 coverage |
+| Documentation | JSDoc, Docdash |
+| Deployment | GitHub Actions, GitHub Pages |
 
 ## Project Structure
 
 ```text
 src/
-  @types/         Local ambient type declarations
-  assets/          Images and static assets used by the app
-  components/      Shared UI and layout components
-  consts/          Shared constants
-  i18n/            i18next configuration
-  locales/         Translation files
-  mock/            Portfolio datasets used by the UI
-  pages/           Main route-level pages
-  services/        Static portfolio data loading helpers
-  styles/          Shared Tailwind class presets for reusable components
+  assets/        Images, course covers, certificates
+  components/    Shared UI, layout, SEO, header/footer, states
+  config/        SEO and public route configuration
+  consts/        Shared constants
+  i18n/          i18next setup
+  locales/       Translation files: it, en, fr, de, es
+  mock/          Static portfolio datasets
+  pages/         Route-level portfolio pages
+  services/      Local data-loading helpers
+  styles/        Shared Tailwind class presets
+
+scripts/
+  prepare-github-pages.mjs
+
+public/
+  logo, social preview, robots, sitemap, Search Console file
 ```
 
-Generated folders such as `dist`, `docs`, `coverage`, and `node_modules` are intentionally excluded from version control.
+Generated outputs such as `dist`, `docs`, `coverage`, and `node_modules` are not part of the source tree.
 
-## Documentation
+## Run Locally
 
-The static documentation is generated from JSDoc comments with Docdash:
+Use Node.js `20.19+`, `22.13+`, or `24+`.
 
 ```bash
-npm run doc
+git clone https://github.com/DanieleMasone/ingdanielemasone.git
+cd ingdanielemasone
+npm ci
+npm run dev
 ```
 
-The generated pages describe the portfolio shell, route-level pages, reusable UI components, shared style presets, static datasets, and local data-loading helpers. This is a React/Vite portfolio, so the documentation tooling is intentionally lightweight and focused on source readability rather than framework-heavy application documentation.
+The development server runs on:
 
-## SEO And GitHub Pages
+```text
+http://localhost:3000/
+```
 
-The portfolio is published as a GitHub Pages project site under `/ingdanielemasone/`. The production build uses clean URLs such as `/experience/` and `/projects/`, then the post-build step generates matching static `index.html` files inside `dist/` so those URLs return HTTP 200 on GitHub Pages.
-
-SEO data is centralized in `src/config/seo.json` and consumed by the route-level `SeoHead` component. The build also writes a clean sitemap, route-specific canonical URLs, Open Graph and Twitter card metadata, and JSON-LD structured data for the professional profile. Social link previews use `public/social-preview.png` as the 1200x630 Open Graph image.
-
-For Google Search Console, use a URL-prefix property for `https://danielemasone.github.io/ingdanielemasone/`, keep the generated verification file in `public/`, and submit `https://danielemasone.github.io/ingdanielemasone/sitemap.xml` after deployment.
-
-## Quality
-
-Before publishing changes, run:
+Production preview uses the GitHub Pages base path:
 
 ```bash
-npm test -- --run
 npm run build
+npm run preview
 ```
 
-For a full local validation including portfolio documentation and coverage:
-
-```bash
-npm run build:all
+```text
+http://localhost:4173/ingdanielemasone/
 ```
+
+## Useful Commands
+
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Start the Vite dev server |
+| `npm run build` | Build the production app and run the GitHub Pages post-build step |
+| `npm run preview` | Preview the production build locally |
+| `npm test` | Run Vitest in interactive/watch mode |
+| `npm test -- --run` | Run the test suite once |
+| `npm run coverage` | Generate the HTML coverage report |
+| `npm run doc` | Generate static source documentation in `docs/` |
+| `npm run build:all` | Build app, coverage, and documentation |
 
 ## Deployment
 
-The project is configured for deployment to GitHub Pages at:
+The portfolio is deployed to GitHub Pages through `.github/workflows/deploy-pages.yml`.
 
-```text
-https://danielemasone.github.io/ingdanielemasone/
-```
+On every push to `main`, the workflow:
 
-Deployment is now automated via GitHub Actions with the workflow:
+1. Installs dependencies with npm
+2. Runs `npm run build:all`
+3. Publishes the app from `dist`
+4. Publishes source documentation under `/docs`
+5. Publishes the coverage report under `/test-coverage`
 
-- `.github/workflows/deploy-pages.yml`
-
-What gets published:
-
-- App build from `dist/` at the site root
-- Source documentation output in `/docs`
-- Vitest coverage report in `/test-coverage`
-
-How to deploy:
-
-1. Push to `main` (automatic deploy), or
-2. Run the workflow manually from **Actions > Deploy portfolio, docs and coverage to GitHub Pages > Run workflow**.
-
-Local commands are still useful for validation before push:
-
-```bash
-npm run build:all
-```
+The workflow can also be started manually from GitHub Actions.
 
 ## License
 
-This project is released under the MIT License. See [LICENSE](LICENSE).
+Released under the MIT License. See [LICENSE](LICENSE).
 
 Copyright (c) 2026 Daniele Masone.
