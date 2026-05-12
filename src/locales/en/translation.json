@@ -264,6 +264,8 @@
     "title": "My Online Courses",
     "duration": "Duration",
     "learn_more": "Learn More",
+    "udemy_link": "View on Udemy",
+    "results_summary": "Showing {{start}}-{{end}} of {{total}} courses",
     "git": {
       "title": "Git Course",
       "description": "Learn how to use Git for version control and team collaboration.",

@@ -264,6 +264,8 @@
     "title": "Mes cours en ligne",
     "duration": "Durée",
     "learn_more": "En savoir plus",
+    "udemy_link": "Voir sur Udemy",
+    "results_summary": "Affichage de {{start}} à {{end}} sur {{total}} cours",
     "git": {
       "title": "Cours Git",
       "description": "Apprenez à utiliser Git pour gérer les versions et collaborer sur des projets logiciels.",

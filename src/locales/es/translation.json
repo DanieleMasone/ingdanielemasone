@@ -264,6 +264,8 @@
     "title": "Mis cursos online",
     "duration": "Duración",
     "learn_more": "Saber más",
+    "udemy_link": "Ver en Udemy",
+    "results_summary": "Mostrando {{start}}-{{end}} de {{total}} cursos",
     "git": {
       "title": "Curso de Git",
       "description": "Aprende a usar Git para gestionar versiones y colaborar en proyectos de software.",

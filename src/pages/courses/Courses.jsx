@@ -1,4 +1,5 @@
 import {useTranslation} from 'react-i18next';
+import {Clock, ExternalLink} from "lucide-react";
 import {Card} from "@/components/ui/card/Card";
 import {CardContent} from "@/components/ui/cardContent/CardContent";
 import React, {useEffect, useState} from "react";
@@ -12,20 +13,37 @@ import {getCourses} from "@/services/portfolioService";
 import {Loading} from "@/components/loading/Loading";
 import {ErrorState} from "@/components/errorState/ErrorState";
 import clsx from "clsx";
-import {interactiveClasses, layoutClasses} from "@/styles/commonClasses";
+import {interactiveClasses, layoutClasses, surfaceClasses} from "@/styles/commonClasses";
 
-const ITEMS_PER_PAGE = 4;
+const ITEMS_PER_PAGE = 6;
+
+/**
+ * Calculates the visible course range for the current page.
+ *
+ * @param {number} page - Current one-based page number.
+ * @param {number} totalItems - Total number of courses.
+ * @param {number} itemsPerPage - Maximum courses shown on each page.
+ * @returns {{start: number, end: number}} Visible item range.
+ */
+const getVisibleRange = (page, totalItems, itemsPerPage) => {
+    if (totalItems === 0) return {start: 0, end: 0};
+
+    return {
+        start: (page - 1) * itemsPerPage + 1,
+        end: Math.min(page * itemsPerPage, totalItems)
+    };
+};
 
 /**
  * Courses component.
  *
  * Displays a paginated list of programming courses, each with title, description,
- * duration, and technologies used.
+ * duration, technologies used, local cover art, and a clear Udemy call to action.
  *
  * Features:
  * - Uses i18next for translations of titles, descriptions, and UI texts.
- * - Shows 4 courses per page with next/previous pagination buttons.
- * - Each course is displayed inside a Card with expandable technologies section.
+ * - Shows 6 courses per page with next/previous pagination buttons.
+ * - Each course is displayed inside a Card with expandable technologies section and explicit external link.
  *
  * @component
  * @module pages/courses/Courses
@@ -53,10 +71,12 @@ export default function Courses() {
     }, []);
 
     const totalPages = Math.ceil(courses.length / ITEMS_PER_PAGE);
+    const currentPage = Math.min(page, totalPages || 1);
+    const visibleRange = getVisibleRange(currentPage, courses.length, ITEMS_PER_PAGE);
 
     const displayedCourses = courses.slice(
-        (page - 1) * ITEMS_PER_PAGE,
-        page * ITEMS_PER_PAGE
+        (currentPage - 1) * ITEMS_PER_PAGE,
+        currentPage * ITEMS_PER_PAGE
     );
 
     if (loading) return <Loading/>;
@@ -67,78 +87,97 @@ export default function Courses() {
             <SeoHead pageKey="courses" path="/courses"/>
 
             <PageSection title={t("courses_page.title")}>
+                {courses.length > 0 && (
+                    <p className={layoutClasses.resultSummary} aria-live="polite">
+                        {t("courses_page.results_summary", {
+                            start: visibleRange.start,
+                            end: visibleRange.end,
+                            total: courses.length
+                        })}
+                    </p>
+                )}
+
                 {/* Pagination mobile sticky */}
                 <div
                     className={layoutClasses.mobilePagination}
                 >
                     <Pagination
-                        page={page}
+                        page={currentPage}
                         totalPages={totalPages}
                         onPageChange={setPage}
                     />
                 </div>
 
-                <PageGrid page={page}>
-                    {displayedCourses.map((course, idx) => (
-                        <Card
-                            key={idx}
-                            className="relative items-start gap-4 md:flex-row"
-                        >
-                            <CardContent className="p-0">
-                                <div className="flex items-center justify-between mb-2">
-                                    <h3 className="text-lg font-semibold">{t(course.nameKey)}</h3>
+                <PageGrid page={currentPage} columns={3}>
+                    {displayedCourses.map((course) => {
+                        const courseTitle = t(course.nameKey);
+                        const titleId = `course-${course.nameKey.replace(/\W+/g, "-")}`;
 
-                                    <a
-                                        href={course.link}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className={clsx("block md:hidden shrink-0 ml-4 rounded-full", interactiveClasses.focusRing)}
-                                    >
+                        return (
+                            <Card
+                                key={course.nameKey}
+                                data-testid="course-card"
+                                aria-labelledby={titleId}
+                                className="h-full"
+                            >
+                                <CardContent className="flex h-full flex-col gap-4 p-0">
+                                    <div className={surfaceClasses.mediaFrame}>
                                         <img
                                             src={course.image}
-                                            alt={t(course.nameKey)}
-                                            className="rounded-full w-16 h-16 object-cover shadow-md hover:scale-105 transition-transform duration-300"
+                                            alt=""
+                                            className={surfaceClasses.mediaImage}
                                             loading="lazy"
                                         />
-                                    </a>
-                                </div>
+                                    </div>
 
-                                <ExpandableText
-                                    value={t(course.descKey)}
-                                    maxLines={3}
-                                    className="my-2 cursor-default text-gray-700 dark:text-gray-300"
-                                />
+                                    <div className="flex flex-col gap-3">
+                                        <div className="flex flex-col gap-2">
+                                            <h2
+                                                id={titleId}
+                                                className="text-lg font-semibold leading-snug text-gray-900 dark:text-gray-100"
+                                            >
+                                                {courseTitle}
+                                            </h2>
 
-                                <p className="text-sm text-gray-500 dark:text-gray-400 font-mono mb-2">
-                                    {t("courses_page.duration")}: {t(course.durationKey)}
-                                </p>
+                                            <span className={clsx(surfaceClasses.mutedMetaBadge, "w-fit gap-1.5")}>
+                                                <Clock className="h-3.5 w-3.5" aria-hidden="true"/>
+                                                <span>
+                                                    {t("courses_page.duration")}: {t(course.durationKey)}
+                                                </span>
+                                            </span>
+                                        </div>
 
-                                {/* Tech */}
-                                <TechDisclosure techList={course.tech} label={t("show_technologies")}/>
+                                        <ExpandableText
+                                            value={t(course.descKey)}
+                                            maxLines={4}
+                                            className="text-left text-sm leading-relaxed text-gray-700 dark:text-gray-300"
+                                        />
+                                    </div>
 
-                            </CardContent>
+                                    <div className="mt-auto flex flex-col gap-4">
+                                        <TechDisclosure techList={course.tech} label={t("show_technologies")}/>
 
-                            <a
-                                href={course.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={clsx("hidden md:block shrink-0 rounded-full", interactiveClasses.focusRing)}
-                            >
-                                <img
-                                    src={course.image}
-                                    alt={t(course.nameKey)}
-                                    className="rounded-full w-48 h-48 object-cover shadow-md hover:scale-105 transition-transform duration-300"
-                                    loading="lazy"
-                                />
-                            </a>
-                        </Card>
-                    ))}
+                                        <a
+                                            href={course.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className={clsx(interactiveClasses.resourceLink, interactiveClasses.focusRing)}
+                                            aria-label={`${t("courses_page.udemy_link")} - ${courseTitle}`}
+                                        >
+                                            <ExternalLink className="h-4 w-4" aria-hidden="true"/>
+                                            <span>{t("courses_page.udemy_link")}</span>
+                                        </a>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        );
+                    })}
                 </PageGrid>
 
                 {/* Pagination desktop normal */}
                 <div className={layoutClasses.desktopPagination}>
                     <Pagination
-                        page={page}
+                        page={currentPage}
                         totalPages={totalPages}
                         onPageChange={setPage}
                     />

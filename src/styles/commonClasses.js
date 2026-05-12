@@ -67,6 +67,8 @@ export const layoutClasses = {
  * @property {string} metaBadge - Compact badge for card metadata such as category, period, or publication state.
  * @property {string} mutedMetaBadge - Compact neutral badge for secondary card metadata.
  * @property {string} initialAvatar - Local initials avatar used when a real portrait is not available.
+ * @property {string} mediaFrame - Framed media surface for card thumbnails and covers.
+ * @property {string} mediaImage - Responsive image style used inside framed media surfaces.
  * @property {string} testimonialQuote - Readable quote surface used inside testimonial cards.
  * @property {string} focusItem - Responsive focus item surface used by the home page focus list.
  */
@@ -87,6 +89,10 @@ export const surfaceClasses = {
     "inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700 dark:bg-gray-700 dark:text-gray-200",
   initialAvatar:
     "inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-blue-50 text-sm font-bold uppercase text-blue-700 ring-1 ring-blue-100 dark:bg-blue-500/10 dark:text-blue-200 dark:ring-blue-400/20",
+  mediaFrame:
+    "overflow-hidden rounded-lg border border-gray-200/70 bg-gray-50 shadow-inner dark:border-gray-700/70 dark:bg-gray-900/50",
+  mediaImage:
+    "aspect-[16/9] w-full object-contain p-4 transition-transform duration-300 hover:scale-[1.02]",
   testimonialQuote:
     "relative rounded-lg border border-gray-100/70 bg-white/60 px-3 py-3 shadow-inner dark:border-gray-700/60 dark:bg-gray-900/40",
   focusItem:

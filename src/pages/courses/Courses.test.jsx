@@ -7,9 +7,11 @@ import * as service from "@/services/portfolioService";
 
 vi.mock('react-i18next', () => ({
     useTranslation: () => ({
-        t: (key) => {
+        t: (key, options = {}) => {
             const map = {
                 "courses_page.title": "Courses",
+                "courses_page.results_summary": `Showing ${options.start}-${options.end} of ${options.total} courses`,
+                "courses_page.udemy_link": "View on Udemy",
                 "courses_page.git.title": "Git Course",
                 "courses_page.git.description": "Learn Git basics and advanced usage.",
                 "courses_page.git.duration": "3h 20m",
@@ -75,16 +77,6 @@ describe('Courses component', () => {
         ).toBeInTheDocument();
     });
 
-    test("renders page title", async () => {
-        vi.spyOn(service, "getCourses").mockResolvedValue(mockCourses);
-
-        renderPage();
-
-        expect(
-            await screen.findByRole("heading", {name: "Courses"})
-        ).toBeInTheDocument();
-    });
-
     test("renders first page courses", async () => {
         vi.spyOn(service, "getCourses").mockResolvedValue(mockCourses);
 
@@ -92,6 +84,22 @@ describe('Courses component', () => {
 
         expect(await screen.findByText(/course_0/i)).toBeInTheDocument();
         expect(screen.getByText(/desc_0/i)).toBeInTheDocument();
+    });
+
+    test("renders 6 course cards per page", async () => {
+        vi.spyOn(service, "getCourses").mockResolvedValue(mockCourses);
+
+        renderPage();
+
+        expect(await screen.findAllByTestId("course-card")).toHaveLength(6);
+    });
+
+    test("renders a live result summary", async () => {
+        vi.spyOn(service, "getCourses").mockResolvedValue(mockCourses);
+
+        renderPage();
+
+        expect(await screen.findByText("Showing 1-6 of 10 courses")).toBeInTheDocument();
     });
 
     test("renders duration label", async () => {
@@ -107,18 +115,23 @@ describe('Courses component', () => {
         expect(screen.getByText(/dur_0/i)).toBeInTheDocument();
     });
 
-    test("course images have links", async () => {
+    test("renders explicit Udemy links", async () => {
         vi.spyOn(service, "getCourses").mockResolvedValue(mockCourses);
 
         renderPage();
 
         await screen.findByText(/course_0/i);
 
-        const links = screen.getAllByRole("link");
+        const links = screen.getAllByRole("link", {name: /view on udemy/i});
+        expect(links).toHaveLength(6);
         links.forEach(link => {
             expect(link).toHaveAttribute("href");
             expect(link).toHaveAttribute("target", "_blank");
+            expect(link).toHaveAttribute("rel", "noopener noreferrer");
         });
+
+        expect(screen.getByRole("link", {name: "View on Udemy - course_0"}))
+            .toHaveAttribute("href", "https://test.com");
     });
 
     test("next button advances page", async () => {
@@ -132,7 +145,8 @@ describe('Courses component', () => {
 
         expect(
             screen.getAllByTestId("pagination-info")[0]
-        ).toHaveTextContent("2 / 3");
+        ).toHaveTextContent("2 / 2");
+        expect(screen.getByText("Showing 7-10 of 10 courses")).toBeInTheDocument();
     });
 
     test("shows loading initially", () => {
