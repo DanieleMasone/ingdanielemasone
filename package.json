@@ -35,7 +35,8 @@
     "test:watch": "vitest --watch",
     "coverage": "vitest --coverage",
     "doc": "jsdoc -c jsdoc.json -d docs",
-    "build:all": "npm run build && npm run coverage && npm run doc"
+    "prepare:reports": "node scripts/prepare-published-reports.mjs",
+    "build:all": "npm run build && npm run coverage && npm run doc && npm run prepare:reports"
   },
   "engines": {
     "node": "^20.19.0 || ^22.13.0 || >=24.0.0"

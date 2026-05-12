@@ -224,8 +224,6 @@ const buildSitemap = ({config}) => {
 const buildRobots = ({config}) => [
     "User-agent: *",
     "Allow: /ingdanielemasone/",
-    "Disallow: /ingdanielemasone/docs/",
-    "Disallow: /ingdanielemasone/test-coverage/",
     "",
     `Sitemap: ${config.siteUrl}/sitemap.xml`,
     ""

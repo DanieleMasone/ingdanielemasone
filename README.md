@@ -65,6 +65,20 @@ The post-build script `scripts/prepare-github-pages.mjs` generates:
 
 This keeps the SPA compatible with GitHub Pages while still serving indexable, route-specific HTML for portfolio pages.
 
+For Google Search Console, the project is intended to be configured as a **URL-prefix property**:
+
+```text
+https://danielemasone.github.io/ingdanielemasone/
+```
+
+The verification file lives in `public/` and is published at the property root. After deployment, submit:
+
+```text
+https://danielemasone.github.io/ingdanielemasone/sitemap.xml
+```
+
+Generated developer resources under `/docs` and `/test-coverage` are published for transparency, but `npm run build:all` marks their HTML files as `noindex, nofollow` so they do not compete with the actual portfolio pages in search results.
+
 ### Accessibility and UX
 
 The UI is built around keyboard-friendly controls, visible focus states, semantic headings, responsive spacing, and localized labels.
@@ -116,9 +130,10 @@ src/
 
 scripts/
   prepare-github-pages.mjs
+  prepare-published-reports.mjs
 
 public/
-  logo, social preview, robots, sitemap, Search Console file
+  logo, social preview, fallback robots, Search Console file
 ```
 
 Generated outputs such as `dist`, `docs`, `coverage`, and `node_modules` are not part of the source tree.
@@ -162,6 +177,7 @@ http://localhost:4173/ingdanielemasone/
 | `npm test -- --run` | Run the test suite once |
 | `npm run coverage` | Generate the HTML coverage report |
 | `npm run doc` | Generate static source documentation in `docs/` |
+| `npm run prepare:reports` | Add `noindex, nofollow` metadata to generated docs and coverage HTML |
 | `npm run build:all` | Build app, coverage, and documentation |
 
 ## Deployment

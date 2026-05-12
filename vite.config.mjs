@@ -29,6 +29,7 @@ export default defineConfig({
                 'src/assets/**',
                 'src/i18n/**',
                 'src/locales/**',
+                'scripts/**',
                 '**/*.test.*',
                 '**/*.spec.*'
             ]

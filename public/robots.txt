@@ -1,6 +1,4 @@
 User-agent: *
 Allow: /ingdanielemasone/
-Disallow: /ingdanielemasone/docs/
-Disallow: /ingdanielemasone/test-coverage/
 
 Sitemap: https://danielemasone.github.io/ingdanielemasone/sitemap.xml
