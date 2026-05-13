@@ -14,13 +14,37 @@ import {Loading} from "@/components/loading/Loading";
 import {ErrorState} from "@/components/errorState/ErrorState";
 import {getGithubProjects} from "@/services/portfolioService";
 import {interactiveClasses, layoutClasses, surfaceClasses} from "@/styles/commonClasses";
-import * as icons from "simple-icons";
+import {siGithub} from "simple-icons";
 
 const CATEGORY_ORDER = ["all", "frontend", "backend"];
 const ITEMS_PER_PAGE = 3;
 
+/**
+ * Renders a Simple Icons data object as an inline SVG React element.
+ *
+ * Simple Icons exports icon metadata, not React components, so this adapter
+ * converts the icon path into a renderable SVG while forwarding standard SVG props.
+ *
+ * @param {object} props - Component props.
+ * @param {{path: string}} props.icon - Simple Icons icon object.
+ * @param {string} [props.className] - CSS classes applied to the SVG element.
+ * @returns {JSX.Element} Inline SVG icon.
+ */
+function SimpleIcon({icon, className, ...props}) {
+    return (
+        <svg
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className={className}
+            {...props}
+        >
+            <path d={icon.path}/>
+        </svg>
+    );
+}
+
 const RESOURCE_ICONS = {
-    repository: icons.siGithub,
+    repository: (props) => <SimpleIcon icon={siGithub} {...props} />,
     live: ExternalLink,
     documentation: BookOpen,
     coverage: ShieldCheck

@@ -44,7 +44,12 @@ vi.mock("react-i18next", () => ({
 }));
 
 vi.mock("simple-icons", () => ({
-    siGithub: ({className}) => <svg aria-hidden="true" className={className}/>,
+    siGithub: {
+        title: "GitHub",
+        slug: "github",
+        hex: "181717",
+        path: "M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.207 11.387"
+    },
     siUdemy: ({className}) => <svg aria-hidden="true" className={className}/>,
     siX: ({className}) => <svg aria-hidden="true" className={className}/>,
     siInstagram: ({className}) => <svg aria-hidden="true" className={className}/>,
@@ -276,5 +281,24 @@ describe("GithubProjects", () => {
 
         expect(await screen.findByText("Identity Service API")).toBeInTheDocument();
         expect(spy).toHaveBeenCalledTimes(2);
+    });
+
+    test("renders repository links with a Simple Icons SVG adapter", async () => {
+        vi.spyOn(service, "getGithubProjects").mockResolvedValueOnce(mockGithubProjects);
+
+        renderGithubProjects();
+
+        const repository = await screen.findByRole("link", {
+            name: "Repository: Identity Service API"
+        });
+
+        const icon = repository.querySelector("svg");
+        const path = repository.querySelector("path");
+
+        expect(icon).toBeInTheDocument();
+        expect(icon).toHaveAttribute("viewBox", "0 0 24 24");
+        expect(icon).toHaveAttribute("fill", "currentColor");
+        expect(path).toBeInTheDocument();
+        expect(path).toHaveAttribute("d", expect.stringContaining("M12"));
     });
 });
