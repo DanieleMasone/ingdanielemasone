@@ -18,7 +18,7 @@ vi.mock("react-i18next", () => ({
 
                 // INTESA SANPAOLO
                 "project_types.intesa.exp_as400_frontend": "Design and implementation of scalable frontend architectures integrated with legacy RPG systems for foreign network reporting; optimized UI/UX.",
-                "project_types.intesa.exp_hybrid_fullstack": "Contribution to BE/FE pipelines for financial reporting, integrating modern APIs with legacy systems; applied best practices for architectural solidity in global teams.",
+                "project_types.intesa.exp_ai_as400": "Leading an internal initiative exploring the adoption of Artificial Intelligence to support refactoring and documentation generation for legacy RPG applications on IBM AS/400 within a regulated financial environment.\n\nActing as the technical liaison between the Architecture team and a development team of six engineers / functional analysts, coordinating activities and translating architectural guidelines into practical engineering tasks.\n\nKey responsibilities include:\n\n- Coordinating and guiding a team of 6 engineers / functional analysts working on legacy RPG systems.\n\n- Collaborating with the Architecture team to evaluate the feasibility of AI-driven refactoring for large RPG codebases.\n\n- Exploring the use of AI tools for automated documentation generation for legacy applications.\n\n- Bridging architecture strategy and engineering execution, ensuring alignment between architectural vision and development practices.\n\n- Defining workflows and experimentation frameworks to assess AI effectiveness in legacy modernization.\n\nFocus on improving code maintainability, system knowledge accessibility, and modernization strategies for large-scale AS/400 platforms in the financial domain.",
                 "project_types.intesa.exp_rpg_local_systems": "Maintenance and extension of core AS/400 applications for proprietary trading; enhanced system reliability through code refactoring, ensuring full compliance and zero production downtime.",
 
                 // FASTWEB
@@ -61,7 +61,7 @@ const mockProjects = [
     {
         name: "P2",
         tech: "Angular",
-        type: "intesa.exp_hybrid_fullstack",
+        type: "intesa.exp_ai_as400",
         company: "Intesa Sanpaolo",
         period: "2025",
     },
