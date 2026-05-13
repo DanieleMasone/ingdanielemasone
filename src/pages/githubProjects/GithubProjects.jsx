@@ -1,6 +1,6 @@
 import React, {useEffect, useMemo, useState} from "react";
 import {useTranslation} from "react-i18next";
-import {BookOpen, ExternalLink, Github, ShieldCheck} from "lucide-react";
+import {BookOpen, ExternalLink, ShieldCheck} from "lucide-react";
 import clsx from "clsx";
 import {SeoHead} from "@/components/seoHead/SeoHead";
 import {PageSection} from "@/components/ui/pageSection/PageSection";
@@ -14,12 +14,13 @@ import {Loading} from "@/components/loading/Loading";
 import {ErrorState} from "@/components/errorState/ErrorState";
 import {getGithubProjects} from "@/services/portfolioService";
 import {interactiveClasses, layoutClasses, surfaceClasses} from "@/styles/commonClasses";
+import * as icons from "simple-icons";
 
 const CATEGORY_ORDER = ["all", "frontend", "backend"];
 const ITEMS_PER_PAGE = 3;
 
 const RESOURCE_ICONS = {
-    repository: Github,
+    repository: icons.siGithub,
     live: ExternalLink,
     documentation: BookOpen,
     coverage: ShieldCheck
@@ -232,7 +233,8 @@ export default function GithubProjects() {
                                             >
                                                 {project.highlightsKeys.map((highlightKey) => (
                                                     <li key={highlightKey} className="flex gap-2">
-                                                        <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500"/>
+                                                        <span aria-hidden="true"
+                                                              className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500"/>
                                                         <span>{t(highlightKey)}</span>
                                                     </li>
                                                 ))}

@@ -43,9 +43,19 @@ vi.mock("react-i18next", () => ({
     })
 }));
 
+vi.mock("simple-icons", () => ({
+    siGithub: ({className}) => <svg aria-hidden="true" className={className}/>,
+    siUdemy: ({className}) => <svg aria-hidden="true" className={className}/>,
+    siX: ({className}) => <svg aria-hidden="true" className={className}/>,
+    siInstagram: ({className}) => <svg aria-hidden="true" className={className}/>,
+    siFacebook: ({className}) => <svg aria-hidden="true" className={className}/>
+}));
+
 vi.mock("framer-motion", () => ({
     motion: {
-        div: ({children, ...rest}) => <div {...rest}>{children}</div>,
+        div: ({children, layout, initial, animate, exit, transition, variants, whileHover, whileTap, ...rest}) => (
+            <div {...rest}>{children}</div>
+        ),
     },
     AnimatePresence: ({children}) => <>{children}</>,
 }));
@@ -85,7 +95,7 @@ const mockGithubProjects = [
         id: "portfolio-online-cv",
         name: "Portfolio & Online CV",
         category: "frontend",
-        year: "2026",
+        year: "2025",
         summaryKey: "github_projects_page.projects.portfolio.summary",
         highlightsKeys: [
             "github_projects_page.projects.portfolio.highlights.positioning",
@@ -115,7 +125,8 @@ describe("GithubProjects", () => {
     });
 
     test("shows loading while repositories are fetched", () => {
-        vi.spyOn(service, "getGithubProjects").mockReturnValueOnce(new Promise(() => {}));
+        vi.spyOn(service, "getGithubProjects").mockReturnValueOnce(new Promise(() => {
+        }));
 
         renderGithubProjects();
 

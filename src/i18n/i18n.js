@@ -42,11 +42,11 @@ i18n
             escapeValue: false,
         },
         resources: {
-            en: { translation: en },
-            it: { translation: it },
-            fr: { translation: fr },
-            de: { translation: de },
-            es: { translation: es }
+            en: {translation: en},
+            it: {translation: it},
+            fr: {translation: fr},
+            de: {translation: de},
+            es: {translation: es}
         },
         react: {
             useSuspense: false

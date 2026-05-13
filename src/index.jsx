@@ -16,7 +16,7 @@ import {render} from "@testing-library/react";
 const renderWithRouter = (initialEntries = ['/']) => {
     return render(
         <MemoryRouter initialEntries={initialEntries}>
-            <App />
+            <App/>
         </MemoryRouter>
     );
 };

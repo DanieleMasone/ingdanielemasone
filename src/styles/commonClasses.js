@@ -40,21 +40,21 @@ export const layoutClasses = {
   pageGridWrapper: "flex flex-col",
   pageGrid: "grid items-start gap-4 sm:gap-5 lg:gap-6",
   mobilePagination:
-    "md:hidden sticky top-0 z-20 -mx-4 border-b border-gray-200 bg-white/95 px-4 py-2 shadow-sm backdrop-blur-md dark:border-gray-700 dark:bg-gray-900/90 sm:-mx-6 sm:px-6",
+      "md:hidden sticky top-0 z-20 -mx-4 border-b border-gray-200 bg-white/95 px-4 py-2 shadow-sm backdrop-blur-md dark:border-gray-700 dark:bg-gray-900/90 sm:-mx-6 sm:px-6",
   desktopPagination: "hidden md:flex justify-center",
   resultSummary: "text-sm font-medium text-gray-600 dark:text-gray-300",
   horizontalFilterBar:
-    "flex flex-row gap-2 overflow-x-auto pb-2 scrollbar-hide sm:flex-wrap sm:justify-center sm:overflow-visible sm:pb-0",
+      "flex flex-row gap-2 overflow-x-auto pb-2 scrollbar-hide sm:flex-wrap sm:justify-center sm:overflow-visible sm:pb-0",
   sidebarFilterBar:
-    "flex flex-row gap-2 overflow-x-auto snap-x pb-2 scrollbar-hide md:flex-col md:overflow-visible md:snap-none md:pb-0",
+      "flex flex-row gap-2 overflow-x-auto snap-x pb-2 scrollbar-hide md:flex-col md:overflow-visible md:snap-none md:pb-0",
   focusList:
-    "grid grid-cols-1 gap-2 text-left sm:grid-cols-3 md:flex md:flex-wrap md:justify-start",
+      "grid grid-cols-1 gap-2 text-left sm:grid-cols-3 md:flex md:flex-wrap md:justify-start",
   focusMarker: "mt-[0.42em] h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500 dark:bg-blue-300 md:mt-0",
   tradingChartSection:
-    "mx-auto flex max-w-6xl flex-col gap-6 rounded-xl bg-white px-4 py-6 shadow-lg dark:bg-gray-900 sm:px-6",
+      "mx-auto flex max-w-6xl flex-col gap-6 rounded-xl bg-white px-4 py-6 shadow-lg dark:bg-gray-900 sm:px-6",
   tradingChartCanvas: "h-[300px] w-full sm:h-[500px] md:h-[700px]",
   tradingViewToggleGroup:
-    "flex w-full flex-col items-stretch gap-2 sm:w-auto sm:flex-row sm:items-center sm:justify-center",
+      "flex w-full flex-col items-stretch gap-2 sm:w-auto sm:flex-row sm:items-center sm:justify-center",
   screenReaderOnly: "sr-only",
 };
 
@@ -80,23 +80,23 @@ export const layoutClasses = {
  */
 export const surfaceClasses = {
   card:
-    "flex w-full flex-col rounded-xl border border-gray-200/60 bg-white/70 p-4 shadow-md backdrop-blur-md transition-all duration-300 hover:shadow-lg dark:border-gray-700/60 dark:bg-gray-800/50 sm:p-5",
+      "flex w-full flex-col rounded-xl border border-gray-200/60 bg-white/70 p-4 shadow-md backdrop-blur-md transition-all duration-300 hover:shadow-lg dark:border-gray-700/60 dark:bg-gray-800/50 sm:p-5",
   insetText:
-    "rounded-lg bg-white/50 px-3 py-2 text-sm text-gray-800 shadow-inner dark:bg-gray-900/50 dark:text-gray-200",
+      "rounded-lg bg-white/50 px-3 py-2 text-sm text-gray-800 shadow-inner dark:bg-gray-900/50 dark:text-gray-200",
   metaBadge:
-    "inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700 dark:bg-blue-900/30 dark:text-blue-300",
+      "inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700 dark:bg-blue-900/30 dark:text-blue-300",
   mutedMetaBadge:
-    "inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700 dark:bg-gray-700 dark:text-gray-200",
+      "inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700 dark:bg-gray-700 dark:text-gray-200",
   initialAvatar:
-    "inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-blue-50 text-sm font-bold uppercase text-blue-700 ring-1 ring-blue-100 dark:bg-blue-500/10 dark:text-blue-200 dark:ring-blue-400/20",
+      "inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-blue-50 text-sm font-bold uppercase text-blue-700 ring-1 ring-blue-100 dark:bg-blue-500/10 dark:text-blue-200 dark:ring-blue-400/20",
   mediaFrame:
-    "overflow-hidden rounded-lg border border-gray-200/70 bg-gray-50 shadow-inner dark:border-gray-700/70 dark:bg-gray-900/50",
+      "overflow-hidden rounded-lg border border-gray-200/70 bg-gray-50 shadow-inner dark:border-gray-700/70 dark:bg-gray-900/50",
   mediaImage:
-    "aspect-[16/9] w-full object-contain p-4 transition-transform duration-300 hover:scale-[1.02]",
+      "aspect-[16/9] w-full object-contain p-4 transition-transform duration-300 hover:scale-[1.02]",
   testimonialQuote:
-    "relative rounded-lg border border-gray-100/70 bg-white/60 px-3 py-3 shadow-inner dark:border-gray-700/60 dark:bg-gray-900/40",
+      "relative rounded-lg border border-gray-100/70 bg-white/60 px-3 py-3 shadow-inner dark:border-gray-700/60 dark:bg-gray-900/40",
   focusItem:
-    "inline-flex w-full items-start gap-2 rounded-lg border border-blue-200/80 bg-white/70 px-3 py-2 text-sm font-semibold leading-snug text-blue-900 shadow-sm backdrop-blur-sm transition dark:border-blue-400/20 dark:bg-blue-400/10 dark:text-blue-100 md:w-auto md:items-center md:rounded-full md:px-3.5 md:py-1.5",
+      "inline-flex w-full items-start gap-2 rounded-lg border border-blue-200/80 bg-white/70 px-3 py-2 text-sm font-semibold leading-snug text-blue-900 shadow-sm backdrop-blur-sm transition dark:border-blue-400/20 dark:bg-blue-400/10 dark:text-blue-100 md:w-auto md:items-center md:rounded-full md:px-3.5 md:py-1.5",
 };
 
 /**
@@ -124,27 +124,27 @@ export const surfaceClasses = {
  */
 export const interactiveClasses = {
   focusRing:
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900",
+      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900",
   focusRingInset:
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/70 focus-visible:ring-inset",
+      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/70 focus-visible:ring-inset",
   buttonBase:
-    "inline-flex min-h-11 items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-60",
+      "inline-flex min-h-11 items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-60",
   paginationButton:
-    "min-w-[110px] rounded-md border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium text-gray-800 transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800",
+      "min-w-[110px] rounded-md border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium text-gray-800 transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800",
   selectedButton:
-    "border bg-blue-600 text-white shadow-md hover:shadow-lg dark:bg-blue-500",
+      "border bg-blue-600 text-white shadow-md hover:shadow-lg dark:bg-blue-500",
   unselectedButton:
-    "border bg-gray-200 text-gray-800 shadow-sm hover:bg-gray-300 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700",
+      "border bg-gray-200 text-gray-800 shadow-sm hover:bg-gray-300 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700",
   linkButtonBase:
-    "inline-flex min-h-11 flex-1 min-w-[140px] items-center justify-center rounded-lg px-6 py-3 text-center text-base font-semibold text-white shadow-md transition-colors",
+      "inline-flex min-h-11 flex-1 min-w-[140px] items-center justify-center rounded-lg px-6 py-3 text-center text-base font-semibold text-white shadow-md transition-colors",
   linkButtonGreen:
-    "bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 focus-visible:ring-green-400 dark:focus-visible:ring-green-300",
+      "bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 focus-visible:ring-green-400 dark:focus-visible:ring-green-300",
   linkButtonBlue:
-    "bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 focus-visible:ring-blue-400 dark:focus-visible:ring-blue-300",
+      "bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 focus-visible:ring-blue-400 dark:focus-visible:ring-blue-300",
   resourceLink:
-    "inline-flex min-h-10 items-center justify-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-semibold text-gray-800 transition-colors hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800",
+      "inline-flex min-h-10 items-center justify-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-semibold text-gray-800 transition-colors hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800",
   iconLink:
-    "inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-700 shadow-sm transition-colors hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800",
+      "inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-700 shadow-sm transition-colors hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800",
   textLink:
-    "text-blue-600 underline underline-offset-2 transition-colors hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300",
+      "text-blue-600 underline underline-offset-2 transition-colors hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300",
 };
