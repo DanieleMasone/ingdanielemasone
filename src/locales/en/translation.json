@@ -275,6 +275,7 @@
   },
   "courses_page": {
     "title": "My Online Courses",
+    "description": "Training paths published on Udemy to share practical skills across languages, tools, and software development fundamentals.",
     "duration": "Duration",
     "learn_more": "Learn More",
     "udemy_link": "View on Udemy",

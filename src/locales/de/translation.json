@@ -275,6 +275,7 @@
   },
   "courses_page": {
     "title": "Meine Online-Kurse",
+    "description": "Auf Udemy veröffentlichte Lernpfade, die praktische Fähigkeiten zu Sprachen, Werkzeugen und Grundlagen der Softwareentwicklung vermitteln.",
     "duration": "Dauer",
     "learn_more": "Mehr erfahren",
     "udemy_link": "Auf Udemy ansehen",

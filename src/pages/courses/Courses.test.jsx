@@ -10,6 +10,7 @@ vi.mock('react-i18next', () => ({
         t: (key, options = {}) => {
             const map = {
                 "courses_page.title": "Courses",
+                "courses_page.description": "Practical Udemy courses for software development skills.",
                 "courses_page.results_summary": `Showing ${options.start}-${options.end} of ${options.total} courses`,
                 "courses_page.udemy_link": "View on Udemy",
                 "courses_page.git.title": "Git Course",
@@ -86,12 +87,35 @@ describe('Courses component', () => {
         expect(screen.getByText(/desc_0/i)).toBeInTheDocument();
     });
 
+    test("renders the page description for site-wide layout consistency", async () => {
+        vi.spyOn(service, "getCourses").mockResolvedValue(mockCourses);
+
+        renderPage();
+
+        expect(await screen.findByText("Practical Udemy courses for software development skills.")).toBeInTheDocument();
+    });
+
     test("renders 6 course cards per page", async () => {
         vi.spyOn(service, "getCourses").mockResolvedValue(mockCourses);
 
         renderPage();
 
         expect(await screen.findAllByTestId("course-card")).toHaveLength(6);
+    });
+
+    test("uses compact shared media sizing for course images", async () => {
+        vi.spyOn(service, "getCourses").mockResolvedValue(mockCourses);
+
+        const {container} = renderPage();
+
+        await screen.findAllByTestId("course-card");
+
+        const image = container.querySelector("img");
+        const frame = image.parentElement;
+
+        expect(frame).toHaveClass("h-28", "sm:h-32");
+        expect(image).toHaveClass("h-full", "object-contain", "p-3", "sm:p-4");
+        expect(image).not.toHaveClass("aspect-[16/9]");
     });
 
     test("renders a live result summary", async () => {

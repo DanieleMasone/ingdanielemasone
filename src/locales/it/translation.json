@@ -275,6 +275,7 @@
   },
   "courses_page": {
     "title": "I miei corsi online",
+    "description": "Percorsi formativi pubblicati su Udemy per condividere competenze pratiche su linguaggi, strumenti e basi dello sviluppo software.",
     "duration": "Durata",
     "learn_more": "Scopri di più",
     "udemy_link": "Vai su Udemy",

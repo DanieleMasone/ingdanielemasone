@@ -275,6 +275,7 @@
   },
   "courses_page": {
     "title": "Mis cursos online",
+    "description": "Itinerarios formativos publicados en Udemy para compartir habilidades prácticas sobre lenguajes, herramientas y fundamentos del desarrollo de software.",
     "duration": "Duración",
     "learn_more": "Saber más",
     "udemy_link": "Ver en Udemy",

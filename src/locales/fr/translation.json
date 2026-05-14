@@ -275,6 +275,7 @@
   },
   "courses_page": {
     "title": "Mes cours en ligne",
+    "description": "Parcours de formation publiés sur Udemy pour partager des compétences pratiques sur les langages, les outils et les bases du développement logiciel.",
     "duration": "Durée",
     "learn_more": "En savoir plus",
     "udemy_link": "Voir sur Udemy",
