@@ -6,6 +6,7 @@ import {PageSection} from "@/components/ui/pageSection/PageSection";
 import {ExpandableText} from "@/components/ui/expandableText/ExpandableText";
 import {SeoHead} from "@/components/seoHead/SeoHead";
 import TechDisclosure from "@/components/ui/techDisclosure/TechDisclosure";
+import {Pagination} from "@/components/ui/pagination/Pagination";
 import {getExperiences} from "@/services/portfolioService";
 import {Loading} from "@/components/loading/Loading";
 import {ErrorState} from "@/components/errorState/ErrorState";
@@ -21,6 +22,7 @@ import {Building2, CalendarDays} from "lucide-react";
 
 const YEAR_PATTERN = /\b(20\d{2}|19\d{2})\b/g;
 const PRESENT_PATTERN = /\bpresent\b/i;
+const ITEMS_PER_PAGE = 5;
 
 /**
  * Parses the year boundaries from an experience period string.
@@ -87,35 +89,19 @@ export const sortExperiencesByRecency = (experiences, currentYear = new Date().g
 );
 
 /**
- * Builds the compact overview data shown above the Experience timeline.
+ * Calculates the visible one-based item range for a paginated timeline.
  *
- * @param {Array<{period: string}>} experiences - Experience entries used by the page.
- * @param {number} [currentYear=new Date().getFullYear()] - Current year used for ongoing roles.
- * @returns {{startYear: number|null, endYear: number|null, totalEntries: number, currentExperience: object|null}}
- *          Portfolio overview values derived from the timeline data.
+ * @param {number} page - Current one-based page number.
+ * @param {number} totalItems - Number of timeline items.
+ * @param {number} itemsPerPage - Maximum items rendered on each page.
+ * @returns {{start: number, end: number}} Visible timeline range.
  */
-export const getExperienceOverview = (experiences, currentYear = new Date().getFullYear()) => {
-    const parsedEntries = experiences
-        .map((experience) => ({
-            experience,
-            period: parseExperiencePeriod(experience.period, currentYear)
-        }))
-        .filter(({period}) => Boolean(period));
-
-    if (parsedEntries.length === 0) {
-        return {
-            startYear: null,
-            endYear: null,
-            totalEntries: experiences.length,
-            currentExperience: null
-        };
-    }
+export const getVisibleRange = (page, totalItems, itemsPerPage) => {
+    if (totalItems === 0) return {start: 0, end: 0};
 
     return {
-        startYear: Math.min(...parsedEntries.map(({period}) => period.start)),
-        endYear: Math.max(...parsedEntries.map(({period}) => period.end)),
-        totalEntries: experiences.length,
-        currentExperience: parsedEntries.find(({period}) => period.isOngoing)?.experience ?? null
+        start: (page - 1) * itemsPerPage + 1,
+        end: Math.min(page * itemsPerPage, totalItems)
     };
 };
 
@@ -149,11 +135,11 @@ export const getExperienceStatus = (period, t, currentYear = new Date().getFullY
 };
 
 /**
- * Experience component renders the full professional timeline.
+ * Experience component renders a paginated professional timeline.
  *
- * The page favors portfolio scanning: it shows a compact career overview,
- * then every experience in reverse chronological order. Each entry exposes
- * role, company, period, description, and a collapsible technology stack.
+ * The page favors portfolio scanning: it presents recent roles first, keeps
+ * the page height controlled with pagination, and lets each entry expose role,
+ * company, period, description, and a collapsible technology stack.
  *
  * Uses i18next for translations.
  *
@@ -165,6 +151,7 @@ export default function Experience() {
     const currentYear = useMemo(() => new Date().getFullYear(), []);
 
     const [experiences, setExperiences] = useState([]);
+    const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -186,23 +173,19 @@ export default function Experience() {
         () => sortExperiencesByRecency(experiences, currentYear),
         [currentYear, experiences]
     );
-    const overview = useMemo(
-        () => getExperienceOverview(experiences, currentYear),
-        [currentYear, experiences]
+    const totalPages = Math.ceil(timelineExperiences.length / ITEMS_PER_PAGE);
+    const currentPage = Math.min(page, totalPages || 1);
+    const visibleRange = getVisibleRange(currentPage, timelineExperiences.length, ITEMS_PER_PAGE);
+    const displayedExperiences = useMemo(
+        () => timelineExperiences.slice(
+            (currentPage - 1) * ITEMS_PER_PAGE,
+            currentPage * ITEMS_PER_PAGE
+        ),
+        [currentPage, timelineExperiences]
     );
 
     if (loading) return <Loading/>;
     if (error) return <ErrorState message={t("error_generic")} onRetry={loadExperiences}/>;
-
-    const currentRole = overview.currentExperience
-        ? t(overview.currentExperience.role)
-        : t("experience_overview_no_current");
-    const currentCompany = overview.currentExperience?.company && overview.currentExperience.company !== "-"
-        ? overview.currentExperience.company
-        : t("experience_overview_current_caption");
-    const timelineEndLabel = overview.currentExperience
-        ? t("experience_present")
-        : overview.endYear;
 
     return (
         <>
@@ -217,65 +200,24 @@ export default function Experience() {
                     <p className={surfaceClasses.insetText}>{t("experience_empty")}</p>
                 ) : (
                     <>
-                        <div
-                            className={layoutClasses.experienceOverviewGrid}
-                            role="group"
-                            aria-label={t("experience_overview_label")}
-                        >
-                            <Card aria-label={t("experience_overview_current_label")} className={surfaceClasses.activeTimelineCard}>
-                                <CardContent className="flex h-full flex-col gap-2 p-0">
-                                    <span className={surfaceClasses.metaBadge}>
-                                        {t("experience_overview_current_label")}
-                                    </span>
-                                    <p className="text-base font-semibold leading-snug text-gray-900 dark:text-gray-100">
-                                        {currentRole}
-                                    </p>
-                                    <p className="text-sm text-gray-600 dark:text-gray-400">{currentCompany}</p>
-                                </CardContent>
-                            </Card>
-
-                            <Card aria-label={t("experience_overview_span_label")}>
-                                <CardContent className="flex h-full flex-col gap-2 p-0">
-                                    <span className={surfaceClasses.mutedMetaBadge}>
-                                        {t("experience_overview_span_label")}
-                                    </span>
-                                    <p className="text-base font-semibold leading-snug text-gray-900 dark:text-gray-100">
-                                        {t("experience_overview_span_value", {
-                                            start: overview.startYear,
-                                            end: timelineEndLabel
-                                        })}
-                                    </p>
-                                    <p className="text-sm text-gray-600 dark:text-gray-400">
-                                        {t("experience_overview_span_caption")}
-                                    </p>
-                                </CardContent>
-                            </Card>
-
-                            <Card aria-label={t("experience_overview_entries_label")}>
-                                <CardContent className="flex h-full flex-col gap-2 p-0">
-                                    <span className={surfaceClasses.mutedMetaBadge}>
-                                        {t("experience_overview_entries_label")}
-                                    </span>
-                                    <p className="text-base font-semibold leading-snug text-gray-900 dark:text-gray-100">
-                                        {t("experience_overview_entries_value", {count: overview.totalEntries})}
-                                    </p>
-                                    <p className="text-sm text-gray-600 dark:text-gray-400">
-                                        {t("experience_overview_entries_caption")}
-                                    </p>
-                                </CardContent>
-                            </Card>
-                        </div>
-
                         <p className={layoutClasses.resultSummary} aria-live="polite">
                             {t("experience_results_summary", {
-                                count: timelineExperiences.length,
-                                start: overview.startYear,
-                                end: timelineEndLabel
+                                start: visibleRange.start,
+                                end: visibleRange.end,
+                                total: timelineExperiences.length
                             })}
                         </p>
 
+                        <div className={layoutClasses.mobilePagination}>
+                            <Pagination
+                                page={currentPage}
+                                totalPages={totalPages}
+                                onPageChange={setPage}
+                            />
+                        </div>
+
                         <ol className={layoutClasses.timelineList} aria-label={t("experience_timeline_label")}>
-                            {timelineExperiences.map((exp) => {
+                            {displayedExperiences.map((exp) => {
                                 const role = t(exp.role);
                                 const titleId = `experience-${exp.role.replace(/\W+/g, "-")}`;
                                 const status = getExperienceStatus(exp.period, t, currentYear);
@@ -350,6 +292,14 @@ export default function Experience() {
                                 );
                             })}
                         </ol>
+
+                        <div className={layoutClasses.desktopPagination}>
+                            <Pagination
+                                page={currentPage}
+                                totalPages={totalPages}
+                                onPageChange={setPage}
+                            />
+                        </div>
                     </>
                 )}
             </PageSection>

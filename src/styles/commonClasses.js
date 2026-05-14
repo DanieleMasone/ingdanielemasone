@@ -22,7 +22,6 @@
  * @property {string} resultSummary - Compact live result summary used near filters and paginated grids.
  * @property {string} horizontalFilterBar - Horizontal filter controls with compact scrolling on small screens.
  * @property {string} sidebarFilterBar - Sidebar filter controls that switch from horizontal scrolling to a vertical desktop rail.
- * @property {string} experienceOverviewGrid - Responsive grid used for the Experience page overview tiles.
  * @property {string} timelineList - Semantic vertical timeline list with a decorative progress rail.
  * @property {string} timelineItem - Timeline item wrapper that reserves space for the rail marker.
  * @property {string} focusList - Responsive list layout for compact portfolio focus items.
@@ -52,8 +51,6 @@ export const layoutClasses = {
     "flex flex-row gap-2 overflow-x-auto pb-2 scrollbar-hide sm:flex-wrap sm:justify-center sm:overflow-visible sm:pb-0",
   sidebarFilterBar:
     "flex flex-row gap-2 overflow-x-auto snap-x pb-2 scrollbar-hide md:flex-col md:overflow-visible md:snap-none md:pb-0",
-  experienceOverviewGrid:
-    "grid gap-3 sm:grid-cols-3",
   timelineList:
     "relative flex flex-col gap-4 before:absolute before:bottom-4 before:left-3 before:top-4 before:w-px before:bg-gray-200 dark:before:bg-gray-700 sm:before:left-4",
   timelineItem: "relative pl-8 sm:pl-10",

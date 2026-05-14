@@ -2,9 +2,9 @@ import React from "react";
 import {fireEvent, render, screen} from "@testing-library/react";
 import Experience, {
     formatExperiencePeriod,
-    getExperienceOverview,
     getExperienceStatus,
     getExperienceYears,
+    getVisibleRange,
     sortExperiencesByRecency
 } from "./Experience";
 import {MemoryRouter} from "react-router-dom";
@@ -21,23 +21,21 @@ vi.mock("react-i18next", () => ({
                 exp_rgi_description: "Worked on backend development",
                 exp_iol_role: "Engineer",
                 exp_iol_description: "Frontend work",
+                exp_tecnavia_role: "Mobile Engineer",
+                exp_tecnavia_description: "Mobile work",
+                exp_teoresi_role: "Java Engineer",
+                exp_teoresi_description: "Java work",
+                exp_hpe_role: "Older Engineer",
+                exp_hpe_description: "Older work",
                 experience_title: "Professional Experience",
                 experience_intro: "Career timeline",
-                experience_overview_label: "Career overview",
-                experience_overview_current_label: "Current focus",
-                experience_overview_current_caption: "Role currently in progress",
-                experience_overview_no_current: "Career path",
-                experience_overview_span_label: "Timeline",
-                experience_overview_span_value: `${options.start} - ${options.end}`,
-                experience_overview_span_caption: "From technical foundations to enterprise delivery",
-                experience_overview_entries_label: "Roles",
-                experience_overview_entries_value: `${options.count} entries`,
-                experience_overview_entries_caption: "Professional, academic and mentoring milestones",
-                experience_results_summary: `Showing ${options.count} timeline entries from ${options.start} to ${options.end}`,
+                experience_results_summary: `Showing ${options.start}-${options.end} of ${options.total} timeline entries`,
                 experience_timeline_label: "Professional timeline",
                 experience_empty: "No experience entries available.",
                 experience_present: "Present",
                 show_technologies: "Show technologies",
+                previous: "Previous",
+                next: "Next",
                 exp_label_ongoing: "Current role",
                 error_generic: "Generic error"
             };
@@ -89,6 +87,27 @@ const mockExperiences = [
         description: "exp_iol_description",
         tech: "React",
     },
+    {
+        role: "exp_tecnavia_role",
+        company: "Tecnavia",
+        period: "2017 - 2018",
+        description: "exp_tecnavia_description",
+        tech: "React Native",
+    },
+    {
+        role: "exp_teoresi_role",
+        company: "Teoresi",
+        period: "2016 - 2017",
+        description: "exp_teoresi_description",
+        tech: "Java",
+    },
+    {
+        role: "exp_hpe_role",
+        company: "HPE",
+        period: "2014 - 2016",
+        description: "exp_hpe_description",
+        tech: "Java",
+    },
 ];
 
 function renderPage() {
@@ -125,7 +144,7 @@ describe("Experience component", () => {
         ).toBeInTheDocument();
     });
 
-    test("renders career overview and result summary", async () => {
+    test("renders compact summary and first timeline page", async () => {
         vi.spyOn(service, "getExperiences")
             .mockResolvedValueOnce(mockExperiences);
 
@@ -134,30 +153,15 @@ describe("Experience component", () => {
         await screen.findByRole("heading", {name: /professional experience/i});
 
         expect(screen.getByText("Career timeline")).toBeInTheDocument();
-        expect(screen.getByRole("region", {name: "Current focus"})).toBeInTheDocument();
-        expect(screen.getAllByText("Current Engineer")).toHaveLength(2);
-        expect(screen.getByText("2018 - Present")).toBeInTheDocument();
-        expect(screen.getByText("3 entries")).toBeInTheDocument();
-        expect(screen.getByText("Showing 3 timeline entries from 2018 to Present")).toBeInTheDocument();
+        expect(screen.getByText("Showing 1-5 of 6 timeline entries")).toBeInTheDocument();
+        expect(screen.getAllByTestId("pagination-info")).toHaveLength(2);
+        screen.getAllByTestId("pagination-info")
+            .forEach((info) => expect(info).toHaveTextContent("1 / 2"));
+        expect(screen.getAllByTestId("experience-card")).toHaveLength(5);
+        expect(screen.getByRole("list", {name: "Professional timeline"})).toBeInTheDocument();
     });
 
-    test("renders all experiences in one accessible timeline", async () => {
-        vi.spyOn(service, "getExperiences")
-            .mockResolvedValueOnce(mockExperiences);
-
-        renderPage();
-
-        const timeline = await screen.findByRole("list", {name: "Professional timeline"});
-
-        expect(timeline).toBeInTheDocument();
-        expect(screen.getAllByRole("listitem")).toHaveLength(3);
-        expect(screen.getAllByTestId("experience-card")).toHaveLength(3);
-        expect(screen.getByRole("heading", {name: "Current Engineer"})).toBeInTheDocument();
-        expect(screen.getByRole("heading", {name: "Developer"})).toBeInTheDocument();
-        expect(screen.getByRole("heading", {name: "Engineer"})).toBeInTheDocument();
-    });
-
-    test("sorts timeline cards from newest to oldest", async () => {
+    test("sorts visible timeline cards from newest to oldest", async () => {
         vi.spyOn(service, "getExperiences")
             .mockResolvedValueOnce([...mockExperiences].reverse());
 
@@ -166,7 +170,29 @@ describe("Experience component", () => {
         await screen.findByRole("heading", {name: /professional experience/i});
 
         const headings = screen.getAllByRole("heading", {level: 2}).map((heading) => heading.textContent);
-        expect(headings).toEqual(["Current Engineer", "Developer", "Engineer"]);
+        expect(headings).toEqual([
+            "Current Engineer",
+            "Developer",
+            "Engineer",
+            "Mobile Engineer",
+            "Java Engineer"
+        ]);
+    });
+
+    test("paginates older timeline entries", async () => {
+        vi.spyOn(service, "getExperiences")
+            .mockResolvedValueOnce(mockExperiences);
+
+        renderPage();
+
+        const nextButtons = await screen.findAllByRole("button", {name: "Next"});
+        fireEvent.click(nextButtons[0]);
+
+        expect(screen.getByText("Showing 6-6 of 6 timeline entries")).toBeInTheDocument();
+        screen.getAllByTestId("pagination-info")
+            .forEach((info) => expect(info).toHaveTextContent("2 / 2"));
+        expect(screen.getAllByTestId("experience-card")).toHaveLength(1);
+        expect(screen.getByRole("heading", {name: "Older Engineer"})).toBeInTheDocument();
     });
 
     test("renders current-role badge and localized current period", async () => {
@@ -178,7 +204,7 @@ describe("Experience component", () => {
         await screen.findByText("Current role");
 
         expect(screen.getByText("2025 - Present")).toBeInTheDocument();
-        expect(screen.getAllByRole("button", {name: "Show technologies"})).toHaveLength(3);
+        expect(screen.getAllByRole("button", {name: "Show technologies"})).toHaveLength(5);
     });
 
     test("includes SEO title", async () => {
@@ -262,14 +288,10 @@ describe("Experience helpers", () => {
         expect(unsorted[0].role).toBe("exp_iol_role");
     });
 
-    test("builds overview values from timeline data", () => {
-        expect(getExperienceOverview(mockExperiences, 2026))
-            .toMatchObject({
-                startYear: 2018,
-                endYear: 2026,
-                totalEntries: 3,
-                currentExperience: mockExperiences[0]
-            });
+    test("calculates visible ranges for paginated timeline entries", () => {
+        expect(getVisibleRange(1, 11, 5)).toEqual({start: 1, end: 5});
+        expect(getVisibleRange(3, 11, 5)).toEqual({start: 11, end: 11});
+        expect(getVisibleRange(1, 0, 5)).toEqual({start: 0, end: 0});
     });
 
     test("returns current status only for ongoing roles", () => {
