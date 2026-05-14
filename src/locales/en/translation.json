@@ -210,7 +210,9 @@
     "description": "List of obtained professional certifications, with direct links to the official certificates.",
     "view_certificate": "View certificate",
     "issuer": "Issuer",
-    "date": "Issued on"
+    "date": "Issued on",
+    "results_summary": "Showing {{start}}-{{end}} of {{total}} certifications",
+    "empty": "No certifications available."
   },
   "privacy": {
     "title": "Privacy Policy",

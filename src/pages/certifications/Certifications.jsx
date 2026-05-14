@@ -1,33 +1,67 @@
-import {Award, ExternalLink} from "lucide-react";
+import React, {useEffect, useMemo, useState} from "react";
 import {useTranslation} from "react-i18next";
+import {Award, Building2, CalendarDays, ExternalLink} from "lucide-react";
+import clsx from "clsx";
 import {Card} from "@/components/ui/card/Card";
 import {CardContent} from "@/components/ui/cardContent/CardContent";
 import {PageSection} from "@/components/ui/pageSection/PageSection";
 import {SeoHead} from "@/components/seoHead/SeoHead";
-import React, {useEffect, useState} from "react";
 import {Pagination} from "@/components/ui/pagination/Pagination";
 import {PageGrid} from "@/components/ui/pageGrid/PageGrid";
 import {getCertifications} from "@/services/portfolioService";
 import {Loading} from "@/components/loading/Loading";
 import {ErrorState} from "@/components/errorState/ErrorState";
-import clsx from "clsx";
-import {interactiveClasses, layoutClasses} from "@/styles/commonClasses";
+import {interactiveClasses, layoutClasses, surfaceClasses} from "@/styles/commonClasses";
 
-const ITEMS_PER_PAGE = 4;
+const ITEMS_PER_PAGE = 6;
+const YEAR_PATTERN = /\b(20\d{2}|19\d{2})\b/;
 
 /**
- * Certifications component.
+ * Orders certifications by issue year without mutating the source data.
  *
- * Displays a paginated list of professional certifications, each with title, issuer, and date.
+ * Certifications with the same year preserve their dataset order so related
+ * credentials, such as language levels from the same provider, stay grouped.
  *
- * Features:
- * - Uses i18next for translations.
- * - Shows 4 certifications per page with next/previous pagination buttons.
- * - Includes smooth animations via Framer Motion for entry transitions.
+ * @param {Array<{date: string}>} certifications - Certification entries.
+ * @returns {Array<object>} Certifications sorted from newest to oldest.
+ */
+export const sortCertificationsByDate = (certifications) => (
+    [...certifications].sort((first, second) => {
+        const firstYear = parseInt(first.date.match(YEAR_PATTERN)?.[0] ?? "0", 10);
+        const secondYear = parseInt(second.date.match(YEAR_PATTERN)?.[0] ?? "0", 10);
+
+        return secondYear - firstYear;
+    })
+);
+
+/**
+ * Calculates the visible one-based item range for a paginated certification list.
+ *
+ * @param {number} page - Current one-based page number.
+ * @param {number} totalItems - Number of certifications.
+ * @param {number} itemsPerPage - Maximum certifications rendered on each page.
+ * @returns {{start: number, end: number}} Visible certification range.
+ */
+export const getVisibleRange = (page, totalItems, itemsPerPage) => {
+    if (totalItems === 0) return {start: 0, end: 0};
+
+    return {
+        start: (page - 1) * itemsPerPage + 1,
+        end: Math.min(page * itemsPerPage, totalItems)
+    };
+};
+
+/**
+ * Certifications component renders professional credentials.
+ *
+ * The page presents certifications as compact, scannable cards with issuer,
+ * issue year, optional localized context, and a specific official-certificate
+ * link. Pagination is kept at six cards per page so the route stays short on
+ * mobile while preserving a dense two-row desktop layout.
  *
  * @component
  * @module pages/certifications/Certifications
- * @returns {JSX.Element} The rendered Certifications page section.
+ * @returns {JSX.Element} Rendered Certifications page section.
  */
 export default function Certifications() {
     const {t} = useTranslation();
@@ -50,11 +84,16 @@ export default function Certifications() {
         loadCertifications();
     }, []);
 
-    const totalPages = Math.ceil(certifications.length / ITEMS_PER_PAGE);
-
-    const displayedCerts = certifications.slice(
-        (page - 1) * ITEMS_PER_PAGE,
-        page * ITEMS_PER_PAGE
+    const sortedCertifications = useMemo(
+        () => sortCertificationsByDate(certifications),
+        [certifications]
+    );
+    const totalPages = Math.ceil(sortedCertifications.length / ITEMS_PER_PAGE);
+    const currentPage = Math.min(page, totalPages || 1);
+    const visibleRange = getVisibleRange(currentPage, sortedCertifications.length, ITEMS_PER_PAGE);
+    const displayedCerts = sortedCertifications.slice(
+        (currentPage - 1) * ITEMS_PER_PAGE,
+        currentPage * ITEMS_PER_PAGE
     );
 
     if (loading) return <Loading/>;
@@ -65,95 +104,103 @@ export default function Certifications() {
             <SeoHead pageKey="certifications" path="/certifications"/>
 
             <PageSection title={t("certifications_page.title")}>
-                {/* Pagination mobile sticky */}
-                <div
-                    className={layoutClasses.mobilePagination}
-                >
-                    <Pagination
-                        page={page}
-                        totalPages={totalPages}
-                        onPageChange={setPage}
-                    />
-                </div>
+                <p className={layoutClasses.sectionIntro}>{t("certifications_page.description")}</p>
 
-                <PageGrid page={page}>
-                    {displayedCerts.map((cert, idx) => (
-                        <Card
-                            key={idx}
-                            className="relative items-start gap-4 md:flex-row"
-                        >
-                            {/* Icon */}
-                            <div className="absolute -top-3 right-4 w-12 h-12 rounded-full bg-gradient-to-r from-blue-100 to-blue-200
-                                          dark:from-blue-900/40 dark:to-blue-800/40 flex items-center justify-center shadow-lg z-20 ring-4 ring-background">
-                                <Award className="w-6 h-6 text-blue-600 dark:text-blue-400" aria-hidden="true"/>
-                            </div>
+                {sortedCertifications.length === 0 ? (
+                    <p className={surfaceClasses.insetText}>{t("certifications_page.empty")}</p>
+                ) : (
+                    <>
+                        <p className={layoutClasses.resultSummary} aria-live="polite">
+                            {t("certifications_page.results_summary", {
+                                start: visibleRange.start,
+                                end: visibleRange.end,
+                                total: sortedCertifications.length
+                            })}
+                        </p>
 
-                            <CardContent className="p-0 flex flex-col gap-3 h-full">
-                                {/* Header */}
-                                <div className="space-y-1.5">
-                                    <h3 className="text-lg font-bold text-gray-900 dark:text-white leading-tight">
-                                        {t(cert.nameKey)}
-                                    </h3>
-                                    <p className="text-sm font-mono text-gray-600 dark:text-gray-400 leading-tight">
-                                        {cert.issuer}
-                                    </p>
-                                    <p className="text-xs text-gray-500 dark:text-gray-500 font-mono">
-                                        {cert.date}
-                                    </p>
-                                </div>
-
-                                {/* Description (optional) */}
-                                {cert.descriptionKey && (
-                                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                                        {t(cert.descriptionKey)}
-                                    </p>
-                                )}
-
-                                {/* CTA */}
-                                <div className="mt-auto pt-2">
-                                    <a
-                                        href={cert.link}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className={clsx(`inline-flex items-center justify-center
-                                                    w-[200px] sm:w-[220px] h-10
-                                                    text-sm font-semibold
-                                                    text-blue-600 dark:text-blue-400
-                                                    hover:text-blue-700 dark:hover:text-blue-300
-                                                    transition-all duration-300
-                                                    hover:underline underline-offset-4
-                                                    hover:shadow-md hover:shadow-blue-100 dark:hover:shadow-blue-900/50
-                                                    rounded-lg
-                                                    border border-blue-200/50 dark:border-blue-800/50 hover:border-blue-300
-                        `, interactiveClasses.focusRing)}
-                                    >
-                                        {t("certifications_page.view_certificate")}
-                                        <ExternalLink
-                                            className="w-4 h-4 ml-2 shrink-0 group-hover:translate-x-1 transition-transform duration-300"
-                                            aria-hidden="true"
-                                        />
-                                    </a>
-                                </div>
-                            </CardContent>
-
-                            {/* Hover overlay */}
-                            <div
-                                className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100
-                                           transition-all duration-500 bg-gradient-to-br from-blue-50/80 via-transparent to-transparent
-                                           dark:from-blue-900/30 rounded-xl backdrop-blur-sm"
+                        <div className={layoutClasses.mobilePagination}>
+                            <Pagination
+                                page={currentPage}
+                                totalPages={totalPages}
+                                onPageChange={setPage}
                             />
-                        </Card>
-                    ))}
-                </PageGrid>
+                        </div>
 
-                {/* Pagination desktop normal */}
-                <div className={layoutClasses.desktopPagination}>
-                    <Pagination
-                        page={page}
-                        totalPages={totalPages}
-                        onPageChange={setPage}
-                    />
-                </div>
+                        <PageGrid page={currentPage} columns={3}>
+                            {displayedCerts.map((cert) => {
+                                const certTitle = t(cert.nameKey);
+                                const titleId = `certification-${cert.nameKey.replace(/\W+/g, "-")}`;
+
+                                return (
+                                    <Card
+                                        key={`${cert.issuer}-${cert.nameKey}`}
+                                        data-testid="certification-card"
+                                        aria-labelledby={titleId}
+                                        className="h-full min-w-0"
+                                    >
+                                        <CardContent className="flex h-full min-w-0 flex-col gap-4 p-0">
+                                            <header className="flex min-w-0 gap-3">
+                                                <span className={surfaceClasses.credentialIcon}>
+                                                    <Award className="h-5 w-5" aria-hidden="true"/>
+                                                </span>
+
+                                                <div className="min-w-0 flex-1 space-y-3">
+                                                    <h2
+                                                        id={titleId}
+                                                        className="break-words text-lg font-semibold leading-snug text-gray-900 dark:text-gray-100"
+                                                    >
+                                                        {certTitle}
+                                                    </h2>
+
+                                                    <div className="flex min-w-0 flex-wrap gap-2">
+                                                        <span className={clsx(surfaceClasses.metaBadge, "min-w-0 max-w-full gap-1.5")}>
+                                                            <Building2 className="h-3.5 w-3.5" aria-hidden="true"/>
+                                                            <span className="min-w-0 break-words">
+                                                                {t("certifications_page.issuer")}: {cert.issuer}
+                                                            </span>
+                                                        </span>
+
+                                                        <span className={clsx(surfaceClasses.mutedMetaBadge, "min-w-0 max-w-full gap-1.5")}>
+                                                            <CalendarDays className="h-3.5 w-3.5" aria-hidden="true"/>
+                                                            <span className="min-w-0 break-words">
+                                                                {t("certifications_page.date")}: {cert.date}
+                                                            </span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </header>
+
+                                            {cert.descriptionKey && (
+                                                <p className="text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+                                                    {t(cert.descriptionKey)}
+                                                </p>
+                                            )}
+
+                                            <a
+                                                href={cert.link}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className={clsx(interactiveClasses.resourceLink, interactiveClasses.focusRing, "mt-auto w-full sm:w-fit")}
+                                                aria-label={`${t("certifications_page.view_certificate")}: ${certTitle}`}
+                                            >
+                                                <ExternalLink className="h-4 w-4 shrink-0" aria-hidden="true"/>
+                                                <span>{t("certifications_page.view_certificate")}</span>
+                                            </a>
+                                        </CardContent>
+                                    </Card>
+                                );
+                            })}
+                        </PageGrid>
+
+                        <div className={layoutClasses.desktopPagination}>
+                            <Pagination
+                                page={currentPage}
+                                totalPages={totalPages}
+                                onPageChange={setPage}
+                            />
+                        </div>
+                    </>
+                )}
             </PageSection>
         </>
     );

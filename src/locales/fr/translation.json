@@ -210,7 +210,9 @@
     "description": "Liste des certifications professionnelles obtenues, avec liens vers les certificats officiels.",
     "view_certificate": "Voir le certificat",
     "issuer": "Émetteur",
-    "date": "Date d’émission"
+    "date": "Date d’émission",
+    "results_summary": "Affichage de {{start}}-{{end}} sur {{total}} certifications",
+    "empty": "Aucune certification disponible."
   },
   "privacy": {
     "title": "Politique de Confidentialité",

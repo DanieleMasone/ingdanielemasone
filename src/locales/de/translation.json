@@ -210,7 +210,9 @@
     "description": "Liste beruflicher Zertifizierungen mit Links zu offiziellen Dokumenten.",
     "view_certificate": "Zertifikat ansehen",
     "issuer": "Aussteller",
-    "date": "Ausstellungsdatum"
+    "date": "Ausstellungsdatum",
+    "results_summary": "Zeige {{start}}-{{end}} von {{total}} Zertifizierungen",
+    "empty": "Keine Zertifizierungen verfügbar."
   },
   "privacy": {
     "title": "Datenschutzerklärung",

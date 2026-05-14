@@ -83,6 +83,7 @@ export const layoutClasses = {
  * @property {string} timelineMarker - Decorative marker used by the Experience page timeline.
  * @property {string} timelineMarkerActive - Highlighted marker for the current role in the Experience timeline.
  * @property {string} activeTimelineCard - Current-role card accent used in the Experience timeline.
+ * @property {string} credentialIcon - Compact icon surface used by certification cards.
  * @property {string} initialAvatar - Local initials avatar used when a real portrait is not available.
  * @property {string} mediaFrame - Framed media surface for card thumbnails and covers.
  * @property {string} mediaImage - Responsive image style used inside framed media surfaces.
@@ -114,6 +115,8 @@ export const surfaceClasses = {
     "bg-sky-500 ring-4 ring-sky-100 dark:bg-sky-300 dark:ring-sky-400/20",
   activeTimelineCard:
     "border-sky-200/80 bg-sky-50/70 dark:border-sky-400/30 dark:bg-sky-500/10",
+  credentialIcon:
+    "inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-700 ring-1 ring-blue-100 dark:bg-blue-500/10 dark:text-blue-200 dark:ring-blue-400/20",
   initialAvatar:
     "inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-blue-50 text-sm font-bold uppercase text-blue-700 ring-1 ring-blue-100 dark:bg-blue-500/10 dark:text-blue-200 dark:ring-blue-400/20",
   mediaFrame:

@@ -210,7 +210,9 @@
     "description": "Elenco delle certificazioni professionali conseguite, con link diretti ai certificati ufficiali.",
     "view_certificate": "Vedi certificato",
     "issuer": "Ente rilasciante",
-    "date": "Data di rilascio"
+    "date": "Data di rilascio",
+    "results_summary": "Mostro {{start}}-{{end}} di {{total}} certificazioni",
+    "empty": "Nessuna certificazione disponibile."
   },
   "privacy": {
     "title": "Privacy Policy",
