@@ -33,6 +33,15 @@
   "home_focus_training": "Mentoring und Training",
   "projects_title": "Projekte",
   "show_technologies": "Technologien anzeigen",
+  "projects_page": {
+    "intro": "Ausgewählte berufliche Projekte aus Enterprise-Software, Frontend-Architektur, Legacy-Modernisierung und kunden- beziehungsweise operatororientierten Plattformen.",
+    "filter_label": "Berufliche Projekte nach Unternehmen filtern",
+    "all_companies": "Alle",
+    "results_summary": "{{start}}-{{end}} von {{total}} Projekten",
+    "current": "Laufend",
+    "present": "Heute",
+    "empty": "Keine beruflichen Projekte verfügbar."
+  },
   "github_projects_page": {
     "title": "GitHub-Projekte",
     "intro": "Eine kuratierte Auswahl öffentlicher Repositories, die Codequalität, Architektur, Tests, Dokumentation und GitHub-Pages-Auslieferung zusätzlich zu den beruflichen Projekten im Online-CV zeigen.",

@@ -20,6 +20,8 @@
  * @property {string} desktopPagination - Desktop pagination wrapper aligned with section spacing.
  * @property {string} sectionIntro - Readable introductory copy used below route headings.
  * @property {string} resultSummary - Compact live result summary used near filters and paginated grids.
+ * @property {string} filterableLayout - Two-column layout for pages with filter controls and paginated content.
+ * @property {string} filterSidebar - Sticky desktop sidebar wrapper for route-level filters.
  * @property {string} horizontalFilterBar - Horizontal filter controls with compact scrolling on small screens.
  * @property {string} sidebarFilterBar - Sidebar filter controls that switch from horizontal scrolling to a vertical desktop rail.
  * @property {string} timelineList - Semantic vertical timeline list with a decorative progress rail.
@@ -47,6 +49,9 @@ export const layoutClasses = {
   desktopPagination: "hidden md:flex justify-center",
   sectionIntro: "max-w-3xl text-base leading-7 text-gray-700 dark:text-gray-300",
   resultSummary: "text-sm font-medium text-gray-600 dark:text-gray-300",
+  filterableLayout:
+    "grid gap-4 md:grid-cols-[12rem_minmax(0,1fr)] md:items-start lg:grid-cols-[14rem_minmax(0,1fr)]",
+  filterSidebar: "md:sticky md:top-20",
   horizontalFilterBar:
     "flex flex-row gap-2 overflow-x-auto pb-2 scrollbar-hide sm:flex-wrap sm:justify-center sm:overflow-visible sm:pb-0",
   sidebarFilterBar:

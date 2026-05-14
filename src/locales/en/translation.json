@@ -33,6 +33,15 @@
   "home_focus_training": "Mentoring and training",
   "projects_title": "Projects",
   "show_technologies": "Show technologies",
+  "projects_page": {
+    "intro": "Selected professional delivery projects across enterprise software, frontend architecture, legacy modernization and customer-facing platforms.",
+    "filter_label": "Filter professional projects by company",
+    "all_companies": "All",
+    "results_summary": "Showing {{start}}-{{end}} of {{total}} projects",
+    "current": "Current",
+    "present": "Present",
+    "empty": "No professional projects available."
+  },
   "github_projects_page": {
     "title": "GitHub Projects",
     "intro": "A curated view of public repositories that show code quality, architecture, testing, documentation and GitHub Pages delivery beyond the professional projects listed in the online CV.",

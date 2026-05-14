@@ -33,6 +33,15 @@
   "home_focus_training": "Mentoría y formación",
   "projects_title": "Proyectos",
   "show_technologies": "Mostrar tecnologías",
+  "projects_page": {
+    "intro": "Una selección de proyectos profesionales entre software enterprise, arquitectura frontend, modernización legacy y plataformas orientadas a clientes y operadores.",
+    "filter_label": "Filtrar proyectos profesionales por empresa",
+    "all_companies": "Todos",
+    "results_summary": "Mostrando {{start}}-{{end}} de {{total}} proyectos",
+    "current": "En curso",
+    "present": "Presente",
+    "empty": "No hay proyectos profesionales disponibles."
+  },
   "github_projects_page": {
     "title": "Proyectos GitHub",
     "intro": "Una selección de repositorios públicos que muestran calidad de código, arquitectura, tests, documentación y publicación en GitHub Pages más allá de los proyectos profesionales del CV online.",

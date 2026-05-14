@@ -1,6 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import {fileURLToPath} from "node:url";
+import {fileURLToPath, pathToFileURL} from "node:url";
 
 /**
  * Generates GitHub Pages-friendly route files and SEO artifacts after Vite builds the portfolio.
@@ -234,7 +234,7 @@ export const buildRobots = ({config}) => [
  *
  * @returns {Promise<void>}
  */
-const prepareGithubPages = async () => {
+export const prepareGithubPages = async () => {
     const [config, translations, templateHtml] = await Promise.all([
         readJson(seoConfigPath),
         readJson(translationsPath),
@@ -263,7 +263,9 @@ const prepareGithubPages = async () => {
     ]);
 };
 
-prepareGithubPages().catch((error) => {
-    console.error(error);
-    process.exitCode = 1;
-});
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+    prepareGithubPages().catch((error) => {
+        console.error(error);
+        process.exitCode = 1;
+    });
+}

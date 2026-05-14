@@ -33,6 +33,15 @@
   "home_focus_training": "Mentorat et formation",
   "projects_title": "Projets",
   "show_technologies": "Afficher les technologies",
+  "projects_page": {
+    "intro": "Une sélection de projets professionnels couvrant logiciel d'entreprise, architecture frontend, modernisation legacy et plateformes orientées clients et opérateurs.",
+    "filter_label": "Filtrer les projets professionnels par entreprise",
+    "all_companies": "Tous",
+    "results_summary": "Affichage de {{start}} à {{end}} sur {{total}} projets",
+    "current": "En cours",
+    "present": "Aujourd'hui",
+    "empty": "Aucun projet professionnel disponible."
+  },
   "github_projects_page": {
     "title": "Projets GitHub",
     "intro": "Une sélection de dépôts publics qui montrent la qualité du code, l'architecture, les tests, la documentation et la publication GitHub Pages au-delà des projets professionnels du CV en ligne.",
