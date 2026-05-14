@@ -1,31 +1,76 @@
 import React, {useEffect, useState} from 'react';
 import {Moon, Sun} from 'lucide-react';
+import {useTranslation} from "react-i18next";
 import clsx from "clsx";
 import {interactiveClasses} from "../../../styles/commonClasses";
+
+const THEME_STORAGE_KEY = "theme";
+
+/**
+ * Reads the persisted theme preference when browser storage is available.
+ *
+ * @returns {string|null} Stored theme value, or null when no preference exists.
+ */
+function getStoredTheme() {
+    try {
+        return localStorage.getItem(THEME_STORAGE_KEY);
+    } catch {
+        return null;
+    }
+}
+
+/**
+ * Persists the selected theme while keeping the toggle resilient to storage errors.
+ *
+ * @param {"dark"|"light"} theme - Theme value to store for future visits.
+ * @returns {void}
+ */
+function setStoredTheme(theme) {
+    try {
+        localStorage.setItem(THEME_STORAGE_KEY, theme);
+    } catch {
+        // Ignore storage failures so the visual theme can still be applied.
+    }
+}
+
+/**
+ * Resolves the initial theme from saved preference first, then system preference.
+ *
+ * @returns {boolean} True when the portfolio should start in dark mode.
+ */
+function getInitialDarkMode() {
+    const storedTheme = getStoredTheme();
+
+    if (storedTheme === "dark") return true;
+    if (storedTheme === "light") return false;
+
+    return window.matchMedia?.("(prefers-color-scheme: dark)").matches ?? false;
+}
 
 /**
  * DarkModeToggle switches between dark and light theme modes.
  *
- * It syncs the mode state with localStorage, updates the root `dark` class, and
- * exposes the current pressed state for assistive technologies.
+ * It syncs the mode state with localStorage, falls back to the operating-system
+ * color-scheme preference, updates the root `dark` class, and exposes the
+ * current pressed state for assistive technologies.
  *
  * @component
  * @module components/ui/darkModeToggle/DarkModeToggle
  * @returns {JSX.Element} A button to toggle dark mode.
  */
 export function DarkModeToggle() {
-    const [darkMode, setDarkMode] = useState(() =>
-        localStorage.getItem('theme') === 'dark'
-    );
+    const {t} = useTranslation();
+    const [darkMode, setDarkMode] = useState(getInitialDarkMode);
+    const buttonLabel = darkMode ? t("theme_toggle.switch_to_light") : t("theme_toggle.switch_to_dark");
 
     useEffect(() => {
         const root = window.document.documentElement;
         if (darkMode) {
             root.classList.add('dark');
-            localStorage.setItem('theme', 'dark');
+            setStoredTheme('dark');
         } else {
             root.classList.remove('dark');
-            localStorage.setItem('theme', 'light');
+            setStoredTheme('light');
         }
     }, [darkMode]);
 
@@ -34,11 +79,12 @@ export function DarkModeToggle() {
             type="button"
             onClick={() => setDarkMode(!darkMode)}
             className={clsx(
-                "flex items-center space-x-2 rounded-md bg-gray-200 px-3 py-1.5 text-gray-800 transition-colors duration-200 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600",
+                interactiveClasses.toolbarIconButton,
                 interactiveClasses.focusRing
             )}
-            aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+            aria-label={buttonLabel}
             aria-pressed={darkMode}
+            title={buttonLabel}
         >
             {darkMode ? (
                 <Sun className="h-5 w-5" aria-hidden="true"/>

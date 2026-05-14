@@ -21,6 +21,15 @@
     "open_mobile_menu": "Ouvrir le menu de navigation",
     "close_mobile_menu": "Fermer le menu de navigation"
   },
+  "language_switcher": {
+    "select_language": "Choisir la langue",
+    "options_label": "Langues disponibles",
+    "current_language": "Langue actuelle"
+  },
+  "theme_toggle": {
+    "switch_to_dark": "Passer au mode sombre",
+    "switch_to_light": "Passer au mode clair"
+  },
   "footer_copyright": "© {{year}} Daniele Masone. Tous droits réservés.",
   "home_subtitle": "Senior Software Engineer, Architecte Front-End et Technical Team Leader.",
   "home_description": "Je construis des architectures front-end et des plateformes enterprise maintenables dans le temps : delivery en domaines réglementés, qualité du code, performance et mentoring des équipes.",

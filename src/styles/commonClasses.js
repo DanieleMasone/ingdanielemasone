@@ -144,6 +144,11 @@ export const surfaceClasses = {
  * @property {string} linkButtonBlue - Blue CTA theme used for secondary external links.
  * @property {string} resourceLink - Compact external resource link used inside project cards.
  * @property {string} iconLink - Square icon-only link used for compact profile actions.
+ * @property {string} toolbarButton - Compact header toolbar button used by language and theme controls.
+ * @property {string} toolbarIconButton - Square icon-only header toolbar button with a stable hit target.
+ * @property {string} dropdownPanel - Shared floating panel surface for compact header dropdowns.
+ * @property {string} dropdownOption - Shared option row style for compact header dropdowns.
+ * @property {string} dropdownOptionActive - Active option state for compact header dropdowns.
  * @property {string} textLink - Accessible inline text link style for legal and policy pages.
  */
 
@@ -175,6 +180,16 @@ export const interactiveClasses = {
     "inline-flex min-h-10 items-center justify-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-semibold text-gray-800 transition-colors hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800",
   iconLink:
     "inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-700 shadow-sm transition-colors hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800",
+  toolbarButton:
+    "inline-flex min-h-10 items-center rounded-md border border-gray-200/70 bg-gray-100/80 text-sm font-medium text-gray-900 shadow-sm backdrop-blur-sm transition-colors hover:bg-gray-200/80 dark:border-gray-700/70 dark:bg-gray-700/70 dark:text-gray-100 dark:hover:bg-gray-600/60",
+  toolbarIconButton:
+    "inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-gray-200/70 bg-gray-100/80 text-gray-900 shadow-sm backdrop-blur-sm transition-colors hover:bg-gray-200/80 dark:border-gray-700/70 dark:bg-gray-700/70 dark:text-gray-100 dark:hover:bg-gray-600/60",
+  dropdownPanel:
+    "absolute right-0 mt-2 origin-top-right overflow-hidden rounded-lg border border-gray-200/70 bg-white/95 shadow-lg ring-1 ring-black/10 backdrop-blur-md dark:border-gray-700/70 dark:bg-gray-800/95",
+  dropdownOption:
+    "flex w-full items-center px-4 py-2 text-sm text-gray-800 transition-colors hover:bg-gray-100/80 dark:text-gray-100 dark:hover:bg-gray-700/60",
+  dropdownOptionActive:
+    "bg-blue-100/80 font-semibold text-blue-800 dark:bg-blue-900/40 dark:text-blue-300",
   textLink:
     "text-blue-600 underline underline-offset-2 transition-colors hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300",
 };
