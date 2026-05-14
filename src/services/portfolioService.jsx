@@ -28,7 +28,7 @@ const delay = (ms) => new Promise(res => setTimeout(res, ms));
 /**
  * Loads static course entries for the Courses page.
  *
- * @returns {Promise<Array<object>>} Promise resolving to the courses dataset.
+ * @returns {Promise<Array<object>>} Promise resolving to the courses' dataset.
  */
 export async function getCourses() {
     await delay(300);
@@ -38,7 +38,7 @@ export async function getCourses() {
 /**
  * Loads static certification entries for the Certifications page.
  *
- * @returns {Promise<Array<object>>} Promise resolving to the certifications dataset.
+ * @returns {Promise<Array<object>>} Promise resolving to the certifications' dataset.
  */
 export async function getCertifications() {
     await delay(300);
@@ -48,7 +48,7 @@ export async function getCertifications() {
 /**
  * Loads static professional experience entries for the Experience page.
  *
- * @returns {Promise<Array<object>>} Promise resolving to the experiences dataset.
+ * @returns {Promise<Array<object>>} Promise resolving to the experiences' dataset.
  */
 export async function getExperiences() {
     await delay(300);
@@ -58,7 +58,7 @@ export async function getExperiences() {
 /**
  * Loads static project entries for the Projects page.
  *
- * @returns {Promise<Array<object>>} Promise resolving to the projects dataset.
+ * @returns {Promise<Array<object>>} Promise resolving to the projects' dataset.
  */
 export async function getProjects() {
     await delay(300);
@@ -78,7 +78,7 @@ export async function getGithubProjects() {
 /**
  * Loads static testimonial entries for the Testimonials page.
  *
- * @returns {Promise<Array<object>>} Promise resolving to the testimonials dataset.
+ * @returns {Promise<Array<object>>} Promise resolving to the testimonials' dataset.
  */
 export async function getTestimonials() {
     await delay(300);
@@ -98,7 +98,7 @@ export async function getTradingPerformance() {
 /**
  * Loads static social and external link entries for the Footer.
  *
- * @returns {Promise<Array<object>>} Promise resolving to the links dataset.
+ * @returns {Promise<Array<object>>} Promise resolving to the links' dataset.
  */
 export async function getLinks() {
     await delay(300);

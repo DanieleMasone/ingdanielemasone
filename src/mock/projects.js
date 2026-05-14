@@ -16,16 +16,9 @@ export const projects = [
         period: "03/2026 - Present",
     },
     {
-        name: "AS/400 Reporting Frontend Modernization",
+        name: "DataLayer Frontend Modernization",
         tech: "RPG, AS400, Angular, REST APIs, jQuery, Maven, Git, HTML5, Java, JavaScript, Framework Spring, MySQL",
         type: "intesa.exp_as400_frontend",
-        company: "Intesa Sanpaolo",
-        period: "12/2025 - Present",
-    },
-    {
-        name: "Hybrid Full-Stack Architecture",
-        tech: "RPG, AS400, Angular, REST APIs, jQuery, Maven, Git, HTML5, Java, JavaScript, Framework Spring, MySQL",
-        type: "intesa.exp_hybrid_fullstack",
         company: "Intesa Sanpaolo",
         period: "12/2025 - Present",
     },

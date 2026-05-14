@@ -81,7 +81,7 @@ export const githubProjects = [
         id: "portfolio-online-cv",
         name: "Portfolio & Online CV",
         category: "frontend",
-        year: "2026",
+        year: "2025",
         summaryKey: "github_projects_page.projects.portfolio.summary",
         highlightsKeys: [
             "github_projects_page.projects.portfolio.highlights.positioning",

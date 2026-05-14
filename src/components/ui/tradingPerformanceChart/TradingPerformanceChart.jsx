@@ -15,7 +15,7 @@ import {
 } from 'chart.js';
 import {SelectableButton} from "../selectableButton/SelectableButton";
 import clsx from "clsx";
-import {layoutClasses} from "../../../styles/commonClasses";
+import {layoutClasses} from "@/styles/commonClasses";
 
 ChartJS.register(
     CategoryScale,
@@ -426,7 +426,8 @@ export function TradingPerformanceChart({
                                     const monthLabel = months[index] || `M${index + 1}`;
 
                                     return (
-                                        <div key={monthLabel} className={clsx(getReturnCardClass(value), "w-36 shrink-0")}>
+                                        <div key={monthLabel}
+                                             className={clsx(getReturnCardClass(value), "w-36 shrink-0")}>
                                             <h4 className="mb-1 text-center text-sm font-bold text-gray-900 dark:text-gray-100">
                                                 {monthLabel}
                                             </h4>

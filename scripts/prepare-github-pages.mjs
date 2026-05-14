@@ -29,7 +29,7 @@ const readJson = async (filePath) => JSON.parse(await fs.readFile(filePath, "utf
  * @param {unknown} value - Value to escape for HTML output.
  * @returns {string} HTML-safe string.
  */
-const escapeHtml = (value) => String(value)
+export const escapeHtml = (value) => String(value)
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
@@ -41,7 +41,7 @@ const escapeHtml = (value) => String(value)
  * @param {string} routePath - Route path from the SEO configuration.
  * @returns {string} Normalized path with a leading slash and no trailing slash, except `/`.
  */
-const normalizePath = (routePath) => {
+export const normalizePath = (routePath) => {
     if (!routePath || routePath === "/") return "/";
 
     return `/${routePath.replace(/^\/+|\/+$/g, "")}`;
@@ -54,7 +54,7 @@ const normalizePath = (routePath) => {
  * @param {string} routePath - Route path from the SEO configuration.
  * @returns {string} Absolute route URL without hash fragments, using a trailing slash for route directories.
  */
-const getRouteUrl = (siteUrl, routePath) => {
+export const getRouteUrl = (siteUrl, routePath) => {
     const normalizedPath = normalizePath(routePath);
 
     return `${siteUrl}${normalizedPath === "/" ? "/" : `${normalizedPath}/`}`;
@@ -117,7 +117,7 @@ const buildStructuredData = ({config, title, description, url}) => ({
  * @param {{config: object, route: object, translations: object}} params - SEO config, route config, and Italian translations.
  * @returns {string} HTML fragment that replaces the SEO marker block in the Vite template.
  */
-const buildSeoBlock = ({config, route, translations}) => {
+export const buildSeoBlock = ({config, route, translations}) => {
     const pageSeo = translations.seo[route.pageKey];
     const url = getRouteUrl(config.siteUrl, route.path);
     const title = pageSeo.title;
@@ -160,7 +160,7 @@ const buildSeoBlock = ({config, route, translations}) => {
  * @returns {string} HTML with route-specific SEO metadata.
  * @throws {Error} When the SEO markers are missing from the built template.
  */
-const injectSeoBlock = ({html, config, route, translations}) => {
+export const injectSeoBlock = ({html, config, route, translations}) => {
     const block = `${seoStart}\n${buildSeoBlock({config, route, translations})}\n    ${seoEnd}`;
     const pattern = new RegExp(`${seoStart}[\\s\\S]*?${seoEnd}`);
 
@@ -191,7 +191,7 @@ const getRouteOutputPath = (routePath) => {
  * @param {{config: object}} params - SEO configuration containing route priorities and sitemap flags.
  * @returns {string} XML sitemap content.
  */
-const buildSitemap = ({config}) => {
+export const buildSitemap = ({config}) => {
     const today = new Date().toISOString().slice(0, 10);
     const urls = config.routes
         .filter((route) => route.sitemap)
@@ -221,7 +221,7 @@ const buildSitemap = ({config}) => {
  * @param {{config: object}} params - SEO configuration containing the public site URL.
  * @returns {string} Robots file content.
  */
-const buildRobots = ({config}) => [
+export const buildRobots = ({config}) => [
     "User-agent: *",
     "Allow: /ingdanielemasone/",
     "",

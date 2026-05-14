@@ -43,9 +43,24 @@ vi.mock("react-i18next", () => ({
     })
 }));
 
+vi.mock("simple-icons", () => ({
+    siGithub: {
+        title: "GitHub",
+        slug: "github",
+        hex: "181717",
+        path: "M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.207 11.387"
+    },
+    siUdemy: ({className}) => <svg aria-hidden="true" className={className}/>,
+    siX: ({className}) => <svg aria-hidden="true" className={className}/>,
+    siInstagram: ({className}) => <svg aria-hidden="true" className={className}/>,
+    siFacebook: ({className}) => <svg aria-hidden="true" className={className}/>
+}));
+
 vi.mock("framer-motion", () => ({
     motion: {
-        div: ({children, ...rest}) => <div {...rest}>{children}</div>,
+        div: ({children, layout, initial, animate, exit, transition, variants, whileHover, whileTap, ...rest}) => (
+            <div {...rest}>{children}</div>
+        ),
     },
     AnimatePresence: ({children}) => <>{children}</>,
 }));
@@ -85,7 +100,7 @@ const mockGithubProjects = [
         id: "portfolio-online-cv",
         name: "Portfolio & Online CV",
         category: "frontend",
-        year: "2026",
+        year: "2025",
         summaryKey: "github_projects_page.projects.portfolio.summary",
         highlightsKeys: [
             "github_projects_page.projects.portfolio.highlights.positioning",
@@ -115,7 +130,8 @@ describe("GithubProjects", () => {
     });
 
     test("shows loading while repositories are fetched", () => {
-        vi.spyOn(service, "getGithubProjects").mockReturnValueOnce(new Promise(() => {}));
+        vi.spyOn(service, "getGithubProjects").mockReturnValueOnce(new Promise(() => {
+        }));
 
         renderGithubProjects();
 
@@ -265,5 +281,24 @@ describe("GithubProjects", () => {
 
         expect(await screen.findByText("Identity Service API")).toBeInTheDocument();
         expect(spy).toHaveBeenCalledTimes(2);
+    });
+
+    test("renders repository links with a Simple Icons SVG adapter", async () => {
+        vi.spyOn(service, "getGithubProjects").mockResolvedValueOnce(mockGithubProjects);
+
+        renderGithubProjects();
+
+        const repository = await screen.findByRole("link", {
+            name: "Repository: Identity Service API"
+        });
+
+        const icon = repository.querySelector("svg");
+        const path = repository.querySelector("path");
+
+        expect(icon).toBeInTheDocument();
+        expect(icon).toHaveAttribute("viewBox", "0 0 24 24");
+        expect(icon).toHaveAttribute("fill", "currentColor");
+        expect(path).toBeInTheDocument();
+        expect(path).toHaveAttribute("d", expect.stringContaining("M12"));
     });
 });

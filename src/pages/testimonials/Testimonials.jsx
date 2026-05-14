@@ -167,7 +167,8 @@ export default function Testimonials() {
                                         )}
                                     </header>
 
-                                    <blockquote className={clsx(surfaceClasses.testimonialQuote, "flex flex-1 flex-col gap-3")}>
+                                    <blockquote
+                                        className={clsx(surfaceClasses.testimonialQuote, "flex flex-1 flex-col gap-3")}>
                                         <Quote className="h-5 w-5 text-blue-500 dark:text-blue-300" aria-hidden="true"/>
                                         <ExpandableText
                                             value={t(texts.quoteKey)}
