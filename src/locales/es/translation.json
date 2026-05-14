@@ -343,6 +343,7 @@
   },
   "testimonials_page": {
     "title": "Testimonios",
+    "description": "Comentarios profesionales de colegas y colaboradores con los que trabajé en delivery, arquitectura frontend y equipos de producto.",
     "prev": "Anterior",
     "next": "Siguiente",
     "open": "Abrir reseña",

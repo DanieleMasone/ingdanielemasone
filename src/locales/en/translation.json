@@ -343,6 +343,7 @@
   },
   "testimonials_page": {
     "title": "Testimonials",
+    "description": "Professional feedback from coworkers and collaborators I worked with across delivery, frontend architecture, and product teams.",
     "prev": "Previous",
     "next": "Next",
     "open": "Open review",

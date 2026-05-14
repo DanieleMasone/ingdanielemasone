@@ -343,6 +343,7 @@
   },
   "testimonials_page": {
     "title": "Referenzen",
+    "description": "Professionelles Feedback von Kollegen und Partnern, mit denen ich an Delivery, Frontend-Architektur und Produktteams gearbeitet habe.",
     "prev": "Zurück",
     "next": "Weiter",
     "open": "Bewertung öffnen",

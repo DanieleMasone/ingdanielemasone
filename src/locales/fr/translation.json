@@ -343,6 +343,7 @@
   },
   "testimonials_page": {
     "title": "Témoignages",
+    "description": "Retours professionnels de collègues et collaborateurs avec lesquels j’ai travaillé sur le delivery, l’architecture frontend et les équipes produit.",
     "prev": "Précédent",
     "next": "Suivant",
     "open": "Ouvrir l'avis",

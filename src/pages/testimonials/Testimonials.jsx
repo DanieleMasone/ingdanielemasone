@@ -54,8 +54,9 @@ const getVisibleRange = (page, totalItems, itemsPerPage) => {
 
 /**
  * Testimonials component renders a paginated list of testimonial cards.
- * Each card displays the name, role, LinkedIn profile, and a readable
- * collapsible quote inside semantic blockquote markup.
+ * The page starts with a concise introduction for consistency with the other
+ * portfolio sections. Each card displays the name, role, LinkedIn profile, and
+ * a readable collapsible quote inside semantic blockquote markup.
  *
  * Uses translations for all textual content via react-i18next.
  *
@@ -101,6 +102,8 @@ export default function Testimonials() {
             <SeoHead pageKey="testimonials" path="/testimonials"/>
 
             <PageSection title={t("testimonials_page.title")}>
+                <p className={layoutClasses.sectionIntro}>{t("testimonials_page.description")}</p>
+
                 {testimonials.length > 0 && (
                     <p className={layoutClasses.resultSummary} aria-live="polite">
                         {t("testimonials_page.results_summary", {

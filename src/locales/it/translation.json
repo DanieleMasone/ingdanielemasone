@@ -343,6 +343,7 @@
   },
   "testimonials_page": {
     "title": "Testimonianze",
+    "description": "Feedback professionali raccolti da colleghi e collaboratori con cui ho lavorato su delivery, architetture frontend e team di prodotto.",
     "prev": "Precedente",
     "next": "Successivo",
     "open": "Apri recensione",

@@ -23,6 +23,7 @@ vi.mock('react-i18next', () => ({
                 "testimonials_people.daniela.role": "QA",
                 "testimonials_people.daniela.quote": "Thorough testing.",
                 "testimonials_page.title": "Testimonials",
+                "testimonials_page.description": "Professional feedback from coworkers and collaborators.",
                 "testimonials_page.results_summary": `Showing ${options.start}-${options.end} of ${options.total} testimonials`,
                 "testimonials_page.linkedin_label": "LinkedIn profile",
                 "previous": "Prev",
@@ -96,6 +97,15 @@ describe("Testimonials component with mobile + desktop paginators", () => {
         expect(
             await screen.findByRole("heading", {name: /testimonials/i})
         ).toBeInTheDocument();
+    });
+
+    test("renders the page description for site-wide layout consistency", async () => {
+        vi.spyOn(service, "getTestimonials")
+            .mockResolvedValueOnce(mockTestimonials);
+
+        renderPage();
+
+        expect(await screen.findByText("Professional feedback from coworkers and collaborators.")).toBeInTheDocument();
     });
 
     test("renders both paginators", async () => {
