@@ -142,6 +142,22 @@ describe("Projects Component", () => {
         expect(screen.getAllByTestId("project-card")).toHaveLength(6);
     });
 
+    test("keeps the mobile filter and cards constrained to the viewport", async () => {
+        vi.spyOn(service, "getProjects").mockResolvedValueOnce(mockProjects);
+
+        renderProjects();
+
+        const filterGroup = await screen.findByRole("group", {name: "Filter professional projects by company"});
+        const filterSidebar = filterGroup.parentElement;
+        const filterLayout = filterSidebar.parentElement;
+        const firstCard = screen.getAllByTestId("project-card")[0];
+
+        expect(filterGroup).toHaveClass("max-w-full");
+        expect(filterSidebar).toHaveClass("min-w-0");
+        expect(filterLayout).toHaveClass("min-w-0");
+        expect(firstCard).toHaveClass("min-w-0");
+    });
+
     test("sorts visible projects from newest to oldest", async () => {
         vi.spyOn(service, "getProjects").mockResolvedValueOnce([...mockProjects].reverse());
 

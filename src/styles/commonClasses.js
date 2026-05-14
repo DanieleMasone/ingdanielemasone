@@ -20,8 +20,8 @@
  * @property {string} desktopPagination - Desktop pagination wrapper aligned with section spacing.
  * @property {string} sectionIntro - Readable introductory copy used below route headings.
  * @property {string} resultSummary - Compact live result summary used near filters and paginated grids.
- * @property {string} filterableLayout - Two-column layout for pages with filter controls and paginated content.
- * @property {string} filterSidebar - Sticky desktop sidebar wrapper for route-level filters.
+ * @property {string} filterableLayout - Width-constrained layout for pages with filter controls and paginated content.
+ * @property {string} filterSidebar - Width-constrained sticky desktop sidebar wrapper for route-level filters.
  * @property {string} horizontalFilterBar - Horizontal filter controls with compact scrolling on small screens.
  * @property {string} sidebarFilterBar - Sidebar filter controls that switch from horizontal scrolling to a vertical desktop rail.
  * @property {string} timelineList - Semantic vertical timeline list with a decorative progress rail.
@@ -50,12 +50,12 @@ export const layoutClasses = {
   sectionIntro: "max-w-3xl text-base leading-7 text-gray-700 dark:text-gray-300",
   resultSummary: "text-sm font-medium text-gray-600 dark:text-gray-300",
   filterableLayout:
-    "grid gap-4 md:grid-cols-[12rem_minmax(0,1fr)] md:items-start lg:grid-cols-[14rem_minmax(0,1fr)]",
-  filterSidebar: "md:sticky md:top-20",
+    "grid min-w-0 gap-4 md:grid-cols-[12rem_minmax(0,1fr)] md:items-start lg:grid-cols-[14rem_minmax(0,1fr)]",
+  filterSidebar: "min-w-0 md:sticky md:top-20",
   horizontalFilterBar:
     "flex flex-row gap-2 overflow-x-auto pb-2 scrollbar-hide sm:flex-wrap sm:justify-center sm:overflow-visible sm:pb-0",
   sidebarFilterBar:
-    "flex flex-row gap-2 overflow-x-auto snap-x pb-2 scrollbar-hide md:flex-col md:overflow-visible md:snap-none md:pb-0",
+    "flex min-w-0 max-w-full flex-row gap-2 overflow-x-auto snap-x pb-2 scrollbar-hide md:flex-col md:overflow-visible md:snap-none md:pb-0",
   timelineList:
     "relative flex flex-col gap-4 before:absolute before:bottom-4 before:left-3 before:top-4 before:w-px before:bg-gray-200 dark:before:bg-gray-700 sm:before:left-4",
   timelineItem: "relative pl-8 sm:pl-10",

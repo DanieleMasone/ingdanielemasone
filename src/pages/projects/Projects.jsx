@@ -114,7 +114,9 @@ export const isCurrentProject = (period) => PRESENT_PATTERN.test(period);
  * The page starts with all projects so readers can scan the full professional
  * portfolio, then offers company filters and pagination to keep the page
  * compact. Each project card exposes company, period, localized impact text,
- * current-project state, and a collapsible technology list.
+ * current-project state, and a collapsible technology list. Mobile filter and
+ * card containers stay width-constrained so horizontal filter scrolling does
+ * not expand the page viewport.
  *
  * @component
  * @module pages/projects/Projects
@@ -205,7 +207,7 @@ export default function Projects() {
                             </div>
                         </aside>
 
-                        <div className="flex min-w-0 flex-col gap-4">
+                        <div className="flex min-w-0 max-w-full flex-col gap-4">
                             <p className={layoutClasses.resultSummary} aria-live="polite">
                                 {t("projects_page.results_summary", {
                                     start: visibleRange.start,
@@ -233,31 +235,31 @@ export default function Projects() {
                                                 key={`${project.company}-${project.name}`}
                                                 data-testid="project-card"
                                                 aria-labelledby={titleId}
-                                                className={clsx("h-full", currentProject && surfaceClasses.activeTimelineCard)}
+                                                className={clsx("h-full min-w-0", currentProject && surfaceClasses.activeTimelineCard)}
                                             >
-                                                <CardContent className="flex h-full flex-col gap-4 p-0">
+                                                <CardContent className="flex h-full min-w-0 flex-col gap-4 p-0">
                                                     <header className="flex flex-col gap-3 border-b border-gray-200/60 pb-3 dark:border-gray-700/60">
-                                                        <div className="flex flex-wrap items-center gap-2">
+                                                        <div className="flex min-w-0 flex-wrap items-center gap-2">
                                                             {currentProject && (
                                                                 <span className={clsx(surfaceClasses.statusBadgeBase, surfaceClasses.statusBadgeOngoing)}>
                                                                     {t("projects_page.current")}
                                                                 </span>
                                                             )}
 
-                                                            <span className={clsx(surfaceClasses.metaBadge, "gap-1.5")}>
+                                                            <span className={clsx(surfaceClasses.metaBadge, "min-w-0 max-w-full gap-1.5")}>
                                                                 <Building2 className="h-3.5 w-3.5" aria-hidden="true"/>
-                                                                <span>{project.company}</span>
+                                                                <span className="min-w-0 break-words">{project.company}</span>
                                                             </span>
 
-                                                            <span className={clsx(surfaceClasses.mutedMetaBadge, "gap-1.5")}>
+                                                            <span className={clsx(surfaceClasses.mutedMetaBadge, "min-w-0 max-w-full gap-1.5")}>
                                                                 <CalendarDays className="h-3.5 w-3.5" aria-hidden="true"/>
-                                                                <span>{formatProjectPeriod(project.period, t)}</span>
+                                                                <span className="min-w-0 break-words">{formatProjectPeriod(project.period, t)}</span>
                                                             </span>
                                                         </div>
 
                                                         <h2
                                                             id={titleId}
-                                                            className="text-lg font-semibold leading-snug text-gray-900 dark:text-gray-100 md:text-xl"
+                                                            className="break-words text-lg font-semibold leading-snug text-gray-900 dark:text-gray-100 md:text-xl"
                                                         >
                                                             {project.name.trim()}
                                                         </h2>
