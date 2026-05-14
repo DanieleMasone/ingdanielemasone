@@ -13,6 +13,14 @@
   "trading": "Trading",
   "testimonials": "Testimonianze",
   "portfolio": "Portfolio",
+  "header": {
+    "home_aria": "Homepage di Daniele Masone",
+    "main_navigation": "Navigazione principale",
+    "mobile_navigation": "Navigazione mobile",
+    "portfolio_navigation": "Navigazione portfolio",
+    "open_mobile_menu": "Apri menu di navigazione",
+    "close_mobile_menu": "Chiudi menu di navigazione"
+  },
   "footer_copyright": "© {{year}} Daniele Masone. Tutti i diritti riservati.",
   "home_subtitle": "Senior Software Engineer, Front-End Architect e Technical Team Leader.",
   "home_description": "Costruisco interfacce e piattaforme enterprise che restano manutenibili nel tempo: architettura front-end, delivery su sistemi regolamentati, code quality e mentoring dei team.",

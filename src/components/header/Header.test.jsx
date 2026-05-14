@@ -16,6 +16,12 @@ vi.mock("react-i18next", () => ({
             testimonials: "Testimonials",
             trading: "Trading",
             certifications: "Certifications",
+            "header.home_aria": "Daniele Masone home",
+            "header.main_navigation": "Main navigation",
+            "header.mobile_navigation": "Mobile navigation",
+            "header.portfolio_navigation": "Portfolio navigation",
+            "header.open_mobile_menu": "Open navigation menu",
+            "header.close_mobile_menu": "Close navigation menu",
         }[key] || key)
     }),
 }));
@@ -42,6 +48,10 @@ describe("Header", () => {
                 <Header/>
             </MemoryRouter>
         );
+    const openMobileMenu = () => {
+        fireEvent.click(screen.getByRole("button", {name: /open navigation menu/i}));
+        return screen.getByTestId("mobile-menu");
+    };
 
     test("renders main nav and highlights active link", () => {
         renderHeader("/");
@@ -89,11 +99,15 @@ describe("Header", () => {
         expect(chevron).toHaveClass("rotate-180");
     });
 
-    test("desktop portfolio dropdown button has aria-haspopup", () => {
+    test("desktop portfolio dropdown button uses disclosure semantics", () => {
         renderHeader("/");
         const btn = screen.getAllByRole("button", {name: /portfolio/i})[0];
-        expect(btn).toHaveAttribute("aria-haspopup", "menu");
+        expect(btn).not.toHaveAttribute("aria-haspopup");
         expect(btn).toHaveAttribute("aria-controls", "desktop-portfolio-menu");
+        expect(btn).toHaveAttribute("aria-expanded", "false");
+
+        fireEvent.click(btn);
+        expect(screen.getByRole("group", {name: "Portfolio navigation"})).toBeInTheDocument();
     });
 
     test("desktop portfolio dropdown animation triggers initial and exit states", () => {
@@ -115,12 +129,22 @@ describe("Header", () => {
         expect(screen.queryByText("Experience")).not.toBeInTheDocument();
     });
 
+    test("desktop dropdown closes with Escape", () => {
+        renderHeader("/");
+        const btn = screen.getAllByRole("button", {name: /portfolio/i})[0];
+
+        fireEvent.click(btn);
+        expect(screen.getByText("Experience")).toBeInTheDocument();
+
+        fireEvent.keyDown(document, {key: "Escape"});
+        expect(screen.queryByText("Experience")).not.toBeInTheDocument();
+        expect(btn).toHaveAttribute("aria-expanded", "false");
+    });
+
     describe("mobile menu behavior", () => {
         test("portfolio disclosure expands and collapses", () => {
             renderHeader("/");
-            fireEvent.click(screen.getByLabelText(/toggle mobile menu/i));
-
-            const menu = screen.getByTestId("mobile-menu");
+            const menu = openMobileMenu();
             const btn = within(menu).getByRole("button", {name: /portfolio/i});
 
             expect(within(menu).queryByText("Experience")).not.toBeInTheDocument();
@@ -135,8 +159,7 @@ describe("Header", () => {
         test("contains LanguageSwitcher and DarkModeToggle", () => {
             renderHeader("/");
 
-            fireEvent.click(screen.getByLabelText(/toggle mobile menu/i));
-            const menu = screen.getByTestId("mobile-menu");
+            const menu = openMobileMenu();
 
             expect(within(menu).getByTestId("language-switcher")).toBeInTheDocument();
             expect(within(menu).getByTestId("dark-mode-toggle")).toBeInTheDocument();
@@ -145,8 +168,7 @@ describe("Header", () => {
         test("chevron rotates on mobile portfolio toggle", () => {
             renderHeader("/");
 
-            fireEvent.click(screen.getByLabelText(/toggle mobile menu/i));
-            const menu = screen.getByTestId("mobile-menu");
+            const menu = openMobileMenu();
 
             const button = within(menu).getByRole("button", {name: /portfolio/i});
             const chevron = button.querySelector("svg");
@@ -159,7 +181,7 @@ describe("Header", () => {
         test("mobile menu opens and closes", () => {
             renderHeader("/");
 
-            const toggle = screen.getByLabelText(/toggle mobile menu/i);
+            const toggle = screen.getByRole("button", {name: /open navigation menu/i});
             expect(toggle).toHaveAttribute("aria-controls", "mobile-navigation");
 
             expect(screen.queryByTestId("mobile-menu")).not.toBeInTheDocument();
@@ -167,16 +189,31 @@ describe("Header", () => {
             fireEvent.click(toggle);
             expect(screen.getByTestId("mobile-menu")).toBeInTheDocument();
 
-            fireEvent.click(toggle);
+            fireEvent.click(screen.getByRole("button", {name: /close navigation menu/i}));
+            expect(screen.queryByTestId("mobile-menu")).not.toBeInTheDocument();
+        });
+
+        test("mobile menu is exposed as a navigation landmark", () => {
+            renderHeader("/");
+
+            openMobileMenu();
+
+            expect(screen.getByRole("navigation", {name: "Mobile navigation"})).toBeInTheDocument();
+        });
+
+        test("mobile menu closes with Escape", () => {
+            renderHeader("/");
+
+            openMobileMenu();
+
+            fireEvent.keyDown(document, {key: "Escape"});
             expect(screen.queryByTestId("mobile-menu")).not.toBeInTheDocument();
         });
 
         test("mobile Home link closes menu", () => {
             renderHeader("/");
 
-            fireEvent.click(screen.getByLabelText(/toggle mobile menu/i));
-
-            const menu = screen.getByTestId("mobile-menu");
+            const menu = openMobileMenu();
             fireEvent.click(within(menu).getByText("Home"));
 
             expect(screen.queryByTestId("mobile-menu")).not.toBeInTheDocument();
@@ -185,8 +222,7 @@ describe("Header", () => {
         test("mobile portfolio link closes menu", () => {
             renderHeader("/");
 
-            fireEvent.click(screen.getByLabelText(/toggle mobile menu/i));
-            const menu = screen.getByTestId("mobile-menu");
+            const menu = openMobileMenu();
 
             fireEvent.click(within(menu).getByRole("button", {name: /portfolio/i}));
             fireEvent.click(within(menu).getByText("Experience"));
@@ -197,8 +233,7 @@ describe("Header", () => {
         test("mobile menu does not duplicate root navMain link", () => {
             renderHeader("/");
 
-            fireEvent.click(screen.getByLabelText(/toggle mobile menu/i));
-            const menu = screen.getByTestId("mobile-menu");
+            const menu = openMobileMenu();
 
             const homes = within(menu).getAllByText("Home");
             expect(homes.length).toBe(1);
@@ -207,8 +242,7 @@ describe("Header", () => {
         test("mobile portfolio panel closes when a link is clicked", () => {
             renderHeader("/");
 
-            fireEvent.click(screen.getByLabelText(/toggle mobile menu/i));
-            const menu = screen.getByTestId("mobile-menu");
+            const menu = openMobileMenu();
 
             const disclosureBtn = within(menu).getByRole("button", {name: /portfolio/i});
             fireEvent.click(disclosureBtn);
@@ -222,8 +256,7 @@ describe("Header", () => {
         test("mobile menu links have correct text and hrefs", () => {
             renderHeader("/");
 
-            fireEvent.click(screen.getByLabelText(/toggle mobile menu/i));
-            const menu = screen.getByTestId("mobile-menu");
+            const menu = openMobileMenu();
 
             const portfolioBtn = within(menu).getByRole("button", {name: /portfolio/i});
             fireEvent.click(portfolioBtn);
@@ -235,17 +268,26 @@ describe("Header", () => {
                 expect(link.tagName).toBe("A");
             });
         });
+
+        test("mobile portfolio button highlights portfolio routes", () => {
+            renderHeader("/projects");
+
+            const menu = openMobileMenu();
+            const portfolioBtn = within(menu).getByRole("button", {name: /portfolio/i});
+
+            expect(portfolioBtn.className).toMatch(/text-blue-600/);
+        });
     });
 
     test("menu icon changes when toggled", () => {
         renderHeader("/");
 
-        const toggle = screen.getByLabelText(/toggle mobile menu/i);
+        const toggle = screen.getByRole("button", {name: /open navigation menu/i});
         const first = toggle.querySelector("svg");
 
         fireEvent.click(toggle);
 
-        const second = toggle.querySelector("svg");
+        const second = screen.getByRole("button", {name: /close navigation menu/i}).querySelector("svg");
         expect(second).not.toBe(first);
     });
 
