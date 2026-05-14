@@ -39,8 +39,8 @@ const getVisibleRange = (page, totalItems, itemsPerPage) => {
  *
  * Displays a paginated list of programming courses, each with title, description,
  * duration, technologies used, local cover art, and a clear Udemy call to action.
- * The page starts with a concise introduction and uses fixed-height media
- * frames so course thumbnails stay balanced across mobile and desktop cards.
+ * The page starts with a concise introduction and renders the 16:9 cover art
+ * full-bleed so thumbnails stay readable across mobile and desktop cards.
  *
  * Features:
  * - Uses i18next for translations of titles, descriptions, and UI texts.

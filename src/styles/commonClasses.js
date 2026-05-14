@@ -85,8 +85,8 @@ export const layoutClasses = {
  * @property {string} activeTimelineCard - Current-role card accent used in the Experience timeline.
  * @property {string} credentialIcon - Compact icon surface used by certification cards.
  * @property {string} initialAvatar - Local initials avatar used when a real portrait is not available.
- * @property {string} mediaFrame - Fixed-height framed media surface for compact card thumbnails.
- * @property {string} mediaImage - Responsive contained image style used inside framed media surfaces.
+ * @property {string} mediaFrame - Responsive 16:9 media surface for course cover thumbnails.
+ * @property {string} mediaImage - Full-bleed cover image style used inside framed media surfaces.
  * @property {string} testimonialQuote - Readable quote surface used inside testimonial cards.
  * @property {string} focusItem - Responsive focus item surface used by the home page focus list.
  */
@@ -120,9 +120,9 @@ export const surfaceClasses = {
   initialAvatar:
     "inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-blue-50 text-sm font-bold uppercase text-blue-700 ring-1 ring-blue-100 dark:bg-blue-500/10 dark:text-blue-200 dark:ring-blue-400/20",
   mediaFrame:
-    "flex h-28 items-center justify-center overflow-hidden rounded-lg border border-gray-200/70 bg-gray-50 shadow-inner dark:border-gray-700/70 dark:bg-gray-900/50 sm:h-32",
+    "aspect-[16/9] overflow-hidden rounded-lg border border-gray-200/70 bg-gray-50 shadow-inner dark:border-gray-700/70 dark:bg-gray-900/50",
   mediaImage:
-    "h-full w-full object-contain p-3 transition-transform duration-300 hover:scale-[1.02] sm:p-4",
+    "h-full w-full object-cover",
   testimonialQuote:
     "relative rounded-lg border border-gray-100/70 bg-white/60 px-3 py-3 shadow-inner dark:border-gray-700/60 dark:bg-gray-900/40",
   focusItem:
