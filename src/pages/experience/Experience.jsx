@@ -5,14 +5,13 @@ import {CardContent} from "@/components/ui/cardContent/CardContent";
 import {PageSection} from "@/components/ui/pageSection/PageSection";
 import {ExpandableText} from "@/components/ui/expandableText/ExpandableText";
 import {SeoHead} from "@/components/seoHead/SeoHead";
-import {SelectableButton} from "@/components/ui/selectableButton/SelectableButton";
-import {PageGrid} from "@/components/ui/pageGrid/PageGrid";
 import TechDisclosure from "@/components/ui/techDisclosure/TechDisclosure";
 import {getExperiences} from "@/services/portfolioService";
 import {Loading} from "@/components/loading/Loading";
 import {ErrorState} from "@/components/errorState/ErrorState";
 import clsx from "clsx";
 import {layoutClasses, surfaceClasses} from "@/styles/commonClasses";
+import {Building2, CalendarDays} from "lucide-react";
 
 /**
  * Experience route for the portfolio timeline.
@@ -20,49 +19,141 @@ import {layoutClasses, surfaceClasses} from "@/styles/commonClasses";
  * @module pages/experience/Experience
  */
 
+const YEAR_PATTERN = /\b(20\d{2}|19\d{2})\b/g;
+const PRESENT_PATTERN = /\bpresent\b/i;
+
 /**
- * Determines the experience label and type based on the selected year within a period string.
+ * Parses the year boundaries from an experience period string.
  *
- * Parses the given period string to extract start and end years, then compares with the selected year.
- * Returns an object with a localized label and a type indicating whether the year is at the start, end,
- * or the only year of the experience period.
+ * Ongoing roles use the provided current year as their end boundary so the
+ * timeline remains accurate while the portfolio is live.
  *
- * @param {string} period - The period string containing one or two years (e.g. "2019-2021" or "2020").
- * @param {string|number} year - The selected year to compare against the period.
- * @param {function} t - Translation function (e.g. from i18next) to get localized labels.
- * @returns {{label: string, type: "single" | "start" | "end"} | null}
- *          An object with the label and type if the selected year matches start/end/single year,
- *          or null if no match or invalid period.
+ * @param {string} period - Experience period such as `09/2021 - 12/2025`.
+ * @param {number} currentYear - Current four-digit year used for ongoing roles.
+ * @returns {{start: number, end: number, isOngoing: boolean} | null} Parsed period boundaries.
  */
-export const getExperienceLabel = (period, year, t) => {
-    const years = period.match(/\b(20\d{2}|19\d{2})\b/g);
-    const selected = parseInt(year, 10);
+const parseExperiencePeriod = (period, currentYear) => {
+    const years = period.match(YEAR_PATTERN)?.map((value) => parseInt(value, 10)) ?? [];
 
-    if (!years) return null;
+    if (years.length === 0) return null;
 
-    const start = parseInt(years[0], 10);
-    const end = years[1] ? parseInt(years[1], 10) : null;
+    const isOngoing = PRESENT_PATTERN.test(period);
+    const start = years[0];
+    const end = isOngoing ? Math.max(currentYear, start) : years[1] ?? start;
 
-    if (start === selected && end === selected) {
-        return {label: t("exp_label_single"), type: "single"};
+    return {
+        start: Math.min(start, end),
+        end: Math.max(start, end),
+        isOngoing
+    };
+};
+
+/**
+ * Expands a period into every calendar year covered by the experience.
+ *
+ * @param {string} period - Experience period containing one or two years.
+ * @param {number} [currentYear=new Date().getFullYear()] - Current year used for ongoing roles.
+ * @returns {string[]} Covered years in ascending order.
+ */
+export const getExperienceYears = (period, currentYear = new Date().getFullYear()) => {
+    const parsedPeriod = parseExperiencePeriod(period, currentYear);
+
+    if (!parsedPeriod) return [];
+
+    return Array.from(
+        {length: parsedPeriod.end - parsedPeriod.start + 1},
+        (_, index) => String(parsedPeriod.start + index)
+    );
+};
+
+/**
+ * Orders experience entries from the most recent role to the oldest one.
+ *
+ * Ongoing roles are treated as ending in the provided current year, so they
+ * naturally stay at the top of the portfolio timeline.
+ *
+ * @param {Array<{period: string}>} experiences - Experience entries to sort.
+ * @param {number} [currentYear=new Date().getFullYear()] - Current year used for ongoing roles.
+ * @returns {Array<object>} New array sorted by end year and then start year, descending.
+ */
+export const sortExperiencesByRecency = (experiences, currentYear = new Date().getFullYear()) => (
+    [...experiences].sort((first, second) => {
+        const firstPeriod = parseExperiencePeriod(first.period, currentYear);
+        const secondPeriod = parseExperiencePeriod(second.period, currentYear);
+
+        return (secondPeriod?.end ?? 0) - (firstPeriod?.end ?? 0)
+            || (secondPeriod?.start ?? 0) - (firstPeriod?.start ?? 0);
+    })
+);
+
+/**
+ * Builds the compact overview data shown above the Experience timeline.
+ *
+ * @param {Array<{period: string}>} experiences - Experience entries used by the page.
+ * @param {number} [currentYear=new Date().getFullYear()] - Current year used for ongoing roles.
+ * @returns {{startYear: number|null, endYear: number|null, totalEntries: number, currentExperience: object|null}}
+ *          Portfolio overview values derived from the timeline data.
+ */
+export const getExperienceOverview = (experiences, currentYear = new Date().getFullYear()) => {
+    const parsedEntries = experiences
+        .map((experience) => ({
+            experience,
+            period: parseExperiencePeriod(experience.period, currentYear)
+        }))
+        .filter(({period}) => Boolean(period));
+
+    if (parsedEntries.length === 0) {
+        return {
+            startYear: null,
+            endYear: null,
+            totalEntries: experiences.length,
+            currentExperience: null
+        };
     }
 
-    if (start === selected) {
-        return {label: t("exp_label_start"), type: "start"};
-    }
+    return {
+        startYear: Math.min(...parsedEntries.map(({period}) => period.start)),
+        endYear: Math.max(...parsedEntries.map(({period}) => period.end)),
+        totalEntries: experiences.length,
+        currentExperience: parsedEntries.find(({period}) => period.isOngoing)?.experience ?? null
+    };
+};
 
-    if (end === selected) {
-        return {label: t("exp_label_end"), type: "end"};
+/**
+ * Localizes human-readable period fragments while preserving year parsing data.
+ *
+ * @param {string} period - Raw experience period from the static dataset.
+ * @param {function} t - Translation function used for localized period words.
+ * @returns {string} Localized period label for visual rendering.
+ */
+export const formatExperiencePeriod = (period, t) => (
+    period.replace(PRESENT_PATTERN, t("experience_present"))
+);
+
+/**
+ * Returns the visible status badge for an experience entry.
+ *
+ * @param {string} period - Raw experience period from the static dataset.
+ * @param {function} t - Translation function used for localized labels.
+ * @param {number} [currentYear=new Date().getFullYear()] - Current year used for ongoing roles.
+ * @returns {{label: string, type: "ongoing"} | null} Current-role status or null for previous roles.
+ */
+export const getExperienceStatus = (period, t, currentYear = new Date().getFullYear()) => {
+    const parsedPeriod = parseExperiencePeriod(period, currentYear);
+
+    if (parsedPeriod?.isOngoing) {
+        return {label: t("exp_label_ongoing"), type: "ongoing"};
     }
 
     return null;
 };
 
 /**
- * Experience component renders a list of professional experiences filtered by selected year.
+ * Experience component renders the full professional timeline.
  *
- * It displays year buttons to filter experiences by year extracted from experience periods.
- * Each experience shows role, company, period, description, and a collapsible panel with technologies used.
+ * The page favors portfolio scanning: it shows a compact career overview,
+ * then every experience in reverse chronological order. Each entry exposes
+ * role, company, period, description, and a collapsible technology stack.
  *
  * Uses i18next for translations.
  *
@@ -71,14 +162,12 @@ export const getExperienceLabel = (period, year, t) => {
  */
 export default function Experience() {
     const {t} = useTranslation();
+    const currentYear = useMemo(() => new Date().getFullYear(), []);
 
-// --- State ---
     const [experiences, setExperiences] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [selectedYear, setSelectedYear] = useState(null);
 
-// --- Data fetching ---
     const loadExperiences = () => {
         setLoading(true);
         setError(null);
@@ -93,120 +182,175 @@ export default function Experience() {
         loadExperiences();
     }, []);
 
-// --- Derived data: list of years ---
-    const yearList = useMemo(() => {
-        const yearRegex = /\b(20\d{2}|19\d{2})\b/g;
-        const years = new Set();
-
-        experiences.forEach(exp => {
-            const match = exp.period.match(yearRegex);
-            if (match) {
-                match.forEach(y => years.add(y));
-            }
-        });
-
-        return Array.from(years).sort((a, b) => b - a);
-    }, [experiences]);
-
-// --- Auto-select latest year if none selected ---
-    useEffect(() => {
-        if (yearList.length > 0 && !selectedYear) {
-            setSelectedYear(yearList[0]);
-        }
-    }, [yearList, selectedYear]);
-
-// --- Filtered experiences by selected year ---
-    const filteredExperiences = useMemo(() => {
-        if (!selectedYear) return [];
-        return experiences.filter(exp => exp.period.includes(selectedYear));
-    }, [experiences, selectedYear]);
+    const timelineExperiences = useMemo(
+        () => sortExperiencesByRecency(experiences, currentYear),
+        [currentYear, experiences]
+    );
+    const overview = useMemo(
+        () => getExperienceOverview(experiences, currentYear),
+        [currentYear, experiences]
+    );
 
     if (loading) return <Loading/>;
     if (error) return <ErrorState message={t("error_generic")} onRetry={loadExperiences}/>;
+
+    const currentRole = overview.currentExperience
+        ? t(overview.currentExperience.role)
+        : t("experience_overview_no_current");
+    const currentCompany = overview.currentExperience?.company && overview.currentExperience.company !== "-"
+        ? overview.currentExperience.company
+        : t("experience_overview_current_caption");
+    const timelineEndLabel = overview.currentExperience
+        ? t("experience_present")
+        : overview.endYear;
 
     return (
         <>
             <SeoHead pageKey="experience" path="/experience"/>
 
             <PageSection title={t("experience_title")}>
-                {/* Years */}
-                <div>
-                    <div
-                        className={layoutClasses.horizontalFilterBar}
-                    >
-                        {yearList.map(year => (
-                            <SelectableButton
-                                key={year}
-                                label={year}
-                                isSelected={selectedYear === year}
-                                onClick={() => setSelectedYear(year)}
-                                className={`flex-shrink-0 transition-all duration-200 ${
-                                    selectedYear === year
-                                        ? "bg-blue-600 text-white shadow-md"
-                                        : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-blue-500 hover:text-white"
-                                }`}
-                            />
-                        ))}
-                    </div>
-                </div>
+                <p className={layoutClasses.sectionIntro}>
+                    {t("experience_intro")}
+                </p>
 
-                {filteredExperiences.length > 0 && (
-                    <PageGrid page={selectedYear} columns={2}>
-                        {filteredExperiences.map((exp, i) => (
-                            <Card
-                                key={i}
-                                className="relative items-start gap-4 md:flex-row"
-                            >
-                                <CardContent className="p-0">
-                                    {/* Title and main info */}
-                                    <div
-                                        className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4">
-                                        <h3 className="text-lg md:text-xl font-semibold text-gray-900 dark:text-gray-100">
-                                            {t(exp.role)}
-                                        </h3>
-
-                                        <div className="flex items-center gap-2 flex-wrap">
-                                            <p className="text-gray-600 dark:text-gray-400">{exp.company}</p>
-                                            {(() => {
-                                                const status = getExperienceLabel(exp.period, selectedYear, t);
-                                                if (!status) return null;
-
-                                                const colorMap = {
-                                                    start: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300",
-                                                    end: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300",
-                                                    single: "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300",
-                                                };
-
-                                                return (
-                                                    <span
-                                                        className={`inline-block mt-1 px-2 py-0.5 text-xs font-semibold rounded-full ${colorMap[status.type]}`}
-                                                    >
-                                                {status.label}
-                                            </span>
-                                                );
-                                            })()}
-                                        </div>
-                                    </div>
-
-                                    {/* Period */}
-                                    <p className="text-sm text-gray-500 dark:text-gray-400">{exp.period}</p>
-
-                                    {/* Description */}
-                                    {exp.description && (
-                                        <ExpandableText
-                                            value={t(exp.description)}
-                                            maxLines={4}
-                                            className={clsx(surfaceClasses.insetText, "mb-2 italic")}
-                                        />
-                                    )}
-
-                                    {/* Tech */}
-                                    <TechDisclosure techList={exp.tech} label={t("show_technologies")}/>
-
+                {experiences.length === 0 ? (
+                    <p className={surfaceClasses.insetText}>{t("experience_empty")}</p>
+                ) : (
+                    <>
+                        <div
+                            className={layoutClasses.experienceOverviewGrid}
+                            role="group"
+                            aria-label={t("experience_overview_label")}
+                        >
+                            <Card aria-label={t("experience_overview_current_label")} className={surfaceClasses.activeTimelineCard}>
+                                <CardContent className="flex h-full flex-col gap-2 p-0">
+                                    <span className={surfaceClasses.metaBadge}>
+                                        {t("experience_overview_current_label")}
+                                    </span>
+                                    <p className="text-base font-semibold leading-snug text-gray-900 dark:text-gray-100">
+                                        {currentRole}
+                                    </p>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">{currentCompany}</p>
                                 </CardContent>
                             </Card>
-                        ))}
-                    </PageGrid>
+
+                            <Card aria-label={t("experience_overview_span_label")}>
+                                <CardContent className="flex h-full flex-col gap-2 p-0">
+                                    <span className={surfaceClasses.mutedMetaBadge}>
+                                        {t("experience_overview_span_label")}
+                                    </span>
+                                    <p className="text-base font-semibold leading-snug text-gray-900 dark:text-gray-100">
+                                        {t("experience_overview_span_value", {
+                                            start: overview.startYear,
+                                            end: timelineEndLabel
+                                        })}
+                                    </p>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                                        {t("experience_overview_span_caption")}
+                                    </p>
+                                </CardContent>
+                            </Card>
+
+                            <Card aria-label={t("experience_overview_entries_label")}>
+                                <CardContent className="flex h-full flex-col gap-2 p-0">
+                                    <span className={surfaceClasses.mutedMetaBadge}>
+                                        {t("experience_overview_entries_label")}
+                                    </span>
+                                    <p className="text-base font-semibold leading-snug text-gray-900 dark:text-gray-100">
+                                        {t("experience_overview_entries_value", {count: overview.totalEntries})}
+                                    </p>
+                                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                                        {t("experience_overview_entries_caption")}
+                                    </p>
+                                </CardContent>
+                            </Card>
+                        </div>
+
+                        <p className={layoutClasses.resultSummary} aria-live="polite">
+                            {t("experience_results_summary", {
+                                count: timelineExperiences.length,
+                                start: overview.startYear,
+                                end: timelineEndLabel
+                            })}
+                        </p>
+
+                        <ol className={layoutClasses.timelineList} aria-label={t("experience_timeline_label")}>
+                            {timelineExperiences.map((exp) => {
+                                const role = t(exp.role);
+                                const titleId = `experience-${exp.role.replace(/\W+/g, "-")}`;
+                                const status = getExperienceStatus(exp.period, t, currentYear);
+                                const isOngoing = status?.type === "ongoing";
+
+                                return (
+                                    <li key={exp.role} className={layoutClasses.timelineItem}>
+                                        <span
+                                            aria-hidden="true"
+                                            className={clsx(
+                                                surfaceClasses.timelineMarker,
+                                                isOngoing && surfaceClasses.timelineMarkerActive
+                                            )}
+                                        />
+
+                                        <Card
+                                            data-testid="experience-card"
+                                            aria-labelledby={titleId}
+                                            className={clsx("h-full", isOngoing && surfaceClasses.activeTimelineCard)}
+                                        >
+                                            <CardContent className="flex h-full flex-col gap-4 p-0">
+                                                <header className="flex flex-col gap-3 border-b border-gray-200/60 pb-3 dark:border-gray-700/60">
+                                                    <div className="flex flex-wrap items-center gap-2">
+                                                        {status && (
+                                                            <span
+                                                                className={clsx(
+                                                                    surfaceClasses.statusBadgeBase,
+                                                                    surfaceClasses.statusBadgeOngoing
+                                                                )}
+                                                            >
+                                                                {status.label}
+                                                            </span>
+                                                        )}
+
+                                                        <span className={clsx(surfaceClasses.mutedMetaBadge, "gap-1.5")}>
+                                                            <CalendarDays className="h-3.5 w-3.5" aria-hidden="true"/>
+                                                            <span>{formatExperiencePeriod(exp.period, t)}</span>
+                                                        </span>
+                                                    </div>
+
+                                                    <div className="flex flex-col gap-2">
+                                                        <h2
+                                                            id={titleId}
+                                                            className="text-lg font-semibold leading-snug text-gray-900 dark:text-gray-100 md:text-xl"
+                                                        >
+                                                            {role}
+                                                        </h2>
+
+                                                        {exp.company && exp.company !== "-" && (
+                                                            <p className="flex items-center gap-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                                                                <Building2 className="h-4 w-4 shrink-0" aria-hidden="true"/>
+                                                                <span>{exp.company}</span>
+                                                            </p>
+                                                        )}
+                                                    </div>
+                                                </header>
+
+                                                {exp.description && (
+                                                    <ExpandableText
+                                                        value={t(exp.description)}
+                                                        maxLines={isOngoing ? 6 : 4}
+                                                        className="text-left text-sm leading-relaxed text-gray-700 dark:text-gray-300"
+                                                    />
+                                                )}
+
+                                                <div className="mt-auto">
+                                                    <TechDisclosure techList={exp.tech} label={t("show_technologies")}/>
+                                                </div>
+                                            </CardContent>
+                                        </Card>
+                                    </li>
+                                );
+                            })}
+                        </ol>
+                    </>
                 )}
             </PageSection>
         </>

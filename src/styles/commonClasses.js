@@ -18,9 +18,13 @@
  * @property {string} pageGrid - Compact responsive spacing for route-level card grids.
  * @property {string} mobilePagination - Sticky mobile pagination wrapper that avoids extra vertical margins.
  * @property {string} desktopPagination - Desktop pagination wrapper aligned with section spacing.
+ * @property {string} sectionIntro - Readable introductory copy used below route headings.
  * @property {string} resultSummary - Compact live result summary used near filters and paginated grids.
  * @property {string} horizontalFilterBar - Horizontal filter controls with compact scrolling on small screens.
  * @property {string} sidebarFilterBar - Sidebar filter controls that switch from horizontal scrolling to a vertical desktop rail.
+ * @property {string} experienceOverviewGrid - Responsive grid used for the Experience page overview tiles.
+ * @property {string} timelineList - Semantic vertical timeline list with a decorative progress rail.
+ * @property {string} timelineItem - Timeline item wrapper that reserves space for the rail marker.
  * @property {string} focusList - Responsive list layout for compact portfolio focus items.
  * @property {string} focusMarker - Decorative marker aligned with the first text line of portfolio focus items.
  * @property {string} tradingChartSection - Portfolio trading chart wrapper.
@@ -42,11 +46,17 @@ export const layoutClasses = {
   mobilePagination:
     "md:hidden sticky top-0 z-20 -mx-4 border-b border-gray-200 bg-white/95 px-4 py-2 shadow-sm backdrop-blur-md dark:border-gray-700 dark:bg-gray-900/90 sm:-mx-6 sm:px-6",
   desktopPagination: "hidden md:flex justify-center",
+  sectionIntro: "max-w-3xl text-base leading-7 text-gray-700 dark:text-gray-300",
   resultSummary: "text-sm font-medium text-gray-600 dark:text-gray-300",
   horizontalFilterBar:
     "flex flex-row gap-2 overflow-x-auto pb-2 scrollbar-hide sm:flex-wrap sm:justify-center sm:overflow-visible sm:pb-0",
   sidebarFilterBar:
     "flex flex-row gap-2 overflow-x-auto snap-x pb-2 scrollbar-hide md:flex-col md:overflow-visible md:snap-none md:pb-0",
+  experienceOverviewGrid:
+    "grid gap-3 sm:grid-cols-3",
+  timelineList:
+    "relative flex flex-col gap-4 before:absolute before:bottom-4 before:left-3 before:top-4 before:w-px before:bg-gray-200 dark:before:bg-gray-700 sm:before:left-4",
+  timelineItem: "relative pl-8 sm:pl-10",
   focusList:
     "grid grid-cols-1 gap-2 text-left sm:grid-cols-3 md:flex md:flex-wrap md:justify-start",
   focusMarker: "mt-[0.42em] h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500 dark:bg-blue-300 md:mt-0",
@@ -66,6 +76,11 @@ export const layoutClasses = {
  * @property {string} insetText - Compact inset surface for descriptive text inside cards.
  * @property {string} metaBadge - Compact badge for card metadata such as category, period, or publication state.
  * @property {string} mutedMetaBadge - Compact neutral badge for secondary card metadata.
+ * @property {string} statusBadgeBase - Base status badge for current-role timeline states.
+ * @property {string} statusBadgeOngoing - Current-role timeline badge color.
+ * @property {string} timelineMarker - Decorative marker used by the Experience page timeline.
+ * @property {string} timelineMarkerActive - Highlighted marker for the current role in the Experience timeline.
+ * @property {string} activeTimelineCard - Current-role card accent used in the Experience timeline.
  * @property {string} initialAvatar - Local initials avatar used when a real portrait is not available.
  * @property {string} mediaFrame - Framed media surface for card thumbnails and covers.
  * @property {string} mediaImage - Responsive image style used inside framed media surfaces.
@@ -87,6 +102,16 @@ export const surfaceClasses = {
     "inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700 dark:bg-blue-900/30 dark:text-blue-300",
   mutedMetaBadge:
     "inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700 dark:bg-gray-700 dark:text-gray-200",
+  statusBadgeBase:
+    "inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold",
+  statusBadgeOngoing:
+    "bg-sky-50 text-sky-700 dark:bg-sky-500/15 dark:text-sky-200",
+  timelineMarker:
+    "absolute left-1.5 top-5 h-3 w-3 rounded-full border-2 border-white bg-gray-300 shadow-sm dark:border-gray-900 dark:bg-gray-600 sm:left-2.5",
+  timelineMarkerActive:
+    "bg-sky-500 ring-4 ring-sky-100 dark:bg-sky-300 dark:ring-sky-400/20",
+  activeTimelineCard:
+    "border-sky-200/80 bg-sky-50/70 dark:border-sky-400/30 dark:bg-sky-500/10",
   initialAvatar:
     "inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-blue-50 text-sm font-bold uppercase text-blue-700 ring-1 ring-blue-100 dark:bg-blue-500/10 dark:text-blue-200 dark:ring-blue-400/20",
   mediaFrame:
