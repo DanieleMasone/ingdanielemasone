@@ -42,11 +42,6 @@ const getVisibleRange = (page, totalItems, itemsPerPage) => {
  * The page starts with a concise introduction and renders the 16:9 cover art
  * full-bleed so thumbnails stay readable across mobile and desktop cards.
  *
- * Features:
- * - Uses i18next for translations of titles, descriptions, and UI texts.
- * - Shows 6 courses per page with next/previous pagination buttons.
- * - Each course is displayed inside a Card with expandable technologies section and explicit external link.
- *
  * @component
  * @module pages/courses/Courses
  * @returns {JSX.Element} The rendered Courses page section.

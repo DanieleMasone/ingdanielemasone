@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import {interactiveClasses} from "../../../styles/commonClasses";
+import {interactiveClasses} from "@/styles/commonClasses";
 
 /**
  * Styled external link rendered as a call-to-action button.

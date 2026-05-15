@@ -1,6 +1,6 @@
 import React from "react";
 import clsx from "clsx";
-import {interactiveClasses, surfaceClasses} from "../../../styles/commonClasses";
+import {interactiveClasses, surfaceClasses} from "@/styles/commonClasses";
 
 /**
  * Reusable card surface for portfolio content blocks.

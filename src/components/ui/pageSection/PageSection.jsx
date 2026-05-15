@@ -1,6 +1,6 @@
 import React, {useId} from "react";
 import clsx from "clsx";
-import {layoutClasses} from "../../../styles/commonClasses";
+import {layoutClasses} from "@/styles/commonClasses";
 
 /**
  * PageSection renders a titled content section for route-level portfolio pages.

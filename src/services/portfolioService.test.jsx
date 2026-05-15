@@ -8,7 +8,6 @@ import {
     getTradingPerformance,
     getLinks
 } from "./portfolioService";
-
 import {vi, describe, it, expect, beforeEach} from "vitest";
 
 describe("portfolio.service", () => {

@@ -239,7 +239,8 @@ export default function Experience() {
                                             className={clsx("h-full", isOngoing && surfaceClasses.activeTimelineCard)}
                                         >
                                             <CardContent className="flex h-full flex-col gap-4 p-0">
-                                                <header className="flex flex-col gap-3 border-b border-gray-200/60 pb-3 dark:border-gray-700/60">
+                                                <header
+                                                    className="flex flex-col gap-3 border-b border-gray-200/60 pb-3 dark:border-gray-700/60">
                                                     <div className="flex flex-wrap items-center gap-2">
                                                         {status && (
                                                             <span
@@ -252,7 +253,8 @@ export default function Experience() {
                                                             </span>
                                                         )}
 
-                                                        <span className={clsx(surfaceClasses.mutedMetaBadge, "gap-1.5")}>
+                                                        <span
+                                                            className={clsx(surfaceClasses.mutedMetaBadge, "gap-1.5")}>
                                                             <CalendarDays className="h-3.5 w-3.5" aria-hidden="true"/>
                                                             <span>{formatExperiencePeriod(exp.period, t)}</span>
                                                         </span>
@@ -268,7 +270,8 @@ export default function Experience() {
 
                                                         {exp.company && exp.company !== "-" && (
                                                             <p className="flex items-center gap-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                                                                <Building2 className="h-4 w-4 shrink-0" aria-hidden="true"/>
+                                                                <Building2 className="h-4 w-4 shrink-0"
+                                                                           aria-hidden="true"/>
                                                                 <span>{exp.company}</span>
                                                             </p>
                                                         )}

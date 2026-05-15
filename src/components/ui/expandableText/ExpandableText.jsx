@@ -56,7 +56,8 @@ export function ExpandableText({value = "", maxLines = 3, className = ""}) {
                 {value}
 
                 {!expanded && showButton && (
-                    <div className="absolute bottom-0 left-0 w-full h-6 bg-gradient-to-t from-white dark:from-slate-900 pointer-events-none"/>
+                    <div
+                        className="absolute bottom-0 left-0 w-full h-6 bg-gradient-to-t from-white dark:from-slate-900 pointer-events-none"/>
                 )}
             </div>
 

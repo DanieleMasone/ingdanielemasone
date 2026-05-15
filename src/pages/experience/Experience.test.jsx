@@ -126,7 +126,8 @@ describe("Experience component", () => {
 
     test("shows loading initially", () => {
         vi.spyOn(service, "getExperiences")
-            .mockReturnValueOnce(new Promise(() => {}));
+            .mockReturnValueOnce(new Promise(() => {
+            }));
 
         renderPage();
 

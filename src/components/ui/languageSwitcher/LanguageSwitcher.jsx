@@ -3,7 +3,7 @@ import {useTranslation} from "react-i18next";
 import {Check, ChevronDown} from "lucide-react";
 import {AnimatePresence, motion} from "framer-motion";
 import clsx from "clsx";
-import {interactiveClasses, layoutClasses} from "../../../styles/commonClasses";
+import {interactiveClasses, layoutClasses} from "@/styles/commonClasses";
 
 const flags = {
     en: "https://flagcdn.com/w20/gb.png",
@@ -124,12 +124,14 @@ export function LanguageSwitcher() {
                                 >
                                     <span
                                         className={`inline-block w-1 h-6 rounded-r-md mr-3 ${isActive ? "bg-blue-600 dark:bg-blue-400" : "bg-transparent"}`}/>
-                                    <img src={flagUrl} alt="" aria-hidden="true" className="w-5 h-auto rounded-sm mr-3"/>
+                                    <img src={flagUrl} alt="" aria-hidden="true"
+                                         className="w-5 h-auto rounded-sm mr-3"/>
                                     <span className="flex-1 text-left">{languageLabels[lang]}</span>
                                     {isActive && (
                                         <>
                                             <Check className="h-4 w-4 shrink-0" aria-hidden="true"/>
-                                            <span className={layoutClasses.screenReaderOnly}>{currentLanguageText}</span>
+                                            <span
+                                                className={layoutClasses.screenReaderOnly}>{currentLanguageText}</span>
                                         </>
                                     )}
                                 </button>

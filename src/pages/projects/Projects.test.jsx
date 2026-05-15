@@ -122,7 +122,8 @@ describe("Projects Component", () => {
 
     test("shows loading initially", () => {
         vi.spyOn(service, "getProjects")
-            .mockReturnValueOnce(new Promise(() => {}));
+            .mockReturnValueOnce(new Promise(() => {
+            }));
 
         renderProjects();
 

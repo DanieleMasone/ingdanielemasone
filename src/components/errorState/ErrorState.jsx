@@ -2,16 +2,10 @@ import {useTranslation} from "react-i18next";
 import React from "react";
 import {CircleAlert} from "lucide-react";
 import clsx from "clsx";
-import {interactiveClasses} from "../../styles/commonClasses";
+import {interactiveClasses} from "@/styles/commonClasses";
 
 /**
  * Full-screen alert state for failed portfolio data loading.
- *
- * Features:
- * - Centered error layout with icon, title and message
- * - Localized texts via react-i18next
- * - Optional retry button rendered only when a callback is provided
- * - Light/dark theme support through Tailwind classes
  *
  * Intended usage:
  * - As a fallback UI when async data loading fails

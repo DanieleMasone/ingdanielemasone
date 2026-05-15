@@ -7,7 +7,7 @@ import {ChevronDown, Menu, X} from 'lucide-react';
 import {Disclosure} from '@headlessui/react';
 import {AnimatePresence, motion} from "framer-motion";
 import clsx from "clsx";
-import {interactiveClasses} from "../../styles/commonClasses";
+import {interactiveClasses} from "@/styles/commonClasses";
 
 /**
  * Portfolio header with primary navigation, language switcher, and theme toggle.
@@ -180,7 +180,8 @@ export function Header() {
                     aria-controls="mobile-navigation"
                     type="button"
                 >
-                    {menuOpen ? <X className="w-6 h-6" aria-hidden="true"/> : <Menu className="w-6 h-6" aria-hidden="true"/>}
+                    {menuOpen ? <X className="w-6 h-6" aria-hidden="true"/> :
+                        <Menu className="w-6 h-6" aria-hidden="true"/>}
                 </button>
             </div>
 

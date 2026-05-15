@@ -1,7 +1,7 @@
 import {useTranslation} from "react-i18next";
 import {ChevronLeft, ChevronRight} from "lucide-react";
 import clsx from "clsx";
-import {interactiveClasses} from "../../../styles/commonClasses";
+import {interactiveClasses} from "@/styles/commonClasses";
 
 /**
  * Reusable pagination controls for paged portfolio sections.
@@ -19,11 +19,11 @@ import {interactiveClasses} from "../../../styles/commonClasses";
  * @returns {JSX.Element|null} Pagination navigation, or null when only one page exists.
  */
 export function Pagination({
-                                       page,
-                                       totalPages,
-                                       onPageChange,
-                                       className = "",
-                                   }) {
+                               page,
+                               totalPages,
+                               onPageChange,
+                               className = "",
+                           }) {
     const {t} = useTranslation();
 
     if (totalPages <= 1) return null;

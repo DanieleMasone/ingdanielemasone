@@ -238,22 +238,29 @@ export default function Projects() {
                                                 className={clsx("h-full min-w-0", currentProject && surfaceClasses.activeTimelineCard)}
                                             >
                                                 <CardContent className="flex h-full min-w-0 flex-col gap-4 p-0">
-                                                    <header className="flex flex-col gap-3 border-b border-gray-200/60 pb-3 dark:border-gray-700/60">
+                                                    <header
+                                                        className="flex flex-col gap-3 border-b border-gray-200/60 pb-3 dark:border-gray-700/60">
                                                         <div className="flex min-w-0 flex-wrap items-center gap-2">
                                                             {currentProject && (
-                                                                <span className={clsx(surfaceClasses.statusBadgeBase, surfaceClasses.statusBadgeOngoing)}>
+                                                                <span
+                                                                    className={clsx(surfaceClasses.statusBadgeBase, surfaceClasses.statusBadgeOngoing)}>
                                                                     {t("projects_page.current")}
                                                                 </span>
                                                             )}
 
-                                                            <span className={clsx(surfaceClasses.metaBadge, "min-w-0 max-w-full gap-1.5")}>
+                                                            <span
+                                                                className={clsx(surfaceClasses.metaBadge, "min-w-0 max-w-full gap-1.5")}>
                                                                 <Building2 className="h-3.5 w-3.5" aria-hidden="true"/>
-                                                                <span className="min-w-0 break-words">{project.company}</span>
+                                                                <span
+                                                                    className="min-w-0 break-words">{project.company}</span>
                                                             </span>
 
-                                                            <span className={clsx(surfaceClasses.mutedMetaBadge, "min-w-0 max-w-full gap-1.5")}>
-                                                                <CalendarDays className="h-3.5 w-3.5" aria-hidden="true"/>
-                                                                <span className="min-w-0 break-words">{formatProjectPeriod(project.period, t)}</span>
+                                                            <span
+                                                                className={clsx(surfaceClasses.mutedMetaBadge, "min-w-0 max-w-full gap-1.5")}>
+                                                                <CalendarDays className="h-3.5 w-3.5"
+                                                                              aria-hidden="true"/>
+                                                                <span
+                                                                    className="min-w-0 break-words">{formatProjectPeriod(project.period, t)}</span>
                                                             </span>
                                                         </div>
 
@@ -274,7 +281,8 @@ export default function Projects() {
                                                     )}
 
                                                     <div className="mt-auto">
-                                                        <TechDisclosure techList={project.tech} label={t("show_technologies")}/>
+                                                        <TechDisclosure techList={project.tech}
+                                                                        label={t("show_technologies")}/>
                                                     </div>
                                                 </CardContent>
                                             </Card>

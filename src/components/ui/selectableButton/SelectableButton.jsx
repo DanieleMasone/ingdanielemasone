@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import {interactiveClasses} from "../../../styles/commonClasses";
+import {interactiveClasses} from "@/styles/commonClasses";
 
 /**
  * Reusable filter button that exposes its selected state to assistive tech.
@@ -24,7 +24,7 @@ export function SelectableButton({
                                      onClick,
                                      className = "",
                                      disabled = false
-}) {
+                                 }) {
     return (
         <button
             type="button"

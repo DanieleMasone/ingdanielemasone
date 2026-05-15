@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Moon, Sun} from 'lucide-react';
 import {useTranslation} from "react-i18next";
 import clsx from "clsx";
-import {interactiveClasses} from "../../../styles/commonClasses";
+import {interactiveClasses} from "@/styles/commonClasses";
 
 const THEME_STORAGE_KEY = "theme";
 

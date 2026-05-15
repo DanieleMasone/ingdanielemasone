@@ -112,7 +112,8 @@ describe("Certifications component", () => {
 
     test("shows loading initially", () => {
         vi.spyOn(service, "getCertifications")
-            .mockReturnValueOnce(new Promise(() => {}));
+            .mockReturnValueOnce(new Promise(() => {
+            }));
 
         renderPage();
 

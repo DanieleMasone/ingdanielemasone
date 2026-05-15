@@ -5,9 +5,9 @@ import {vi} from "vitest";
 
 // Mock framer-motion
 vi.mock("framer-motion", () => ({
-    AnimatePresence: ({ children }) => <>{children}</>,
+    AnimatePresence: ({children}) => <>{children}</>,
     motion: {
-        div: React.forwardRef(({ children, layout, initial, animate, exit, transition, ...rest }, ref) => (
+        div: React.forwardRef(({children, layout, initial, animate, exit, transition, ...rest}, ref) => (
             <div ref={ref} {...rest}>
                 {children}
             </div>
@@ -41,7 +41,7 @@ describe("PageGrid component", () => {
     });
 
     test("applies default layout classes", () => {
-        const { container } = render(
+        const {container} = render(
             <PageGrid page={1}>
                 <div>Item</div>
             </PageGrid>
@@ -58,7 +58,7 @@ describe("PageGrid component", () => {
     });
 
     test("applies custom className to wrapper", () => {
-        const { container } = render(
+        const {container} = render(
             <PageGrid page={1} className="custom-class">
                 <div>Item</div>
             </PageGrid>
@@ -68,7 +68,7 @@ describe("PageGrid component", () => {
     });
 
     test("spreads extra props on wrapper element", () => {
-        const { container } = render(
+        const {container} = render(
             <PageGrid page={1} data-testid="pagegrid-wrapper">
                 <div>Item</div>
             </PageGrid>

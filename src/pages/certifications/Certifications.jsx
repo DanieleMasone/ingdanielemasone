@@ -153,14 +153,16 @@ export default function Certifications() {
                                                     </h2>
 
                                                     <div className="flex min-w-0 flex-wrap gap-2">
-                                                        <span className={clsx(surfaceClasses.metaBadge, "min-w-0 max-w-full gap-1.5")}>
+                                                        <span
+                                                            className={clsx(surfaceClasses.metaBadge, "min-w-0 max-w-full gap-1.5")}>
                                                             <Building2 className="h-3.5 w-3.5" aria-hidden="true"/>
                                                             <span className="min-w-0 break-words">
                                                                 {t("certifications_page.issuer")}: {cert.issuer}
                                                             </span>
                                                         </span>
 
-                                                        <span className={clsx(surfaceClasses.mutedMetaBadge, "min-w-0 max-w-full gap-1.5")}>
+                                                        <span
+                                                            className={clsx(surfaceClasses.mutedMetaBadge, "min-w-0 max-w-full gap-1.5")}>
                                                             <CalendarDays className="h-3.5 w-3.5" aria-hidden="true"/>
                                                             <span className="min-w-0 break-words">
                                                                 {t("certifications_page.date")}: {cert.date}

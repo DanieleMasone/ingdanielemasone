@@ -1,7 +1,7 @@
 import {Disclosure} from "@headlessui/react";
 import {ChevronDown} from "lucide-react";
 import clsx from "clsx";
-import {interactiveClasses} from "../../../styles/commonClasses";
+import {interactiveClasses} from "@/styles/commonClasses";
 
 /**
  * Collapsible technology list used by experience and project cards.

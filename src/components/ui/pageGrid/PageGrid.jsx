@@ -1,6 +1,6 @@
 import {AnimatePresence, motion} from "framer-motion";
 import clsx from "clsx";
-import {layoutClasses} from "../../../styles/commonClasses";
+import {layoutClasses} from "@/styles/commonClasses";
 
 const COLS = {
     1: "grid-cols-1",
