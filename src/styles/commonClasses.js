@@ -120,9 +120,9 @@ export const surfaceClasses = {
   initialAvatar:
       "inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-blue-50 text-sm font-bold uppercase text-blue-700 ring-1 ring-blue-100 dark:bg-blue-500/10 dark:text-blue-200 dark:ring-blue-400/20",
   mediaFrame:
-      "aspect-[16/9] overflow-hidden rounded-lg border border-gray-200/70 bg-gray-50 shadow-inner dark:border-gray-700/70 dark:bg-gray-900/50",
+      "h-48 overflow-hidden rounded-lg border border-gray-200/70 bg-black shadow-inner dark:border-gray-700/70",
   mediaImage:
-      "h-full w-full object-cover",
+      "h-full w-full object-contain p-2",
   testimonialQuote:
       "relative rounded-lg border border-gray-100/70 bg-white/60 px-3 py-3 shadow-inner dark:border-gray-700/60 dark:bg-gray-900/40",
   focusItem:

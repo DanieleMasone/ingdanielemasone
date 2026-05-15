@@ -103,7 +103,7 @@ describe('Courses component', () => {
         expect(await screen.findAllByTestId("course-card")).toHaveLength(6);
     });
 
-    test("renders course cover images in a full-bleed 16:9 media frame", async () => {
+    test("renders course cover images inside a fixed-height media frame", async () => {
         vi.spyOn(service, "getCourses").mockResolvedValue(mockCourses);
 
         const {container} = renderPage();
@@ -113,10 +113,8 @@ describe('Courses component', () => {
         const image = container.querySelector("img");
         const frame = image.parentElement;
 
-        expect(frame).toHaveClass("aspect-[16/9]", "overflow-hidden");
-        expect(frame).not.toHaveClass("h-28", "sm:h-32");
-        expect(image).toHaveClass("h-full", "w-full", "object-cover");
-        expect(image).not.toHaveClass("object-contain", "p-3", "sm:p-4");
+        expect(frame).toHaveClass("h-48", "overflow-hidden", "bg-black");
+        expect(image).toHaveClass("h-full", "w-full", "object-contain", "p-2");
     });
 
     test("renders a live result summary", async () => {
