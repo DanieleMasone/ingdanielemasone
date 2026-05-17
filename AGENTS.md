@@ -13,16 +13,17 @@ The site is a professional showcase, so every change must preserve:
 - accessibility for keyboard and assistive technologies;
 - SEO compatibility for a static GitHub Pages deployment;
 - localized content across all supported languages;
-- test coverage and generated documentation.
+- test coverage and generated documentation;
+- clean, production-quality code.
 
 ## Stack
 
 - React 19
-- Vite
-- React Router
+- Vite 8
+- React Router 7
 - Tailwind CSS
-- i18next
-- Vitest
+- i18next / react-i18next
+- Vitest / Testing Library
 - JSDoc static documentation
 - GitHub Pages static hosting
 
@@ -46,10 +47,17 @@ Before considering any task complete, always evaluate and apply, when needed:
 
 4. Final Verification
    - Run the appropriate final checks before finishing.
+   - For local Windows development, this repository may also use:
+   
+   	 ```powershell
+     & .\.tools\node-v22.12.0-win-x64\npm.cmd run build:all
+     ```
+	 
    - For normal code/UI changes, prefer:
 
      ```powershell
-     & .\.tools\node-v22.12.0-win-x64\npm.cmd run build:all
+     npm test -- --run
+     npm run build:all
      ```
 
    - For narrow changes, also run the relevant targeted Vitest file first.
@@ -63,7 +71,7 @@ Before considering any task complete, always evaluate and apply, when needed:
 - Keep route-level pages coherent with the existing portfolio structure.
 - Keep data access through the existing mock service pattern instead of hardcoding fetch-like data directly in pages.
 - Preserve GitHub Pages compatibility, including the `/ingdanielemasone/` base path.
-- Keep translations aligned across all currently supported languages.
+- Keep translations aligned across all currently supported languages (Italian, English, French, German, Spanish).
 - Do not introduce visible instructional text inside the portfolio UI unless it improves the real user experience.
 - Treat this repo as a public professional showcase: concise copy, polished layout, accessible controls, and no unfinished surfaces.
 
