@@ -31,6 +31,7 @@
  * @property {string} tradingChartSection - Portfolio trading chart wrapper.
  * @property {string} tradingChartCanvas - Responsive height wrapper for the trading chart canvas.
  * @property {string} tradingViewToggleGroup - Responsive segmented button group for the trading chart view switcher.
+ * @property {string} courseActionGroup - Responsive action layout for course purchase and detail links.
  * @property {string} screenReaderOnly - Visually hidden content that remains available to assistive technologies.
  */
 
@@ -66,7 +67,9 @@ export const layoutClasses = {
       "mx-auto flex max-w-6xl flex-col gap-6 rounded-xl bg-white px-4 py-6 shadow-lg dark:bg-gray-900 sm:px-6",
   tradingChartCanvas: "h-[300px] w-full sm:h-[500px] md:h-[700px]",
   tradingViewToggleGroup:
-      "flex w-full flex-col items-stretch gap-2 sm:w-auto sm:flex-row sm:items-center sm:justify-center",
+    "flex w-full flex-col items-stretch gap-2 sm:w-auto sm:flex-row sm:items-center sm:justify-center",
+  courseActionGroup:
+    "grid gap-2 sm:grid-cols-2",
   screenReaderOnly: "sr-only",
 };
 
@@ -143,6 +146,7 @@ export const surfaceClasses = {
  * @property {string} linkButtonGreen - Green CTA theme used for primary external links.
  * @property {string} linkButtonBlue - Blue CTA theme used for secondary external links.
  * @property {string} resourceLink - Compact external resource link used inside project cards.
+ * @property {string} coursePrimaryLink - Primary external course purchase link.
  * @property {string} iconLink - Square icon-only link used for compact profile actions.
  * @property {string} toolbarButton - Compact header toolbar button used by language and theme controls.
  * @property {string} toolbarIconButton - Square icon-only header toolbar button with a stable hit target.
@@ -177,9 +181,11 @@ export const interactiveClasses = {
   linkButtonBlue:
       "bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 focus-visible:ring-blue-400 dark:focus-visible:ring-blue-300",
   resourceLink:
-      "inline-flex min-h-10 items-center justify-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-semibold text-gray-800 transition-colors hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800",
+    "inline-flex min-h-10 items-center justify-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-semibold text-gray-800 transition-colors hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800",
+  coursePrimaryLink:
+    "inline-flex min-h-10 w-full items-center justify-center gap-2 rounded-md bg-emerald-600 px-3 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-emerald-700 dark:bg-emerald-500 dark:text-white dark:hover:bg-emerald-600",
   iconLink:
-      "inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-700 shadow-sm transition-colors hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800",
+    "inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-700 shadow-sm transition-colors hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800",
   toolbarButton:
       "inline-flex min-h-10 items-center rounded-md border border-gray-200/70 bg-gray-100/80 text-sm font-medium text-gray-900 shadow-sm backdrop-blur-sm transition-colors hover:bg-gray-200/80 dark:border-gray-700/70 dark:bg-gray-700/70 dark:text-gray-100 dark:hover:bg-gray-600/60",
   toolbarIconButton:

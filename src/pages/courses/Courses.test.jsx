@@ -13,6 +13,7 @@ vi.mock('react-i18next', () => ({
                 "courses_page.description": "Practical Udemy courses for software development skills.",
                 "courses_page.results_summary": `Showing ${options.start}-${options.end} of ${options.total} courses`,
                 "courses_page.udemy_link": "View on Udemy",
+                "courses_page.buy_link": "Buy",
                 "courses_page.git.title": "Git Course",
                 "courses_page.git.description": "Learn Git basics and advanced usage.",
                 "courses_page.git.duration": "3h 20m",
@@ -52,6 +53,7 @@ const mockCourses = Array.from({length: 10}).map((_, i) => ({
     durationKey: `dur_${i}`,
     tech: "x",
     link: "https://test.com",
+    payLink: i % 2 === 0 ? `https://pay.test/${i}` : undefined,
     image: "img.png"
 }));
 
@@ -138,16 +140,24 @@ describe('Courses component', () => {
         expect(screen.getByText(/dur_0/i)).toBeInTheDocument();
     });
 
-    test("renders explicit Udemy links", async () => {
+    test("renders explicit Udemy links and direct purchase links when available", async () => {
         vi.spyOn(service, "getCourses").mockResolvedValue(mockCourses);
 
         renderPage();
 
         await screen.findByText(/course_0/i);
 
-        const links = screen.getAllByRole("link", {name: /view on udemy/i});
-        expect(links).toHaveLength(6);
-        links.forEach(link => {
+        const udemyLinks = screen.getAllByRole("link", {name: /view on udemy/i});
+        expect(udemyLinks).toHaveLength(6);
+        udemyLinks.forEach(link => {
+            expect(link).toHaveAttribute("href");
+            expect(link).toHaveAttribute("target", "_blank");
+            expect(link).toHaveAttribute("rel", "noopener noreferrer");
+        });
+
+        const buyLinks = screen.getAllByRole("link", {name: /buy/i});
+        expect(buyLinks).toHaveLength(3);
+        buyLinks.forEach(link => {
             expect(link).toHaveAttribute("href");
             expect(link).toHaveAttribute("target", "_blank");
             expect(link).toHaveAttribute("rel", "noopener noreferrer");
@@ -155,6 +165,10 @@ describe('Courses component', () => {
 
         expect(screen.getByRole("link", {name: "View on Udemy - course_0"}))
             .toHaveAttribute("href", "https://test.com");
+        expect(screen.getByRole("link", {name: "Buy - course_0"}))
+            .toHaveAttribute("href", "https://pay.test/0");
+        expect(screen.queryByRole("link", {name: "Buy - course_1"}))
+            .not.toBeInTheDocument();
     });
 
     test("next button advances page", async () => {

@@ -122,6 +122,31 @@ describe('<SeoHead />', () => {
         });
     });
 
+    test('removes static SEO fallback tags after route metadata is mounted', async () => {
+        document.head.innerHTML = `
+            <meta name="description" data-static-seo="true" content="Static home description">
+            <link rel="canonical" data-static-seo="true" href="https://danielemasone.github.io/ingdanielemasone/">
+            <meta property="og:url" data-static-seo="true" content="https://danielemasone.github.io/ingdanielemasone/">
+        `;
+
+        renderSeo('projects', '/projects');
+
+        await waitFor(() => {
+            expect(document.querySelectorAll('[data-static-seo="true"]')).toHaveLength(0);
+        });
+
+        expect(document.querySelectorAll('meta[name="description"]')).toHaveLength(1);
+        expect(document.querySelector('meta[name="description"]')).toHaveAttribute(
+            'content',
+            'Discover software projects and case studies by Daniele Masone.'
+        );
+        expect(document.querySelectorAll('link[rel="canonical"]')).toHaveLength(1);
+        expect(document.querySelector('link[rel="canonical"]')).toHaveAttribute(
+            'href',
+            'https://danielemasone.github.io/ingdanielemasone/projects/'
+        );
+    });
+
     test('falls back to key name when translation is missing', async () => {
         renderSeo('unknown', '/unknown');
 

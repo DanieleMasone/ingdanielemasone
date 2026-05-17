@@ -14,6 +14,7 @@ const seoConfigPath = path.join(rootDir, "src", "config", "seo.json");
 const translationsPath = path.join(rootDir, "src", "locales", "it", "translation.json");
 const seoStart = "<!-- SEO_START -->";
 const seoEnd = "<!-- SEO_END -->";
+const staticSeoAttribute = 'data-static-seo="true"';
 
 /**
  * Reads and parses a UTF-8 JSON file.
@@ -114,6 +115,9 @@ const buildStructuredData = ({config, title, description, url}) => ({
 /**
  * Builds the full SEO head block for a static route.
  *
+ * Generated tags are marked as static fallbacks so SeoHead can remove them at
+ * runtime before writing the active route metadata set for the SPA.
+ *
  * @param {{config: object, route: object, translations: object}} params - SEO config, route config, and Italian translations.
  * @returns {string} HTML fragment that replaces the SEO marker block in the Vite template.
  */
@@ -125,31 +129,31 @@ export const buildSeoBlock = ({config, route, translations}) => {
     const structuredData = buildStructuredData({config, title, description, url});
 
     return [
-        `    <title>${escapeHtml(title)}</title>`,
-        `    <meta name="description" content="${escapeHtml(description)}"/>`,
-        `    <meta name="author" content="${escapeHtml(config.author)}"/>`,
-        `    <meta name="keywords" content="${escapeHtml(config.keywords)}"/>`,
-        `    <meta name="robots" content="${escapeHtml(route.robots || "index, follow")}"/>`,
-        `    <link rel="canonical" href="${escapeHtml(url)}"/>`,
-        `    <meta property="og:title" content="${escapeHtml(title)}"/>`,
-        `    <meta property="og:description" content="${escapeHtml(description)}"/>`,
-        `    <meta property="og:type" content="website"/>`,
-        `    <meta property="og:url" content="${escapeHtml(url)}"/>`,
-        `    <meta property="og:image" content="${escapeHtml(config.image.url)}"/>`,
-        `    <meta property="og:image:secure_url" content="${escapeHtml(config.image.url)}"/>`,
-        `    <meta property="og:image:type" content="${escapeHtml(config.image.type)}"/>`,
-        `    <meta property="og:image:alt" content="${escapeHtml(config.image.alt)}"/>`,
-        `    <meta property="og:image:width" content="${escapeHtml(config.image.width)}"/>`,
-        `    <meta property="og:image:height" content="${escapeHtml(config.image.height)}"/>`,
-        `    <meta property="og:site_name" content="${escapeHtml(config.siteName)}"/>`,
-        `    <meta property="og:locale" content="${escapeHtml(config.defaultLocale)}"/>`,
-        `    <meta name="twitter:card" content="summary_large_image"/>`,
-        `    <meta name="twitter:title" content="${escapeHtml(title)}"/>`,
-        `    <meta name="twitter:description" content="${escapeHtml(description)}"/>`,
-        `    <meta name="twitter:image" content="${escapeHtml(config.image.url)}"/>`,
-        `    <meta name="twitter:image:alt" content="${escapeHtml(config.image.alt)}"/>`,
-        `    <meta name="twitter:creator" content="${escapeHtml(config.twitterCreator)}"/>`,
-        `    <script type="application/ld+json">${JSON.stringify(structuredData)}</script>`
+        `    <title ${staticSeoAttribute}>${escapeHtml(title)}</title>`,
+        `    <meta name="description" ${staticSeoAttribute} content="${escapeHtml(description)}"/>`,
+        `    <meta name="author" ${staticSeoAttribute} content="${escapeHtml(config.author)}"/>`,
+        `    <meta name="keywords" ${staticSeoAttribute} content="${escapeHtml(config.keywords)}"/>`,
+        `    <meta name="robots" ${staticSeoAttribute} content="${escapeHtml(route.robots || "index, follow")}"/>`,
+        `    <link rel="canonical" ${staticSeoAttribute} href="${escapeHtml(url)}"/>`,
+        `    <meta property="og:title" ${staticSeoAttribute} content="${escapeHtml(title)}"/>`,
+        `    <meta property="og:description" ${staticSeoAttribute} content="${escapeHtml(description)}"/>`,
+        `    <meta property="og:type" ${staticSeoAttribute} content="website"/>`,
+        `    <meta property="og:url" ${staticSeoAttribute} content="${escapeHtml(url)}"/>`,
+        `    <meta property="og:image" ${staticSeoAttribute} content="${escapeHtml(config.image.url)}"/>`,
+        `    <meta property="og:image:secure_url" ${staticSeoAttribute} content="${escapeHtml(config.image.url)}"/>`,
+        `    <meta property="og:image:type" ${staticSeoAttribute} content="${escapeHtml(config.image.type)}"/>`,
+        `    <meta property="og:image:alt" ${staticSeoAttribute} content="${escapeHtml(config.image.alt)}"/>`,
+        `    <meta property="og:image:width" ${staticSeoAttribute} content="${escapeHtml(config.image.width)}"/>`,
+        `    <meta property="og:image:height" ${staticSeoAttribute} content="${escapeHtml(config.image.height)}"/>`,
+        `    <meta property="og:site_name" ${staticSeoAttribute} content="${escapeHtml(config.siteName)}"/>`,
+        `    <meta property="og:locale" ${staticSeoAttribute} content="${escapeHtml(config.defaultLocale)}"/>`,
+        `    <meta name="twitter:card" ${staticSeoAttribute} content="summary_large_image"/>`,
+        `    <meta name="twitter:title" ${staticSeoAttribute} content="${escapeHtml(title)}"/>`,
+        `    <meta name="twitter:description" ${staticSeoAttribute} content="${escapeHtml(description)}"/>`,
+        `    <meta name="twitter:image" ${staticSeoAttribute} content="${escapeHtml(config.image.url)}"/>`,
+        `    <meta name="twitter:image:alt" ${staticSeoAttribute} content="${escapeHtml(config.image.alt)}"/>`,
+        `    <meta name="twitter:creator" ${staticSeoAttribute} content="${escapeHtml(config.twitterCreator)}"/>`,
+        `    <script type="application/ld+json" ${staticSeoAttribute}>${JSON.stringify(structuredData)}</script>`
     ].join("\n");
 };
 

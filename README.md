@@ -37,7 +37,7 @@ The application includes the main pages a visitor would expect from a profession
 - **Experience** - professional roles and responsibilities
 - **Projects** - enterprise and technical project highlights
 - **GitHub Projects** - paginated public repositories with architecture, tests, documentation, and deploy links
-- **Courses** - teaching and course material
+- **Courses** - Udemy teaching catalog with course covers, technologies, pagination, and direct enrollment links
 - **Certifications** - professional certifications and certificates
 - **Testimonials** - feedback from students and collaborators
 - **Trading** - investment-performance section with an accessible Chart.js visualization

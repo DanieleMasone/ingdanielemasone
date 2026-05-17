@@ -1,5 +1,5 @@
 import {useTranslation} from 'react-i18next';
-import {Clock, ExternalLink} from "lucide-react";
+import {Clock, ExternalLink, ShoppingCart} from "lucide-react";
 import {Card} from "@/components/ui/card/Card";
 import {CardContent} from "@/components/ui/cardContent/CardContent";
 import React, {useEffect, useState} from "react";
@@ -38,9 +38,10 @@ const getVisibleRange = (page, totalItems, itemsPerPage) => {
  * Courses component.
  *
  * Displays a paginated list of programming courses, each with title, description,
- * duration, technologies used, local cover art, and a clear Udemy call to action.
- * The page starts with a concise introduction and renders the 16:9 cover art
- * full-bleed so thumbnails stay readable across mobile and desktop cards.
+ * duration, technologies used, local cover art, and clear Udemy calls to action.
+ * When a direct purchase referral link is available it is rendered as the
+ * primary action while the public Udemy course page remains available as a
+ * secondary reference link.
  *
  * @component
  * @module pages/courses/Courses
@@ -156,16 +157,31 @@ export default function Courses() {
                                     <div className="mt-auto flex flex-col gap-4">
                                         <TechDisclosure techList={course.tech} label={t("show_technologies")}/>
 
-                                        <a
-                                            href={course.link}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className={clsx(interactiveClasses.resourceLink, interactiveClasses.focusRing)}
-                                            aria-label={`${t("courses_page.udemy_link")} - ${courseTitle}`}
-                                        >
-                                            <ExternalLink className="h-4 w-4" aria-hidden="true"/>
-                                            <span>{t("courses_page.udemy_link")}</span>
-                                        </a>
+                                        <div className={course.payLink ? layoutClasses.courseActionGroup : "flex flex-col"}>
+                                            {course.payLink && (
+                                                <a
+                                                    href={course.payLink}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className={clsx(interactiveClasses.coursePrimaryLink, interactiveClasses.focusRing)}
+                                                    aria-label={`${t("courses_page.buy_link")} - ${courseTitle}`}
+                                                >
+                                                    <ShoppingCart className="h-4 w-4" aria-hidden="true"/>
+                                                    <span>{t("courses_page.buy_link")}</span>
+                                                </a>
+                                            )}
+
+                                            <a
+                                                href={course.link}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className={clsx(interactiveClasses.resourceLink, "w-full", interactiveClasses.focusRing)}
+                                                aria-label={`${t("courses_page.udemy_link")} - ${courseTitle}`}
+                                            >
+                                                <ExternalLink className="h-4 w-4" aria-hidden="true"/>
+                                                <span>{t("courses_page.udemy_link")}</span>
+                                            </a>
+                                        </div>
                                     </div>
                                 </CardContent>
                             </Card>

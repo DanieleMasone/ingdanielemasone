@@ -131,21 +131,21 @@ describe("prepare-github-pages", () => {
             translations
         });
 
-        expect(html).toContain("<title>Daniele Masone | Senior Software Engineer</title>");
+        expect(html).toContain('<title data-static-seo="true">Daniele Masone | Senior Software Engineer</title>');
         expect(html).toContain(
-            '<meta name="author" content="Daniele Masone"/>'
+            '<meta name="author" data-static-seo="true" content="Daniele Masone"/>'
         );
         expect(html).toContain(
-            '<meta name="robots" content="index, follow"/>'
+            '<meta name="robots" data-static-seo="true" content="index, follow"/>'
         );
         expect(html).toContain(
-            '<link rel="canonical" href="https://danielemasone.github.io/ingdanielemasone/"/>'
+            '<link rel="canonical" data-static-seo="true" href="https://danielemasone.github.io/ingdanielemasone/"/>'
         );
         expect(html).toContain(
-            '<meta property="og:image" content="https://danielemasone.github.io/ingdanielemasone/social-preview.png"/>'
+            '<meta property="og:image" data-static-seo="true" content="https://danielemasone.github.io/ingdanielemasone/social-preview.png"/>'
         );
         expect(html).toContain(
-            '<meta name="twitter:creator" content="@masone_daniele"/>'
+            '<meta name="twitter:creator" data-static-seo="true" content="@masone_daniele"/>'
         );
         expect(html).toContain('"@context":"https://schema.org"');
         expect(html).toContain('"jobTitle":"Senior Software Engineer"');
@@ -161,12 +161,12 @@ describe("prepare-github-pages", () => {
             translations
         });
 
-        expect(html).toContain("<title>Privacy Policy | Daniele Masone</title>");
+        expect(html).toContain('<title data-static-seo="true">Privacy Policy | Daniele Masone</title>');
         expect(html).toContain(
-            '<meta name="robots" content="noindex, follow"/>'
+            '<meta name="robots" data-static-seo="true" content="noindex, follow"/>'
         );
         expect(html).toContain(
-            '<link rel="canonical" href="https://danielemasone.github.io/ingdanielemasone/privacy/"/>'
+            '<link rel="canonical" data-static-seo="true" href="https://danielemasone.github.io/ingdanielemasone/privacy/"/>'
         );
     });
 
@@ -189,9 +189,9 @@ describe("prepare-github-pages", () => {
             translations
         });
 
-        expect(result).toContain("<title>Progetti | Daniele Masone</title>");
+        expect(result).toContain('<title data-static-seo="true">Progetti | Daniele Masone</title>');
         expect(result).toContain(
-            '<link rel="canonical" href="https://danielemasone.github.io/ingdanielemasone/projects/"/>'
+            '<link rel="canonical" data-static-seo="true" href="https://danielemasone.github.io/ingdanielemasone/projects/"/>'
         );
         expect(result).not.toContain("OLD_SEO");
     });

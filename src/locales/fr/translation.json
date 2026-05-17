@@ -296,6 +296,7 @@
     "duration": "Durée",
     "learn_more": "En savoir plus",
     "udemy_link": "Voir sur Udemy",
+    "buy_link": "Acheter",
     "results_summary": "Affichage de {{start}} à {{end}} sur {{total}} cours",
     "git": {
       "title": "Cours Git",
@@ -356,6 +357,21 @@
       "title": "Cours Bases de Données et SQL",
       "description": "Du modèle E/R au langage SQL : conception, requêtes, théorie et pratique des bases de données relationnelles.",
       "duration": "6 heures"
+    },
+    "angular2": {
+      "title": "Cours Angular 2",
+      "description": "Apprenez à créer des applications front-end avec Angular 2, TypeScript, Angular CLI, composants, templates, formulaires, services, HTTP/RxJS et routing.",
+      "duration": "3 h 46 min"
+    },
+    "reactJS": {
+      "title": "Cours React JS",
+      "description": "Apprenez à créer des SPA front-end avec React JS : JSX, composants, état, props, événements, Virtual DOM, toolchain et navigation.",
+      "duration": "3 h 25 min"
+    },
+    "nodeJS": {
+      "title": "Cours Node.js",
+      "description": "Apprenez les bases de Node.js pour les applications web, les requêtes HTTP, les modules, les dispatchers et les fonctionnalités temps réel avec long-polling et WebSocket.",
+      "duration": "2 h 54 min"
     }
   },
   "testimonials_page": {
@@ -503,7 +519,7 @@
     },
     "courses": {
       "title": "Cours - Daniele Masone",
-      "description": "Cours suivis et compétences acquises par Daniele Masone en informatique et technologies."
+      "description": "Cours Udemy en ligne de Daniele Masone sur le développement logiciel, Angular, React, Node.js, JavaScript, les bases de données et les langages de programmation."
     },
     "testimonials": {
       "title": "Témoignages - Daniele Masone",
