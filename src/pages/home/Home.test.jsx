@@ -11,8 +11,8 @@ vi.mock('react-i18next', () => ({
             const translations = {
                 'avatar.name': 'Daniele Masone',
                 home_eyebrow: 'Portfolio and online CV',
-                home_subtitle: 'Senior Software Engineer, Front-End Architect, and Technical Team Leader.',
-                home_description: 'I build frontend architectures and enterprise platforms.',
+                home_subtitle: 'Technical Architect, Senior Software Engineer, and Tech Trainer.',
+                home_description: 'I design software solutions for enterprise and regulated domains.',
                 home_cta_projects: 'View projects',
                 home_cta_experience: 'Experience',
                 home_metric_years_value: '10+',
@@ -22,11 +22,11 @@ vi.mock('react-i18next', () => ({
                 home_metric_testimonials_value: '25+',
                 home_metric_testimonials_label: 'testimonials',
                 home_focus_label: 'Focus areas',
-                home_focus_frontend: 'Front-end architecture',
-                home_focus_leadership: 'Technical leadership',
-                home_focus_enterprise: 'Enterprise & regulated domains',
-                home_focus_accessibility: 'Accessibility & performance',
-                home_focus_training: 'Mentoring and training',
+                home_focus_frontend: 'Front-end architecture & enterprise UI',
+                home_focus_leadership: 'Technical architecture & team leadership',
+                home_focus_enterprise: 'Financial, legacy & regulated domains',
+                home_focus_accessibility: 'Code quality, accessibility & performance',
+                home_focus_training: 'Tech training, mentoring & career support',
                 about_title: 'About Me',
                 about_intro: 'Hello, I am a software engineer.',
                 about_experience: 'I have 10 years of experience in frontend development.',
@@ -68,8 +68,8 @@ describe('Home component', () => {
 
     test('renders about title, intro and experience texts', () => {
         expect(screen.getByRole('heading', {level: 1})).toHaveTextContent('Daniele Masone');
-        expect(screen.getByText('Senior Software Engineer, Front-End Architect, and Technical Team Leader.')).toBeInTheDocument();
-        expect(screen.getByText('I build frontend architectures and enterprise platforms.')).toBeInTheDocument();
+        expect(screen.getByText('Technical Architect, Senior Software Engineer, and Tech Trainer.')).toBeInTheDocument();
+        expect(screen.getByText('I design software solutions for enterprise and regulated domains.')).toBeInTheDocument();
     });
 
     test('renders SeoHead component', () => {
@@ -140,11 +140,11 @@ describe('Home component', () => {
     });
 
     test('renders focus areas', () => {
-        expect(screen.getByText('Front-end architecture')).toBeInTheDocument();
-        expect(screen.getByText('Technical leadership')).toBeInTheDocument();
-        expect(screen.getByText('Enterprise & regulated domains')).toBeInTheDocument();
-        expect(screen.getByText('Accessibility & performance')).toBeInTheDocument();
-        expect(screen.getByText('Mentoring and training')).toBeInTheDocument();
+        expect(screen.getByText('Front-end architecture & enterprise UI')).toBeInTheDocument();
+        expect(screen.getByText('Technical architecture & team leadership')).toBeInTheDocument();
+        expect(screen.getByText('Financial, legacy & regulated domains')).toBeInTheDocument();
+        expect(screen.getByText('Code quality, accessibility & performance')).toBeInTheDocument();
+        expect(screen.getByText('Tech training, mentoring & career support')).toBeInTheDocument();
     });
 
     test('renders focus areas as a mobile-friendly list without horizontal scrolling', () => {

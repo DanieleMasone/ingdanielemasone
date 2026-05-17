@@ -31,8 +31,8 @@
     "switch_to_light": "Cambiar al modo claro"
   },
   "footer_copyright": "© {{year}} Daniele Masone. Todos los derechos reservados.",
-  "home_subtitle": "Senior Software Engineer, Arquitecto Front-End y Technical Team Leader.",
-  "home_description": "Construyo arquitecturas front-end y plataformas enterprise mantenibles en el tiempo: delivery en dominios regulados, calidad del código, rendimiento y mentoring de equipos.",
+  "home_subtitle": "Technical Architect, Senior Software Engineer y Tech Trainer.",
+  "home_description": "Diseño soluciones software para entornos enterprise y regulados, conectando arquitectura front-end, sistemas financieros y legacy, microservicios, calidad del código y formación técnica.",
   "home_eyebrow": "Portfolio y CV online",
   "home_cta_projects": "Ver proyectos",
   "home_cta_experience": "Experiencia",
@@ -43,11 +43,11 @@
   "home_metric_testimonials_value": "25+",
   "home_metric_testimonials_label": "testimonios",
   "home_focus_label": "Áreas de enfoque",
-  "home_focus_frontend": "Arquitectura front-end",
-  "home_focus_leadership": "Liderazgo técnico",
-  "home_focus_enterprise": "Entornos enterprise y regulados",
-  "home_focus_accessibility": "Accesibilidad y rendimiento",
-  "home_focus_training": "Mentoría y formación",
+  "home_focus_frontend": "Arquitectura front-end y UI enterprise",
+  "home_focus_leadership": "Arquitectura técnica y liderazgo de equipo",
+  "home_focus_enterprise": "Finance, legacy y dominios regulados",
+  "home_focus_accessibility": "Calidad del código, accesibilidad y rendimiento",
+  "home_focus_training": "Tech training, mentoring y career support",
   "projects_title": "Proyectos",
   "show_technologies": "Mostrar tecnologías",
   "projects_page": {
@@ -503,7 +503,7 @@
   "seo": {
     "home": {
       "title": "Daniele Masone - Portafolio",
-      "description": "Portafolio de Daniele Masone, ingeniero informático. Experiencias, proyectos, cursos y testimonios."
+      "description": "Portafolio y CV online de Daniele Masone: Technical Architect y Senior Software Engineer en arquitectura front-end, sistemas financieros y formación técnica."
     },
     "experience": {
       "title": "Experiencia profesional - Daniele Masone",
