@@ -116,6 +116,16 @@ describe("Trading component", () => {
         expect(signup).toHaveAttribute("rel", "noopener noreferrer");
     });
 
+    test("uses the responsive intro layout for desktop and mobile", async () => {
+        vi.spyOn(service, "getTradingPerformance").mockResolvedValueOnce(mockTradingPerformance);
+        renderPage();
+
+        const introLayout = await screen.findByTestId("trading-intro-layout");
+
+        expect(introLayout).toHaveClass("grid", "gap-5", "lg:items-start");
+        expect(introLayout).toHaveClass("lg:grid-cols-[minmax(0,1fr)_minmax(14rem,18rem)]");
+    });
+
     test("shows error state on fetch failure", async () => {
         vi.spyOn(service, "getTradingPerformance").mockRejectedValueOnce(new Error("boom"));
 

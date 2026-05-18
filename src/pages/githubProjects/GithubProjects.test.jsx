@@ -144,7 +144,9 @@ describe("GithubProjects", () => {
         renderGithubProjects();
 
         expect(await screen.findByRole("heading", {name: "GitHub Projects"})).toBeInTheDocument();
-        expect(screen.getByText("Inspectable repositories with code, tests and documentation.")).toBeInTheDocument();
+        const intro = screen.getByText("Inspectable repositories with code, tests and documentation.");
+        expect(intro).toBeInTheDocument();
+        expect(intro).toHaveClass("max-w-3xl", "text-base", "leading-7");
         expect(screen.getByText("Identity Service API")).toBeInTheDocument();
         expect(screen.getByText("Portfolio & Online CV")).toBeInTheDocument();
 

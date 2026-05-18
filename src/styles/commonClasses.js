@@ -28,6 +28,9 @@
  * @property {string} timelineItem - Timeline item wrapper that reserves space for the rail marker.
  * @property {string} focusList - Responsive list layout for compact portfolio focus items.
  * @property {string} focusMarker - Decorative marker aligned with the first text line of portfolio focus items.
+ * @property {string} tradingIntroLayout - Responsive trading intro layout with CTA actions beside the copy on desktop.
+ * @property {string} tradingIntroCopy - Readable trading page copy stack.
+ * @property {string} tradingActionGroup - Responsive trading CTA layout.
  * @property {string} tradingChartSection - Portfolio trading chart wrapper.
  * @property {string} tradingChartCanvas - Responsive height wrapper for the trading chart canvas.
  * @property {string} tradingViewToggleGroup - Responsive segmented button group for the trading chart view switcher.
@@ -63,9 +66,15 @@ export const layoutClasses = {
   focusList:
       "grid grid-cols-1 gap-2 text-left sm:grid-cols-3 md:flex md:flex-wrap md:justify-start",
   focusMarker: "mt-[0.42em] h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500 dark:bg-blue-300 md:mt-0",
+  tradingIntroLayout:
+      "grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(14rem,18rem)] lg:items-start",
+  tradingIntroCopy:
+      "flex max-w-4xl flex-col gap-4",
+  tradingActionGroup:
+      "flex flex-col gap-3 sm:flex-row lg:flex-col",
   tradingChartSection:
       "mx-auto flex max-w-6xl flex-col gap-6 rounded-xl bg-white px-4 py-6 shadow-lg dark:bg-gray-900 sm:px-6",
-  tradingChartCanvas: "h-[300px] w-full sm:h-[500px] md:h-[700px]",
+  tradingChartCanvas: "h-[300px] w-full sm:h-[440px] lg:h-[520px]",
   tradingViewToggleGroup:
     "flex w-full flex-col items-stretch gap-2 sm:w-auto sm:flex-row sm:items-center sm:justify-center",
   courseActionGroup:

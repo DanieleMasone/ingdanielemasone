@@ -6,6 +6,8 @@ import {Loading} from "@/components/loading/Loading";
 import {getTradingPerformance} from "@/services/portfolioService";
 import {ErrorState} from "@/components/errorState/ErrorState";
 import {ButtonLink} from "@/components/ui/buttonLink/ButtonLink";
+import clsx from "clsx";
+import {layoutClasses, surfaceClasses} from "@/styles/commonClasses";
 
 const TradingPerformanceChart = lazy(() =>
     import("@/components/ui/tradingPerformanceChart/TradingPerformanceChart").then(mod => ({default: mod.TradingPerformanceChart}))
@@ -13,7 +15,9 @@ const TradingPerformanceChart = lazy(() =>
 
 /**
  * Trading component renders a section with trading introduction text,
- * description, disclaimer, a call-to-action link, and a trading performance chart.
+ * description, disclaimer, call-to-action links, and a trading performance chart.
+ * The copy and actions use a responsive layout so CTAs stack on mobile and sit
+ * beside the text on wider screens.
  *
  * Uses translations for all textual content via react-i18next.
  *
@@ -41,12 +45,6 @@ export default function Trading() {
         loadTradingPerformance();
     }, []);
 
-    const paragraphs = [
-        t("trading_intro"),
-        t("trading_description"),
-        t("disclaimer_text"),
-    ];
-
     if (loading) return <Loading/>;
     if (error) return <ErrorState message={t("error_generic")} onRetry={loadTradingPerformance}/>;
 
@@ -55,19 +53,20 @@ export default function Trading() {
             <SeoHead pageKey="trading" path="/trading"/>
 
             <PageSection title={t("trading_title")}>
-                {/* Text above */}
-                <div className="flex flex-col justify-start mb-8">
-                    {paragraphs.map((text, i) => (
-                        <p
-                            key={i}
-                            className={`${i === 2 ? "text-xs text-gray-500 dark:text-gray-400" : "text-lg text-gray-700 dark:text-gray-300"} mb-4 leading-relaxed`}
-                        >
-                            {text}
+                <div className={layoutClasses.tradingIntroLayout} data-testid="trading-intro-layout">
+                    <div className={layoutClasses.tradingIntroCopy}>
+                        <p className="text-base leading-7 text-gray-700 dark:text-gray-300 sm:text-lg">
+                            {t("trading_intro")}
                         </p>
-                    ))}
+                        <p className="text-base leading-7 text-gray-700 dark:text-gray-300 sm:text-lg">
+                            {t("trading_description")}
+                        </p>
+                        <p className={clsx(surfaceClasses.insetText, "text-xs leading-6 text-gray-600 dark:text-gray-400")}>
+                            {t("disclaimer_text")}
+                        </p>
+                    </div>
 
-                    {/* Buttons */}
-                    <div className="mt-6 flex flex-row gap-4">
+                    <div className={layoutClasses.tradingActionGroup}>
                         <ButtonLink href="https://www.etoro.com/people/danielemasone" color="green">
                             {t("trading_cta")}
                         </ButtonLink>
@@ -77,8 +76,7 @@ export default function Trading() {
                     </div>
                 </div>
 
-                {/* Graph below that takes up all the remaining space */}
-                <div className="flex-grow w-full">
+                <div className="w-full">
                     <Suspense fallback={<Loading/>}>
                         <TradingPerformanceChart
                             startYear={tradingPerformance.startYear}

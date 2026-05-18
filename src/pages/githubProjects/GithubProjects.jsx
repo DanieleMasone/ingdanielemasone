@@ -186,113 +186,109 @@ export default function GithubProjects() {
             <SeoHead pageKey="githubProjects" path="/github-projects"/>
 
             <PageSection title={t("github_projects_page.title")}>
-                <div className="mx-auto flex max-w-6xl flex-col gap-4">
-                    <p className="max-w-3xl text-base leading-7 text-gray-700 dark:text-gray-300">
-                        {t("github_projects_page.intro")}
-                    </p>
+                <p className={layoutClasses.sectionIntro}>
+                    {t("github_projects_page.intro")}
+                </p>
 
-                    <div
-                        role="group"
-                        aria-label={t("github_projects_page.filter_label")}
-                        className={layoutClasses.horizontalFilterBar}
-                    >
-                        {categories.map((category) => (
-                            <SelectableButton
-                                key={category}
-                                label={getCategoryLabel(t, category)}
-                                isSelected={selectedCategory === category}
-                                onClick={() => setSelectedCategory(category)}
-                            />
-                        ))}
-                    </div>
-
-                    {filteredProjects.length > 0 && (
-                        <>
-                            <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-                                <p className={layoutClasses.resultSummary} aria-live="polite">
-                                    {t("github_projects_page.results_summary", {
-                                        start: visibleRange.start,
-                                        end: visibleRange.end,
-                                        total: filteredProjects.length
-                                    })}
-                                </p>
-                            </div>
-
-                            <div className={layoutClasses.mobilePagination}>
-                                <Pagination
-                                    page={currentPage}
-                                    totalPages={totalPages}
-                                    onPageChange={setPage}
-                                />
-                            </div>
-
-                            <PageGrid page={`${selectedCategory}-${currentPage}`} columns={3}>
-                                {paginatedProjects.map((project) => (
-                                    <Card
-                                        key={project.id}
-                                        aria-labelledby={`${project.id}-title`}
-                                        className="h-full gap-4"
-                                    >
-                                        <CardContent className="flex h-full flex-col gap-4 p-0">
-                                            <div className="flex flex-wrap items-center gap-2">
-                                                <span className={surfaceClasses.metaBadge}>
-                                                    {getCategoryLabel(t, project.category)}
-                                                </span>
-                                                <span className={surfaceClasses.mutedMetaBadge}>{project.year}</span>
-                                            </div>
-
-                                            <div className="flex flex-col gap-2">
-                                                <h2
-                                                    id={`${project.id}-title`}
-                                                    className="text-lg font-semibold leading-snug text-gray-900 dark:text-gray-100 md:text-xl"
-                                                >
-                                                    {project.name}
-                                                </h2>
-                                                <p className={surfaceClasses.insetText}>{t(project.summaryKey)}</p>
-                                            </div>
-
-                                            <ul
-                                                className="flex flex-col gap-2 text-sm leading-6 text-gray-700 dark:text-gray-300"
-                                                aria-label={t("github_projects_page.highlights_label", {project: project.name})}
-                                            >
-                                                {project.highlightsKeys.map((highlightKey) => (
-                                                    <li key={highlightKey} className="flex gap-2">
-                                                        <span aria-hidden="true"
-                                                              className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500"/>
-                                                        <span>{t(highlightKey)}</span>
-                                                    </li>
-                                                ))}
-                                            </ul>
-
-                                            <div className="mt-auto flex flex-col gap-4">
-                                                <TechDisclosure techList={project.tech} label={t("show_technologies")}/>
-
-                                                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-                                                    {project.links.map((link) => (
-                                                        <ProjectResourceLink
-                                                            key={`${project.id}-${link.type}`}
-                                                            link={link}
-                                                            label={t(`github_projects_page.links.${link.type}`)}
-                                                            projectName={project.name}
-                                                        />
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        </CardContent>
-                                    </Card>
-                                ))}
-                            </PageGrid>
-
-                            <div className={layoutClasses.desktopPagination}>
-                                <Pagination
-                                    page={currentPage}
-                                    totalPages={totalPages}
-                                    onPageChange={setPage}
-                                />
-                            </div>
-                        </>
-                    )}
+                <div
+                    role="group"
+                    aria-label={t("github_projects_page.filter_label")}
+                    className={layoutClasses.horizontalFilterBar}
+                >
+                    {categories.map((category) => (
+                        <SelectableButton
+                            key={category}
+                            label={getCategoryLabel(t, category)}
+                            isSelected={selectedCategory === category}
+                            onClick={() => setSelectedCategory(category)}
+                        />
+                    ))}
                 </div>
+
+                {filteredProjects.length > 0 && (
+                    <>
+                        <p className={layoutClasses.resultSummary} aria-live="polite">
+                            {t("github_projects_page.results_summary", {
+                                start: visibleRange.start,
+                                end: visibleRange.end,
+                                total: filteredProjects.length
+                            })}
+                        </p>
+
+                        <div className={layoutClasses.mobilePagination}>
+                            <Pagination
+                                page={currentPage}
+                                totalPages={totalPages}
+                                onPageChange={setPage}
+                            />
+                        </div>
+
+                        <PageGrid page={`${selectedCategory}-${currentPage}`} columns={3}>
+                            {paginatedProjects.map((project) => (
+                                <Card
+                                    key={project.id}
+                                    aria-labelledby={`${project.id}-title`}
+                                    className="h-full gap-4"
+                                >
+                                    <CardContent className="flex h-full flex-col gap-4 p-0">
+                                        <div className="flex flex-wrap items-center gap-2">
+                                            <span className={surfaceClasses.metaBadge}>
+                                                {getCategoryLabel(t, project.category)}
+                                            </span>
+                                            <span className={surfaceClasses.mutedMetaBadge}>{project.year}</span>
+                                        </div>
+
+                                        <div className="flex flex-col gap-2">
+                                            <h2
+                                                id={`${project.id}-title`}
+                                                className="text-lg font-semibold leading-snug text-gray-900 dark:text-gray-100 md:text-xl"
+                                            >
+                                                {project.name}
+                                            </h2>
+                                            <p className={surfaceClasses.insetText}>{t(project.summaryKey)}</p>
+                                        </div>
+
+                                        <ul
+                                            className="flex flex-col gap-2 text-sm leading-6 text-gray-700 dark:text-gray-300"
+                                            aria-label={t("github_projects_page.highlights_label", {project: project.name})}
+                                        >
+                                            {project.highlightsKeys.map((highlightKey) => (
+                                                <li key={highlightKey} className="flex gap-2">
+                                                    <span aria-hidden="true"
+                                                          className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500"/>
+                                                    <span>{t(highlightKey)}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+
+                                        <div className="mt-auto flex flex-col gap-4">
+                                            <TechDisclosure techList={project.tech} label={t("show_technologies")}/>
+
+                                            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                                                {project.links.map((link) => (
+                                                    <ProjectResourceLink
+                                                        key={`${project.id}-${link.type}`}
+                                                        link={link}
+                                                        label={t(`github_projects_page.links.${link.type}`)}
+                                                        projectName={project.name}
+                                                    />
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            ))}
+                        </PageGrid>
+
+                        <div className={layoutClasses.desktopPagination}>
+                            <Pagination
+                                page={currentPage}
+                                totalPages={totalPages}
+                                onPageChange={setPage}
+                            />
+                        </div>
+                    </>
+                )}
             </PageSection>
         </>
     );
