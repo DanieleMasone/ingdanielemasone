@@ -10,7 +10,7 @@
  * @param {string} [props.className] - Additional CSS classes.
  * @param {number} [props.size=24] - Width and height of the icon.
  * @param {string} [props.title] - Accessible title for screen readers.
- * @returns {JSX.Element|null} SVG element or null if no valid icon.
+ * @returns {React.JSX.Element} SVG element or null if no valid icon.
  */
 export function BrandIcon({icon, color, className, size = 24, title}) {
     if (!icon || !icon.svg) return null;

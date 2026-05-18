@@ -17,7 +17,7 @@ import {interactiveClasses} from "@/styles/commonClasses";
  * @param {number} props.totalPages - Total number of available pages.
  * @param {function(number): void} props.onPageChange - Callback fired with the next page.
  * @param {string} [props.className] - Optional layout classes for the wrapper.
- * @returns {JSX.Element|null} Pagination navigation, or null when only one page exists.
+ * @returns {React.JSX.Element} Pagination navigation, or null when only one page exists.
  */
 export function Pagination({
                                page,

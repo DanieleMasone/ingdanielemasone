@@ -26,7 +26,7 @@ const COLS = {
  * @param {string | number} props.page - Unique page identifier used as the animation key.
  * @param {1 | 2 | 3 | 4} [props.columns=2] - Maximum responsive column count.
  * @param {string} [props.className] - Additional CSS classes for the wrapper div.
- * @returns {JSX.Element} Responsive grid with animated page transitions.
+ * @returns {React.JSX.Element} Responsive grid with animated page transitions.
  */
 export function PageGrid({
                              children,

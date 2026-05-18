@@ -287,62 +287,62 @@
     "git": {
       "title": "Git-Kurs",
       "description": "Lerne Git zu verwenden, um Versionen zu verwalten und in Softwareprojekten zusammenzuarbeiten.",
-      "duration": "2,5 Stunden"
+      "duration": "2 Std. 20 Min."
     },
     "typescript": {
       "title": "TypeScript-Kurs",
       "description": "Eine vollständige Einführung in die Programmiersprache TypeScript und ihre Vorteile in der modernen Entwicklung.",
-      "duration": "1,5 Stunden"
+      "duration": "1 Std. 32 Min."
     },
     "jQuery": {
       "title": "jQuery-Kurs",
       "description": "Entdecke, wie du jQuery zur Vereinfachung der DOM-Manipulation und Ereignisverwaltung nutzen kannst.",
-      "duration": "3 Stunden"
+      "duration": "2 Std.59  Min."
     },
     "php": {
       "title": "PHP-Kurs",
       "description": "Lerne die Grundlagen der serverseitigen Programmierung mit der Sprache PHP.",
-      "duration": "11,5 Stunden"
+      "duration": "11 Std. 23 Min."
     },
     "cpp": {
       "title": "C++-Kurs",
       "description": "Ein ausführlicher Kurs, um Programmierung in C++ von Grund auf zu lernen.",
-      "duration": "14,5 Stunden"
+      "duration": "14 Std. 23 Min."
     },
     "html5": {
       "title": "HTML5-Kurs",
       "description": "Lerne, moderne und semantische Webseiten mit HTML5 zu erstellen.",
-      "duration": "5 Stunden"
+      "duration": "4 Std. 45 Min."
     },
     "angularJS": {
       "title": "AngularJS-Kurs",
       "description": "Entdecke, wie man dynamische Webanwendungen mit AngularJS entwickelt.",
-      "duration": "3,5 Stunden"
+      "duration": "3 Std. 40 Min."
     },
     "java": {
       "title": "Java-Kurs",
       "description": "Die Grundlagen der Java-Sprache und der objektorientierten Programmierung.",
-      "duration": "7,5 Stunden"
+      "duration": "7 Std. 34 Min."
     },
     "javascript": {
       "title": "JavaScript-Kurs",
       "description": "Lerne, interaktive Webanwendungen mit JavaScript zu entwickeln.",
-      "duration": "10,5 Stunden"
+      "duration": "10 Std. 22 Min."
     },
     "c": {
       "title": "C-Kurs",
       "description": "Einführung in die Programmierung in C. Ideal für Anfänger.",
-      "duration": "6,5 Stunden"
+      "duration": "6 Std. 35 Min."
     },
     "assembler": {
       "title": "Assembler 8086 Kurs",
       "description": "Lerne Assemblersprache für 8086-Mikroprozessoren und die Logik der niedrigen Ebene.",
-      "duration": "6 Stunden"
+      "duration": "6 Std. 3 Min."
     },
     "sql": {
       "title": "Datenbanken und SQL Kurs",
       "description": "Vom E/R-Modell bis zur SQL-Sprache: Entwurf, Abfragen, Theorie und Praxis relationaler Datenbanken.",
-      "duration": "6 Stunden"
+      "duration": "5 Std. 53 Min."
     },
     "angular2": {
       "title": "Angular 2 Kurs",

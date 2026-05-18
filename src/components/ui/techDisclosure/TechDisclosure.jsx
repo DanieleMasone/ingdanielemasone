@@ -15,7 +15,7 @@ import {interactiveClasses} from "@/styles/commonClasses";
  * @param {Object} props - Component props.
  * @param {string} props.techList - Comma-separated list of technologies to display.
  * @param {string} props.label - Text label for the disclosure button.
- * @returns {JSX.Element} Collapsible list of technology badges.
+ * @returns {React.JSX.Element} Collapsible list of technology badges.
  */
 export default function TechDisclosure({techList, label}) {
     return (

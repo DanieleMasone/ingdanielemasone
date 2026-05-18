@@ -16,7 +16,7 @@ import {interactiveClasses} from "@/styles/commonClasses";
  * @param {function(): void} props.onClick - Callback fired when the button is clicked.
  * @param {string} [props.className=""] - Additional CSS classes.
  * @param {boolean} [props.disabled=false] - Whether interaction is disabled.
- * @returns {JSX.Element} Accessible selectable button.
+ * @returns {React.JSX.Element} Accessible selectable button.
  */
 export function SelectableButton({
                                      label,

@@ -15,7 +15,7 @@ import {interactiveClasses} from "@/styles/commonClasses";
  * @param {React.ReactNode} props.children - Content inside the button.
  * @param {"green" | "blue"} props.color - Visual theme color variant.
  *
- * @returns {JSX.Element} External anchor styled as a CTA button.
+ * @returns {React.JSX.Element} External anchor styled as a CTA button.
  */
 export function ButtonLink({href, children, color}) {
     const colorClasses = {

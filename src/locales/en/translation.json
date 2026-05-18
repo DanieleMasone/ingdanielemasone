@@ -287,62 +287,62 @@
     "git": {
       "title": "Git Course",
       "description": "Learn how to use Git for version control and team collaboration.",
-      "duration": "2.5 hours"
+      "duration": "2 h 20 min"
     },
     "typescript": {
       "title": "TypeScript Course",
       "description": "A comprehensive introduction to TypeScript and its benefits for modern development.",
-      "duration": "1.5 hours"
+      "duration": "1 h 32 min"
     },
     "jQuery": {
       "title": "jQuery Course",
       "description": "Master the jQuery library to manipulate the DOM and handle events easily.",
-      "duration": "3 hours"
+      "duration": "2 h 59 min"
     },
     "php": {
       "title": "PHP Programming Course",
       "description": "Learn server-side development with PHP from scratch.",
-      "duration": "11.5 hours"
+      "duration": "11 h 23 min"
     },
     "cpp": {
       "title": "C++ Programming Course",
       "description": "A full course to learn C++ programming, starting from the basics.",
-      "duration": "14.5 hours"
+      "duration": "14 h 23 min"
     },
     "html5": {
       "title": "HTML5 Course",
       "description": "Build semantic and modern web pages using HTML5.",
-      "duration": "5 hours"
+      "duration": "4 h 45 min"
     },
     "angularJS": {
       "title": "AngularJS Course",
       "description": "Develop dynamic web applications using AngularJS.",
-      "duration": "3.5 hours"
+      "duration": "3 h 40 min"
     },
     "java": {
       "title": "Java Programming Course",
       "description": "Understand the fundamentals of Java and object-oriented programming.",
-      "duration": "7.5 hours"
+      "duration": "7 h 34 min"
     },
     "javascript": {
       "title": "JavaScript Programming Course",
       "description": "Learn to build interactive web applications with JavaScript.",
-      "duration": "10.5 hours"
+      "duration": "10 h 22 min"
     },
     "c": {
       "title": "C Programming Course",
       "description": "Introductory course to the C language. Perfect for absolute beginners.",
-      "duration": "6.5 hours"
+      "duration": "6 h 35 min"
     },
     "assembler": {
       "title": "8086 Assembler Course",
       "description": "Learn Assembly language programming for 8086 microprocessors and low-level logic.",
-      "duration": "6 hours"
+      "duration": "6 h 3 min"
     },
     "sql": {
       "title": "Database & SQL Course",
       "description": "From E/R modeling to SQL queries: database theory, design and practical implementation.",
-      "duration": "6 hours"
+      "duration": "5 h 53 min"
     },
     "angular2": {
       "title": "Angular 2 Course",

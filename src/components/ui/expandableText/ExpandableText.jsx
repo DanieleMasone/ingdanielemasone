@@ -17,7 +17,7 @@ import {interactiveClasses} from "@/styles/commonClasses";
  * @param {string} props.value - The text content to display.
  * @param {number} [props.maxLines=3] - Maximum number of visible lines when collapsed.
  * @param {string} [props.className] - Additional CSS classes for styling.
- * @returns {JSX.Element} An expandable text block with a toggle button.
+ * @returns {React.JSX.Element} An expandable text block with a toggle button.
  */
 export function ExpandableText({value = "", maxLines = 3, className = ""}) {
     const [expanded, setExpanded] = useState(false);

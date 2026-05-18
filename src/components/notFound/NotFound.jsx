@@ -17,7 +17,7 @@ import {interactiveClasses} from "@/styles/commonClasses";
  * @component
  * @module components/notFound/NotFound
  *
- * @returns {JSX.Element} The rendered 404 page.
+ * @returns {React.JSX.Element} The rendered 404 page.
  */
 export function NotFound() {
     const {t} = useTranslation();
