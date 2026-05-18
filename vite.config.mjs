@@ -81,7 +81,6 @@ export default defineConfig({
 
                     if (
                         normalizedId.includes('/lucide-react/') ||
-                        normalizedId.includes('/react-icons/') ||
                         normalizedId.includes('/simple-icons/') ||
                         normalizedId.includes('/boring-avatars/')
                     ) {
