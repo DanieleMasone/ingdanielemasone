@@ -10,6 +10,9 @@
   "trading": "Trading",
   "testimonials": "Referenzen",
   "portfolio": "Portfolio",
+  "skip_to_content": "Zum Hauptinhalt springen",
+  "loading_content": "Inhalt wird geladen",
+  "pagination_label": "Paginierung",
   "header": {
     "home_aria": "Startseite von Daniele Masone",
     "main_navigation": "Hauptnavigation",
@@ -28,6 +31,14 @@
     "switch_to_light": "Zum hellen Modus wechseln"
   },
   "footer_copyright": "© {{year}} Daniele Masone. Alle Rechte vorbehalten.",
+  "footer_social_navigation": "Social-Links",
+  "footer_developer_resources": "Entwicklungsressourcen",
+  "cookie_banner": {
+    "label": "Cookie-Einwilligung",
+    "message_prefix": "Diese Website verwendet Cookies, um die Benutzererfahrung zu verbessern. Wenn du fortfährst, akzeptierst du unsere",
+    "privacy_link": "Datenschutzerklärung",
+    "accept": "Akzeptieren"
+  },
   "home_subtitle": "Technical Architect, Senior Software Engineer und Tech Trainer.",
   "home_description": "Ich konzipiere Softwarelösungen für Enterprise- und regulierte Umfelder und verbinde Front-End-Architektur, Finanz- und Legacy-Systeme, Microservices, Codequalität und technische Weiterbildung.",
   "home_eyebrow": "Portfolio und Online-CV",

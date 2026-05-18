@@ -6,8 +6,9 @@ import {interactiveClasses} from "@/styles/commonClasses";
 /**
  * Reusable pagination controls for paged portfolio sections.
  *
- * Renders localized previous/next buttons inside a navigation landmark, disables
- * boundary actions, and announces the current page out of the total page count.
+ * Renders localized previous/next buttons inside a localized navigation
+ * landmark, disables boundary actions, and announces the current page out of
+ * the total page count.
  *
  * @component
  * @module components/ui/pagination/Pagination
@@ -31,7 +32,7 @@ export function Pagination({
     return (
         <nav
             className={clsx("flex flex-wrap items-center justify-center gap-3", className)}
-            aria-label="Pagination"
+            aria-label={t("pagination_label")}
         >
             <button
                 type="button"

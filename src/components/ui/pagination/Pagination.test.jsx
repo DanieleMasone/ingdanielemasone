@@ -11,6 +11,7 @@ vi.mock("react-i18next", () => ({
             const translations = {
                 previous: "Previous",
                 next: "Next",
+                pagination_label: "Pagination",
             };
             return translations[key] || key;
         },

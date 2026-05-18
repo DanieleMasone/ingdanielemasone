@@ -3,6 +3,17 @@ import {beforeEach, describe, expect, it, vi} from 'vitest';
 import {CookieBanner} from './CookieBanner';
 import {MemoryRouter} from "react-router-dom";
 
+vi.mock("react-i18next", () => ({
+    useTranslation: () => ({
+        t: (key) => ({
+            "cookie_banner.label": "Cookie consent",
+            "cookie_banner.message_prefix": "This site uses cookies to improve the user experience. By continuing, you accept our",
+            "cookie_banner.privacy_link": "Privacy Policy",
+            "cookie_banner.accept": "Accept",
+        })[key] || key,
+    }),
+}));
+
 const renderBanner = () => render(
     <MemoryRouter>
         <CookieBanner/>
@@ -20,10 +31,10 @@ describe('CookieBanner', () => {
 
         // Wait for useEffect to display the banner
         await waitFor(() => {
-            expect(screen.getByText(/questo sito utilizza cookie/i)).toBeInTheDocument();
+            expect(screen.getByText(/this site uses cookies/i)).toBeInTheDocument();
         });
 
-        expect(screen.getByRole('button', {name: /accetta/i})).toBeInTheDocument();
+        expect(screen.getByRole('button', {name: /accept/i})).toBeInTheDocument();
     });
 
     it('does not show banner if cookie consent is set', () => {
@@ -31,7 +42,7 @@ describe('CookieBanner', () => {
         localStorage.setItem('cookieConsent', '2026-02-04T09:47:52.401Z');
         renderBanner();
 
-        expect(screen.queryByText(/questo sito utilizza cookie/i)).not.toBeInTheDocument();
+        expect(screen.queryByText(/this site uses cookies/i)).not.toBeInTheDocument();
     });
 
     it('accept button sets cookieConsent timestamp and hides banner', async () => {
@@ -42,10 +53,10 @@ describe('CookieBanner', () => {
 
         // Wait for the banner to be visible (useEffect)
         await waitFor(() => {
-            expect(screen.getByRole('button', {name: /accetta/i})).toBeInTheDocument();
+            expect(screen.getByRole('button', {name: /accept/i})).toBeInTheDocument();
         });
 
-        const button = screen.getByRole('button', {name: /accetta/i});
+        const button = screen.getByRole('button', {name: /accept/i});
         fireEvent.click(button);
 
         // Verify that setItem was called with an ISO timestamp
@@ -55,7 +66,7 @@ describe('CookieBanner', () => {
         );
 
         // Make sure the banner disappears
-        expect(screen.queryByText(/questo sito utilizza cookie/i)).not.toBeInTheDocument();
+        expect(screen.queryByText(/this site uses cookies/i)).not.toBeInTheDocument();
 
         // Cleanup
         setItemSpy.mockRestore();
@@ -65,7 +76,7 @@ describe('CookieBanner', () => {
         renderBanner();
 
         await waitFor(() => {
-            const link = screen.getByText(/Politica sulla Privacy/i);
+            const link = screen.getByText(/Privacy Policy/i);
             expect(link).toBeInTheDocument();
             expect(link).toHaveAttribute('href', '/privacy');
         });
@@ -86,7 +97,7 @@ describe('CookieBanner', () => {
         renderBanner();
 
         // The banner should still be hidden if the key exists
-        expect(screen.queryByText(/questo sito utilizza cookie/i)).not.toBeInTheDocument();
+        expect(screen.queryByText(/this site uses cookies/i)).not.toBeInTheDocument();
     });
 
 });

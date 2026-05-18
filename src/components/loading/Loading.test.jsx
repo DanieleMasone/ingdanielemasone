@@ -1,6 +1,15 @@
 import {render, screen} from "@testing-library/react";
 import {Loading} from "./Loading";
 import React from "react";
+import {vi} from "vitest";
+
+vi.mock("react-i18next", () => ({
+    useTranslation: () => ({
+        t: (key) => ({
+            loading_content: "Loading content",
+        })[key] || key,
+    }),
+}));
 
 describe("Loading component", () => {
     test("renders without crashing", () => {

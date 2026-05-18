@@ -135,7 +135,6 @@ export default function Home() {
                                     color="currentColor"
                                     className="h-5 w-5"
                                     size={24}
-                                    title="LinkedIn"
                                 />
                                 {t("follow_linkedin")}
                                 <ArrowRight className="h-4 w-4" aria-hidden="true"/>

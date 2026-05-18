@@ -1,5 +1,7 @@
 import {useTranslation} from 'react-i18next';
 import {useEffect, useState} from 'react';
+import clsx from "clsx";
+import {interactiveClasses} from "@/styles/commonClasses";
 
 /**
  * NotFound component - displays a custom 404 page with support for light/dark mode.
@@ -41,7 +43,10 @@ export function NotFound() {
                 </p>
                 <a
                     href="/ingdanielemasone/"
-                    className="inline-block mt-4 px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl shadow hover:bg-blue-700 transition-colors"
+                    className={clsx(
+                        "inline-block mt-4 px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl shadow hover:bg-blue-700 transition-colors",
+                        interactiveClasses.focusRing
+                    )}
                 >
                     {t("go_home")}
                 </a>

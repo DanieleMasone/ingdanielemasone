@@ -2,21 +2,24 @@ import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import clsx from "clsx";
 import {interactiveClasses} from "@/styles/commonClasses";
+import {useTranslation} from "react-i18next";
 
 
 /**
- * Cookie consent notice for the portfolio.
+ * Localized cookie consent notice for the portfolio.
  *
  * Behavior:
  * - Checks localStorage for a `cookieConsent` timestamp.
  * - Shows the banner only when consent is missing.
  * - Stores the acceptance timestamp and hides the banner after confirmation.
+ * - Exposes localized region, link, and action labels for assistive technology.
  *
  * @component
  * @module components/ui/cookieBanner/CookieBanner
  * @returns {JSX.Element|null} The cookie consent notice or null if consent is already given.
  */
 export function CookieBanner() {
+    const {t} = useTranslation();
     const [visible, setVisible] = useState(false);
 
     useEffect(() => {
@@ -38,14 +41,17 @@ export function CookieBanner() {
         <section
             role="region"
             aria-live="polite"
-            aria-label="Cookie consent"
+            aria-label={t("cookie_banner.label")}
             className="fixed bottom-0 left-0 right-0 bg-gray-200 text-gray-900 p-4 flex flex-col md:flex-row justify-between items-center shadow-lg z-50
                dark:bg-gray-900 dark:text-white"
         >
             <p className="mb-2 md:mb-0 max-w-xl">
-                Questo sito utilizza cookie per migliorare l’esperienza utente. Continuando, accetti la nostra&nbsp;
-                <Link to="/privacy" className={interactiveClasses.textLink}>
-                    Politica sulla Privacy
+                {t("cookie_banner.message_prefix")}{" "}
+                <Link
+                    to="/privacy"
+                    className={clsx(interactiveClasses.textLink, interactiveClasses.focusRing, "rounded")}
+                >
+                    {t("cookie_banner.privacy_link")}
                 </Link>.
             </p>
             <button
@@ -56,7 +62,7 @@ export function CookieBanner() {
                     interactiveClasses.focusRing
                 )}
             >
-                Accetta
+                {t("cookie_banner.accept")}
             </button>
         </section>
     );

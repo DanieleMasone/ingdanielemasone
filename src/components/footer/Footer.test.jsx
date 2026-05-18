@@ -10,6 +10,8 @@ vi.mock("react-i18next", () => ({
         t: (key) => {
             const translations = {
                 footer_copyright: "© 2025 Daniele Masone",
+                footer_social_navigation: "Social links",
+                footer_developer_resources: "Developer resources",
                 error_generic: "Generic error",
             };
             return translations[key] || key;

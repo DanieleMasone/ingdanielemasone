@@ -6,6 +6,7 @@ import {Footer} from './components/footer/Footer';
 import {NotFound} from './components/notFound/NotFound';
 import {CookieBanner} from './components/ui/cookieBanner/CookieBanner';
 import {Loading} from "@/components/loading/Loading";
+import {useTranslation} from "react-i18next";
 
 const Home = lazy(() => import('./pages/home/Home'));
 const Experience = lazy(() => import('./pages/experience/Experience'));
@@ -29,13 +30,15 @@ const CookiePolicy = lazy(() => import('./pages/cookiePolicy/CookiePolicy'));
  * @returns {JSX.Element} The routed portfolio application shell.
  */
 export default function App() {
+    const {t} = useTranslation();
+
     return (
         <div className="flex flex-col min-h-screen">
             <a
                 href="#main-content"
                 className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-blue-600 focus:px-4 focus:py-2 focus:text-white focus:shadow-lg"
             >
-                Skip to content
+                {t("skip_to_content")}
             </a>
             <Header/>
             <main id="main-content" className="flex-grow overflow-auto" tabIndex={-1}>

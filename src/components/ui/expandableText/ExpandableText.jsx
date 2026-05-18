@@ -2,6 +2,7 @@ import {useId, useLayoutEffect, useRef, useState} from "react";
 import clsx from "clsx";
 import {ChevronDown, ChevronUp} from "lucide-react";
 import {useTranslation} from "react-i18next";
+import {interactiveClasses} from "@/styles/commonClasses";
 
 /**
  * Expandable text block for long portfolio descriptions.
@@ -68,15 +69,18 @@ export function ExpandableText({value = "", maxLines = 3, className = ""}) {
                         onClick={() => setExpanded(!expanded)}
                         aria-expanded={expanded}
                         aria-controls={contentId}
-                        className="flex items-center gap-1 text-xs text-blue-600 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-blue-400 dark:focus-visible:ring-offset-slate-900"
+                        className={clsx(
+                            "flex items-center gap-1 rounded text-xs text-blue-600 hover:underline dark:text-blue-400",
+                            interactiveClasses.focusRing
+                        )}
                     >
                         {expanded ? (
                             <>
-                                {t("showLess")} <ChevronUp className="w-4 h-4"/>
+                                {t("showLess")} <ChevronUp className="w-4 h-4" aria-hidden="true"/>
                             </>
                         ) : (
                             <>
-                                {t("showMore")} <ChevronDown className="w-4 h-4"/>
+                                {t("showMore")} <ChevronDown className="w-4 h-4" aria-hidden="true"/>
                             </>
                         )}
                     </button>
