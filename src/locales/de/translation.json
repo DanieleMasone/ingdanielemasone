@@ -85,6 +85,14 @@
       "coverage": "Coverage"
     },
     "projects": {
+      "modular_monolith_ecommerce": {
+        "summary": "Production-orientiertes Modular-Monolith-E-Commerce-Backend zur Demonstration klarer Modulgrenzen, pragmatischem CQRS und interner eventbasierter Kommunikation.",
+        "highlights": {
+          "architecture": "Multi-Modul-Architektur mit durch ArchUnit überprüfbaren Grenzen und interner eventgetriebener Kommunikation.",
+          "integration": "PostgreSQL-Persistenz, Redis-Cache, Flyway-Migrationen und Testcontainers-Integration für realistische Umgebungen.",
+          "quality": "Zentrale CI-Pipeline mit automatisierten Reports, generiertem OpenAPI, aggregierter Coverage und GitHub-Pages-Dokumentation."
+        }
+      },
       "identity_service": {
         "summary": "Production-Style-Identity-Backend zur Demonstration von API-first Design, versionierten Verträgen und getesteter Spring-Architektur.",
         "highlights": {

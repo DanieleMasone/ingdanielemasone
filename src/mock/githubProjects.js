@@ -24,6 +24,37 @@
  */
 export const githubProjects = [
     {
+        id: "modular-monolith-ecommerce",
+        name: "Modular Monolith E-commerce",
+        category: "backend",
+        year: "2026",
+        summaryKey: "github_projects_page.projects.modular_monolith_ecommerce.summary",
+        highlightsKeys: [
+            "github_projects_page.projects.modular_monolith_ecommerce.highlights.architecture",
+            "github_projects_page.projects.modular_monolith_ecommerce.highlights.integration",
+            "github_projects_page.projects.modular_monolith_ecommerce.highlights.quality"
+        ],
+        tech: "Java 21, Spring Boot 4, PostgreSQL, Redis, Flyway, Testcontainers, ArchUnit, MapStruct, Docker Compose, Maven, GitHub Actions",
+        links: [
+            {
+                type: "repository",
+                href: "https://github.com/DanieleMasone/modular-monolith-ecommerce"
+            },
+            {
+                type: "live",
+                href: "https://danielemasone.github.io/modular-monolith-ecommerce/dashboard/"
+            },
+            {
+                type: "documentation",
+                href: "https://danielemasone.github.io/modular-monolith-ecommerce/"
+            },
+            {
+                type: "coverage",
+                href: "https://danielemasone.github.io/modular-monolith-ecommerce/coverage/"
+            }
+        ]
+    },
+    {
         id: "identity-service",
         name: "Identity Service API",
         category: "backend",

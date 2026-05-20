@@ -85,6 +85,14 @@
       "coverage": "Coverage"
     },
     "projects": {
+      "modular_monolith_ecommerce": {
+        "summary": "Production-minded modular monolith e-commerce backend built to showcase module boundaries, pragmatic CQRS, and internal event-driven communication.",
+        "highlights": {
+          "architecture": "Multi-module architecture with enforceable boundaries through ArchUnit and internal event-driven communication.",
+          "integration": "PostgreSQL persistence, Redis caching, Flyway migrations, and Testcontainers integration for realistic environments.",
+          "quality": "Unified CI pipeline with automated reports, generated OpenAPI, aggregated coverage, and GitHub Pages documentation."
+        }
+      },
       "identity_service": {
         "summary": "Production-style identity backend built to demonstrate API-first design, versioned contracts and a tested Spring architecture.",
         "highlights": {
