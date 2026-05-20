@@ -1,4 +1,4 @@
-import {describe, expect, it} from "vitest";
+import {describe, expect, it, vi} from "vitest";
 import {
     buildRobots,
     buildSeoBlock,
@@ -6,8 +6,10 @@ import {
     escapeHtml,
     getRouteUrl,
     injectSeoBlock,
-    normalizePath
+    normalizePath,
+    prepareGithubPages
 } from "../../scripts/prepare-github-pages.mjs";
+import fs from "node:fs/promises";
 
 const config = {
     siteUrl: "https://danielemasone.github.io/ingdanielemasone",
@@ -96,7 +98,101 @@ const translations = {
     }
 };
 
+vi.mock("node:fs/promises", () => ({
+    default: {
+        readFile: vi.fn(),
+        writeFile: vi.fn(),
+        mkdir: vi.fn()
+    }
+}));
+
 describe("prepare-github-pages", () => {
+
+    beforeEach(() => {
+        vi.clearAllMocks();
+    });
+
+    it("writes route-specific HTML files, sitemap and robots artifacts", async () => {
+        const template = [
+            "<html>",
+            "<head>",
+            "    <!-- SEO_START -->",
+            "    <!-- SEO_END -->",
+            "</head>",
+            "<body></body>",
+            "</html>"
+        ].join("\n");
+
+        fs.readFile.mockImplementation(async (filePath) => {
+            const normalizedPath = filePath.toString().replaceAll("\\", "/");
+
+            if (normalizedPath.endsWith("/src/config/seo.json")) {
+                return JSON.stringify(config);
+            }
+
+            if (normalizedPath.endsWith("/src/locales/it/translation.json")) {
+                return JSON.stringify(translations);
+            }
+
+            if (normalizedPath.endsWith("/dist/index.html")) {
+                return template;
+            }
+
+            throw new Error(`Unexpected readFile path: ${filePath}`);
+        });
+
+        await prepareGithubPages();
+
+        expect(fs.readFile).toHaveBeenCalledTimes(3);
+
+        expect(fs.mkdir).toHaveBeenCalledWith(
+            expect.stringMatching(/dist$/),
+            {recursive: true}
+        );
+
+        expect(fs.mkdir).toHaveBeenCalledWith(
+            expect.stringMatching(/dist[/\\]experience$/),
+            {recursive: true}
+        );
+
+        expect(fs.mkdir).toHaveBeenCalledWith(
+            expect.stringMatching(/dist[/\\]github-projects$/),
+            {recursive: true}
+        );
+
+        expect(fs.writeFile).toHaveBeenCalledWith(
+            expect.stringMatching(/dist[/\\]index\.html$/),
+            expect.stringContaining('<title data-static-seo="true">Daniele Masone | Senior Software Engineer</title>'),
+            "utf8"
+        );
+
+        expect(fs.writeFile).toHaveBeenCalledWith(
+            expect.stringMatching(/dist[/\\]experience[/\\]index\.html$/),
+            expect.stringContaining('<link rel="canonical" data-static-seo="true" href="https://danielemasone.github.io/ingdanielemasone/experience/"/>'),
+            "utf8"
+        );
+
+        expect(fs.writeFile).toHaveBeenCalledWith(
+            expect.stringMatching(/dist[/\\]privacy[/\\]index\.html$/),
+            expect.stringContaining('<meta name="robots" data-static-seo="true" content="noindex, follow"/>'),
+            "utf8"
+        );
+
+        expect(fs.writeFile).toHaveBeenCalledWith(
+            expect.stringMatching(/dist[/\\]sitemap\.xml$/),
+            expect.stringContaining("<loc>https://danielemasone.github.io/ingdanielemasone/github-projects/</loc>"),
+            "utf8"
+        );
+
+        expect(fs.writeFile).toHaveBeenCalledWith(
+            expect.stringMatching(/dist[/\\]robots\.txt$/),
+            expect.stringContaining("Sitemap: https://danielemasone.github.io/ingdanielemasone/sitemap.xml"),
+            "utf8"
+        );
+
+        expect(fs.writeFile).toHaveBeenCalledTimes(config.routes.length + 2);
+    });
+
     it("normalizes route paths", () => {
         expect(normalizePath("/")).toBe("/");
         expect(normalizePath("experience")).toBe("/experience");
