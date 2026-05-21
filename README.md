@@ -25,6 +25,7 @@ This repository is meant to be a technical showcase for people who land on my Gi
 - A dedicated GitHub projects page for inspectable public repositories, live demos, docs, and coverage reports
 - SEO metadata, structured data, sitemap, robots, social preview, and GitHub Pages-friendly routing
 - Automated tests, coverage output, and generated source documentation
+- Focused Playwright E2E checks for deployment-critical browser behavior
 - CI/CD deployment to GitHub Pages
 
 There is no backend API in this project. Portfolio data is intentionally static and local, because the repository is a front-end showcase and online CV.
@@ -112,8 +113,8 @@ Source documentation is generated with JSDoc and Docdash. It documents component
 | Motion and UI utilities | Framer Motion, Headless UI |
 | Internationalization | i18next, react-i18next, browser language detector |
 | Charts | Chart.js, react-chartjs-2 |
-| Icons and visuals | Lucide React, React Icons, Simple Icons, Boring Avatars |
-| Testing | Vitest, Testing Library, jsdom, V8 coverage |
+| Icons and visuals | Lucide React, Simple Icons, Boring Avatars |
+| Testing | Vitest, Testing Library, Playwright, jsdom, V8 coverage |
 | Documentation | JSDoc, Docdash |
 | Deployment | GitHub Actions, GitHub Pages |
 
@@ -179,6 +180,8 @@ http://localhost:4173/ingdanielemasone/
 | `npm run preview` | Preview the production build locally |
 | `npm test` | Run Vitest in interactive/watch mode |
 | `npm test -- --run` | Run the test suite once |
+| `npm run test:e2e` | Run focused Playwright E2E checks against the production preview |
+| `npm run test:e2e:ui` | Open the Playwright UI runner for E2E debugging |
 | `npm run coverage` | Generate the HTML coverage report |
 | `npm run doc` | Generate static source documentation in `docs/` |
 | `npm run prepare:reports` | Add `noindex, nofollow` metadata to generated docs and coverage HTML |
@@ -191,10 +194,12 @@ The portfolio is deployed to GitHub Pages through `.github/workflows/deploy-page
 On every push to `main`, the workflow:
 
 1. Installs dependencies with npm
-2. Runs `npm run build:all`
-3. Publishes the app from `dist`
-4. Publishes source documentation under `/docs`
-5. Publishes the coverage report under `/test-coverage`
+2. Installs the Chromium browser used by Playwright
+3. Runs focused Playwright E2E checks against the production preview
+4. Runs `npm run build:all`
+5. Publishes the app from `dist`
+6. Publishes source documentation under `/docs`
+7. Publishes the coverage report under `/test-coverage`
 
 The workflow can also be started manually from GitHub Actions.
 

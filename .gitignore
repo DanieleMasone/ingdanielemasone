@@ -21,6 +21,8 @@
 
 # Testing
 /coverage
+/playwright-report
+/test-results
 
 # Documentation
 /docs

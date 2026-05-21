@@ -75,3 +75,13 @@ Before considering any task complete, always evaluate and apply, when needed:
 - Do not introduce visible instructional text inside the portfolio UI unless it improves the real user experience.
 - Treat this repo as a public professional showcase: concise copy, polished layout, accessible controls, and no unfinished surfaces.
 
+## Playwright E2E Rules
+
+- Use Playwright only for deployment-confidence E2E testing; do not duplicate Vitest or Testing Library coverage.
+- Test the production build and preview output instead of the Vite dev server.
+- Always preserve and verify the `/ingdanielemasone/` GitHub Pages base path.
+- Focus E2E coverage on route smoke tests, GitHub Pages deep links, critical navigation, responsive/mobile behavior, SEO metadata, i18n smoke checks, and keyboard accessibility.
+- Add or update E2E tests only when a change affects real browser behavior.
+- Prefer stable semantic selectors: roles, labels, landmarks, headings, metadata, and URLs.
+- Avoid brittle DOM selectors, broad visual snapshots, and unnecessary `data-testid` attributes.
+- Run targeted E2E specs first when possible, then broader suites for shared or deployment-facing changes.
