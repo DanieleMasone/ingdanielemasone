@@ -195,6 +195,8 @@ npx playwright install --with-deps chromium
 | `npm run doc` | Generate static source documentation in `docs/` |
 | `npm run prepare:reports` | Add `noindex, nofollow` metadata to generated docs and coverage HTML |
 | `npm run build:all` | Build app, coverage, and documentation |
+| `npm run deps:outdated` | Inspect outdated npm dependencies without changing them |
+| `npm run security:audit` | Run npm security audit without changing dependencies |
 
 ## Deployment
 
