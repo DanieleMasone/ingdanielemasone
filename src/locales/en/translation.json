@@ -86,11 +86,11 @@
     },
     "projects": {
       "modular_monolith_ecommerce": {
-        "summary": "Production-minded modular monolith e-commerce backend built to showcase module boundaries, pragmatic CQRS, and internal event-driven communication.",
+        "summary": "Production-minded modular monolith e-commerce backend showcasing module boundaries, pragmatic CQRS, internal events, idempotent orders and published technical documentation.",
         "highlights": {
-          "architecture": "Multi-module architecture with enforceable boundaries through ArchUnit and internal event-driven communication.",
-          "integration": "PostgreSQL persistence, Redis caching, Flyway migrations, and Testcontainers integration for realistic environments.",
-          "quality": "Unified CI pipeline with automated reports, generated OpenAPI, aggregated coverage, and GitHub Pages documentation."
+          "architecture": "Maven multi-module Spring Boot application with catalog, orders, payment and shared-kernel boundaries enforced by ArchUnit.",
+          "integration": "PostgreSQL, Redis, Flyway and Docker Compose support realistic local runtime and Testcontainers integration tests.",
+          "quality": "CI publishes dashboard, documentation, OpenAPI UI/JSON, JavaDoc, coverage and test reports through GitHub Pages."
         }
       },
       "identity_service": {
@@ -110,11 +110,11 @@
         }
       },
       "headless_commerce": {
-        "summary": "Static Next.js headless commerce frontend built to show catalog, cart, mock checkout and real GitHub Pages deployment constraints.",
+        "summary": "Static Next.js headless commerce frontend with catalog search, filters, accessible cart drawer, dark mode, mock checkout and public docs/coverage.",
         "highlights": {
-          "static_export": "Static export with base-path-aware assets for GitHub Pages, without SSR runtime or private API routes.",
-          "commerce_ux": "Catalog with filters, sorting, static detail pages and an accessible cart drawer persisted in localStorage.",
-          "quality": "CI with linting, type checks, coverage, Playwright E2E, TypeDoc and repeatable export-build checks."
+          "static_export": "Static export with base-path-aware assets and public report URLs for GitHub Pages, without SSR runtime or private API routes.",
+          "commerce_ux": "Search, filters, sorting, static detail pages and an accessible cart drawer with aria-live updates and localStorage persistence.",
+          "quality": "CI runs format checks, linting, type checks, coverage, Playwright E2E, TypeDoc, build and public report exposure."
         }
       },
       "portfolio": {

@@ -4,6 +4,7 @@ import {MemoryRouter} from "react-router-dom";
 import {vi} from "vitest";
 import GithubProjects from "./GithubProjects";
 import * as service from "@/services/portfolioService";
+import {githubProjects} from "@/mock/githubProjects";
 
 vi.mock("react-i18next", () => ({
     useTranslation: () => ({
@@ -116,7 +117,9 @@ const mockGithubProjects = [
         tech: "Next.js App Router, TypeScript, Playwright",
         links: [
             {type: "repository", href: "https://github.com/DanieleMasone/headless-commerce"},
-            {type: "live", href: "https://danielemasone.github.io/headless-commerce/"}
+            {type: "live", href: "https://danielemasone.github.io/headless-commerce/"},
+            {type: "documentation", href: "https://danielemasone.github.io/headless-commerce/docs/"},
+            {type: "coverage", href: "https://danielemasone.github.io/headless-commerce/coverage/"}
         ]
     },
     {
@@ -185,6 +188,28 @@ describe("GithubProjects", () => {
             .toHaveAttribute("href", "https://danielemasone.github.io/identity-service/coverage/");
         expect(screen.getByRole("link", {name: "Live: Headless Commerce"}))
             .toHaveAttribute("href", "https://danielemasone.github.io/headless-commerce/");
+        expect(screen.getByRole("link", {name: "Docs: Headless Commerce"}))
+            .toHaveAttribute("href", "https://danielemasone.github.io/headless-commerce/docs/");
+        expect(screen.getByRole("link", {name: "Coverage: Headless Commerce"}))
+            .toHaveAttribute("href", "https://danielemasone.github.io/headless-commerce/coverage/");
+    });
+
+    test("keeps public resource links aligned with published repository READMEs", () => {
+        const byType = (projectId, type) =>
+            githubProjects.find((project) => project.id === projectId)
+                ?.links.find((link) => link.type === type)
+                ?.href;
+
+        expect(byType("modular-monolith-ecommerce", "live"))
+            .toBe("https://danielemasone.github.io/modular-monolith-ecommerce/");
+        expect(byType("modular-monolith-ecommerce", "documentation"))
+            .toBe("https://danielemasone.github.io/modular-monolith-ecommerce/docs/");
+        expect(byType("modular-monolith-ecommerce", "coverage"))
+            .toBe("https://danielemasone.github.io/modular-monolith-ecommerce/coverage/");
+        expect(byType("headless-commerce", "documentation"))
+            .toBe("https://danielemasone.github.io/headless-commerce/docs/");
+        expect(byType("headless-commerce", "coverage"))
+            .toBe("https://danielemasone.github.io/headless-commerce/coverage/");
     });
 
     test("filters repositories by category", async () => {

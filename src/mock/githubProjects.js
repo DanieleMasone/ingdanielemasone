@@ -34,7 +34,7 @@ export const githubProjects = [
             "github_projects_page.projects.modular_monolith_ecommerce.highlights.integration",
             "github_projects_page.projects.modular_monolith_ecommerce.highlights.quality"
         ],
-        tech: "Java 21, Spring Boot 4, PostgreSQL, Redis, Flyway, Testcontainers, ArchUnit, MapStruct, Docker Compose, Maven, GitHub Actions",
+        tech: "Java 21, Spring Boot 4.0.6, Spring Web MVC, Spring Data JPA, Hibernate, PostgreSQL, Redis, Flyway, Testcontainers, ArchUnit, MapStruct, springdoc-openapi, JaCoCo, Maven JavaDoc, Docker Compose, GitHub Actions, GitHub Pages",
         links: [
             {
                 type: "repository",
@@ -42,11 +42,11 @@ export const githubProjects = [
             },
             {
                 type: "live",
-                href: "https://danielemasone.github.io/modular-monolith-ecommerce/dashboard/"
+                href: "https://danielemasone.github.io/modular-monolith-ecommerce/"
             },
             {
                 type: "documentation",
-                href: "https://danielemasone.github.io/modular-monolith-ecommerce/"
+                href: "https://danielemasone.github.io/modular-monolith-ecommerce/docs/"
             },
             {
                 type: "coverage",
@@ -127,7 +127,7 @@ export const githubProjects = [
             "github_projects_page.projects.headless_commerce.highlights.commerce_ux",
             "github_projects_page.projects.headless_commerce.highlights.quality"
         ],
-        tech: "Next.js App Router, React, TypeScript, Tailwind CSS, Vitest, Playwright, TypeDoc, ESLint, Prettier, GitHub Actions, GitHub Pages",
+        tech: "Next.js App Router, React, TypeScript, Tailwind CSS, localStorage, Vitest, Playwright, TypeDoc, ESLint, Prettier, GitHub Actions, GitHub Pages",
         links: [
             {
                 type: "repository",
@@ -136,6 +136,14 @@ export const githubProjects = [
             {
                 type: "live",
                 href: "https://danielemasone.github.io/headless-commerce/"
+            },
+            {
+                type: "documentation",
+                href: "https://danielemasone.github.io/headless-commerce/docs/"
+            },
+            {
+                type: "coverage",
+                href: "https://danielemasone.github.io/headless-commerce/coverage/"
             }
         ]
     },
