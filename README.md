@@ -171,6 +171,12 @@ npm run preview
 http://localhost:4173/ingdanielemasone/
 ```
 
+Install the Chromium browser once before running Playwright locally:
+
+```bash
+npx playwright install --with-deps chromium
+```
+
 ## Useful Commands
 
 | Command | Purpose |
@@ -180,8 +186,11 @@ http://localhost:4173/ingdanielemasone/
 | `npm run preview` | Preview the production build locally |
 | `npm test` | Run Vitest in interactive/watch mode |
 | `npm test -- --run` | Run the test suite once |
+| `npx playwright install --with-deps chromium` | Install the Chromium browser used by E2E checks |
 | `npm run test:e2e` | Run focused Playwright E2E checks against the production preview |
 | `npm run test:e2e:ui` | Open the Playwright UI runner for E2E debugging |
+| `npm run test:e2e:headed` | Run Playwright E2E checks with a visible browser |
+| `npm run test:e2e:report` | Open the last Playwright HTML report |
 | `npm run coverage` | Generate the HTML coverage report |
 | `npm run doc` | Generate static source documentation in `docs/` |
 | `npm run prepare:reports` | Add `noindex, nofollow` metadata to generated docs and coverage HTML |
