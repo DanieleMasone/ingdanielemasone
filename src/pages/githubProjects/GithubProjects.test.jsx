@@ -25,6 +25,10 @@ vi.mock("react-i18next", () => ({
                 "github_projects_page.projects.identity_service.highlights.contract": "OpenAPI contract.",
                 "github_projects_page.projects.identity_service.highlights.architecture": "Layered Spring architecture.",
                 "github_projects_page.projects.identity_service.highlights.quality": "Testcontainers quality.",
+                "github_projects_page.projects.headless_commerce.summary": "Static commerce frontend summary.",
+                "github_projects_page.projects.headless_commerce.highlights.static_export": "Static GitHub Pages export.",
+                "github_projects_page.projects.headless_commerce.highlights.commerce_ux": "Accessible cart UX.",
+                "github_projects_page.projects.headless_commerce.highlights.quality": "Playwright and TypeDoc quality.",
                 "github_projects_page.projects.portfolio.summary": "Portfolio summary.",
                 "github_projects_page.projects.portfolio.highlights.positioning": "Portfolio positioning.",
                 "github_projects_page.projects.portfolio.highlights.seo": "GitHub Pages SEO.",
@@ -93,7 +97,26 @@ const mockGithubProjects = [
         tech: "Java 21, Spring Boot 4, OpenAPI",
         links: [
             {type: "repository", href: "https://github.com/DanieleMasone/identity-service"},
-            {type: "documentation", href: "https://danielemasone.github.io/identity-service/"}
+            {type: "live", href: "https://danielemasone.github.io/identity-service/"},
+            {type: "documentation", href: "https://danielemasone.github.io/identity-service/maven-site/"},
+            {type: "coverage", href: "https://danielemasone.github.io/identity-service/coverage/"}
+        ]
+    },
+    {
+        id: "headless-commerce",
+        name: "Headless Commerce",
+        category: "frontend",
+        year: "2026",
+        summaryKey: "github_projects_page.projects.headless_commerce.summary",
+        highlightsKeys: [
+            "github_projects_page.projects.headless_commerce.highlights.static_export",
+            "github_projects_page.projects.headless_commerce.highlights.commerce_ux",
+            "github_projects_page.projects.headless_commerce.highlights.quality"
+        ],
+        tech: "Next.js App Router, TypeScript, Playwright",
+        links: [
+            {type: "repository", href: "https://github.com/DanieleMasone/headless-commerce"},
+            {type: "live", href: "https://danielemasone.github.io/headless-commerce/"}
         ]
     },
     {
@@ -148,12 +171,20 @@ describe("GithubProjects", () => {
         expect(intro).toBeInTheDocument();
         expect(intro).toHaveClass("max-w-3xl", "text-base", "leading-7");
         expect(screen.getByText("Identity Service API")).toBeInTheDocument();
+        expect(screen.getByText("Headless Commerce")).toBeInTheDocument();
         expect(screen.getByText("Portfolio & Online CV")).toBeInTheDocument();
 
         const repository = screen.getByRole("link", {name: "Repository: Identity Service API"});
         expect(repository).toHaveAttribute("href", "https://github.com/DanieleMasone/identity-service");
         expect(repository).toHaveAttribute("target", "_blank");
         expect(repository).toHaveAttribute("rel", "noopener noreferrer");
+
+        expect(screen.getByRole("link", {name: "Docs: Identity Service API"}))
+            .toHaveAttribute("href", "https://danielemasone.github.io/identity-service/maven-site/");
+        expect(screen.getByRole("link", {name: "Coverage: Identity Service API"}))
+            .toHaveAttribute("href", "https://danielemasone.github.io/identity-service/coverage/");
+        expect(screen.getByRole("link", {name: "Live: Headless Commerce"}))
+            .toHaveAttribute("href", "https://danielemasone.github.io/headless-commerce/");
     });
 
     test("filters repositories by category", async () => {
@@ -191,14 +222,16 @@ describe("GithubProjects", () => {
 
         await screen.findByText("Identity Service API");
 
-        expect(screen.getByText("Showing 1-3 of 4 repositories")).toBeInTheDocument();
-        expect(screen.getByText("Frontend Playground")).toBeInTheDocument();
+        expect(screen.getByText("Showing 1-3 of 5 repositories")).toBeInTheDocument();
+        expect(screen.getByText("Portfolio & Online CV")).toBeInTheDocument();
+        expect(screen.queryByText("Frontend Playground")).not.toBeInTheDocument();
         expect(screen.queryByText("Design System Lab")).not.toBeInTheDocument();
 
         fireEvent.click(screen.getAllByRole("button", {name: /next/i})[0]);
 
         await waitFor(() => {
-            expect(screen.getByText("Showing 4-4 of 4 repositories")).toBeInTheDocument();
+            expect(screen.getByText("Showing 4-5 of 5 repositories")).toBeInTheDocument();
+            expect(screen.getByText("Frontend Playground")).toBeInTheDocument();
             expect(screen.getByText("Design System Lab")).toBeInTheDocument();
             expect(screen.queryByText("Identity Service API")).not.toBeInTheDocument();
         });

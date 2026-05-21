@@ -94,11 +94,11 @@
         }
       },
       "identity_service": {
-        "summary": "Backend de identidad con enfoque production-ready para mostrar diseño API-first, contratos versionados y arquitectura Spring testeada.",
+        "summary": "Backend de identidad compacto y production-style para mostrar APIs contract-first, gestión de usuarios versionada y verificación real con PostgreSQL.",
         "highlights": {
-          "contract": "Contrato OpenAPI como fuente de verdad, con interfaces y modelos generados.",
-          "architecture": "Servicio Spring Boot por capas con persistencia JPA, migraciones Flyway y mapping tipado.",
-          "quality": "Docker Compose, Testcontainers y documentación preparada para CI con verificación repetible."
+          "contract": "Contrato OpenAPI como fuente de verdad, con interfaces Spring MVC y DTOs generados durante el build.",
+          "architecture": "Límites por capas entre API, dominio, servicio, persistencia e infraestructura, con mapping MapStruct y migraciones Flyway.",
+          "quality": "Tests unitarios, web-layer, repository e integración Testcontainers, errores RFC 7807, validación Docker y reportes JaCoCo publicados."
         }
       },
       "saas_analytics_dashboard": {
@@ -107,6 +107,14 @@
           "product": "Flujos operativos pensados para lectura rápida, comparación y uso repetido.",
           "data": "Mock APIs tipadas, estados TanStack Query y componentes de gráficos para integración frontend realista.",
           "delivery": "Export estático en GitHub Pages con TypeDoc, reportes de coverage y controles de calidad automatizados."
+        }
+      },
+      "headless_commerce": {
+        "summary": "Frontend headless commerce estático en Next.js para mostrar catálogo, carrito, checkout mock y restricciones reales de despliegue en GitHub Pages.",
+        "highlights": {
+          "static_export": "Export estático con assets compatibles con base path para GitHub Pages, sin runtime SSR ni rutas API privadas.",
+          "commerce_ux": "Catálogo con filtros, ordenación, páginas detalle estáticas y cart drawer accesible persistido en localStorage.",
+          "quality": "CI con lint, typecheck, coverage, Playwright E2E, TypeDoc y controles de build repetibles."
         }
       },
       "portfolio": {

@@ -94,11 +94,11 @@
         }
       },
       "identity_service": {
-        "summary": "Production-Style-Identity-Backend zur Demonstration von API-first Design, versionierten Verträgen und getesteter Spring-Architektur.",
+        "summary": "Kompaktes Identity-Backend im Production-Stil mit contract-first APIs, versionierter Benutzerverwaltung und realer PostgreSQL-Verifikation.",
         "highlights": {
-          "contract": "OpenAPI-Vertrag als Source of Truth, mit generierten Interfaces und Modellen.",
-          "architecture": "Geschichteter Spring-Boot-Service mit JPA-Persistenz, Flyway-Migrationen und typisiertem Mapping.",
-          "quality": "Docker Compose, Testcontainers und CI-freundliche Dokumentation für wiederholbare Verifikation."
+          "contract": "OpenAPI-Vertrag als Source of Truth, mit während des Builds generierten Spring-MVC-Interfaces und DTOs.",
+          "architecture": "Geschichtete Grenzen zwischen API, Domain, Service, Persistenz und Infrastruktur, mit MapStruct-Mapping und Flyway-Migrationen.",
+          "quality": "Unit-, Web-Layer-, Repository- und Testcontainers-Integrationstests, RFC-7807-Fehler, Docker-Validierung und veröffentlichte JaCoCo-Reports."
         }
       },
       "saas_analytics_dashboard": {
@@ -107,6 +107,14 @@
           "product": "Operative Flows für schnelles Scannen, Vergleichen und wiederholte Nutzung.",
           "data": "Typisierte Mock-APIs, TanStack-Query-Zustände und Chart-Komponenten für realistische Frontend-Integration.",
           "delivery": "Statischer GitHub-Pages-Export mit TypeDoc, Coverage-Reports und automatisierten Qualitätsprüfungen."
+        }
+      },
+      "headless_commerce": {
+        "summary": "Statisches Next.js-Headless-Commerce-Frontend für Katalog, Warenkorb, Mock-Checkout und reale GitHub-Pages-Deployment-Grenzen.",
+        "highlights": {
+          "static_export": "Statischer Export mit base-path-fähigen Assets für GitHub Pages, ohne SSR-Runtime oder private API-Routen.",
+          "commerce_ux": "Katalog mit Filtern, Sortierung, statischen Detailseiten und barrierearmem Cart Drawer mit localStorage-Persistenz.",
+          "quality": "CI mit Linting, Typechecks, Coverage, Playwright E2E, TypeDoc und wiederholbaren Export-Build-Prüfungen."
         }
       },
       "portfolio": {

@@ -94,11 +94,11 @@
         }
       },
       "identity_service": {
-        "summary": "Backend identity in stile production-ready creato per mostrare API-first design, contratti versionati e architettura Spring testata.",
+        "summary": "Backend identity compatto ma production-style per mostrare API contract-first, gestione utenti versionata e verifiche reali su PostgreSQL.",
         "highlights": {
-          "contract": "Contratto OpenAPI come fonte di verità, con interfacce e modelli generati.",
-          "architecture": "Servizio Spring Boot a layer con persistenza JPA, migrazioni Flyway e mapping tipizzato.",
-          "quality": "Docker Compose, Testcontainers e documentazione CI-friendly per verifiche ripetibili."
+          "contract": "Contratto OpenAPI come fonte di verità, con interfacce Spring MVC e DTO generati durante la build.",
+          "architecture": "Boundary a layer tra API, dominio, servizio, persistenza e infrastruttura, con mapping MapStruct e migrazioni Flyway.",
+          "quality": "Test unitari, web-layer, repository e integrazione Testcontainers, errori RFC 7807, validazione Docker e report JaCoCo pubblicati."
         }
       },
       "saas_analytics_dashboard": {
@@ -107,6 +107,14 @@
           "product": "Flussi operativi pensati per lettura rapida, confronto e uso ripetuto.",
           "data": "Mock API tipizzate, stati TanStack Query e componenti chart per un'integrazione front-end realistica.",
           "delivery": "Export statico su GitHub Pages con TypeDoc, report coverage e controlli qualità automatizzati."
+        }
+      },
+      "headless_commerce": {
+        "summary": "Frontend headless commerce statico in Next.js, pensato per mostrare catalogo, carrello, checkout mock e vincoli reali di deploy su GitHub Pages.",
+        "highlights": {
+          "static_export": "Export statico con base path e asset compatibili con GitHub Pages, senza runtime SSR o API private.",
+          "commerce_ux": "Catalogo con filtri, ordinamento, detail page statiche e cart drawer accessibile con persistenza in localStorage.",
+          "quality": "CI con lint, typecheck, coverage, Playwright E2E, TypeDoc e controlli di build ripetibili."
         }
       },
       "portfolio": {

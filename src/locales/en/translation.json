@@ -94,11 +94,11 @@
         }
       },
       "identity_service": {
-        "summary": "Production-style identity backend built to demonstrate API-first design, versioned contracts and a tested Spring architecture.",
+        "summary": "Compact production-style identity backend showcasing contract-first APIs, versioned user management and real PostgreSQL verification.",
         "highlights": {
-          "contract": "OpenAPI contract as source of truth, with generated interfaces and models.",
-          "architecture": "Layered Spring Boot service with JPA persistence, Flyway migrations and typed mapping.",
-          "quality": "Docker Compose, Testcontainers and CI-friendly documentation for repeatable verification."
+          "contract": "OpenAPI contract as source of truth, with Spring MVC interfaces and DTOs generated during the build.",
+          "architecture": "Layered boundaries across API, domain, service, persistence and infrastructure, with MapStruct mapping and Flyway migrations.",
+          "quality": "Unit, web-layer, repository and Testcontainers integration tests, RFC 7807 errors, Docker validation and published JaCoCo reports."
         }
       },
       "saas_analytics_dashboard": {
@@ -107,6 +107,14 @@
           "product": "Operational dashboard flows designed for scanning, comparison and repeated use.",
           "data": "Typed mock APIs, TanStack Query states and chart components for realistic frontend integration.",
           "delivery": "Static GitHub Pages export with TypeDoc, coverage reports and automated quality checks."
+        }
+      },
+      "headless_commerce": {
+        "summary": "Static Next.js headless commerce frontend built to show catalog, cart, mock checkout and real GitHub Pages deployment constraints.",
+        "highlights": {
+          "static_export": "Static export with base-path-aware assets for GitHub Pages, without SSR runtime or private API routes.",
+          "commerce_ux": "Catalog with filters, sorting, static detail pages and an accessible cart drawer persisted in localStorage.",
+          "quality": "CI with linting, type checks, coverage, Playwright E2E, TypeDoc and repeatable export-build checks."
         }
       },
       "portfolio": {

@@ -65,15 +65,23 @@ export const githubProjects = [
             "github_projects_page.projects.identity_service.highlights.architecture",
             "github_projects_page.projects.identity_service.highlights.quality"
         ],
-        tech: "Java 21, Spring Boot 4, OpenAPI, PostgreSQL, Flyway, MapStruct, Testcontainers, Docker, Maven, GitHub Actions",
+        tech: "Java 21, Spring Boot 4.0.6, PostgreSQL, Flyway, OpenAPI Generator, MapStruct, Testcontainers, Docker Compose, JaCoCo, Maven, GitHub Actions",
         links: [
             {
                 type: "repository",
                 href: "https://github.com/DanieleMasone/identity-service"
             },
             {
-                type: "documentation",
+                type: "live",
                 href: "https://danielemasone.github.io/identity-service/"
+            },
+            {
+                type: "documentation",
+                href: "https://danielemasone.github.io/identity-service/maven-site/"
+            },
+            {
+                type: "coverage",
+                href: "https://danielemasone.github.io/identity-service/coverage/"
             }
         ]
     },
@@ -105,6 +113,29 @@ export const githubProjects = [
             {
                 type: "coverage",
                 href: "https://danielemasone.github.io/saas-analytics-dashboard/coverage/"
+            }
+        ]
+    },
+    {
+        id: "headless-commerce",
+        name: "Headless Commerce",
+        category: "frontend",
+        year: "2026",
+        summaryKey: "github_projects_page.projects.headless_commerce.summary",
+        highlightsKeys: [
+            "github_projects_page.projects.headless_commerce.highlights.static_export",
+            "github_projects_page.projects.headless_commerce.highlights.commerce_ux",
+            "github_projects_page.projects.headless_commerce.highlights.quality"
+        ],
+        tech: "Next.js App Router, React, TypeScript, Tailwind CSS, Vitest, Playwright, TypeDoc, ESLint, Prettier, GitHub Actions, GitHub Pages",
+        links: [
+            {
+                type: "repository",
+                href: "https://github.com/DanieleMasone/headless-commerce"
+            },
+            {
+                type: "live",
+                href: "https://danielemasone.github.io/headless-commerce/"
             }
         ]
     },
