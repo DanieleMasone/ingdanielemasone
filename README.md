@@ -132,6 +132,9 @@ src/
   pages/         Route-level portfolio pages
   services/      Local data-loading helpers
   styles/        Shared Tailwind class presets
+  
+tests/
+  e2e/           Focused Playwright deployment-confidence tests
 
 scripts/
   prepare-github-pages.mjs
