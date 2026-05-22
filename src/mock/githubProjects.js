@@ -65,7 +65,7 @@ export const githubProjects = [
             "github_projects_page.projects.identity_service.highlights.architecture",
             "github_projects_page.projects.identity_service.highlights.quality"
         ],
-        tech: "Java 21, Spring Boot 4.0.6, PostgreSQL, Flyway, OpenAPI Generator, MapStruct, Testcontainers, Docker Compose, JaCoCo, Maven, GitHub Actions",
+        tech: "Java 21, Spring Boot 4.0.6, PostgreSQL, Flyway, OpenAPI Generator, MapStruct, Testcontainers, Docker Compose, JaCoCo, Maven, GitHub Actions, GitHub Pages",
         links: [
             {
                 type: "repository",
@@ -96,7 +96,7 @@ export const githubProjects = [
             "github_projects_page.projects.saas_analytics_dashboard.highlights.data",
             "github_projects_page.projects.saas_analytics_dashboard.highlights.delivery"
         ],
-        tech: "Next.js 16, React 19, TypeScript, TanStack Query, Recharts, Tailwind CSS, Vitest, TypeDoc, GitHub Pages",
+        tech: "Next.js 16, React 19, TypeScript, TanStack Query, Recharts, Tailwind CSS, Vitest, TypeDoc, GitHub Actions, GitHub Pages",
         links: [
             {
                 type: "repository",
@@ -158,7 +158,7 @@ export const githubProjects = [
             "github_projects_page.projects.portfolio.highlights.seo",
             "github_projects_page.projects.portfolio.highlights.documentation"
         ],
-        tech: "React 19, Vite 8, React Router 7, Tailwind CSS, i18next, Chart.js, Vitest, JSDoc, GitHub Pages",
+        tech: "React 19, Vite 8, React Router 7, Tailwind CSS, i18next, Chart.js, Vitest, JSDoc, GitHub Actions, GitHub Pages",
         links: [
             {
                 type: "repository",
