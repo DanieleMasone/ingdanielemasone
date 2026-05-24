@@ -86,6 +86,37 @@ export const githubProjects = [
         ]
     },
     {
+        id: "react-bff-gateway",
+        name: "React BFF Gateway",
+        category: "backend",
+        year: "2026",
+        summaryKey: "github_projects_page.projects.react_bff_gateway.summary",
+        highlightsKeys: [
+            "github_projects_page.projects.react_bff_gateway.highlights.bff_boundary",
+            "github_projects_page.projects.react_bff_gateway.highlights.security_resilience",
+            "github_projects_page.projects.react_bff_gateway.highlights.quality"
+        ],
+        tech: "Java 21, Spring Boot WebFlux, WebClient, Spring Security JWT Resource Server, Resilience4j, Springdoc OpenAPI 3, Actuator, JUnit 5, WebTestClient, Reactor Test, MockWebServer, WireMock, ArchUnit, JaCoCo, Javadoc, Docker Compose, GitHub Actions, GitHub Pages",
+        links: [
+            {
+                type: "repository",
+                href: "https://github.com/DanieleMasone/react-bff-gateway"
+            },
+            {
+                type: "live",
+                href: "https://danielemasone.github.io/react-bff-gateway/"
+            },
+            {
+                type: "documentation",
+                href: "https://danielemasone.github.io/react-bff-gateway/swagger-ui/"
+            },
+            {
+                type: "coverage",
+                href: "https://danielemasone.github.io/react-bff-gateway/coverage/"
+            }
+        ]
+    },
+    {
         id: "saas-analytics-dashboard",
         name: "SaaS Analytics Dashboard",
         category: "frontend",
@@ -144,6 +175,37 @@ export const githubProjects = [
             {
                 type: "coverage",
                 href: "https://danielemasone.github.io/headless-commerce/coverage/"
+            }
+        ]
+    },
+    {
+        id: "enterprise-data-workbench",
+        name: "Enterprise Data Workbench",
+        category: "frontend",
+        year: "2026",
+        summaryKey: "github_projects_page.projects.enterprise_data_workbench.summary",
+        highlightsKeys: [
+            "github_projects_page.projects.enterprise_data_workbench.highlights.local_first",
+            "github_projects_page.projects.enterprise_data_workbench.highlights.workspace_ux",
+            "github_projects_page.projects.enterprise_data_workbench.highlights.delivery"
+        ],
+        tech: "React, TypeScript, Vite, Zustand, Dexie, IndexedDB, Vitest, Testing Library, TypeDoc, ESLint, Prettier, GitHub Actions, GitHub Pages",
+        links: [
+            {
+                type: "repository",
+                href: "https://github.com/DanieleMasone/enterprise-data-workbench"
+            },
+            {
+                type: "live",
+                href: "https://danielemasone.github.io/enterprise-data-workbench/"
+            },
+            {
+                type: "documentation",
+                href: "https://danielemasone.github.io/enterprise-data-workbench/docs/"
+            },
+            {
+                type: "coverage",
+                href: "https://danielemasone.github.io/enterprise-data-workbench/coverage/"
             }
         ]
     },

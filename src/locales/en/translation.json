@@ -101,6 +101,14 @@
           "quality": "Unit, web-layer, repository and Testcontainers integration tests, RFC 7807 errors, Docker validation and published JaCoCo reports."
         }
       },
+      "react_bff_gateway": {
+        "summary": "Backend for Frontend for React dashboards that centralizes JWT authentication, downstream aggregation, response adaptation and operational resilience.",
+        "highlights": {
+          "bff_boundary": "Exposes one stable frontend API while hiding downstream topology, contracts and failure modes from the browser.",
+          "security_resilience": "Spring Security JWT Resource Server, WebClient and Resilience4j protect the boundary and return stable fallbacks.",
+          "quality": "CI runs Maven verify, JaCoCo, Javadoc, generated OpenAPI/Swagger UI, Docker Compose checks and GitHub Pages publication."
+        }
+      },
       "saas_analytics_dashboard": {
         "summary": "SaaS management dashboard focused on product-grade frontend decisions, typed mock APIs and accessible analytics views.",
         "highlights": {
@@ -115,6 +123,14 @@
           "static_export": "Static export with base-path-aware assets and public report URLs for GitHub Pages, without SSR runtime or private API routes.",
           "commerce_ux": "Search, filters, sorting, static detail pages and an accessible cart drawer with aria-live updates and localStorage persistence.",
           "quality": "CI runs format checks, linting, type checks, coverage, Playwright E2E, TypeDoc, build and public report exposure."
+        }
+      },
+      "enterprise_data_workbench": {
+        "summary": "Local-first React and TypeScript workbench for dense enterprise workflows, with table, kanban and calendar views over one workspace document.",
+        "highlights": {
+          "local_first": "Workspace snapshots persist in IndexedDB through Dexie, with operation logs, optimistic updates and visible mock reconciliation.",
+          "workspace_ux": "Data grid with inline editing, keyboard navigation, command palette, sync inspector, conflicts and simulated collaborator presence.",
+          "delivery": "Pipeline covers typecheck, lint, coverage, build, TypeDoc and public GitHub Pages reports."
         }
       },
       "portfolio": {

@@ -101,6 +101,14 @@
           "quality": "Unit-, Web-Layer-, Repository- und Testcontainers-Integrationstests, RFC-7807-Fehler, Docker-Validierung und veröffentlichte JaCoCo-Reports."
         }
       },
+      "react_bff_gateway": {
+        "summary": "Backend for Frontend für React-Dashboards mit zentraler JWT-Authentifizierung, Downstream-Aggregation, Response-Anpassung und operativer Resilienz.",
+        "highlights": {
+          "bff_boundary": "Stellt eine stabile Frontend-API bereit und verbirgt Downstream-Topologie, Verträge und Fehlerfälle vor dem Browser.",
+          "security_resilience": "Spring Security JWT Resource Server, WebClient und Resilience4j schützen die Boundary und liefern stabile Fallbacks.",
+          "quality": "CI mit Maven verify, JaCoCo, Javadoc, generiertem OpenAPI/Swagger UI, Docker-Compose-Checks und GitHub-Pages-Veröffentlichung."
+        }
+      },
       "saas_analytics_dashboard": {
         "summary": "SaaS-Dashboard mit Fokus auf produktnahe Frontend-Entscheidungen, typisierte Mock-APIs und barrierearme Analytics-Ansichten.",
         "highlights": {
@@ -115,6 +123,14 @@
           "static_export": "Statischer Export mit base-path-fähigen Assets und öffentlichen Report-URLs für GitHub Pages, ohne SSR-Runtime oder private API-Routen.",
           "commerce_ux": "Suche, Filter, Sortierung, statische Detailseiten und barrierearmer Cart Drawer mit aria-live-Updates und localStorage-Persistenz.",
           "quality": "CI mit Format-Checks, Linting, Typechecks, Coverage, Playwright E2E, TypeDoc, Build und Veröffentlichung der Reports."
+        }
+      },
+      "enterprise_data_workbench": {
+        "summary": "Local-first React- und TypeScript-Workbench für dichte Enterprise-Workflows mit Tabelle, Kanban und Kalender über einem gemeinsamen Workspace-Dokument.",
+        "highlights": {
+          "local_first": "Workspace-Snapshots werden mit Dexie in IndexedDB persistiert, inklusive Operation Log, optimistischen Updates und sichtbarer Mock-Reconciliation.",
+          "workspace_ux": "Data Grid mit Inline-Editing, Tastaturnavigation, Command Palette, Sync Inspector, Konflikten und simulierter Kollaborationspräsenz.",
+          "delivery": "Pipeline mit Typecheck, Lint, Coverage, Build, TypeDoc und öffentlichen GitHub-Pages-Reports."
         }
       },
       "portfolio": {

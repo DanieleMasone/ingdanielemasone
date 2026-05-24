@@ -210,6 +210,18 @@ describe("GithubProjects", () => {
             .toBe("https://danielemasone.github.io/headless-commerce/docs/");
         expect(byType("headless-commerce", "coverage"))
             .toBe("https://danielemasone.github.io/headless-commerce/coverage/");
+        expect(byType("react-bff-gateway", "live"))
+            .toBe("https://danielemasone.github.io/react-bff-gateway/");
+        expect(byType("react-bff-gateway", "documentation"))
+            .toBe("https://danielemasone.github.io/react-bff-gateway/swagger-ui/");
+        expect(byType("react-bff-gateway", "coverage"))
+            .toBe("https://danielemasone.github.io/react-bff-gateway/coverage/");
+        expect(byType("enterprise-data-workbench", "live"))
+            .toBe("https://danielemasone.github.io/enterprise-data-workbench/");
+        expect(byType("enterprise-data-workbench", "documentation"))
+            .toBe("https://danielemasone.github.io/enterprise-data-workbench/docs/");
+        expect(byType("enterprise-data-workbench", "coverage"))
+            .toBe("https://danielemasone.github.io/enterprise-data-workbench/coverage/");
     });
 
     test("filters repositories by category", async () => {

@@ -101,6 +101,14 @@
           "quality": "Tests unitaires, web-layer, repository et intégration Testcontainers, erreurs RFC 7807, validation Docker et rapports JaCoCo publiés."
         }
       },
+      "react_bff_gateway": {
+        "summary": "Backend for Frontend pour dashboards React qui centralise authentification JWT, agrégation downstream, adaptation des réponses et résilience opérationnelle.",
+        "highlights": {
+          "bff_boundary": "Expose une API front stable et masque au navigateur la topologie, les contrats et les modes d’échec downstream.",
+          "security_resilience": "Spring Security JWT Resource Server, WebClient et Resilience4j protègent la boundary et renvoient des fallbacks stables.",
+          "quality": "CI avec Maven verify, JaCoCo, Javadoc, OpenAPI/Swagger UI générés, contrôles Docker Compose et publication GitHub Pages."
+        }
+      },
       "saas_analytics_dashboard": {
         "summary": "Dashboard SaaS axé sur des choix front-end de niveau produit, des mock APIs typées et des vues analytics accessibles.",
         "highlights": {
@@ -115,6 +123,14 @@
           "static_export": "Export statique avec assets compatibles base path et URL publiques de rapports pour GitHub Pages, sans runtime SSR ni routes API privées.",
           "commerce_ux": "Recherche, filtres, tri, pages détail statiques et cart drawer accessible avec mises à jour aria-live et persistance localStorage.",
           "quality": "CI avec format check, lint, typecheck, couverture, Playwright E2E, TypeDoc, build et exposition des rapports publics."
+        }
+      },
+      "enterprise_data_workbench": {
+        "summary": "Workbench React et TypeScript local-first pour workflows enterprise denses, avec vues table, kanban et calendrier sur un même document workspace.",
+        "highlights": {
+          "local_first": "Snapshot persisté dans IndexedDB via Dexie, avec operation log, mises à jour optimistes et réconciliation mock visible.",
+          "workspace_ux": "Data grid avec édition inline, navigation clavier, command palette, sync inspector, conflits et présence collaborative simulée.",
+          "delivery": "Pipeline avec typecheck, lint, couverture, build, TypeDoc et rapports publics GitHub Pages."
         }
       },
       "portfolio": {
