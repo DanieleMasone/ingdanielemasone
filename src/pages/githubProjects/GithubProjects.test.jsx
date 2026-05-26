@@ -99,7 +99,7 @@ const mockGithubProjects = [
         links: [
             {type: "repository", href: "https://github.com/DanieleMasone/identity-service"},
             {type: "live", href: "https://danielemasone.github.io/identity-service/"},
-            {type: "documentation", href: "https://danielemasone.github.io/identity-service/maven-site/"},
+            {type: "documentation", href: "https://danielemasone.github.io/identity-service/openapi/"},
             {type: "coverage", href: "https://danielemasone.github.io/identity-service/coverage/"}
         ]
     },
@@ -184,7 +184,7 @@ describe("GithubProjects", () => {
         expect(repository).toHaveAttribute("rel", "noopener noreferrer");
 
         expect(screen.getByRole("link", {name: "Docs: Identity Service API"}))
-            .toHaveAttribute("href", "https://danielemasone.github.io/identity-service/maven-site/");
+            .toHaveAttribute("href", "https://danielemasone.github.io/identity-service/openapi/");
         expect(screen.getByRole("link", {name: "Coverage: Identity Service API"}))
             .toHaveAttribute("href", "https://danielemasone.github.io/identity-service/coverage/");
         expect(screen.getByRole("link", {name: "Live: Headless Commerce"}))
@@ -207,6 +207,16 @@ describe("GithubProjects", () => {
             .toBe("https://danielemasone.github.io/modular-monolith-ecommerce/docs/");
         expect(byType("modular-monolith-ecommerce", "coverage"))
             .toBe("https://danielemasone.github.io/modular-monolith-ecommerce/coverage/");
+        expect(byType("identity-service", "documentation"))
+            .toBe("https://danielemasone.github.io/identity-service/openapi/");
+        expect(byType("identity-service", "coverage"))
+            .toBe("https://danielemasone.github.io/identity-service/coverage/");
+        expect(byType("order-events-service", "live"))
+            .toBe("https://danielemasone.github.io/order-events-service/");
+        expect(byType("order-events-service", "documentation"))
+            .toBe("https://danielemasone.github.io/order-events-service/openapi/");
+        expect(byType("order-events-service", "coverage"))
+            .toBe("https://danielemasone.github.io/order-events-service/jacoco/");
         expect(byType("saas-analytics-dashboard", "documentation"))
             .toBe("https://danielemasone.github.io/saas-analytics-dashboard/reference/");
         expect(byType("saas-analytics-dashboard", "coverage"))
@@ -236,6 +246,7 @@ describe("GithubProjects", () => {
             githubProjects.find((project) => project.id === projectId)?.tech;
 
         expect(techByProject("saas-analytics-dashboard")).toContain("Playwright");
+        expect(techByProject("order-events-service")).toContain("Kafka");
         expect(techByProject("enterprise-data-workbench")).toContain("Playwright");
         expect(techByProject("portfolio-online-cv")).toContain("Playwright");
     });

@@ -101,6 +101,14 @@
           "quality": "Tests unitaires, web-layer, repository et intégration Testcontainers, erreurs RFC 7807, validation Docker et rapports JaCoCo publiés."
         }
       },
+      "order_events_service": {
+        "summary": "Microservice Spring Boot event-driven pour créer des commandes, publier des événements Kafka, les consommer de façon idempotente et publier la documentation technique sur GitHub Pages.",
+        "highlights": {
+          "event_flow": "Flux de commande ciblé avec API REST, persistance PostgreSQL, événements Kafka order.created.v1 et topic dead-letter pour les échecs épuisés.",
+          "idempotency": "Consumer idempotent via une table processed_events, retries à backoff fixe et gestion des livraisons dupliquées sans effets secondaires répétés.",
+          "quality": "Build Maven avec tests Spring Boot, Mockito et Testcontainers, export OpenAPI, rapports JaCoCo et artifact GitHub Pages vérifié en CI."
+        }
+      },
       "react_bff_gateway": {
         "summary": "Backend for Frontend pour dashboards React qui centralise authentification JWT, agrégation downstream, adaptation des réponses et résilience opérationnelle.",
         "highlights": {

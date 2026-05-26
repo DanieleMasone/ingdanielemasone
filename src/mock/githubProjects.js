@@ -34,7 +34,7 @@ export const githubProjects = [
             "github_projects_page.projects.modular_monolith_ecommerce.highlights.integration",
             "github_projects_page.projects.modular_monolith_ecommerce.highlights.quality"
         ],
-        tech: "Java 21, Spring Boot 4.0.6, Spring Web MVC, Spring Data JPA, Hibernate, PostgreSQL, Redis, Flyway, Testcontainers, ArchUnit, MapStruct, springdoc-openapi, JaCoCo, Maven JavaDoc, Docker Compose, GitHub Actions, GitHub Pages",
+        tech: "Java 21, Spring Boot 4.x, Spring Web MVC, Spring Data JPA, Hibernate, PostgreSQL, Redis, Flyway, Maven multi-module, JUnit 5, AssertJ, Testcontainers, ArchUnit, MapStruct, springdoc-openapi, JaCoCo, Maven JavaDoc, Docker Compose, GitHub Actions, GitHub Pages",
         links: [
             {
                 type: "repository",
@@ -65,7 +65,7 @@ export const githubProjects = [
             "github_projects_page.projects.identity_service.highlights.architecture",
             "github_projects_page.projects.identity_service.highlights.quality"
         ],
-        tech: "Java 21, Spring Boot 4.0.6, PostgreSQL, Flyway, OpenAPI Generator, MapStruct, Testcontainers, Docker Compose, JaCoCo, Maven, GitHub Actions, GitHub Pages",
+        tech: "Java 21, Spring Boot 4.0.6, Spring Web MVC, Spring Data JPA, Hibernate, PostgreSQL, Flyway, OpenAPI Generator, MapStruct, RFC 7807 ProblemDetail, Testcontainers, Docker Compose, JaCoCo, Maven, GitHub Actions, GitHub Pages",
         links: [
             {
                 type: "repository",
@@ -77,11 +77,42 @@ export const githubProjects = [
             },
             {
                 type: "documentation",
-                href: "https://danielemasone.github.io/identity-service/maven-site/"
+                href: "https://danielemasone.github.io/identity-service/openapi/"
             },
             {
                 type: "coverage",
                 href: "https://danielemasone.github.io/identity-service/coverage/"
+            }
+        ]
+    },
+    {
+        id: "order-events-service",
+        name: "Order Events Service",
+        category: "backend",
+        year: "2026",
+        summaryKey: "github_projects_page.projects.order_events_service.summary",
+        highlightsKeys: [
+            "github_projects_page.projects.order_events_service.highlights.event_flow",
+            "github_projects_page.projects.order_events_service.highlights.idempotency",
+            "github_projects_page.projects.order_events_service.highlights.quality"
+        ],
+        tech: "Java 21, Spring Boot, Spring Web MVC, Spring Data JPA, PostgreSQL, Flyway, Kafka, Spring Kafka, Maven Wrapper, Docker Compose, JUnit 5, Mockito, Spring Boot Test, Testcontainers, JaCoCo, OpenAPI Generator, GitHub Actions, GitHub Pages",
+        links: [
+            {
+                type: "repository",
+                href: "https://github.com/DanieleMasone/order-events-service"
+            },
+            {
+                type: "live",
+                href: "https://danielemasone.github.io/order-events-service/"
+            },
+            {
+                type: "documentation",
+                href: "https://danielemasone.github.io/order-events-service/openapi/"
+            },
+            {
+                type: "coverage",
+                href: "https://danielemasone.github.io/order-events-service/jacoco/"
             }
         ]
     },
