@@ -30,70 +30,60 @@
     {
       "path": "/",
       "pageKey": "home",
-      "priority": "1.0",
       "robots": "index, follow",
       "sitemap": true
     },
     {
       "path": "/experience",
       "pageKey": "experience",
-      "priority": "0.9",
       "robots": "index, follow",
       "sitemap": true
     },
     {
       "path": "/projects",
       "pageKey": "projects",
-      "priority": "0.9",
       "robots": "index, follow",
       "sitemap": true
     },
     {
       "path": "/github-projects",
       "pageKey": "githubProjects",
-      "priority": "0.85",
       "robots": "index, follow",
       "sitemap": true
     },
     {
       "path": "/courses",
       "pageKey": "courses",
-      "priority": "0.8",
       "robots": "index, follow",
       "sitemap": true
     },
     {
       "path": "/certifications",
       "pageKey": "certifications",
-      "priority": "0.8",
       "robots": "index, follow",
       "sitemap": true
     },
     {
       "path": "/testimonials",
       "pageKey": "testimonials",
-      "priority": "0.7",
       "robots": "index, follow",
       "sitemap": true
     },
     {
       "path": "/trading",
       "pageKey": "trading",
-      "priority": "0.6",
       "robots": "index, follow",
       "sitemap": true
     },
     {
       "path": "/privacy",
       "pageKey": "privacy",
-      "priority": "0.2",
       "robots": "noindex, follow",
       "sitemap": false
     },
     {
       "path": "/cookie-policy",
       "pageKey": "cookie",
-      "priority": "0.2",
       "robots": "noindex, follow",
       "sitemap": false
     }

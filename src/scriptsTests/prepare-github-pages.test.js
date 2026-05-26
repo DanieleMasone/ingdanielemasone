@@ -40,16 +40,16 @@ const config = {
         es: "es_ES"
     },
     routes: [
-        {path: "/", pageKey: "home", priority: "1.0", robots: "index, follow", sitemap: true},
-        {path: "/experience", pageKey: "experience", priority: "0.9", robots: "index, follow", sitemap: true},
-        {path: "/projects", pageKey: "projects", priority: "0.9", robots: "index, follow", sitemap: true},
-        {path: "/github-projects", pageKey: "githubProjects", priority: "0.85", robots: "index, follow", sitemap: true},
-        {path: "/courses", pageKey: "courses", priority: "0.8", robots: "index, follow", sitemap: true},
-        {path: "/certifications", pageKey: "certifications", priority: "0.8", robots: "index, follow", sitemap: true},
-        {path: "/testimonials", pageKey: "testimonials", priority: "0.7", robots: "index, follow", sitemap: true},
-        {path: "/trading", pageKey: "trading", priority: "0.6", robots: "index, follow", sitemap: true},
-        {path: "/privacy", pageKey: "privacy", priority: "0.2", robots: "noindex, follow", sitemap: false},
-        {path: "/cookie-policy", pageKey: "cookie", priority: "0.2", robots: "noindex, follow", sitemap: false}
+        {path: "/", pageKey: "home", robots: "index, follow", sitemap: true},
+        {path: "/experience", pageKey: "experience", robots: "index, follow", sitemap: true},
+        {path: "/projects", pageKey: "projects", robots: "index, follow", sitemap: true},
+        {path: "/github-projects", pageKey: "githubProjects", robots: "index, follow", sitemap: true},
+        {path: "/courses", pageKey: "courses", robots: "index, follow", sitemap: true},
+        {path: "/certifications", pageKey: "certifications", robots: "index, follow", sitemap: true},
+        {path: "/testimonials", pageKey: "testimonials", robots: "index, follow", sitemap: true},
+        {path: "/trading", pageKey: "trading", robots: "index, follow", sitemap: true},
+        {path: "/privacy", pageKey: "privacy", robots: "noindex, follow", sitemap: false},
+        {path: "/cookie-policy", pageKey: "cookie", robots: "noindex, follow", sitemap: false}
     ]
 };
 
@@ -324,10 +324,8 @@ describe("prepare-github-pages", () => {
 
         expect(sitemap).not.toContain("/privacy/");
         expect(sitemap).not.toContain("/cookie-policy/");
-
-        expect(sitemap).toContain("<priority>1.0</priority>");
-        expect(sitemap).toContain("<priority>0.85</priority>");
-        expect(sitemap).toContain("<priority>0.6</priority>");
+        expect(sitemap).not.toContain("<lastmod>");
+        expect(sitemap).not.toContain("<priority>");
     });
 
     it("builds robots.txt for GitHub Pages project path", () => {

@@ -192,18 +192,15 @@ const getRouteOutputPath = (routePath) => {
 /**
  * Builds the XML sitemap from indexable routes.
  *
- * @param {{config: object}} params - SEO configuration containing route priorities and sitemap flags.
+ * @param {{config: object}} params - SEO configuration containing route sitemap flags.
  * @returns {string} XML sitemap content.
  */
 export const buildSitemap = ({config}) => {
-    const today = new Date().toISOString().slice(0, 10);
     const urls = config.routes
         .filter((route) => route.sitemap)
         .map((route) => [
             "    <url>",
             `        <loc>${getRouteUrl(config.siteUrl, route.path)}</loc>`,
-            `        <lastmod>${today}</lastmod>`,
-            `        <priority>${route.priority}</priority>`,
             "    </url>"
         ].join("\n"))
         .join("\n\n");

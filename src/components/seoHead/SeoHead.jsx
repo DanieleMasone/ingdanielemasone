@@ -12,7 +12,6 @@ const STATIC_SEO_SELECTOR = "[data-static-seo='true']";
  * @typedef {object} SeoRouteConfig
  * @property {string} [path] - Clean route path.
  * @property {string} [pageKey] - Translation key suffix for route metadata.
- * @property {string} [priority] - Sitemap priority value.
  * @property {string} [robots] - Robots directive rendered for the route.
  * @property {boolean} [sitemap] - Whether the route should be included in the sitemap.
  */
