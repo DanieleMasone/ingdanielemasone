@@ -110,35 +110,35 @@
         }
       },
       "saas_analytics_dashboard": {
-        "summary": "Dashboard SaaS axé sur des choix front-end de niveau produit, des mock APIs typées et des vues analytics accessibles.",
+        "summary": "Dashboard de gestion SaaS en Next.js 16 montrant une architecture frontend orientée produit, des mock APIs typées, des états de route, des analytics accessibles et un déploiement GitHub Pages.",
         "highlights": {
-          "product": "Parcours opérationnels pensés pour la lecture rapide, la comparaison et l'usage répété.",
-          "data": "Mock APIs typées, états TanStack Query et composants de graphiques pour une intégration front-end réaliste.",
-          "delivery": "Export statique GitHub Pages avec TypeDoc, rapports de couverture et contrôles qualité automatisés."
+          "product": "Les espaces revenue, customers, delivery, health et settings sont organisés pour le scan, la comparaison et l'usage opérationnel répété.",
+          "data": "Le static data mode, TanStack Query, les états loading/error/retry/empty et les graphiques accessibles rendent le flux de données frontend réaliste.",
+          "delivery": "Quality gates avec TypeScript, ESLint, Vitest, Testing Library, Playwright E2E, couverture V8, TypeDoc et export statique Pages."
         }
       },
       "headless_commerce": {
-        "summary": "Frontend headless commerce statique en Next.js avec recherche catalogue, filtres, cart drawer accessible, dark mode, checkout mock et docs/couverture publics.",
+        "summary": "Frontend headless commerce statique en Next.js App Router avec TypeScript strict, catalogue filtrable, cart drawer accessible, dark mode, checkout mock et docs/couverture publics.",
         "highlights": {
-          "static_export": "Export statique avec assets compatibles base path et URL publiques de rapports pour GitHub Pages, sans runtime SSR ni routes API privées.",
-          "commerce_ux": "Recherche, filtres, tri, pages détail statiques et cart drawer accessible avec mises à jour aria-live et persistance localStorage.",
-          "quality": "CI avec format check, lint, typecheck, couverture, Playwright E2E, TypeDoc, build et exposition des rapports publics."
+          "static_export": "Export statique avec routing et assets compatibles base path pour GitHub Pages, sans API routes, runtime SSR, Server Actions ni secrets côté serveur.",
+          "commerce_ux": "Recherche, filtres, tri, pages détail statiques et cart drawer accessible avec focus management, fermeture Escape, aria-live et persistance localStorage.",
+          "quality": "npm run ci valide format, lint, typecheck, couverture, TypeDoc, build statique, rapports exposés, Playwright E2E et assertions de static export."
         }
       },
       "enterprise_data_workbench": {
-        "summary": "Workbench React et TypeScript local-first pour workflows enterprise denses, avec vues table, kanban et calendrier sur un même document workspace.",
+        "summary": "Workbench React, TypeScript et Vite local-first pour workflows enterprise denses, avec vues table, kanban et calendrier sur un même document workspace.",
         "highlights": {
-          "local_first": "Snapshot persisté dans IndexedDB via Dexie, avec operation log, mises à jour optimistes et réconciliation mock visible.",
-          "workspace_ux": "Data grid avec édition inline, navigation clavier, command palette, sync inspector, conflits et présence collaborative simulée.",
-          "delivery": "Pipeline avec typecheck, lint, couverture, build, TypeDoc et rapports publics GitHub Pages."
+          "local_first": "Snapshot persisté dans IndexedDB via Dexie, avec operation log, mises à jour optimistes, sync mock et réconciliation de conflits visible.",
+          "workspace_ux": "Data grid avec édition inline, navigation clavier, redimensionnement/réordonnancement des colonnes, command palette, sync inspector et présence simulée.",
+          "delivery": "CI avec typecheck, lint, couverture, build, TypeDoc, Playwright E2E desktop/mobile et artifact GitHub Pages avec docs et couverture."
         }
       },
       "portfolio": {
-        "summary": "Ce portfolio lui-même, traité comme un CV en ligne orienté production avec localisation, SEO, documentation et couverture de tests.",
+        "summary": "Ce portfolio React/Vite lui-même, traité comme un CV en ligne orienté production avec localisation, SEO statique, Playwright E2E, couverture et documentation générée.",
         "highlights": {
-          "positioning": "Sépare delivery professionnel, dépôts publics, cours, certifications et témoignages.",
-          "seo": "SEO compatible GitHub Pages avec URL canoniques, métadonnées de preview sociale, sitemap et robots.",
-          "documentation": "Référence JSDoc et rapports de couverture publiés à côté du site live."
+          "positioning": "Sépare delivery professionnel, dépôts publics avec liens live/docs/couverture, cours, certifications, témoignages et trading en sections navigables.",
+          "seo": "SEO GitHub Pages avec HTML par route, URL canoniques, structured data, social preview, sitemap, robots et base path /ingdanielemasone/.",
+          "documentation": "JSDoc/Docdash, couverture V8 et tests Playwright de confiance au déploiement sont publiés avec le site via la CI/CD Pages."
         }
       }
     }

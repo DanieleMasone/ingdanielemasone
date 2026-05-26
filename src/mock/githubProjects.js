@@ -127,7 +127,7 @@ export const githubProjects = [
             "github_projects_page.projects.saas_analytics_dashboard.highlights.data",
             "github_projects_page.projects.saas_analytics_dashboard.highlights.delivery"
         ],
-        tech: "Next.js 16, React 19, TypeScript, TanStack Query, Recharts, Tailwind CSS, Vitest, TypeDoc, GitHub Actions, GitHub Pages",
+        tech: "Next.js 16, React 19, TypeScript, TanStack Query, Recharts, Tailwind CSS 4, Vitest, Testing Library, Playwright, V8 coverage, TypeDoc, ESLint, GitHub Actions, GitHub Pages",
         links: [
             {
                 type: "repository",
@@ -158,7 +158,7 @@ export const githubProjects = [
             "github_projects_page.projects.headless_commerce.highlights.commerce_ux",
             "github_projects_page.projects.headless_commerce.highlights.quality"
         ],
-        tech: "Next.js App Router, React, TypeScript, Tailwind CSS, localStorage, Vitest, Playwright, TypeDoc, ESLint, Prettier, GitHub Actions, GitHub Pages",
+        tech: "Next.js App Router, React, strict TypeScript, Tailwind CSS, localStorage, Vitest, React Testing Library, Playwright, TypeDoc, ESLint, Prettier, GitHub Actions, GitHub Pages",
         links: [
             {
                 type: "repository",
@@ -189,7 +189,7 @@ export const githubProjects = [
             "github_projects_page.projects.enterprise_data_workbench.highlights.workspace_ux",
             "github_projects_page.projects.enterprise_data_workbench.highlights.delivery"
         ],
-        tech: "React, TypeScript, Vite, Zustand, Dexie, IndexedDB, Vitest, Testing Library, TypeDoc, ESLint, Prettier, GitHub Actions, GitHub Pages",
+        tech: "React, TypeScript, Vite, Zustand, Dexie, IndexedDB, Vitest, Testing Library, Playwright, V8 coverage, TypeDoc, ESLint, Prettier, GitHub Actions, GitHub Pages",
         links: [
             {
                 type: "repository",
@@ -213,14 +213,14 @@ export const githubProjects = [
         id: "portfolio-online-cv",
         name: "Portfolio & Online CV",
         category: "frontend",
-        year: "2025",
+        year: "2026",
         summaryKey: "github_projects_page.projects.portfolio.summary",
         highlightsKeys: [
             "github_projects_page.projects.portfolio.highlights.positioning",
             "github_projects_page.projects.portfolio.highlights.seo",
             "github_projects_page.projects.portfolio.highlights.documentation"
         ],
-        tech: "React 19, Vite 8, React Router 7, Tailwind CSS, i18next, Chart.js, Vitest, JSDoc, GitHub Actions, GitHub Pages",
+        tech: "React 19, Vite 8, React Router 7, Tailwind CSS, i18next, Chart.js, Vitest, Testing Library, Playwright, V8 coverage, JSDoc, Docdash, GitHub Actions, GitHub Pages",
         links: [
             {
                 type: "repository",
@@ -232,11 +232,11 @@ export const githubProjects = [
             },
             {
                 type: "documentation",
-                href: "https://danielemasone.github.io/ingdanielemasone/docs"
+                href: "https://danielemasone.github.io/ingdanielemasone/docs/"
             },
             {
                 type: "coverage",
-                href: "https://danielemasone.github.io/ingdanielemasone/test-coverage"
+                href: "https://danielemasone.github.io/ingdanielemasone/test-coverage/"
             }
         ]
     }

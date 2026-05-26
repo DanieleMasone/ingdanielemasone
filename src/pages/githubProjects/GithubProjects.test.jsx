@@ -126,18 +126,19 @@ const mockGithubProjects = [
         id: "portfolio-online-cv",
         name: "Portfolio & Online CV",
         category: "frontend",
-        year: "2025",
         summaryKey: "github_projects_page.projects.portfolio.summary",
         highlightsKeys: [
             "github_projects_page.projects.portfolio.highlights.positioning",
             "github_projects_page.projects.portfolio.highlights.seo",
             "github_projects_page.projects.portfolio.highlights.documentation"
         ],
-        tech: "React 19, Vite 8, Vitest",
+        year: "2026",
+        tech: "React 19, Vite 8, Vitest, Playwright",
         links: [
             {type: "repository", href: "https://github.com/DanieleMasone/ingdanielemasone"},
             {type: "live", href: "https://danielemasone.github.io/ingdanielemasone/"},
-            {type: "coverage", href: "https://danielemasone.github.io/ingdanielemasone/test-coverage"}
+            {type: "documentation", href: "https://danielemasone.github.io/ingdanielemasone/docs/"},
+            {type: "coverage", href: "https://danielemasone.github.io/ingdanielemasone/test-coverage/"}
         ]
     }
 ];
@@ -206,6 +207,10 @@ describe("GithubProjects", () => {
             .toBe("https://danielemasone.github.io/modular-monolith-ecommerce/docs/");
         expect(byType("modular-monolith-ecommerce", "coverage"))
             .toBe("https://danielemasone.github.io/modular-monolith-ecommerce/coverage/");
+        expect(byType("saas-analytics-dashboard", "documentation"))
+            .toBe("https://danielemasone.github.io/saas-analytics-dashboard/reference/");
+        expect(byType("saas-analytics-dashboard", "coverage"))
+            .toBe("https://danielemasone.github.io/saas-analytics-dashboard/coverage/");
         expect(byType("headless-commerce", "documentation"))
             .toBe("https://danielemasone.github.io/headless-commerce/docs/");
         expect(byType("headless-commerce", "coverage"))
@@ -222,6 +227,17 @@ describe("GithubProjects", () => {
             .toBe("https://danielemasone.github.io/enterprise-data-workbench/docs/");
         expect(byType("enterprise-data-workbench", "coverage"))
             .toBe("https://danielemasone.github.io/enterprise-data-workbench/coverage/");
+        expect(byType("portfolio-online-cv", "documentation"))
+            .toBe("https://danielemasone.github.io/ingdanielemasone/docs/");
+        expect(byType("portfolio-online-cv", "coverage"))
+            .toBe("https://danielemasone.github.io/ingdanielemasone/test-coverage/");
+
+        const techByProject = (projectId) =>
+            githubProjects.find((project) => project.id === projectId)?.tech;
+
+        expect(techByProject("saas-analytics-dashboard")).toContain("Playwright");
+        expect(techByProject("enterprise-data-workbench")).toContain("Playwright");
+        expect(techByProject("portfolio-online-cv")).toContain("Playwright");
     });
 
     test("filters repositories by category", async () => {
