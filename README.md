@@ -207,13 +207,12 @@ The portfolio is deployed to GitHub Pages through `.github/workflows/deploy-page
 
 On every push to `main`, the workflow:
 
-1. Installs dependencies with npm
-2. Installs the Chromium browser used by Playwright
-3. Runs focused Playwright E2E checks against the production preview
-4. Runs `npm run build:all`
-5. Publishes the app from `dist`
-6. Publishes source documentation under `/docs`
-7. Publishes the coverage report under `/test-coverage`
+1. Installs dependencies with `npm ci`
+2. Configures GitHub Pages through the official Pages action
+3. Installs the Chromium browser used by Playwright
+4. Runs focused Playwright E2E checks against the production preview
+5. Runs `npm run build:all` to build the app, generate docs and coverage, and prepare the final `dist` artifact
+6. Publishes `dist` to GitHub Pages, including source documentation under `/docs` and coverage under `/test-coverage`
 
 The workflow can also be started manually from GitHub Actions.
 

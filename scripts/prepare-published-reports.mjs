@@ -3,7 +3,7 @@ import path from "node:path";
 import {fileURLToPath, pathToFileURL} from "node:url";
 
 /**
- * Adds robots metadata to generated report pages before they are published on GitHub Pages.
+ * Adds robots metadata to generated report pages and copies them into the GitHub Pages artifact.
  *
  * The portfolio links to source documentation and coverage as developer resources,
  * but those generated pages are not portfolio landing pages and should not compete
@@ -13,7 +13,11 @@ import {fileURLToPath, pathToFileURL} from "node:url";
  */
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const reportDirs = ["docs", "coverage"];
+const distDir = path.join(rootDir, "dist");
+const reportDirs = [
+    {source: "docs", target: "docs"},
+    {source: "coverage", target: "test-coverage"}
+];
 const robotsMeta = '<meta name="robots" content="noindex, nofollow"/>';
 
 /**
@@ -58,36 +62,61 @@ const listHtmlFiles = async (directory) => {
 };
 
 /**
- * Adds noindex metadata to all generated HTML files in a report directory.
+ * Checks whether a report directory exists before processing it.
  *
- * @param {string} directory - Absolute report directory path.
- * @returns {Promise<number>} Number of processed HTML files.
+ * @param {string} directory - Absolute directory path.
+ * @returns {Promise<boolean>} `true` when the directory can be read, otherwise `false` for missing directories.
+ * @throws {Error} When the directory cannot be accessed for reasons other than being missing.
  */
-const prepareReportDirectory = async (directory) => {
+const directoryExists = async (directory) => {
     try {
-        const files = await listHtmlFiles(directory);
+        await fs.access(directory);
 
-        await Promise.all(files.map(async (filePath) => {
-            const html = await fs.readFile(filePath, "utf8");
-
-            await fs.writeFile(filePath, addNoindexRobotsMeta(html), "utf8");
-        }));
-
-        return files.length;
+        return true;
     } catch (error) {
-        if (error.code === "ENOENT") return 0;
+        if (error.code === "ENOENT") return false;
 
         throw error;
     }
 };
 
 /**
- * Applies noindex metadata to generated documentation and coverage reports.
+ * Adds noindex metadata to all generated HTML files in a report directory.
+ *
+ * @param {string} directory - Absolute report directory path.
+ * @returns {Promise<number>} Number of processed HTML files.
+ */
+const prepareReportDirectory = async (directory) => {
+    const files = await listHtmlFiles(directory);
+
+    await Promise.all(files.map(async (filePath) => {
+        const html = await fs.readFile(filePath, "utf8");
+
+        await fs.writeFile(filePath, addNoindexRobotsMeta(html), "utf8");
+    }));
+
+    return files.length;
+};
+
+/**
+ * Applies noindex metadata to generated documentation and coverage reports,
+ * then publishes them under the final `dist` artifact.
  *
  * @returns {Promise<void>}
  */
 export const preparePublishedReports = async () => {
-    await Promise.all(reportDirs.map((dir) => prepareReportDirectory(path.join(rootDir, dir))));
+    await Promise.all(reportDirs.map(async ({source, target}) => {
+        const sourceDir = path.join(rootDir, source);
+
+        if (!await directoryExists(sourceDir)) return;
+
+        await prepareReportDirectory(sourceDir);
+
+        const targetDir = path.join(distDir, target);
+
+        await fs.rm(targetDir, {recursive: true, force: true});
+        await fs.cp(sourceDir, targetDir, {recursive: true});
+    }));
 };
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

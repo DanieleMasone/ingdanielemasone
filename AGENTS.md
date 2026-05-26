@@ -72,6 +72,7 @@ Before considering any task complete, always evaluate and apply, when needed:
      npm test -- --run
      npm run build
      npm run test:e2e
+     npm run build:all
      ```
 
    - For dependency upgrades, run:
@@ -104,6 +105,7 @@ Before considering any task complete, always evaluate and apply, when needed:
 - Keep route-level pages coherent with the existing portfolio structure.
 - Keep data access through the existing mock service pattern instead of hardcoding fetch-like data directly in pages.
 - Preserve GitHub Pages compatibility, including the `/ingdanielemasone/` base path.
+- Treat `npm run build:all` as the authoritative publishing build: it must leave `dist` ready for GitHub Pages, including generated docs and coverage reports.
 - Keep translations aligned across all currently supported languages (Italian, English, French, German, Spanish).
 - Do not introduce visible instructional text inside the portfolio UI unless it improves the real user experience.
 - Treat this repo as a public professional showcase: concise copy, polished layout, accessible controls, and no unfinished surfaces.

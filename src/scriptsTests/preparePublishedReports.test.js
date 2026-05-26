@@ -3,8 +3,11 @@ import {beforeEach, describe, expect, test, vi} from "vitest";
 
 vi.mock("node:fs/promises", () => ({
     default: {
+        access: vi.fn(),
+        cp: vi.fn(),
         readdir: vi.fn(),
         readFile: vi.fn(),
+        rm: vi.fn(),
         writeFile: vi.fn()
     }
 }));
@@ -22,6 +25,9 @@ const dirent = ({directory = false, file = false} = {}) => ({
 describe("prepare-published-reports", () => {
     beforeEach(() => {
         vi.clearAllMocks();
+        fs.access.mockResolvedValue(undefined);
+        fs.cp.mockResolvedValue(undefined);
+        fs.rm.mockResolvedValue(undefined);
     });
 
     test("adds noindex robots metadata to report HTML", () => {
@@ -73,7 +79,7 @@ describe("prepare-published-reports", () => {
             .toThrow(/missing <head>/i);
     });
 
-    test("adds noindex metadata to html files in docs and coverage report directories", async () => {
+    test("adds noindex metadata to html files and publishes docs and coverage into dist", async () => {
         fs.readdir.mockImplementation(async (directory) => {
             const normalizedPath = directory.toString().replaceAll("\\", "/");
 
@@ -132,6 +138,26 @@ describe("prepare-published-reports", () => {
             expect.any(String),
             "utf8"
         );
+
+        expect(fs.rm).toHaveBeenCalledWith(
+            expect.stringMatching(/dist[/\\]docs$/),
+            {recursive: true, force: true}
+        );
+        expect(fs.rm).toHaveBeenCalledWith(
+            expect.stringMatching(/dist[/\\]test-coverage$/),
+            {recursive: true, force: true}
+        );
+
+        expect(fs.cp).toHaveBeenCalledWith(
+            expect.stringMatching(/docs$/),
+            expect.stringMatching(/dist[/\\]docs$/),
+            {recursive: true}
+        );
+        expect(fs.cp).toHaveBeenCalledWith(
+            expect.stringMatching(/coverage$/),
+            expect.stringMatching(/dist[/\\]test-coverage$/),
+            {recursive: true}
+        );
     });
 
     test("ignores missing report directories", async () => {
@@ -139,16 +165,18 @@ describe("prepare-published-reports", () => {
 
         enoent.code = "ENOENT";
 
-        fs.readdir.mockRejectedValue(enoent);
+        fs.access.mockRejectedValue(enoent);
 
         await expect(preparePublishedReports()).resolves.toBeUndefined();
 
         expect(fs.readFile).not.toHaveBeenCalled();
+        expect(fs.cp).not.toHaveBeenCalled();
+        expect(fs.rm).not.toHaveBeenCalled();
         expect(fs.writeFile).not.toHaveBeenCalled();
     });
 
     test("rethrows unexpected filesystem errors", async () => {
-        fs.readdir.mockRejectedValue(new Error("Permission denied"));
+        fs.access.mockRejectedValue(new Error("Permission denied"));
 
         await expect(preparePublishedReports()).rejects.toThrow("Permission denied");
     });
