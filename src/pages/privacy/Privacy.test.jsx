@@ -100,7 +100,7 @@ describe('Privacy component', () => {
         expect(screen.getByText(/Right to access/i)).toBeInTheDocument();
 
         // Check cookie policy link
-        expect(screen.getByRole('link', {name: /Cookie Policy/i})).toHaveAttribute('href', '/cookie-policy');
+        expect(screen.getByRole('link', {name: /Cookie Policy/i})).toHaveAttribute('href', '/cookie-policy/');
 
         // Check footer with last updated
         expect(screen.getByText(/Last updated/i)).toBeInTheDocument();

@@ -105,7 +105,7 @@ export function Footer() {
                     className="mt-2 text-[11px] sm:text-xs text-gray-600 dark:text-gray-500 text-center"
                 >
                     <a
-                        href="https://danielemasone.github.io/ingdanielemasone/docs"
+                        href="https://danielemasone.github.io/ingdanielemasone/docs/"
                         target="_blank"
                         rel="noopener noreferrer nofollow"
                         className={clsx(interactiveClasses.textLink, interactiveClasses.focusRing, "mx-1 rounded")}
@@ -114,7 +114,7 @@ export function Footer() {
                     </a>
                     <span aria-hidden="true" className="mx-1">|</span>
                     <a
-                        href="https://danielemasone.github.io/ingdanielemasone/test-coverage"
+                        href="https://danielemasone.github.io/ingdanielemasone/test-coverage/"
                         target="_blank"
                         rel="noopener noreferrer nofollow"
                         className={clsx(interactiveClasses.textLink, interactiveClasses.focusRing, "mx-1 rounded")}

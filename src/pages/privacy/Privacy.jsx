@@ -125,7 +125,7 @@ export default function Privacy() {
                     <h2 className="text-2xl font-semibold mb-2">{t("privacy.cookie_title")}</h2>
                     <p>
                         {t("privacy.cookie_text")}{" "}
-                        <Link to="/cookie-policy" className={linkClass}>
+                        <Link to="/cookie-policy/" className={linkClass}>
                             {t("privacy.cookie_link")}
                         </Link>.
                     </p>

@@ -78,7 +78,7 @@ describe('CookieBanner', () => {
         await waitFor(() => {
             const link = screen.getByText(/Privacy Policy/i);
             expect(link).toBeInTheDocument();
-            expect(link).toHaveAttribute('href', '/privacy');
+            expect(link).toHaveAttribute('href', '/privacy/');
         });
     });
 

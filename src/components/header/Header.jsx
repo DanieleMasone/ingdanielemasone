@@ -10,6 +10,15 @@ import clsx from "clsx";
 import {interactiveClasses} from "@/styles/commonClasses";
 
 /**
+ * Normalizes route paths for active-state comparisons while links keep their
+ * GitHub Pages canonical trailing slash.
+ *
+ * @param {string} path - Route path from React Router or navigation config.
+ * @returns {string} Comparable path without trailing slashes, except for `/`.
+ */
+const getComparablePath = (path) => (path === "/" ? "/" : path.replace(/\/+$/g, ""));
+
+/**
  * Portfolio header with primary navigation, language switcher, and theme toggle.
  *
  * Supports desktop navigation, a mobile menu, active route states, and a
@@ -24,7 +33,7 @@ import {interactiveClasses} from "@/styles/commonClasses";
 export function Header() {
     const {t} = useTranslation();
     const {pathname} = useLocation();
-    const currentPath = pathname === "/" ? "/" : pathname.replace(/\/+$/g, "");
+    const currentPath = getComparablePath(pathname);
     const [menuOpen, setMenuOpen] = useState(false);
     const [portfolioOpen, setPortfolioOpen] = useState(false);
     const portfolioRef = useRef(null);
@@ -34,15 +43,15 @@ export function Header() {
     ];
 
     const navPortfolio = [
-        {to: '/experience', label: t('experience')},
-        {to: '/projects', label: t('projects')},
-        {to: '/github-projects', label: t('github_projects')},
-        {to: '/certifications', label: t('certifications')},
-        {to: '/courses', label: t('courses')},
-        {to: '/testimonials', label: t('testimonials')},
-        {to: '/trading', label: t('trading')}
+        {to: '/experience/', label: t('experience')},
+        {to: '/projects/', label: t('projects')},
+        {to: '/github-projects/', label: t('github_projects')},
+        {to: '/certifications/', label: t('certifications')},
+        {to: '/courses/', label: t('courses')},
+        {to: '/testimonials/', label: t('testimonials')},
+        {to: '/trading/', label: t('trading')}
     ];
-    const isPortfolioRoute = navPortfolio.some((item) => item.to === currentPath);
+    const isPortfolioRoute = navPortfolio.some((item) => getComparablePath(item.to) === currentPath);
     const mobileMenuLabel = menuOpen ? t("header.close_mobile_menu") : t("header.open_mobile_menu");
 
     useEffect(() => {
@@ -83,11 +92,14 @@ export function Header() {
         };
     }, [menuOpen, portfolioOpen]);
 
-    const getLinkClasses = (path) =>
-        `transition font-medium hover:text-blue-600 dark:hover:text-blue-400 ${
-            currentPath === path ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-gray-900 dark:text-white"
+    const getLinkClasses = (path) => {
+        const comparablePath = getComparablePath(path);
+
+        return `transition font-medium hover:text-blue-600 dark:hover:text-blue-400 ${
+            currentPath === comparablePath ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-gray-900 dark:text-white"
         }`;
-    const getAriaCurrent = (path) => (currentPath === path ? "page" : undefined);
+    };
+    const getAriaCurrent = (path) => (currentPath === getComparablePath(path) ? "page" : undefined);
 
     return (
         <header
@@ -152,7 +164,7 @@ export function Header() {
                                             to={item.to}
                                             onClick={() => setPortfolioOpen(false)}
                                             className={clsx(`block rounded px-4 py-2 text-sm transition hover:bg-gray-100 dark:hover:bg-gray-700 ${
-                                                currentPath === item.to ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-gray-900 dark:text-white"
+                                                currentPath === getComparablePath(item.to) ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-gray-900 dark:text-white"
                                             }`, interactiveClasses.focusRingInset)}
                                             aria-current={getAriaCurrent(item.to)}
                                         >
@@ -227,7 +239,7 @@ export function Header() {
                                         to={item.to}
                                         onClick={() => setMenuOpen(false)}
                                         className={clsx(`block rounded py-2 text-base font-medium transition ${
-                                            currentPath === item.to ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-gray-900 dark:text-white"
+                                            currentPath === getComparablePath(item.to) ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-gray-900 dark:text-white"
                                         } hover:bg-gray-200 dark:hover:bg-gray-700`, interactiveClasses.focusRing)}
                                         aria-current={getAriaCurrent(item.to)}
                                     >
@@ -265,7 +277,7 @@ export function Header() {
                                                     to={item.to}
                                                     onClick={() => setMenuOpen(false)}
                                                     className={clsx(`block rounded py-1 text-sm font-normal transition ${
-                                                        currentPath === item.to ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-gray-900 dark:text-white"
+                                                        currentPath === getComparablePath(item.to) ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-gray-900 dark:text-white"
                                                     } hover:text-blue-600 dark:hover:text-blue-400`, interactiveClasses.focusRing)}
                                                     aria-current={getAriaCurrent(item.to)}
                                                 >

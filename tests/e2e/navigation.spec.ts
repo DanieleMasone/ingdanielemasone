@@ -29,7 +29,7 @@ test('desktop portfolio navigation reaches major public pages without raw i18n k
     await expect(portfolioMenu).toBeVisible();
     await portfolioMenu.getByRole('link', {name: route.link, exact: true}).click();
 
-    await expect(page).toHaveURL(new RegExp(`/ingdanielemasone/${route.path}/?$`));
+    await expect(page).toHaveURL(new RegExp(`/ingdanielemasone/${route.path}/$`));
     await expect(page.getByRole('heading', {name: route.heading})).toBeVisible();
     await expect(page.locator('body')).not.toContainText(rawI18nKeyPattern);
   }
@@ -49,7 +49,7 @@ test.describe('mobile navigation', () => {
       .getByRole('link', {name: 'Progetti GitHub', exact: true})
       .click();
 
-    await expect(page).toHaveURL(/\/ingdanielemasone\/github-projects\/?$/);
+    await expect(page).toHaveURL(/\/ingdanielemasone\/github-projects\/$/);
     await expect(page.getByRole('heading', {name: 'Progetti GitHub'})).toBeVisible();
   });
 });

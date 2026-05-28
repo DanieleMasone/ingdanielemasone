@@ -70,6 +70,7 @@ describe("Header", () => {
         const active = screen.getByText("Projects");
         expect(active.className).toMatch(/text-blue-600/);
         expect(active).toHaveAttribute("aria-current", "page");
+        expect(active).toHaveAttribute("href", "/projects/");
     });
 
     test("highlights portfolio links when GitHub Pages keeps a trailing slash", () => {
@@ -81,6 +82,7 @@ describe("Header", () => {
         const active = screen.getByText("GitHub Projects");
         expect(active.className).toMatch(/text-blue-600/);
         expect(active).toHaveAttribute("aria-current", "page");
+        expect(active).toHaveAttribute("href", "/github-projects/");
     });
 
     test("renders LanguageSwitcher and DarkModeToggle on desktop", () => {
@@ -261,11 +263,20 @@ describe("Header", () => {
             const portfolioBtn = within(menu).getByRole("button", {name: /portfolio/i});
             fireEvent.click(portfolioBtn);
 
-            const links = ["Experience", "Projects", "GitHub Projects", "Certifications", "Courses", "Testimonials", "Trading"];
-            links.forEach((label) => {
+            const links = [
+                ["Experience", "/experience/"],
+                ["Projects", "/projects/"],
+                ["GitHub Projects", "/github-projects/"],
+                ["Certifications", "/certifications/"],
+                ["Courses", "/courses/"],
+                ["Testimonials", "/testimonials/"],
+                ["Trading", "/trading/"],
+            ];
+            links.forEach(([label, href]) => {
                 const link = within(menu).getByText(label);
                 expect(link).toBeInTheDocument();
                 expect(link.tagName).toBe("A");
+                expect(link).toHaveAttribute("href", href);
             });
         });
 

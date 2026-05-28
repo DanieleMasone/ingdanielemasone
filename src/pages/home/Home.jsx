@@ -77,7 +77,7 @@ export default function Home() {
 
                             {/* PRIMARY */}
                             <Link
-                                to="/projects"
+                                to="/projects/"
                                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg
                                            border border-[#0A66C2] bg-[#0A66C2] px-5 py-3
                                            text-base font-semibold text-white shadow-md transition
@@ -97,7 +97,7 @@ export default function Home() {
 
                             {/* SECONDARY */}
                             <Link
-                                to="/experience"
+                                to="/experience/"
                                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg
                                            border border-gray-300 bg-white px-5 py-3 text-base font-semibold text-gray-900
                                            shadow-sm transition

@@ -219,12 +219,12 @@ describe("Footer – async UI", () => {
 
         expect(docs).toHaveAttribute(
             "href",
-            "https://danielemasone.github.io/ingdanielemasone/docs"
+            "https://danielemasone.github.io/ingdanielemasone/docs/"
         );
 
         expect(coverage).toHaveAttribute(
             "href",
-            "https://danielemasone.github.io/ingdanielemasone/test-coverage"
+            "https://danielemasone.github.io/ingdanielemasone/test-coverage/"
         );
     });
 

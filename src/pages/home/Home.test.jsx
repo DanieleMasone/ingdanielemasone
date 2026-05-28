@@ -125,8 +125,8 @@ describe('Home component', () => {
     });
 
     test('renders project and experience calls to action', () => {
-        expect(screen.getByRole('link', {name: /View projects/i})).toHaveAttribute('href', '/projects');
-        expect(screen.getByRole('link', {name: /Experience/i})).toHaveAttribute('href', '/experience');
+        expect(screen.getByRole('link', {name: /View projects/i})).toHaveAttribute('href', '/projects/');
+        expect(screen.getByRole('link', {name: /Experience/i})).toHaveAttribute('href', '/experience/');
     });
 
     test('renders portfolio metrics', () => {

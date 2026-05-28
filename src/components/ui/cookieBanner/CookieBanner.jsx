@@ -48,7 +48,7 @@ export function CookieBanner() {
             <p className="mb-2 md:mb-0 max-w-xl">
                 {t("cookie_banner.message_prefix")}{" "}
                 <Link
-                    to="/privacy"
+                    to="/privacy/"
                     className={clsx(interactiveClasses.textLink, interactiveClasses.focusRing, "rounded")}
                 >
                     {t("cookie_banner.privacy_link")}
