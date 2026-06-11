@@ -9,7 +9,7 @@ import {githubProjects} from "@/mock/githubProjects";
 const SPRING_MODULITH_PROJECT_ID = "spring-modulith-order-platform";
 const SPRING_MODULITH_REPOSITORY_URL = "https://github.com/DanieleMasone/spring-modulith-order-platform";
 const SPRING_MODULITH_LIVE_URL = "https://danielemasone.github.io/spring-modulith-order-platform/";
-const SPRING_MODULITH_OPENAPI_URL = "https://danielemasone.github.io/spring-modulith-order-platform/openapi/";
+const SPRING_MODULITH_JAVADOC_URL = "https://danielemasone.github.io/spring-modulith-order-platform/javadoc/";
 const SPRING_MODULITH_COVERAGE_URL = "https://danielemasone.github.io/spring-modulith-order-platform/jacoco/";
 
 vi.mock("react-i18next", () => ({
@@ -232,7 +232,7 @@ describe("GithubProjects", () => {
         expect(screen.getByRole("link", {name: "Live: Spring Modulith Order Platform"}))
             .toHaveAttribute("href", SPRING_MODULITH_LIVE_URL);
         expect(screen.getByRole("link", {name: "Docs: Spring Modulith Order Platform"}))
-            .toHaveAttribute("href", SPRING_MODULITH_OPENAPI_URL);
+            .toHaveAttribute("href", SPRING_MODULITH_JAVADOC_URL);
         expect(screen.getByRole("link", {name: "Coverage: Spring Modulith Order Platform"}))
             .toHaveAttribute("href", SPRING_MODULITH_COVERAGE_URL);
     });
@@ -248,7 +248,7 @@ describe("GithubProjects", () => {
         expect(byType("spring-modulith-order-platform", "live"))
             .toBe(SPRING_MODULITH_LIVE_URL);
         expect(byType("spring-modulith-order-platform", "documentation"))
-            .toBe(SPRING_MODULITH_OPENAPI_URL);
+            .toBe(SPRING_MODULITH_JAVADOC_URL);
         expect(byType("spring-modulith-order-platform", "coverage"))
             .toBe(SPRING_MODULITH_COVERAGE_URL);
         expect(byType("modular-monolith-ecommerce", "live"))

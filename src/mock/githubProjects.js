@@ -46,7 +46,7 @@ export const githubProjects = [
             },
             {
                 type: "documentation",
-                href: "https://danielemasone.github.io/spring-modulith-order-platform/openapi/"
+                href: "https://danielemasone.github.io/spring-modulith-order-platform/javadoc/"
             },
             {
                 type: "coverage",
