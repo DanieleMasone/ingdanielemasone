@@ -7,6 +7,9 @@ import Certifications, {
     sortCertificationsByDate
 } from "./Certifications";
 import * as service from "@/services/portfolioService";
+import {certifications as productionCertifications} from "@/mock/certifications";
+
+const UDEMY_FINOPS_CERTIFICATE_URL = "https://www.udemy.com/certificate/UC-332b1dca-6941-4228-80e9-68473d666a03/";
 
 vi.mock("react-i18next", () => ({
     useTranslation: () => ({
@@ -23,7 +26,8 @@ vi.mock("react-i18next", () => ({
                 next: "Next",
                 error_generic: "Generic error",
                 "cert.desc.0": "Advanced professional communication credential.",
-                "cert.desc.1": "Software delivery training credential."
+                "cert.desc.1": "Software delivery training credential.",
+                Udemy_FinOps_Intesa: "Udemy course completion certificate for FinOps per Intesa Sanpaolo, completed on 10 June 2026. Verified duration: 1 total hour."
             };
 
             return translations[key] || key;
@@ -146,6 +150,32 @@ describe("Certifications component", () => {
             expect(link).toHaveAttribute("target", "_blank");
             expect(link).toHaveAttribute("rel", "noopener noreferrer");
         });
+    });
+
+    test("renders the Udemy FinOps certificate from the production mock data", async () => {
+        const udemyCertificate = productionCertifications.find(
+            (certification) => certification.link === UDEMY_FINOPS_CERTIFICATE_URL
+        );
+
+        expect(udemyCertificate).toMatchObject({
+            nameKey: "FinOps per Intesa Sanpaolo",
+            issuer: "Udemy",
+            date: "2026",
+            descriptionKey: "Udemy_FinOps_Intesa",
+            link: UDEMY_FINOPS_CERTIFICATE_URL
+        });
+
+        vi.spyOn(service, "getCertifications").mockResolvedValueOnce([udemyCertificate]);
+
+        renderPage();
+
+        expect(await screen.findByRole("heading", {name: "FinOps per Intesa Sanpaolo"})).toBeInTheDocument();
+        expect(screen.getByText("Issuer: Udemy")).toBeInTheDocument();
+        expect(screen.getByText("Issued on: 2026")).toBeInTheDocument();
+        expect(screen.getByText(/completed on 10 June 2026/i)).toBeInTheDocument();
+        expect(screen.queryByText("Udemy_FinOps_Intesa")).not.toBeInTheDocument();
+        expect(screen.getByRole("link", {name: "View certificate: FinOps per Intesa Sanpaolo"}))
+            .toHaveAttribute("href", UDEMY_FINOPS_CERTIFICATE_URL);
     });
 
     test("paginates older certifications", async () => {

@@ -10,6 +10,13 @@ import myCertPdf from "../assets/certifications/Attestato_Masone.pdf";
  */
 export const certifications = [
     {
+        nameKey: "FinOps per Intesa Sanpaolo",
+        issuer: "Udemy",
+        date: "2026",
+        descriptionKey: "Udemy_FinOps_Intesa",
+        link: "https://www.udemy.com/certificate/UC-332b1dca-6941-4228-80e9-68473d666a03/"
+    },
+    {
         nameKey: "English CEFR Level B2.2",
         issuer: "Speexx",
         date: "2024",
