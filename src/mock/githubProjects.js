@@ -24,6 +24,37 @@
  */
 export const githubProjects = [
     {
+        id: "spring-modulith-order-platform",
+        name: "Spring Modulith Order Platform",
+        category: "backend",
+        year: "2026",
+        summaryKey: "github_projects_page.projects.spring_modulith_order_platform.summary",
+        highlightsKeys: [
+            "github_projects_page.projects.spring_modulith_order_platform.highlights.architecture",
+            "github_projects_page.projects.spring_modulith_order_platform.highlights.contract",
+            "github_projects_page.projects.spring_modulith_order_platform.highlights.quality"
+        ],
+        tech: "Java 21, Spring Boot 4.x, Spring Modulith 2.x, Spring Web MVC, Spring Data JPA, PostgreSQL 17, Flyway, OpenAPI Generator, RFC 7807 ProblemDetail, Testcontainers, JUnit 5, JaCoCo, Javadoc, Maven, Docker, Docker Compose, GitHub Actions, GitHub Pages",
+        links: [
+            {
+                type: "repository",
+                href: "https://github.com/DanieleMasone/spring-modulith-order-platform"
+            },
+            {
+                type: "live",
+                href: "https://danielemasone.github.io/spring-modulith-order-platform/"
+            },
+            {
+                type: "documentation",
+                href: "https://danielemasone.github.io/spring-modulith-order-platform/openapi/"
+            },
+            {
+                type: "coverage",
+                href: "https://danielemasone.github.io/spring-modulith-order-platform/jacoco/"
+            }
+        ]
+    },
+    {
         id: "modular-monolith-ecommerce",
         name: "Modular Monolith E-commerce",
         category: "backend",

@@ -6,6 +6,12 @@ import GithubProjects from "./GithubProjects";
 import * as service from "@/services/portfolioService";
 import {githubProjects} from "@/mock/githubProjects";
 
+const SPRING_MODULITH_PROJECT_ID = "spring-modulith-order-platform";
+const SPRING_MODULITH_REPOSITORY_URL = "https://github.com/DanieleMasone/spring-modulith-order-platform";
+const SPRING_MODULITH_LIVE_URL = "https://danielemasone.github.io/spring-modulith-order-platform/";
+const SPRING_MODULITH_OPENAPI_URL = "https://danielemasone.github.io/spring-modulith-order-platform/openapi/";
+const SPRING_MODULITH_COVERAGE_URL = "https://danielemasone.github.io/spring-modulith-order-platform/jacoco/";
+
 vi.mock("react-i18next", () => ({
     useTranslation: () => ({
         t: (key, options = {}) => {
@@ -22,6 +28,10 @@ vi.mock("react-i18next", () => ({
                 "github_projects_page.links.live": "Live",
                 "github_projects_page.links.documentation": "Docs",
                 "github_projects_page.links.coverage": "Coverage",
+                "github_projects_page.projects.spring_modulith_order_platform.summary": "Spring Modulith backend summary.",
+                "github_projects_page.projects.spring_modulith_order_platform.highlights.architecture": "Module boundaries verified by Spring Modulith.",
+                "github_projects_page.projects.spring_modulith_order_platform.highlights.contract": "OpenAPI-first contract with PostgreSQL persistence.",
+                "github_projects_page.projects.spring_modulith_order_platform.highlights.quality": "Testcontainers, JaCoCo, Javadoc and Pages quality gates.",
                 "github_projects_page.projects.identity_service.summary": "Identity backend summary.",
                 "github_projects_page.projects.identity_service.highlights.contract": "OpenAPI contract.",
                 "github_projects_page.projects.identity_service.highlights.architecture": "Layered Spring architecture.",
@@ -195,12 +205,52 @@ describe("GithubProjects", () => {
             .toHaveAttribute("href", "https://danielemasone.github.io/headless-commerce/coverage/");
     });
 
+    test("renders the Spring Modulith project from production data with published resource links", async () => {
+        const springModulithProject = githubProjects.find((project) => project.id === SPRING_MODULITH_PROJECT_ID);
+
+        expect(springModulithProject).toMatchObject({
+            name: "Spring Modulith Order Platform",
+            category: "backend",
+            year: "2026",
+            summaryKey: "github_projects_page.projects.spring_modulith_order_platform.summary",
+            highlightsKeys: [
+                "github_projects_page.projects.spring_modulith_order_platform.highlights.architecture",
+                "github_projects_page.projects.spring_modulith_order_platform.highlights.contract",
+                "github_projects_page.projects.spring_modulith_order_platform.highlights.quality"
+            ]
+        });
+
+        vi.spyOn(service, "getGithubProjects").mockResolvedValueOnce([springModulithProject]);
+
+        renderGithubProjects();
+
+        expect(await screen.findByRole("heading", {name: "Spring Modulith Order Platform"})).toBeInTheDocument();
+        expect(screen.getByText("Spring Modulith backend summary.")).toBeInTheDocument();
+        expect(screen.queryByText(/spring_modulith_order_platform/)).not.toBeInTheDocument();
+        expect(screen.getByRole("link", {name: "Repository: Spring Modulith Order Platform"}))
+            .toHaveAttribute("href", SPRING_MODULITH_REPOSITORY_URL);
+        expect(screen.getByRole("link", {name: "Live: Spring Modulith Order Platform"}))
+            .toHaveAttribute("href", SPRING_MODULITH_LIVE_URL);
+        expect(screen.getByRole("link", {name: "Docs: Spring Modulith Order Platform"}))
+            .toHaveAttribute("href", SPRING_MODULITH_OPENAPI_URL);
+        expect(screen.getByRole("link", {name: "Coverage: Spring Modulith Order Platform"}))
+            .toHaveAttribute("href", SPRING_MODULITH_COVERAGE_URL);
+    });
+
     test("keeps public resource links aligned with published repository READMEs", () => {
         const byType = (projectId, type) =>
             githubProjects.find((project) => project.id === projectId)
                 ?.links.find((link) => link.type === type)
                 ?.href;
 
+        expect(byType("spring-modulith-order-platform", "repository"))
+            .toBe(SPRING_MODULITH_REPOSITORY_URL);
+        expect(byType("spring-modulith-order-platform", "live"))
+            .toBe(SPRING_MODULITH_LIVE_URL);
+        expect(byType("spring-modulith-order-platform", "documentation"))
+            .toBe(SPRING_MODULITH_OPENAPI_URL);
+        expect(byType("spring-modulith-order-platform", "coverage"))
+            .toBe(SPRING_MODULITH_COVERAGE_URL);
         expect(byType("modular-monolith-ecommerce", "live"))
             .toBe("https://danielemasone.github.io/modular-monolith-ecommerce/");
         expect(byType("modular-monolith-ecommerce", "documentation"))
@@ -246,6 +296,8 @@ describe("GithubProjects", () => {
             githubProjects.find((project) => project.id === projectId)?.tech;
 
         expect(techByProject("saas-analytics-dashboard")).toContain("Playwright");
+        expect(techByProject("spring-modulith-order-platform")).toContain("Spring Modulith");
+        expect(techByProject("spring-modulith-order-platform")).toContain("PostgreSQL 17");
         expect(techByProject("order-events-service")).toContain("Kafka");
         expect(techByProject("enterprise-data-workbench")).toContain("Playwright");
         expect(techByProject("portfolio-online-cv")).toContain("Playwright");

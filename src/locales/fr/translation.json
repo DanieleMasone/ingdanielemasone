@@ -85,6 +85,14 @@
       "coverage": "Coverage"
     },
     "projects": {
+      "spring_modulith_order_platform": {
+        "summary": "Monolithe modulaire orienté production pour la gestion des commandes avec Spring Boot, Spring Modulith, PostgreSQL, contrats OpenAPI-first et Testcontainers, conçu pour montrer des frontières de modules solides sans surcharge distribuée inutile.",
+        "highlights": {
+          "architecture": "Déployable Spring Boot unique avec modules customers, pricing, orders, payments et notifications, gouvernés par Spring Modulith et vérifiés avec ApplicationModules.verify().",
+          "contract": "Contrat REST OpenAPI-first, persistance PostgreSQL avec Flyway et réponses RFC 7807 ProblemDetail rendent explicites les API et le comportement des données.",
+          "quality": "La CI Maven valide les tests d'intégration Testcontainers, les docs OpenAPI générées, la couverture JaCoCo, Javadoc, Docker Compose et les artefacts GitHub Pages."
+        }
+      },
       "modular_monolith_ecommerce": {
         "summary": "Backend e-commerce modular monolith orienté production, montrant frontières de modules, CQRS pragmatique, événements internes, commandes idempotentes et documentation technique publiée.",
         "highlights": {
