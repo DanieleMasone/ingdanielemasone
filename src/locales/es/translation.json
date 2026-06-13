@@ -125,6 +125,22 @@
           "quality": "CI con Maven verify, JaCoCo, Javadoc, OpenAPI/Swagger UI generados, validaciones Docker Compose y publicación en GitHub Pages."
         }
       },
+      "frontend_performance_lab": {
+        "summary": "Lab de performance engineering en React y TypeScript que compara un dashboard intencionalmente lento con una versión optimizada de la misma UI y escenarios benchmark deterministas.",
+        "highlights": {
+          "comparison": "Las apps slow y optimized comparten dataset, controles y escenarios benchmark para mantener comparables cuellos de botella y mejoras.",
+          "optimization": "Helpers de profiling, Browser Performance API, memoization dirigida, virtualización, carga lazy del gráfico y búsqueda debounced enfocan la optimización donde importa.",
+          "quality": "Vitest, Testing Library, smoke checks Playwright Chromium, cobertura, TypeDoc y artifact Pages hacen el lab revisable sin métricas inventadas."
+        }
+      },
+      "enterprise_ux_motion_lab": {
+        "summary": "Lab React y TypeScript de enterprise UX motion para interfaces densas de risk operations, centrado en microinteracciones funcionales en lugar de animación decorativa.",
+        "highlights": {
+          "motion": "Motion tokens compartidos y soporte reduced-motion gobiernan transiciones breves para cambios de estado, disclosure y feedback.",
+          "workflow": "Los workflows del dashboard risk incluyen command palette, filtros, dark mode, controles de densidad y estados loading, empty y degraded telemetry.",
+          "quality": "Vitest, Testing Library, recorridos Playwright enfocados, TypeDoc, cobertura y publicación GitHub Pages documentan el proyecto sin backend ni routing innecesarios."
+        }
+      },
       "saas_analytics_dashboard": {
         "summary": "Dashboard de gestión SaaS en Next.js 16 que muestra arquitectura frontend de producto, mock APIs tipadas, estados de ruta, analytics accesibles y despliegue en GitHub Pages.",
         "highlights": {

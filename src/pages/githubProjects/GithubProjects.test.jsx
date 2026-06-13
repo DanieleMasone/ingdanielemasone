@@ -11,6 +11,16 @@ const SPRING_MODULITH_REPOSITORY_URL = "https://github.com/DanieleMasone/spring-
 const SPRING_MODULITH_LIVE_URL = "https://danielemasone.github.io/spring-modulith-order-platform/";
 const SPRING_MODULITH_JAVADOC_URL = "https://danielemasone.github.io/spring-modulith-order-platform/javadoc/";
 const SPRING_MODULITH_COVERAGE_URL = "https://danielemasone.github.io/spring-modulith-order-platform/jacoco/";
+const FRONTEND_PERFORMANCE_PROJECT_ID = "frontend-performance-lab";
+const FRONTEND_PERFORMANCE_REPOSITORY_URL = "https://github.com/DanieleMasone/frontend-performance-lab";
+const FRONTEND_PERFORMANCE_LIVE_URL = "https://danielemasone.github.io/frontend-performance-lab/";
+const FRONTEND_PERFORMANCE_TYPEDOC_URL = "https://danielemasone.github.io/frontend-performance-lab/typedoc/";
+const FRONTEND_PERFORMANCE_COVERAGE_URL = "https://danielemasone.github.io/frontend-performance-lab/coverage/";
+const ENTERPRISE_UX_MOTION_PROJECT_ID = "enterprise-ux-motion-lab";
+const ENTERPRISE_UX_MOTION_REPOSITORY_URL = "https://github.com/DanieleMasone/Enterprise-UX-Motion-Lab";
+const ENTERPRISE_UX_MOTION_LIVE_URL = "https://danielemasone.github.io/enterprise-ux-motion-lab/";
+const ENTERPRISE_UX_MOTION_DOCS_URL = "https://danielemasone.github.io/enterprise-ux-motion-lab/docs/";
+const ENTERPRISE_UX_MOTION_COVERAGE_URL = "https://danielemasone.github.io/enterprise-ux-motion-lab/coverage/";
 
 vi.mock("react-i18next", () => ({
     useTranslation: () => ({
@@ -32,6 +42,14 @@ vi.mock("react-i18next", () => ({
                 "github_projects_page.projects.spring_modulith_order_platform.highlights.architecture": "Module boundaries verified by Spring Modulith.",
                 "github_projects_page.projects.spring_modulith_order_platform.highlights.contract": "OpenAPI-first contract with PostgreSQL persistence.",
                 "github_projects_page.projects.spring_modulith_order_platform.highlights.quality": "Testcontainers, JaCoCo, Javadoc and Pages quality gates.",
+                "github_projects_page.projects.frontend_performance_lab.summary": "Frontend performance lab summary.",
+                "github_projects_page.projects.frontend_performance_lab.highlights.comparison": "Slow and optimized comparison.",
+                "github_projects_page.projects.frontend_performance_lab.highlights.optimization": "Targeted performance optimization.",
+                "github_projects_page.projects.frontend_performance_lab.highlights.quality": "TypeDoc and Playwright quality gates.",
+                "github_projects_page.projects.enterprise_ux_motion_lab.summary": "Enterprise UX motion lab summary.",
+                "github_projects_page.projects.enterprise_ux_motion_lab.highlights.motion": "Functional motion tokens.",
+                "github_projects_page.projects.enterprise_ux_motion_lab.highlights.workflow": "Command palette and dense workflows.",
+                "github_projects_page.projects.enterprise_ux_motion_lab.highlights.quality": "Accessible tests and published docs.",
                 "github_projects_page.projects.identity_service.summary": "Identity backend summary.",
                 "github_projects_page.projects.identity_service.highlights.contract": "OpenAPI contract.",
                 "github_projects_page.projects.identity_service.highlights.architecture": "Layered Spring architecture.",
@@ -237,6 +255,64 @@ describe("GithubProjects", () => {
             .toHaveAttribute("href", SPRING_MODULITH_COVERAGE_URL);
     });
 
+    test("renders the new frontend lab projects from production data with published resource links", async () => {
+        const frontendPerformanceProject = githubProjects.find((project) => project.id === FRONTEND_PERFORMANCE_PROJECT_ID);
+        const enterpriseUxMotionProject = githubProjects.find((project) => project.id === ENTERPRISE_UX_MOTION_PROJECT_ID);
+
+        expect(frontendPerformanceProject).toMatchObject({
+            name: "Frontend Performance Engineering Lab",
+            category: "frontend",
+            year: "2026",
+            summaryKey: "github_projects_page.projects.frontend_performance_lab.summary",
+            highlightsKeys: [
+                "github_projects_page.projects.frontend_performance_lab.highlights.comparison",
+                "github_projects_page.projects.frontend_performance_lab.highlights.optimization",
+                "github_projects_page.projects.frontend_performance_lab.highlights.quality"
+            ]
+        });
+        expect(enterpriseUxMotionProject).toMatchObject({
+            name: "Enterprise UX Motion Lab",
+            category: "frontend",
+            year: "2026",
+            summaryKey: "github_projects_page.projects.enterprise_ux_motion_lab.summary",
+            highlightsKeys: [
+                "github_projects_page.projects.enterprise_ux_motion_lab.highlights.motion",
+                "github_projects_page.projects.enterprise_ux_motion_lab.highlights.workflow",
+                "github_projects_page.projects.enterprise_ux_motion_lab.highlights.quality"
+            ]
+        });
+
+        vi.spyOn(service, "getGithubProjects")
+            .mockResolvedValueOnce([frontendPerformanceProject, enterpriseUxMotionProject]);
+
+        renderGithubProjects();
+
+        expect(await screen.findByRole("heading", {name: "Frontend Performance Engineering Lab"}))
+            .toBeInTheDocument();
+        expect(screen.getByRole("heading", {name: "Enterprise UX Motion Lab"})).toBeInTheDocument();
+        expect(screen.getByText("Frontend performance lab summary.")).toBeInTheDocument();
+        expect(screen.getByText("Enterprise UX motion lab summary.")).toBeInTheDocument();
+        expect(screen.queryByText(/frontend_performance_lab|enterprise_ux_motion_lab/)).not.toBeInTheDocument();
+
+        expect(screen.getByRole("link", {name: "Repository: Frontend Performance Engineering Lab"}))
+            .toHaveAttribute("href", FRONTEND_PERFORMANCE_REPOSITORY_URL);
+        expect(screen.getByRole("link", {name: "Live: Frontend Performance Engineering Lab"}))
+            .toHaveAttribute("href", FRONTEND_PERFORMANCE_LIVE_URL);
+        expect(screen.getByRole("link", {name: "Docs: Frontend Performance Engineering Lab"}))
+            .toHaveAttribute("href", FRONTEND_PERFORMANCE_TYPEDOC_URL);
+        expect(screen.getByRole("link", {name: "Coverage: Frontend Performance Engineering Lab"}))
+            .toHaveAttribute("href", FRONTEND_PERFORMANCE_COVERAGE_URL);
+
+        expect(screen.getByRole("link", {name: "Repository: Enterprise UX Motion Lab"}))
+            .toHaveAttribute("href", ENTERPRISE_UX_MOTION_REPOSITORY_URL);
+        expect(screen.getByRole("link", {name: "Live: Enterprise UX Motion Lab"}))
+            .toHaveAttribute("href", ENTERPRISE_UX_MOTION_LIVE_URL);
+        expect(screen.getByRole("link", {name: "Docs: Enterprise UX Motion Lab"}))
+            .toHaveAttribute("href", ENTERPRISE_UX_MOTION_DOCS_URL);
+        expect(screen.getByRole("link", {name: "Coverage: Enterprise UX Motion Lab"}))
+            .toHaveAttribute("href", ENTERPRISE_UX_MOTION_COVERAGE_URL);
+    });
+
     test("keeps public resource links aligned with published repository READMEs", () => {
         const byType = (projectId, type) =>
             githubProjects.find((project) => project.id === projectId)
@@ -251,6 +327,22 @@ describe("GithubProjects", () => {
             .toBe(SPRING_MODULITH_JAVADOC_URL);
         expect(byType("spring-modulith-order-platform", "coverage"))
             .toBe(SPRING_MODULITH_COVERAGE_URL);
+        expect(byType("frontend-performance-lab", "repository"))
+            .toBe(FRONTEND_PERFORMANCE_REPOSITORY_URL);
+        expect(byType("frontend-performance-lab", "live"))
+            .toBe(FRONTEND_PERFORMANCE_LIVE_URL);
+        expect(byType("frontend-performance-lab", "documentation"))
+            .toBe(FRONTEND_PERFORMANCE_TYPEDOC_URL);
+        expect(byType("frontend-performance-lab", "coverage"))
+            .toBe(FRONTEND_PERFORMANCE_COVERAGE_URL);
+        expect(byType("enterprise-ux-motion-lab", "repository"))
+            .toBe(ENTERPRISE_UX_MOTION_REPOSITORY_URL);
+        expect(byType("enterprise-ux-motion-lab", "live"))
+            .toBe(ENTERPRISE_UX_MOTION_LIVE_URL);
+        expect(byType("enterprise-ux-motion-lab", "documentation"))
+            .toBe(ENTERPRISE_UX_MOTION_DOCS_URL);
+        expect(byType("enterprise-ux-motion-lab", "coverage"))
+            .toBe(ENTERPRISE_UX_MOTION_COVERAGE_URL);
         expect(byType("modular-monolith-ecommerce", "live"))
             .toBe("https://danielemasone.github.io/modular-monolith-ecommerce/");
         expect(byType("modular-monolith-ecommerce", "documentation"))
@@ -298,6 +390,10 @@ describe("GithubProjects", () => {
         expect(techByProject("saas-analytics-dashboard")).toContain("Playwright");
         expect(techByProject("spring-modulith-order-platform")).toContain("Spring Modulith");
         expect(techByProject("spring-modulith-order-platform")).toContain("PostgreSQL 17");
+        expect(techByProject("frontend-performance-lab")).toContain("Performance Engineering");
+        expect(techByProject("frontend-performance-lab")).toContain("Browser Performance API");
+        expect(techByProject("enterprise-ux-motion-lab")).toContain("Motion");
+        expect(techByProject("enterprise-ux-motion-lab")).toContain("reduced motion");
         expect(techByProject("order-events-service")).toContain("Kafka");
         expect(techByProject("enterprise-data-workbench")).toContain("Playwright");
         expect(techByProject("portfolio-online-cv")).toContain("Playwright");

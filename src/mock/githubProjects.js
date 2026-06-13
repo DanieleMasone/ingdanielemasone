@@ -179,6 +179,68 @@ export const githubProjects = [
         ]
     },
     {
+        id: "frontend-performance-lab",
+        name: "Frontend Performance Engineering Lab",
+        category: "frontend",
+        year: "2026",
+        summaryKey: "github_projects_page.projects.frontend_performance_lab.summary",
+        highlightsKeys: [
+            "github_projects_page.projects.frontend_performance_lab.highlights.comparison",
+            "github_projects_page.projects.frontend_performance_lab.highlights.optimization",
+            "github_projects_page.projects.frontend_performance_lab.highlights.quality"
+        ],
+        tech: "React 19, TypeScript, Vite, Performance Engineering, deterministic data generation, React Profiler, Browser Performance API, virtualization, lazy chart loading, debounced search, Vitest, Testing Library, Playwright, TypeDoc, GitHub Pages",
+        links: [
+            {
+                type: "repository",
+                href: "https://github.com/DanieleMasone/frontend-performance-lab"
+            },
+            {
+                type: "live",
+                href: "https://danielemasone.github.io/frontend-performance-lab/"
+            },
+            {
+                type: "documentation",
+                href: "https://danielemasone.github.io/frontend-performance-lab/typedoc/"
+            },
+            {
+                type: "coverage",
+                href: "https://danielemasone.github.io/frontend-performance-lab/coverage/"
+            }
+        ]
+    },
+    {
+        id: "enterprise-ux-motion-lab",
+        name: "Enterprise UX Motion Lab",
+        category: "frontend",
+        year: "2026",
+        summaryKey: "github_projects_page.projects.enterprise_ux_motion_lab.summary",
+        highlightsKeys: [
+            "github_projects_page.projects.enterprise_ux_motion_lab.highlights.motion",
+            "github_projects_page.projects.enterprise_ux_motion_lab.highlights.workflow",
+            "github_projects_page.projects.enterprise_ux_motion_lab.highlights.quality"
+        ],
+        tech: "React 19, TypeScript, Vite, Motion, UX Architecture, functional micro-interactions, accessibility, reduced motion, command palette, dark mode, density controls, Vitest, Testing Library, Playwright, TypeDoc, GitHub Pages",
+        links: [
+            {
+                type: "repository",
+                href: "https://github.com/DanieleMasone/Enterprise-UX-Motion-Lab"
+            },
+            {
+                type: "live",
+                href: "https://danielemasone.github.io/enterprise-ux-motion-lab/"
+            },
+            {
+                type: "documentation",
+                href: "https://danielemasone.github.io/enterprise-ux-motion-lab/docs/"
+            },
+            {
+                type: "coverage",
+                href: "https://danielemasone.github.io/enterprise-ux-motion-lab/coverage/"
+            }
+        ]
+    },
+    {
         id: "saas-analytics-dashboard",
         name: "SaaS Analytics Dashboard",
         category: "frontend",

@@ -125,6 +125,22 @@
           "quality": "CI con verify Maven, JaCoCo, Javadoc, OpenAPI/Swagger UI generati, Docker Compose e pubblicazione GitHub Pages."
         }
       },
+      "frontend_performance_lab": {
+        "summary": "Lab di performance engineering React e TypeScript che confronta una dashboard intenzionalmente lenta con una versione ottimizzata della stessa UI e scenari benchmark deterministici.",
+        "highlights": {
+          "comparison": "App slow e optimized condividono dataset, controlli e scenari benchmark per rendere confrontabili colli di bottiglia e miglioramenti.",
+          "optimization": "Profiling helper, Browser Performance API, memoization mirata, virtualizzazione, lazy loading del grafico e ricerca debounced concentrano l'ottimizzazione dove serve.",
+          "quality": "Vitest, Testing Library, smoke check Playwright Chromium, coverage, TypeDoc e artifact Pages rendono il lab verificabile senza metriche inventate."
+        }
+      },
+      "enterprise_ux_motion_lab": {
+        "summary": "Lab React e TypeScript di enterprise UX motion per interfacce risk-operations dense, focalizzato su micro-interazioni funzionali e non su animazioni decorative.",
+        "highlights": {
+          "motion": "Motion token condivisi e supporto reduced-motion governano transizioni brevi per cambi di stato, disclosure e feedback.",
+          "workflow": "Workflow dashboard risk con command palette, filtri, dark mode, density controls, stati loading, empty e degraded telemetry.",
+          "quality": "Vitest, Testing Library, journey Playwright mirati, TypeDoc, coverage e pubblicazione GitHub Pages documentano il progetto senza backend o routing superflui."
+        }
+      },
       "saas_analytics_dashboard": {
         "summary": "Dashboard SaaS management in Next.js 16 che mostra architettura frontend di prodotto, mock API tipizzate, stati di rotta, analytics accessibili e deployment GitHub Pages.",
         "highlights": {

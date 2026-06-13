@@ -125,6 +125,22 @@
           "quality": "CI avec Maven verify, JaCoCo, Javadoc, OpenAPI/Swagger UI générés, contrôles Docker Compose et publication GitHub Pages."
         }
       },
+      "frontend_performance_lab": {
+        "summary": "Lab de performance engineering React et TypeScript comparant un dashboard volontairement lent avec une version optimisée de la même UI et des scénarios benchmark déterministes.",
+        "highlights": {
+          "comparison": "Les apps slow et optimized partagent dataset, contrôles et scénarios benchmark afin de garder comparables les goulots d'étranglement et les améliorations.",
+          "optimization": "Helpers de profiling, Browser Performance API, memoization ciblée, virtualisation, chargement lazy du graphique et recherche debounced concentrent l'optimisation où elle compte.",
+          "quality": "Vitest, Testing Library, smoke checks Playwright Chromium, couverture, TypeDoc et artefact Pages rendent le lab vérifiable sans métriques inventées."
+        }
+      },
+      "enterprise_ux_motion_lab": {
+        "summary": "Lab React et TypeScript d'enterprise UX motion pour interfaces risk-operations denses, centré sur des micro-interactions fonctionnelles plutôt que sur l'animation décorative.",
+        "highlights": {
+          "motion": "Des motion tokens partagés et le support reduced-motion gouvernent les transitions courtes pour les changements d'état, la disclosure et le feedback.",
+          "workflow": "Les workflows du dashboard risk incluent command palette, filtres, dark mode, contrôles de densité, états loading, empty et degraded telemetry.",
+          "quality": "Vitest, Testing Library, parcours Playwright ciblés, TypeDoc, couverture et publication GitHub Pages documentent le projet sans backend ni routing superflus."
+        }
+      },
       "saas_analytics_dashboard": {
         "summary": "Dashboard de gestion SaaS en Next.js 16 montrant une architecture frontend orientée produit, des mock APIs typées, des états de route, des analytics accessibles et un déploiement GitHub Pages.",
         "highlights": {
