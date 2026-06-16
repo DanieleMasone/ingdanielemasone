@@ -81,6 +81,7 @@
     "links": {
       "repository": "Repository",
       "live": "Live",
+      "package": "Pacchetto npm",
       "documentation": "Doc",
       "coverage": "Coverage"
     },
@@ -139,6 +140,14 @@
           "motion": "Motion token condivisi e supporto reduced-motion governano transizioni brevi per cambi di stato, disclosure e feedback.",
           "workflow": "Workflow dashboard risk con command palette, filtri, dark mode, density controls, stati loading, empty e degraded telemetry.",
           "quality": "Vitest, Testing Library, journey Playwright mirati, TypeDoc, coverage e pubblicazione GitHub Pages documentano il progetto senza backend o routing superflui."
+        }
+      },
+      "form_schema_runtime": {
+        "summary": "Runtime TypeScript framework-agnostic per generare form HTML accessibili da schemi JSON dichiarativi, con schema tipizzato, validazione, hook di stato, rendering DOM sicuro, documentazione API, coverage e pubblicazione npm.",
+        "highlights": {
+          "runtime": "Core senza dipendenze React, Angular, Vue o Svelte, pensato per superfici frontend enterprise e legacy dove non sempre si puo introdurre un framework.",
+          "accessibility": "Controlli nativi, label associate, aria-invalid, aria-describedby, comunicazione dei campi obbligatori e riepilogo errori con focus rendono i form utilizzabili.",
+          "delivery": "Vite, Vitest, Playwright, TypeDoc, GitHub Pages, coverage e pacchetto npm form-schema-runtime rendono ispezionabili API pubblica e quality gate."
         }
       },
       "saas_analytics_dashboard": {

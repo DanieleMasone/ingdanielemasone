@@ -19,7 +19,7 @@
  *   summaryKey: string,
  *   highlightsKeys: string[],
  *   tech: string,
- *   links: Array<{type: "repository" | "live" | "documentation" | "coverage", href: string}>
+ *   links: Array<{type: "repository" | "live" | "package" | "documentation" | "coverage", href: string}>
  * }>}
  */
 export const githubProjects = [
@@ -237,6 +237,41 @@ export const githubProjects = [
             {
                 type: "coverage",
                 href: "https://danielemasone.github.io/enterprise-ux-motion-lab/coverage/"
+            }
+        ]
+    },
+    {
+        id: "form-schema-runtime",
+        name: "Form Schema Runtime",
+        category: "frontend",
+        year: "2026",
+        summaryKey: "github_projects_page.projects.form_schema_runtime.summary",
+        highlightsKeys: [
+            "github_projects_page.projects.form_schema_runtime.highlights.runtime",
+            "github_projects_page.projects.form_schema_runtime.highlights.accessibility",
+            "github_projects_page.projects.form_schema_runtime.highlights.delivery"
+        ],
+        tech: "TypeScript, Vite, npm, Accessibility, declarative JSON schemas, HTML forms, DOM APIs, validation, state hooks, custom validators, custom renderers, Vitest, Playwright, TypeDoc, GitHub Pages",
+        links: [
+            {
+                type: "repository",
+                href: "https://github.com/DanieleMasone/form-schema-runtime"
+            },
+            {
+                type: "live",
+                href: "https://danielemasone.github.io/form-schema-runtime/"
+            },
+            {
+                type: "package",
+                href: "https://www.npmjs.com/package/form-schema-runtime"
+            },
+            {
+                type: "documentation",
+                href: "https://danielemasone.github.io/form-schema-runtime/api/"
+            },
+            {
+                type: "coverage",
+                href: "https://danielemasone.github.io/form-schema-runtime/coverage/"
             }
         ]
     },

@@ -81,6 +81,7 @@
     "links": {
       "repository": "Repository",
       "live": "Live",
+      "package": "npm package",
       "documentation": "Docs",
       "coverage": "Coverage"
     },
@@ -139,6 +140,14 @@
           "motion": "Shared motion tokens and reduced-motion support govern short transitions for state changes, disclosure and feedback.",
           "workflow": "Risk dashboard workflows include command palette, filters, dark mode, density controls, loading, empty and degraded telemetry states.",
           "quality": "Vitest, Testing Library, focused Playwright journeys, TypeDoc, coverage and GitHub Pages publication document the project without backend or routing overhead."
+        }
+      },
+      "form_schema_runtime": {
+        "summary": "Framework-agnostic TypeScript runtime for rendering accessible HTML forms from declarative JSON schemas, with typed schemas, validation, state hooks, safe DOM rendering, API docs, coverage and npm publication.",
+        "highlights": {
+          "runtime": "Framework-agnostic core exposes createForm, typed schemas, validators, renderers and form instances without React, Angular, Vue or Svelte dependencies.",
+          "accessibility": "Native controls, associated labels, aria-invalid, aria-describedby, required-state communication and focused error summaries keep generated forms usable.",
+          "delivery": "Vite, Vitest, Playwright, TypeDoc, GitHub Pages, coverage and the form-schema-runtime npm package make the public API and quality gates inspectable."
         }
       },
       "saas_analytics_dashboard": {

@@ -1,6 +1,6 @@
 import React, {useEffect, useMemo, useState} from "react";
 import {useTranslation} from "react-i18next";
-import {BookOpen, ExternalLink, ShieldCheck} from "lucide-react";
+import {BookOpen, ExternalLink, Package as PackageIcon, ShieldCheck} from "lucide-react";
 import clsx from "clsx";
 import {SeoHead} from "@/components/seoHead/SeoHead";
 import {PageSection} from "@/components/ui/pageSection/PageSection";
@@ -46,6 +46,7 @@ function SimpleIcon({icon, className, ...props}) {
 const RESOURCE_ICONS = {
     repository: (props) => <SimpleIcon icon={siGithub} {...props} />,
     live: ExternalLink,
+    package: PackageIcon,
     documentation: BookOpen,
     coverage: ShieldCheck
 };

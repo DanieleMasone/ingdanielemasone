@@ -21,6 +21,12 @@ const ENTERPRISE_UX_MOTION_REPOSITORY_URL = "https://github.com/DanieleMasone/En
 const ENTERPRISE_UX_MOTION_LIVE_URL = "https://danielemasone.github.io/enterprise-ux-motion-lab/";
 const ENTERPRISE_UX_MOTION_DOCS_URL = "https://danielemasone.github.io/enterprise-ux-motion-lab/docs/";
 const ENTERPRISE_UX_MOTION_COVERAGE_URL = "https://danielemasone.github.io/enterprise-ux-motion-lab/coverage/";
+const FORM_SCHEMA_RUNTIME_PROJECT_ID = "form-schema-runtime";
+const FORM_SCHEMA_RUNTIME_REPOSITORY_URL = "https://github.com/DanieleMasone/form-schema-runtime";
+const FORM_SCHEMA_RUNTIME_LIVE_URL = "https://danielemasone.github.io/form-schema-runtime/";
+const FORM_SCHEMA_RUNTIME_NPM_URL = "https://www.npmjs.com/package/form-schema-runtime";
+const FORM_SCHEMA_RUNTIME_API_DOCS_URL = "https://danielemasone.github.io/form-schema-runtime/api/";
+const FORM_SCHEMA_RUNTIME_COVERAGE_URL = "https://danielemasone.github.io/form-schema-runtime/coverage/";
 
 vi.mock("react-i18next", () => ({
     useTranslation: () => ({
@@ -36,6 +42,7 @@ vi.mock("react-i18next", () => ({
                 "github_projects_page.categories.backend": "Backend",
                 "github_projects_page.links.repository": "Repository",
                 "github_projects_page.links.live": "Live",
+                "github_projects_page.links.package": "npm package",
                 "github_projects_page.links.documentation": "Docs",
                 "github_projects_page.links.coverage": "Coverage",
                 "github_projects_page.projects.spring_modulith_order_platform.summary": "Spring Modulith backend summary.",
@@ -50,6 +57,10 @@ vi.mock("react-i18next", () => ({
                 "github_projects_page.projects.enterprise_ux_motion_lab.highlights.motion": "Functional motion tokens.",
                 "github_projects_page.projects.enterprise_ux_motion_lab.highlights.workflow": "Command palette and dense workflows.",
                 "github_projects_page.projects.enterprise_ux_motion_lab.highlights.quality": "Accessible tests and published docs.",
+                "github_projects_page.projects.form_schema_runtime.summary": "Form schema runtime summary.",
+                "github_projects_page.projects.form_schema_runtime.highlights.runtime": "Framework-agnostic runtime.",
+                "github_projects_page.projects.form_schema_runtime.highlights.accessibility": "Accessible native form controls.",
+                "github_projects_page.projects.form_schema_runtime.highlights.delivery": "npm package and public API docs.",
                 "github_projects_page.projects.identity_service.summary": "Identity backend summary.",
                 "github_projects_page.projects.identity_service.highlights.contract": "OpenAPI contract.",
                 "github_projects_page.projects.identity_service.highlights.architecture": "Layered Spring architecture.",
@@ -313,6 +324,41 @@ describe("GithubProjects", () => {
             .toHaveAttribute("href", ENTERPRISE_UX_MOTION_COVERAGE_URL);
     });
 
+    test("renders Form Schema Runtime from production data with npm and published resource links", async () => {
+        const formSchemaRuntimeProject = githubProjects.find((project) => project.id === FORM_SCHEMA_RUNTIME_PROJECT_ID);
+
+        expect(formSchemaRuntimeProject).toMatchObject({
+            name: "Form Schema Runtime",
+            category: "frontend",
+            year: "2026",
+            summaryKey: "github_projects_page.projects.form_schema_runtime.summary",
+            highlightsKeys: [
+                "github_projects_page.projects.form_schema_runtime.highlights.runtime",
+                "github_projects_page.projects.form_schema_runtime.highlights.accessibility",
+                "github_projects_page.projects.form_schema_runtime.highlights.delivery"
+            ]
+        });
+
+        vi.spyOn(service, "getGithubProjects").mockResolvedValueOnce([formSchemaRuntimeProject]);
+
+        renderGithubProjects();
+
+        expect(await screen.findByRole("heading", {name: "Form Schema Runtime"})).toBeInTheDocument();
+        expect(screen.getByText("Form schema runtime summary.")).toBeInTheDocument();
+        expect(screen.queryByText(/form_schema_runtime/)).not.toBeInTheDocument();
+
+        expect(screen.getByRole("link", {name: "Repository: Form Schema Runtime"}))
+            .toHaveAttribute("href", FORM_SCHEMA_RUNTIME_REPOSITORY_URL);
+        expect(screen.getByRole("link", {name: "Live: Form Schema Runtime"}))
+            .toHaveAttribute("href", FORM_SCHEMA_RUNTIME_LIVE_URL);
+        expect(screen.getByRole("link", {name: "npm package: Form Schema Runtime"}))
+            .toHaveAttribute("href", FORM_SCHEMA_RUNTIME_NPM_URL);
+        expect(screen.getByRole("link", {name: "Docs: Form Schema Runtime"}))
+            .toHaveAttribute("href", FORM_SCHEMA_RUNTIME_API_DOCS_URL);
+        expect(screen.getByRole("link", {name: "Coverage: Form Schema Runtime"}))
+            .toHaveAttribute("href", FORM_SCHEMA_RUNTIME_COVERAGE_URL);
+    });
+
     test("keeps public resource links aligned with published repository READMEs", () => {
         const byType = (projectId, type) =>
             githubProjects.find((project) => project.id === projectId)
@@ -343,6 +389,16 @@ describe("GithubProjects", () => {
             .toBe(ENTERPRISE_UX_MOTION_DOCS_URL);
         expect(byType("enterprise-ux-motion-lab", "coverage"))
             .toBe(ENTERPRISE_UX_MOTION_COVERAGE_URL);
+        expect(byType("form-schema-runtime", "repository"))
+            .toBe(FORM_SCHEMA_RUNTIME_REPOSITORY_URL);
+        expect(byType("form-schema-runtime", "live"))
+            .toBe(FORM_SCHEMA_RUNTIME_LIVE_URL);
+        expect(byType("form-schema-runtime", "package"))
+            .toBe(FORM_SCHEMA_RUNTIME_NPM_URL);
+        expect(byType("form-schema-runtime", "documentation"))
+            .toBe(FORM_SCHEMA_RUNTIME_API_DOCS_URL);
+        expect(byType("form-schema-runtime", "coverage"))
+            .toBe(FORM_SCHEMA_RUNTIME_COVERAGE_URL);
         expect(byType("modular-monolith-ecommerce", "live"))
             .toBe("https://danielemasone.github.io/modular-monolith-ecommerce/");
         expect(byType("modular-monolith-ecommerce", "documentation"))
@@ -394,6 +450,8 @@ describe("GithubProjects", () => {
         expect(techByProject("frontend-performance-lab")).toContain("Browser Performance API");
         expect(techByProject("enterprise-ux-motion-lab")).toContain("Motion");
         expect(techByProject("enterprise-ux-motion-lab")).toContain("reduced motion");
+        expect(techByProject("form-schema-runtime")).toContain("npm");
+        expect(techByProject("form-schema-runtime")).toContain("DOM APIs");
         expect(techByProject("order-events-service")).toContain("Kafka");
         expect(techByProject("enterprise-data-workbench")).toContain("Playwright");
         expect(techByProject("portfolio-online-cv")).toContain("Playwright");

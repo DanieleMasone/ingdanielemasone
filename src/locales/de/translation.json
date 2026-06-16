@@ -81,6 +81,7 @@
     "links": {
       "repository": "Repository",
       "live": "Live",
+      "package": "npm-Paket",
       "documentation": "Doku",
       "coverage": "Coverage"
     },
@@ -139,6 +140,14 @@
           "motion": "Geteilte Motion Tokens und Reduced-Motion-Support steuern kurze Übergänge für Statuswechsel, Disclosure und Feedback.",
           "workflow": "Risk-Dashboard-Workflows umfassen Command Palette, Filter, Dark Mode, Density Controls sowie Loading-, Empty- und Degraded-Telemetry-Zustände.",
           "quality": "Vitest, Testing Library, fokussierte Playwright-Journeys, TypeDoc, Coverage und GitHub-Pages-Veröffentlichung dokumentieren das Projekt ohne Backend- oder Routing-Overhead."
+        }
+      },
+      "form_schema_runtime": {
+        "summary": "Framework-agnostische TypeScript-Runtime zum Rendern zugänglicher HTML-Formulare aus deklarativen JSON-Schemas, mit typisierten Schemas, Validierung, State Hooks, sicherem DOM-Rendering, API-Doku, Coverage und npm-Veröffentlichung.",
+        "highlights": {
+          "runtime": "Der Core ohne React-, Angular-, Vue- oder Svelte-Abhängigkeiten stellt createForm, typisierte Schemas, Validatoren, Renderer und Form-Instanzen bereit.",
+          "accessibility": "Native Controls, verknüpfte Labels, aria-invalid, aria-describedby, Pflichtfeld-Kommunikation und fokussierte Fehlerzusammenfassungen halten generierte Formulare nutzbar.",
+          "delivery": "Vite, Vitest, Playwright, TypeDoc, GitHub Pages, Coverage und das npm-Paket form-schema-runtime machen Public API und Quality Gates überprüfbar."
         }
       },
       "saas_analytics_dashboard": {
