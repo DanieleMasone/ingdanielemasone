@@ -35,6 +35,8 @@
  * @property {string} tradingChartCanvas - Responsive height wrapper for the trading chart canvas.
  * @property {string} tradingViewToggleGroup - Responsive segmented button group for the trading chart view switcher.
  * @property {string} courseActionGroup - Responsive action layout for course purchase and detail links.
+ * @property {string} resourceLinkGrid - Responsive grid used for compact external project resource links.
+ * @property {string} resourceLinkGridWideItem - Wide grid item used when a resource list has an odd desktop count.
  * @property {string} screenReaderOnly - Visually hidden content that remains available to assistive technologies.
  */
 
@@ -79,6 +81,10 @@ export const layoutClasses = {
     "flex w-full flex-col items-stretch gap-2 sm:w-auto sm:flex-row sm:items-center sm:justify-center",
   courseActionGroup:
     "grid gap-2 sm:grid-cols-2",
+  resourceLinkGrid:
+    "grid grid-cols-1 gap-2 sm:grid-cols-2",
+  resourceLinkGridWideItem:
+    "sm:col-span-2",
   screenReaderOnly: "sr-only",
 };
 
@@ -190,7 +196,7 @@ export const interactiveClasses = {
   linkButtonBlue:
       "bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 focus-visible:ring-blue-400 dark:focus-visible:ring-blue-300",
   resourceLink:
-    "inline-flex min-h-10 items-center justify-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-semibold text-gray-800 transition-colors hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800",
+    "inline-flex min-h-10 items-center justify-center gap-2 whitespace-nowrap rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-semibold text-gray-800 transition-colors hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800",
   coursePrimaryLink:
     "inline-flex min-h-10 w-full items-center justify-center gap-2 rounded-md bg-emerald-600 px-3 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-emerald-700 dark:bg-emerald-500 dark:text-white dark:hover:bg-emerald-600",
   iconLink:

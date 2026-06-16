@@ -81,7 +81,8 @@
     "links": {
       "repository": "Repository",
       "live": "Live",
-      "package": "Pacchetto npm",
+      "package": "npm",
+      "package_aria": "Pacchetto npm",
       "documentation": "Doc",
       "coverage": "Coverage"
     },

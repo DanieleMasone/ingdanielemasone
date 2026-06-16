@@ -106,11 +106,13 @@ const getVisibleRange = (page, totalItems, itemsPerPage) => {
  *
  * @param {object} props - Component props.
  * @param {{type: string, href: string}} props.link - Link metadata.
- * @param {string} props.label - Visible and accessible resource label.
+ * @param {string} props.label - Visible resource label.
+ * @param {string} [props.accessibleLabel] - Optional longer label used only for assistive technologies.
  * @param {string} props.projectName - Project name used to make the link label specific.
+ * @param {string} [props.className] - Optional layout classes for the link wrapper.
  * @returns {JSX.Element} Accessible external link with a compact icon.
  */
-function ProjectResourceLink({link, label, projectName}) {
+function ProjectResourceLink({link, label, accessibleLabel = label, projectName, className}) {
     const Icon = RESOURCE_ICONS[link.type] || ExternalLink;
 
     return (
@@ -118,8 +120,8 @@ function ProjectResourceLink({link, label, projectName}) {
             href={link.href}
             target="_blank"
             rel="noopener noreferrer"
-            className={clsx(interactiveClasses.resourceLink, interactiveClasses.focusRing)}
-            aria-label={`${label}: ${projectName}`}
+            className={clsx(interactiveClasses.resourceLink, interactiveClasses.focusRing, className)}
+            aria-label={`${accessibleLabel}: ${projectName}`}
         >
             <Icon aria-hidden="true" className="h-4 w-4 shrink-0"/>
             <span>{label}</span>
@@ -265,15 +267,35 @@ export default function GithubProjects() {
                                         <div className="mt-auto flex flex-col gap-4">
                                             <TechDisclosure techList={project.tech} label={t("show_technologies")}/>
 
-                                            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-                                                {project.links.map((link) => (
-                                                    <ProjectResourceLink
-                                                        key={`${project.id}-${link.type}`}
-                                                        link={link}
-                                                        label={t(`github_projects_page.links.${link.type}`)}
-                                                        projectName={project.name}
-                                                    />
-                                                ))}
+                                            <div className={layoutClasses.resourceLinkGrid}>
+                                                {project.links.map((link, index) => {
+                                                    const labelKey = `github_projects_page.links.${link.type}`;
+                                                    const accessibleLabelKey = `${labelKey}_aria`;
+                                                    const label = t(labelKey);
+                                                    const accessibleLabel = t(accessibleLabelKey);
+                                                    const isLastOddDesktopResource =
+                                                        project.links.length > 4 &&
+                                                        project.links.length % 2 === 1 &&
+                                                        index === project.links.length - 1;
+
+                                                    return (
+                                                        <ProjectResourceLink
+                                                            key={`${project.id}-${link.type}`}
+                                                            link={link}
+                                                            label={label}
+                                                            accessibleLabel={
+                                                                accessibleLabel === accessibleLabelKey
+                                                                    ? label
+                                                                    : accessibleLabel
+                                                            }
+                                                            projectName={project.name}
+                                                            className={clsx(
+                                                                isLastOddDesktopResource &&
+                                                                layoutClasses.resourceLinkGridWideItem
+                                                            )}
+                                                        />
+                                                    );
+                                                })}
                                             </div>
                                         </div>
                                     </CardContent>

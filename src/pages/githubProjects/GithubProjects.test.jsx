@@ -42,7 +42,8 @@ vi.mock("react-i18next", () => ({
                 "github_projects_page.categories.backend": "Backend",
                 "github_projects_page.links.repository": "Repository",
                 "github_projects_page.links.live": "Live",
-                "github_projects_page.links.package": "npm package",
+                "github_projects_page.links.package": "npm",
+                "github_projects_page.links.package_aria": "npm package",
                 "github_projects_page.links.documentation": "Docs",
                 "github_projects_page.links.coverage": "Coverage",
                 "github_projects_page.projects.spring_modulith_order_platform.summary": "Spring Modulith backend summary.",
@@ -355,8 +356,9 @@ describe("GithubProjects", () => {
             .toHaveAttribute("href", FORM_SCHEMA_RUNTIME_NPM_URL);
         expect(screen.getByRole("link", {name: "Docs: Form Schema Runtime"}))
             .toHaveAttribute("href", FORM_SCHEMA_RUNTIME_API_DOCS_URL);
-        expect(screen.getByRole("link", {name: "Coverage: Form Schema Runtime"}))
-            .toHaveAttribute("href", FORM_SCHEMA_RUNTIME_COVERAGE_URL);
+        const coverage = screen.getByRole("link", {name: "Coverage: Form Schema Runtime"});
+        expect(coverage).toHaveAttribute("href", FORM_SCHEMA_RUNTIME_COVERAGE_URL);
+        expect(coverage).toHaveClass("sm:col-span-2");
     });
 
     test("keeps public resource links aligned with published repository READMEs", () => {

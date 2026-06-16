@@ -81,7 +81,8 @@
     "links": {
       "repository": "Repository",
       "live": "Live",
-      "package": "npm-Paket",
+      "package": "npm",
+      "package_aria": "npm-Paket",
       "documentation": "Doku",
       "coverage": "Coverage"
     },
