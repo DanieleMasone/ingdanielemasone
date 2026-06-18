@@ -6,8 +6,9 @@ import {Card} from "@/components/ui/card/Card";
 import {CardContent} from "@/components/ui/cardContent/CardContent";
 import {PageSection} from "@/components/ui/pageSection/PageSection";
 import {SeoHead} from "@/components/seoHead/SeoHead";
-import {Pagination} from "@/components/ui/pagination/Pagination";
 import {PageGrid} from "@/components/ui/pageGrid/PageGrid";
+import {CollectionToolbar} from "@/components/ui/collectionToolbar/CollectionToolbar";
+import {getCollectionPaginationState} from "@/components/ui/collectionToolbar/collectionPagination";
 import {getCertifications} from "@/services/portfolioService";
 import {Loading} from "@/components/loading/Loading";
 import {ErrorState} from "@/components/errorState/ErrorState";
@@ -33,23 +34,6 @@ export const sortCertificationsByDate = (certifications) => (
         return secondYear - firstYear;
     })
 );
-
-/**
- * Calculates the visible one-based item range for a paginated certification list.
- *
- * @param {number} page - Current one-based page number.
- * @param {number} totalItems - Number of certifications.
- * @param {number} itemsPerPage - Maximum certifications rendered on each page.
- * @returns {{start: number, end: number}} Visible certification range.
- */
-export const getVisibleRange = (page, totalItems, itemsPerPage) => {
-    if (totalItems === 0) return {start: 0, end: 0};
-
-    return {
-        start: (page - 1) * itemsPerPage + 1,
-        end: Math.min(page * itemsPerPage, totalItems)
-    };
-};
 
 /**
  * Certifications component renders professional credentials.
@@ -88,12 +72,14 @@ export default function Certifications() {
         () => sortCertificationsByDate(certifications),
         [certifications]
     );
-    const totalPages = Math.ceil(sortedCertifications.length / ITEMS_PER_PAGE);
-    const currentPage = Math.min(page, totalPages || 1);
-    const visibleRange = getVisibleRange(currentPage, sortedCertifications.length, ITEMS_PER_PAGE);
+    const pagination = getCollectionPaginationState({
+        page,
+        totalItems: sortedCertifications.length,
+        pageSize: ITEMS_PER_PAGE
+    });
     const displayedCerts = sortedCertifications.slice(
-        (currentPage - 1) * ITEMS_PER_PAGE,
-        currentPage * ITEMS_PER_PAGE
+        pagination.startIndex,
+        pagination.endIndex
     );
 
     if (loading) return <Loading/>;
@@ -110,23 +96,16 @@ export default function Certifications() {
                     <p className={surfaceClasses.insetText}>{t("certifications_page.empty")}</p>
                 ) : (
                     <>
-                        <p className={layoutClasses.resultSummary} aria-live="polite">
-                            {t("certifications_page.results_summary", {
-                                start: visibleRange.start,
-                                end: visibleRange.end,
-                                total: sortedCertifications.length
-                            })}
-                        </p>
+                        <CollectionToolbar
+                            page={page}
+                            totalItems={sortedCertifications.length}
+                            pageSize={ITEMS_PER_PAGE}
+                            onPageChange={setPage}
+                            itemLabel={t("certifications_page.collection_label_one")}
+                            itemLabelPlural={t("certifications_page.collection_label_many")}
+                        />
 
-                        <div className={layoutClasses.mobilePagination}>
-                            <Pagination
-                                page={currentPage}
-                                totalPages={totalPages}
-                                onPageChange={setPage}
-                            />
-                        </div>
-
-                        <PageGrid page={currentPage} columns={3}>
+                        <PageGrid page={pagination.currentPage} columns={3}>
                             {displayedCerts.map((cert) => {
                                 const certTitle = t(cert.nameKey);
                                 const titleId = `certification-${cert.nameKey.replace(/\W+/g, "-")}`;
@@ -194,13 +173,6 @@ export default function Certifications() {
                             })}
                         </PageGrid>
 
-                        <div className={layoutClasses.desktopPagination}>
-                            <Pagination
-                                page={currentPage}
-                                totalPages={totalPages}
-                                onPageChange={setPage}
-                            />
-                        </div>
                     </>
                 )}
             </PageSection>

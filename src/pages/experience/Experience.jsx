@@ -6,7 +6,8 @@ import {PageSection} from "@/components/ui/pageSection/PageSection";
 import {ExpandableText} from "@/components/ui/expandableText/ExpandableText";
 import {SeoHead} from "@/components/seoHead/SeoHead";
 import TechDisclosure from "@/components/ui/techDisclosure/TechDisclosure";
-import {Pagination} from "@/components/ui/pagination/Pagination";
+import {CollectionToolbar} from "@/components/ui/collectionToolbar/CollectionToolbar";
+import {getCollectionPaginationState} from "@/components/ui/collectionToolbar/collectionPagination";
 import {getExperiences} from "@/services/portfolioService";
 import {Loading} from "@/components/loading/Loading";
 import {ErrorState} from "@/components/errorState/ErrorState";
@@ -89,23 +90,6 @@ export const sortExperiencesByRecency = (experiences, currentYear = new Date().g
 );
 
 /**
- * Calculates the visible one-based item range for a paginated timeline.
- *
- * @param {number} page - Current one-based page number.
- * @param {number} totalItems - Number of timeline items.
- * @param {number} itemsPerPage - Maximum items rendered on each page.
- * @returns {{start: number, end: number}} Visible timeline range.
- */
-export const getVisibleRange = (page, totalItems, itemsPerPage) => {
-    if (totalItems === 0) return {start: 0, end: 0};
-
-    return {
-        start: (page - 1) * itemsPerPage + 1,
-        end: Math.min(page * itemsPerPage, totalItems)
-    };
-};
-
-/**
  * Localizes human-readable period fragments while preserving year parsing data.
  *
  * @param {string} period - Raw experience period from the static dataset.
@@ -173,15 +157,17 @@ export default function Experience() {
         () => sortExperiencesByRecency(experiences, currentYear),
         [currentYear, experiences]
     );
-    const totalPages = Math.ceil(timelineExperiences.length / ITEMS_PER_PAGE);
-    const currentPage = Math.min(page, totalPages || 1);
-    const visibleRange = getVisibleRange(currentPage, timelineExperiences.length, ITEMS_PER_PAGE);
+    const pagination = getCollectionPaginationState({
+        page,
+        totalItems: timelineExperiences.length,
+        pageSize: ITEMS_PER_PAGE
+    });
     const displayedExperiences = useMemo(
         () => timelineExperiences.slice(
-            (currentPage - 1) * ITEMS_PER_PAGE,
-            currentPage * ITEMS_PER_PAGE
+            pagination.startIndex,
+            pagination.endIndex
         ),
-        [currentPage, timelineExperiences]
+        [pagination.endIndex, pagination.startIndex, timelineExperiences]
     );
 
     if (loading) return <Loading/>;
@@ -200,21 +186,14 @@ export default function Experience() {
                     <p className={surfaceClasses.insetText}>{t("experience_empty")}</p>
                 ) : (
                     <>
-                        <p className={layoutClasses.resultSummary} aria-live="polite">
-                            {t("experience_results_summary", {
-                                start: visibleRange.start,
-                                end: visibleRange.end,
-                                total: timelineExperiences.length
-                            })}
-                        </p>
-
-                        <div className={layoutClasses.mobilePagination}>
-                            <Pagination
-                                page={currentPage}
-                                totalPages={totalPages}
-                                onPageChange={setPage}
-                            />
-                        </div>
+                        <CollectionToolbar
+                            page={page}
+                            totalItems={timelineExperiences.length}
+                            pageSize={ITEMS_PER_PAGE}
+                            onPageChange={setPage}
+                            itemLabel={t("experience_collection_label_one")}
+                            itemLabelPlural={t("experience_collection_label_many")}
+                        />
 
                         <ol className={layoutClasses.timelineList} aria-label={t("experience_timeline_label")}>
                             {displayedExperiences.map((exp) => {
@@ -296,13 +275,6 @@ export default function Experience() {
                             })}
                         </ol>
 
-                        <div className={layoutClasses.desktopPagination}>
-                            <Pagination
-                                page={currentPage}
-                                totalPages={totalPages}
-                                onPageChange={setPage}
-                            />
-                        </div>
                     </>
                 )}
             </PageSection>

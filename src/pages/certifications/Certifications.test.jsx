@@ -3,7 +3,6 @@ import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import {MemoryRouter} from "react-router-dom";
 import {vi} from "vitest";
 import Certifications, {
-    getVisibleRange,
     sortCertificationsByDate
 } from "./Certifications";
 import * as service from "@/services/portfolioService";
@@ -21,7 +20,10 @@ vi.mock("react-i18next", () => ({
                 "certifications_page.view_certificate": "View certificate",
                 "certifications_page.issuer": "Issuer",
                 "certifications_page.date": "Issued on",
-                "certifications_page.results_summary": `Showing ${options.start}-${options.end} of ${options.total} certifications`,
+                "collection.range_summary": `${options.start}–${options.end} of ${options.total} ${options.label}`,
+                "collection.range_announcement": `Showing items ${options.start} to ${options.end} of ${options.total} ${options.label}.`,
+                "certifications_page.collection_label_one": "certification",
+                "certifications_page.collection_label_many": "certifications",
                 "certifications_page.empty": "No certifications available.",
                 previous: "Prev",
                 next: "Next",
@@ -133,7 +135,7 @@ describe("Certifications component", () => {
 
         expect(await screen.findByRole("heading", {name: "Certifications"})).toBeInTheDocument();
         expect(screen.getByText("Professional certifications with official certificates.")).toBeInTheDocument();
-        expect(screen.getByText("Showing 1-6 of 7 certifications")).toBeInTheDocument();
+        expect(screen.getByText("1–6 of 7 certifications")).toBeInTheDocument();
         expect(screen.getAllByTestId("certification-card")).toHaveLength(6);
     });
 
@@ -224,12 +226,11 @@ describe("Certifications component", () => {
         fireEvent.click(nextButtons[0]);
 
         await waitFor(() => {
-            expect(screen.getByText("Showing 7-7 of 7 certifications")).toBeInTheDocument();
+            expect(screen.getByText("7–7 of 7 certifications")).toBeInTheDocument();
             expect(screen.getAllByTestId("certification-card")).toHaveLength(1);
         });
         expect(screen.getByRole("heading", {name: "Codemotion Workshop Fest"})).toBeInTheDocument();
-        screen.getAllByTestId("pagination-info")
-            .forEach((info) => expect(info).toHaveTextContent("2 / 2"));
+        expect(screen.getByTestId("pagination-info")).toHaveTextContent("2 / 2");
     });
 
     test("sorts certifications from newest to oldest while preserving same-year order", async () => {
@@ -341,9 +342,4 @@ describe("Certifications helpers", () => {
         expect(unsorted[0].nameKey).toBe("Codemotion Workshop Fest");
     });
 
-    test("calculates visible ranges for paginated certifications", () => {
-        expect(getVisibleRange(1, 7, 6)).toEqual({start: 1, end: 6});
-        expect(getVisibleRange(2, 7, 6)).toEqual({start: 7, end: 7});
-        expect(getVisibleRange(1, 0, 6)).toEqual({start: 0, end: 0});
-    });
 });

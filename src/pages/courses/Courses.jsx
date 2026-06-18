@@ -6,9 +6,10 @@ import React, {useEffect, useState} from "react";
 import {PageSection} from "@/components/ui/pageSection/PageSection";
 import {ExpandableText} from "@/components/ui/expandableText/ExpandableText";
 import {SeoHead} from "@/components/seoHead/SeoHead";
-import {Pagination} from "@/components/ui/pagination/Pagination";
 import {PageGrid} from "@/components/ui/pageGrid/PageGrid";
 import TechDisclosure from "@/components/ui/techDisclosure/TechDisclosure";
+import {CollectionToolbar} from "@/components/ui/collectionToolbar/CollectionToolbar";
+import {getCollectionPaginationState} from "@/components/ui/collectionToolbar/collectionPagination";
 import {getCourses} from "@/services/portfolioService";
 import {Loading} from "@/components/loading/Loading";
 import {ErrorState} from "@/components/errorState/ErrorState";
@@ -16,23 +17,6 @@ import clsx from "clsx";
 import {interactiveClasses, layoutClasses, surfaceClasses} from "@/styles/commonClasses";
 
 const ITEMS_PER_PAGE = 6;
-
-/**
- * Calculates the visible course range for the current page.
- *
- * @param {number} page - Current one-based page number.
- * @param {number} totalItems - Total number of courses.
- * @param {number} itemsPerPage - Maximum courses shown on each page.
- * @returns {{start: number, end: number}} Visible item range.
- */
-const getVisibleRange = (page, totalItems, itemsPerPage) => {
-    if (totalItems === 0) return {start: 0, end: 0};
-
-    return {
-        start: (page - 1) * itemsPerPage + 1,
-        end: Math.min(page * itemsPerPage, totalItems)
-    };
-};
 
 /**
  * Courses component.
@@ -68,13 +52,15 @@ export default function Courses() {
         loadCourses();
     }, []);
 
-    const totalPages = Math.ceil(courses.length / ITEMS_PER_PAGE);
-    const currentPage = Math.min(page, totalPages || 1);
-    const visibleRange = getVisibleRange(currentPage, courses.length, ITEMS_PER_PAGE);
+    const pagination = getCollectionPaginationState({
+        page,
+        totalItems: courses.length,
+        pageSize: ITEMS_PER_PAGE
+    });
 
     const displayedCourses = courses.slice(
-        (currentPage - 1) * ITEMS_PER_PAGE,
-        currentPage * ITEMS_PER_PAGE
+        pagination.startIndex,
+        pagination.endIndex
     );
 
     if (loading) return <Loading/>;
@@ -87,28 +73,16 @@ export default function Courses() {
             <PageSection title={t("courses_page.title")}>
                 <p className={layoutClasses.sectionIntro}>{t("courses_page.description")}</p>
 
-                {courses.length > 0 && (
-                    <p className={layoutClasses.resultSummary} aria-live="polite">
-                        {t("courses_page.results_summary", {
-                            start: visibleRange.start,
-                            end: visibleRange.end,
-                            total: courses.length
-                        })}
-                    </p>
-                )}
+                <CollectionToolbar
+                    page={page}
+                    totalItems={courses.length}
+                    pageSize={ITEMS_PER_PAGE}
+                    onPageChange={setPage}
+                    itemLabel={t("courses_page.collection_label_one")}
+                    itemLabelPlural={t("courses_page.collection_label_many")}
+                />
 
-                {/* Pagination mobile sticky */}
-                <div
-                    className={layoutClasses.mobilePagination}
-                >
-                    <Pagination
-                        page={currentPage}
-                        totalPages={totalPages}
-                        onPageChange={setPage}
-                    />
-                </div>
-
-                <PageGrid page={currentPage} columns={3}>
+                <PageGrid page={pagination.currentPage} columns={3}>
                     {displayedCourses.map((course) => {
                         const courseTitle = t(course.nameKey);
                         const titleId = `course-${course.nameKey.replace(/\W+/g, "-")}`;
@@ -189,14 +163,6 @@ export default function Courses() {
                     })}
                 </PageGrid>
 
-                {/* Pagination desktop normal */}
-                <div className={layoutClasses.desktopPagination}>
-                    <Pagination
-                        page={currentPage}
-                        totalPages={totalPages}
-                        onPageChange={setPage}
-                    />
-                </div>
             </PageSection>
         </>
     );

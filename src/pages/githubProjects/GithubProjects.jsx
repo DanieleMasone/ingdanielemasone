@@ -8,8 +8,9 @@ import {PageGrid} from "@/components/ui/pageGrid/PageGrid";
 import {Card} from "@/components/ui/card/Card";
 import {CardContent} from "@/components/ui/cardContent/CardContent";
 import {SelectableButton} from "@/components/ui/selectableButton/SelectableButton";
-import {Pagination} from "@/components/ui/pagination/Pagination";
 import TechDisclosure from "@/components/ui/techDisclosure/TechDisclosure";
+import {CollectionToolbar} from "@/components/ui/collectionToolbar/CollectionToolbar";
+import {getCollectionPaginationState} from "@/components/ui/collectionToolbar/collectionPagination";
 import {Loading} from "@/components/loading/Loading";
 import {ErrorState} from "@/components/errorState/ErrorState";
 import {getGithubProjects} from "@/services/portfolioService";
@@ -85,23 +86,6 @@ const getCategoryLabel = (t, category) => {
 };
 
 /**
- * Calculates the visible one-based item range for a paginated result set.
- *
- * @param {number} page - Current one-based page number.
- * @param {number} totalItems - Number of filtered items.
- * @param {number} itemsPerPage - Maximum number of items shown on each page.
- * @returns {{start: number, end: number}} Visible result range for summaries.
- */
-const getVisibleRange = (page, totalItems, itemsPerPage) => {
-    if (totalItems === 0) return {start: 0, end: 0};
-
-    return {
-        start: (page - 1) * itemsPerPage + 1,
-        end: Math.min(page * itemsPerPage, totalItems)
-    };
-};
-
-/**
  * External resource link rendered inside a GitHub project card.
  *
  * @param {object} props - Component props.
@@ -169,12 +153,14 @@ export default function GithubProjects() {
         () => projects.filter((project) => selectedCategory === "all" || project.category === selectedCategory),
         [projects, selectedCategory]
     );
-    const totalPages = Math.ceil(filteredProjects.length / ITEMS_PER_PAGE);
-    const currentPage = Math.min(page, totalPages || 1);
-    const visibleRange = getVisibleRange(currentPage, filteredProjects.length, ITEMS_PER_PAGE);
+    const pagination = getCollectionPaginationState({
+        page,
+        totalItems: filteredProjects.length,
+        pageSize: ITEMS_PER_PAGE
+    });
     const paginatedProjects = filteredProjects.slice(
-        (currentPage - 1) * ITEMS_PER_PAGE,
-        currentPage * ITEMS_PER_PAGE
+        pagination.startIndex,
+        pagination.endIndex
     );
 
     useEffect(() => {
@@ -210,23 +196,16 @@ export default function GithubProjects() {
 
                 {filteredProjects.length > 0 && (
                     <>
-                        <p className={layoutClasses.resultSummary} aria-live="polite">
-                            {t("github_projects_page.results_summary", {
-                                start: visibleRange.start,
-                                end: visibleRange.end,
-                                total: filteredProjects.length
-                            })}
-                        </p>
+                        <CollectionToolbar
+                            page={page}
+                            totalItems={filteredProjects.length}
+                            pageSize={ITEMS_PER_PAGE}
+                            onPageChange={setPage}
+                            itemLabel={t("github_projects_page.collection_label_one")}
+                            itemLabelPlural={t("github_projects_page.collection_label_many")}
+                        />
 
-                        <div className={layoutClasses.mobilePagination}>
-                            <Pagination
-                                page={currentPage}
-                                totalPages={totalPages}
-                                onPageChange={setPage}
-                            />
-                        </div>
-
-                        <PageGrid page={`${selectedCategory}-${currentPage}`} columns={3}>
+                        <PageGrid page={`${selectedCategory}-${pagination.currentPage}`} columns={3}>
                             {paginatedProjects.map((project) => (
                                 <Card
                                     key={project.id}
@@ -303,13 +282,6 @@ export default function GithubProjects() {
                             ))}
                         </PageGrid>
 
-                        <div className={layoutClasses.desktopPagination}>
-                            <Pagination
-                                page={currentPage}
-                                totalPages={totalPages}
-                                onPageChange={setPage}
-                            />
-                        </div>
                     </>
                 )}
             </PageSection>

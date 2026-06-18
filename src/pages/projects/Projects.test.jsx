@@ -2,7 +2,6 @@ import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import Projects, {
     formatProjectPeriod,
     getCompanyFilters,
-    getVisibleRange,
     isCurrentProject,
     sortProjectsByRecency
 } from "./Projects";
@@ -23,7 +22,10 @@ vi.mock("react-i18next", () => ({
                 "projects_page.intro": "Professional delivery projects",
                 "projects_page.filter_label": "Filter professional projects by company",
                 "projects_page.all_companies": "All",
-                "projects_page.results_summary": `Showing ${options.start}-${options.end} of ${options.total} projects`,
+                "collection.range_summary": `${options.start}–${options.end} of ${options.total} ${options.label}`,
+                "collection.range_announcement": `Showing items ${options.start} to ${options.end} of ${options.total} ${options.label}.`,
+                "projects_page.collection_label_one": "project",
+                "projects_page.collection_label_many": "projects",
                 "projects_page.current": "Current",
                 "projects_page.present": "Present",
                 "projects_page.empty": "No professional projects available.",
@@ -139,7 +141,7 @@ describe("Projects Component", () => {
         expect(screen.getByText("Professional delivery projects")).toBeInTheDocument();
         expect(screen.getByRole("group", {name: "Filter professional projects by company"})).toBeInTheDocument();
         expect(screen.getByRole("button", {name: "All (7)"})).toHaveAttribute("aria-pressed", "true");
-        expect(screen.getByText("Showing 1-6 of 7 projects")).toBeInTheDocument();
+        expect(screen.getByText("1–6 of 7 projects")).toBeInTheDocument();
         expect(screen.getAllByTestId("project-card")).toHaveLength(6);
     });
 
@@ -186,11 +188,10 @@ describe("Projects Component", () => {
         fireEvent.click(nextButtons[0]);
 
         await waitFor(() => {
-            expect(screen.getByText("Showing 7-7 of 7 projects")).toBeInTheDocument();
+            expect(screen.getByText("7–7 of 7 projects")).toBeInTheDocument();
             expect(screen.getAllByTestId("project-card")).toHaveLength(1);
         });
-        screen.getAllByTestId("pagination-info")
-            .forEach((info) => expect(info).toHaveTextContent("2 / 2"));
+        expect(screen.getByTestId("pagination-info")).toHaveTextContent("2 / 2");
         expect(screen.getByRole("heading", {name: "Fastweb Mobile"})).toBeInTheDocument();
     });
 
@@ -202,11 +203,11 @@ describe("Projects Component", () => {
         const nextButtons = await screen.findAllByRole("button", {name: "Next"});
         fireEvent.click(nextButtons[0]);
 
-        await screen.findByText("Showing 7-7 of 7 projects");
+        await screen.findByText("7–7 of 7 projects");
         fireEvent.click(screen.getByRole("button", {name: "RGI (2)"}));
 
         await waitFor(() => {
-            expect(screen.getByText("Showing 1-2 of 2 projects")).toBeInTheDocument();
+            expect(screen.getByText("1–2 of 2 projects")).toBeInTheDocument();
             expect(screen.getAllByTestId("project-card")).toHaveLength(2);
         });
         expect(screen.getByRole("heading", {name: "RGI Architecture"})).toBeInTheDocument();
@@ -316,12 +317,6 @@ describe("Projects helpers", () => {
     test("builds company filters with all first", () => {
         expect(getCompanyFilters(mockProjects))
             .toEqual(["all", "Intesa Sanpaolo", "RGI", "Italiaonline", "Fastweb"]);
-    });
-
-    test("calculates visible ranges for paginated projects", () => {
-        expect(getVisibleRange(1, 17, 6)).toEqual({start: 1, end: 6});
-        expect(getVisibleRange(3, 17, 6)).toEqual({start: 13, end: 17});
-        expect(getVisibleRange(1, 0, 6)).toEqual({start: 0, end: 0});
     });
 
     test("localizes present labels", () => {

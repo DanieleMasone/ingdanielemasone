@@ -16,10 +16,10 @@
  * @property {string} sectionTitle - Heading style used by titled portfolio sections.
  * @property {string} pageGridWrapper - Outer wrapper for animated paginated grids.
  * @property {string} pageGrid - Compact responsive spacing for route-level card grids.
- * @property {string} mobilePagination - Sticky mobile pagination wrapper that avoids extra vertical margins.
- * @property {string} desktopPagination - Desktop pagination wrapper aligned with section spacing.
+ * @property {string} collectionToolbar - Shared result summary and pagination wrapper for paginated collections.
+ * @property {string} collectionSummary - Compact visible range summary inside collection toolbars.
+ * @property {string} collectionPagination - Pagination alignment inside collection toolbars.
  * @property {string} sectionIntro - Readable introductory copy used below route headings.
- * @property {string} resultSummary - Compact live result summary used near filters and paginated grids.
  * @property {string} filterableLayout - Width-constrained layout for pages with filter controls and paginated content.
  * @property {string} filterSidebar - Width-constrained sticky desktop sidebar wrapper for route-level filters.
  * @property {string} horizontalFilterBar - Horizontal filter controls with compact scrolling on small screens.
@@ -50,11 +50,13 @@ export const layoutClasses = {
   sectionTitle: "text-2xl font-bold leading-tight text-gray-900 dark:text-white sm:text-3xl",
   pageGridWrapper: "flex flex-col",
   pageGrid: "grid items-start gap-4 sm:gap-5 lg:gap-6",
-  mobilePagination:
-      "md:hidden sticky top-0 z-20 -mx-4 border-b border-gray-200 bg-white/95 px-4 py-2 shadow-sm backdrop-blur-md dark:border-gray-700 dark:bg-gray-900/90 sm:-mx-6 sm:px-6",
-  desktopPagination: "hidden md:flex justify-center",
+  collectionToolbar:
+      "sticky top-16 z-20 -mx-4 flex flex-col gap-2 border-b border-gray-200 bg-white/95 px-4 py-2 shadow-sm backdrop-blur-md dark:border-gray-700 dark:bg-gray-900/90 sm:-mx-6 sm:px-6 md:static md:mx-0 md:flex-row md:items-center md:justify-between md:gap-4 md:rounded-lg md:border md:border-gray-200/70 md:bg-white/60 md:px-3 md:py-2 md:shadow-none dark:md:border-gray-700/60 dark:md:bg-gray-800/30",
+  collectionSummary:
+      "text-sm font-medium text-gray-600 dark:text-gray-300",
+  collectionPagination:
+      "justify-start md:justify-end",
   sectionIntro: "max-w-3xl text-base leading-7 text-gray-700 dark:text-gray-300",
-  resultSummary: "text-sm font-medium text-gray-600 dark:text-gray-300",
   filterableLayout:
       "grid min-w-0 gap-4 md:grid-cols-[12rem_minmax(0,1fr)] md:items-start lg:grid-cols-[14rem_minmax(0,1fr)]",
   filterSidebar: "min-w-0 md:sticky md:top-20",

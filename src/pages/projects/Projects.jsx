@@ -6,10 +6,11 @@ import {CardContent} from "@/components/ui/cardContent/CardContent";
 import {PageSection} from "@/components/ui/pageSection/PageSection";
 import {ExpandableText} from "@/components/ui/expandableText/ExpandableText";
 import {SeoHead} from "@/components/seoHead/SeoHead";
-import {Pagination} from "@/components/ui/pagination/Pagination";
 import {PageGrid} from "@/components/ui/pageGrid/PageGrid";
 import {SelectableButton} from "@/components/ui/selectableButton/SelectableButton";
 import TechDisclosure from "@/components/ui/techDisclosure/TechDisclosure";
+import {CollectionToolbar} from "@/components/ui/collectionToolbar/CollectionToolbar";
+import {getCollectionPaginationState} from "@/components/ui/collectionToolbar/collectionPagination";
 import {getProjects} from "@/services/portfolioService";
 import {Loading} from "@/components/loading/Loading";
 import {ErrorState} from "@/components/errorState/ErrorState";
@@ -71,23 +72,6 @@ export const getCompanyFilters = (projects) => [
     ALL_COMPANIES,
     ...new Set(projects.map((project) => project.company))
 ];
-
-/**
- * Calculates the visible one-based item range for a paginated project list.
- *
- * @param {number} page - Current one-based page number.
- * @param {number} totalItems - Number of filtered projects.
- * @param {number} itemsPerPage - Maximum projects rendered on each page.
- * @returns {{start: number, end: number}} Visible project range.
- */
-export const getVisibleRange = (page, totalItems, itemsPerPage) => {
-    if (totalItems === 0) return {start: 0, end: 0};
-
-    return {
-        start: (page - 1) * itemsPerPage + 1,
-        end: Math.min(page * itemsPerPage, totalItems)
-    };
-};
 
 /**
  * Localizes human-readable period fragments while preserving sortable years.
@@ -154,12 +138,14 @@ export default function Projects() {
         () => sortedProjects.filter((project) => selectedCompany === ALL_COMPANIES || project.company === selectedCompany),
         [selectedCompany, sortedProjects]
     );
-    const totalPages = Math.ceil(filteredProjects.length / ITEMS_PER_PAGE);
-    const currentPage = Math.min(page, totalPages || 1);
-    const visibleRange = getVisibleRange(currentPage, filteredProjects.length, ITEMS_PER_PAGE);
+    const pagination = getCollectionPaginationState({
+        page,
+        totalItems: filteredProjects.length,
+        pageSize: ITEMS_PER_PAGE
+    });
     const displayedProjects = filteredProjects.slice(
-        (currentPage - 1) * ITEMS_PER_PAGE,
-        currentPage * ITEMS_PER_PAGE
+        pagination.startIndex,
+        pagination.endIndex
     );
 
     useEffect(() => {
@@ -208,24 +194,17 @@ export default function Projects() {
                         </aside>
 
                         <div className="flex min-w-0 max-w-full flex-col gap-4">
-                            <p className={layoutClasses.resultSummary} aria-live="polite">
-                                {t("projects_page.results_summary", {
-                                    start: visibleRange.start,
-                                    end: visibleRange.end,
-                                    total: filteredProjects.length
-                                })}
-                            </p>
-
-                            <div className={layoutClasses.mobilePagination}>
-                                <Pagination
-                                    page={currentPage}
-                                    totalPages={totalPages}
-                                    onPageChange={setPage}
-                                />
-                            </div>
+                            <CollectionToolbar
+                                page={page}
+                                totalItems={filteredProjects.length}
+                                pageSize={ITEMS_PER_PAGE}
+                                onPageChange={setPage}
+                                itemLabel={t("projects_page.collection_label_one")}
+                                itemLabelPlural={t("projects_page.collection_label_many")}
+                            />
 
                             {displayedProjects.length > 0 && (
-                                <PageGrid page={`${selectedCompany}-${currentPage}`} columns={2}>
+                                <PageGrid page={`${selectedCompany}-${pagination.currentPage}`} columns={2}>
                                     {displayedProjects.map((project) => {
                                         const titleId = `project-${project.name.replace(/\W+/g, "-")}`;
                                         const currentProject = isCurrentProject(project.period);
@@ -291,13 +270,6 @@ export default function Projects() {
                                 </PageGrid>
                             )}
 
-                            <div className={layoutClasses.desktopPagination}>
-                                <Pagination
-                                    page={currentPage}
-                                    totalPages={totalPages}
-                                    onPageChange={setPage}
-                                />
-                            </div>
                         </div>
                     </div>
                 )}

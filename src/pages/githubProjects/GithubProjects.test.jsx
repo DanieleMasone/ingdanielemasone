@@ -36,7 +36,10 @@ vi.mock("react-i18next", () => ({
                 "github_projects_page.intro": "Inspectable repositories with code, tests and documentation.",
                 "github_projects_page.filter_label": "Filter GitHub projects by category",
                 "github_projects_page.highlights_label": `Highlights for ${options.project}`,
-                "github_projects_page.results_summary": `Showing ${options.start}-${options.end} of ${options.total} repositories`,
+                "collection.range_summary": `${options.start}–${options.end} of ${options.total} ${options.label}`,
+                "collection.range_announcement": `Showing items ${options.start} to ${options.end} of ${options.total} ${options.label}.`,
+                "github_projects_page.collection_label_one": "repository",
+                "github_projects_page.collection_label_many": "repositories",
                 "github_projects_page.categories.all": "All",
                 "github_projects_page.categories.frontend": "Frontend",
                 "github_projects_page.categories.backend": "Backend",
@@ -494,7 +497,7 @@ describe("GithubProjects", () => {
 
         await screen.findByText("Identity Service API");
 
-        expect(screen.getByText("Showing 1-3 of 5 repositories")).toBeInTheDocument();
+        expect(screen.getByText("1–3 of 5 repositories")).toBeInTheDocument();
         expect(screen.getByText("Portfolio & Online CV")).toBeInTheDocument();
         expect(screen.queryByText("Frontend Playground")).not.toBeInTheDocument();
         expect(screen.queryByText("Design System Lab")).not.toBeInTheDocument();
@@ -502,7 +505,7 @@ describe("GithubProjects", () => {
         fireEvent.click(screen.getAllByRole("button", {name: /next/i})[0]);
 
         await waitFor(() => {
-            expect(screen.getByText("Showing 4-5 of 5 repositories")).toBeInTheDocument();
+            expect(screen.getByText("4–5 of 5 repositories")).toBeInTheDocument();
             expect(screen.getByText("Frontend Playground")).toBeInTheDocument();
             expect(screen.getByText("Design System Lab")).toBeInTheDocument();
             expect(screen.queryByText("Identity Service API")).not.toBeInTheDocument();
@@ -535,7 +538,7 @@ describe("GithubProjects", () => {
         fireEvent.click(screen.getByRole("button", {name: "Backend"}));
 
         await waitFor(() => {
-            expect(screen.getByText("Showing 1-1 of 1 repositories")).toBeInTheDocument();
+            expect(screen.getByText("1–1 of 1 repository")).toBeInTheDocument();
             expect(screen.getByText("Identity Service API")).toBeInTheDocument();
             expect(screen.queryByText("Design System Lab")).not.toBeInTheDocument();
         });

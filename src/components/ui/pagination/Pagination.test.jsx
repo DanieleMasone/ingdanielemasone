@@ -34,7 +34,7 @@ describe("Pagination component", () => {
         expect(screen.getByRole("navigation", {name: /pagination/i})).toBeInTheDocument();
         expect(screen.getByTestId("pagination-info")).toHaveTextContent("2 / 5");
         expect(screen.getByTestId("pagination-info")).toHaveAttribute("aria-current", "page");
-        expect(screen.getByTestId("pagination-info")).toHaveAttribute("aria-live", "polite");
+        expect(screen.getByTestId("pagination-info")).not.toHaveAttribute("aria-live");
         expect(screen.getByText(/Previous/i)).toBeInTheDocument();
         expect(screen.getByText(/Next/i)).toBeInTheDocument();
     });

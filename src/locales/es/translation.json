@@ -13,6 +13,10 @@
   "skip_to_content": "Ir al contenido principal",
   "loading_content": "Cargando contenido",
   "pagination_label": "Paginación",
+  "collection": {
+    "range_summary": "{{start}}–{{end}} de {{total}} {{label}}",
+    "range_announcement": "Visualización de los elementos {{start}} a {{end}} de {{total}} {{label}}."
+  },
   "header": {
     "home_aria": "Inicio de Daniele Masone",
     "main_navigation": "Navegación principal",
@@ -62,7 +66,8 @@
     "intro": "Una selección de proyectos profesionales entre software enterprise, arquitectura frontend, modernización legacy y plataformas orientadas a clientes y operadores.",
     "filter_label": "Filtrar proyectos profesionales por empresa",
     "all_companies": "Todos",
-    "results_summary": "Mostrando {{start}}-{{end}} de {{total}} proyectos",
+    "collection_label_one": "proyecto",
+    "collection_label_many": "proyectos",
     "current": "En curso",
     "present": "Presente",
     "empty": "No hay proyectos profesionales disponibles."
@@ -72,7 +77,8 @@
     "intro": "Una selección de repositorios públicos que muestran calidad de código, arquitectura, tests, documentación y publicación en GitHub Pages más allá de los proyectos profesionales del CV online.",
     "filter_label": "Filtrar proyectos GitHub por categoría",
     "highlights_label": "Puntos clave de {{project}}",
-    "results_summary": "Mostrando {{start}}-{{end}} de {{total}} repositorios",
+    "collection_label_one": "repositorio",
+    "collection_label_many": "repositorios",
     "categories": {
       "all": "Todos",
       "frontend": "Frontend",
@@ -242,7 +248,8 @@
   },
   "experience_title": "Experiencia profesional",
   "experience_intro": "Una vista cronológica de mis roles entre software enterprise, arquitectura frontend, desarrollo full-stack, sistemas y mentoría técnica.",
-  "experience_results_summary": "Mostrando {{start}}-{{end}} de {{total}} entradas de timeline",
+  "experience_collection_label_one": "entrada de timeline",
+  "experience_collection_label_many": "entradas de timeline",
   "experience_timeline_label": "Timeline profesional",
   "experience_empty": "No hay experiencias disponibles.",
   "experience_present": "Presente",
@@ -289,7 +296,8 @@
     "view_certificate": "Ver certificado",
     "issuer": "Entidad emisora",
     "date": "Fecha de emisión",
-    "results_summary": "Mostrando {{start}}-{{end}} de {{total}} certificaciones",
+    "collection_label_one": "certificación",
+    "collection_label_many": "certificaciones",
     "empty": "No hay certificaciones disponibles."
   },
   "privacy": {
@@ -357,7 +365,8 @@
     "duration": "Duración",
     "udemy_link": "Ver en Udemy",
     "buy_link": "Comprar",
-    "results_summary": "Mostrando {{start}}-{{end}} de {{total}} cursos",
+    "collection_label_one": "curso",
+    "collection_label_many": "cursos",
     "git": {
       "title": "Curso de Git",
       "description": "Aprende a usar Git para gestionar versiones y colaborar en proyectos de software.",
@@ -437,7 +446,8 @@
   "testimonials_page": {
     "title": "Testimonios",
     "description": "Comentarios profesionales de colegas y colaboradores con los que trabajé en delivery, arquitectura frontend y equipos de producto.",
-    "results_summary": "Mostrando {{start}}-{{end}} de {{total}} testimonios",
+    "collection_label_one": "testimonio",
+    "collection_label_many": "testimonios",
     "linkedin_label": "Perfil de LinkedIn"
   },
   "testimonials_people": {

@@ -11,7 +11,10 @@ vi.mock('react-i18next', () => ({
             const map = {
                 "courses_page.title": "Courses",
                 "courses_page.description": "Practical Udemy courses for software development skills.",
-                "courses_page.results_summary": `Showing ${options.start}-${options.end} of ${options.total} courses`,
+                "collection.range_summary": `${options.start}–${options.end} of ${options.total} ${options.label}`,
+                "collection.range_announcement": `Showing items ${options.start} to ${options.end} of ${options.total} ${options.label}.`,
+                "courses_page.collection_label_one": "course",
+                "courses_page.collection_label_many": "courses",
                 "courses_page.udemy_link": "View on Udemy",
                 "courses_page.buy_link": "Buy",
                 "courses_page.git.title": "Git Course",
@@ -119,12 +122,12 @@ describe('Courses component', () => {
         expect(image).toHaveClass("h-full", "w-full", "object-contain", "p-2");
     });
 
-    test("renders a live result summary", async () => {
+    test("renders a compact result summary", async () => {
         vi.spyOn(service, "getCourses").mockResolvedValue(mockCourses);
 
         renderPage();
 
-        expect(await screen.findByText("Showing 1-6 of 10 courses")).toBeInTheDocument();
+        expect(await screen.findByText("1–6 of 10 courses")).toBeInTheDocument();
     });
 
     test("renders duration label", async () => {
@@ -183,7 +186,7 @@ describe('Courses component', () => {
         expect(
             screen.getAllByTestId("pagination-info")[0]
         ).toHaveTextContent("2 / 2");
-        expect(screen.getByText("Showing 7-10 of 10 courses")).toBeInTheDocument();
+        expect(screen.getByText("7–10 of 10 courses")).toBeInTheDocument();
     });
 
     test("shows loading initially", () => {

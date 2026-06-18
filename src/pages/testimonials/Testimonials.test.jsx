@@ -24,7 +24,10 @@ vi.mock('react-i18next', () => ({
                 "testimonials_people.daniela.quote": "Thorough testing.",
                 "testimonials_page.title": "Testimonials",
                 "testimonials_page.description": "Professional feedback from coworkers and collaborators.",
-                "testimonials_page.results_summary": `Showing ${options.start}-${options.end} of ${options.total} testimonials`,
+                "collection.range_summary": `${options.start}–${options.end} of ${options.total} ${options.label}`,
+                "collection.range_announcement": `Showing items ${options.start} to ${options.end} of ${options.total} ${options.label}.`,
+                "testimonials_page.collection_label_one": "testimonial",
+                "testimonials_page.collection_label_many": "testimonials",
                 "testimonials_page.linkedin_label": "LinkedIn profile",
                 "previous": "Prev",
                 "next": "Next",
@@ -108,7 +111,7 @@ describe("Testimonials component with mobile + desktop paginators", () => {
         expect(await screen.findByText("Professional feedback from coworkers and collaborators.")).toBeInTheDocument();
     });
 
-    test("renders both paginators", async () => {
+    test("renders one collection toolbar paginator", async () => {
         vi.spyOn(service, "getTestimonials")
             .mockResolvedValueOnce(mockTestimonials);
 
@@ -119,8 +122,8 @@ describe("Testimonials component with mobile + desktop paginators", () => {
         const next = screen.getAllByRole("button", {name: /next/i});
         const prev = screen.getAllByRole("button", {name: /prev/i});
 
-        expect(next).toHaveLength(2);
-        expect(prev).toHaveLength(2);
+        expect(next).toHaveLength(1);
+        expect(prev).toHaveLength(1);
     });
 
     test("renders 6 testimonial cards per page", async () => {
@@ -133,13 +136,13 @@ describe("Testimonials component with mobile + desktop paginators", () => {
         expect(cards).toHaveLength(6);
     });
 
-    test("renders a live result summary", async () => {
+    test("renders a compact result summary", async () => {
         vi.spyOn(service, "getTestimonials")
             .mockResolvedValueOnce(mockTestimonials);
 
         renderPage();
 
-        expect(await screen.findByText("Showing 1-6 of 12 testimonials")).toBeInTheDocument();
+        expect(await screen.findByText("1–6 of 12 testimonials")).toBeInTheDocument();
     });
 
     test("next button changes page", async () => {
@@ -155,7 +158,7 @@ describe("Testimonials component with mobile + desktop paginators", () => {
 
         const displays = screen.getAllByTestId("pagination-info");
         displays.forEach(el => expect(el.textContent).toMatch(/2/));
-        expect(screen.getByText("Showing 7-12 of 12 testimonials")).toBeInTheDocument();
+        expect(screen.getByText("7–12 of 12 testimonials")).toBeInTheDocument();
     });
 
     test("renders accessible linkedin profile links", async () => {

@@ -5,10 +5,11 @@ import {Card} from "@/components/ui/card/Card";
 import {PageSection} from "@/components/ui/pageSection/PageSection";
 import {SeoHead} from "@/components/seoHead/SeoHead";
 import {linkedinIcon} from "@/consts/Consts";
-import {Pagination} from "@/components/ui/pagination/Pagination";
 import {PageGrid} from "@/components/ui/pageGrid/PageGrid";
 import {ExpandableText} from "@/components/ui/expandableText/ExpandableText";
 import {CardContent} from "@/components/ui/cardContent/CardContent";
+import {CollectionToolbar} from "@/components/ui/collectionToolbar/CollectionToolbar";
+import {getCollectionPaginationState} from "@/components/ui/collectionToolbar/collectionPagination";
 import {getTestimonials} from "@/services/portfolioService";
 import {Loading} from "@/components/loading/Loading";
 import {ErrorState} from "@/components/errorState/ErrorState";
@@ -33,23 +34,6 @@ const getInitials = (name) => {
         .join("");
 
     return initials || "?";
-};
-
-/**
- * Calculates the visible testimonial range for the current page.
- *
- * @param {number} page - Current one-based page number.
- * @param {number} totalItems - Total number of testimonials.
- * @param {number} itemsPerPage - Maximum testimonials shown on each page.
- * @returns {{start: number, end: number}} Visible item range.
- */
-const getVisibleRange = (page, totalItems, itemsPerPage) => {
-    if (totalItems === 0) return {start: 0, end: 0};
-
-    return {
-        start: (page - 1) * itemsPerPage + 1,
-        end: Math.min(page * itemsPerPage, totalItems)
-    };
 };
 
 /**
@@ -85,13 +69,15 @@ export default function Testimonials() {
         loadTestimonials();
     }, []);
 
-    const totalPages = Math.ceil(testimonials.length / ITEMS_PER_PAGE);
-    const currentPage = Math.min(page, totalPages || 1);
-    const visibleRange = getVisibleRange(currentPage, testimonials.length, ITEMS_PER_PAGE);
+    const pagination = getCollectionPaginationState({
+        page,
+        totalItems: testimonials.length,
+        pageSize: ITEMS_PER_PAGE
+    });
 
     const displayedTestimonials = testimonials.slice(
-        (currentPage - 1) * ITEMS_PER_PAGE,
-        currentPage * ITEMS_PER_PAGE
+        pagination.startIndex,
+        pagination.endIndex
     );
 
     if (loading) return <Loading/>;
@@ -104,28 +90,16 @@ export default function Testimonials() {
             <PageSection title={t("testimonials_page.title")}>
                 <p className={layoutClasses.sectionIntro}>{t("testimonials_page.description")}</p>
 
-                {testimonials.length > 0 && (
-                    <p className={layoutClasses.resultSummary} aria-live="polite">
-                        {t("testimonials_page.results_summary", {
-                            start: visibleRange.start,
-                            end: visibleRange.end,
-                            total: testimonials.length
-                        })}
-                    </p>
-                )}
+                <CollectionToolbar
+                    page={page}
+                    totalItems={testimonials.length}
+                    pageSize={ITEMS_PER_PAGE}
+                    onPageChange={setPage}
+                    itemLabel={t("testimonials_page.collection_label_one")}
+                    itemLabelPlural={t("testimonials_page.collection_label_many")}
+                />
 
-                {/* Pagination mobile sticky */}
-                <div
-                    className={layoutClasses.mobilePagination}
-                >
-                    <Pagination
-                        page={currentPage}
-                        totalPages={totalPages}
-                        onPageChange={setPage}
-                    />
-                </div>
-
-                <PageGrid page={currentPage} columns={3}>
+                <PageGrid page={pagination.currentPage} columns={3}>
                     {displayedTestimonials.map((texts) => {
                         const testimonialName = t(texts.nameKey);
                         const titleId = `testimonial-${texts.nameKey.replace(/\W+/g, "-")}`;
@@ -185,14 +159,6 @@ export default function Testimonials() {
                     })}
                 </PageGrid>
 
-                {/* Pagination desktop normal */}
-                <div className={layoutClasses.desktopPagination}>
-                    <Pagination
-                        page={currentPage}
-                        totalPages={totalPages}
-                        onPageChange={setPage}
-                    />
-                </div>
             </PageSection>
         </>
     );

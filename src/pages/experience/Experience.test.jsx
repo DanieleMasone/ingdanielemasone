@@ -4,7 +4,6 @@ import Experience, {
     formatExperiencePeriod,
     getExperienceStatus,
     getExperienceYears,
-    getVisibleRange,
     sortExperiencesByRecency
 } from "./Experience";
 import {MemoryRouter} from "react-router-dom";
@@ -29,7 +28,10 @@ vi.mock("react-i18next", () => ({
                 exp_hpe_description: "Older work",
                 experience_title: "Professional Experience",
                 experience_intro: "Career timeline",
-                experience_results_summary: `Showing ${options.start}-${options.end} of ${options.total} timeline entries`,
+                "collection.range_summary": `${options.start}–${options.end} of ${options.total} ${options.label}`,
+                "collection.range_announcement": `Showing items ${options.start} to ${options.end} of ${options.total} ${options.label}.`,
+                experience_collection_label_one: "timeline entry",
+                experience_collection_label_many: "timeline entries",
                 experience_timeline_label: "Professional timeline",
                 experience_empty: "No experience entries available.",
                 experience_present: "Present",
@@ -154,10 +156,9 @@ describe("Experience component", () => {
         await screen.findByRole("heading", {name: /professional experience/i});
 
         expect(screen.getByText("Career timeline")).toBeInTheDocument();
-        expect(screen.getByText("Showing 1-5 of 6 timeline entries")).toBeInTheDocument();
-        expect(screen.getAllByTestId("pagination-info")).toHaveLength(2);
-        screen.getAllByTestId("pagination-info")
-            .forEach((info) => expect(info).toHaveTextContent("1 / 2"));
+        expect(screen.getByText("1–5 of 6 timeline entries")).toBeInTheDocument();
+        expect(screen.getAllByTestId("pagination-info")).toHaveLength(1);
+        expect(screen.getByTestId("pagination-info")).toHaveTextContent("1 / 2");
         expect(screen.getAllByTestId("experience-card")).toHaveLength(5);
         expect(screen.getByRole("list", {name: "Professional timeline"})).toBeInTheDocument();
     });
@@ -189,9 +190,8 @@ describe("Experience component", () => {
         const nextButtons = await screen.findAllByRole("button", {name: "Next"});
         fireEvent.click(nextButtons[0]);
 
-        expect(screen.getByText("Showing 6-6 of 6 timeline entries")).toBeInTheDocument();
-        screen.getAllByTestId("pagination-info")
-            .forEach((info) => expect(info).toHaveTextContent("2 / 2"));
+        expect(screen.getByText("6–6 of 6 timeline entries")).toBeInTheDocument();
+        expect(screen.getByTestId("pagination-info")).toHaveTextContent("2 / 2");
         expect(screen.getAllByTestId("experience-card")).toHaveLength(1);
         expect(screen.getByRole("heading", {name: "Older Engineer"})).toBeInTheDocument();
     });
@@ -287,12 +287,6 @@ describe("Experience helpers", () => {
         expect(sorted.map((experience) => experience.role))
             .toEqual(["exp_current_role", "exp_rgi_role", "exp_iol_role"]);
         expect(unsorted[0].role).toBe("exp_iol_role");
-    });
-
-    test("calculates visible ranges for paginated timeline entries", () => {
-        expect(getVisibleRange(1, 11, 5)).toEqual({start: 1, end: 5});
-        expect(getVisibleRange(3, 11, 5)).toEqual({start: 11, end: 11});
-        expect(getVisibleRange(1, 0, 5)).toEqual({start: 0, end: 0});
     });
 
     test("returns current status only for ongoing roles", () => {
