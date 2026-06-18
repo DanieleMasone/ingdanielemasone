@@ -9,99 +9,33 @@
 
 Personal portfolio and online CV for **Daniele Masone**, built as a production-minded React application rather than a static resume page.
 
-- **Live site:** [danielemasone.github.io/ingdanielemasone](https://danielemasone.github.io/ingdanielemasone/)
-- **Source documentation:** [danielemasone.github.io/ingdanielemasone/docs](https://danielemasone.github.io/ingdanielemasone/docs)
-- **Coverage report:** [danielemasone.github.io/ingdanielemasone/test-coverage](https://danielemasone.github.io/ingdanielemasone/test-coverage)
+- **Live portfolio:** [danielemasone.github.io/ingdanielemasone](https://danielemasone.github.io/ingdanielemasone/)
+- **Engineering Guide:** [docs/tutorial-engineering-guide.html](https://danielemasone.github.io/ingdanielemasone/docs/tutorial-engineering-guide.html)
+- **Source documentation:** [docs](https://danielemasone.github.io/ingdanielemasone/docs/)
+- **Coverage report:** [test-coverage](https://danielemasone.github.io/ingdanielemasone/test-coverage/)
 
-## What This Repository Shows
+## What This Repository Demonstrates
 
-This repository is meant to be a technical showcase for people who land on my GitHub profile. It presents my professional background, but it also demonstrates how I approach front-end engineering in a real project:
-
-- React application architecture with route-level code splitting
-- Reusable UI components and centralized Tailwind class presets
-- Responsive UX for desktop and mobile portfolio browsing
-- Accessibility-minded controls, focus states, semantic sections, and non-canvas chart alternatives
-- Internationalization in Italian, English, French, German, and Spanish
-- A dedicated GitHub projects page for inspectable public repositories, live demos, docs, and coverage reports
-- SEO metadata, structured data, sitemap, robots, social preview, and GitHub Pages-friendly routing
-- Automated tests, coverage output, and generated source documentation
-- Focused Playwright E2E checks for deployment-critical browser behavior
-- CI/CD deployment to GitHub Pages
-
-There is no backend API in this project. Portfolio data is intentionally static and local, because the repository is a front-end showcase and online CV.
+- React 19 and Vite 8 application architecture with route-level lazy loading.
+- GitHub Pages-compatible SPA routing under `/ingdanielemasone/`.
+- Static portfolio data loaded through a local mock service boundary.
+- Responsive, accessible UI primitives with centralized Tailwind class presets.
+- Internationalized content in Italian, English, French, German, and Spanish.
+- Route-level SEO metadata, generated static route HTML, sitemap and robots output.
+- Focused Vitest, Testing Library and Playwright checks.
+- Generated JSDoc source reference, engineering tutorials and V8 coverage reports.
 
 ## Product Surface
 
-The application includes the main pages a visitor would expect from a professional portfolio:
+The portfolio presents home, experience, professional projects, GitHub projects, courses, certifications, testimonials, trading performance, privacy and cookie-policy routes.
 
-- **Home** - positioning, focus areas, social links, and first impression
-- **Experience** - professional roles and responsibilities
-- **Projects** - enterprise and technical project highlights
-- **GitHub Projects** - paginated public repositories with architecture, tests, documentation, and deploy links
-- **Courses** - Udemy teaching catalog with course covers, technologies, pagination, and direct enrollment links
-- **Certifications** - professional certifications and certificates
-- **Testimonials** - feedback from students and collaborators
-- **Trading** - investment-performance section with an accessible Chart.js visualization
-- **Privacy / Cookie policy** - legal pages with SEO `noindex`
+It has no backend API. The repository intentionally keeps portfolio content static so that the published GitHub Pages artifact remains inspectable, portable and inexpensive to maintain.
 
-## Engineering Highlights
+## Architecture And Quality
 
-### Front-end architecture
+The app uses React Router 7 with the Vite base path `/ingdanielemasone/`. Shared components live under `src/components`, route pages under `src/pages`, static datasets under `src/mock`, localized copy under `src/locales`, and SEO route metadata under `src/config/seo.json`.
 
-- React 19 with Vite 8
-- React Router 7 with lazy-loaded route modules
-- Shared UI primitives for cards, grids, sections, pagination, buttons, language switching, and disclosure content
-- Tailwind CSS class presets centralized in `src/styles/commonClasses.js`
-- Local fake-service data loading for both CV content and public repository showcases
-- Manual chunking in Vite to keep large dependency groups readable in the production bundle
-
-### SEO and GitHub Pages
-
-SEO configuration is centralized in `src/config/seo.json` and consumed by `SeoHead`.
-
-The post-build script `scripts/prepare-github-pages.mjs` generates:
-
-- route-specific `index.html` files for clean GitHub Pages URLs
-- canonical URLs
-- Open Graph and Twitter card metadata
-- JSON-LD structured data
-- `sitemap.xml`
-- `robots.txt`
-
-This keeps the SPA compatible with GitHub Pages while still serving indexable, route-specific HTML for portfolio pages.
-
-For Google Search Console, the project is intended to be configured as a **URL-prefix property**:
-
-```text
-https://danielemasone.github.io/ingdanielemasone/
-```
-
-The verification file lives in `public/` and is published at the property root. After deployment, submit:
-
-```text
-https://danielemasone.github.io/ingdanielemasone/sitemap.xml
-```
-
-Generated developer resources under `/docs` and `/test-coverage` are published for transparency, but `npm run build:all` marks their HTML files as `noindex, nofollow` so they do not compete with the actual portfolio pages in search results.
-
-### Accessibility and UX
-
-The UI is built around keyboard-friendly controls, visible focus states, semantic headings, responsive spacing, and localized labels.
-
-The trading performance chart uses Chart.js for visual exploration and also exposes a hidden data table for assistive technologies, so the chart is not the only way to access the information.
-
-### Quality
-
-The project uses Vitest and Testing Library to cover:
-
-- route-level pages
-- reusable UI components
-- SEO metadata behavior
-- i18n-sensitive rendering
-- data-loading helpers
-- GitHub Pages-related behavior where practical
-
-Source documentation is generated with JSDoc and Docdash. It documents components, helpers, static data, and build scripts; it is source documentation for the portfolio, not API documentation.
+`npm run build` creates the production app and route-specific GitHub Pages HTML. `npm run build:all` is the publishing build: it also generates coverage, JSDoc source documentation and tutorials, applies `noindex, nofollow` to developer reports, and packages them into `dist`.
 
 ## Tech Stack
 
@@ -118,35 +52,7 @@ Source documentation is generated with JSDoc and Docdash. It documents component
 | Documentation | JSDoc, Docdash |
 | Deployment | GitHub Actions, GitHub Pages |
 
-## Project Structure
-
-```text
-src/
-  assets/        Images, course covers, certificates
-  components/    Shared UI, layout, SEO, header/footer, states
-  config/        SEO and public route configuration
-  consts/        Shared constants
-  i18n/          i18next setup
-  locales/       Translation files: it, en, fr, de, es
-  mock/          Static portfolio datasets
-  pages/         Route-level portfolio pages
-  services/      Local data-loading helpers
-  styles/        Shared Tailwind class presets
-  
-tests/
-  e2e/           Focused Playwright deployment-confidence tests
-
-scripts/
-  prepare-github-pages.mjs
-  prepare-published-reports.mjs
-
-public/
-  logo, social preview, fallback robots, Search Console file
-```
-
-Generated outputs such as `dist`, `docs`, `coverage`, and `node_modules` are not part of the source tree.
-
-## Run Locally
+## Quick Start
 
 Use Node.js `20.19+`, `22.13+`, or `24+`.
 
@@ -157,11 +63,7 @@ npm ci
 npm run dev
 ```
 
-The development server runs on:
-
-```text
-http://localhost:3000/
-```
+Development runs at `http://localhost:3000/`.
 
 Production preview uses the GitHub Pages base path:
 
@@ -170,51 +72,45 @@ npm run build
 npm run preview
 ```
 
-```text
-http://localhost:4173/ingdanielemasone/
-```
+Then open `http://localhost:4173/ingdanielemasone/`.
 
-Install the Chromium browser once before running Playwright locally:
-
-```bash
-npx playwright install --with-deps chromium
-```
-
-## Useful Commands
+## Essential Commands
 
 | Command | Purpose |
 | --- | --- |
 | `npm run dev` | Start the Vite dev server |
-| `npm run build` | Build the production app and run the GitHub Pages post-build step |
+| `npm run build` | Build the production app and GitHub Pages route HTML |
 | `npm run preview` | Preview the production build locally |
-| `npm test` | Run Vitest in interactive/watch mode |
-| `npm test -- --run` | Run the test suite once |
+| `npm test -- --run` | Run the Vitest suite once |
 | `npx playwright install --with-deps chromium` | Install the Chromium browser used by E2E checks |
-| `npm run test:e2e` | Run focused Playwright E2E checks against the production preview |
-| `npm run test:e2e:ui` | Open the Playwright UI runner for E2E debugging |
-| `npm run test:e2e:headed` | Run Playwright E2E checks with a visible browser |
-| `npm run test:e2e:report` | Open the last Playwright HTML report |
-| `npm run coverage` | Generate the HTML coverage report |
-| `npm run doc` | Generate static source documentation in `docs/` |
-| `npm run prepare:reports` | Add `noindex, nofollow` metadata to generated docs and coverage HTML |
-| `npm run build:all` | Build app, coverage, and documentation |
+| `npm run test:e2e` | Run focused Playwright checks against production preview |
+| `npm run coverage` | Generate the V8 HTML coverage report |
+| `npm run doc` | Generate JSDoc source documentation and tutorials in `docs/` |
+| `npm run build:all` | Build app, coverage, docs, tutorials and final publishable reports |
 | `npm run deps:outdated` | Inspect outdated npm dependencies without changing them |
 | `npm run security:audit` | Run npm security audit without changing dependencies |
 
+## Documentation Map
+
+- [Engineering Guide](https://danielemasone.github.io/ingdanielemasone/docs/tutorial-engineering-guide.html)
+- [Architecture](https://danielemasone.github.io/ingdanielemasone/docs/tutorial-architecture.html)
+- [Content and Localization Maintenance](https://danielemasone.github.io/ingdanielemasone/docs/tutorial-content-maintenance.html)
+- [Quality and Testing](https://danielemasone.github.io/ingdanielemasone/docs/tutorial-quality-and-testing.html)
+- [SEO and GitHub Pages Deployment](https://danielemasone.github.io/ingdanielemasone/docs/tutorial-seo-and-deployment.html)
+- [Generated source documentation](https://danielemasone.github.io/ingdanielemasone/docs/)
+- [Coverage report](https://danielemasone.github.io/ingdanielemasone/test-coverage/)
+
 ## Deployment
 
-The portfolio is deployed to GitHub Pages through `.github/workflows/deploy-pages.yml`.
+The portfolio is deployed by `.github/workflows/deploy-pages.yml` to GitHub Pages. The workflow installs dependencies, configures Pages, installs Playwright Chromium, runs E2E checks, runs `npm run build:all`, uploads `dist`, and deploys it through the official GitHub Pages actions.
 
-On every push to `main`, the workflow:
+The published artifact keeps:
 
-1. Installs dependencies with `npm ci`
-2. Configures GitHub Pages through the official Pages action
-3. Installs the Chromium browser used by Playwright
-4. Runs focused Playwright E2E checks against the production preview
-5. Runs `npm run build:all` to build the app, generate docs and coverage, and prepare the final `dist` artifact
-6. Publishes `dist` to GitHub Pages, including source documentation under `/docs` and coverage under `/test-coverage`
+- application routes under `https://danielemasone.github.io/ingdanielemasone/`;
+- generated source documentation and tutorials under `/docs/`;
+- coverage under `/test-coverage/`.
 
-The workflow can also be started manually from GitHub Actions.
+Generated developer documentation and coverage are published for transparency, but are marked `noindex, nofollow` and excluded from the public sitemap.
 
 ## License
 

@@ -1,0 +1,23 @@
+{
+  "engineering-guide": {
+    "title": "Engineering Guide",
+    "children": [
+      "architecture",
+      "content-maintenance",
+      "quality-and-testing",
+      "seo-and-deployment"
+    ]
+  },
+  "architecture": {
+    "title": "Architecture"
+  },
+  "content-maintenance": {
+    "title": "Content and Localization Maintenance"
+  },
+  "quality-and-testing": {
+    "title": "Quality and Testing"
+  },
+  "seo-and-deployment": {
+    "title": "SEO and GitHub Pages Deployment"
+  }
+}

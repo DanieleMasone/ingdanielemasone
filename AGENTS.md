@@ -111,6 +111,14 @@ Before considering any task complete, always evaluate and apply, when needed:
 - Do not introduce visible instructional text inside the portfolio UI unless it improves the real user experience.
 - Treat this repo as a public professional showcase: concise copy, polished layout, accessible controls, and no unfinished surfaces.
 
+## Documentation Ownership
+
+- Keep `README.md` as the concise repository landing page for GitHub visitors.
+- Keep `AGENTS.md` focused on Codex operating rules and maintenance policy.
+- Put narrative engineering documentation in `docs-src/` JSDoc tutorials.
+- Use source JSDoc comments for symbol-level contracts, props, parameters, helper behavior, accessibility responsibilities, and non-obvious invariants.
+- Treat `docs/`, `coverage/`, and `dist/` as generated output; do not edit or commit them directly.
+
 ## Dependency Policy
 
 - During normal bugfix work, do not update dependencies unless required for the bug, a security fix, or a compatibility problem.

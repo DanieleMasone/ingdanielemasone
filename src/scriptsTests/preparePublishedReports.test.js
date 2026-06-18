@@ -86,6 +86,7 @@ describe("prepare-published-reports", () => {
             if (normalizedPath.endsWith("/docs")) {
                 return [
                     {name: "index.html", ...dirent({file: true})},
+                    {name: "tutorial-architecture.html", ...dirent({file: true})},
                     {name: "architecture", ...dirent({directory: true})},
                     {name: "assets.css", ...dirent({file: true})}
                 ];
@@ -112,8 +113,8 @@ describe("prepare-published-reports", () => {
 
         await preparePublishedReports();
 
-        expect(fs.readFile).toHaveBeenCalledTimes(3);
-        expect(fs.writeFile).toHaveBeenCalledTimes(3);
+        expect(fs.readFile).toHaveBeenCalledTimes(4);
+        expect(fs.writeFile).toHaveBeenCalledTimes(4);
 
         expect(fs.writeFile).toHaveBeenCalledWith(
             expect.stringMatching(/docs[/\\]index\.html$/),
@@ -123,6 +124,12 @@ describe("prepare-published-reports", () => {
 
         expect(fs.writeFile).toHaveBeenCalledWith(
             expect.stringMatching(/docs[/\\]architecture[/\\]index\.html$/),
+            expect.stringContaining('<meta name="robots" content="noindex, nofollow"/>'),
+            "utf8"
+        );
+
+        expect(fs.writeFile).toHaveBeenCalledWith(
+            expect.stringMatching(/docs[/\\]tutorial-architecture\.html$/),
             expect.stringContaining('<meta name="robots" content="noindex, nofollow"/>'),
             "utf8"
         );
