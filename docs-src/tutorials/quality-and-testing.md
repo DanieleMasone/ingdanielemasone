@@ -40,11 +40,11 @@ Playwright is intentionally small. It is used for deployment-confidence E2E test
 Run:
 
 ```bash
-npx playwright install --with-deps chromium
+npx playwright install --with-deps --only-shell chromium
 npm run test:e2e
 ```
 
-The Playwright config starts production preview through `npm run preview` and uses `/ingdanielemasone/` as the base URL.
+The Playwright config starts production preview through `npm run preview` and uses `/ingdanielemasone/` as the base URL. CI installs the Chromium headless shell because the suite runs headlessly without a branded browser channel.
 
 Do not add Playwright tests for every static card. Prefer semantic selectors such as roles, headings, labels, landmarks, metadata and URLs.
 
@@ -78,7 +78,7 @@ The canonical publishing command is:
 npm run build:all
 ```
 
-It runs the production build, coverage, JSDoc generation and report preparation. The final `dist/` folder contains the app, `/docs/` and `/test-coverage/` resources ready for GitHub Pages.
+It runs the production build and then `npm run build:reports`. `build:reports` generates coverage, JSDoc output and report preparation for an existing app build. The final `dist/` folder contains the app, `/docs/` and `/test-coverage/` resources ready for GitHub Pages.
 
 ## Generated artifacts
 

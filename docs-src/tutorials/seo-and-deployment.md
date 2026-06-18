@@ -114,9 +114,9 @@ The workflow:
 2. configures Node.js;
 3. configures GitHub Pages;
 4. installs dependencies with `npm ci`;
-5. installs Chromium for Playwright;
-6. runs `npm run test:e2e`;
-7. runs `npm run build:all`;
+5. installs the Playwright Chromium headless shell;
+6. runs `npm run test:e2e` against production preview;
+7. runs `npm run build:reports`;
 8. uploads `dist`;
 9. deploys through the official GitHub Pages action.
 
@@ -128,6 +128,7 @@ Useful commands:
 
 ```bash
 npm run build
+npm run build:reports
 npm run doc
 npm run build:all
 ```

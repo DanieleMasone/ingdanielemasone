@@ -35,7 +35,7 @@ It has no backend API. The repository intentionally keeps portfolio content stat
 
 The app uses React Router 7 with the Vite base path `/ingdanielemasone/`. Shared components live under `src/components`, route pages under `src/pages`, static datasets under `src/mock`, localized copy under `src/locales`, and SEO route metadata under `src/config/seo.json`.
 
-`npm run build` creates the production app and route-specific GitHub Pages HTML. `npm run build:all` is the publishing build: it also generates coverage, JSDoc source documentation and tutorials, applies `noindex, nofollow` to developer reports, and packages them into `dist`.
+`npm run build` creates the production app and route-specific GitHub Pages HTML. `npm run build:reports` adds coverage, JSDoc source documentation and tutorials to the existing `dist` artifact after applying `noindex, nofollow` to developer reports. `npm run build:all` runs both steps for a complete local publishing build.
 
 ## Tech Stack
 
@@ -82,10 +82,11 @@ Then open `http://localhost:4173/ingdanielemasone/`.
 | `npm run build` | Build the production app and GitHub Pages route HTML |
 | `npm run preview` | Preview the production build locally |
 | `npm test -- --run` | Run the Vitest suite once |
-| `npx playwright install --with-deps chromium` | Install the Chromium browser used by E2E checks |
+| `npx playwright install --with-deps --only-shell chromium` | Install the Chromium headless shell used by CI E2E checks |
 | `npm run test:e2e` | Run focused Playwright checks against production preview |
 | `npm run coverage` | Generate the V8 HTML coverage report |
 | `npm run doc` | Generate JSDoc source documentation and tutorials in `docs/` |
+| `npm run build:reports` | Add coverage, docs, tutorials and final published reports to an existing build |
 | `npm run build:all` | Build app, coverage, docs, tutorials and final publishable reports |
 | `npm run deps:outdated` | Inspect outdated npm dependencies without changing them |
 | `npm run security:audit` | Run npm security audit without changing dependencies |
@@ -102,7 +103,7 @@ Then open `http://localhost:4173/ingdanielemasone/`.
 
 ## Deployment
 
-The portfolio is deployed by `.github/workflows/deploy-pages.yml` to GitHub Pages. The workflow installs dependencies, configures Pages, installs Playwright Chromium, runs E2E checks, runs `npm run build:all`, uploads `dist`, and deploys it through the official GitHub Pages actions.
+The portfolio is deployed by `.github/workflows/deploy-pages.yml` to GitHub Pages. The workflow installs dependencies, configures Pages, installs the Playwright Chromium headless shell, runs `npm run test:e2e`, runs `npm run build:reports`, uploads `dist`, and deploys it through the official GitHub Pages actions.
 
 The published artifact keeps:
 

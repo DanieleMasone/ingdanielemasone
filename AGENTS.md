@@ -107,6 +107,7 @@ Before considering any task complete, always evaluate and apply, when needed:
 - For paginated collection pages, reuse `CollectionToolbar` and `getCollectionPaginationState` instead of duplicating range summaries or pagination layout locally.
 - Preserve GitHub Pages compatibility, including the `/ingdanielemasone/` base path.
 - Treat `npm run build:all` as the authoritative publishing build: it must leave `dist` ready for GitHub Pages, including generated docs and coverage reports.
+- In CI, use `npm run test:e2e` followed by `npm run build:reports` when the workflow needs to avoid rebuilding the same app artifact.
 - Keep translations aligned across all currently supported languages (Italian, English, French, German, Spanish).
 - Do not introduce visible instructional text inside the portfolio UI unless it improves the real user experience.
 - Treat this repo as a public professional showcase: concise copy, polished layout, accessible controls, and no unfinished surfaces.
@@ -134,6 +135,7 @@ Before considering any task complete, always evaluate and apply, when needed:
 - Use Playwright only for deployment-confidence E2E testing; do not duplicate Vitest or Testing Library coverage.
 - Test the production build and preview output instead of the Vite dev server.
 - Always preserve and verify the `/ingdanielemasone/` GitHub Pages base path.
+- In GitHub Actions, install only the Chromium headless shell with `npx playwright install --with-deps --only-shell chromium` unless the config explicitly requires a headed browser, a browser channel, or full Chromium.
 - Focus E2E coverage on route smoke tests, GitHub Pages deep links, critical navigation, responsive/mobile behavior, SEO metadata, i18n smoke checks, and keyboard accessibility.
 - Add or update E2E tests only when a change affects real browser behavior.
 - Prefer stable semantic selectors: roles, labels, landmarks, headings, metadata, and URLs.

@@ -70,6 +70,26 @@ describe("documentation source configuration", () => {
         expect(readme).not.toContain("## Project Structure");
     });
 
+    test("keeps the CI browser install and publishing build commands documented", () => {
+        const packageJson = readJson("package.json");
+        const readme = readText("README.md");
+        const workflow = readText(".github/workflows/deploy-pages.yml");
+        const qualityGuide = readText("docs-src/tutorials/quality-and-testing.md");
+
+        expect(packageJson.scripts["build:reports"]).toBe(
+            "npm run coverage && npm run doc && npm run prepare:reports"
+        );
+        expect(packageJson.scripts["build:all"]).toBe("npm run build && npm run build:reports");
+
+        for (const content of [readme, workflow, qualityGuide]) {
+            expect(content).toContain("npx playwright install --with-deps --only-shell chromium");
+        }
+
+        expect(workflow).toContain("run: npm run test:e2e");
+        expect(workflow).toContain("run: npm run build:reports");
+        expect(workflow).not.toContain("run: npm run build:all");
+    });
+
     test("tracked Markdown local links resolve", () => {
         const markdownLinkPattern = /!?\[[^\]]*]\(([^)#][^)]+)\)/g;
 
