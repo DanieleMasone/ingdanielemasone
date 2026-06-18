@@ -17,6 +17,13 @@ export const certifications = [
         link: "https://www.udemy.com/certificate/UC-332b1dca-6941-4228-80e9-68473d666a03/"
     },
     {
+        nameKey: "Claude Code - The Practical Guide",
+        issuer: "Udemy",
+        date: "June 2026",
+        descriptionKey: "Udemy_Claude_Code_Practical_Guide",
+        link: "https://www.udemy.com/certificate/UC-a05c4d7c-549d-412e-95c4-a9f9b1628560/"
+    },
+    {
         nameKey: "English CEFR Level B2.2",
         issuer: "Speexx",
         date: "2024",

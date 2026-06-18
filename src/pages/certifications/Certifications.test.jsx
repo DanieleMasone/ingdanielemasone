@@ -10,6 +10,7 @@ import * as service from "@/services/portfolioService";
 import {certifications as productionCertifications} from "@/mock/certifications";
 
 const UDEMY_FINOPS_CERTIFICATE_URL = "https://www.udemy.com/certificate/UC-332b1dca-6941-4228-80e9-68473d666a03/";
+const UDEMY_CLAUDE_CODE_CERTIFICATE_URL = "https://www.udemy.com/certificate/UC-a05c4d7c-549d-412e-95c4-a9f9b1628560/";
 
 vi.mock("react-i18next", () => ({
     useTranslation: () => ({
@@ -27,7 +28,8 @@ vi.mock("react-i18next", () => ({
                 error_generic: "Generic error",
                 "cert.desc.0": "Advanced professional communication credential.",
                 "cert.desc.1": "Software delivery training credential.",
-                Udemy_FinOps_Intesa: "Udemy course completion certificate for FinOps per Intesa Sanpaolo, completed on 10 June 2026. Verified duration: 1 total hour."
+                Udemy_FinOps_Intesa: "Udemy course completion certificate for FinOps per Intesa Sanpaolo, completed on 10 June 2026. Verified duration: 1 total hour.",
+                Udemy_Claude_Code_Practical_Guide: "Udemy Certificate of Completion for practical Claude Code workflows."
             };
 
             return translations[key] || key;
@@ -176,6 +178,41 @@ describe("Certifications component", () => {
         expect(screen.queryByText("Udemy_FinOps_Intesa")).not.toBeInTheDocument();
         expect(screen.getByRole("link", {name: "View certificate: FinOps per Intesa Sanpaolo"}))
             .toHaveAttribute("href", UDEMY_FINOPS_CERTIFICATE_URL);
+    });
+
+    test("renders the Claude Code Udemy certificate from the production mock data", async () => {
+        const claudeCodeCertificate = productionCertifications.find(
+            (certification) => certification.link === UDEMY_CLAUDE_CODE_CERTIFICATE_URL
+        );
+
+        expect(claudeCodeCertificate).toMatchObject({
+            nameKey: "Claude Code - The Practical Guide",
+            issuer: "Udemy",
+            date: "June 2026",
+            descriptionKey: "Udemy_Claude_Code_Practical_Guide",
+            link: UDEMY_CLAUDE_CODE_CERTIFICATE_URL
+        });
+
+        vi.spyOn(service, "getCertifications").mockResolvedValueOnce([claudeCodeCertificate]);
+
+        renderPage();
+
+        expect(await screen.findByRole("heading", {name: "Claude Code - The Practical Guide"})).toBeInTheDocument();
+        expect(screen.getByText("Issuer: Udemy")).toBeInTheDocument();
+        expect(screen.getByText("Issued on: June 2026")).toBeInTheDocument();
+        expect(screen.getByText(/practical Claude Code workflows/i)).toBeInTheDocument();
+        expect(screen.queryByText("Udemy_Claude_Code_Practical_Guide")).not.toBeInTheDocument();
+        expect(screen.getByRole("link", {name: "View certificate: Claude Code - The Practical Guide"}))
+            .toHaveAttribute("href", UDEMY_CLAUDE_CODE_CERTIFICATE_URL);
+    });
+
+    test("keeps 2026 Udemy certificates in curated same-year order", () => {
+        const sorted = sortCertificationsByDate(productionCertifications);
+
+        expect(sorted.slice(0, 2).map((certification) => certification.nameKey)).toEqual([
+            "FinOps per Intesa Sanpaolo",
+            "Claude Code - The Practical Guide"
+        ]);
     });
 
     test("paginates older certifications", async () => {
