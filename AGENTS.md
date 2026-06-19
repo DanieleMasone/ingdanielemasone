@@ -120,6 +120,16 @@ Before considering any task complete, always evaluate and apply, when needed:
 - Use source JSDoc comments for symbol-level contracts, props, parameters, helper behavior, accessibility responsibilities, and non-obvious invariants.
 - Treat `docs/`, `coverage/`, and `dist/` as generated output; do not edit or commit them directly.
 
+## Styling Policy
+
+- Use Tailwind utilities for normal layout, spacing, typography, responsive behavior and interaction states.
+- Prefer a shared React component for a complete repeated visual pattern. Use `src/styles/commonClasses.js` only for stable Tailwind combinations reused across components or intentionally kept synchronized; keep one-off combinations local.
+- Keep `src/index.css` limited to Tailwind directives, document-level base/accessibility rules, browser normalization, rare global utilities and unavoidable third-party overrides.
+- Keep shared compile-time design tokens in `tailwind.config.js`. Use native CSS custom properties only for runtime, inherited, contextual or JavaScript-driven values, and do not duplicate tokens across systems.
+- Allow a CSS Module only for isolated complex selectors or third-party DOM that Tailwind cannot represent clearly.
+- Do not add Sass unless a recurring need exists for compile-time functions, parameterized mixins, generated selectors, substantial legacy Sass or non-trivial stylesheet modules. Nesting alone does not justify it.
+- Preserve focus visibility, reduced-motion behavior, contrast, responsive readability and no horizontal overflow whenever styles change.
+
 ## Dependency Policy
 
 - During normal bugfix work, do not update dependencies unless required for the bug, a security fix, or a compatibility problem.

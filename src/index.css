@@ -29,14 +29,12 @@
 }
 
 @layer utilities {
-    .scrollbar-hide,
-    .no-scrollbar {
+    .scrollbar-hide {
         -ms-overflow-style: none;
         scrollbar-width: none;
     }
 
-    .scrollbar-hide::-webkit-scrollbar,
-    .no-scrollbar::-webkit-scrollbar {
+    .scrollbar-hide::-webkit-scrollbar {
         display: none;
     }
 }

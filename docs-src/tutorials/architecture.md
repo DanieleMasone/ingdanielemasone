@@ -57,9 +57,22 @@ Translation files live under `src/locales/<language>/translation.json`. Visible 
 
 ## Shared styling
 
-Tailwind CSS is the styling layer. Reused class presets live in `src/styles/commonClasses.js`.
+The styling architecture is deliberately Tailwind-first and keeps one small native CSS entry point. Sass was evaluated against the implemented stylesheet and is not part of the stack: the project has no compile-time mixins, generated selector families, legacy Sass modules or substantial custom CSS that would justify another processing layer.
 
-Use shared presets when a layout, surface, control or accessibility pattern is reused across routes. Keep page-local classes when a style is genuinely specific to one card or route.
+Ownership is split as follows:
+
+- JSX Tailwind utilities own normal component layout, spacing, typography, responsive behavior and interaction states.
+- Shared React components own complete repeated visual and behavioral patterns.
+- `src/styles/commonClasses.js` owns stable Tailwind combinations reused across components or kept synchronized as part of a shared UI contract. One-off combinations remain close to their component.
+- `src/index.css` owns Tailwind directives, document-level base and accessibility rules, browser normalization, and rare global utilities that Tailwind does not express directly.
+- `tailwind.config.js` is the source of compile-time design tokens when a color, spacing, radius, shadow or breakpoint becomes a genuinely shared application value.
+- Native CSS custom properties are reserved for values that need runtime theme switching, inheritance, contextual overrides, non-Tailwind interoperability or JavaScript updates.
+
+`@layer base` is used for document-level behavior, including reduced-motion handling. `@layer utilities` contains the cross-browser scrollbar utility. There is currently no `@layer components` block because reusable component patterns are represented more clearly by React components and shared class presets.
+
+CSS Modules are an escape hatch for an isolated component with complex selectors or third-party DOM that cannot be expressed clearly with Tailwind. They are not a second default styling system. Sass should be reconsidered only when there is a recurring need for compile-time functions, parameterized mixins, generated selector families, substantial legacy Sass integration or non-trivial stylesheet modules. Nesting alone is not sufficient justification; standards-oriented native CSS is preferred when compatible with the supported browsers.
+
+Do not duplicate the same token between Tailwind configuration, CSS custom properties and a preprocessor. Styling changes must preserve focus visibility, reduced-motion behavior, contrast, responsive readability and the absence of horizontal overflow.
 
 ## SEO architecture
 
