@@ -73,6 +73,7 @@
     "empty": "No professional projects available."
   },
   "github_projects_page": {
+    "empty": "No GitHub projects are available.",
     "title": "GitHub Projects",
     "intro": "A curated view of public repositories that show code quality, architecture, testing, documentation and GitHub Pages delivery beyond the professional projects listed in the online CV.",
     "filter_label": "Filter GitHub projects by category",
@@ -360,6 +361,7 @@
     "last_updated": "Last updated"
   },
   "courses_page": {
+    "empty": "No courses are available.",
     "title": "My Online Courses",
     "description": "Training paths published on Udemy to share practical skills across languages, tools, and software development fundamentals.",
     "duration": "Duration",
@@ -444,6 +446,7 @@
     }
   },
   "testimonials_page": {
+    "empty": "No testimonials are available.",
     "title": "Testimonials",
     "description": "Professional feedback from coworkers and collaborators I worked with across delivery, frontend architecture, and product teams.",
     "collection_label_one": "testimonial",
@@ -568,6 +571,10 @@
     }
   },
   "seo": {
+    "notFound": {
+      "title": "Page Not Found - Daniele Masone",
+      "description": "The requested page is unavailable. Return to Daniele Masone's portfolio to explore experience and projects."
+    },
     "home": {
       "title": "Daniele Masone - Portfolio",
       "description": "Portfolio and online CV of Daniele Masone: Technical Architect and Senior Software Engineer across frontend architecture, financial systems and technical training."

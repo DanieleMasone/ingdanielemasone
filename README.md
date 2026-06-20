@@ -17,7 +17,7 @@ Personal portfolio and online CV for **Daniele Masone**, built as a production-m
 ## What This Repository Demonstrates
 
 - React 19 and Vite 8 application architecture with route-level lazy loading.
-- GitHub Pages-compatible SPA routing under `/ingdanielemasone/`.
+- GitHub Pages-compatible SPA routing under `/ingdanielemasone/`, including a noindex 404 fallback.
 - Static portfolio data loaded through a local mock service boundary.
 - Responsive, accessible UI primitives with centralized Tailwind class presets.
 - Internationalized content in Italian, English, French, German, and Spanish.

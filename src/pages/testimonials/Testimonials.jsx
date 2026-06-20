@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {useTranslation} from "react-i18next";
 import {Quote} from "lucide-react";
 import {Card} from "@/components/ui/card/Card";
@@ -16,6 +16,7 @@ import {ErrorState} from "@/components/errorState/ErrorState";
 import {BrandIcon} from "@/components/ui/brandIcon/BrandIcon";
 import clsx from "clsx";
 import {interactiveClasses, layoutClasses, surfaceClasses} from "@/styles/commonClasses";
+import {usePortfolioData} from "@/hooks/usePortfolioData";
 
 const ITEMS_PER_PAGE = 6;
 
@@ -51,23 +52,7 @@ const getInitials = (name) => {
 export default function Testimonials() {
     const {t} = useTranslation();
     const [page, setPage] = useState(1);
-    const [testimonials, setTestimonials] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    const loadTestimonials = () => {
-        setLoading(true);
-        setError(null);
-
-        getTestimonials()
-            .then(setTestimonials)
-            .catch(setError)
-            .finally(() => setLoading(false));
-    };
-
-    useEffect(() => {
-        loadTestimonials();
-    }, []);
+    const {data: testimonials, loading, error, retry} = usePortfolioData(getTestimonials, []);
 
     const pagination = getCollectionPaginationState({
         page,
@@ -81,7 +66,7 @@ export default function Testimonials() {
     );
 
     if (loading) return <Loading/>;
-    if (error) return <ErrorState message={t("error_generic")} onRetry={loadTestimonials}/>;
+    if (error) return <ErrorState message={t("error_generic")} onRetry={retry}/>;
 
     return (
         <>
@@ -90,16 +75,20 @@ export default function Testimonials() {
             <PageSection title={t("testimonials_page.title")}>
                 <p className={layoutClasses.sectionIntro}>{t("testimonials_page.description")}</p>
 
-                <CollectionToolbar
-                    page={page}
-                    totalItems={testimonials.length}
-                    pageSize={ITEMS_PER_PAGE}
-                    onPageChange={setPage}
-                    itemLabel={t("testimonials_page.collection_label_one")}
-                    itemLabelPlural={t("testimonials_page.collection_label_many")}
-                />
+                {testimonials.length === 0 ? (
+                    <p className={surfaceClasses.insetText}>{t("testimonials_page.empty")}</p>
+                ) : (
+                    <>
+                        <CollectionToolbar
+                            page={page}
+                            totalItems={testimonials.length}
+                            pageSize={ITEMS_PER_PAGE}
+                            onPageChange={setPage}
+                            itemLabel={t("testimonials_page.collection_label_one")}
+                            itemLabelPlural={t("testimonials_page.collection_label_many")}
+                        />
 
-                <PageGrid page={pagination.currentPage} columns={3}>
+                        <PageGrid page={pagination.currentPage} columns={3}>
                     {displayedTestimonials.map((texts) => {
                         const testimonialName = t(texts.nameKey);
                         const titleId = `testimonial-${texts.nameKey.replace(/\W+/g, "-")}`;
@@ -111,7 +100,7 @@ export default function Testimonials() {
                                 aria-labelledby={titleId}
                                 className="h-full"
                             >
-                                <CardContent className="flex h-full flex-col gap-4 p-0">
+                                <CardContent>
                                     <header
                                         className="flex items-start gap-3 border-b border-gray-200/60 pb-3 dark:border-gray-700/60"
                                     >
@@ -157,7 +146,9 @@ export default function Testimonials() {
                             </Card>
                         );
                     })}
-                </PageGrid>
+                        </PageGrid>
+                    </>
+                )}
 
             </PageSection>
         </>

@@ -20,17 +20,18 @@ base: "/ingdanielemasone/"
 
 The router uses the same basename through the app constants. This keeps internal links, direct route refreshes and production preview aligned with GitHub Pages.
 
-During `npm run build`, `scripts/prepare-github-pages.mjs` writes route-specific `index.html` files into `dist`. The SPA still hydrates on the client, but crawlers and link preview tools receive route-level metadata immediately.
+During `npm run build`, `scripts/prepare-github-pages.mjs` writes route-specific `index.html` files and a noindex `404.html` fallback into `dist`. The SPA still hydrates on the client, but crawlers and link preview tools receive route-level metadata immediately. Unknown GitHub Pages URLs load the portfolio wildcard route instead of the platform's generic error page.
 
 ## Pages and components
 
-Route-level pages live in `src/pages`. They own page composition, data loading state, filtering and card mapping.
+Route-level pages live in `src/pages`. They own page composition, page-specific transformations, filtering, pagination, empty states and card mapping. `usePortfolioData` owns only the repeated asynchronous service lifecycle: initial loading, errors, retry, stale-request protection and unmount safety.
 
 Shared UI primitives live in `src/components`. Examples include:
 
 - `PageSection` for route section spacing;
 - `PageGrid` for animated paginated grids;
 - `CollectionToolbar` and `getCollectionPaginationState` for paginated collection ranges;
+- `LegalDocument` and `LegalSection` for the shared policy-document outline and responsive reading width;
 - card, button, disclosure and selectable controls;
 - header, footer, loading and error states;
 - `SeoHead` for runtime route metadata.
@@ -41,7 +42,7 @@ Page-specific card structures remain inside their route pages when extracting th
 
 Static datasets live in `src/mock`. The service boundary in `src/services/portfolioService.jsx` returns promises to mimic asynchronous loading without coupling pages to future transport details.
 
-This boundary is intentionally fake. It lets route pages exercise loading and error states while keeping the published site fully static.
+This boundary is intentionally fake. It lets route pages exercise loading and error states while keeping the published site fully static. The shared hook in `src/hooks/usePortfolioData.js` consumes those service functions while deliberately leaving sorting, filtering and pagination visible in each page.
 
 ## Internationalization
 
@@ -76,7 +77,7 @@ Do not duplicate the same token between Tailwind configuration, CSS custom prope
 
 ## SEO architecture
 
-Route metadata is configured in `src/config/seo.json` and localized through translation files. `SeoHead` applies runtime metadata in the browser and removes static fallback tags after React mounts.
+Route metadata is configured in `src/config/seo.json` and localized through translation files. `SeoHead` applies runtime metadata in the browser and removes static fallback tags after React mounts. The wildcard fallback has its own `noindex, follow` configuration and is excluded from the sitemap.
 
 `scripts/prepare-github-pages.mjs` generates static route HTML, sitemap and robots output from the same SEO configuration.
 

@@ -1,43 +1,49 @@
-import {render, screen} from '@testing-library/react';
-import {NotFound} from './NotFound';
-import React from 'react';
-import {vi} from 'vitest';
+import {render, screen, waitFor} from "@testing-library/react";
+import {NotFound} from "./NotFound";
+import React from "react";
+import {vi} from "vitest";
+import {MemoryRouter} from "react-router-dom";
 
-// Mock by react-i18next
-vi.mock('react-i18next', () => ({
+vi.mock("react-i18next", () => ({
     useTranslation: () => ({
+        i18n: {
+            language: "it",
+            resolvedLanguage: "it"
+        },
         t: (key) => {
             const translations = {
-                notfound_title: 'Pagina non trovata',
-                notfound_description: 'La pagina che stai cercando non esiste o è stata rimossa.',
-                go_home: 'Torna alla Home',
+                notfound_title: "Pagina non trovata",
+                notfound_description: "La pagina che stai cercando non esiste o è stata rimossa.",
+                go_home: "Torna alla Home",
+                "seo.notFound.title": "Pagina non trovata - Daniele Masone",
+                "seo.notFound.description": "La pagina richiesta non è disponibile."
             };
+
             return translations[key] || key;
-        },
-    }),
+        }
+    })
 }));
 
-describe('NotFound Component', () => {
-    test('renders the NotFound component with translated content', () => {
-        render(<NotFound/>);
+const renderNotFound = () => render(
+    <MemoryRouter initialEntries={["/missing"]}>
+        <NotFound/>
+    </MemoryRouter>
+);
 
-        // Verify that the translated title is visible
-        expect(screen.getByText(/Pagina non trovata/i)).toBeInTheDocument();
+describe("NotFound Component", () => {
+    test("renders localized content and a router-managed home link", () => {
+        renderNotFound();
 
-        // Make sure the description is visible
-        expect(
-            screen.getByText(/La pagina che stai cercando non esiste/i)
-        ).toBeInTheDocument();
-
-        // Make sure the return to home button is visible
-        const link = screen.getByRole('link', {name: /Torna alla Home/i});
-        expect(link).toBeInTheDocument();
-        expect(link).toHaveAttribute('href', '/ingdanielemasone/');
+        expect(screen.getByRole("heading", {level: 1, name: "404 - Pagina non trovata"})).toBeInTheDocument();
+        expect(screen.getByText(/La pagina che stai cercando non esiste/i)).toBeInTheDocument();
+        expect(screen.getByRole("link", {name: "Torna alla Home"})).toHaveAttribute("href", "/");
     });
 
-    test('applies fade-in class when component mounts', () => {
-        const {container} = render(<NotFound/>);
-        const animatedDiv = container.querySelector('div.transition-opacity');
-        expect(animatedDiv.className).toMatch(/opacity-100/);
+    test("marks the fallback route as noindex", async () => {
+        renderNotFound();
+
+        await waitFor(() => {
+            expect(document.querySelector('meta[name="robots"]')).toHaveAttribute("content", "noindex, follow");
+        });
     });
 });

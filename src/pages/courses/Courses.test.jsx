@@ -11,6 +11,7 @@ vi.mock('react-i18next', () => ({
             const map = {
                 "courses_page.title": "Courses",
                 "courses_page.description": "Practical Udemy courses for software development skills.",
+                "courses_page.empty": "No courses are available.",
                 "collection.range_summary": `${options.start}–${options.end} of ${options.total} ${options.label}`,
                 "collection.range_announcement": `Showing items ${options.start} to ${options.end} of ${options.total} ${options.label}.`,
                 "courses_page.collection_label_one": "course",
@@ -206,5 +207,14 @@ describe('Courses component', () => {
         renderPage();
 
         expect(await screen.findByText("Generic error")).toBeInTheDocument();
+    });
+
+    test("renders a clear empty state", async () => {
+        vi.spyOn(service, "getCourses").mockResolvedValueOnce([]);
+
+        renderPage();
+
+        expect(await screen.findByText("No courses are available.")).toBeInTheDocument();
+        expect(screen.queryByRole("navigation", {name: /pagination/i})).not.toBeInTheDocument();
     });
 });

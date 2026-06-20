@@ -28,6 +28,10 @@ vi.mock('react-i18next', () => ({
                     privacy: {
                         title: 'Privacy Policy | Daniele Masone',
                         description: 'Privacy information for the portfolio.'
+                    },
+                    notFound: {
+                        title: 'Page Not Found | Daniele Masone',
+                        description: 'The requested portfolio page is not available.'
                     }
                 }
             };
@@ -222,6 +226,17 @@ describe('<SeoHead />', () => {
 
     test('marks legal pages as noindex', async () => {
         renderSeo('privacy', '/privacy');
+
+        await waitFor(() => {
+            expect(document.querySelector('meta[name="robots"]')).toHaveAttribute(
+                'content',
+                'noindex, follow'
+            );
+        });
+    });
+
+    test('marks the configured fallback page as noindex', async () => {
+        renderSeo('notFound', '/404');
 
         await waitFor(() => {
             expect(document.querySelector('meta[name="robots"]')).toHaveAttribute(

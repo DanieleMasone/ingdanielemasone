@@ -1,13 +1,14 @@
 import {useTranslation} from "react-i18next";
 import {PageSection} from "@/components/ui/pageSection/PageSection";
 import {SeoHead} from "@/components/seoHead/SeoHead";
-import React, {lazy, Suspense, useEffect, useState} from "react";
+import React, {lazy, Suspense} from "react";
 import {Loading} from "@/components/loading/Loading";
 import {getTradingPerformance} from "@/services/portfolioService";
 import {ErrorState} from "@/components/errorState/ErrorState";
 import {ButtonLink} from "@/components/ui/buttonLink/ButtonLink";
 import clsx from "clsx";
 import {layoutClasses, surfaceClasses} from "@/styles/commonClasses";
+import {usePortfolioData} from "@/hooks/usePortfolioData";
 
 const TradingPerformanceChart = lazy(() =>
     import("@/components/ui/tradingPerformanceChart/TradingPerformanceChart").then(mod => ({default: mod.TradingPerformanceChart}))
@@ -27,26 +28,15 @@ const TradingPerformanceChart = lazy(() =>
  */
 export default function Trading() {
     const {t} = useTranslation();
-    const [tradingPerformance, setTradingPerformance] = useState({});
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    const loadTradingPerformance = () => {
-        setLoading(true);
-        setError(null);
-
-        getTradingPerformance()
-            .then(setTradingPerformance)
-            .catch(setError)
-            .finally(() => setLoading(false));
-    };
-
-    useEffect(() => {
-        loadTradingPerformance();
-    }, []);
+    const {
+        data: tradingPerformance,
+        loading,
+        error,
+        retry
+    } = usePortfolioData(getTradingPerformance, {});
 
     if (loading) return <Loading/>;
-    if (error) return <ErrorState message={t("error_generic")} onRetry={loadTradingPerformance}/>;
+    if (error) return <ErrorState message={t("error_generic")} onRetry={retry}/>;
 
     return (
         <>

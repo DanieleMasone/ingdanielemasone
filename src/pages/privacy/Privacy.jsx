@@ -4,6 +4,7 @@ import {SeoHead} from "@/components/seoHead/SeoHead";
 import {Link} from "react-router-dom";
 import clsx from "clsx";
 import {interactiveClasses} from "@/styles/commonClasses";
+import {LegalDocument, LegalSection} from "@/components/ui/legalDocument/LegalDocument";
 
 /**
  * Privacy component displays the privacy policy article.
@@ -24,12 +25,12 @@ export default function Privacy() {
         <>
             <SeoHead pageKey="privacy" path="/privacy"/>
 
-            <article
-                className="max-w-4xl mx-auto p-8 bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-300 min-h-screen">
-                <h1 className="text-4xl font-bold mb-6">{t("privacy.title")}</h1>
+            <LegalDocument
+                title={t("privacy.title")}
+                lastUpdated={`${t("privacy.last_updated")}: ${t("privacy.last_date_updated")}`}
+            >
 
-                <section className="mb-8">
-                    <h2 className="text-2xl font-semibold mb-2">{t("privacy.intro_title")}</h2>
+                <LegalSection title={t("privacy.intro_title")}>
                     <p>
                         {t("privacy.intro_text1")}{" "}
                         <a
@@ -39,10 +40,9 @@ export default function Privacy() {
                             https://www.ingdanielemasone.com/
                         </a>. {t("privacy.intro_text2")}
                     </p>
-                </section>
+                </LegalSection>
 
-                <section className="mb-8">
-                    <h2 className="text-2xl font-semibold mb-2">{t("privacy.owner_title")}</h2>
+                <LegalSection title={t("privacy.owner_title")}>
                     <address className="not-italic mb-2">
                         <strong>Daniele Masone</strong>
                         <br/>
@@ -56,10 +56,9 @@ export default function Privacy() {
                             masone.daniele@gmail.com
                         </a>
                     </address>
-                </section>
+                </LegalSection>
 
-                <section className="mb-8">
-                    <h2 className="text-2xl font-semibold mb-2">{t("privacy.data_types_title")}</h2>
+                <LegalSection title={t("privacy.data_types_title")}>
                     <ul className="list-disc pl-6 space-y-1">
                         <li>
                             <strong>{t("privacy.browsing_data")}:</strong> {t("privacy.browsing_data_details")}
@@ -68,43 +67,37 @@ export default function Privacy() {
                             <strong>{t("privacy.voluntary_data")}:</strong> {t("privacy.voluntary_data_details")}
                         </li>
                     </ul>
-                </section>
+                </LegalSection>
 
-                <section className="mb-8">
-                    <h2 className="text-2xl font-semibold mb-2">{t("privacy.purpose_title")}</h2>
+                <LegalSection title={t("privacy.purpose_title")}>
                     <ul className="list-disc pl-6 space-y-1">
                         <li>{t("privacy.purpose_1")}</li>
                         <li>{t("privacy.purpose_2")}</li>
                         <li>{t("privacy.purpose_3")}</li>
                     </ul>
-                </section>
+                </LegalSection>
 
-                <section className="mb-8">
-                    <h2 className="text-2xl font-semibold mb-2">{t("privacy.legal_basis_title")}</h2>
+                <LegalSection title={t("privacy.legal_basis_title")}>
                     <ul className="list-disc pl-6 space-y-1">
                         <li>{t("privacy.legal_1")}</li>
                         <li>{t("privacy.legal_2")}</li>
                         <li>{t("privacy.legal_3")}</li>
                     </ul>
-                </section>
+                </LegalSection>
 
-                <section className="mb-8">
-                    <h2 className="text-2xl font-semibold mb-2">{t("privacy.recipients_title")}</h2>
+                <LegalSection title={t("privacy.recipients_title")}>
                     <p>{t("privacy.recipients_text")}</p>
-                </section>
+                </LegalSection>
 
-                <section className="mb-8">
-                    <h2 className="text-2xl font-semibold mb-2">{t("privacy.transfer_title")}</h2>
+                <LegalSection title={t("privacy.transfer_title")}>
                     <p>{t("privacy.transfer_text")}</p>
-                </section>
+                </LegalSection>
 
-                <section className="mb-8">
-                    <h2 className="text-2xl font-semibold mb-2">{t("privacy.retention_title")}</h2>
+                <LegalSection title={t("privacy.retention_title")}>
                     <p>{t("privacy.retention_text")}</p>
-                </section>
+                </LegalSection>
 
-                <section className="mb-8">
-                    <h2 className="text-2xl font-semibold mb-2">{t("privacy.rights_title")}</h2>
+                <LegalSection title={t("privacy.rights_title")}>
                     <ul className="list-disc pl-6 space-y-1">
                         <li>{t("privacy.rights_1")}</li>
                         <li>{t("privacy.rights_2")}</li>
@@ -119,28 +112,21 @@ export default function Privacy() {
                             masone.daniele@gmail.com
                         </a>
                     </p>
-                </section>
+                </LegalSection>
 
-                <section className="mb-8">
-                    <h2 className="text-2xl font-semibold mb-2">{t("privacy.cookie_title")}</h2>
+                <LegalSection title={t("privacy.cookie_title")}>
                     <p>
                         {t("privacy.cookie_text")}{" "}
                         <Link to="/cookie-policy/" className={linkClass}>
                             {t("privacy.cookie_link")}
                         </Link>.
                     </p>
-                </section>
+                </LegalSection>
 
-                <section className="mb-8">
-                    <h2 className="text-2xl font-semibold mb-2">{t("privacy.changes_title")}</h2>
+                <LegalSection title={t("privacy.changes_title")}>
                     <p>{t("privacy.changes_text")}</p>
-                </section>
-
-                <p
-                    className="border-t border-gray-300 dark:border-gray-700 pt-4 text-sm text-gray-500 dark:text-gray-600 text-center">
-                    {t("privacy.last_updated")}: {t("privacy.last_date_updated")}
-                </p>
-            </article>
+                </LegalSection>
+            </LegalDocument>
         </>
     );
 }

@@ -39,6 +39,7 @@ const config = {
         de: "de_DE",
         es: "es_ES"
     },
+    fallback: {path: "/404", pageKey: "notFound", robots: "noindex, follow", sitemap: false},
     routes: [
         {path: "/", pageKey: "home", robots: "index, follow", sitemap: true},
         {path: "/experience", pageKey: "experience", robots: "index, follow", sitemap: true},
@@ -94,6 +95,10 @@ const translations = {
         cookie: {
             title: "Cookie Policy | Daniele Masone",
             description: "Informativa sui cookie del sito."
+        },
+        notFound: {
+            title: "Pagina non trovata | Daniele Masone",
+            description: "La pagina richiesta non è disponibile."
         }
     }
 };
@@ -179,6 +184,12 @@ describe("prepare-github-pages", () => {
         );
 
         expect(fs.writeFile).toHaveBeenCalledWith(
+            expect.stringMatching(/dist[/\\]404\.html$/),
+            expect.stringContaining('<meta name="robots" data-static-seo="true" content="noindex, follow"/>'),
+            "utf8"
+        );
+
+        expect(fs.writeFile).toHaveBeenCalledWith(
             expect.stringMatching(/dist[/\\]sitemap\.xml$/),
             expect.stringContaining("<loc>https://danielemasone.github.io/ingdanielemasone/github-projects/</loc>"),
             "utf8"
@@ -190,7 +201,7 @@ describe("prepare-github-pages", () => {
             "utf8"
         );
 
-        expect(fs.writeFile).toHaveBeenCalledTimes(config.routes.length + 2);
+        expect(fs.writeFile).toHaveBeenCalledTimes(config.routes.length + 3);
     });
 
     it("normalizes route paths", () => {
@@ -324,6 +335,7 @@ describe("prepare-github-pages", () => {
 
         expect(sitemap).not.toContain("/privacy/");
         expect(sitemap).not.toContain("/cookie-policy/");
+        expect(sitemap).not.toContain("/404/");
         expect(sitemap).not.toContain("<lastmod>");
         expect(sitemap).not.toContain("<priority>");
     });

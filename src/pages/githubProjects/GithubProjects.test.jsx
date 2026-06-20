@@ -34,6 +34,7 @@ vi.mock("react-i18next", () => ({
             const translations = {
                 "github_projects_page.title": "GitHub Projects",
                 "github_projects_page.intro": "Inspectable repositories with code, tests and documentation.",
+                "github_projects_page.empty": "No GitHub projects are available.",
                 "github_projects_page.filter_label": "Filter GitHub projects by category",
                 "github_projects_page.highlights_label": `Highlights for ${options.project}`,
                 "collection.range_summary": `${options.start}–${options.end} of ${options.total} ${options.label}`,
@@ -591,6 +592,15 @@ describe("GithubProjects", () => {
 
         expect(await screen.findByText("Identity Service API")).toBeInTheDocument();
         expect(spy).toHaveBeenCalledTimes(2);
+    });
+
+    test("renders a clear empty state", async () => {
+        vi.spyOn(service, "getGithubProjects").mockResolvedValueOnce([]);
+
+        renderGithubProjects();
+
+        expect(await screen.findByText("No GitHub projects are available.")).toBeInTheDocument();
+        expect(screen.queryByRole("navigation", {name: /pagination/i})).not.toBeInTheDocument();
     });
 
     test("renders repository links with a Simple Icons SVG adapter", async () => {

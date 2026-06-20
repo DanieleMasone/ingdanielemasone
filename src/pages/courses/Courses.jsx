@@ -2,7 +2,7 @@ import {useTranslation} from 'react-i18next';
 import {Clock, ExternalLink, ShoppingCart} from "lucide-react";
 import {Card} from "@/components/ui/card/Card";
 import {CardContent} from "@/components/ui/cardContent/CardContent";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {PageSection} from "@/components/ui/pageSection/PageSection";
 import {ExpandableText} from "@/components/ui/expandableText/ExpandableText";
 import {SeoHead} from "@/components/seoHead/SeoHead";
@@ -15,6 +15,7 @@ import {Loading} from "@/components/loading/Loading";
 import {ErrorState} from "@/components/errorState/ErrorState";
 import clsx from "clsx";
 import {interactiveClasses, layoutClasses, surfaceClasses} from "@/styles/commonClasses";
+import {usePortfolioData} from "@/hooks/usePortfolioData";
 
 const ITEMS_PER_PAGE = 6;
 
@@ -34,23 +35,7 @@ const ITEMS_PER_PAGE = 6;
 export default function Courses() {
     const {t} = useTranslation();
     const [page, setPage] = useState(1);
-    const [courses, setCourses] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    const loadCourses = () => {
-        setLoading(true);
-        setError(null);
-
-        getCourses()
-            .then(setCourses)
-            .catch(setError)
-            .finally(() => setLoading(false));
-    };
-
-    useEffect(() => {
-        loadCourses();
-    }, []);
+    const {data: courses, loading, error, retry} = usePortfolioData(getCourses, []);
 
     const pagination = getCollectionPaginationState({
         page,
@@ -64,7 +49,7 @@ export default function Courses() {
     );
 
     if (loading) return <Loading/>;
-    if (error) return <ErrorState message={t("error_generic")} onRetry={loadCourses}/>;
+    if (error) return <ErrorState message={t("error_generic")} onRetry={retry}/>;
 
     return (
         <>
@@ -73,16 +58,20 @@ export default function Courses() {
             <PageSection title={t("courses_page.title")}>
                 <p className={layoutClasses.sectionIntro}>{t("courses_page.description")}</p>
 
-                <CollectionToolbar
-                    page={page}
-                    totalItems={courses.length}
-                    pageSize={ITEMS_PER_PAGE}
-                    onPageChange={setPage}
-                    itemLabel={t("courses_page.collection_label_one")}
-                    itemLabelPlural={t("courses_page.collection_label_many")}
-                />
+                {courses.length === 0 ? (
+                    <p className={surfaceClasses.insetText}>{t("courses_page.empty")}</p>
+                ) : (
+                    <>
+                        <CollectionToolbar
+                            page={page}
+                            totalItems={courses.length}
+                            pageSize={ITEMS_PER_PAGE}
+                            onPageChange={setPage}
+                            itemLabel={t("courses_page.collection_label_one")}
+                            itemLabelPlural={t("courses_page.collection_label_many")}
+                        />
 
-                <PageGrid page={pagination.currentPage} columns={3}>
+                        <PageGrid page={pagination.currentPage} columns={3}>
                     {displayedCourses.map((course) => {
                         const courseTitle = t(course.nameKey);
                         const titleId = `course-${course.nameKey.replace(/\W+/g, "-")}`;
@@ -94,7 +83,7 @@ export default function Courses() {
                                 aria-labelledby={titleId}
                                 className="h-full"
                             >
-                                <CardContent className="flex h-full flex-col gap-4 p-0">
+                                <CardContent>
                                     <div className={surfaceClasses.mediaFrame}>
                                         <img
                                             src={course.image}
@@ -161,7 +150,9 @@ export default function Courses() {
                             </Card>
                         );
                     })}
-                </PageGrid>
+                        </PageGrid>
+                    </>
+                )}
 
             </PageSection>
         </>

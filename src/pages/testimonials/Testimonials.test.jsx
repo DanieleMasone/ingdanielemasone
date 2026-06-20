@@ -24,6 +24,7 @@ vi.mock('react-i18next', () => ({
                 "testimonials_people.daniela.quote": "Thorough testing.",
                 "testimonials_page.title": "Testimonials",
                 "testimonials_page.description": "Professional feedback from coworkers and collaborators.",
+                "testimonials_page.empty": "No testimonials are available.",
                 "collection.range_summary": `${options.start}–${options.end} of ${options.total} ${options.label}`,
                 "collection.range_announcement": `Showing items ${options.start} to ${options.end} of ${options.total} ${options.label}.`,
                 "testimonials_page.collection_label_one": "testimonial",
@@ -207,5 +208,14 @@ describe("Testimonials component with mobile + desktop paginators", () => {
         await screen.findAllByTestId("testimonial-card");
 
         expect(spy).toHaveBeenCalledTimes(2);
+    });
+
+    test("renders a clear empty state", async () => {
+        vi.spyOn(service, "getTestimonials").mockResolvedValueOnce([]);
+
+        renderPage();
+
+        expect(await screen.findByText("No testimonials are available.")).toBeInTheDocument();
+        expect(screen.queryByRole("navigation", {name: /pagination/i})).not.toBeInTheDocument();
     });
 });

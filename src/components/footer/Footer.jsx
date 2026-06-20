@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {useTranslation} from "react-i18next";
 import {BrandIcon} from "@/components/ui/brandIcon/BrandIcon";
 import {getLinks} from "@/services/portfolioService";
@@ -6,6 +6,7 @@ import {Loading} from "@/components/loading/Loading";
 import {ErrorState} from "@/components/errorState/ErrorState";
 import clsx from "clsx";
 import {interactiveClasses} from "@/styles/commonClasses";
+import {usePortfolioData} from "@/hooks/usePortfolioData";
 
 /**
  * Portfolio footer with social links, resource links, and localized labels.
@@ -19,27 +20,11 @@ import {interactiveClasses} from "@/styles/commonClasses";
  */
 export function Footer() {
     const {t} = useTranslation();
-    const [links, setLinks] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const {data: links, loading, error, retry} = usePortfolioData(getLinks, []);
     const currentYear = new Date().getFullYear();
 
-    const loadLinks = () => {
-        setLoading(true);
-        setError(null);
-
-        getLinks()
-            .then(setLinks)
-            .catch(setError)
-            .finally(() => setLoading(false));
-    };
-
-    useEffect(() => {
-        loadLinks();
-    }, []);
-
     if (loading) return <Loading/>;
-    if (error) return <ErrorState message={t("error_generic")} onRetry={loadLinks}/>;
+    if (error) return <ErrorState message={t("error_generic")} onRetry={retry}/>;
 
     return (
         <footer

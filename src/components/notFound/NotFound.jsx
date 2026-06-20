@@ -1,18 +1,21 @@
 import {useTranslation} from 'react-i18next';
-import {useEffect, useState} from 'react';
 import clsx from "clsx";
 import {interactiveClasses} from "@/styles/commonClasses";
+import {Link} from "react-router-dom";
+import {SeoHead} from "@/components/seoHead/SeoHead";
+import {PageSection} from "@/components/ui/pageSection/PageSection";
 
 /**
- * NotFound component - displays a custom 404 page with support for light/dark mode.
+ * Displays the localized wildcard-route page for unknown portfolio URLs.
  *
  * The content includes:
  * - A title with the error code
  * - A brief error description
  * - A link to return to the home page
  *
- * The section features a fade-in effect managed via `useState` and `useEffect`.
- * Strings are localized using `react-i18next`.
+ * The route is marked `noindex` through the shared SEO configuration. Its home
+ * link is resolved by React Router, so the GitHub Pages basename is preserved
+ * without hardcoding the deployment path.
  *
  * @component
  * @module components/notFound/NotFound
@@ -21,36 +24,35 @@ import {interactiveClasses} from "@/styles/commonClasses";
  */
 export function NotFound() {
     const {t} = useTranslation();
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-        setIsVisible(true);
-    }, []);
 
     return (
-        <section className="px-4 py-8 sm:px-6 md:px-8 max-w-4xl mx-auto">
-            <div
-                data-testid="not-found"
-                className={`bg-gradient-to-br from-red-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-3xl p-6 sm:p-8 md:p-10 shadow-lg text-center transition-opacity duration-700 ${
-                    isVisible ? 'opacity-100' : 'opacity-0'
-                }`}
+        <>
+            <SeoHead pageKey="notFound" path="/404"/>
+
+            <PageSection
+                title={`404 - ${t("notfound_title")}`}
+                className="min-h-[60vh] items-center justify-center text-center"
             >
-                <h1 className="text-4xl sm:text-5xl font-extrabold mb-6 text-gray-900 dark:text-white">
-                    404 - {t("notfound_title")}
-                </h1>
-                <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 mb-6">
-                    {t("notfound_description")}
-                </p>
-                <a
-                    href="/ingdanielemasone/"
-                    className={clsx(
-                        "inline-block mt-4 px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl shadow hover:bg-blue-700 transition-colors",
-                        interactiveClasses.focusRing
-                    )}
+                <div
+                    data-testid="not-found"
+                    className="flex max-w-2xl flex-col items-center gap-6"
                 >
-                    {t("go_home")}
-                </a>
-            </div>
-        </section>
+                    <p className="text-lg leading-8 text-gray-700 dark:text-gray-300 sm:text-xl">
+                        {t("notfound_description")}
+                    </p>
+                    <Link
+                        to="/"
+                        className={clsx(
+                            interactiveClasses.buttonBase,
+                            interactiveClasses.selectedButton,
+                            interactiveClasses.focusRing,
+                            "px-6"
+                        )}
+                    >
+                        {t("go_home")}
+                    </Link>
+                </div>
+            </PageSection>
+        </>
     );
 }

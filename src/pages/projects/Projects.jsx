@@ -16,6 +16,7 @@ import {Loading} from "@/components/loading/Loading";
 import {ErrorState} from "@/components/errorState/ErrorState";
 import clsx from "clsx";
 import {layoutClasses, surfaceClasses} from "@/styles/commonClasses";
+import {usePortfolioData} from "@/hooks/usePortfolioData";
 
 const ALL_COMPANIES = "all";
 const ITEMS_PER_PAGE = 6;
@@ -111,23 +112,7 @@ export default function Projects() {
     const currentYear = useMemo(() => new Date().getFullYear(), []);
     const [selectedCompany, setSelectedCompany] = useState(ALL_COMPANIES);
     const [page, setPage] = useState(1);
-    const [projects, setProjects] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    const loadProjects = () => {
-        setLoading(true);
-        setError(null);
-
-        getProjects()
-            .then(setProjects)
-            .catch(setError)
-            .finally(() => setLoading(false));
-    };
-
-    useEffect(() => {
-        loadProjects();
-    }, []);
+    const {data: projects, loading, error, retry} = usePortfolioData(getProjects, []);
 
     const sortedProjects = useMemo(
         () => sortProjectsByRecency(projects, currentYear),
@@ -162,7 +147,7 @@ export default function Projects() {
     );
 
     if (loading) return <Loading/>;
-    if (error) return <ErrorState message={t("error_generic")} onRetry={loadProjects}/>;
+    if (error) return <ErrorState message={t("error_generic")} onRetry={retry}/>;
 
     return (
         <>
@@ -216,7 +201,7 @@ export default function Projects() {
                                                 aria-labelledby={titleId}
                                                 className={clsx("h-full min-w-0", currentProject && surfaceClasses.activeTimelineCard)}
                                             >
-                                                <CardContent className="flex h-full min-w-0 flex-col gap-4 p-0">
+                                                <CardContent className="min-w-0">
                                                     <header
                                                         className="flex flex-col gap-3 border-b border-gray-200/60 pb-3 dark:border-gray-700/60">
                                                         <div className="flex min-w-0 flex-wrap items-center gap-2">

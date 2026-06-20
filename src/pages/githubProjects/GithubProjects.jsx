@@ -16,6 +16,7 @@ import {ErrorState} from "@/components/errorState/ErrorState";
 import {getGithubProjects} from "@/services/portfolioService";
 import {interactiveClasses, layoutClasses, surfaceClasses} from "@/styles/commonClasses";
 import {siGithub} from "simple-icons";
+import {usePortfolioData} from "@/hooks/usePortfolioData";
 
 const CATEGORY_ORDER = ["all", "frontend", "backend"];
 const ITEMS_PER_PAGE = 3;
@@ -128,25 +129,9 @@ function ProjectResourceLink({link, label, accessibleLabel = label, projectName,
  */
 export default function GithubProjects() {
     const {t} = useTranslation();
-    const [projects, setProjects] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("all");
     const [page, setPage] = useState(1);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    const loadProjects = () => {
-        setLoading(true);
-        setError(null);
-
-        getGithubProjects()
-            .then(setProjects)
-            .catch(setError)
-            .finally(() => setLoading(false));
-    };
-
-    useEffect(() => {
-        loadProjects();
-    }, []);
+    const {data: projects, loading, error, retry} = usePortfolioData(getGithubProjects, []);
 
     const categories = useMemo(() => getCategoryFilters(projects), [projects]);
     const filteredProjects = useMemo(
@@ -168,7 +153,7 @@ export default function GithubProjects() {
     }, [selectedCategory]);
 
     if (loading) return <Loading/>;
-    if (error) return <ErrorState message={t("error_generic")} onRetry={loadProjects}/>;
+    if (error) return <ErrorState message={t("error_generic")} onRetry={retry}/>;
 
     return (
         <>
@@ -194,7 +179,9 @@ export default function GithubProjects() {
                     ))}
                 </div>
 
-                {filteredProjects.length > 0 && (
+                {filteredProjects.length === 0 ? (
+                    <p className={surfaceClasses.insetText}>{t("github_projects_page.empty")}</p>
+                ) : (
                     <>
                         <CollectionToolbar
                             page={page}
@@ -212,7 +199,7 @@ export default function GithubProjects() {
                                     aria-labelledby={`${project.id}-title`}
                                     className="h-full gap-4"
                                 >
-                                    <CardContent className="flex h-full flex-col gap-4 p-0">
+                                    <CardContent>
                                         <div className="flex flex-wrap items-center gap-2">
                                             <span className={surfaceClasses.metaBadge}>
                                                 {getCategoryLabel(t, project.category)}

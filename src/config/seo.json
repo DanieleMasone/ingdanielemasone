@@ -26,6 +26,12 @@
     "de": "de_DE",
     "es": "es_ES"
   },
+  "fallback": {
+    "path": "/404",
+    "pageKey": "notFound",
+    "robots": "noindex, follow",
+    "sitemap": false
+  },
   "routes": [
     {
       "path": "/",

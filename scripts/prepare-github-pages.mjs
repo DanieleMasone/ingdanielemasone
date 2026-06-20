@@ -231,7 +231,8 @@ export const buildRobots = ({config}) => [
 ].join("\n");
 
 /**
- * Writes route-specific HTML files, sitemap, and robots artifacts into `dist`.
+ * Writes route-specific HTML files, a GitHub Pages `404.html` fallback,
+ * sitemap, and robots artifacts into `dist`.
  *
  * @returns {Promise<void>}
  */
@@ -254,6 +255,17 @@ export const prepareGithubPages = async () => {
         await fs.mkdir(path.dirname(outputPath), {recursive: true});
         await fs.writeFile(outputPath, routeHtml, "utf8");
     }));
+
+    if (config.fallback) {
+        const fallbackHtml = injectSeoBlock({
+            html: templateHtml,
+            config,
+            route: config.fallback,
+            translations
+        });
+
+        await fs.writeFile(path.join(distDir, "404.html"), fallbackHtml, "utf8");
+    }
 
     const sitemap = buildSitemap({config});
     const robots = buildRobots({config});

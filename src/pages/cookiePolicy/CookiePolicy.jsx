@@ -3,6 +3,7 @@ import {useTranslation} from "react-i18next";
 import {SeoHead} from "@/components/seoHead/SeoHead";
 import clsx from "clsx";
 import {interactiveClasses} from "@/styles/commonClasses";
+import {LegalDocument, LegalSection} from "@/components/ui/legalDocument/LegalDocument";
 
 /**
  * CookiePolicy component renders the cookie policy article content.
@@ -28,17 +29,16 @@ export default function CookiePolicy() {
         <>
             <SeoHead pageKey="cookie" path="/cookie-policy"/>
 
-            <article
-                className="max-w-4xl mx-auto p-8 bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-300 min-h-screen">
-                <h1 className="text-4xl font-bold mb-6">{t("cookie.title")}</h1>
+            <LegalDocument
+                title={t("cookie.title")}
+                lastUpdated={`${t("cookie.last_updated")}: ${t("privacy.last_date_updated")}`}
+            >
 
-                <section className="mb-8">
-                    <h2 className="text-2xl font-semibold mb-2">{t("cookie.what_title")}</h2>
+                <LegalSection title={t("cookie.what_title")}>
                     <p>{t("cookie.what_text")}</p>
-                </section>
+                </LegalSection>
 
-                <section className="mb-8">
-                    <h2 className="text-2xl font-semibold mb-2">{t("cookie.types_title")}</h2>
+                <LegalSection title={t("cookie.types_title")}>
                     <ul className="list-disc pl-6 space-y-2">
                         <li>
                             <strong>{t("cookie.technical_title")}:</strong> {t("cookie.technical_text")}
@@ -50,15 +50,13 @@ export default function CookiePolicy() {
                             <strong>{t("cookie.profiling_title")}:</strong> {t("cookie.profiling_text")}
                         </li>
                     </ul>
-                </section>
+                </LegalSection>
 
-                <section className="mb-8">
-                    <h2 className="text-2xl font-semibold mb-2">{t("cookie.consent_title")}</h2>
+                <LegalSection title={t("cookie.consent_title")}>
                     <p>{t("cookie.consent_text")}</p>
-                </section>
+                </LegalSection>
 
-                <section className="mb-8">
-                    <h2 className="text-2xl font-semibold mb-2">{t("cookie.manage_title")}</h2>
+                <LegalSection title={t("cookie.manage_title")}>
                     <p>{t("cookie.manage_text")}</p>
                     <ul className="list-disc pl-6 space-y-1 mt-2">
                         <li><a className={linkClass}
@@ -78,10 +76,9 @@ export default function CookiePolicy() {
                                rel="noopener noreferrer"
                                target="_blank">Edge</a></li>
                     </ul>
-                </section>
+                </LegalSection>
 
-                <section className="mb-8">
-                    <h2 className="text-2xl font-semibold mb-2">{t("cookie.rights_title")}</h2>
+                <LegalSection title={t("cookie.rights_title")}>
                     <p>{t("cookie.rights_text")}</p>
                     <p className="mt-2">
                         {t("cookie.contact_text")}{" "}
@@ -90,13 +87,8 @@ export default function CookiePolicy() {
                             masone.daniele@gmail.com
                         </a>
                     </p>
-                </section>
-
-                <p
-                    className="border-t border-gray-300 dark:border-gray-700 pt-4 text-sm text-gray-500 dark:text-gray-600 text-center">
-                    {t("cookie.last_updated")}: {t("privacy.last_date_updated")}
-                </p>
-            </article>
+                </LegalSection>
+            </LegalDocument>
         </>
     );
 }

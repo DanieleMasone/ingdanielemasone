@@ -14,6 +14,7 @@ Vitest covers:
 - SEO helper behavior;
 - i18n-sensitive rendering;
 - pagination and collection helpers;
+- shared asynchronous data lifecycle, including retry and stale-request handling;
 - build scripts where practical.
 
 Run the full suite once with:

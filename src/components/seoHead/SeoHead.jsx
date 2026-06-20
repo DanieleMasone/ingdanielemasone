@@ -40,6 +40,7 @@ const getRouteConfig = (pageKey, path) => {
 
     return seoConfig.routes.find((route) => route.pageKey === pageKey && route.path === normalizedPath)
         || seoConfig.routes.find((route) => route.path === normalizedPath)
+        || (seoConfig.fallback?.pageKey === pageKey ? seoConfig.fallback : null)
         || {};
 };
 

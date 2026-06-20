@@ -1,5 +1,5 @@
 import {useTranslation} from "react-i18next";
-import React, {useEffect, useMemo, useState} from "react";
+import React, {useMemo, useState} from "react";
 import {Card} from "@/components/ui/card/Card";
 import {CardContent} from "@/components/ui/cardContent/CardContent";
 import {PageSection} from "@/components/ui/pageSection/PageSection";
@@ -14,6 +14,7 @@ import {ErrorState} from "@/components/errorState/ErrorState";
 import clsx from "clsx";
 import {layoutClasses, surfaceClasses} from "@/styles/commonClasses";
 import {Building2, CalendarDays} from "lucide-react";
+import {usePortfolioData} from "@/hooks/usePortfolioData";
 
 /**
  * Experience route for the portfolio timeline.
@@ -134,24 +135,8 @@ export default function Experience() {
     const {t} = useTranslation();
     const currentYear = useMemo(() => new Date().getFullYear(), []);
 
-    const [experiences, setExperiences] = useState([]);
     const [page, setPage] = useState(1);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    const loadExperiences = () => {
-        setLoading(true);
-        setError(null);
-
-        getExperiences()
-            .then(setExperiences)
-            .catch(setError)
-            .finally(() => setLoading(false));
-    };
-
-    useEffect(() => {
-        loadExperiences();
-    }, []);
+    const {data: experiences, loading, error, retry} = usePortfolioData(getExperiences, []);
 
     const timelineExperiences = useMemo(
         () => sortExperiencesByRecency(experiences, currentYear),
@@ -171,7 +156,7 @@ export default function Experience() {
     );
 
     if (loading) return <Loading/>;
-    if (error) return <ErrorState message={t("error_generic")} onRetry={loadExperiences}/>;
+    if (error) return <ErrorState message={t("error_generic")} onRetry={retry}/>;
 
     return (
         <>
@@ -217,7 +202,7 @@ export default function Experience() {
                                             aria-labelledby={titleId}
                                             className={clsx("h-full", isOngoing && surfaceClasses.activeTimelineCard)}
                                         >
-                                            <CardContent className="flex h-full flex-col gap-4 p-0">
+                                            <CardContent>
                                                 <header
                                                     className="flex flex-col gap-3 border-b border-gray-200/60 pb-3 dark:border-gray-700/60">
                                                     <div className="flex flex-wrap items-center gap-2">

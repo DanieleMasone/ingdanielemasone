@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from "react";
+import React, {useMemo, useState} from "react";
 import {useTranslation} from "react-i18next";
 import {Award, Building2, CalendarDays, ExternalLink} from "lucide-react";
 import clsx from "clsx";
@@ -13,6 +13,7 @@ import {getCertifications} from "@/services/portfolioService";
 import {Loading} from "@/components/loading/Loading";
 import {ErrorState} from "@/components/errorState/ErrorState";
 import {interactiveClasses, layoutClasses, surfaceClasses} from "@/styles/commonClasses";
+import {usePortfolioData} from "@/hooks/usePortfolioData";
 
 const ITEMS_PER_PAGE = 6;
 const YEAR_PATTERN = /\b(20\d{2}|19\d{2})\b/;
@@ -50,23 +51,7 @@ export const sortCertificationsByDate = (certifications) => (
 export default function Certifications() {
     const {t} = useTranslation();
     const [page, setPage] = useState(1);
-    const [certifications, setCertifications] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    const loadCertifications = () => {
-        setLoading(true);
-        setError(null);
-
-        getCertifications()
-            .then(setCertifications)
-            .catch(setError)
-            .finally(() => setLoading(false));
-    };
-
-    useEffect(() => {
-        loadCertifications();
-    }, []);
+    const {data: certifications, loading, error, retry} = usePortfolioData(getCertifications, []);
 
     const sortedCertifications = useMemo(
         () => sortCertificationsByDate(certifications),
@@ -83,7 +68,7 @@ export default function Certifications() {
     );
 
     if (loading) return <Loading/>;
-    if (error) return <ErrorState message={t("error_generic")} onRetry={loadCertifications}/>;
+    if (error) return <ErrorState message={t("error_generic")} onRetry={retry}/>;
 
     return (
         <>
@@ -117,7 +102,7 @@ export default function Certifications() {
                                         aria-labelledby={titleId}
                                         className="h-full min-w-0"
                                     >
-                                        <CardContent className="flex h-full min-w-0 flex-col gap-4 p-0">
+                                        <CardContent className="min-w-0">
                                             <header className="flex min-w-0 gap-3">
                                                 <span className={surfaceClasses.credentialIcon}>
                                                     <Award className="h-5 w-5" aria-hidden="true"/>
