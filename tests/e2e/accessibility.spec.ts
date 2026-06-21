@@ -50,3 +50,38 @@ test('trading chart exposes a non-visual data table fallback', async ({page}) =>
   await expect(page.getByRole('img', {name: /Performance - Vista Mensile/i})).toBeVisible();
   await expect(page.getByRole('table', {name: /Performance - Vista Mensile/i})).toBeAttached();
 });
+
+test('changed legal and disclosure surfaces reflow without horizontal overflow', async ({page}) => {
+  await page.emulateMedia({reducedMotion: 'reduce'});
+
+  const routes = ['privacy/', 'cookie-policy/', 'courses/', 'trading/'];
+  const viewports = [
+    {width: 1440, height: 900},
+    {width: 768, height: 1024},
+    {width: 390, height: 844},
+  ];
+
+  for (const viewport of viewports) {
+    await page.setViewportSize(viewport);
+
+    for (const route of routes) {
+      await page.goto(route);
+      await expect(page.locator('main')).toBeVisible();
+
+      const overflow = await page.evaluate(() => (
+        document.documentElement.scrollWidth - document.documentElement.clientWidth
+      ));
+      expect(overflow).toBeLessThanOrEqual(1);
+    }
+  }
+
+  await page.setViewportSize({width: 640, height: 900});
+  await page.goto('privacy/');
+  await page.addStyleTag({content: 'html { font-size: 200% !important; }'});
+
+  const enlargedTextOverflow = await page.evaluate(() => (
+    document.documentElement.scrollWidth - document.documentElement.clientWidth
+  ));
+  expect(enlargedTextOverflow).toBeLessThanOrEqual(1);
+  await expect(page.getByRole('navigation', {name: /Informazioni legali/i})).toBeVisible();
+});

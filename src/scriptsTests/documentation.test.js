@@ -12,7 +12,8 @@ const tutorialIds = [
     "architecture",
     "content-maintenance",
     "quality-and-testing",
-    "seo-and-deployment"
+    "seo-and-deployment",
+    "compliance-and-content-review"
 ];
 
 const markdownFiles = [
@@ -47,7 +48,8 @@ describe("documentation source configuration", () => {
                 "architecture",
                 "content-maintenance",
                 "quality-and-testing",
-                "seo-and-deployment"
+                "seo-and-deployment",
+                "compliance-and-content-review"
             ]
         });
 

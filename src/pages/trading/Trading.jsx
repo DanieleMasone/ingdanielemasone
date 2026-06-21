@@ -63,10 +63,16 @@ export default function Trading() {
                         <ButtonLink href="https://etoro.tw/44k4LJg" color="blue">
                             {t("trading_signup")}
                         </ButtonLink>
+                        <p className="max-w-sm text-center text-xs leading-5 text-gray-600 dark:text-gray-400 lg:text-right">
+                            {t("trading_referral_disclosure")}
+                        </p>
                     </div>
                 </div>
 
                 <div className="w-full">
+                    <p className={clsx(surfaceClasses.insetText, "mb-4 text-sm leading-6")}>
+                        {t("trading_data_period")}
+                    </p>
                     <Suspense fallback={<Loading/>}>
                         <TradingPerformanceChart
                             startYear={tradingPerformance.startYear}

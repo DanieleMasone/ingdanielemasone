@@ -41,12 +41,13 @@ describe('LanguageSwitcher', () => {
         return screen.getByRole('group', {name: /available languages/i});
     };
 
-    test('renders current language button with flag and code', () => {
+    test('renders current language button without remote flag images', () => {
         render(<LanguageSwitcher/>);
         const button = screen.getByRole('button', {name: /select language: english/i});
         expect(button).toBeInTheDocument();
         expect(button).toHaveTextContent(/EN/i);
-        expect(button.querySelector('img')).toBeInTheDocument();
+        expect(button.querySelector('img')).not.toBeInTheDocument();
+        expect(button.querySelector('svg')).toBeInTheDocument();
     });
 
     test('aria-expanded toggles correctly on button click', () => {
@@ -80,7 +81,7 @@ describe('LanguageSwitcher', () => {
         await waitForElementToBeRemoved(() => screen.queryByRole('group', {name: /available languages/i}));
     });
 
-    test('dropdown shows language options with flags and labels', () => {
+    test('dropdown shows local language codes and labels', () => {
         render(<LanguageSwitcher/>);
 
         const languageGroup = openLanguageGroup();
@@ -103,6 +104,7 @@ describe('LanguageSwitcher', () => {
         expect(screen.getByText(/Fran/i)).toBeInTheDocument();
         expect(screen.getByText('Deutsch')).toBeInTheDocument();
         expect(screen.getByText(/Espa/i)).toBeInTheDocument();
+        expect(languageGroup.querySelector('img')).not.toBeInTheDocument();
     });
 
     test('changes language when selecting a different option', async () => {

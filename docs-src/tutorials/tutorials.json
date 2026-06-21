@@ -5,7 +5,8 @@
       "architecture",
       "content-maintenance",
       "quality-and-testing",
-      "seo-and-deployment"
+      "seo-and-deployment",
+      "compliance-and-content-review"
     ]
   },
   "architecture": {
@@ -19,5 +20,8 @@
   },
   "seo-and-deployment": {
     "title": "SEO and GitHub Pages Deployment"
+  },
+  "compliance-and-content-review": {
+    "title": "Privacy, Accessibility and Content Review"
   }
 }

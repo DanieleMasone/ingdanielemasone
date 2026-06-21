@@ -1,67 +1,53 @@
-import React from 'react';
-import {render, screen} from '@testing-library/react';
-import CookiePolicy from './CookiePolicy';
-import {MemoryRouter} from 'react-router-dom';
-import {vi} from 'vitest';
+import React from "react";
+import {render, screen} from "@testing-library/react";
+import {MemoryRouter} from "react-router-dom";
+import {vi} from "vitest";
+import CookiePolicy from "./CookiePolicy";
 
-// Mock of react-i18next with t() returning fixed texts
-vi.mock('react-i18next', () => ({
+vi.mock("react-i18next", () => ({
     useTranslation: () => ({
-        t: (key) => {
-            const translations = {
-                'cookie.title': 'Cookie Policy',
-                'cookie.what_title': 'What cookies are',
-                'cookie.types_title': 'Types of cookies',
-                'cookie.consent_title': 'Consent',
-                'cookie.manage_title': 'Manage cookies',
-                'cookie.rights_title': 'Your rights',
-                'cookie.technical_title': 'Technical cookies',
-                'cookie.technical_text': 'Technical cookie description',
-                'cookie.analytics_title': 'Analytics cookies',
-                'cookie.analytics_text': 'Analytics cookie description',
-                'cookie.profiling_title': 'Profiling cookies',
-                'cookie.profiling_text': 'Profiling cookie description',
-                'cookie.consent_text': 'Consent text here',
-                'cookie.manage_text': 'Manage cookies instructions',
-                'cookie.rights_text': 'Your rights description',
-                'cookie.contact_text': 'Contact us at',
-                'cookie.last_updated': 'Last updated',
-                'privacy.last_date_updated': 'June 2025',
-            };
-            return translations[key] || key;
-        },
+        t: (key) => ({
+            "cookie.title": "Cookie and Local Storage Policy",
+            "cookie.scope_title": "Scope",
+            "cookie.scope_text": "This portfolio does not set HTTP cookies.",
+            "cookie.storage_title": "Storage used by this site",
+            "cookie.language_storage_text": "Stores the selected language.",
+            "cookie.theme_storage_text": "Stores the selected theme.",
+            "cookie.tracking_title": "Analytics and profiling",
+            "cookie.tracking_text": "No analytics, advertising, profiling or fingerprinting is loaded.",
+            "cookie.manage_title": "Managing preferences",
+            "cookie.manage_text": "Clear site data to remove both preferences.",
+            "cookie.external_title": "External links",
+            "cookie.external_text": "Third parties are contacted only after following a link.",
+            "cookie.contact_text": "For questions, write to",
+            "cookie.last_updated": "Last updated",
+            "privacy.last_date_updated": "21 June 2026",
+        }[key] || key),
     }),
 }));
 
-describe('CookiePolicy component', () => {
+describe("CookiePolicy", () => {
     beforeEach(() => {
         render(
-            <MemoryRouter initialEntries={['/cookiePolicy']}>
+            <MemoryRouter initialEntries={["/cookie-policy/"]}>
                 <CookiePolicy/>
             </MemoryRouter>
         );
     });
 
-    test('renders all major section headings', () => {
-        const headings = [
-            /what cookies are/i,
-            /types of cookies/i,
-            /consent/i,
-            /manage cookies/i,
-            /your rights/i,
-        ];
-        headings.forEach((headingRegex) => {
-            expect(screen.getByRole('heading', {name: headingRegex})).toBeInTheDocument();
-        });
+    test("renders the exact local-storage inventory without consent boilerplate", () => {
+        expect(screen.getByRole("heading", {level: 1, name: /Cookie and Local Storage Policy/i})).toBeInTheDocument();
+        expect(screen.getByText("i18nextLng")).toBeInTheDocument();
+        expect(screen.getByText("theme")).toBeInTheDocument();
+        expect(screen.getByText(/does not set HTTP cookies/i)).toBeInTheDocument();
+        expect(screen.queryByText(/accept or refuse/i)).not.toBeInTheDocument();
     });
 
-    test('renders contact email link', () => {
-        const emailLink = screen.getByRole('link', {name: /masone.daniele@gmail.com/i});
-        expect(emailLink).toHaveAttribute('href', 'mailto:masone.daniele@gmail.com');
+    test("renders the update date and contact mechanism", () => {
+        expect(screen.getByText(/21 June 2026/i)).toBeInTheDocument();
+        expect(screen.getByRole("link", {name: /masone.daniele@gmail.com/i})).toHaveAttribute(
+            "href",
+            "mailto:masone.daniele@gmail.com"
+        );
     });
-
-    test('renders last updated footer text', () => {
-        expect(screen.getByText(/last updated/i).textContent.toLowerCase()).toContain('june 2025');
-    });
-
 });

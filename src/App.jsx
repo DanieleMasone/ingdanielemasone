@@ -4,7 +4,6 @@ import './i18n/i18n';
 import {Header} from './components/header/Header';
 import {Footer} from './components/footer/Footer';
 import {NotFound} from './components/notFound/NotFound';
-import {CookieBanner} from './components/ui/cookieBanner/CookieBanner';
 import {Loading} from "@/components/loading/Loading";
 import {useTranslation} from "react-i18next";
 
@@ -22,7 +21,7 @@ const CookiePolicy = lazy(() => import('./pages/cookiePolicy/CookiePolicy'));
 /**
  * Root layout for the portfolio application.
  *
- * Provides the persistent header, footer, cookie banner, route-level lazy loading,
+ * Provides the persistent header, footer, route-level lazy loading,
  * and a keyboard-accessible skip link to the main page content.
  *
  * @component
@@ -59,7 +58,6 @@ export default function App() {
                 </Suspense>
             </main>
             <Footer/>
-            <CookieBanner/>
         </div>
     );
 }

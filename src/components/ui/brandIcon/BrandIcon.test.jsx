@@ -3,7 +3,7 @@ import {describe, test, expect} from "vitest";
 import {BrandIcon} from "./BrandIcon";
 
 const mockIcon = {
-    svg: '<path d="M0 0h24v24H0z" />',
+    path: 'M0 0h24v24H0z',
 };
 
 describe("BrandIcon", () => {
@@ -13,7 +13,7 @@ describe("BrandIcon", () => {
         expect(container.firstChild).toBeNull();
     });
 
-    test("renders nothing if icon.svg is missing", () => {
+    test("renders nothing if icon.path is missing", () => {
         const {container} = render(<BrandIcon icon={{}}/>);
         expect(container.firstChild).toBeNull();
     });
@@ -85,12 +85,13 @@ describe("BrandIcon", () => {
         expect(svg).not.toHaveAttribute("aria-label");
     });
 
-    test("injects svg inner markup", () => {
+    test("renders the trusted path without HTML injection", () => {
         const {container} = render(
             <BrandIcon icon={mockIcon} color="black"/>
         );
 
         const path = container.querySelector("path");
         expect(path).toBeInTheDocument();
+        expect(path).toHaveAttribute("d", mockIcon.path);
     });
 });

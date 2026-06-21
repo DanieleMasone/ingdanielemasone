@@ -1,17 +1,9 @@
 import React, {useEffect, useId, useRef, useState} from "react";
 import {useTranslation} from "react-i18next";
-import {Check, ChevronDown} from "lucide-react";
+import {Check, ChevronDown, Languages} from "lucide-react";
 import {AnimatePresence, motion} from "framer-motion";
 import clsx from "clsx";
 import {interactiveClasses, layoutClasses} from "@/styles/commonClasses";
-
-const flags = {
-    en: "https://flagcdn.com/w20/gb.png",
-    it: "https://flagcdn.com/w20/it.png",
-    fr: "https://flagcdn.com/w20/fr.png",
-    de: "https://flagcdn.com/w20/de.png",
-    es: "https://flagcdn.com/w20/es.png",
-};
 
 const languageLabels = {
     en: "English",
@@ -39,7 +31,7 @@ export function LanguageSwitcher() {
     const menuId = useId();
 
     const normalizedLanguage = i18n.language?.split("-")[0] ?? "en";
-    const currentLang = Object.prototype.hasOwnProperty.call(flags, normalizedLanguage) ? normalizedLanguage : "en";
+    const currentLang = Object.prototype.hasOwnProperty.call(languageLabels, normalizedLanguage) ? normalizedLanguage : "en";
     const currentLanguageLabel = languageLabels[currentLang];
     const selectLanguageLabel = t("language_switcher.select_language");
     const optionsLabel = t("language_switcher.options_label");
@@ -85,7 +77,7 @@ export function LanguageSwitcher() {
                 )}
                 type="button"
             >
-                <img src={flags[currentLang]} alt="" aria-hidden="true" className="w-5 h-auto rounded-sm"/>
+                <Languages className="h-5 w-5" aria-hidden="true"/>
                 <span className="uppercase">{currentLang}</span>
                 <ChevronDown
                     aria-hidden="true"
@@ -108,7 +100,7 @@ export function LanguageSwitcher() {
                         id={menuId}
                         aria-label={optionsLabel}
                     >
-                        {Object.entries(flags).map(([lang, flagUrl]) => {
+                        {Object.keys(languageLabels).map((lang) => {
                             const isActive = lang === currentLang;
                             return (
                                 <button
@@ -124,8 +116,12 @@ export function LanguageSwitcher() {
                                 >
                                     <span
                                         className={`inline-block w-1 h-6 rounded-r-md mr-3 ${isActive ? "bg-blue-600 dark:bg-blue-400" : "bg-transparent"}`}/>
-                                    <img src={flagUrl} alt="" aria-hidden="true"
-                                         className="w-5 h-auto rounded-sm mr-3"/>
+                                    <span
+                                        aria-hidden="true"
+                                        className="mr-3 w-6 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400"
+                                    >
+                                        {lang}
+                                    </span>
                                     <span className="flex-1 text-left">{languageLabels[lang]}</span>
                                     {isActive && (
                                         <>

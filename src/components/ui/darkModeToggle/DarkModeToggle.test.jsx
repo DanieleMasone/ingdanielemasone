@@ -60,7 +60,7 @@ describe("DarkModeToggle component", () => {
         expect(button).toHaveAccessibleName("Switch to light mode");
         expect(button).toHaveAttribute("aria-pressed", "true");
         expect(document.documentElement).toHaveClass("dark");
-        expect(localStorage.getItem("theme")).toBe("dark");
+        expect(localStorage.getItem("theme")).toBeNull();
     });
 
     it("keeps the stored preference ahead of the system preference", () => {

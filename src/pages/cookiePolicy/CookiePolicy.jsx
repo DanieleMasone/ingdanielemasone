@@ -6,20 +6,15 @@ import {interactiveClasses} from "@/styles/commonClasses";
 import {LegalDocument, LegalSection} from "@/components/ui/legalDocument/LegalDocument";
 
 /**
- * CookiePolicy component renders the cookie policy article content.
+ * Cookie and local-storage notice for the portfolio.
  *
- * It uses the i18next translation hook to display localized text sections about:
- * - What cookies are
- * - Types of cookies used
- * - Consent information
- * - How to manage cookies in different browsers
- * - User rights related to cookies
- *
- * The component also includes external links for cookie management instructions and a contact email.
+ * Documents the exact browser storage used for language and theme preferences,
+ * the absence of app-set tracking cookies, and how visitors can clear their
+ * locally stored choices.
  *
  * @component
  * @module pages/cookiePolicy/CookiePolicy
- * @returns {JSX.Element} The rendered cookie policy page.
+ * @returns {JSX.Element} The localized storage notice.
  */
 export default function CookiePolicy() {
     const {t} = useTranslation();
@@ -33,57 +28,34 @@ export default function CookiePolicy() {
                 title={t("cookie.title")}
                 lastUpdated={`${t("cookie.last_updated")}: ${t("privacy.last_date_updated")}`}
             >
-
-                <LegalSection title={t("cookie.what_title")}>
-                    <p>{t("cookie.what_text")}</p>
+                <LegalSection title={t("cookie.scope_title")}>
+                    <p>{t("cookie.scope_text")}</p>
                 </LegalSection>
 
-                <LegalSection title={t("cookie.types_title")}>
-                    <ul className="list-disc pl-6 space-y-2">
+                <LegalSection title={t("cookie.storage_title")}>
+                    <ul className="list-disc space-y-2 pl-6">
                         <li>
-                            <strong>{t("cookie.technical_title")}:</strong> {t("cookie.technical_text")}
+                            <strong><code>i18nextLng</code>:</strong> {t("cookie.language_storage_text")}
                         </li>
                         <li>
-                            <strong>{t("cookie.analytics_title")}:</strong> {t("cookie.analytics_text")}
-                        </li>
-                        <li>
-                            <strong>{t("cookie.profiling_title")}:</strong> {t("cookie.profiling_text")}
+                            <strong><code>theme</code>:</strong> {t("cookie.theme_storage_text")}
                         </li>
                     </ul>
                 </LegalSection>
 
-                <LegalSection title={t("cookie.consent_title")}>
-                    <p>{t("cookie.consent_text")}</p>
+                <LegalSection title={t("cookie.tracking_title")}>
+                    <p>{t("cookie.tracking_text")}</p>
                 </LegalSection>
 
                 <LegalSection title={t("cookie.manage_title")}>
                     <p>{t("cookie.manage_text")}</p>
-                    <ul className="list-disc pl-6 space-y-1 mt-2">
-                        <li><a className={linkClass}
-                               href="https://support.google.com/chrome/answer/95647"
-                               rel="noopener noreferrer"
-                               target="_blank">Chrome</a></li>
-                        <li><a className={linkClass}
-                               href="https://support.mozilla.org/kb/enable-and-disable-cookies-website-preferences"
-                               rel="noopener noreferrer"
-                               target="_blank">Firefox</a></li>
-                        <li><a className={linkClass}
-                               href="https://support.apple.com/en-us/HT201265"
-                               rel="noopener noreferrer"
-                               target="_blank">Safari</a></li>
-                        <li><a className={linkClass}
-                               href="https://support.microsoft.com/help/17442"
-                               rel="noopener noreferrer"
-                               target="_blank">Edge</a></li>
-                    </ul>
                 </LegalSection>
 
-                <LegalSection title={t("cookie.rights_title")}>
-                    <p>{t("cookie.rights_text")}</p>
+                <LegalSection title={t("cookie.external_title")}>
+                    <p>{t("cookie.external_text")}</p>
                     <p className="mt-2">
                         {t("cookie.contact_text")}{" "}
-                        <a href="mailto:masone.daniele@gmail.com"
-                           className={linkClass}>
+                        <a href="mailto:masone.daniele@gmail.com" className={linkClass}>
                             masone.daniele@gmail.com
                         </a>
                     </p>

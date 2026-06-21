@@ -7,6 +7,7 @@ import {ErrorState} from "@/components/errorState/ErrorState";
 import clsx from "clsx";
 import {interactiveClasses} from "@/styles/commonClasses";
 import {usePortfolioData} from "@/hooks/usePortfolioData";
+import {Link} from "react-router-dom";
 
 /**
  * Portfolio footer with social links, resource links, and localized labels.
@@ -16,7 +17,7 @@ import {usePortfolioData} from "@/hooks/usePortfolioData";
  *
  * @component
  * @module components/footer/Footer
- * @returns {JSX.Element} Footer with social icons, documentation links, and accessible navigation labels.
+ * @returns {JSX.Element} Footer with social, legal, and developer-resource navigation.
  */
 export function Footer() {
     const {t} = useTranslation();
@@ -83,6 +84,25 @@ export function Footer() {
                 <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-400 text-center select-none mt-2">
                     {t("footer_copyright", {year: currentYear})}
                 </p>
+
+                <nav
+                    aria-label={t("footer_legal_navigation")}
+                    className="mt-2 text-center text-xs text-gray-700 dark:text-gray-400"
+                >
+                    <Link
+                        to="/privacy/"
+                        className={clsx(interactiveClasses.textLink, interactiveClasses.focusRing, "mx-1 rounded")}
+                    >
+                        {t("privacy.title")}
+                    </Link>
+                    <span aria-hidden="true" className="mx-1">|</span>
+                    <Link
+                        to="/cookie-policy/"
+                        className={clsx(interactiveClasses.textLink, interactiveClasses.focusRing, "mx-1 rounded")}
+                    >
+                        {t("cookie.title")}
+                    </Link>
+                </nav>
 
                 {/* DEV LINKS */}
                 <nav

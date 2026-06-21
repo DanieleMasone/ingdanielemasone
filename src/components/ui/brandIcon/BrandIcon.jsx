@@ -1,11 +1,11 @@
 /**
- * BrandIcon renders an SVG icon from the simple-icons set or custom SVG data.
+ * BrandIcon renders a trusted SVG path from the simple-icons set or local icon data.
  *
  * @component
  * @module components/ui/brandIcon/BrandIcon
  *
  * @param {object} props - Component props.
- * @param {object} props.icon - Icon object containing `svg` string.
+ * @param {object} props.icon - Icon object containing a static SVG `path` string.
  * @param {string} props.color - Fill color for the SVG.
  * @param {string} [props.className] - Additional CSS classes.
  * @param {number} [props.size=24] - Width and height of the icon.
@@ -13,7 +13,7 @@
  * @returns {React.JSX.Element} SVG element or null if no valid icon.
  */
 export function BrandIcon({icon, color, className, size = 24, title}) {
-    if (!icon || !icon.svg) return null;
+    if (!icon || !icon.path) return null;
 
     return (
         <svg
@@ -27,7 +27,8 @@ export function BrandIcon({icon, color, className, size = 24, title}) {
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden={title ? undefined : "true"}
             aria-label={title || undefined}
-            dangerouslySetInnerHTML={{__html: icon.svg}}
-        />
+        >
+            <path d={icon.path}/>
+        </svg>
     );
 }

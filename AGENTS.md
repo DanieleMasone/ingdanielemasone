@@ -151,3 +151,10 @@ Before considering any task complete, always evaluate and apply, when needed:
 - Prefer stable semantic selectors: roles, labels, landmarks, headings, metadata, and URLs.
 - Avoid brittle DOM selectors, broad visual snapshots, and unnecessary `data-testid` attributes.
 - Run targeted E2E specs first when possible, then broader suites for shared or deployment-facing changes.
+
+## Privacy and Public-Content Rules
+
+- Do not add analytics, tracking, third-party embeds, remote media, forms, or browser storage without updating the factual data-flow inventory, policies, and focused tests.
+- Keep legal notices aligned with runtime behavior; never invent owner details, legal bases, retention periods, transfer safeguards, licences, authorizations, or commercial relationships.
+- Trading, broker, referral, testimonial, certification, and public-asset changes require the corresponding disclosure or owner-review checklist in `docs-src/tutorials/compliance-and-content-review.md`.
+- Treat WCAG 2.2 AA as an engineering target, not a legal certification, and do not create an official accessibility declaration without confirmed statutory scope.

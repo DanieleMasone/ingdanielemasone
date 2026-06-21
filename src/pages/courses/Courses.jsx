@@ -57,6 +57,11 @@ export default function Courses() {
 
             <PageSection title={t("courses_page.title")}>
                 <p className={layoutClasses.sectionIntro}>{t("courses_page.description")}</p>
+                {courses.some((course) => course.payLink) && (
+                    <p className={clsx(surfaceClasses.insetText, "text-sm leading-6")}>
+                        {t("courses_page.commercial_disclosure")}
+                    </p>
+                )}
 
                 {courses.length === 0 ? (
                     <p className={surfaceClasses.insetText}>{t("courses_page.empty")}</p>

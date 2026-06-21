@@ -4,6 +4,7 @@ import userEvent from "@testing-library/user-event";
 import {Footer} from "./Footer";
 import {vi} from 'vitest';
 import * as service from "@/services/portfolioService";
+import {MemoryRouter} from "react-router-dom";
 
 vi.mock("react-i18next", () => ({
     useTranslation: () => ({
@@ -12,6 +13,9 @@ vi.mock("react-i18next", () => ({
                 footer_copyright: "© 2025 Daniele Masone",
                 footer_social_navigation: "Social links",
                 footer_developer_resources: "Developer resources",
+                footer_legal_navigation: "Legal information",
+                "privacy.title": "Privacy Policy",
+                "cookie.title": "Cookie and Local Storage Policy",
                 error_generic: "Generic error",
             };
             return translations[key] || key;
@@ -19,13 +23,13 @@ vi.mock("react-i18next", () => ({
     }),
 }));
 
-vi.mock("../brandIcon/BrandIcon", () => ({
-    BrandIcon: ({title}) => (
+vi.mock("@/components/ui/brandIcon/BrandIcon", () => ({
+    BrandIcon: ({title, size = 24}) => (
         <svg
             role="img"
             viewBox="0 0 24 24"
-            width="26"
-            height="26"
+            width={size}
+            height={size}
             data-testid="brand-icon"
             aria-label={title}
         />
@@ -56,7 +60,11 @@ const mockLinks = [
 ];
 
 function renderFooter() {
-    return render(<Footer/>);
+    return render(
+        <MemoryRouter>
+            <Footer/>
+        </MemoryRouter>
+    );
 }
 
 describe("Footer – async UI", () => {
@@ -245,6 +253,18 @@ describe("Footer – async UI", () => {
             expect(link.getAttribute("rel")).toContain("noreferrer");
             expect(link.getAttribute("rel")).toContain("nofollow");
         });
+    });
+
+    test("renders persistent internal legal links", async () => {
+        vi.spyOn(service, "getLinks").mockResolvedValueOnce(mockLinks);
+
+        renderFooter();
+
+        const legalNavigation = await screen.findByRole("navigation", {name: "Legal information"});
+        expect(within(legalNavigation).getByRole("link", {name: "Privacy Policy"}))
+            .toHaveAttribute("href", "/privacy/");
+        expect(within(legalNavigation).getByRole("link", {name: "Cookie and Local Storage Policy"}))
+            .toHaveAttribute("href", "/cookie-policy/");
     });
 
     test("docs and coverage links are reachable via keyboard", async () => {

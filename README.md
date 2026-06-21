@@ -98,6 +98,7 @@ Then open `http://localhost:4173/ingdanielemasone/`.
 - [Content and Localization Maintenance](https://danielemasone.github.io/ingdanielemasone/docs/tutorial-content-maintenance.html)
 - [Quality and Testing](https://danielemasone.github.io/ingdanielemasone/docs/tutorial-quality-and-testing.html)
 - [SEO and GitHub Pages Deployment](https://danielemasone.github.io/ingdanielemasone/docs/tutorial-seo-and-deployment.html)
+- [Privacy, Accessibility and Content Review](https://danielemasone.github.io/ingdanielemasone/docs/tutorial-compliance-and-content-review.html)
 - [Generated source documentation](https://danielemasone.github.io/ingdanielemasone/docs/)
 - [Coverage report](https://danielemasone.github.io/ingdanielemasone/test-coverage/)
 
@@ -115,6 +116,8 @@ Generated developer documentation and coverage are published for transparency, b
 
 ## License
 
-Released under the MIT License. See [LICENSE](LICENSE).
+The source code is released under the MIT License. See [LICENSE](LICENSE).
+
+The licence does not relicense personal portfolio content, photographs, testimonials, certificates, course artwork, or third-party names and marks. Those materials remain subject to their respective rights and authorizations.
 
 Copyright (c) 2026 Daniele Masone.

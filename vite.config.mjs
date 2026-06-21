@@ -37,7 +37,6 @@ export default defineConfig({
     },
     build: {
         outDir: 'dist',
-        sourcemap: true,
         rollupOptions: {
             checks: {
                 pluginTimings: false,

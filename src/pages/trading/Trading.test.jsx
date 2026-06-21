@@ -16,6 +16,8 @@ vi.mock("react-i18next", () => ({
                 disclaimer_text: "Trading involves risk. Past performance is not indicative of future results.",
                 trading_cta: "My eToro profile",
                 trading_signup: "Sign up on eToro",
+                trading_referral_disclosure: "The registration link is a referral link.",
+                trading_data_period: "Historical monthly percentages from January 2022.",
                 error_generic: "Generic error"
             };
             return translations[key] || key;
@@ -95,6 +97,7 @@ describe("Trading component", () => {
         expect(await screen.findByText(/welcome to my trading performance overview/i)).toBeInTheDocument();
         expect(await screen.findByText(/here you can find detailed metrics/i)).toBeInTheDocument();
         expect(await screen.findByText(/trading involves risk/i)).toBeInTheDocument();
+        expect(await screen.findByText(/historical monthly percentages from january 2022/i)).toBeInTheDocument();
 
         // TradingPerformanceChart
         const chart = await screen.findByTestId("mock-chart");
@@ -114,6 +117,7 @@ describe("Trading component", () => {
         expect(signup).toHaveAttribute("href", "https://etoro.tw/44k4LJg");
         expect(signup).toHaveAttribute("target", "_blank");
         expect(signup).toHaveAttribute("rel", "noopener noreferrer");
+        expect(screen.getByText(/registration link is a referral link/i)).toBeInTheDocument();
     });
 
     test("uses the responsive intro layout for desktop and mobile", async () => {

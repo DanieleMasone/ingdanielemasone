@@ -11,13 +11,9 @@ vi.mock('@/components/header/Header', () => ({
     )
 }));
 
-// Mock Footer, CookieBanner, lazy pages
+// Mock Footer and lazy pages
 vi.mock('@/components/footer/Footer', () => ({
     Footer: () => <footer data-testid="footer" role="contentinfo">Footer</footer>
-}));
-
-vi.mock('@/components/ui/cookieBanner/CookieBanner', () => ({
-    CookieBanner: () => <div data-testid="cookie-banner">Cookie Banner</div>
 }));
 
 vi.mock('@/components/loading/Loading', () => ({
@@ -89,13 +85,12 @@ describe('App.jsx', () => {
         vi.clearAllMocks();
     });
 
-    // Core layout (Header, Footer, Cookie)
+    // Core layout (Header and Footer)
     test('renders core layout components', async () => {
         renderWithRouter(['/']);
 
         expect(screen.getByTestId('header')).toBeInTheDocument();
         expect(screen.getByTestId('footer')).toBeInTheDocument();
-        expect(screen.getByTestId('cookie-banner')).toBeInTheDocument();
         expect(screen.getByRole('contentinfo')).toBeInTheDocument();
 
         await screen.findByTestId('home');

@@ -50,9 +50,9 @@ function getInitialDarkMode() {
 /**
  * DarkModeToggle switches between dark and light theme modes.
  *
- * It syncs the mode state with localStorage, falls back to the operating-system
- * color-scheme preference, updates the root `dark` class, and exposes the
- * current pressed state for assistive technologies.
+ * It uses a saved preference before the operating-system colour scheme, writes
+ * browser storage only after an explicit toggle action, updates the root
+ * `dark` class, and exposes the current pressed state to assistive technologies.
  *
  * @component
  * @module components/ui/darkModeToggle/DarkModeToggle
@@ -67,17 +67,22 @@ export function DarkModeToggle() {
         const root = window.document.documentElement;
         if (darkMode) {
             root.classList.add('dark');
-            setStoredTheme('dark');
         } else {
             root.classList.remove('dark');
-            setStoredTheme('light');
         }
     }, [darkMode]);
+
+    const handleToggle = () => {
+        const nextDarkMode = !darkMode;
+
+        setStoredTheme(nextDarkMode ? "dark" : "light");
+        setDarkMode(nextDarkMode);
+    };
 
     return (
         <button
             type="button"
-            onClick={() => setDarkMode(!darkMode)}
+            onClick={handleToggle}
             className={clsx(
                 interactiveClasses.toolbarIconButton,
                 interactiveClasses.focusRing
