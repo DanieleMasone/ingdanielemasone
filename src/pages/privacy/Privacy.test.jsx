@@ -18,6 +18,8 @@ vi.mock("react-i18next", () => ({
             "privacy.preference_data_text": "Language and theme stay in the browser.",
             "privacy.correspondence_data_title": "Correspondence",
             "privacy.correspondence_data_text": "The site has no contact form.",
+            "privacy.recommendations_data_title": "Professional recommendations",
+            "privacy.recommendations_data_text": "Displayed people can request correction or removal.",
             "privacy.hosting_title": "Hosting and GitHub",
             "privacy.hosting_text": "GitHub documents its processing in the",
             "privacy.github_privacy_link": "GitHub General Privacy Statement",
@@ -60,6 +62,7 @@ describe("Privacy", () => {
         expect(screen.getByRole("heading", {level: 1, name: "Privacy Policy"})).toBeInTheDocument();
         expect(screen.getByRole("heading", {name: "Data processed"})).toBeInTheDocument();
         expect(screen.getByText(/no contact form/i)).toBeInTheDocument();
+        expect(screen.getByText(/correction or removal/i)).toBeInTheDocument();
         expect(screen.getByText(/21 June 2026/i)).toBeInTheDocument();
     });
 

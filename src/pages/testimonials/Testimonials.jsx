@@ -74,6 +74,9 @@ export default function Testimonials() {
 
             <PageSection title={t("testimonials_page.title")}>
                 <p className={layoutClasses.sectionIntro}>{t("testimonials_page.description")}</p>
+                <p className={clsx(surfaceClasses.insetText, "max-w-3xl")}>
+                    {t("testimonials_page.source_note")}
+                </p>
 
                 {testimonials.length === 0 ? (
                     <p className={surfaceClasses.insetText}>{t("testimonials_page.empty")}</p>

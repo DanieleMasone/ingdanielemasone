@@ -2,21 +2,25 @@ import React from "react";
 import {render, screen, within} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {Footer} from "./Footer";
-import {vi} from 'vitest';
+import {vi} from "vitest";
 import * as service from "@/services/portfolioService";
 import {MemoryRouter} from "react-router-dom";
 
 vi.mock("react-i18next", () => ({
     useTranslation: () => ({
-        t: (key) => {
+        t: (key, options = {}) => {
             const translations = {
-                footer_copyright: "© 2025 Daniele Masone",
+                footer_copyright: `© ${options.year ?? 2025} Daniele Masone. All rights reserved.`,
                 footer_social_navigation: "Social links",
+                footer_social_loading: "Loading social links",
+                footer_social_unavailable: "Social links temporarily unavailable",
+                footer_external_profile_label: `Daniele Masone ${options.label} profile`,
                 footer_developer_resources: "Developer resources",
                 footer_legal_navigation: "Legal information",
+                footer_docs_link: "Documentation",
+                footer_coverage_link: "Coverage",
                 "privacy.title": "Privacy Policy",
                 "cookie.title": "Cookie and Local Storage Policy",
-                error_generic: "Generic error",
             };
             return translations[key] || key;
         },
@@ -33,19 +37,6 @@ vi.mock("@/components/ui/brandIcon/BrandIcon", () => ({
             data-testid="brand-icon"
             aria-label={title}
         />
-    ),
-}));
-
-vi.mock("@/components/loading/Loading", () => ({
-    Loading: () => <div role="status">loading</div>,
-}));
-
-vi.mock("@/components/errorState/ErrorState", () => ({
-    ErrorState: ({message, onRetry}) => (
-        <div>
-            <span>{message}</span>
-            <button onClick={onRetry}>retry</button>
-        </div>
     ),
 }));
 
@@ -67,58 +58,50 @@ function renderFooter() {
     );
 }
 
-describe("Footer – async UI", () => {
-
+describe("Footer", () => {
     afterEach(() => {
         vi.restoreAllMocks();
     });
 
-    test("shows loading initially", () => {
-        vi.spyOn(service, "getLinks")
-            .mockReturnValueOnce(new Promise(() => {
-            }));
+    test("renders legal and resource links immediately while social links load", () => {
+        vi.spyOn(service, "getLinks").mockReturnValueOnce(new Promise(() => {}));
 
         renderFooter();
 
-        expect(screen.getByRole("status")).toBeInTheDocument();
+        expect(screen.getByRole("contentinfo")).toBeInTheDocument();
+        expect(screen.getByRole("link", {name: "Privacy Policy"})).toHaveAttribute("href", "/privacy/");
+        expect(screen.getByRole("link", {name: "Cookie and Local Storage Policy"}))
+            .toHaveAttribute("href", "/cookie-policy/");
+        expect(screen.getByRole("link", {name: "Documentation"})).toBeInTheDocument();
+        expect(screen.getByRole("link", {name: "Coverage"})).toBeInTheDocument();
+        expect(screen.getByRole("status")).toHaveTextContent("Loading social links");
     });
 
     test("renders all social links after load", async () => {
-        vi.spyOn(service, "getLinks")
-            .mockResolvedValueOnce(mockLinks);
+        vi.spyOn(service, "getLinks").mockResolvedValueOnce(mockLinks);
 
         renderFooter();
 
-        const nav = await screen.findByRole("navigation", {
-            name: /social links/i,
-        });
-
+        const nav = await screen.findByRole("navigation", {name: /social links/i});
         const anchors = within(nav).getAllByRole("link");
         expect(anchors).toHaveLength(mockLinks.length);
     });
 
-    test("each link has security attributes", async () => {
-        vi.spyOn(service, "getLinks")
-            .mockResolvedValueOnce(mockLinks);
+    test("social links have accessible names and security attributes", async () => {
+        vi.spyOn(service, "getLinks").mockResolvedValueOnce(mockLinks);
 
         renderFooter();
 
-        const nav = await screen.findByRole("navigation", {
-            name: /social links/i,
-        });
-
-        const anchors = within(nav).getAllByRole("link");
-
-        anchors.forEach(a => {
-            expect(a).toHaveAttribute("target", "_blank");
-            expect(a).toHaveAttribute("rel", "noopener noreferrer");
-            expect(a.getAttribute("href")).toMatch(/^https:/);
-        });
+        for (const link of mockLinks) {
+            const anchor = await screen.findByRole("link", {name: `Daniele Masone ${link.label} profile`});
+            expect(anchor).toHaveAttribute("href", link.href);
+            expect(anchor).toHaveAttribute("target", "_blank");
+            expect(anchor).toHaveAttribute("rel", "noopener noreferrer");
+        }
     });
 
-    test("each social link contains svg icon", async () => {
-        vi.spyOn(service, "getLinks")
-            .mockResolvedValueOnce(mockLinks);
+    test("each social link contains an icon", async () => {
+        vi.spyOn(service, "getLinks").mockResolvedValueOnce(mockLinks);
 
         renderFooter();
 
@@ -127,157 +110,61 @@ describe("Footer – async UI", () => {
 
         icons.forEach(svg => {
             expect(svg).toHaveAttribute("viewBox", "0 0 24 24");
-            expect(svg).toHaveAttribute("width", "24");
-            expect(svg).toHaveAttribute("height", "24");
+            expect(svg).toHaveAttribute("width", "20");
+            expect(svg).toHaveAttribute("height", "20");
         });
     });
 
-    test("mobile labels are rendered", async () => {
-        vi.spyOn(service, "getLinks")
-            .mockResolvedValueOnce(mockLinks);
+    test("social-data failure does not remove structural footer links", async () => {
+        vi.spyOn(service, "getLinks").mockRejectedValueOnce(new Error("boom"));
 
         renderFooter();
 
-        for (const l of mockLinks) {
-            const labels = await screen.findAllByText(l.label);
-            expect(labels.length).toBeGreaterThan(0);
-        }
+        expect(await screen.findByRole("status")).toHaveTextContent("Social links temporarily unavailable");
+        expect(screen.getByRole("link", {name: "Privacy Policy"})).toBeInTheDocument();
+        expect(screen.getByRole("link", {name: "Cookie and Local Storage Policy"})).toBeInTheDocument();
+        expect(screen.getByRole("link", {name: "Documentation"})).toBeInTheDocument();
+        expect(screen.getByRole("link", {name: "Coverage"})).toBeInTheDocument();
     });
 
-    test("keyboard tab focuses each social link", async () => {
-        vi.spyOn(service, "getLinks")
-            .mockResolvedValueOnce(mockLinks);
-
-        const user = userEvent.setup();
-        renderFooter();
-
-        const anchors = await screen.findAllByRole("link");
-
-        for (const a of anchors) {
-            await user.tab();
-            expect(a).toHaveFocus();
-        }
-    });
-
-    test("renders translated copyright", async () => {
-        vi.spyOn(service, "getLinks")
-            .mockResolvedValueOnce(mockLinks);
+    test("docs and coverage links have correct href and rel attributes", () => {
+        vi.spyOn(service, "getLinks").mockReturnValueOnce(new Promise(() => {}));
 
         renderFooter();
 
-        expect(
-            await screen.findByText("© 2025 Daniele Masone")
-        ).toBeInTheDocument();
-    });
+        const docs = screen.getByRole("link", {name: "Documentation"});
+        const coverage = screen.getByRole("link", {name: "Coverage"});
 
-    test("footer has blur + border UI classes", async () => {
-        vi.spyOn(service, "getLinks")
-            .mockResolvedValueOnce(mockLinks);
+        expect(docs).toHaveAttribute("href", "https://danielemasone.github.io/ingdanielemasone/docs/");
+        expect(coverage).toHaveAttribute("href", "https://danielemasone.github.io/ingdanielemasone/test-coverage/");
 
-        renderFooter();
-
-        const footer = await screen.findByRole("contentinfo");
-
-        expect(footer.className).toMatch(/backdrop-blur/);
-        expect(footer.className).toMatch(/border-t/);
-        expect(footer.className).not.toMatch(/sticky/);
-    });
-
-    test("shows error state on failure", async () => {
-        vi.spyOn(service, "getLinks")
-            .mockRejectedValueOnce(new Error("boom"));
-
-        renderFooter();
-
-        expect(await screen.findByText("Generic error")).toBeInTheDocument();
-    });
-
-    test("retry button calls getLinks again", async () => {
-        const spy = vi.spyOn(service, "getLinks")
-            .mockRejectedValueOnce(new Error("boom"))
-            .mockResolvedValueOnce(mockLinks);
-
-        const user = userEvent.setup();
-        renderFooter();
-
-        const btn = await screen.findByRole("button", {name: /retry/i});
-        await user.click(btn);
-
-        expect(spy).toHaveBeenCalledTimes(2);
-    });
-
-    test("renders docs and coverage links", async () => {
-        vi.spyOn(service, "getLinks")
-            .mockResolvedValueOnce(mockLinks);
-
-        renderFooter();
-
-        expect(await screen.findByRole("link", {name: "Docs"})).toBeInTheDocument();
-        expect(await screen.findByRole("link", {name: "Coverage"})).toBeInTheDocument();
-    });
-
-    test("docs and coverage links have correct href", async () => {
-        vi.spyOn(service, "getLinks")
-            .mockResolvedValueOnce(mockLinks);
-
-        renderFooter();
-
-        const docs = await screen.findByRole("link", {name: "Docs"});
-        const coverage = await screen.findByRole("link", {name: "Coverage"});
-
-        expect(docs).toHaveAttribute(
-            "href",
-            "https://danielemasone.github.io/ingdanielemasone/docs/"
-        );
-
-        expect(coverage).toHaveAttribute(
-            "href",
-            "https://danielemasone.github.io/ingdanielemasone/test-coverage/"
-        );
-    });
-
-    test("docs and coverage links have security attributes", async () => {
-        vi.spyOn(service, "getLinks")
-            .mockResolvedValueOnce(mockLinks);
-
-        renderFooter();
-
-        const links = [
-            await screen.findByRole("link", {name: "Docs"}),
-            await screen.findByRole("link", {name: "Coverage"}),
-        ];
-
-        links.forEach(link => {
+        for (const link of [docs, coverage]) {
             expect(link).toHaveAttribute("target", "_blank");
             expect(link.getAttribute("rel")).toContain("noopener");
             expect(link.getAttribute("rel")).toContain("noreferrer");
             expect(link.getAttribute("rel")).toContain("nofollow");
-        });
+        }
     });
 
-    test("renders persistent internal legal links", async () => {
-        vi.spyOn(service, "getLinks").mockResolvedValueOnce(mockLinks);
+    test("navigation landmarks have meaningful labels", () => {
+        vi.spyOn(service, "getLinks").mockReturnValueOnce(new Promise(() => {}));
 
         renderFooter();
 
-        const legalNavigation = await screen.findByRole("navigation", {name: "Legal information"});
-        expect(within(legalNavigation).getByRole("link", {name: "Privacy Policy"}))
-            .toHaveAttribute("href", "/privacy/");
-        expect(within(legalNavigation).getByRole("link", {name: "Cookie and Local Storage Policy"}))
-            .toHaveAttribute("href", "/cookie-policy/");
+        expect(screen.getByRole("navigation", {name: "Social links"})).toBeInTheDocument();
+        expect(screen.getByRole("navigation", {name: "Legal information"})).toBeInTheDocument();
+        expect(screen.getByRole("navigation", {name: "Developer resources"})).toBeInTheDocument();
     });
 
-    test("docs and coverage links are reachable via keyboard", async () => {
-        vi.spyOn(service, "getLinks")
-            .mockResolvedValueOnce(mockLinks);
+    test("footer links are reachable by keyboard", async () => {
+        vi.spyOn(service, "getLinks").mockResolvedValueOnce(mockLinks);
 
         const user = userEvent.setup();
         renderFooter();
 
-        const docs = await screen.findByRole("link", {name: "Docs"});
-        const coverage = await screen.findByRole("link", {name: "Coverage"});
+        const docs = await screen.findByRole("link", {name: "Documentation"});
+        const coverage = screen.getByRole("link", {name: "Coverage"});
 
-        // Tab fino a raggiungerli
         let foundDocs = false;
         let foundCoverage = false;
 
@@ -291,5 +178,4 @@ describe("Footer – async UI", () => {
         expect(foundDocs).toBe(true);
         expect(foundCoverage).toBe(true);
     });
-
 });

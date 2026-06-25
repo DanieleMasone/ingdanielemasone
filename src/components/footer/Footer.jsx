@@ -1,133 +1,135 @@
-import React from 'react';
+import React from "react";
 import {useTranslation} from "react-i18next";
+import {Link} from "react-router-dom";
+import clsx from "clsx";
 import {BrandIcon} from "@/components/ui/brandIcon/BrandIcon";
 import {getLinks} from "@/services/portfolioService";
-import {Loading} from "@/components/loading/Loading";
-import {ErrorState} from "@/components/errorState/ErrorState";
-import clsx from "clsx";
-import {interactiveClasses} from "@/styles/commonClasses";
 import {usePortfolioData} from "@/hooks/usePortfolioData";
-import {Link} from "react-router-dom";
+import {interactiveClasses, layoutClasses} from "@/styles/commonClasses";
+
+const RESOURCE_LINKS = [
+    {
+        key: "docs",
+        labelKey: "footer_docs_link",
+        href: "https://danielemasone.github.io/ingdanielemasone/docs/"
+    },
+    {
+        key: "coverage",
+        labelKey: "footer_coverage_link",
+        href: "https://danielemasone.github.io/ingdanielemasone/test-coverage/"
+    }
+];
 
 /**
- * Portfolio footer with social links, resource links, and localized labels.
+ * Portfolio footer with resilient legal, social, and engineering-resource links.
  *
- * Loads public profile links from the static portfolio service and shows
- * loading or error states while that data is being resolved.
+ * Legal and resource navigation renders immediately because those links are part
+ * of the site structure. Social links remain optional profile data: while they
+ * load or fail, the footer keeps its layout and exposes a quiet status message
+ * to assistive technologies instead of replacing the whole footer.
  *
  * @component
  * @module components/footer/Footer
- * @returns {JSX.Element} Footer with social, legal, and developer-resource navigation.
+ * @returns {JSX.Element} Footer with identity, social, legal, and resource navigation.
  */
 export function Footer() {
     const {t} = useTranslation();
-    const {data: links, loading, error, retry} = usePortfolioData(getLinks, []);
+    const {data: links, loading, error} = usePortfolioData(getLinks, []);
     const currentYear = new Date().getFullYear();
-
-    if (loading) return <Loading/>;
-    if (error) return <ErrorState message={t("error_generic")} onRetry={retry}/>;
+    const socialStatus = loading
+        ? t("footer_social_loading")
+        : error
+            ? t("footer_social_unavailable")
+            : null;
 
     return (
         <footer
             role="contentinfo"
             className="
-                w-full
-                bg-gray-200/50 dark:bg-gray-900/70
-                backdrop-blur-lg backdrop-saturate-150
-                border-t border-black/5 dark:border-white/10
-                text-gray-900 dark:text-gray-300
-                shadow-[0_-4px_12px_rgba(0,0,0,0.06)]
-                transition-colors duration-300
+                w-full border-t border-gray-200/80 bg-white/80 text-gray-800
+                shadow-[0_-1px_10px_rgba(15,23,42,0.05)] backdrop-blur-md
+                transition-colors duration-300 dark:border-gray-800/80
+                dark:bg-gray-950/80 dark:text-gray-200
             "
         >
-            <div className="max-w-5xl mx-auto px-4 py-2 sm:py-3">
-                <nav aria-label={t("footer_social_navigation")} className="flex flex-col items-center gap-2">
-                    <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
-                        {links.map(({key, href, icon, color, label, className}) => (
+            <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-5 sm:px-6 md:px-12">
+                <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                    <div className="text-center md:text-left">
+                        <p className="text-sm font-semibold text-gray-900 dark:text-white">
+                            Daniele Masone
+                        </p>
+                        <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                            {t("footer_copyright", {year: currentYear})}
+                        </p>
+                    </div>
+
+                    <nav aria-label={t("footer_social_navigation")}>
+                        {socialStatus && (
+                            <p className={layoutClasses.screenReaderOnly} role="status">
+                                {socialStatus}
+                            </p>
+                        )}
+
+                        {links.length > 0 && (
+                            <ul className="flex flex-wrap items-center justify-center gap-2 md:justify-end">
+                                {links.map(({key, href, icon, color, label, className}) => (
+                                    <li key={key}>
+                                        <a
+                                            href={href}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            aria-label={t("footer_external_profile_label", {label})}
+                                            className={clsx(
+                                                interactiveClasses.iconLink,
+                                                interactiveClasses.focusRing,
+                                                "h-10 w-10"
+                                            )}
+                                        >
+                                            <BrandIcon icon={icon} color={color} className={className} size={20} title={label}/>
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </nav>
+                </div>
+
+                <div className="flex flex-col gap-3 border-t border-gray-200/70 pt-4 dark:border-gray-800/70 md:flex-row md:items-center md:justify-between">
+                    <nav
+                        aria-label={t("footer_legal_navigation")}
+                        className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-sm md:justify-start"
+                    >
+                        <Link
+                            to="/privacy/"
+                            className={clsx(interactiveClasses.textLink, interactiveClasses.focusRing, "rounded")}
+                        >
+                            {t("privacy.title")}
+                        </Link>
+                        <Link
+                            to="/cookie-policy/"
+                            className={clsx(interactiveClasses.textLink, interactiveClasses.focusRing, "rounded")}
+                        >
+                            {t("cookie.title")}
+                        </Link>
+                    </nav>
+
+                    <nav
+                        aria-label={t("footer_developer_resources")}
+                        className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-sm md:justify-end"
+                    >
+                        {RESOURCE_LINKS.map(({key, labelKey, href}) => (
                             <a
                                 key={key}
                                 href={href}
                                 target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label={label}
-                                className={clsx(`
-                                    group relative flex flex-col items-center justify-center
-                                    w-10 h-10 sm:w-11 sm:h-11
-                                    rounded-lg
-                                    transition-transform
-                                    hover:scale-110 active:scale-95
-                                    hover:bg-black/5 dark:hover:bg-white/10
-                                `, interactiveClasses.focusRing)}
+                                rel="noopener noreferrer nofollow"
+                                className={clsx(interactiveClasses.textLink, interactiveClasses.focusRing, "rounded")}
                             >
-                                <BrandIcon icon={icon} color={color} className={className} size={24} title={label}/>
-
-                                <span className="
-                                    pointer-events-none
-                                    absolute -top-8 left-1/2 -translate-x-1/2
-                                    whitespace-nowrap
-                                    rounded px-2 py-1 text-xs
-                                    bg-gray-900 text-gray-100
-                                    dark:bg-gray-100 dark:text-gray-900
-                                    opacity-0 translate-y-1
-                                    transition-all
-                                    group-hover:opacity-100 group-hover:translate-y-0
-                                    hidden sm:block
-                                ">
-                                    {label}
-                                </span>
+                                {t(labelKey)}
                             </a>
                         ))}
-                    </div>
-                </nav>
-
-                {/* COPYRIGHT */}
-                <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-400 text-center select-none mt-2">
-                    {t("footer_copyright", {year: currentYear})}
-                </p>
-
-                <nav
-                    aria-label={t("footer_legal_navigation")}
-                    className="mt-2 text-center text-xs text-gray-700 dark:text-gray-400"
-                >
-                    <Link
-                        to="/privacy/"
-                        className={clsx(interactiveClasses.textLink, interactiveClasses.focusRing, "mx-1 rounded")}
-                    >
-                        {t("privacy.title")}
-                    </Link>
-                    <span aria-hidden="true" className="mx-1">|</span>
-                    <Link
-                        to="/cookie-policy/"
-                        className={clsx(interactiveClasses.textLink, interactiveClasses.focusRing, "mx-1 rounded")}
-                    >
-                        {t("cookie.title")}
-                    </Link>
-                </nav>
-
-                {/* DEV LINKS */}
-                <nav
-                    aria-label={t("footer_developer_resources")}
-                    className="mt-2 text-[11px] sm:text-xs text-gray-600 dark:text-gray-500 text-center"
-                >
-                    <a
-                        href="https://danielemasone.github.io/ingdanielemasone/docs/"
-                        target="_blank"
-                        rel="noopener noreferrer nofollow"
-                        className={clsx(interactiveClasses.textLink, interactiveClasses.focusRing, "mx-1 rounded")}
-                    >
-                        Docs
-                    </a>
-                    <span aria-hidden="true" className="mx-1">|</span>
-                    <a
-                        href="https://danielemasone.github.io/ingdanielemasone/test-coverage/"
-                        target="_blank"
-                        rel="noopener noreferrer nofollow"
-                        className={clsx(interactiveClasses.textLink, interactiveClasses.focusRing, "mx-1 rounded")}
-                    >
-                        Coverage
-                    </a>
-                </nav>
-
+                    </nav>
+                </div>
             </div>
         </footer>
     );

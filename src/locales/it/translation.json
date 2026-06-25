@@ -36,8 +36,13 @@
   },
   "footer_copyright": "© {{year}} Daniele Masone. Tutti i diritti riservati.",
   "footer_social_navigation": "Link social",
+  "footer_social_loading": "Caricamento link social",
+  "footer_social_unavailable": "Link social temporaneamente non disponibili",
+  "footer_external_profile_label": "Profilo {{label}} di Daniele Masone",
   "footer_developer_resources": "Risorse di sviluppo",
   "footer_legal_navigation": "Informazioni legali",
+  "footer_docs_link": "Documentazione",
+  "footer_coverage_link": "Coverage",
   "home_subtitle": "Technical Architect, Senior Software Engineer e Tech Trainer.",
   "home_description": "Progetto soluzioni software per contesti enterprise e regolamentati, unendo front-end architecture, sistemi finanziari e legacy, microservizi, qualità del codice e formazione tecnica.",
   "home_eyebrow": "Portfolio e CV online",
@@ -310,6 +315,8 @@
     "preference_data_text": "la lingua e, dopo la tua scelta, il tema colore sono memorizzati soltanto nel browser. Non vengono trasmessi a Daniele.",
     "correspondence_data_title": "Corrispondenza avviata dall'utente",
     "correspondence_data_text": "il sito non contiene moduli di contatto. Se usi un link email o un profilo social, il servizio scelto tratta la richiesta e l'eventuale messaggio che decidi di inviare.",
+    "recommendations_data_title": "Raccomandazioni professionali",
+    "recommendations_data_text": "la pagina Testimonianze può riprendere raccomandazioni professionali originariamente pubblicate su LinkedIn. Le persone citate possono chiedere correzione o rimozione tramite l'indirizzo email indicato.",
     "hosting_title": "Hosting e GitHub",
     "hosting_text": "Il portfolio è distribuito tramite GitHub Pages. GitHub descrive ruolo, finalità, basi giuridiche, conservazione e trasferimenti internazionali nella",
     "github_privacy_link": "GitHub General Privacy Statement",
@@ -444,7 +451,8 @@
     "description": "Feedback professionali raccolti da colleghi e collaboratori con cui ho lavorato su delivery, architetture frontend e team di prodotto.",
     "collection_label_one": "testimonianza",
     "collection_label_many": "testimonianze",
-    "linkedin_label": "Profilo LinkedIn"
+    "linkedin_label": "Profilo LinkedIn",
+    "source_note": "Le testimonianze riprendono raccomandazioni professionali originariamente pubblicate su LinkedIn; eventuali richieste di correzione o rimozione possono essere inviate tramite i contatti pubblici."
   },
   "testimonials_people": {
     "mirko": {

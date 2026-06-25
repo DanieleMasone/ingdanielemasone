@@ -36,8 +36,13 @@
   },
   "footer_copyright": "© {{year}} Daniele Masone. Alle Rechte vorbehalten.",
   "footer_social_navigation": "Social-Links",
+  "footer_social_loading": "Social-Links werden geladen",
+  "footer_social_unavailable": "Social-Links vorübergehend nicht verfügbar",
+  "footer_external_profile_label": "Daniele Masone Profil auf {{label}}",
   "footer_developer_resources": "Entwicklungsressourcen",
   "footer_legal_navigation": "Rechtliche Informationen",
+  "footer_docs_link": "Dokumentation",
+  "footer_coverage_link": "Coverage",
   "home_subtitle": "Technical Architect, Senior Software Engineer und Tech Trainer.",
   "home_description": "Ich konzipiere Softwarelösungen für Enterprise- und regulierte Umfelder und verbinde Front-End-Architektur, Finanz- und Legacy-Systeme, Microservices, Codequalität und technische Weiterbildung.",
   "home_eyebrow": "Portfolio und Online-CV",
@@ -309,6 +314,8 @@
     "preference_data_text": "Sprache und, nach Ihrer Auswahl, Farbschema werden nur in Ihrem Browser gespeichert. Sie werden nicht an Daniele übermittelt.",
     "correspondence_data_title": "Vom Nutzer initiierte Korrespondenz",
     "correspondence_data_text": "Die Website enthält kein Kontaktformular. Wenn Sie einen E-Mail- oder Social-Profil-Link verwenden, verarbeitet der gewählte Dienst Ihre Anfrage und jede Nachricht, die Sie senden möchten.",
+    "recommendations_data_title": "Berufliche Empfehlungen",
+    "recommendations_data_text": "Die Referenzen-Seite kann berufliche Empfehlungen wiedergeben, die ursprünglich auf LinkedIn veröffentlicht wurden. Genannte Personen können über die angegebene E-Mail-Adresse Korrektur oder Entfernung verlangen.",
     "hosting_title": "Hosting und GitHub",
     "hosting_text": "Das Portfolio wird über GitHub Pages ausgeliefert. GitHub beschreibt Rolle, Zwecke, Rechtsgrundlagen, Aufbewahrung und internationale Übermittlungen in der",
     "github_privacy_link": "Allgemeinen Datenschutzerklärung von GitHub",
@@ -444,7 +451,8 @@
     "description": "Professionelles Feedback von Kollegen und Partnern, mit denen ich an Delivery, Frontend-Architektur und Produktteams gearbeitet habe.",
     "collection_label_one": "Referenz",
     "collection_label_many": "Referenzen",
-    "linkedin_label": "LinkedIn-Profil"
+    "linkedin_label": "LinkedIn-Profil",
+    "source_note": "Die Referenzen basieren auf beruflichen Empfehlungen, die ursprünglich auf LinkedIn veröffentlicht wurden; Korrektur- oder Entfernungsanfragen können über die öffentlichen Kontaktkanäle gestellt werden."
   },
   "testimonials_people": {
     "mirko": {

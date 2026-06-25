@@ -36,8 +36,13 @@
   },
   "footer_copyright": "© {{year}} Daniele Masone. All rights reserved.",
   "footer_social_navigation": "Social links",
+  "footer_social_loading": "Loading social links",
+  "footer_social_unavailable": "Social links temporarily unavailable",
+  "footer_external_profile_label": "Daniele Masone {{label}} profile",
   "footer_developer_resources": "Developer resources",
   "footer_legal_navigation": "Legal information",
+  "footer_docs_link": "Documentation",
+  "footer_coverage_link": "Coverage",
   "home_subtitle": "Technical Architect, Senior Software Engineer, and Tech Trainer.",
   "home_description": "I design software solutions for enterprise and regulated domains, connecting front-end architecture, financial and legacy systems, microservices, code quality, and technical training.",
   "home_eyebrow": "Portfolio and online CV",
@@ -310,6 +315,8 @@
     "preference_data_text": "the language and, after your choice, the colour theme are stored only in your browser. They are not transmitted to Daniele.",
     "correspondence_data_title": "Correspondence you initiate",
     "correspondence_data_text": "this site has no contact form. If you use an email or social-profile link, the selected service processes your request and any message you choose to send.",
+    "recommendations_data_title": "Professional recommendations",
+    "recommendations_data_text": "the Testimonials page may reproduce professional recommendations originally published on LinkedIn. Displayed people can request correction or removal through the listed email address.",
     "hosting_title": "Hosting and GitHub",
     "hosting_text": "The portfolio is delivered by GitHub Pages. GitHub describes its role, purposes, legal bases, retention and international transfers in the",
     "github_privacy_link": "GitHub General Privacy Statement",
@@ -444,7 +451,8 @@
     "description": "Professional feedback from coworkers and collaborators I worked with across delivery, frontend architecture, and product teams.",
     "collection_label_one": "testimonial",
     "collection_label_many": "testimonials",
-    "linkedin_label": "LinkedIn profile"
+    "linkedin_label": "LinkedIn profile",
+    "source_note": "Testimonials reflect professional recommendations originally published on LinkedIn; correction or removal requests can be sent through the public contact channels."
   },
   "testimonials_people": {
     "mirko": {

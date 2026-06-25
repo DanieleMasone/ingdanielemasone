@@ -54,35 +54,13 @@ The eToro short URL redirects through affiliate parameters (`A=11`, `ref=2611315
 
 The historical dataset begins in January 2022. Before treating it as a performance record, the owner must document its source, calculation formula, update date, whether values are net or gross, and treatment of fees, deposits, withdrawals, currency effects, dividends, and taxes.
 
-## Testimonial authorization checklist
+## Testimonial governance
 
-No photographs are published; avatars are locally generated initials. For every item below, retain private evidence outside the public repository and confirm the displayed name, role/company, exact quote, LinkedIn source, publication authorization, authorization date, and withdrawal/contact process.
+No testimonial authorization register belongs in the public repository. Keep any source evidence, authorization records, correction requests, removal requests, contact history, or withdrawal records outside the repository.
 
-| ID | Displayed name | Displayed role/company | Public source | Status |
-| --- | --- | --- | --- | --- |
-| mirko | Mirko Buccoliero | Cyber Security Engineer @ Repower Italia | LinkedIn profile in mock | Owner confirmation required |
-| alessia | Alessia Pecoraro | HR Generalist @ Etjca S.p.A. | LinkedIn profile in mock | Owner confirmation required |
-| federico | Federico Selva | Cybersecurity Report Assistant (Entry-Level) | LinkedIn profile in mock | Owner confirmation required |
-| daniela | Daniela Tagliavia d'Aragona | Area Servizi e Affari Generali | LinkedIn profile in mock | Owner confirmation required |
-| fabio | Fabio Lo Guasto | Store Manager | LinkedIn profile in mock | Owner confirmation required |
-| antonio | Antonio Signorello | HR Senior Recruiter / Psicologo del lavoro | LinkedIn profile in mock | Owner confirmation required |
-| andreaM | Andrea Montoli | Lead, HCLTech CTG | LinkedIn profile in mock | Owner confirmation required |
-| francescaM | Francesca Marasco | Corporate Packaging Specialist @ Mapei | LinkedIn profile in mock | Owner confirmation required |
-| luca | Luca Sartorio | Software Developer | LinkedIn profile in mock | Owner confirmation required |
-| antonino | Antonino De Maio | Frontend Developer | LinkedIn profile in mock | Owner confirmation required |
-| romolo | Romolo Velati | Chief Technology Officer | LinkedIn profile in mock | Owner confirmation required |
-| riccardo | Riccardo Di Chello | Technical Lead @ Unicredit | LinkedIn profile in mock | Owner confirmation required |
-| lucaC | Luca Cainarca | Senior Software Solution Developer | LinkedIn profile in mock | Owner confirmation required |
-| ivan | Ivan Giurato | Business Manager | LinkedIn profile in mock | Owner confirmation required |
-| daniele | Daniele Montesano | Software Engineer / VR Engineer | LinkedIn profile in mock | Owner confirmation required |
-| marco | Marco Gonella | Lead of front-end @ Vedrai SpA | LinkedIn profile in mock | Owner confirmation required |
-| raffaele | Raffaele Calandrella | Software Architect | LinkedIn profile in mock | Owner confirmation required |
-| francescaR | Francesca Romagnoli | Docente di Informatica | LinkedIn profile in mock | Owner confirmation required |
-| mattia | Mattia Capitanio | Software Engineer @ SIO S.P.A. | LinkedIn profile in mock | Owner confirmation required |
-| davide | Davide Perini | Enterprise Architect @ Sky | LinkedIn profile in mock | Owner confirmation required |
-| jacopo | Jacopo Andrea La Torre | Senior Technical Consultant @ HPE | LinkedIn profile in mock | Owner confirmation required |
-| yuri | Yuri Blanc | Lead Architect @ RGI | LinkedIn profile in mock | Owner confirmation required |
-| andrea | Andrea Motta | Consultant Risk Advisory @ Deloitte | LinkedIn profile in mock | Owner confirmation required |
+Every displayed testimonial must have a traceable source, accurate name and role information, wording that matches the source, and a private owner decision that republication remains appropriate. The public page may identify LinkedIn as the original context for recommendations, but it must not claim formal verification or consent unless the owner has confirmed the evidence privately. Locally generated initials avatars are decorative UI only and are not evidence of authorization.
+
+Support correction and removal requests through the public contact channel. Do not commit private correspondence or per-person review status.
 
 ## Asset and claims checklist
 
@@ -90,7 +68,7 @@ Owner confirmation is required for the personal photograph, course-cover artwork
 
 | Asset group | Repository source | Public use | Provenance/licence evidence | Required action |
 | --- | --- | --- | --- | --- |
-| Personal portrait and cover | `src/assets/daniele.jpg`, `src/assets/cover.png` | Home profile card | No written rights record in repository | Owner confirms ownership and intended publication; portrait has no GPS tags but contains device build, capture time, timezone, and unique-image metadata |
+| Personal portrait and cover | `src/assets/daniele.jpg`, `src/assets/cover.png` | Home profile card | No written rights record in repository | Owner confirms ownership and intended publication; strip unnecessary image metadata before publishing when safe |
 | Portfolio logo and social preview | `public/logo.png`, `public/social-preview.png` | Favicon and social metadata | Project-authored status not recorded | Owner confirms authorship or licence |
 | Fifteen course covers | `src/assets/courses/*.png` | Courses | No artwork/licence record in repository | Confirm ownership, Udemy artwork reuse rights, and third-party marks |
 | RGI certificate PDF | `src/assets/certifications/Attestato_Masone.pdf` | Certifications download | Public-display authorization not recorded | Confirm employer/provider authorization and that exposed personal data is intentional |

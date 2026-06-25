@@ -81,7 +81,7 @@ describe('LanguageSwitcher', () => {
         await waitForElementToBeRemoved(() => screen.queryByRole('group', {name: /available languages/i}));
     });
 
-    test('dropdown shows local language codes and labels', () => {
+    test('dropdown shows local language codes and native labels without images', () => {
         render(<LanguageSwitcher/>);
 
         const languageGroup = openLanguageGroup();
@@ -101,10 +101,19 @@ describe('LanguageSwitcher', () => {
         // Check labels explicitly
         expect(screen.getByText('English')).toBeInTheDocument();
         expect(screen.getByText('Italiano')).toBeInTheDocument();
-        expect(screen.getByText(/Fran/i)).toBeInTheDocument();
+        expect(screen.getByText('Français')).toBeInTheDocument();
         expect(screen.getByText('Deutsch')).toBeInTheDocument();
-        expect(screen.getByText(/Espa/i)).toBeInTheDocument();
+        expect(screen.getByText('Español')).toBeInTheDocument();
         expect(languageGroup.querySelector('img')).not.toBeInTheDocument();
+    });
+
+    test('unsupported locale falls back to English display', () => {
+        vi.mocked(useTranslation().i18n).language = 'pt-BR';
+
+        render(<LanguageSwitcher/>);
+
+        const button = screen.getByRole('button', {name: /select language: english/i});
+        expect(button).toHaveTextContent(/EN/i);
     });
 
     test('changes language when selecting a different option', async () => {

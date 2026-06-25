@@ -36,8 +36,13 @@
   },
   "footer_copyright": "© {{year}} Daniele Masone. Tous droits réservés.",
   "footer_social_navigation": "Liens sociaux",
+  "footer_social_loading": "Chargement des liens sociaux",
+  "footer_social_unavailable": "Liens sociaux temporairement indisponibles",
+  "footer_external_profile_label": "Profil {{label}} de Daniele Masone",
   "footer_developer_resources": "Ressources de développement",
   "footer_legal_navigation": "Informations légales",
+  "footer_docs_link": "Documentation",
+  "footer_coverage_link": "Coverage",
   "home_subtitle": "Technical Architect, Senior Software Engineer et Tech Trainer.",
   "home_description": "Je conçois des solutions logicielles pour des environnements enterprise et réglementés, en reliant architecture front-end, systèmes financiers et legacy, microservices, qualité du code et formation technique.",
   "home_eyebrow": "Portfolio et CV en ligne",
@@ -310,6 +315,8 @@
     "preference_data_text": "la langue et, après votre choix, le thème de couleur sont stockés uniquement dans votre navigateur. Ils ne sont pas transmis à Daniele.",
     "correspondence_data_title": "Correspondance initiée par l'utilisateur",
     "correspondence_data_text": "le site ne contient aucun formulaire de contact. Si vous utilisez un lien e-mail ou un profil social, le service choisi traite votre demande et le message que vous décidez d'envoyer.",
+    "recommendations_data_title": "Recommandations professionnelles",
+    "recommendations_data_text": "la page Témoignages peut reprendre des recommandations professionnelles initialement publiées sur LinkedIn. Les personnes affichées peuvent demander une correction ou un retrait via l'adresse e-mail indiquée.",
     "hosting_title": "Hébergement et GitHub",
     "hosting_text": "Le portfolio est distribué par GitHub Pages. GitHub décrit son rôle, ses finalités, ses bases juridiques, la conservation et les transferts internationaux dans la",
     "github_privacy_link": "Déclaration générale de confidentialité de GitHub",
@@ -444,7 +451,8 @@
     "description": "Retours professionnels de collègues et collaborateurs avec lesquels j’ai travaillé sur le delivery, l’architecture frontend et les équipes produit.",
     "collection_label_one": "témoignage",
     "collection_label_many": "témoignages",
-    "linkedin_label": "Profil LinkedIn"
+    "linkedin_label": "Profil LinkedIn",
+    "source_note": "Les témoignages reprennent des recommandations professionnelles initialement publiées sur LinkedIn ; les demandes de correction ou de retrait peuvent être envoyées via les contacts publics."
   },
   "testimonials_people": {
     "mirko": {

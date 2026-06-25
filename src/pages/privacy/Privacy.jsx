@@ -64,6 +64,9 @@ export default function Privacy() {
                         <li>
                             <strong>{t("privacy.correspondence_data_title")}:</strong> {t("privacy.correspondence_data_text")}
                         </li>
+                        <li>
+                            <strong>{t("privacy.recommendations_data_title")}:</strong> {t("privacy.recommendations_data_text")}
+                        </li>
                     </ul>
                 </LegalSection>
 

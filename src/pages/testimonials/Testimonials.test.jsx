@@ -24,6 +24,7 @@ vi.mock('react-i18next', () => ({
                 "testimonials_people.daniela.quote": "Thorough testing.",
                 "testimonials_page.title": "Testimonials",
                 "testimonials_page.description": "Professional feedback from coworkers and collaborators.",
+                "testimonials_page.source_note": "Originally published as LinkedIn recommendations.",
                 "testimonials_page.empty": "No testimonials are available.",
                 "collection.range_summary": `${options.start}–${options.end} of ${options.total} ${options.label}`,
                 "collection.range_announcement": `Showing items ${options.start} to ${options.end} of ${options.total} ${options.label}.`,
@@ -110,6 +111,15 @@ describe("Testimonials component with mobile + desktop paginators", () => {
         renderPage();
 
         expect(await screen.findByText("Professional feedback from coworkers and collaborators.")).toBeInTheDocument();
+    });
+
+    test("renders a concise LinkedIn source note", async () => {
+        vi.spyOn(service, "getTestimonials")
+            .mockResolvedValueOnce(mockTestimonials);
+
+        renderPage();
+
+        expect(await screen.findByText("Originally published as LinkedIn recommendations.")).toBeInTheDocument();
     });
 
     test("renders one collection toolbar paginator", async () => {

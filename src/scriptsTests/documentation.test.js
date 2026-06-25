@@ -109,4 +109,14 @@ describe("documentation source configuration", () => {
             }
         }
     });
+
+    test("keeps public compliance documentation generic", () => {
+        const complianceGuide = readText("docs-src/tutorials/compliance-and-content-review.md");
+
+        expect(complianceGuide).toContain("## Testimonial governance");
+        expect(complianceGuide).not.toContain("## Testimonial authorization checklist");
+        expect(complianceGuide).not.toContain("| ID | Displayed name |");
+        expect(complianceGuide).not.toContain("Owner confirmation required");
+        expect(complianceGuide).not.toContain("device build, capture time, timezone");
+    });
 });
