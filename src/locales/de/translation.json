@@ -246,7 +246,27 @@
     "intesa": {
       "exp_rpg_local_systems": "Wartung und Erweiterung von Kern-AS/400-Anwendungen für Proprietary Trading; Verbesserung der Systemzuverlässigkeit durch Code-Refactoring, Sicherstellung vollständiger Compliance und null Ausfallzeiten in Produktion.",
       "exp_as400_frontend": "Gestaltung und Implementierung skalierbarer Frontend-Architekturen, integriert mit Legacy-RPG-Systemen für Fremdnetzwerk-Reporting; Optimierung der UI/UX.",
-      "exp_ai_as400": "Leitung einer internen Initiative zur Bewertung des Einsatzes von Artificial-Intelligence-Tools zur Unterstützung von Software-Engineering-Aktivitäten auf Legacy-RPG-Anwendungen unter IBM AS/400 innerhalb eines stark regulierten Bankenumfelds.\n\nIch fungiere als technische Schnittstelle zwischen dem Architekturteam und einem multidisziplinären Team aus Ingenieuren und Fachanalysten und übersetze architektonische Ziele in konkrete Engineering-Workflows und Experimentierungsframeworks.\n\nDie Initiative konzentriert sich auf die Bewertung der Effektivität AI-assisted Development-Tools — darunter GitHub Copilot, Claude und Gemini — für Legacy-Modernisierung, Codeverständnis, Refactoring-Support und automatisierte Generierung technischer Dokumentation.\n\nHauptverantwortlichkeiten:\n\n- Koordination und Leitung eines Teams von 6 Ingenieuren / Fachanalysten, die an großskaligen RPG-Systemen arbeiten.\n- Bewertung AI-assisted Entwicklungsworkflows für Enterprise-Legacy-Umgebungen.\n- Entwicklung von Prompt-Engineering-Strategien und Experimentierungsframeworks für AI-driven Software-Engineering-Aufgaben.\n- Zusammenarbeit mit Architekturteams zur Bewertung von Machbarkeit, Governance und Integrationsrestriktionen bei der Einführung von AI in Bankensystemen.\n- Untersuchung AI-based Ansätze zur automatisierten Erstellung technischer Dokumentation und zum Codeverständnis.\n- Verbindung von Architekturstrategie und technischer Umsetzung innerhalb von Modernisierungsinitiativen.\n- Unterstützung bei der Definition von Best Practices für den Einsatz von AI in regulierten Enterprise-Kontexten."
+      "exp_ai_as400": {
+        "paragraphs": [
+          "Leitung einer internen Initiative zur Bewertung des Einsatzes von Artificial-Intelligence-Tools zur Unterstützung von Software-Engineering-Aktivitäten auf Legacy-RPG-Anwendungen unter IBM AS/400 innerhalb eines stark regulierten Bankenumfelds.",
+          "Ich fungiere als technische Schnittstelle zwischen dem Architekturteam und einem multidisziplinären Team aus Ingenieuren und Fachanalysten und übersetze architektonische Ziele in konkrete Engineering-Workflows und Experimentierungsframeworks.",
+          "Die Initiative konzentriert sich auf die Bewertung der Effektivität AI-assisted Development-Tools — darunter GitHub Copilot, Claude und Gemini — für Legacy-Modernisierung, Codeverständnis, Refactoring-Support und automatisierte Generierung technischer Dokumentation."
+        ],
+        "sections": [
+          {
+            "label": "Hauptverantwortlichkeiten",
+            "items": [
+              "Koordination und Leitung eines Teams von 6 Ingenieuren / Fachanalysten, die an großskaligen RPG-Systemen arbeiten.",
+              "Bewertung AI-assisted Entwicklungsworkflows für Enterprise-Legacy-Umgebungen.",
+              "Entwicklung von Prompt-Engineering-Strategien und Experimentierungsframeworks für AI-driven Software-Engineering-Aufgaben.",
+              "Zusammenarbeit mit Architekturteams zur Bewertung von Machbarkeit, Governance und Integrationsrestriktionen bei der Einführung von AI in Bankensystemen.",
+              "Untersuchung AI-based Ansätze zur automatisierten Erstellung technischer Dokumentation und zum Codeverständnis.",
+              "Verbindung von Architekturstrategie und technischer Umsetzung innerhalb von Modernisierungsinitiativen.",
+              "Unterstützung bei der Definition von Best Practices für den Einsatz von AI in regulierten Enterprise-Kontexten."
+            ]
+          }
+        ]
+      }
     }
   },
   "experience_title": "Berufserfahrung",
@@ -264,38 +284,456 @@
       "Ich koordiniere eine interne Initiative zur Einführung von Künstlicher Intelligenz in die Software-Engineering-Aktivitäten einer Organisationseinheit mit rund 75 Mitarbeitenden. Dabei verantworte ich die technische Erprobung, die Definition der Prozesse und die Einführung der eingesetzten Werkzeuge.",
       "Darüber hinaus bin ich Technical Lead eines KI-gestützten Reverse-Engineering-Projekts, das auf das Verständnis, die Dokumentation und die Auswirkungsanalyse komplexer RPG-Systeme ausgerichtet ist. Dabei arbeite ich eng mit internen Teams, Architecture, Management und Technologiepartnern zusammen."
     ],
-    "focusLabel": "Schwerpunkte",
-    "focusItems": [
-      "RPG / IBM AS/400",
-      "Backend- / Frontend-Engineering",
-      "Abstimmung mit der Enterprise-Architektur",
-      "Modernisierung von Legacy-Systemen",
-      "KI-gestütztes Software Engineering",
-      "Codequalität und Wartbarkeit",
-      "Zuverlässigkeit von Finanzsystemen",
-      "Große regulierte Umgebungen"
+    "sections": [
+      {
+        "label": "Schwerpunkte",
+        "items": [
+          "RPG / IBM AS/400",
+          "Backend- / Frontend-Engineering",
+          "Abstimmung mit der Enterprise-Architektur",
+          "Modernisierung von Legacy-Systemen",
+          "KI-gestütztes Software Engineering",
+          "Codequalität und Wartbarkeit",
+          "Zuverlässigkeit von Finanzsystemen",
+          "Große regulierte Umgebungen"
+        ]
+      }
     ]
   },
   "exp_rgi_role": "Front-End Architect / Team Leader",
-  "exp_rgi_description": "Ich leite die Gestaltung, Optimierung und Wartung der Front-End-Architekturen, sowohl strategisch als auch operativ:\n\n- Code Review: Qualität, Effizienz, Standardkonformität\n- Standards & Guidelines: architektonische Aufsicht\n- Anwendungssicherheit: präventive Maßnahmen\n- JavaScript/TypeScript-Optimierung\n- Technische Dokumentation\n- Anforderungsanalyse\n- Technologiebewertung\n- Workflow-Optimierung: Builds, Tests, Qualität\n- Wiederverwendbare Patterns\n- Testing & Troubleshooting",
+  "exp_rgi_description": {
+    "paragraphs": [
+      "Ich leite die Gestaltung, Optimierung und Wartung der Front-End-Architekturen, sowohl strategisch als auch operativ:"
+    ],
+    "sections": [
+      {
+        "items": [
+          "Code Review: Qualität, Effizienz, Standardkonformität",
+          "Standards & Guidelines: architektonische Aufsicht",
+          "Anwendungssicherheit: präventive Maßnahmen",
+          "JavaScript/TypeScript-Optimierung",
+          "Technische Dokumentation",
+          "Anforderungsanalyse",
+          "Technologiebewertung",
+          "Workflow-Optimierung: Builds, Tests, Qualität",
+          "Wiederverwendbare Patterns",
+          "Testing & Troubleshooting"
+        ]
+      }
+    ]
+  },
   "exp_iol_role": "Full Stack Software Engineer",
-  "exp_iol_description": "Als Java Analyst Developer war ich für moderne Full-Stack-Entwicklung und Agile-Methoden verantwortlich.\n\nFront-End: JavaScript, jQuery, Angular 10, TypeScript, Node.js\nBack-End: Java EE, Spring, Hibernate\nMicroservices: JHipster, Docker, Docker Swarm\nDatenbanken: MySQL, Oracle\nAgile: Jira\nApp-Server: Tomcat\nVersionierung: Git, SVN\nBuild-Management: Maven",
+  "exp_iol_description": {
+    "paragraphs": [
+      "Als Java Analyst Developer war ich für moderne Full-Stack-Entwicklung mit agilen Methoden verantwortlich."
+    ],
+    "sections": [
+      {
+        "label": "Front-End",
+        "items": [
+          "Technologien: JavaScript, jQuery, Angular 10, TypeScript, Node.js",
+          "UI-Design: responsive und dynamische Oberflächen mit HTML5, CSS und Bootstrap"
+        ]
+      },
+      {
+        "label": "Back-End",
+        "items": [
+          "Technologien: Java EE, Spring, Hibernate",
+          "Ziel: robuste und skalierbare serverseitige Lösungen"
+        ]
+      },
+      {
+        "label": "Microservices",
+        "items": [
+          "Werkzeuge: JHipster, Docker, Docker Swarm",
+          "Aufgaben: Entwurf und Implementierung von Microservice-Architekturen"
+        ]
+      },
+      {
+        "label": "Datenbanken",
+        "items": [
+          "Werkzeuge: MySQL, Oracle",
+          "Ziel: Optimierung von Datenstruktur und Performance"
+        ]
+      },
+      {
+        "label": "Agile Methoden",
+        "items": [
+          "Werkzeug: Jira",
+          "Ansatz: Projekt- und Workflow-Steuerung nach agilen Prinzipien"
+        ]
+      },
+      {
+        "label": "Application Server",
+        "items": [
+          "Werkzeug: Tomcat",
+          "Nutzung: Deployment und Betrieb von Java-Webanwendungen"
+        ]
+      },
+      {
+        "label": "Versionskontrolle",
+        "items": [
+          "Werkzeuge: Git, SVN",
+          "Rolle: Codeversionierung und teamübergreifende Zusammenarbeit"
+        ]
+      },
+      {
+        "label": "Abhängigkeitsverwaltung",
+        "items": [
+          "Werkzeug: Maven",
+          "Ziel: Bibliotheksverwaltung und Optimierung der Build-Prozesse"
+        ]
+      }
+    ]
+  },
   "exp_tecnavia_role": "Full Stack Software Engineer",
-  "exp_tecnavia_description": "Front-End-, Back-End- und Mobile-Entwicklung für iOS und Android.\n\nFront-End: JavaScript, jQuery, CSS, HTML, Bootstrap\nBack-End: PHP (Zend Framework), Java\nMobile: React Native, Objective-C, Java, Node.js\nDatenbanken: MySQL, SQLite\nLokale Umgebung: MAMP\nVersionierung: SVN",
+  "exp_tecnavia_description": {
+    "paragraphs": [
+      "Als Full Stack Software Engineer arbeitete ich an Front-End-, Back-End- und Mobile-Entwicklung für iOS- und Android-Plattformen."
+    ],
+    "sections": [
+      {
+        "label": "Front-End-Entwicklung",
+        "items": [
+          "Technologien: JavaScript, jQuery, CSS, HTML",
+          "Werkzeuge: Bootstrap für responsives Design und schnelle Prototypen"
+        ]
+      },
+      {
+        "label": "Back-End-Entwicklung",
+        "items": [
+          "Technologien: PHP (Zend Framework), Java",
+          "Ziel: skalierbare und wartbare Serveranwendungen"
+        ]
+      },
+      {
+        "label": "Mobile-Entwicklung",
+        "items": [
+          "Werkzeuge: React Native, Objective-C, Java, Node.js",
+          "Umfang: hybride und native plattformübergreifende Apps"
+        ]
+      },
+      {
+        "label": "Datenbankverwaltung",
+        "items": [
+          "Werkzeuge: MySQL, SQLite",
+          "Ziel: effiziente Datenspeicherung und optimierte Zugriffe"
+        ]
+      },
+      {
+        "label": "Application Server",
+        "items": [
+          "Werkzeug: MAMP",
+          "Nutzung: lokale Umgebung für Entwicklung und Tests"
+        ]
+      },
+      {
+        "label": "Versionskontrolle",
+        "items": [
+          "Werkzeug: SVN",
+          "Rolle: Codeintegrität und Zusammenarbeit in der Entwicklung"
+        ]
+      }
+    ]
+  },
   "exp_teoresi_role": "Full Stack Software Engineer",
-  "exp_teoresi_description": "Als Java Analyst Developer habe ich die Full-Stack-Entwicklung in einer Java-Umgebung betreut und alle Phasen des Software-Lebenszyklus gesteuert.\n\nFrontend-Entwicklung:\n- Technologien: JavaScript (jQuery, AngularJS, Node.js), HTML5, CSS, Bootstrap\n\nBackend-Entwicklung:\n- Technologien: Java, Spring, Hibernate\n- Ziel: robuste und skalierbare Anwendungen\n\nDatenbankverwaltung:\n- Werkzeug: MySQL\n- Nutzung: Entwurf und Optimierung relationaler Datenbanken\n\nApplication Server:\n- Werkzeug: Tomcat\n- Rolle: Deployment von Java-Webanwendungen\n\nVersionskontrolle:\n- Werkzeug: Git\n\nAbhängigkeitsverwaltung:\n- Werkzeug: Maven\n\nDeployment:\n- Prozess: Bereitstellung von .war-Dateien in Entwicklungs-, Test- und Produktionsumgebungen\n\nEntwicklungsmethodik:\n- Modell: Wasserfall\n- Werkzeug: Jira",
+  "exp_teoresi_description": {
+    "paragraphs": [
+      "Als Java Analyst Developer habe ich die Full-Stack-Entwicklung in einer Java-Umgebung betreut und alle Phasen des Software-Lebenszyklus gesteuert."
+    ],
+    "sections": [
+      {
+        "label": "Frontend-Entwicklung",
+        "items": [
+          "Technologien: JavaScript (jQuery, AngularJS, Node.js), HTML5, CSS, Bootstrap",
+          "Ziel: Entwurf dynamischer und responsiver Oberflächen"
+        ]
+      },
+      {
+        "label": "Backend-Entwicklung",
+        "items": [
+          "Technologien: Java, Spring, Hibernate",
+          "Ziel: robuste und skalierbare Anwendungen"
+        ]
+      },
+      {
+        "label": "Datenbankverwaltung",
+        "items": [
+          "Werkzeug: MySQL",
+          "Nutzung: Entwurf und Optimierung relationaler Datenbanken"
+        ]
+      },
+      {
+        "label": "Application Server",
+        "items": [
+          "Werkzeug: Tomcat",
+          "Rolle: Deployment von Java-Webanwendungen"
+        ]
+      },
+      {
+        "label": "Versionskontrolle",
+        "items": [
+          "Werkzeug: Git",
+          "Ziel: Codeverwaltung und Zusammenarbeit zwischen Teams"
+        ]
+      },
+      {
+        "label": "Abhängigkeitsverwaltung",
+        "items": [
+          "Werkzeug: Maven",
+          "Nutzung: Vereinfachung der Build-Prozesse und konsistente Umgebungen"
+        ]
+      },
+      {
+        "label": "Deployment",
+        "items": [
+          "Prozess: Bereitstellung von .war-Dateien in Entwicklungs-, Test- und Produktionsumgebungen"
+        ]
+      },
+      {
+        "label": "Entwicklungsmethodik",
+        "items": [
+          "Modell: Wasserfall",
+          "Werkzeug: Jira"
+        ]
+      }
+    ]
+  },
   "exp_hpe_role": "Junior Software Engineer",
-  "exp_hpe_description": "Als Technical Consultant bei HPE unterstützte ich die Frontend- und Backend-Softwareentwicklung zur Erfüllung kundenspezifischer Anforderungen.\n\nFrontend:\n- JavaScript (Knockout.js, jQuery, AngularJS, Node.js), CSS, Bootstrap, HTML5\n\nBackend:\n- Java EE, Spring, Hibernate\n\nDatenbanken:\n- PostgreSQL, CouchDB, Oracle\n\nApplication Server:\n- WildFly\n\nAgile Methoden:\n- Trello\n\nVersionskontrolle:\n- SVN\n\nAbhängigkeiten:\n- Maven\n\nDeployment:\n- .ear, .rpm in Dev/QA/Prod\n\nKundensupport:\n- Demos und technische Unterstützung\n\nMentoring:\n- Unterstützung für Junior-Entwickler",
+  "exp_hpe_description": {
+    "paragraphs": [
+      "Als Technical Consultant bei HPE unterstützte ich die Frontend- und Backend-Softwareentwicklung zur Erfüllung kundenspezifischer Anforderungen."
+    ],
+    "sections": [
+      {
+        "label": "Frontend",
+        "items": [
+          "JavaScript (Knockout.js, jQuery, AngularJS, Node.js), CSS, Bootstrap, HTML5"
+        ]
+      },
+      {
+        "label": "Backend",
+        "items": [
+          "Java EE, Spring, Hibernate",
+          "Ziel: leistungsfähige und skalierbare Anwendungen"
+        ]
+      },
+      {
+        "label": "Datenbanken",
+        "items": [
+          "PostgreSQL, CouchDB, Oracle"
+        ]
+      },
+      {
+        "label": "Application Server",
+        "items": [
+          "WildFly",
+          "Nutzung: Deployment von Java-EE-Anwendungen"
+        ]
+      },
+      {
+        "label": "Agile Methoden",
+        "items": [
+          "Trello",
+          "Rolle: Steuerung von Aufgaben und Iterationen"
+        ]
+      },
+      {
+        "label": "Versionskontrolle",
+        "items": [
+          "SVN",
+          "Ziel: Code-Nachverfolgung und Zusammenarbeit"
+        ]
+      },
+      {
+        "label": "Abhängigkeiten",
+        "items": [
+          "Maven"
+        ]
+      },
+      {
+        "label": "Deployment",
+        "items": [
+          "Formate: .ear, .rpm",
+          "Umgebungen: Entwicklung, QA und Produktion"
+        ]
+      },
+      {
+        "label": "Kundensupport",
+        "items": [
+          "Demos und technische Unterstützung"
+        ]
+      },
+      {
+        "label": "Mentoring",
+        "items": [
+          "Unterstützung für Junior-Entwickler"
+        ]
+      }
+    ]
+  },
   "exp_digiCamere_role": "Junior System Engineer",
-  "exp_digiCamere_description": "Als Junior System Engineer arbeitete ich an Systemwartung und Automatisierung, um die betriebliche Effizienz zu verbessern.\n\nScripting & Automatisierung:\n- PowerShell, PHP\n\nSystemüberwachung:\n- EveryStep\n- Log-Analyse und Fehlerbehebung\n\nAndroid-Entwicklung:\n- Entwicklung kleiner Android-Apps zur Verbesserung der Systemnutzung\n\nDatenbanken:\n- SQL\n\nWeb-Monitoring:\n- HTTrack\n\nInstallation & Konfiguration:\n- Server-Setup Hardware/Software",
+  "exp_digiCamere_description": {
+    "paragraphs": [
+      "Als Junior System Engineer arbeitete ich an Systemwartung und Automatisierung, um die betriebliche Effizienz zu verbessern."
+    ],
+    "sections": [
+      {
+        "label": "Scripting & Automatisierung",
+        "items": [
+          "PowerShell, PHP",
+          "Ziel: Automatisierung serverseitiger Aufgaben"
+        ]
+      },
+      {
+        "label": "Systemüberwachung",
+        "items": [
+          "Werkzeug: EveryStep",
+          "Aufgaben: Systemzustand überwachen und Anomalien erkennen",
+          "Log-Analyse: Fehlerbehebung anhand von Systemprotokollen"
+        ]
+      },
+      {
+        "label": "Android-Entwicklung",
+        "items": [
+          "Entwicklung kleiner Android-Apps zur Verbesserung der Systemnutzung"
+        ]
+      },
+      {
+        "label": "Datenbanken",
+        "items": [
+          "SQL",
+          "Aufgaben: SQL-Abfragen erstellen und optimieren"
+        ]
+      },
+      {
+        "label": "Web-Monitoring",
+        "items": [
+          "HTTrack",
+          "Nutzung: Backups und Überwachung der Verfügbarkeit von Webdiensten"
+        ]
+      },
+      {
+        "label": "Installation & Konfiguration",
+        "items": [
+          "Server-Setup Hardware/Software"
+        ]
+      }
+    ]
+  },
   "exp_piksel_role": "Junior System Engineer",
-  "exp_piksel_description": "Als Junior System Engineer überwachte und verwaltete ich Enterprise-IT-Systeme mit Fokus auf Sicherheit und Verfügbarkeit.\n\nSystemüberwachung:\n- Nagios\n\nBackup-Management:\n- Planung und Ausführung regelmäßiger Backups\n\nLog-Analyse:\n- Diagnose und Behebung von Systemfehlern\n\nBenutzer & Sicherheit:\n- Windows Server\n\nInstallation & Konfiguration:\n- Servervorbereitung\n\nActive Directory:\n- Verwaltung von Benutzern und Ressourcen",
+  "exp_piksel_description": {
+    "paragraphs": [
+      "Als Junior System Engineer überwachte und verwaltete ich Enterprise-IT-Systeme mit Fokus auf Sicherheit und Verfügbarkeit."
+    ],
+    "sections": [
+      {
+        "label": "Systemüberwachung",
+        "items": [
+          "Nagios",
+          "Ziel: Probleme früh erkennen und die Infrastrukturintegrität sichern"
+        ]
+      },
+      {
+        "label": "Backup-Management",
+        "items": [
+          "Planung und Ausführung regelmäßiger Backups"
+        ]
+      },
+      {
+        "label": "Log-Analyse",
+        "items": [
+          "Diagnose und Behebung von Systemfehlern"
+        ]
+      },
+      {
+        "label": "Benutzer & Sicherheit",
+        "items": [
+          "Windows Server",
+          "Aufgaben: Konten anlegen, Passwörter zurücksetzen und Berechtigungen verwalten"
+        ]
+      },
+      {
+        "label": "Installation & Konfiguration",
+        "items": [
+          "Servervorbereitung"
+        ]
+      },
+      {
+        "label": "Active Directory",
+        "items": [
+          "Verwaltung von Benutzern und Ressourcen"
+        ]
+      }
+    ]
+  },
   "exp_coach_role": "Privatlehrer",
-  "exp_coach_description": "Während meines Studiums gab ich Privatunterricht für Schüler und Studenten in:\n\nMathematik: Algebra, Geometrie, Analysis\nStatistik: Datenanalyse, Wahrscheinlichkeit, Regression\nInformatik: Programmierung, Algorithmen, Betriebssysteme, Datenbanken\nIT-Systeme: Netzwerke, Sicherheit",
+  "exp_coach_description": {
+    "paragraphs": [
+      "Während meines Studiums gab ich Privatunterricht für Schüler und Studierende in den folgenden Bereichen.",
+      "Diese Erfahrung stärkte meine Kommunikationsfähigkeit und meine Anpassung an unterschiedliche Lernstile."
+    ],
+    "sections": [
+      {
+        "label": "Mathematik",
+        "items": [
+          "Themen: Algebra, Geometrie, Differential- und Integralrechnung",
+          "Ansatz: Anpassung der Lehrmethode an individuelle Bedürfnisse"
+        ]
+      },
+      {
+        "label": "Statistik",
+        "items": [
+          "Themen: Datenanalyse, Wahrscheinlichkeit, statistische Inferenz und Regressionsmethoden"
+        ]
+      },
+      {
+        "label": "Informatik",
+        "items": [
+          "Themen: Programmiersprachen, Algorithmen, Datenstrukturen, Betriebssysteme und Datenbanken",
+          "Methode: praktische Beispiele und verständliche Erklärungen"
+        ]
+      },
+      {
+        "label": "IT-Systeme",
+        "items": [
+          "Themen: Systemdesign, Netzwerke und IT-Sicherheit",
+          "Ansatz: praktische Anwendungen und Problemlösung"
+        ]
+      }
+    ]
+  },
   "exp_salesiani_role": "Informatikstudent",
-  "exp_salesiani_description": "Ich erwarb fundierte Kenntnisse in C, C++, C#, x86-Assembly, HTML, CSS, PHP und MySQL.\nProjekte:\n- Login-System in C# mit DB und GUI\n- x86-Assembly + C unter Linux\n- Matlab für numerische Analyse",
+  "exp_salesiani_description": {
+    "paragraphs": [
+      "Ich erwarb fundierte Kenntnisse in C, C++, C#, x86-Assembly, HTML, CSS, PHP und MySQL."
+    ],
+    "sections": [
+      {
+        "label": "Projekte",
+        "items": [
+          "Login-System in C# mit DB und GUI",
+          "x86-Assembly + C unter Linux",
+          "Matlab für numerische Analyse"
+        ]
+      }
+    ]
+  },
   "exp_polimi_role": "Informatikingenieurwesen (Bachelor)",
-  "exp_polimi_description": "Ich sammelte theoretische und praktische Erfahrungen in:\n- Android-App-Entwicklung in Java mit API-Integration\n- STM32-Programmierung in C/C++ unter Linux",
+  "exp_polimi_description": {
+    "paragraphs": [
+      "Während meines Studiums erwarb ich praktische und theoretische Kompetenzen in verschiedenen Bereichen."
+    ],
+    "sections": [
+      {
+        "label": "Wesentliche Erfahrungen",
+        "items": [
+          "Entwicklung einer Android-App in Java mit API-Integration und Performance-Optimierung.",
+          "Programmierung des STM32VLDISCOVERY-Boards in C/C++ unter Linux mit Low-Level-USB-Kommunikation."
+        ]
+      }
+    ]
+  },
   "trading_title": "Meine Trading-Aktivität",
   "trading_intro": "Parallel zu meiner Tech-Karriere investiere ich langfristig und methodisch.",
   "trading_description": "Auf eToro stelle ich einen persönlichen langfristigen Ansatz mit Fokus auf Dividendenaktien und diversifizierte ETFs sowie Dividendenreinvestition dar.",
@@ -644,7 +1082,8 @@
       "C",
       "MySQL"
     ],
-    "bio": "Experte für Full-Stack-Entwicklung und skalierbare Unternehmensarchitekturen. Leidenschaftlich über Clean Code, Best Practices und technische Schulung."
+    "bio": "Experte für Full-Stack-Entwicklung und skalierbare Unternehmensarchitekturen. Leidenschaftlich über Clean Code, Best Practices und technische Schulung.",
+    "skills_label": "Kernkompetenzen"
   },
   "error_title": "Fehler",
   "error_retry": "Erneut versuchen",

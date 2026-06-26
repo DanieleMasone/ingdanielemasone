@@ -4,7 +4,10 @@ import {Building2, CalendarDays} from "lucide-react";
 import {Card} from "@/components/ui/card/Card";
 import {CardContent} from "@/components/ui/cardContent/CardContent";
 import {PageSection} from "@/components/ui/pageSection/PageSection";
-import {ExpandableText} from "@/components/ui/expandableText/ExpandableText";
+import {
+    isStructuredDescription,
+    StructuredDescription
+} from "@/components/ui/structuredDescription/StructuredDescription";
 import {SeoHead} from "@/components/seoHead/SeoHead";
 import {PageGrid} from "@/components/ui/pageGrid/PageGrid";
 import {SelectableButton} from "@/components/ui/selectableButton/SelectableButton";
@@ -99,9 +102,11 @@ export const isCurrentProject = (period) => PRESENT_PATTERN.test(period);
  * The page starts with all projects so readers can scan the full professional
  * portfolio, then offers company filters and pagination to keep the page
  * compact. Each project card exposes company, period, localized impact text,
- * current-project state, and a collapsible technology list. Mobile filter and
- * card containers stay width-constrained so horizontal filter scrolling does
- * not expand the page viewport.
+ * current-project state, and a collapsible technology list. Projects with a
+ * structured responsibility list span the desktop content grid so expansion
+ * does not create an empty sibling column. Mobile filter and card containers
+ * stay width-constrained so horizontal filter scrolling does not expand the
+ * page viewport.
  *
  * @component
  * @module pages/projects/Projects
@@ -193,13 +198,21 @@ export default function Projects() {
                                     {displayedProjects.map((project) => {
                                         const titleId = `project-${project.name.replace(/\W+/g, "-")}`;
                                         const currentProject = isCurrentProject(project.period);
+                                        const description = project.type
+                                            ? t(`project_types.${project.type}`, {returnObjects: true})
+                                            : null;
+                                        const hasStructuredDescription = isStructuredDescription(description);
 
                                         return (
                                             <Card
                                                 key={`${project.company}-${project.name}`}
                                                 data-testid="project-card"
                                                 aria-labelledby={titleId}
-                                                className={clsx("h-full min-w-0", currentProject && surfaceClasses.activeTimelineCard)}
+                                                className={clsx(
+                                                    "min-w-0 self-start",
+                                                    hasStructuredDescription && "md:col-span-2",
+                                                    currentProject && surfaceClasses.activeTimelineCard
+                                                )}
                                             >
                                                 <CardContent className="min-w-0">
                                                     <header
@@ -237,8 +250,9 @@ export default function Projects() {
                                                     </header>
 
                                                     {project.type && (
-                                                        <ExpandableText
-                                                            value={t(`project_types.${project.type}`)}
+                                                        <StructuredDescription
+                                                            description={description}
+                                                            titleId={titleId}
                                                             maxLines={4}
                                                             className="text-left text-sm leading-relaxed text-gray-700 dark:text-gray-300"
                                                         />

@@ -9,7 +9,8 @@ import {interactiveClasses} from "@/styles/commonClasses";
  *
  * Limits the visible text to a configurable number of lines and reveals a
  * localized expand/collapse button only when the content overflows. The toggle
- * button is linked to the expandable region with `aria-controls`.
+ * button is linked to the expandable region with `aria-controls`. Measurements
+ * are refreshed when content, fonts, zoom or the available width changes.
  *
  * @component
  * @module components/ui/expandableText/ExpandableText
@@ -34,12 +35,41 @@ export function ExpandableText({value = "", children, maxLines = 3, className = 
         const el = paragraphRef.current;
         if (!el) return;
 
-        const lineHeight = parseFloat(getComputedStyle(el).lineHeight);
-        const maxHeightCollapsed = maxLines * lineHeight;
+        let active = true;
+        const measure = () => {
+            if (!active) return;
 
-        setContentHeight(el.scrollHeight);
-        setCollapsedHeight(maxHeightCollapsed);
-        setShowButton(el.scrollHeight > maxHeightCollapsed);
+            const computedStyle = getComputedStyle(el);
+            const parsedLineHeight = parseFloat(computedStyle.lineHeight);
+            const fontSize = parseFloat(computedStyle.fontSize);
+            const lineHeight = Number.isFinite(parsedLineHeight)
+                ? parsedLineHeight
+                : (Number.isFinite(fontSize) ? fontSize * 1.5 : 24);
+            const maxHeightCollapsed = maxLines * lineHeight;
+            const nextContentHeight = el.scrollHeight;
+            const nextShowButton = nextContentHeight > maxHeightCollapsed;
+
+            setContentHeight(nextContentHeight);
+            setCollapsedHeight(maxHeightCollapsed);
+            setShowButton(nextShowButton);
+            if (!nextShowButton) setExpanded(false);
+        };
+
+        measure();
+        window.addEventListener("resize", measure);
+
+        const resizeObserver = typeof ResizeObserver === "function"
+            ? new ResizeObserver(measure)
+            : null;
+        resizeObserver?.observe(el);
+
+        document.fonts?.ready?.then(measure);
+
+        return () => {
+            active = false;
+            window.removeEventListener("resize", measure);
+            resizeObserver?.disconnect();
+        };
     }, [children, value, maxLines]);
 
     return (
@@ -49,7 +79,7 @@ export function ExpandableText({value = "", children, maxLines = 3, className = 
                 id={contentId}
                 ref={paragraphRef}
                 className={clsx(
-                    "relative overflow-hidden transition-all duration-500 ease-in-out",
+                    "relative overflow-hidden transition-all duration-500 ease-in-out motion-reduce:transition-none",
                     !hasChildren && "whitespace-pre-wrap text-sm sm:text-base",
                     className
                 )}

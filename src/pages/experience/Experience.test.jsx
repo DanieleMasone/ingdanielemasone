@@ -4,7 +4,6 @@ import Experience, {
     formatExperiencePeriod,
     getExperienceStatus,
     getExperienceYears,
-    isStructuredExperienceDescription,
     sortExperiencesByRecency
 } from "./Experience";
 import {MemoryRouter} from "react-router-dom";
@@ -22,20 +21,25 @@ vi.mock("react-i18next", () => ({
                         "I coordinate an internal initiative aimed at introducing Artificial Intelligence into software engineering activities.",
                         "I am also the technical lead for an AI-assisted reverse engineering project focused on complex RPG systems."
                     ],
-                    focusLabel: "Main focus areas",
-                    focusItems: [
-                        "RPG / IBM AS/400",
-                        "Backend / Frontend engineering",
-                        "Enterprise architecture alignment",
-                        "Legacy systems modernization",
-                        "AI-assisted software engineering",
-                        "Code quality & maintainability",
-                        "Financial systems reliability",
-                        "Large-scale regulated environments"
-                    ]
+                    sections: [{
+                        label: "Main focus areas",
+                        items: [
+                            "RPG / IBM AS/400",
+                            "Backend / Frontend engineering",
+                            "Enterprise architecture alignment",
+                            "Legacy systems modernization",
+                            "AI-assisted software engineering",
+                            "Code quality & maintainability",
+                            "Financial systems reliability",
+                            "Large-scale regulated environments"
+                        ]
+                    }]
                 },
                 exp_rgi_role: "Developer",
-                exp_rgi_description: "Worked on backend development",
+                exp_rgi_description: {
+                    paragraphs: ["Led front-end architecture work."],
+                    sections: [{items: ["Code review", "Architecture standards"]}]
+                },
                 exp_iol_role: "Engineer",
                 exp_iol_description: "Frontend work",
                 exp_tecnavia_role: "Mobile Engineer",
@@ -247,6 +251,8 @@ describe("Experience component", () => {
         expect(focusSection).toBeInTheDocument();
         expect(within(focusSection).getAllByRole("listitem")).toHaveLength(8);
         expect(within(focusSection).getByText("RPG / IBM AS/400")).toBeInTheDocument();
+        expect(screen.getByText("Led front-end architecture work.").tagName).toBe("P");
+        expect(screen.getByText("Code review").closest("li")).toBeInTheDocument();
     });
 
     test("includes SEO title", async () => {
@@ -343,13 +349,4 @@ describe("Experience helpers", () => {
             .toBe("12/2025 - Now");
     });
 
-    test("detects structured descriptions without treating legacy strings as structured content", () => {
-        expect(isStructuredExperienceDescription({
-            paragraphs: ["One", "Two", "Three"],
-            focusLabel: "Focus",
-            focusItems: ["A"]
-        })).toBe(true);
-
-        expect(isStructuredExperienceDescription("Legacy text")).toBe(false);
-    });
 });

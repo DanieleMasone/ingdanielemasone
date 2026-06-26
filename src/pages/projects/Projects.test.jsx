@@ -1,4 +1,4 @@
-import {fireEvent, render, screen, waitFor} from "@testing-library/react";
+import {fireEvent, render, screen, waitFor, within} from "@testing-library/react";
 import Projects, {
     formatProjectPeriod,
     getCompanyFilters,
@@ -30,7 +30,13 @@ vi.mock("react-i18next", () => ({
                 "projects_page.present": "Present",
                 "projects_page.empty": "No professional projects available.",
                 "project_types.intesa.exp_as400_frontend": "Frontend modernization for enterprise reporting.",
-                "project_types.intesa.exp_ai_as400": "AI-assisted refactoring initiative in a regulated financial environment.",
+                "project_types.intesa.exp_ai_as400": {
+                    paragraphs: ["AI-assisted refactoring initiative in a regulated financial environment."],
+                    sections: [{
+                        label: "Main responsibilities",
+                        items: ["Lead the engineering team", "Evaluate AI-assisted workflows"]
+                    }]
+                },
                 "project_types.intesa.exp_rpg_local_systems": "Maintenance and extension of core AS/400 applications.",
                 "project_types.rgi.FEArchitecture": "Redesign of the core front-end environment.",
                 "project_types.rgi.HalfLife": "Custom front-end libraries for life insurance workflows.",
@@ -158,7 +164,9 @@ describe("Projects Component", () => {
         expect(filterGroup).toHaveClass("max-w-full");
         expect(filterSidebar).toHaveClass("min-w-0");
         expect(filterLayout).toHaveClass("min-w-0");
-        expect(firstCard).toHaveClass("min-w-0");
+        expect(firstCard).toHaveClass("min-w-0", "self-start");
+        expect(firstCard).toHaveClass("md:col-span-2");
+        expect(firstCard).not.toHaveClass("h-full");
     });
 
     test("sorts visible projects from newest to oldest", async () => {
@@ -237,6 +245,22 @@ describe("Projects Component", () => {
         fireEvent.click(button);
 
         expect(await screen.findByText("RPG")).toBeInTheDocument();
+    });
+
+    test("renders structured project responsibilities as semantic content", async () => {
+        vi.spyOn(service, "getProjects").mockResolvedValueOnce(mockProjects);
+
+        renderProjects();
+
+        const responsibilities = await screen.findByRole("heading", {
+            level: 3,
+            name: "Main responsibilities"
+        });
+        const section = responsibilities.closest("section");
+
+        expect(screen.getByText(/AI-assisted refactoring initiative/i).tagName).toBe("P");
+        expect(within(section).getAllByRole("listitem")).toHaveLength(2);
+        expect(within(section).getByText("Lead the engineering team")).not.toHaveTextContent(/^-/);
     });
 
     test("includes SEO title", async () => {

@@ -1,5 +1,5 @@
 import React from "react";
-import {fireEvent, render, screen, waitFor} from "@testing-library/react";
+import {act, fireEvent, render, screen, waitFor} from "@testing-library/react";
 import {ExpandableText} from "./ExpandableText";
 import {vi} from 'vitest';
 
@@ -37,6 +37,7 @@ describe("ExpandableText", () => {
 
     afterEach(() => {
         vi.restoreAllMocks();
+        vi.unstubAllGlobals();
     });
 
     const longText = "Riga 1\nRiga 2\nRiga 3\nRiga 4\nRiga 5";
@@ -156,6 +157,56 @@ describe("ExpandableText", () => {
 
         const btn = await screen.findByRole("button", {name: /show more/i});
         expect(btn).toBeInTheDocument();
+    });
+
+    test("recomputes overflow when the viewport changes", async () => {
+        let measuredHeight = 20;
+        Object.defineProperty(HTMLElement.prototype, 'scrollHeight', {
+            configurable: true,
+            get() {
+                return measuredHeight;
+            }
+        });
+
+        render(<ExpandableText value={shortText} maxLines={2}/>);
+        expect(screen.queryByRole("button")).not.toBeInTheDocument();
+
+        measuredHeight = 100;
+        act(() => window.dispatchEvent(new Event("resize")));
+
+        expect(await screen.findByRole("button", {name: /show more/i})).toBeInTheDocument();
+    });
+
+    test("observes content-size changes when ResizeObserver is available", async () => {
+        let measuredHeight = 20;
+        let observerCallback;
+        const disconnect = vi.fn();
+
+        Object.defineProperty(HTMLElement.prototype, 'scrollHeight', {
+            configurable: true,
+            get() {
+                return measuredHeight;
+            }
+        });
+        vi.stubGlobal('ResizeObserver', class {
+            constructor(callback) {
+                observerCallback = callback;
+            }
+
+            observe() {}
+
+            disconnect() {
+                disconnect();
+            }
+        });
+
+        const {unmount} = render(<ExpandableText value={shortText} maxLines={2}/>);
+        measuredHeight = 100;
+        act(() => observerCallback());
+
+        expect(await screen.findByRole("button", {name: /show more/i})).toBeInTheDocument();
+        unmount();
+        expect(disconnect).toHaveBeenCalledOnce();
     });
 
     test("collapsed maxHeight reflects maxLines prop", async () => {

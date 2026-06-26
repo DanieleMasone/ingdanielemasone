@@ -15,6 +15,7 @@ import {useTranslation} from "react-i18next";
  */
 export function AvatarCard() {
     const {t} = useTranslation();
+    const skills = t("avatar.skills", {returnObjects: true});
 
     return (
         <section
@@ -48,9 +49,19 @@ export function AvatarCard() {
                 <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base mb-1">
                     {t("avatar.tagline")}
                 </p>
-                <p className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm mb-2">
-                    {t("avatar.skills", {returnObjects: true}).join(" • ")}
-                </p>
+                <ul
+                    className="mb-2 flex flex-wrap justify-center gap-x-2 text-xs text-gray-500 dark:text-gray-400 sm:text-sm"
+                    aria-label={t("avatar.skills_label")}
+                >
+                    {skills.map((skill) => (
+                        <li
+                            key={skill}
+                            className="flex items-center after:ml-2 after:content-['•'] last:after:content-none"
+                        >
+                            {skill}
+                        </li>
+                    ))}
+                </ul>
                 <p className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm">
                     {t("avatar.bio")}
                 </p>

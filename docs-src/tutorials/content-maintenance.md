@@ -47,6 +47,11 @@ Check:
 - filter behavior;
 - concise descriptions suitable for a portfolio visitor.
 
+Keep a short project description as a localized string. When a project has
+multiple narrative paragraphs followed by one or more real responsibility
+lists, use the shared structured-description contract documented below instead
+of serializing headings and `-` markers inside a string.
+
 Focused tests usually live in `src/pages/projects/Projects.test.jsx`.
 
 ## Certifications
@@ -107,15 +112,37 @@ Source data:
 - `src/mock/experiences.js`
 - localized experience descriptions and labels near the root translation keys
 
-The current Intesa Sanpaolo role uses a structured localized description under
-`exp_intesa_description` with:
+Experience descriptions and the detailed AI-assisted RPG project use the
+shared localized structure:
 
-- `paragraphs` for narrative copy rendered as semantic paragraphs;
-- `focusLabel` for the focus-area heading;
-- `focusItems` for the semantic focus list.
+```js
+{
+  paragraphs: ["Narrative paragraph"],
+  sections: [
+    {
+      label: "Optional visible heading",
+      items: ["Clean list-item text"]
+    }
+  ]
+}
+```
 
-Keep that structure aligned across all supported languages. Older roles may
-remain plain localized strings unless they need the same paragraph/list shape.
+Keep genuinely simple labels and prose as strings. Use `paragraphs` when copy
+contains distinct narrative paragraphs, and `sections` when the UI presents a
+real list. A section label is optional only when the preceding paragraph
+already introduces the list clearly.
+
+List items contain text only: never prefix them with `-`, `*`, `•` or `–`, and
+do not store HTML, Markdown or formatting-only line breaks in structured
+content. `StructuredDescription` owns `<p>`, headings, `<ul>`, `<li>`, visual
+markers and expandable layout.
+
+Every locale must preserve the same object shape, paragraph count, section
+count, label presence and corresponding item counts. The localization contract
+tests validate those rules, primitive/object/array type parity, empty values
+and interpolation variables. Multiline testimonial quotes remain strings
+because preserving the quoted source is more important than treating their
+line breaks as portfolio-authored document structure.
 
 Check:
 
@@ -123,8 +150,13 @@ Check:
 - current role ordering;
 - timeline density;
 - long translated descriptions;
-- paragraph and focus-list semantics for structured descriptions;
+- paragraph and section-list semantics for structured descriptions;
 - accessibility of status badges and timeline structure.
+
+For long translations, verify expand/collapse after changing language and at
+mobile and desktop widths. `ExpandableText` remeasures content after content,
+font, zoom and viewport changes, but browser checks should still cover German
+and French wrapping and horizontal overflow.
 
 Focused tests usually live in `src/pages/experience/Experience.test.jsx`.
 

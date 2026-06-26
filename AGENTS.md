@@ -109,6 +109,7 @@ Before considering any task complete, always evaluate and apply, when needed:
 - Treat `npm run build:all` as the authoritative publishing build: it must leave `dist` ready for GitHub Pages, including generated docs and coverage reports.
 - In CI, use `npm run test:e2e` followed by `npm run build:reports` when the workflow needs to avoid rebuilding the same app artifact.
 - Keep translations aligned across all currently supported languages (Italian, English, French, German, Spanish).
+- Represent localized semantic lists as arrays of clean item text; never encode bullets or parse paragraph/list structure from newline-delimited translation strings. Keep corresponding locale value shapes aligned and update localization contract tests when structured content changes.
 - Do not introduce visible instructional text inside the portfolio UI unless it improves the real user experience.
 - Treat this repo as a public professional showcase: concise copy, polished layout, accessible controls, and no unfinished surfaces.
 

@@ -1,4 +1,4 @@
-import {render, screen} from "@testing-library/react";
+import {render, screen, within} from "@testing-library/react";
 import {AvatarCard} from "./AvatarCard";
 import React from "react";
 import {vi} from 'vitest';
@@ -11,6 +11,7 @@ vi.mock("react-i18next", () => ({
                 "avatar.name": "Daniele Masone",
                 "avatar.tagline": "Senior Software Engineer | Technical Architect | Teacher",
                 "avatar.skills": ["Java", "JavaScript", "Angular", "C", "MySQL"],
+                "avatar.skills_label": "Core skills",
                 "avatar.bio": "Expert in software architecture, front-end & back-end development, and developer training."
             };
             if (options?.returnObjects) return translations[key] || [];
@@ -34,8 +35,9 @@ describe("AvatarCard", () => {
         // Tagline
         expect(screen.getByText("Senior Software Engineer | Technical Architect | Teacher")).toBeInTheDocument();
 
-        // Skills joined
-        expect(screen.getByText("Java • JavaScript • Angular • C • MySQL")).toBeInTheDocument();
+        const skills = screen.getByRole("list", {name: "Core skills"});
+        expect(within(skills).getAllByRole("listitem")).toHaveLength(5);
+        expect(within(skills).getByText("Java")).toBeInTheDocument();
 
         // Bio
         expect(screen.getByText("Expert in software architecture, front-end & back-end development, and developer training.")).toBeInTheDocument();

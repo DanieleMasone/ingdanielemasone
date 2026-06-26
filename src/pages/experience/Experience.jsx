@@ -3,7 +3,7 @@ import React, {useMemo, useState} from "react";
 import {Card} from "@/components/ui/card/Card";
 import {CardContent} from "@/components/ui/cardContent/CardContent";
 import {PageSection} from "@/components/ui/pageSection/PageSection";
-import {ExpandableText} from "@/components/ui/expandableText/ExpandableText";
+import {StructuredDescription} from "@/components/ui/structuredDescription/StructuredDescription";
 import {SeoHead} from "@/components/seoHead/SeoHead";
 import TechDisclosure from "@/components/ui/techDisclosure/TechDisclosure";
 import {CollectionToolbar} from "@/components/ui/collectionToolbar/CollectionToolbar";
@@ -118,70 +118,6 @@ export const getExperienceStatus = (period, t, currentYear = new Date().getFullY
 
     return null;
 };
-
-/**
- * Detects the structured localized content used for the current experience.
- *
- * @param {unknown} description - Localized experience description value.
- * @returns {boolean} Whether the description has the structured portfolio shape.
- */
-export const isStructuredExperienceDescription = (description) => (
-    Boolean(description)
-    && typeof description === "object"
-    && Array.isArray(description.paragraphs)
-    && typeof description.focusLabel === "string"
-    && Array.isArray(description.focusItems)
-);
-
-/**
- * Renders an experience description as either legacy text or structured content.
- *
- * Structured content keeps the current role readable with semantic paragraphs
- * and a list of focus areas while preserving the same expand/collapse behavior
- * used by older timeline entries.
- *
- * @component
- * @param {Object} props - Component props.
- * @param {string | {paragraphs: string[], focusLabel: string, focusItems: string[]}} props.description - Localized description content.
- * @param {string} props.titleId - Base heading id used to label nested sections.
- * @param {number} props.maxLines - Maximum collapsed lines for the expandable region.
- * @returns {React.JSX.Element} Semantic, optionally structured experience description.
- */
-export function ExperienceDescription({description, titleId, maxLines}) {
-    const textClasses = "text-left text-sm leading-relaxed text-gray-700 dark:text-gray-300";
-
-    if (!isStructuredExperienceDescription(description)) {
-        return (
-            <ExpandableText
-                value={description}
-                maxLines={maxLines}
-                className={textClasses}
-            />
-        );
-    }
-
-    const focusId = `${titleId}-focus`;
-
-    return (
-        <ExpandableText maxLines={maxLines} className={clsx(textClasses, "space-y-3")}>
-            {description.paragraphs.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-            ))}
-
-            <section className="space-y-2" aria-labelledby={focusId}>
-                <h3 id={focusId} className="text-sm font-semibold text-gray-900 dark:text-gray-100">
-                    {description.focusLabel}
-                </h3>
-
-                <ul className="grid list-disc gap-x-6 gap-y-1 pl-5 marker:text-blue-600 dark:marker:text-blue-400 sm:grid-cols-2">
-                    {description.focusItems.map((item) => (
-                        <li key={item}>{item}</li>
-                    ))}
-                </ul>
-            </section>
-        </ExpandableText>
-    );
-}
 
 /**
  * Experience component renders a paginated professional timeline.
@@ -310,10 +246,11 @@ export default function Experience() {
                                                 </header>
 
                                                 {exp.description && (
-                                                    <ExperienceDescription
+                                                    <StructuredDescription
                                                         description={description}
                                                         titleId={titleId}
                                                         maxLines={isOngoing ? 9 : 4}
+                                                        className="text-left text-sm leading-relaxed text-gray-700 dark:text-gray-300"
                                                     />
                                                 )}
 

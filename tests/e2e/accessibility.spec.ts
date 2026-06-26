@@ -51,6 +51,28 @@ test('trading chart exposes a non-visual data table fallback', async ({page}) =>
   await expect(page.getByRole('table', {name: /Performance - Vista Mensile/i})).toBeAttached();
 });
 
+test('structured experience and project descriptions expand with semantic lists', async ({page}) => {
+  await page.goto('experience/');
+
+  const currentExperience = page.getByTestId('experience-card').first();
+  const experienceToggle = currentExperience.getByRole('button', {name: 'Mostra tutto'});
+  await experienceToggle.click();
+  await expect(currentExperience.getByRole('button', {name: 'Mostra meno'}))
+    .toHaveAttribute('aria-expanded', 'true');
+  await expect(currentExperience.getByRole('heading', {level: 3, name: 'Focus principali'})).toBeVisible();
+  await expect(currentExperience.getByRole('listitem')).toHaveCount(8);
+
+  await page.goto('projects/');
+
+  const currentProject = page.getByTestId('project-card').first();
+  const projectToggle = currentProject.getByRole('button', {name: 'Mostra tutto'});
+  await projectToggle.click();
+  await expect(currentProject.getByRole('button', {name: 'Mostra meno'}))
+    .toHaveAttribute('aria-expanded', 'true');
+  await expect(currentProject.getByRole('heading', {level: 3, name: 'Responsabilità principali'})).toBeVisible();
+  await expect(currentProject.getByRole('listitem')).toHaveCount(7);
+});
+
 test('changed legal and disclosure surfaces reflow without horizontal overflow', async ({page}) => {
   await page.emulateMedia({reducedMotion: 'reduce'});
 
