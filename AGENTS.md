@@ -136,6 +136,12 @@ Before considering any task complete, always evaluate and apply, when needed:
 - During explicit dependency-maintenance work, check stable package metadata from npm or trusted official sources before changing versions.
 - Prefer stable releases over prerelease, beta, alpha, RC, canary, or experimental versions unless the user explicitly asks otherwise.
 - Respect peer dependencies, Node engine constraints, Vite/React/React Router compatibility, and GitHub Actions runtime constraints.
+- Use the repository-pinned Node/npm toolchain from `.nvmrc`, `packageManager`, and `engines` for dependency work.
+- Never change `package.json` without updating `package-lock.json`; never edit `package-lock.json` manually.
+- For broad dependency changes, regenerate the lockfile from a clean dependency state by removing `node_modules` and `package-lock.json`, then running `npm install --include=optional` with the pinned npm version.
+- After regenerating the lockfile, run `npm run deps:validate` and a clean `npm ci --include=optional`; validate on Linux when native, WASM, or platform-specific optional packages change.
+- Do not add transitive native bindings such as Rolldown, Lightning CSS, NAPI, or `@emnapi/*` packages as direct dependencies unless application source imports and owns them.
+- Do not replace CI `npm ci` with `npm install`, and do not make CI mutate dependency manifests or lockfiles.
 - For major upgrades, update related config, tests, documentation, CI, and any README/AGENTS stack-version references.
 - If an upgrade is risky or introduces breaking changes, stop and explain the trade-off instead of forcing it.
 - After dependency upgrades, run the full dependency verification set from the Final Verification section.

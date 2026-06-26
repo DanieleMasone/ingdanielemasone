@@ -54,7 +54,7 @@ The app uses React Router 7 with the Vite base path `/ingdanielemasone/`. Shared
 
 ## Quick Start
 
-Use Node.js `20.19+`, `22.13+`, or `24+`.
+Use Node.js `24.18.0` and npm `11.17.0` as pinned by `.nvmrc` and `package.json`.
 
 ```bash
 git clone https://github.com/DanieleMasone/ingdanielemasone.git
@@ -81,6 +81,7 @@ Then open `http://localhost:4173/ingdanielemasone/`.
 | `npm run dev` | Start the Vite dev server |
 | `npm run build` | Build the production app and GitHub Pages route HTML |
 | `npm run preview` | Preview the production build locally |
+| `npm run deps:validate` | Validate the committed npm lockfile structure |
 | `npm test -- --run` | Run the Vitest suite once |
 | `npx playwright install --with-deps --only-shell chromium` | Install the Chromium headless shell used by CI E2E checks |
 | `npm run test:e2e` | Run focused Playwright checks against production preview |
@@ -104,7 +105,7 @@ Then open `http://localhost:4173/ingdanielemasone/`.
 
 ## Deployment
 
-The portfolio is deployed by `.github/workflows/deploy-pages.yml` to GitHub Pages. The workflow installs dependencies, configures Pages, installs the Playwright Chromium headless shell, runs `npm run test:e2e`, runs `npm run build:reports`, uploads `dist`, and deploys it through the official GitHub Pages actions.
+The portfolio is deployed by `.github/workflows/deploy-pages.yml` to GitHub Pages. The workflow uses the pinned Node/npm toolchain, validates the committed lockfile, installs dependencies with `npm ci --include=optional`, configures Pages, installs the Playwright Chromium headless shell, runs `npm run test:e2e`, runs `npm run build:reports`, uploads `dist`, and deploys it through the official GitHub Pages actions.
 
 The published artifact keeps:
 

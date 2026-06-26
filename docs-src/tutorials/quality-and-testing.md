@@ -25,6 +25,25 @@ npm test -- --run
 
 Use targeted Vitest files first when a change is narrow, then the full suite when shared behavior is affected.
 
+## Dependency lock validation
+
+Dependency work uses the exact Node/npm versions pinned by `.nvmrc`, `packageManager`, and `engines`.
+
+After changing `package.json`, regenerate `package-lock.json` from a clean dependency state with:
+
+```bash
+npm install --include=optional
+```
+
+Then verify the committed lockfile before running the broader suite:
+
+```bash
+npm run deps:validate
+npm ci --include=optional
+```
+
+The validation script checks the lockfile structure, public registry URLs, root dependency alignment and native/WASM optional dependency references. It does not replace `npm ci`, which remains the authoritative frozen install check used by CI.
+
 ## Playwright
 
 Playwright is intentionally small. It is used for deployment-confidence E2E tests that are hard to prove in jsdom:

@@ -25,13 +25,24 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 24
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Ensure npm version
+        run: |
+          npm install --global npm@11.17.0
+          node --version
+          npm --version
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v6
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Validate dependency lock
+        run: npm run deps:validate
+
+      - name: Install frozen dependencies
+        run: npm ci --include=optional
 
       - name: Install Playwright Chromium headless shell
         run: npx playwright install --with-deps --only-shell chromium
