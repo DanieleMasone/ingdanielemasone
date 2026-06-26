@@ -47,7 +47,7 @@ The app uses React Router 7 with the Vite base path `/ingdanielemasone/`. Shared
 | Motion and UI utilities | Framer Motion, Headless UI |
 | Internationalization | i18next, react-i18next, browser language detector |
 | Charts | Chart.js, react-chartjs-2 |
-| Icons and visuals | Lucide React, Simple Icons, Boring Avatars |
+| Icons and visuals | Lucide React, Simple Icons |
 | Testing | Vitest, Testing Library, Playwright, jsdom, V8 coverage |
 | Documentation | JSDoc, Docdash |
 | Deployment | GitHub Actions, GitHub Pages |
@@ -59,7 +59,7 @@ Use Node.js `24.18.0` and npm `11.17.0` as pinned by `.nvmrc` and `package.json`
 ```bash
 git clone https://github.com/DanieleMasone/ingdanielemasone.git
 cd ingdanielemasone
-npm ci
+npm ci --include=optional
 npm run dev
 ```
 

@@ -64,7 +64,7 @@ Support correction and removal requests through the public contact channel. Do n
 
 ## Asset and claims checklist
 
-Owner confirmation is required for the personal photograph, course-cover artwork, local certificate PDF, certificate/credential links, employer and provider names, testimonials, social-preview artwork, and any third-party trademarks. Verify that each item may be displayed publicly and does not imply endorsement. Simple Icons, Lucide, Boring Avatars, and other packages retain their own licences; the lockfile and upstream licences remain the source for package terms.
+Owner confirmation is required for the personal photograph, course-cover artwork, local certificate PDF, certificate/credential links, employer and provider names, testimonials, social-preview artwork, and any third-party trademarks. Verify that each item may be displayed publicly and does not imply endorsement. Simple Icons, Lucide, and other packages retain their own licences; the lockfile and upstream licences remain the source for package terms.
 
 | Asset group | Repository source | Public use | Provenance/licence evidence | Required action |
 | --- | --- | --- | --- | --- |

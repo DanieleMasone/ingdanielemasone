@@ -107,12 +107,23 @@ Source data:
 - `src/mock/experiences.js`
 - localized experience descriptions and labels near the root translation keys
 
+The current Intesa Sanpaolo role uses a structured localized description under
+`exp_intesa_description` with:
+
+- `paragraphs` for narrative copy rendered as semantic paragraphs;
+- `focusLabel` for the focus-area heading;
+- `focusItems` for the semantic focus list.
+
+Keep that structure aligned across all supported languages. Older roles may
+remain plain localized strings unless they need the same paragraph/list shape.
+
 Check:
 
 - period format;
 - current role ordering;
 - timeline density;
 - long translated descriptions;
+- paragraph and focus-list semantics for structured descriptions;
 - accessibility of status badges and timeline structure.
 
 Focused tests usually live in `src/pages/experience/Experience.test.jsx`.

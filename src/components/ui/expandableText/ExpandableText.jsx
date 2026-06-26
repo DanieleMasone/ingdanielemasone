@@ -14,12 +14,13 @@ import {interactiveClasses} from "@/styles/commonClasses";
  * @component
  * @module components/ui/expandableText/ExpandableText
  * @param {Object} props - Component props.
- * @param {string} props.value - The text content to display.
+ * @param {string} [props.value] - Plain text content to display.
+ * @param {React.ReactNode} [props.children] - Semantic content to display inside the expandable region.
  * @param {number} [props.maxLines=3] - Maximum number of visible lines when collapsed.
  * @param {string} [props.className] - Additional CSS classes for styling.
  * @returns {React.JSX.Element} An expandable text block with a toggle button.
  */
-export function ExpandableText({value = "", maxLines = 3, className = ""}) {
+export function ExpandableText({value = "", children, maxLines = 3, className = ""}) {
     const [expanded, setExpanded] = useState(false);
     const [showButton, setShowButton] = useState(false);
     const [contentHeight, setContentHeight] = useState(0);
@@ -27,6 +28,7 @@ export function ExpandableText({value = "", maxLines = 3, className = ""}) {
     const paragraphRef = useRef(null);
     const contentId = useId();
     const {t} = useTranslation();
+    const hasChildren = children !== undefined && children !== null;
 
     useLayoutEffect(() => {
         const el = paragraphRef.current;
@@ -38,7 +40,7 @@ export function ExpandableText({value = "", maxLines = 3, className = ""}) {
         setContentHeight(el.scrollHeight);
         setCollapsedHeight(maxHeightCollapsed);
         setShowButton(el.scrollHeight > maxHeightCollapsed);
-    }, [value, maxLines]);
+    }, [children, value, maxLines]);
 
     return (
         <div className="relative">
@@ -47,14 +49,15 @@ export function ExpandableText({value = "", maxLines = 3, className = ""}) {
                 id={contentId}
                 ref={paragraphRef}
                 className={clsx(
-                    "text-sm sm:text-base whitespace-pre-wrap overflow-hidden transition-all duration-500 ease-in-out relative",
+                    "relative overflow-hidden transition-all duration-500 ease-in-out",
+                    !hasChildren && "whitespace-pre-wrap text-sm sm:text-base",
                     className
                 )}
                 style={{
                     maxHeight: expanded ? `${contentHeight}px` : `${collapsedHeight}px`
                 }}
             >
-                {value}
+                {hasChildren ? children : value}
 
                 {!expanded && showButton && (
                     <div

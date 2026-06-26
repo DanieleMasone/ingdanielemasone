@@ -52,10 +52,10 @@ Before considering any task complete, always evaluate and apply, when needed:
 
 4. Final Verification
    - Run the appropriate final checks before finishing.
-   - For local Windows development, this repository may also use:
+   - For local Windows development, use the repository-pinned Node/npm toolchain:
    
    	 ```powershell
-     & .\.tools\node-v22.12.0-win-x64\npm.cmd run build:all
+     npm run build:all
      ```
 	 
    - For normal code/UI changes, prefer:
@@ -142,6 +142,7 @@ Before considering any task complete, always evaluate and apply, when needed:
 - After regenerating the lockfile, run `npm run deps:validate` and a clean `npm ci --include=optional`; validate on Linux when native, WASM, or platform-specific optional packages change.
 - Do not add transitive native bindings such as Rolldown, Lightning CSS, NAPI, or `@emnapi/*` packages as direct dependencies unless application source imports and owns them.
 - Do not replace CI `npm ci` with `npm install`, and do not make CI mutate dependency manifests or lockfiles.
+- Keep `"private": true`; this portfolio is not published to the npm registry, and no npm publication workflow should be added.
 - For major upgrades, update related config, tests, documentation, CI, and any README/AGENTS stack-version references.
 - If an upgrade is risky or introduces breaking changes, stop and explain the trade-off instead of forcing it.
 - After dependency upgrades, run the full dependency verification set from the Final Verification section.

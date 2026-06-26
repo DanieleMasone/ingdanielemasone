@@ -109,6 +109,22 @@ describe("ExpandableText", () => {
         expect(paragraph).toHaveClass("custom-class");
     });
 
+    test("renders semantic children inside the expandable region", async () => {
+        render(
+            <ExpandableText maxLines={2} className="structured-content">
+                <p>Structured paragraph</p>
+                <ul>
+                    <li>Structured item</li>
+                </ul>
+            </ExpandableText>
+        );
+
+        expect(screen.getByText("Structured paragraph").tagName).toBe("P");
+        expect(screen.getByRole("listitem")).toHaveTextContent("Structured item");
+        expect(screen.getByText("Structured paragraph").closest("[data-testid='expandable-text']"))
+            .toHaveClass("structured-content");
+    });
+
     test("handles missing ref element gracefully (branch coverage)", () => {
         const {unmount} = render(<ExpandableText value=""/>);
         // Force unmount before ref exists — triggers the early return in useLayoutEffect

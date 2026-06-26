@@ -1,9 +1,10 @@
 import React from "react";
-import {fireEvent, render, screen} from "@testing-library/react";
+import {fireEvent, render, screen, within} from "@testing-library/react";
 import Experience, {
     formatExperiencePeriod,
     getExperienceStatus,
     getExperienceYears,
+    isStructuredExperienceDescription,
     sortExperiencesByRecency
 } from "./Experience";
 import {MemoryRouter} from "react-router-dom";
@@ -14,8 +15,25 @@ vi.mock("react-i18next", () => ({
     useTranslation: () => ({
         t: (key, options = {}) => {
             const translations = {
-                exp_current_role: "Current Engineer",
-                exp_current_description: "Current enterprise work",
+                exp_intesa_role: "Expert Software Engineer – Group Technology & Services",
+                exp_intesa_description: {
+                    paragraphs: [
+                        "I work in software engineering for enterprise, mission-critical financial systems subject to stringent regulatory requirements.",
+                        "I coordinate an internal initiative aimed at introducing Artificial Intelligence into software engineering activities.",
+                        "I am also the technical lead for an AI-assisted reverse engineering project focused on complex RPG systems."
+                    ],
+                    focusLabel: "Main focus areas",
+                    focusItems: [
+                        "RPG / IBM AS/400",
+                        "Backend / Frontend engineering",
+                        "Enterprise architecture alignment",
+                        "Legacy systems modernization",
+                        "AI-assisted software engineering",
+                        "Code quality & maintainability",
+                        "Financial systems reliability",
+                        "Large-scale regulated environments"
+                    ]
+                },
                 exp_rgi_role: "Developer",
                 exp_rgi_description: "Worked on backend development",
                 exp_iol_role: "Engineer",
@@ -69,10 +87,10 @@ vi.mock("@/components/errorState/ErrorState", () => ({
 
 const mockExperiences = [
     {
-        role: "exp_current_role",
-        company: "Bank",
+        role: "exp_intesa_role",
+        company: "Intesa Sanpaolo",
         period: "2025 - Present",
-        description: "exp_current_description",
+        description: "exp_intesa_description",
         tech: "Java",
     },
     {
@@ -173,7 +191,7 @@ describe("Experience component", () => {
 
         const headings = screen.getAllByRole("heading", {level: 2}).map((heading) => heading.textContent);
         expect(headings).toEqual([
-            "Current Engineer",
+            "Expert Software Engineer – Group Technology & Services",
             "Developer",
             "Engineer",
             "Mobile Engineer",
@@ -206,6 +224,29 @@ describe("Experience component", () => {
 
         expect(screen.getByText("2025 - Present")).toBeInTheDocument();
         expect(screen.getAllByRole("button", {name: "Show technologies"})).toHaveLength(5);
+    });
+
+    test("renders the current Intesa experience as semantic paragraphs and focus items", async () => {
+        vi.spyOn(service, "getExperiences")
+            .mockResolvedValueOnce(mockExperiences);
+
+        renderPage();
+
+        expect(await screen.findByRole("heading", {
+            name: "Expert Software Engineer – Group Technology & Services"
+        })).toBeInTheDocument();
+
+        expect(screen.queryByText("exp_intesa_description")).not.toBeInTheDocument();
+        expect(screen.getByText(/mission-critical financial systems/i).tagName).toBe("P");
+        expect(screen.getByText(/introducing Artificial Intelligence/i).tagName).toBe("P");
+        expect(screen.getByText(/AI-assisted reverse engineering/i).tagName).toBe("P");
+
+        const focusHeading = screen.getByRole("heading", {level: 3, name: "Main focus areas"});
+        const focusSection = focusHeading.closest("section");
+
+        expect(focusSection).toBeInTheDocument();
+        expect(within(focusSection).getAllByRole("listitem")).toHaveLength(8);
+        expect(within(focusSection).getByText("RPG / IBM AS/400")).toBeInTheDocument();
     });
 
     test("includes SEO title", async () => {
@@ -285,7 +326,7 @@ describe("Experience helpers", () => {
         const sorted = sortExperiencesByRecency(unsorted, 2026);
 
         expect(sorted.map((experience) => experience.role))
-            .toEqual(["exp_current_role", "exp_rgi_role", "exp_iol_role"]);
+            .toEqual(["exp_intesa_role", "exp_rgi_role", "exp_iol_role"]);
         expect(unsorted[0].role).toBe("exp_iol_role");
     });
 
@@ -300,5 +341,15 @@ describe("Experience helpers", () => {
     test("localizes present labels", () => {
         expect(formatExperiencePeriod("12/2025 - Present", () => "Now"))
             .toBe("12/2025 - Now");
+    });
+
+    test("detects structured descriptions without treating legacy strings as structured content", () => {
+        expect(isStructuredExperienceDescription({
+            paragraphs: ["One", "Two", "Three"],
+            focusLabel: "Focus",
+            focusItems: ["A"]
+        })).toBe(true);
+
+        expect(isStructuredExperienceDescription("Legacy text")).toBe(false);
     });
 });

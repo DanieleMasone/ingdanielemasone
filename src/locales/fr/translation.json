@@ -258,7 +258,24 @@
   "experience_present": "Aujourd'hui",
   "exp_label_ongoing": "Poste actuel",
   "exp_intesa_role": "Expert Software Engineer – Group Technology & Services",
-  "exp_intesa_description": "Je travaille dans l’ingénierie logicielle au sein d’environnements enterprise complexes, critiques et fortement réglementés, avec un focus sur les plateformes IBM AS/400 et les applications legacy RPG dans le secteur des services financiers.\n\nMes activités incluent le développement backend et frontend, la maintenance évolutive, l’intégration applicative, la qualité du code et le support à l’évolution architecturale de systèmes core à grande échelle et haute fiabilité.\n\nEn parallèle, je contribue à des initiatives d’innovation liées à l’adoption de l’Intelligence Artificielle appliquée au software engineering, avec une attention particulière portée à la modernisation, à la documentation automatisée et à l’amélioration de la productivité dans les environnements legacy enterprise.\n\nDomaines principaux :\n\n - RPG / IBM AS/400\n - Backend / Frontend engineering\n - Enterprise architecture alignment\n - Legacy systems modernization\n - AI-assisted software engineering\n - Code quality & maintainability\n - Financial systems reliability\n - Large-scale regulated environments",
+  "exp_intesa_description": {
+    "paragraphs": [
+      "Je travaille dans le domaine de l'ingénierie logicielle pour des systèmes financiers d'entreprise, critiques et soumis à de fortes exigences réglementaires, avec une attention particulière portée aux plateformes legacy IBM i / AS/400 et aux applications RPG.",
+      "Je coordonne une initiative interne visant à introduire l'intelligence artificielle dans les activités d'ingénierie logicielle d'une unité organisationnelle d'environ 75 personnes. Je suis chargé de l'expérimentation technique, de la définition des processus et de l'adoption des outils.",
+      "Je suis également technical lead d'un projet de reverse engineering assisté par l'IA, axé sur la compréhension, la documentation et l'analyse d'impact de systèmes RPG complexes, en étroite collaboration avec les équipes internes, l'Architecture, le management et les partenaires technologiques."
+    ],
+    "focusLabel": "Axes principaux",
+    "focusItems": [
+      "RPG / IBM AS/400",
+      "Ingénierie backend / frontend",
+      "Alignement avec l'architecture d'entreprise",
+      "Modernisation des systèmes legacy",
+      "Ingénierie logicielle assistée par l'IA",
+      "Qualité du code et maintenabilité",
+      "Fiabilité des systèmes financiers",
+      "Environnements réglementés à grande échelle"
+    ]
+  },
   "exp_rgi_role": "Front-End Architect / Team Leader",
   "exp_rgi_description": "Je dirige la conception, l’optimisation et la maintenance des architectures front-end, avec une approche stratégique et opérationnelle, à travers les activités suivantes :\n\n- Code Review : révision du code pour garantir qualité, efficacité et cohérence\n- Standards et Lignes directrices : supervision architecturale selon les meilleures pratiques\n- Sécurité Applicative : définition de pratiques préventives\n- Optimisation JavaScript/TypeScript : amélioration continue pour performance et scalabilité\n- Documentation Technique : création de documents détaillés sur UI et API REST\n- Recueil des besoins : collaboration avec les parties prenantes\n- Évaluation technologique : analyse et intégration de nouveaux outils\n- Optimisation du workflow : gestion d’automatisation, tests et qualité\n- Patterns réutilisables : définition de patterns et lignes directrices\n- Tests et Troubleshooting : surveillance des performances et résolution proactive",
   "exp_iol_role": "Full Stack Software Engineer",
@@ -582,7 +599,7 @@
     },
     "experience": {
       "title": "Expérience professionnelle - Daniele Masone",
-      "description": "Les expériences professionnelles de Daniele Masone, en développement frontend, architecture et plus."
+      "description": "Expérience professionnelle de Daniele Masone sur systèmes financiers d'entreprise, IBM i / AS/400, RPG, architecture, frontend et ingénierie logicielle assistée par l'IA."
     },
     "projects": {
       "title": "Projets - Daniele Masone",

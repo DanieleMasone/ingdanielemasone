@@ -120,6 +120,70 @@ export const getExperienceStatus = (period, t, currentYear = new Date().getFullY
 };
 
 /**
+ * Detects the structured localized content used for the current experience.
+ *
+ * @param {unknown} description - Localized experience description value.
+ * @returns {boolean} Whether the description has the structured portfolio shape.
+ */
+export const isStructuredExperienceDescription = (description) => (
+    Boolean(description)
+    && typeof description === "object"
+    && Array.isArray(description.paragraphs)
+    && typeof description.focusLabel === "string"
+    && Array.isArray(description.focusItems)
+);
+
+/**
+ * Renders an experience description as either legacy text or structured content.
+ *
+ * Structured content keeps the current role readable with semantic paragraphs
+ * and a list of focus areas while preserving the same expand/collapse behavior
+ * used by older timeline entries.
+ *
+ * @component
+ * @param {Object} props - Component props.
+ * @param {string | {paragraphs: string[], focusLabel: string, focusItems: string[]}} props.description - Localized description content.
+ * @param {string} props.titleId - Base heading id used to label nested sections.
+ * @param {number} props.maxLines - Maximum collapsed lines for the expandable region.
+ * @returns {React.JSX.Element} Semantic, optionally structured experience description.
+ */
+export function ExperienceDescription({description, titleId, maxLines}) {
+    const textClasses = "text-left text-sm leading-relaxed text-gray-700 dark:text-gray-300";
+
+    if (!isStructuredExperienceDescription(description)) {
+        return (
+            <ExpandableText
+                value={description}
+                maxLines={maxLines}
+                className={textClasses}
+            />
+        );
+    }
+
+    const focusId = `${titleId}-focus`;
+
+    return (
+        <ExpandableText maxLines={maxLines} className={clsx(textClasses, "space-y-3")}>
+            {description.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+            ))}
+
+            <section className="space-y-2" aria-labelledby={focusId}>
+                <h3 id={focusId} className="text-sm font-semibold text-gray-900 dark:text-gray-100">
+                    {description.focusLabel}
+                </h3>
+
+                <ul className="grid list-disc gap-x-6 gap-y-1 pl-5 marker:text-blue-600 dark:marker:text-blue-400 sm:grid-cols-2">
+                    {description.focusItems.map((item) => (
+                        <li key={item}>{item}</li>
+                    ))}
+                </ul>
+            </section>
+        </ExpandableText>
+    );
+}
+
+/**
  * Experience component renders a paginated professional timeline.
  *
  * The page favors portfolio scanning: it presents recent roles first, keeps
@@ -186,6 +250,9 @@ export default function Experience() {
                                 const titleId = `experience-${exp.role.replace(/\W+/g, "-")}`;
                                 const status = getExperienceStatus(exp.period, t, currentYear);
                                 const isOngoing = status?.type === "ongoing";
+                                const description = exp.description
+                                    ? t(exp.description, {returnObjects: true})
+                                    : null;
 
                                 return (
                                     <li key={exp.role} className={layoutClasses.timelineItem}>
@@ -243,10 +310,10 @@ export default function Experience() {
                                                 </header>
 
                                                 {exp.description && (
-                                                    <ExpandableText
-                                                        value={t(exp.description)}
-                                                        maxLines={isOngoing ? 6 : 4}
-                                                        className="text-left text-sm leading-relaxed text-gray-700 dark:text-gray-300"
+                                                    <ExperienceDescription
+                                                        description={description}
+                                                        titleId={titleId}
+                                                        maxLines={isOngoing ? 9 : 4}
                                                     />
                                                 )}
 

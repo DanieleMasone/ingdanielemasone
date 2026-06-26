@@ -9,7 +9,7 @@
  */
 export const projects = [
     {
-        name: "AI-Assisted Refactoring for RPG on IBM i (AS/400)",
+        name: "Technical Lead – AI-Assisted Refactoring for RPG on IBM i (AS/400)",
         tech: "RPG, AS400, MySQL, AI",
         type: "intesa.exp_ai_as400",
         company: "Intesa Sanpaolo",

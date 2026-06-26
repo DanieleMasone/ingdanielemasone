@@ -58,7 +58,7 @@ vi.mock("@/components/errorState/ErrorState", () => ({
 
 const mockProjects = [
     {
-        name: "P1 Current AI",
+        name: "Technical Lead – AI-Assisted Refactoring for RPG on IBM i (AS/400)",
         tech: "RPG, AS400",
         type: "intesa.exp_ai_as400",
         company: "Intesa Sanpaolo",
@@ -170,7 +170,7 @@ describe("Projects Component", () => {
 
         const headings = screen.getAllByRole("heading", {level: 2}).map((heading) => heading.textContent);
         expect(headings).toEqual([
-            "P1 Current AI",
+            "Technical Lead – AI-Assisted Refactoring for RPG on IBM i (AS/400)",
             "P3 Core Systems",
             "P2 Modernization",
             "RGI Architecture",
@@ -229,7 +229,7 @@ describe("Projects Component", () => {
 
         renderProjects();
 
-        await screen.findByText("P1 Current AI");
+        await screen.findByText("Technical Lead – AI-Assisted Refactoring for RPG on IBM i (AS/400)");
 
         expect(screen.queryByText("RPG")).not.toBeInTheDocument();
 
@@ -269,7 +269,7 @@ describe("Projects Component", () => {
 
         fireEvent.click(screen.getByText("retry"));
 
-        await screen.findByText("P1 Current AI");
+        await screen.findByText("Technical Lead – AI-Assisted Refactoring for RPG on IBM i (AS/400)");
 
         expect(spy).toHaveBeenCalledTimes(2);
     });
@@ -310,7 +310,7 @@ describe("Projects helpers", () => {
         const sorted = sortProjectsByRecency(unsorted, 2026);
 
         expect(sorted.map((project) => project.name))
-            .toEqual(["P1 Current AI", "RGI Architecture", "Fastweb Mobile"]);
+            .toEqual(["Technical Lead – AI-Assisted Refactoring for RPG on IBM i (AS/400)", "RGI Architecture", "Fastweb Mobile"]);
         expect(unsorted[0].name).toBe("Fastweb Mobile");
     });
 

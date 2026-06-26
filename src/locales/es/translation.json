@@ -258,7 +258,24 @@
   "experience_present": "Presente",
   "exp_label_ongoing": "Rol actual",
   "exp_intesa_role": "Expert Software Engineer – Group Technology & Services",
-  "exp_intesa_description": "Trabajo en software engineering dentro de entornos enterprise complejos, mission-critical y altamente regulados, con foco en plataformas IBM AS/400 y aplicaciones legacy RPG en el sector de servicios financieros.\n\nLas actividades incluyen desarrollo backend y frontend, mantenimiento evolutivo, integración de aplicaciones, calidad del código y soporte a la evolución arquitectónica de sistemas core de alta fiabilidad y gran escala.\n\nParalelamente, contribuyo a iniciativas de innovación relacionadas con la adopción de Artificial Intelligence aplicada al software engineering, con especial atención a la modernización, la documentación automatizada y la mejora de la productividad en entornos legacy enterprise.\n\nÁreas principales de enfoque:\n\n - RPG / IBM AS/400\n - Backend / Frontend engineering\n - Enterprise architecture alignment\n - Legacy systems modernization\n - AI-assisted software engineering\n - Code quality & maintainability\n - Financial systems reliability\n - Large-scale regulated environments",
+  "exp_intesa_description": {
+    "paragraphs": [
+      "Trabajo en el ámbito de la ingeniería de software para sistemas financieros empresariales, de misión crítica y sujetos a elevados requisitos normativos, con especial atención a las plataformas legacy IBM i / AS/400 y a las aplicaciones RPG.",
+      "Coordino una iniciativa interna orientada a introducir la Inteligencia Artificial en las actividades de ingeniería de software de una unidad organizativa de aproximadamente 75 personas, ocupándome de la experimentación técnica, la definición de procesos y la adopción de herramientas.",
+      "También soy technical lead de un proyecto de ingeniería inversa asistida por IA, centrado en la comprensión, documentación y análisis de impacto de sistemas RPG complejos, colaborando estrechamente con equipos internos, Architecture, management y socios tecnológicos."
+    ],
+    "focusLabel": "Áreas principales",
+    "focusItems": [
+      "RPG / IBM AS/400",
+      "Ingeniería backend / frontend",
+      "Alineación con la arquitectura empresarial",
+      "Modernización de sistemas legacy",
+      "Ingeniería de software asistida por IA",
+      "Calidad y mantenibilidad del código",
+      "Fiabilidad de sistemas financieros",
+      "Entornos regulados a gran escala"
+    ]
+  },
   "exp_rgi_role": "Front-End Architect / Team Leader",
   "exp_rgi_description": "Dirijo el diseño, optimización y mantenimiento de arquitecturas front-end, tanto a nivel estratégico como operativo:\n\n- Code Review: calidad, eficiencia y estándares\n- Estándares y guías: supervisión arquitectónica\n- Seguridad aplicativa: prácticas preventivas\n- Optimización JS/TS\n- Documentación técnica\n- Recolección de requisitos\n- Evaluación tecnológica\n- Optimización del workflow: builds, tests, calidad\n- Patrones reutilizables\n- Testing y troubleshooting",
   "exp_iol_role": "Full Stack Software Engineer",
@@ -582,7 +599,7 @@
     },
     "experience": {
       "title": "Experiencia profesional - Daniele Masone",
-      "description": "Experiencias laborales y profesionales de Daniele Masone, en desarrollo frontend, arquitectura y más."
+      "description": "Experiencia profesional de Daniele Masone en sistemas financieros empresariales, IBM i / AS/400, RPG, arquitectura, frontend e ingeniería de software asistida por IA."
     },
     "projects": {
       "title": "Proyectos - Daniele Masone",

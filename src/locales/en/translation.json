@@ -258,7 +258,24 @@
   "experience_present": "Present",
   "exp_label_ongoing": "Current role",
   "exp_intesa_role": "Expert Software Engineer – Group Technology & Services",
-  "exp_intesa_description": "I work in software engineering within complex, mission-critical, and highly regulated enterprise environments, with a focus on IBM AS/400 platforms and legacy RPG applications in the financial services domain.\n\nMy responsibilities include backend and frontend development, application maintenance and evolution, system integration, code quality, and support for the architectural evolution of large-scale, high-reliability core systems.\n\nIn parallel, I contribute to innovation initiatives related to the adoption of Artificial Intelligence in software engineering, with a particular focus on modernization, automated documentation, and productivity improvements in enterprise legacy environments.\n\nMain focus areas:\n\n - RPG / IBM AS/400\n - Backend / Frontend engineering\n - Enterprise architecture alignment\n - Legacy systems modernization\n - AI-assisted software engineering\n - Code quality & maintainability\n - Financial systems reliability\n - Large-scale regulated environments",
+  "exp_intesa_description": {
+    "paragraphs": [
+      "I work in software engineering for enterprise, mission-critical financial systems subject to stringent regulatory requirements, with a particular focus on legacy IBM i / AS/400 platforms and RPG applications.",
+      "I coordinate an internal initiative aimed at introducing Artificial Intelligence into the software engineering activities of an organizational unit of approximately 75 people, leading technical experimentation, process definition and tool adoption.",
+      "I am also the technical lead for an AI-assisted reverse engineering project focused on understanding, documenting and performing impact analysis on complex RPG systems, working closely with internal teams, Architecture, management and technology partners."
+    ],
+    "focusLabel": "Main focus areas",
+    "focusItems": [
+      "RPG / IBM AS/400",
+      "Backend / Frontend engineering",
+      "Enterprise architecture alignment",
+      "Legacy systems modernization",
+      "AI-assisted software engineering",
+      "Code quality & maintainability",
+      "Financial systems reliability",
+      "Large-scale regulated environments"
+    ]
+  },
   "exp_rgi_role": "Front-End Architect / Team Leader",
   "exp_rgi_description": "I lead the design, optimization, and maintenance of front-end architectures both strategically and operationally through the following key activities:\n\n- Code Reviews: Reviewing code to ensure quality, efficiency, and adherence to standards\n- Standards & Guidelines: Overseeing architecture design according to company best practices\n- Application Security: Defining preventive practices to avoid vulnerabilities\n- JavaScript/TypeScript Optimization: Continuously improving performance and scalability\n- Technical Documentation: Creating detailed documents on UI architecture and REST API interactions\n- Requirements Gathering: Collaborating with stakeholders to define functional and technical requirements\n- Technology Evaluation: Assessing and integrating new tools and frameworks\n- Workflow Optimization: Managing build automation, linting, testing, and code quality\n- Guidelines & Patterns: Defining technical standards and reusable design patterns\n- Performance Testing & Troubleshooting: Monitoring performance and proactively resolving issues",
   "exp_iol_role": "Full Stack Software Engineer",
@@ -582,7 +599,7 @@
     },
     "experience": {
       "title": "Professional Experience - Daniele Masone",
-      "description": "Work and professional experience of Daniele Masone, including frontend development and architecture."
+      "description": "Daniele Masone's professional experience across enterprise financial systems, IBM i / AS/400, RPG, architecture, frontend and AI-assisted software engineering."
     },
     "projects": {
       "title": "Projects - Daniele Masone",
