@@ -1,13 +1,13 @@
 import React from "react";
 import danielePhoto from '../../../assets/daniele.jpg';
-import cover from '../../../assets/cover.png';
 import {useTranslation} from "react-i18next";
+import {siteIdentity} from "@/config/siteIdentity";
 
 /**
  * Personal profile card shown on the portfolio home page.
  *
- * Displays a branded cover, profile photo, name, tagline, skills, and short bio.
- * Supports dark mode and responsive design for mobile and desktop.
+ * Displays a described profile photo, tagline, skills, and short bio without
+ * repeating the full-name heading owned by the Home hero.
  *
  * @component
  * @module components/ui/avatarCard/AvatarCard
@@ -18,34 +18,18 @@ export function AvatarCard() {
     const skills = t("avatar.skills", {returnObjects: true});
 
     return (
-        <section
-            className="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-full max-w-xs sm:max-w-sm overflow-hidden border border-gray-200 dark:border-gray-700">
+        <div
+            className="w-full max-w-xs overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-800 sm:max-w-sm">
 
-            {/* Cover brand */}
-            <div className="h-16 sm:h-20 w-full relative">
-                <img
-                    src={cover}
-                    alt=""
-                    className="w-full h-full object-cover"
-                    aria-hidden="true"
-                />
-                {/* Overlay only on the cover */}
-                <div className="absolute inset-0 bg-black/20 z-0"></div>
-            </div>
-
-            {/* Avatar container above the cover */}
-            <div className="flex justify-center -mt-2 sm:-mt-4 z-10 relative">
+            <div className="flex justify-center pt-6 sm:pt-8">
                 <img
                     src={danielePhoto}
-                    alt={t("avatar.name")}
-                    className="rounded-full w-32 h-32 sm:w-40 sm:h-40 object-cover shadow-md border-4 border-white dark:border-gray-800 hover:scale-105 transition-transform duration-300"
+                    alt={siteIdentity.name}
+                    className="h-32 w-32 rounded-full border-4 border-white object-cover shadow-md dark:border-gray-800 sm:h-40 sm:w-40"
                 />
             </div>
 
-            <div className="mt-4 pb-5 relative z-10 px-4 sm:px-6 md:px-8 max-w-2xl mx-auto text-center">
-                <h2 className="text-xl font-bold text-gray-950 dark:text-white">
-                    {t("avatar.name")}
-                </h2>
+            <div className="mx-auto mt-4 max-w-2xl px-4 pb-5 text-center sm:px-6 md:px-8">
                 <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base mb-1">
                     {t("avatar.tagline")}
                 </p>
@@ -66,6 +50,6 @@ export function AvatarCard() {
                     {t("avatar.bio")}
                 </p>
             </div>
-        </section>
+        </div>
     );
 }

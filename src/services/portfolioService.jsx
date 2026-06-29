@@ -4,7 +4,6 @@ import {experiences} from "@/mock/experiences";
 import {projects} from "@/mock/projects";
 import {testimonials} from "@/mock/testimonials";
 import {tradingPerformance} from "@/mock/trading";
-import {links} from "@/mock/links";
 import {githubProjects} from "@/mock/githubProjects";
 
 /**
@@ -93,14 +92,4 @@ export async function getTestimonials() {
 export async function getTradingPerformance() {
     await delay(300);
     return tradingPerformance;
-}
-
-/**
- * Loads static social and external link entries for the Footer.
- *
- * @returns {Promise<Array<object>>} Promise resolving to the links' dataset.
- */
-export async function getLinks() {
-    await delay(300);
-    return links;
 }

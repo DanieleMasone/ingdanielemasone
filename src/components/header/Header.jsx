@@ -8,6 +8,7 @@ import {Disclosure} from '@headlessui/react';
 import {AnimatePresence, motion} from "framer-motion";
 import clsx from "clsx";
 import {interactiveClasses} from "@/styles/commonClasses";
+import {siteIdentity} from "@/config/siteIdentity";
 
 /**
  * Normalizes route paths for active-state comparisons while links keep their
@@ -37,10 +38,7 @@ export function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [portfolioOpen, setPortfolioOpen] = useState(false);
     const portfolioRef = useRef(null);
-
-    const navMain = [
-        {to: '/', label: t('home')},
-    ];
+    const portfolioButtonRef = useRef(null);
 
     const navPortfolio = [
         {to: '/experience/', label: t('experience')},
@@ -79,7 +77,10 @@ export function Header() {
         const handleEscape = (event) => {
             if (event.key === "Escape") {
                 setMenuOpen(false);
-                setPortfolioOpen(false);
+                if (portfolioOpen) {
+                    setPortfolioOpen(false);
+                    portfolioButtonRef.current?.focus();
+                }
             }
         };
 
@@ -104,34 +105,32 @@ export function Header() {
     return (
         <header
             className="bg-white/80 dark:bg-gray-950/80 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-200/80 dark:border-gray-800 transition-shadow duration-300">
-            <div className="max-w-7xl mx-auto flex items-center justify-between gap-4 px-4 py-3 md:px-6 md:py-4">
+            <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2.5 sm:px-6 md:px-12 md:py-3">
                 <Link
                     to="/"
-                    className="flex min-w-0 flex-col text-gray-950 transition hover:text-blue-700 dark:text-white dark:hover:text-blue-300"
-                    aria-label={t("header.home_aria")}
+                    className={clsx(
+                        "inline-flex min-h-11 min-w-0 items-center rounded text-gray-950 transition hover:text-blue-700 dark:text-white dark:hover:text-blue-300",
+                        interactiveClasses.focusRing
+                    )}
+                    aria-label={t("header.home_aria", {name: siteIdentity.name})}
                 >
-                    <span className="truncate text-base font-extrabold leading-tight">Daniele Masone</span>
-                    <span className="truncate text-xs font-medium text-gray-600 dark:text-gray-400 sm:block">
-                        Senior Software Engineer
-                    </span>
+                    <span className="truncate text-base font-extrabold leading-tight">{siteIdentity.name}</span>
                 </Link>
 
                 {/* Desktop Nav */}
                 <nav className="hidden md:flex items-center space-x-6" aria-label={t("header.main_navigation")}>
-                    {navMain.map((item) => (
-                        <Link
-                            key={item.to}
-                            to={item.to}
-                            className={clsx(getLinkClasses(item.to), "rounded", interactiveClasses.focusRing)}
-                            aria-current={getAriaCurrent(item.to)}
-                        >
-                            {item.label}
-                        </Link>
-                    ))}
+                    <Link
+                        to="/"
+                        className={clsx(getLinkClasses("/"), "rounded", interactiveClasses.focusRing)}
+                        aria-current={getAriaCurrent("/")}
+                    >
+                        {t("home")}
+                    </Link>
 
                     {/* Portfolio Dropdown */}
                     <div className="relative group" ref={portfolioRef}>
                         <button
+                            ref={portfolioButtonRef}
                             onClick={() => setPortfolioOpen(!portfolioOpen)}
                             className={clsx(`flex items-center space-x-1 rounded font-medium transition hover:text-blue-600 dark:hover:text-blue-400 ${
                                 portfolioOpen || isPortfolioRoute ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-gray-900 dark:text-white"
@@ -185,7 +184,7 @@ export function Header() {
 
                 {/* Mobile menu toggle */}
                 <button
-                    className={clsx("rounded p-2 transition hover:bg-gray-200 dark:hover:bg-gray-800 md:hidden", interactiveClasses.focusRing)}
+                    className={clsx("inline-flex h-11 w-11 shrink-0 items-center justify-center rounded transition hover:bg-gray-200 dark:hover:bg-gray-800 md:hidden", interactiveClasses.focusRing)}
                     onClick={() => setMenuOpen(!menuOpen)}
                     aria-label={mobileMenuLabel}
                     aria-expanded={menuOpen}
@@ -228,24 +227,6 @@ export function Header() {
                                 <LanguageSwitcher/>
                                 <DarkModeToggle/>
                             </div>
-                        </div>
-
-                        <div className="space-y-2">
-                            {navMain
-                                .filter((item) => item.to !== "/")
-                                .map((item) => (
-                                    <Link
-                                        key={item.to}
-                                        to={item.to}
-                                        onClick={() => setMenuOpen(false)}
-                                        className={clsx(`block rounded py-2 text-base font-medium transition ${
-                                            currentPath === getComparablePath(item.to) ? "text-blue-600 dark:text-blue-400 font-semibold" : "text-gray-900 dark:text-white"
-                                        } hover:bg-gray-200 dark:hover:bg-gray-700`, interactiveClasses.focusRing)}
-                                        aria-current={getAriaCurrent(item.to)}
-                                    >
-                                        {item.label}
-                                    </Link>
-                                ))}
                         </div>
 
                         {/* Portfolio mobile dropdown */}

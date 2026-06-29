@@ -68,7 +68,7 @@ Owner confirmation is required for the personal photograph, course-cover artwork
 
 | Asset group | Repository source | Public use | Provenance/licence evidence | Required action |
 | --- | --- | --- | --- | --- |
-| Personal portrait and cover | `src/assets/daniele.jpg`, `src/assets/cover.png` | Home profile card | No written rights record in repository | Owner confirms ownership and intended publication; strip unnecessary image metadata before publishing when safe |
+| Personal portrait | `src/assets/daniele.jpg` | Home profile card | No written rights record in repository | Owner confirms ownership and intended publication; strip unnecessary image metadata before publishing when safe |
 | Portfolio logo and social preview | `public/logo.png`, `public/social-preview.png` | Favicon and social metadata | Project-authored status not recorded | Owner confirms authorship or licence |
 | Fifteen course covers | `src/assets/courses/*.png` | Courses | No artwork/licence record in repository | Confirm ownership, Udemy artwork reuse rights, and third-party marks |
 | RGI certificate PDF | `src/assets/certifications/Attestato_Masone.pdf` | Certifications download | Public-display authorization not recorded | Confirm employer/provider authorization and that exposed personal data is intentional |

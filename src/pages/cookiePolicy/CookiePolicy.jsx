@@ -1,4 +1,5 @@
 import React from "react";
+import {siteIdentity} from "@/config/siteIdentity";
 import {useTranslation} from "react-i18next";
 import {SeoHead} from "@/components/seoHead/SeoHead";
 import clsx from "clsx";
@@ -55,8 +56,8 @@ export default function CookiePolicy() {
                     <p>{t("cookie.external_text")}</p>
                     <p className="mt-2">
                         {t("cookie.contact_text")}{" "}
-                        <a href="mailto:masone.daniele@gmail.com" className={linkClass}>
-                            masone.daniele@gmail.com
+                        <a href={`mailto:${siteIdentity.email}`} className={linkClass}>
+                            {siteIdentity.email}
                         </a>
                     </p>
                 </LegalSection>

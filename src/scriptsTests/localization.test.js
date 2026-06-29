@@ -171,6 +171,17 @@ describe("localized portfolio content", () => {
         }
     });
 
+    test("keeps immutable identity out of localized shell data", () => {
+        for (const localeCode of localeCodes) {
+            const locale = readLocale(localeCode);
+
+            expect(locale.avatar).not.toHaveProperty("name");
+            expect(interpolationVariables(locale.header.home_aria)).toContain("name");
+            expect(interpolationVariables(locale.footer_copyright)).toEqual(["name", "year"]);
+            expect(interpolationVariables(locale.footer_external_profile_label)).toEqual(["label", "name"]);
+        }
+    });
+
     test("does not contain empty localized strings", () => {
         for (const localeCode of localeCodes) {
             for (const [key, value] of walkValues(readLocale(localeCode))) {

@@ -6,7 +6,7 @@ import {vi} from 'vitest';
 
 vi.mock("react-i18next", () => ({
     useTranslation: () => ({
-        t: (key) => ({
+        t: (key, options = {}) => ({
             home: "Home",
             portfolio: "Portfolio",
             experience: "Experience",
@@ -16,7 +16,7 @@ vi.mock("react-i18next", () => ({
             testimonials: "Testimonials",
             trading: "Trading",
             certifications: "Certifications",
-            "header.home_aria": "Daniele Masone home",
+            "header.home_aria": `${options.name} home`,
             "header.main_navigation": "Main navigation",
             "header.mobile_navigation": "Mobile navigation",
             "header.portfolio_navigation": "Portfolio navigation",
@@ -131,6 +131,18 @@ describe("Header", () => {
         expect(screen.queryByText("Experience")).not.toBeInTheDocument();
     });
 
+    test("desktop dropdown closes after an outside click", () => {
+        renderHeader("/");
+        const btn = screen.getAllByRole("button", {name: /portfolio/i})[0];
+
+        fireEvent.click(btn);
+        expect(screen.getByText("Experience")).toBeInTheDocument();
+
+        fireEvent.mouseDown(document.body);
+        expect(screen.queryByText("Experience")).not.toBeInTheDocument();
+        expect(btn).toHaveAttribute("aria-expanded", "false");
+    });
+
     test("desktop dropdown closes with Escape", () => {
         renderHeader("/");
         const btn = screen.getAllByRole("button", {name: /portfolio/i})[0];
@@ -141,6 +153,7 @@ describe("Header", () => {
         fireEvent.keyDown(document, {key: "Escape"});
         expect(screen.queryByText("Experience")).not.toBeInTheDocument();
         expect(btn).toHaveAttribute("aria-expanded", "false");
+        expect(btn).toHaveFocus();
     });
 
     describe("mobile menu behavior", () => {
@@ -232,7 +245,7 @@ describe("Header", () => {
             expect(screen.queryByTestId("mobile-menu")).not.toBeInTheDocument();
         });
 
-        test("mobile menu does not duplicate root navMain link", () => {
+        test("mobile menu exposes one Home link", () => {
             renderHeader("/");
 
             const menu = openMobileMenu();
@@ -318,6 +331,7 @@ describe("Header", () => {
         const brand = screen.getByRole("link", {name: /daniele masone home/i});
         expect(brand).toHaveAttribute("href", "/");
         expect(screen.getByText("Daniele Masone")).toBeInTheDocument();
+        expect(screen.queryByText("Senior Software Engineer")).not.toBeInTheDocument();
     });
 
     test("desktop portfolio dropdown closes after clicking a link", () => {

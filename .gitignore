@@ -23,6 +23,7 @@
 /coverage
 /playwright-report
 /test-results
+/debug.log
 
 # Documentation
 /docs

@@ -6,8 +6,8 @@ import {ArrowRight, BriefcaseBusiness, FolderGit2, Sparkles} from "lucide-react"
 import {BrandIcon} from "@/components/ui/brandIcon/BrandIcon";
 import React from "react";
 import {layoutClasses, surfaceClasses} from "@/styles/commonClasses";
+import {siteIdentity} from "@/config/siteIdentity";
 
-const LINKEDIN_URL = "https://www.linkedin.com/in/ingdanielemasone/";
 const highlightedActionClasses = `inline-flex min-h-12 items-center justify-center gap-2 rounded-lg
     border border-[#0A66C2] bg-[#0A66C2] px-5 py-3
     text-base font-semibold text-white shadow-md transition
@@ -75,7 +75,7 @@ export default function Home() {
                                 id="home-title"
                                 className="text-4xl font-extrabold leading-tight text-gray-950 dark:text-white sm:text-5xl lg:text-6xl"
                             >
-                                {t("avatar.name")}
+                                {siteIdentity.name}
                             </h1>
                             <p className="text-xl font-semibold text-blue-700 dark:text-blue-300 sm:text-2xl">
                                 {t("home_subtitle")}
@@ -115,7 +115,7 @@ export default function Home() {
 
                             {/* LINKEDIN */}
                             <a
-                                href={LINKEDIN_URL}
+                                href={siteIdentity.profiles.linkedin}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className={highlightedActionClasses}

@@ -18,7 +18,7 @@
     "range_announcement": "Showing items {{start}} to {{end}} of {{total}} {{label}}."
   },
   "header": {
-    "home_aria": "Daniele Masone home",
+    "home_aria": "{{name}} home",
     "main_navigation": "Main navigation",
     "mobile_navigation": "Mobile navigation",
     "portfolio_navigation": "Portfolio navigation",
@@ -34,15 +34,14 @@
     "switch_to_dark": "Switch to dark mode",
     "switch_to_light": "Switch to light mode"
   },
-  "footer_copyright": "© {{year}} Daniele Masone. All rights reserved.",
+  "footer_copyright": "© {{year}} {{name}}. All rights reserved.",
   "footer_social_navigation": "Social links",
-  "footer_social_loading": "Loading social links",
-  "footer_social_unavailable": "Social links temporarily unavailable",
-  "footer_external_profile_label": "Daniele Masone {{label}} profile",
-  "footer_developer_resources": "Developer resources",
-  "footer_legal_navigation": "Legal information",
+  "footer_external_profile_label": "{{name}} {{label}} profile",
+  "footer_navigation": "Footer links",
+  "footer_privacy_link": "Privacy",
+  "footer_cookie_link": "Cookies and local storage",
   "footer_docs_link": "Documentation",
-  "footer_coverage_link": "Coverage",
+  "footer_coverage_link": "Test coverage",
   "home_subtitle": "Technical Architect, Senior Software Engineer, and Tech Trainer.",
   "home_description": "I design software solutions for enterprise and regulated domains, connecting front-end architecture, financial and legacy systems, microservices, code quality, and technical training.",
   "home_eyebrow": "Portfolio and online CV",
@@ -1073,7 +1072,6 @@
     }
   },
   "avatar": {
-    "name": "Daniele Masone",
     "tagline": "Senior Software Engineer & Technical Architect | Front-End Specialist | Tech Trainer",
     "skills": [
       "Java",

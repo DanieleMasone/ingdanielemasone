@@ -30,7 +30,7 @@ This keeps the GitHub Pages deployment simple:
 src/
   assets/        Images, course covers and certificates
   components/    Shared UI, layout, SEO, header/footer and states
-  config/        SEO route configuration
+  config/        SEO, language and immutable site identity configuration
   consts/        Shared constants
   i18n/          i18next setup
   locales/       Italian, English, French, German and Spanish copy

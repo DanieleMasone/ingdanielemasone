@@ -5,8 +5,7 @@ import {
     getGithubProjects,
     getProjects,
     getTestimonials,
-    getTradingPerformance,
-    getLinks
+    getTradingPerformance
 } from "./portfolioService";
 import {vi, describe, it, expect, beforeEach} from "vitest";
 
@@ -28,7 +27,6 @@ describe("portfolio.service", () => {
         ["getProjects", getProjects],
         ["getTestimonials", getTestimonials],
         ["getTradingPerformance", getTradingPerformance],
-        ["getLinks", getLinks],
     ];
 
     it.each(cases)("%s returns a Promise", async (_, fn) => {

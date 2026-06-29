@@ -18,7 +18,7 @@
     "range_announcement": "Anzeige der Elemente {{start}} bis {{end}} von {{total}} {{label}}."
   },
   "header": {
-    "home_aria": "Startseite von Daniele Masone",
+    "home_aria": "Startseite von {{name}}",
     "main_navigation": "Hauptnavigation",
     "mobile_navigation": "Mobile Navigation",
     "portfolio_navigation": "Portfolio-Navigation",
@@ -34,15 +34,14 @@
     "switch_to_dark": "Zum dunklen Modus wechseln",
     "switch_to_light": "Zum hellen Modus wechseln"
   },
-  "footer_copyright": "© {{year}} Daniele Masone. Alle Rechte vorbehalten.",
+  "footer_copyright": "© {{year}} {{name}}. Alle Rechte vorbehalten.",
   "footer_social_navigation": "Social-Links",
-  "footer_social_loading": "Social-Links werden geladen",
-  "footer_social_unavailable": "Social-Links vorübergehend nicht verfügbar",
-  "footer_external_profile_label": "Daniele Masone Profil auf {{label}}",
-  "footer_developer_resources": "Entwicklungsressourcen",
-  "footer_legal_navigation": "Rechtliche Informationen",
+  "footer_external_profile_label": "Profil von {{name}} auf {{label}}",
+  "footer_navigation": "Fußzeilenlinks",
+  "footer_privacy_link": "Datenschutz",
+  "footer_cookie_link": "Cookies und lokaler Speicher",
   "footer_docs_link": "Dokumentation",
-  "footer_coverage_link": "Coverage",
+  "footer_coverage_link": "Testabdeckung",
   "home_subtitle": "Technical Architect, Senior Software Engineer und Tech Trainer.",
   "home_description": "Ich konzipiere Softwarelösungen für Enterprise- und regulierte Umfelder und verbinde Front-End-Architektur, Finanz- und Legacy-Systeme, Microservices, Codequalität und technische Weiterbildung.",
   "home_eyebrow": "Portfolio und Online-CV",
@@ -1073,7 +1072,6 @@
     }
   },
   "avatar": {
-    "name": "Daniele Masone",
     "tagline": "Senior Software Engineer & Technical Architect | Front-End Specialist | Tech Trainer",
     "skills": [
       "Java",

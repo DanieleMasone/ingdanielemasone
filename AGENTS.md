@@ -109,6 +109,10 @@ Before considering any task complete, always evaluate and apply, when needed:
 - Treat `npm run build:all` as the authoritative publishing build: it must leave `dist` ready for GitHub Pages, including generated docs and coverage reports.
 - In CI, use `npm run test:e2e` followed by `npm run build:reports` when the workflow needs to avoid rebuilding the same app artifact.
 - Keep translations aligned across all currently supported languages (Italian, English, French, German, Spanish).
+- Keep immutable owner identity and public profile destinations in `src/config/siteIdentity.js`; keep professional positioning and accessible label templates localized.
+- Preserve a clear identity hierarchy: persistent brand, Home H1, profile card, and copyright may repeat the name only when each occurrence has a distinct visible responsibility.
+- Render bundled persistent-shell data synchronously; do not add fake loading or error states for local Header or Footer configuration.
+- Icon-only links own their accessible name, and nested icons must remain decorative. Verify Header and Footer changes across all routes on desktop and mobile.
 - Represent localized semantic lists as arrays of clean item text; never encode bullets or parse paragraph/list structure from newline-delimited translation strings. Keep corresponding locale value shapes aligned and update localization contract tests when structured content changes.
 - Do not introduce visible instructional text inside the portfolio UI unless it improves the real user experience.
 - Treat this repo as a public professional showcase: concise copy, polished layout, accessible controls, and no unfinished surfaces.
@@ -167,7 +171,7 @@ Before considering any task complete, always evaluate and apply, when needed:
 - Legal and compliance changes must preserve product UX/UI quality. Keep disclosure copy factual, proportionate, and placed at the right level: near the relevant CTA when needed, with detail in policy pages, and without repeated boilerplate across cards.
 - Trading, broker, referral, testimonial, certification, and public-asset changes require the corresponding generic review rules in `docs-src/tutorials/compliance-and-content-review.md`.
 - Public documentation must never contain nominative authorization, consent, withdrawal, legal-review, or owner-action registers. Keep testimonial governance generic in public docs, and keep private evidence, authorization dates, withdrawal records, and legal correspondence outside the public repository.
-- Footer legal links must render independently of optional social/profile data loading.
+- Footer legal links must render synchronously and independently of social-profile presentation.
 - Remote media or flag CDNs must not be introduced without privacy review. Local decorative language assets may be used only when they create no third-party request, are not the sole accessible label, and native language names remain visible.
 - A public LinkedIn source does not remove the need to review republication, attribution accuracy, and correction or removal handling.
 - Treat WCAG 2.2 AA as an engineering target, not a legal certification, and do not create an official accessibility declaration without confirmed statutory scope.

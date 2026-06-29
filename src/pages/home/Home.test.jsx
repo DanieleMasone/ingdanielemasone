@@ -9,7 +9,6 @@ vi.mock('react-i18next', () => ({
     useTranslation: () => ({
         t: (key) => {
             const translations = {
-                'avatar.name': 'Daniele Masone',
                 home_eyebrow: 'Portfolio and online CV',
                 home_subtitle: 'Technical Architect, Senior Software Engineer, and Tech Trainer.',
                 home_description: 'I design software solutions for enterprise and regulated domains.',
@@ -68,6 +67,7 @@ describe('Home component', () => {
 
     test('renders about title, intro and experience texts', () => {
         expect(screen.getByRole('heading', {level: 1})).toHaveTextContent('Daniele Masone');
+        expect(screen.getAllByText('Daniele Masone')).toHaveLength(1);
         expect(screen.getByText('Technical Architect, Senior Software Engineer, and Tech Trainer.')).toBeInTheDocument();
         expect(screen.getByText('I design software solutions for enterprise and regulated domains.')).toBeInTheDocument();
     });

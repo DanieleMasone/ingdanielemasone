@@ -8,7 +8,6 @@ vi.mock("react-i18next", () => ({
     useTranslation: () => ({
         t: (key, options) => {
             const translations = {
-                "avatar.name": "Daniele Masone",
                 "avatar.tagline": "Senior Software Engineer | Technical Architect | Teacher",
                 "avatar.skills": ["Java", "JavaScript", "Angular", "C", "MySQL"],
                 "avatar.skills_label": "Core skills",
@@ -25,11 +24,17 @@ describe("AvatarCard", () => {
         render(<AvatarCard/>);
         const img = screen.getByAltText("Daniele Masone");
         expect(img).toBeInTheDocument();
-        expect(img).toHaveClass("hover:scale-105");
-        expect(img).toHaveClass("transition-transform");
+        expect(img).not.toHaveClass("hover:scale-105");
     });
 
-    test("renders name, tagline, skills, and bio from translation", () => {
+    test("keeps the full name out of visible card copy", () => {
+        render(<AvatarCard/>);
+
+        expect(screen.queryByText("Daniele Masone")).not.toBeInTheDocument();
+        expect(screen.queryByRole("heading")).not.toBeInTheDocument();
+    });
+
+    test("renders tagline, skills, and bio from translation", () => {
         render(<AvatarCard/>);
 
         // Tagline

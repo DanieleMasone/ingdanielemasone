@@ -1,26 +1,23 @@
 import React from "react";
 import {render, screen, within} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import {Footer} from "./Footer";
-import {vi} from "vitest";
-import * as service from "@/services/portfolioService";
 import {MemoryRouter} from "react-router-dom";
+import {Footer} from "./Footer";
+import {links} from "@/mock/links";
+import {vi} from "vitest";
 
 vi.mock("react-i18next", () => ({
     useTranslation: () => ({
         t: (key, options = {}) => {
             const translations = {
-                footer_copyright: `© ${options.year ?? 2025} Daniele Masone. All rights reserved.`,
+                footer_copyright: `© ${options.year ?? 2025} ${options.name}. All rights reserved.`,
                 footer_social_navigation: "Social links",
-                footer_social_loading: "Loading social links",
-                footer_social_unavailable: "Social links temporarily unavailable",
-                footer_external_profile_label: `Daniele Masone ${options.label} profile`,
-                footer_developer_resources: "Developer resources",
-                footer_legal_navigation: "Legal information",
+                footer_external_profile_label: `${options.name} ${options.label} profile`,
+                footer_navigation: "Footer links",
+                footer_privacy_link: "Privacy",
+                footer_cookie_link: "Cookies and local storage",
                 footer_docs_link: "Documentation",
-                footer_coverage_link: "Coverage",
-                "privacy.title": "Privacy Policy",
-                "cookie.title": "Cookie and Local Storage Policy",
+                footer_coverage_link: "Test coverage",
             };
             return translations[key] || key;
         },
@@ -28,27 +25,16 @@ vi.mock("react-i18next", () => ({
 }));
 
 vi.mock("@/components/ui/brandIcon/BrandIcon", () => ({
-    BrandIcon: ({title, size = 24}) => (
+    BrandIcon: ({size = 24}) => (
         <svg
-            role="img"
+            aria-hidden="true"
             viewBox="0 0 24 24"
             width={size}
             height={size}
             data-testid="brand-icon"
-            aria-label={title}
         />
     ),
 }));
-
-const fakeIcon = {
-    svg: '<path d="M0 0h24v24H0z"/>'
-};
-
-const mockLinks = [
-    {key: "li", href: "https://x/li", icon: fakeIcon, color: "#0a66c2", label: "LinkedIn"},
-    {key: "ig", href: "https://x/ig", icon: fakeIcon, color: "#e1306c", label: "Instagram"},
-    {key: "gh", href: "https://x/gh", icon: fakeIcon, color: "#000", label: "GitHub"},
-];
 
 function renderFooter() {
     return render(
@@ -59,86 +45,32 @@ function renderFooter() {
 }
 
 describe("Footer", () => {
-    afterEach(() => {
-        vi.restoreAllMocks();
-    });
-
-    test("renders legal and resource links immediately while social links load", () => {
-        vi.spyOn(service, "getLinks").mockReturnValueOnce(new Promise(() => {}));
-
+    test("renders one copyright identity without a standalone repeated name", () => {
         renderFooter();
 
         expect(screen.getByRole("contentinfo")).toBeInTheDocument();
-        expect(screen.getByRole("link", {name: "Privacy Policy"})).toHaveAttribute("href", "/privacy/");
-        expect(screen.getByRole("link", {name: "Cookie and Local Storage Policy"}))
+        expect(screen.getByText(/© \d{4} Daniele Masone\. All rights reserved\./)).toBeInTheDocument();
+        expect(screen.queryByText("Daniele Masone")).not.toBeInTheDocument();
+    });
+
+    test("renders concise legal and generated-resource links synchronously", () => {
+        renderFooter();
+
+        const navigation = screen.getByRole("navigation", {name: "Footer links"});
+        expect(within(navigation).getByRole("link", {name: "Privacy"})).toHaveAttribute("href", "/privacy/");
+        expect(within(navigation).getByRole("link", {name: "Cookies and local storage"}))
             .toHaveAttribute("href", "/cookie-policy/");
-        expect(screen.getByRole("link", {name: "Documentation"})).toBeInTheDocument();
-        expect(screen.getByRole("link", {name: "Coverage"})).toBeInTheDocument();
-        expect(screen.getByRole("status")).toHaveTextContent("Loading social links");
+        expect(within(navigation).getByRole("link", {name: "Documentation"}))
+            .toHaveAttribute("href", `${import.meta.env.BASE_URL}docs/`);
+        expect(within(navigation).getByRole("link", {name: "Test coverage"}))
+            .toHaveAttribute("href", `${import.meta.env.BASE_URL}test-coverage/`);
     });
 
-    test("renders all social links after load", async () => {
-        vi.spyOn(service, "getLinks").mockResolvedValueOnce(mockLinks);
-
+    test("generated resources use secure new-tab attributes", () => {
         renderFooter();
 
-        const nav = await screen.findByRole("navigation", {name: /social links/i});
-        const anchors = within(nav).getAllByRole("link");
-        expect(anchors).toHaveLength(mockLinks.length);
-    });
-
-    test("social links have accessible names and security attributes", async () => {
-        vi.spyOn(service, "getLinks").mockResolvedValueOnce(mockLinks);
-
-        renderFooter();
-
-        for (const link of mockLinks) {
-            const anchor = await screen.findByRole("link", {name: `Daniele Masone ${link.label} profile`});
-            expect(anchor).toHaveAttribute("href", link.href);
-            expect(anchor).toHaveAttribute("target", "_blank");
-            expect(anchor).toHaveAttribute("rel", "noopener noreferrer");
-        }
-    });
-
-    test("each social link contains an icon", async () => {
-        vi.spyOn(service, "getLinks").mockResolvedValueOnce(mockLinks);
-
-        renderFooter();
-
-        const icons = await screen.findAllByTestId("brand-icon");
-        expect(icons).toHaveLength(mockLinks.length);
-
-        icons.forEach(svg => {
-            expect(svg).toHaveAttribute("viewBox", "0 0 24 24");
-            expect(svg).toHaveAttribute("width", "20");
-            expect(svg).toHaveAttribute("height", "20");
-        });
-    });
-
-    test("social-data failure does not remove structural footer links", async () => {
-        vi.spyOn(service, "getLinks").mockRejectedValueOnce(new Error("boom"));
-
-        renderFooter();
-
-        expect(await screen.findByRole("status")).toHaveTextContent("Social links temporarily unavailable");
-        expect(screen.getByRole("link", {name: "Privacy Policy"})).toBeInTheDocument();
-        expect(screen.getByRole("link", {name: "Cookie and Local Storage Policy"})).toBeInTheDocument();
-        expect(screen.getByRole("link", {name: "Documentation"})).toBeInTheDocument();
-        expect(screen.getByRole("link", {name: "Coverage"})).toBeInTheDocument();
-    });
-
-    test("docs and coverage links have correct href and rel attributes", () => {
-        vi.spyOn(service, "getLinks").mockReturnValueOnce(new Promise(() => {}));
-
-        renderFooter();
-
-        const docs = screen.getByRole("link", {name: "Documentation"});
-        const coverage = screen.getByRole("link", {name: "Coverage"});
-
-        expect(docs).toHaveAttribute("href", "https://danielemasone.github.io/ingdanielemasone/docs/");
-        expect(coverage).toHaveAttribute("href", "https://danielemasone.github.io/ingdanielemasone/test-coverage/");
-
-        for (const link of [docs, coverage]) {
+        for (const name of ["Documentation", "Test coverage"]) {
+            const link = screen.getByRole("link", {name});
             expect(link).toHaveAttribute("target", "_blank");
             expect(link.getAttribute("rel")).toContain("noopener");
             expect(link.getAttribute("rel")).toContain("noreferrer");
@@ -146,36 +78,51 @@ describe("Footer", () => {
         }
     });
 
-    test("navigation landmarks have meaningful labels", () => {
-        vi.spyOn(service, "getLinks").mockReturnValueOnce(new Promise(() => {}));
-
+    test("renders every bundled social profile with one accessible name", () => {
         renderFooter();
 
-        expect(screen.getByRole("navigation", {name: "Social links"})).toBeInTheDocument();
-        expect(screen.getByRole("navigation", {name: "Legal information"})).toBeInTheDocument();
-        expect(screen.getByRole("navigation", {name: "Developer resources"})).toBeInTheDocument();
+        const navigation = screen.getByRole("navigation", {name: "Social links"});
+        expect(within(navigation).getAllByRole("link")).toHaveLength(links.length);
+
+        for (const link of links) {
+            const anchor = within(navigation).getByRole("link", {
+                name: `Daniele Masone ${link.label} profile`
+            });
+            expect(anchor).toHaveAttribute("href", link.href);
+            expect(anchor).toHaveAttribute("target", "_blank");
+            expect(anchor).toHaveAttribute("rel", "noopener noreferrer");
+        }
+    });
+
+    test("keeps nested social icons decorative", () => {
+        renderFooter();
+
+        const icons = screen.getAllByTestId("brand-icon");
+        expect(icons).toHaveLength(links.length);
+        icons.forEach((icon) => {
+            expect(icon).toHaveAttribute("aria-hidden", "true");
+            expect(icon).not.toHaveAttribute("aria-label");
+            expect(icon).toHaveAttribute("width", "20");
+            expect(icon).toHaveAttribute("height", "20");
+        });
     });
 
     test("footer links are reachable by keyboard", async () => {
-        vi.spyOn(service, "getLinks").mockResolvedValueOnce(mockLinks);
-
         const user = userEvent.setup();
         renderFooter();
 
-        const docs = await screen.findByRole("link", {name: "Documentation"});
-        const coverage = screen.getByRole("link", {name: "Coverage"});
-
+        const docs = screen.getByRole("link", {name: "Documentation"});
+        const social = screen.getByRole("link", {name: "Daniele Masone LinkedIn profile"});
         let foundDocs = false;
-        let foundCoverage = false;
+        let foundSocial = false;
 
-        for (let i = 0; i < 20; i++) {
+        for (let index = 0; index < links.length + 6; index++) {
             await user.tab();
-
             if (docs === document.activeElement) foundDocs = true;
-            if (coverage === document.activeElement) foundCoverage = true;
+            if (social === document.activeElement) foundSocial = true;
         }
 
         expect(foundDocs).toBe(true);
-        expect(foundCoverage).toBe(true);
+        expect(foundSocial).toBe(true);
     });
 });

@@ -1,4 +1,5 @@
 import * as icons from "simple-icons";
+import {siteIdentity} from "@/config/siteIdentity";
 
 /**
  * Static social and external profile links displayed by the portfolio footer.
@@ -27,14 +28,14 @@ const linkedinIcon = {
 export const links = [
     {
         key: "linkedin",
-        href: "https://www.linkedin.com/in/ingdanielemasone/",
+        href: siteIdentity.profiles.linkedin,
         icon: linkedinIcon,
         color: "currentColor",
         label: "LinkedIn",
     },
     {
         key: "github",
-        href: "https://github.com/DanieleMasone",
+        href: siteIdentity.profiles.github,
         icon: icons.siGithub,
         color: "currentColor",
         label: "GitHub",
@@ -42,14 +43,14 @@ export const links = [
     },
     {
         key: "udemy",
-        href: "https://www.udemy.com/user/daniele-masone/",
+        href: siteIdentity.profiles.udemy,
         icon: icons.siUdemy,
         color: "currentColor",
         label: "Udemy",
     },
     {
         key: "x",
-        href: "https://twitter.com/masone_daniele",
+        href: siteIdentity.profiles.x,
         icon: icons.siX,
         color: "currentColor",
         label: "X",
@@ -57,14 +58,14 @@ export const links = [
     },
     {
         key: "instagram",
-        href: "https://www.instagram.com/ing_daniele_masone/",
+        href: siteIdentity.profiles.instagram,
         icon: icons.siInstagram,
         color: "currentColor",
         label: "Instagram",
     },
     {
         key: "facebook",
-        href: "https://www.facebook.com/danieleMasone",
+        href: siteIdentity.profiles.facebook,
         icon: icons.siFacebook,
         color: "currentColor",
         label: "Facebook",

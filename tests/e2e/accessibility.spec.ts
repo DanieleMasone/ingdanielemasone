@@ -105,5 +105,5 @@ test('changed legal and disclosure surfaces reflow without horizontal overflow',
     document.documentElement.scrollWidth - document.documentElement.clientWidth
   ));
   expect(enlargedTextOverflow).toBeLessThanOrEqual(1);
-  await expect(page.getByRole('navigation', {name: /Informazioni legali/i})).toBeVisible();
+  await expect(page.getByRole('navigation', {name: /Link del piè di pagina/i})).toBeVisible();
 });

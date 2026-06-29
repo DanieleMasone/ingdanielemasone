@@ -1,4 +1,5 @@
 import React from "react";
+import {siteIdentity} from "@/config/siteIdentity";
 import {useTranslation} from "react-i18next";
 import {SeoHead} from "@/components/seoHead/SeoHead";
 import {Link} from "react-router-dom";
@@ -44,11 +45,11 @@ export default function Privacy() {
 
                 <LegalSection title={t("privacy.owner_title")}>
                     <address className="not-italic">
-                        <strong>Daniele Masone</strong>
+                        <strong>{siteIdentity.name}</strong>
                         <br/>
                         Email:{" "}
-                        <a href="mailto:masone.daniele@gmail.com" className={linkClass}>
-                            masone.daniele@gmail.com
+                        <a href={`mailto:${siteIdentity.email}`} className={linkClass}>
+                            {siteIdentity.email}
                         </a>
                     </address>
                 </LegalSection>
@@ -104,8 +105,8 @@ export default function Privacy() {
                     </ul>
                     <p className="mt-2">
                         {t("privacy.rights_exercise")}{" "}
-                        <a href="mailto:masone.daniele@gmail.com" className={linkClass}>
-                            masone.daniele@gmail.com
+                        <a href={`mailto:${siteIdentity.email}`} className={linkClass}>
+                            {siteIdentity.email}
                         </a>
                     </p>
                     <p className="mt-2">

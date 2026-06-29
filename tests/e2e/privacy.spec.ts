@@ -78,12 +78,12 @@ test('legal notices remain reachable from the footer on normal and fallback rout
   for (const route of ['./', 'missing-portfolio-route/']) {
     await page.goto(route);
 
-    const legalNavigation = page.getByRole('navigation', {name: /Informazioni legali/i});
-    await expect(legalNavigation.getByRole('link', {name: 'Privacy Policy'})).toHaveAttribute(
+    const footerNavigation = page.getByRole('navigation', {name: /Link del piè di pagina/i});
+    await expect(footerNavigation.getByRole('link', {name: 'Privacy'})).toHaveAttribute(
       'href',
       '/ingdanielemasone/privacy/'
     );
-    await expect(legalNavigation.getByRole('link', {name: /Policy Cookie e Local Storage/i})).toHaveAttribute(
+    await expect(footerNavigation.getByRole('link', {name: /Cookie e storage locale/i})).toHaveAttribute(
       'href',
       '/ingdanielemasone/cookie-policy/'
     );

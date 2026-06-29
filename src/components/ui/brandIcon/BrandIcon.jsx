@@ -9,7 +9,8 @@
  * @param {string} props.color - Fill color for the SVG.
  * @param {string} [props.className] - Additional CSS classes.
  * @param {number} [props.size=24] - Width and height of the icon.
- * @param {string} [props.title] - Accessible title for screen readers.
+ * @param {string} [props.title] - Accessible title for standalone icons. Omit it
+ * when a parent control owns the accessible name so the SVG remains decorative.
  * @returns {React.JSX.Element} SVG element or null if no valid icon.
  */
 export function BrandIcon({icon, color, className, size = 24, title}) {

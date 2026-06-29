@@ -171,6 +171,7 @@ export const surfaceClasses = {
  * @property {string} dropdownOption - Shared option row style for compact header dropdowns.
  * @property {string} dropdownOptionActive - Active option state for compact header dropdowns.
  * @property {string} textLink - Accessible inline text link style for legal and policy pages.
+ * @property {string} footerLink - Quiet supporting link style used by the global footer.
  */
 
 /**
@@ -215,4 +216,6 @@ export const interactiveClasses = {
       "bg-blue-100/80 font-semibold text-blue-800 dark:bg-blue-900/40 dark:text-blue-300",
   textLink:
       "text-blue-600 underline underline-offset-2 transition-colors hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300",
+  footerLink:
+      "rounded text-sm font-medium text-gray-600 underline-offset-4 transition-colors hover:text-blue-700 hover:underline dark:text-gray-300 dark:hover:text-blue-300",
 };

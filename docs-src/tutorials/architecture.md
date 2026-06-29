@@ -8,7 +8,7 @@ The app is a React 19 SPA built with Vite 8. The Vite base path is `/ingdanielem
 
 React Router 7 owns the route tree. Route modules are lazy-loaded so that major pages can be split into separate chunks without adding a server-side rendering layer.
 
-The project has no backend. Portfolio content is local static data, resolved through the service layer so pages do not import datasets directly.
+The project has no backend. Route-level portfolio collections are local static data resolved through the service layer so pages do not import those datasets directly. Immutable shell identity and social-profile destinations are synchronous configuration because they have no loading lifecycle.
 
 ## Routing and GitHub Pages
 
@@ -40,9 +40,11 @@ Page-specific card structures remain inside their route pages when extracting th
 
 ## Data boundary
 
-Static datasets live in `src/mock`. The service boundary in `src/services/portfolioService.jsx` returns promises to mimic asynchronous loading without coupling pages to future transport details.
+Static datasets live in `src/mock`. The service boundary in `src/services/portfolioService.jsx` returns promises to mimic asynchronous loading without coupling route pages to future transport details.
 
-This boundary is intentionally fake. It lets route pages exercise loading and error states while keeping the published site fully static. The shared hook in `src/hooks/usePortfolioData.js` consumes those service functions while deliberately leaving sorting, filtering and pagination visible in each page.
+This boundary is intentionally fake. It lets route pages exercise loading and error states while keeping the published site fully static. The shared hook in `src/hooks/usePortfolioData.js` consumes those service functions while deliberately leaving sorting, filtering and pagination visible in each page. The global Footer imports its bundled social links synchronously: simulating a remote request there would delay persistent navigation without representing a real failure mode.
+
+`src/config/siteIdentity.js` is the runtime source of truth for the owner's non-localized name and public profile URLs. Localized professional positioning and accessible label templates remain in the locale files. Build-time SEO identity remains in `src/config/seo.json`, which is consumed independently by the static publication script.
 
 ## Internationalization
 

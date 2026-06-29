@@ -76,7 +76,7 @@ describe("Trading component", () => {
     });
 
     test("shows loading initially", () => {
-        vi.spyOn(service, "getLinks")
+        vi.spyOn(service, "getTradingPerformance")
             .mockReturnValueOnce(new Promise(() => {
             }));
 
