@@ -79,7 +79,7 @@ const buildStructuredData = ({title, description, url, language}) => ({
             "name": seoConfig.author,
             "url": `${seoConfig.siteUrl}/`,
             "image": seoConfig.image.url,
-            "jobTitle": "Senior Software Engineer",
+            "jobTitle": seoConfig.jobTitle,
             "sameAs": seoConfig.sameAs
         },
         {

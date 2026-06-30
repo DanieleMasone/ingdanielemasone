@@ -81,15 +81,28 @@ describe("documentation source configuration", () => {
         expect(packageJson.scripts["build:reports"]).toBe(
             "npm run coverage && npm run doc && npm run prepare:reports"
         );
-        expect(packageJson.scripts["build:all"]).toBe("npm run build && npm run build:reports");
+        expect(packageJson.scripts["build:all"]).toBe(
+            "npm run build && npm run build:reports && node scripts/validate-pages-artifact.mjs"
+        );
+        expect(packageJson.scripts["test:e2e:run"]).toBe("node scripts/run-playwright.mjs");
 
         for (const content of [readme, workflow, qualityGuide]) {
             expect(content).toContain("npx playwright install --with-deps --only-shell chromium");
         }
 
-        expect(workflow).toContain("run: npm run test:e2e");
-        expect(workflow).toContain("run: npm run build:reports");
+        expect(workflow).toContain("pull_request:");
+        expect(workflow).toContain("run: npm run coverage");
+        expect(workflow).toContain("run: npm run test:e2e:run");
+        expect(workflow).toContain("run: npm run artifact:validate");
         expect(workflow).not.toContain("run: npm run build:all");
+    });
+
+    test("uses the generated coverage endpoint instead of a manual percentage badge", () => {
+        const readme = readText("README.md");
+
+        expect(readme).toContain("img.shields.io/endpoint");
+        expect(readme).toContain("coverage-badge.json");
+        expect(readme).not.toMatch(/img\.shields\.io\/badge\/coverage-\d/);
     });
 
     test("tracked Markdown local links resolve", () => {

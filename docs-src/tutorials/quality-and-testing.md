@@ -42,7 +42,7 @@ npm run deps:validate
 npm ci --include=optional
 ```
 
-The validation script checks the lockfile structure, public registry URLs, root dependency alignment and native/WASM optional dependency references. It does not replace `npm ci`, which remains the authoritative frozen install check used by CI.
+The validation script checks the lockfile structure, public registry URLs, root dependency alignment and referenced dependency nodes, including optional dependencies. It does not encode package-specific native bindings and does not replace `npm ci`, which remains the authoritative frozen install check used by CI.
 
 ## Playwright
 
@@ -64,7 +64,9 @@ npx playwright install --with-deps --only-shell chromium
 npm run test:e2e
 ```
 
-The Playwright config starts production preview through `npm run preview` and uses `/ingdanielemasone/` as the base URL. CI installs the Chromium headless shell because the suite runs headlessly without a branded browser channel.
+The E2E runner starts the repository-installed Vite preview through its Node API, uses `/ingdanielemasone/` as the base URL, and closes the server after Playwright exits. Playwright runs one worker for deterministic browser teardown on local Windows and CI Linux environments. CI installs the Chromium headless shell because the suite runs headlessly without a branded browser channel.
+
+CI runs `npm run test:e2e:run` after the production build so Playwright checks the exact application files that are later packaged. The all-in-one `npm run test:e2e` command remains the convenient local entry point.
 
 Do not add Playwright tests for every static card. Prefer semantic selectors such as roles, headings, labels, landmarks, metadata and URLs.
 
@@ -76,7 +78,7 @@ Coverage uses Vitest with the V8 provider:
 npm run coverage
 ```
 
-The HTML report is generated in `coverage/`. `npm run build:all` publishes it into `dist/test-coverage/` after applying `noindex, nofollow`.
+The HTML report and machine-readable summary are generated in `coverage/`. `npm run build:all` publishes them into `dist/test-coverage/`, applies `noindex, nofollow` to the published HTML, and generates the Shields endpoint payload used by the README badge.
 
 There is no configured coverage threshold. Use the report to catch meaningful gaps, not as a reason to add low-value assertions.
 
@@ -98,7 +100,7 @@ The canonical publishing command is:
 npm run build:all
 ```
 
-It runs the production build and then `npm run build:reports`. `build:reports` generates coverage, JSDoc output and report preparation for an existing app build. The final `dist/` folder contains the app, `/docs/` and `/test-coverage/` resources ready for GitHub Pages.
+It runs the production build and then `npm run build:reports`. `build:reports` generates coverage, JSDoc output and report preparation for an existing app build. The final artifact validator then checks route HTML, SEO files, reports, public assets and the absence of application source maps before `dist/` is considered ready for GitHub Pages.
 
 ## Generated artifacts
 

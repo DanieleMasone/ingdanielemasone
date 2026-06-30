@@ -2,6 +2,7 @@ import React from 'react';
 import {render} from '@testing-library/react';
 import {waitFor} from '@testing-library/dom';
 import {SeoHead} from './SeoHead';
+import seoConfig from '../../config/seo.json';
 import {vi} from 'vitest';
 
 vi.mock('react-i18next', () => ({
@@ -257,7 +258,8 @@ describe('<SeoHead />', () => {
                 expect.arrayContaining([
                     expect.objectContaining({
                         '@type': 'Person',
-                        name: 'Daniele Masone'
+                        name: 'Daniele Masone',
+                        jobTitle: seoConfig.jobTitle
                     }),
                     expect.objectContaining({
                         '@type': 'WebPage',

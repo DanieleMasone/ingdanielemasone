@@ -106,8 +106,8 @@ Before considering any task complete, always evaluate and apply, when needed:
 - Keep data access through the existing mock service pattern instead of hardcoding fetch-like data directly in pages.
 - For paginated collection pages, reuse `CollectionToolbar` and `getCollectionPaginationState` instead of duplicating range summaries or pagination layout locally.
 - Preserve GitHub Pages compatibility, including the `/ingdanielemasone/` base path.
-- Treat `npm run build:all` as the authoritative publishing build: it must leave `dist` ready for GitHub Pages, including generated docs and coverage reports.
-- In CI, use `npm run test:e2e` followed by `npm run build:reports` when the workflow needs to avoid rebuilding the same app artifact.
+- Treat `npm run build:all` as the authoritative publishing build: it must leave a validated `dist` ready for GitHub Pages, including required docs and coverage reports.
+- In CI, use `npm run test:e2e:run` after `npm run build` so Playwright checks the same application build that is packaged; prepare reports and run `npm run artifact:validate` before upload.
 - Keep translations aligned across all currently supported languages (Italian, English, French, German, Spanish).
 - Keep immutable owner identity and public profile destinations in `src/config/siteIdentity.js`; keep professional positioning and accessible label templates localized.
 - Preserve a clear identity hierarchy: persistent brand, Home H1, profile card, and copyright may repeat the name only when each occurrence has a distinct visible responsibility.

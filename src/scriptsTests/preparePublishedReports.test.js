@@ -14,6 +14,7 @@ vi.mock("node:fs/promises", () => ({
 
 import {
     addNoindexRobotsMeta,
+    createCoverageBadge,
     preparePublishedReports
 } from "../../scripts/prepare-published-reports.mjs";
 
@@ -79,6 +80,19 @@ describe("prepare-published-reports", () => {
             .toThrow(/missing <head>/i);
     });
 
+    test("creates a Shields badge from line coverage", () => {
+        expect(createCoverageBadge({total: {lines: {pct: 97.56}}})).toEqual({
+            schemaVersion: 1,
+            label: "coverage",
+            message: "97.56%",
+            color: "15803d"
+        });
+    });
+
+    test("rejects an invalid coverage summary", () => {
+        expect(() => createCoverageBadge({total: {}})).toThrow(/total\.lines\.pct/);
+    });
+
     test("adds noindex metadata to html files and publishes docs and coverage into dist", async () => {
         fs.readdir.mockImplementation(async (directory) => {
             const normalizedPath = directory.toString().replaceAll("\\", "/");
@@ -98,7 +112,7 @@ describe("prepare-published-reports", () => {
                 ];
             }
 
-            if (normalizedPath.endsWith("/coverage")) {
+            if (normalizedPath.endsWith("/coverage") || normalizedPath.endsWith("/test-coverage")) {
                 return [
                     {name: "index.html", ...dirent({file: true})}
                 ];
@@ -107,14 +121,27 @@ describe("prepare-published-reports", () => {
             return [];
         });
 
-        fs.readFile.mockResolvedValue(
-            "<html><head><title>Report</title></head><body></body></html>"
-        );
+        fs.readFile.mockImplementation(async (filePath) => {
+            const normalizedPath = filePath.toString().replaceAll("\\", "/");
 
-        await preparePublishedReports();
+            if (normalizedPath.endsWith("/coverage-summary.json")) {
+                return JSON.stringify({total: {lines: {pct: 97.56}}});
+            }
 
-        expect(fs.readFile).toHaveBeenCalledTimes(4);
-        expect(fs.writeFile).toHaveBeenCalledTimes(4);
+            return "<html><head><title>Report</title></head><body></body></html>";
+        });
+
+        const result = await preparePublishedReports();
+
+        expect(result).toEqual({
+            reports: [
+                {target: "docs", htmlFiles: 3},
+                {target: "test-coverage", htmlFiles: 1}
+            ],
+            coverage: 97.56
+        });
+        expect(fs.readFile).toHaveBeenCalledTimes(5);
+        expect(fs.writeFile).toHaveBeenCalledTimes(5);
 
         expect(fs.writeFile).toHaveBeenCalledWith(
             expect.stringMatching(/docs[/\\]index\.html$/),
@@ -135,10 +162,20 @@ describe("prepare-published-reports", () => {
         );
 
         expect(fs.writeFile).toHaveBeenCalledWith(
-            expect.stringMatching(/coverage[/\\]index\.html$/),
+            expect.stringMatching(/dist[/\\]test-coverage[/\\]index\.html$/),
             expect.stringContaining('<meta name="robots" content="noindex, nofollow"/>'),
             "utf8"
         );
+
+        expect(fs.writeFile).toHaveBeenCalledWith(
+            expect.stringMatching(/dist[/\\]coverage-badge\.json$/),
+            expect.stringContaining('"message": "97.56%"'),
+            "utf8"
+        );
+
+        for (const [filePath] of fs.writeFile.mock.calls.slice(0, 4)) {
+            expect(filePath).toMatch(/dist[/\\]/);
+        }
 
         expect(fs.writeFile).not.toHaveBeenCalledWith(
             expect.stringContaining("assets.css"),
@@ -167,19 +204,25 @@ describe("prepare-published-reports", () => {
         );
     });
 
-    test("ignores missing report directories", async () => {
+    test("rejects missing report directories", async () => {
         const enoent = new Error("Directory not found");
 
         enoent.code = "ENOENT";
 
         fs.access.mockRejectedValue(enoent);
 
-        await expect(preparePublishedReports()).resolves.toBeUndefined();
+        await expect(preparePublishedReports()).rejects.toThrow("Directory not found");
 
         expect(fs.readFile).not.toHaveBeenCalled();
         expect(fs.cp).not.toHaveBeenCalled();
         expect(fs.rm).not.toHaveBeenCalled();
         expect(fs.writeFile).not.toHaveBeenCalled();
+    });
+
+    test("rejects generated reports without HTML output", async () => {
+        fs.readdir.mockResolvedValue([]);
+
+        await expect(preparePublishedReports()).rejects.toThrow(/contains no HTML files/);
     });
 
     test("rethrows unexpected filesystem errors", async () => {

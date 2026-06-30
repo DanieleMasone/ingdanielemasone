@@ -14,7 +14,7 @@ export default defineConfig({
   fullyParallel: false,
   forbidOnly: Boolean(process.env.CI),
   retries: process.env.CI ? 1 : 0,
-  workers: process.env.CI ? 2 : undefined,
+  workers: 1,
   reporter: [
     ['list'],
     ['html', {open: 'never'}],
@@ -37,10 +37,4 @@ export default defineConfig({
       },
     },
   ],
-  webServer: {
-    command: `npm run preview -- --host ${previewHost} --port ${previewPort}`,
-    url: previewBaseUrl,
-    reuseExistingServer: !process.env.CI,
-    timeout: 60_000,
-  },
 });

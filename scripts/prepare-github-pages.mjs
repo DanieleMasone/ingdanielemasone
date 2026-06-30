@@ -76,7 +76,7 @@ const buildStructuredData = ({config, title, description, url}) => ({
             "name": config.author,
             "url": `${config.siteUrl}/`,
             "image": config.image.url,
-            "jobTitle": "Senior Software Engineer",
+            "jobTitle": config.jobTitle,
             "sameAs": config.sameAs
         },
         {
@@ -224,7 +224,7 @@ export const buildSitemap = ({config}) => {
  */
 export const buildRobots = ({config}) => [
     "User-agent: *",
-    "Allow: /ingdanielemasone/",
+    `Allow: ${new URL(`${config.siteUrl}/`).pathname}`,
     "",
     `Sitemap: ${config.siteUrl}/sitemap.xml`,
     ""

@@ -15,6 +15,7 @@ const config = {
     siteUrl: "https://danielemasone.github.io/ingdanielemasone",
     siteName: "Daniele Masone Portfolio",
     author: "Daniele Masone",
+    jobTitle: "Senior Software Engineer",
     defaultLanguage: "it-IT",
     defaultLocale: "it_IT",
     keywords: "Daniele Masone, portfolio, CV online, software engineer, frontend architect, React, Angular, JavaScript",

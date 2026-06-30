@@ -24,7 +24,7 @@ export default defineConfig({
         include: ['src/**/*.{test,spec}.{js,jsx}'],
         exclude: ['dist/**', 'node_modules/**'],
         coverage: {
-            reporter: ['text', 'html'],
+            reporter: ['text', 'html', 'json-summary'],
             exclude: [
                 'src/assets/**',
                 'src/i18n/**',

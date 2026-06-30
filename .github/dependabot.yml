@@ -6,10 +6,14 @@ updates:
       interval: "weekly"
     open-pull-requests-limit: 3
     groups:
-      npm-patch-minor:
+      npm-patch:
+        update-types:
+          - "patch"
+        patterns:
+          - "*"
+      npm-minor:
         update-types:
           - "minor"
-          - "patch"
         patterns:
           - "*"
 

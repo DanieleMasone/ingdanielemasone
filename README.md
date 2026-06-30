@@ -2,7 +2,7 @@
 
 [![Portfolio CI/CD](https://github.com/DanieleMasone/ingdanielemasone/actions/workflows/deploy-pages.yml/badge.svg?branch=main)](https://github.com/DanieleMasone/ingdanielemasone/actions/workflows/deploy-pages.yml)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Coverage](https://img.shields.io/badge/coverage-96%25-15803d)](https://danielemasone.github.io/ingdanielemasone/test-coverage/)
+[![Coverage](https://img.shields.io/endpoint?url=https%3A%2F%2Fdanielemasone.github.io%2Fingdanielemasone%2Fcoverage-badge.json)](https://danielemasone.github.io/ingdanielemasone/test-coverage/)
 [![React](https://img.shields.io/badge/React-19-20232A?logo=react&logoColor=61DAFB)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=fff)](https://vite.dev/)
 [![Vitest](https://img.shields.io/badge/Vitest-4-6E9F18?logo=vitest&logoColor=fff)](https://vitest.dev/)
@@ -35,7 +35,7 @@ It has no backend API. The repository intentionally keeps portfolio content stat
 
 The app uses React Router 7 with the Vite base path `/ingdanielemasone/`. Shared components live under `src/components`, route pages under `src/pages`, static datasets under `src/mock`, localized copy under `src/locales`, and SEO route metadata under `src/config/seo.json`.
 
-`npm run build` creates the production app and route-specific GitHub Pages HTML. `npm run build:reports` adds coverage, JSDoc source documentation and tutorials to the existing `dist` artifact after applying `noindex, nofollow` to developer reports. `npm run build:all` runs both steps for a complete local publishing build.
+`npm run build` creates the production app and route-specific GitHub Pages HTML. `npm run build:reports` adds required coverage and JSDoc reports to the existing `dist` artifact, marks the published copies `noindex, nofollow`, and generates the coverage badge data. `npm run build:all` runs both steps and validates the complete publishing artifact.
 
 ## Tech Stack
 
@@ -85,12 +85,12 @@ Then open `http://localhost:4173/ingdanielemasone/`.
 | `npm test -- --run` | Run the Vitest suite once |
 | `npx playwright install --with-deps --only-shell chromium` | Install the Chromium headless shell used by CI E2E checks |
 | `npm run test:e2e` | Run focused Playwright checks against production preview |
+| `npm run test:e2e:run` | Run Playwright against an existing production build |
 | `npm run coverage` | Generate the V8 HTML coverage report |
 | `npm run doc` | Generate JSDoc source documentation and tutorials in `docs/` |
 | `npm run build:reports` | Add coverage, docs, tutorials and final published reports to an existing build |
-| `npm run build:all` | Build app, coverage, docs, tutorials and final publishable reports |
-| `npm run deps:outdated` | Inspect outdated npm dependencies without changing them |
-| `npm run security:audit` | Run npm security audit without changing dependencies |
+| `npm run artifact:validate` | Validate routes, SEO files, reports and assets in `dist` |
+| `npm run build:all` | Build and validate the complete publishable artifact |
 
 ## Documentation Map
 
@@ -105,7 +105,7 @@ Then open `http://localhost:4173/ingdanielemasone/`.
 
 ## Deployment
 
-The portfolio is deployed by `.github/workflows/deploy-pages.yml` to GitHub Pages. The workflow uses the pinned Node/npm toolchain, validates the committed lockfile, installs dependencies with `npm ci --include=optional`, configures Pages, installs the Playwright Chromium headless shell, runs `npm run test:e2e`, runs `npm run build:reports`, uploads `dist`, and deploys it through the official GitHub Pages actions.
+The portfolio is deployed by `.github/workflows/deploy-pages.yml` to GitHub Pages. Pull requests run the same coverage, documentation, production build, Playwright and artifact checks used by `main`, without deployment permissions. Main-branch runs reuse that tested build, upload only the validated `dist` folder, and deploy it through the official GitHub Pages actions.
 
 The published artifact keeps:
 

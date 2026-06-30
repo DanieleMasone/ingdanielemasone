@@ -19,6 +19,8 @@ const reportDirs = [
     {source: "coverage", target: "test-coverage"}
 ];
 const robotsMeta = '<meta name="robots" content="noindex, nofollow"/>';
+const coverageSummaryName = "coverage-summary.json";
+const coverageBadgeName = "coverage-badge.json";
 
 /**
  * Injects or replaces a robots meta tag in an HTML document.
@@ -62,25 +64,6 @@ const listHtmlFiles = async (directory) => {
 };
 
 /**
- * Checks whether a report directory exists before processing it.
- *
- * @param {string} directory - Absolute directory path.
- * @returns {Promise<boolean>} `true` when the directory can be read, otherwise `false` for missing directories.
- * @throws {Error} When the directory cannot be accessed for reasons other than being missing.
- */
-const directoryExists = async (directory) => {
-    try {
-        await fs.access(directory);
-
-        return true;
-    } catch (error) {
-        if (error.code === "ENOENT") return false;
-
-        throw error;
-    }
-};
-
-/**
  * Adds noindex metadata to all generated HTML files in a report directory.
  *
  * @param {string} directory - Absolute report directory path.
@@ -88,6 +71,10 @@ const directoryExists = async (directory) => {
  */
 const prepareReportDirectory = async (directory) => {
     const files = await listHtmlFiles(directory);
+
+    if (files.length === 0) {
+        throw new Error(`Generated report contains no HTML files: ${directory}`);
+    }
 
     await Promise.all(files.map(async (filePath) => {
         const html = await fs.readFile(filePath, "utf8");
@@ -99,29 +86,76 @@ const prepareReportDirectory = async (directory) => {
 };
 
 /**
- * Applies noindex metadata to generated documentation and coverage reports,
- * then publishes them under the final `dist` artifact.
+ * Creates a Shields endpoint payload from Vitest's line-coverage summary.
  *
- * @returns {Promise<void>}
+ * @param {object} summary - Parsed Vitest `coverage-summary.json` content.
+ * @returns {{schemaVersion: number, label: string, message: string, color: string}} Shields endpoint payload.
+ * @throws {Error} When the summary does not expose a finite line-coverage percentage.
+ */
+export const createCoverageBadge = (summary) => {
+    const percentage = Number(summary?.total?.lines?.pct);
+
+    if (!Number.isFinite(percentage)) {
+        throw new Error("Coverage summary is missing total.lines.pct.");
+    }
+
+    const color = percentage >= 90 ? "15803d" : percentage >= 80 ? "b45309" : "b91c1c";
+
+    return {
+        schemaVersion: 1,
+        label: "coverage",
+        message: `${percentage}%`,
+        color
+    };
+};
+
+/**
+ * Copies required documentation and coverage reports into `dist`, applies
+ * noindex metadata only to the published copies, and writes the coverage badge.
+ *
+ * @returns {Promise<{reports: Array<{target: string, htmlFiles: number}>, coverage: number}>} Published report counts.
+ * @throws {Error} When a required report, HTML output, or coverage summary is missing or invalid.
  */
 export const preparePublishedReports = async () => {
-    await Promise.all(reportDirs.map(async ({source, target}) => {
+    const reports = await Promise.all(reportDirs.map(async ({source, target}) => {
         const sourceDir = path.join(rootDir, source);
-
-        if (!await directoryExists(sourceDir)) return;
-
-        await prepareReportDirectory(sourceDir);
+        await fs.access(sourceDir);
 
         const targetDir = path.join(distDir, target);
 
         await fs.rm(targetDir, {recursive: true, force: true});
         await fs.cp(sourceDir, targetDir, {recursive: true});
+
+        return {
+            target,
+            htmlFiles: await prepareReportDirectory(targetDir)
+        };
     }));
+
+    const coverageSummaryPath = path.join(distDir, "test-coverage", coverageSummaryName);
+    const coverageSummary = JSON.parse(await fs.readFile(coverageSummaryPath, "utf8"));
+    const coverageBadge = createCoverageBadge(coverageSummary);
+
+    await fs.writeFile(
+        path.join(distDir, coverageBadgeName),
+        `${JSON.stringify(coverageBadge, null, 2)}\n`,
+        "utf8"
+    );
+
+    return {
+        reports,
+        coverage: Number(coverageSummary.total.lines.pct)
+    };
 };
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
-    preparePublishedReports().catch((error) => {
-        console.error(error);
-        process.exitCode = 1;
-    });
+    preparePublishedReports()
+        .then(({reports, coverage}) => {
+            const reportSummary = reports.map(({target, htmlFiles}) => `${target}: ${htmlFiles} HTML`).join(", ");
+            console.log(`Published reports prepared (${reportSummary}); line coverage: ${coverage}%.`);
+        })
+        .catch((error) => {
+            console.error(error);
+            process.exitCode = 1;
+        });
 }

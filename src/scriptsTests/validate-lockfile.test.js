@@ -66,4 +66,40 @@ describe("validate-lockfile script", () => {
             fs.rmSync(tempDir, {force: true, recursive: true});
         }
     });
+
+    test("rejects missing optional dependency package nodes without package-specific rules", () => {
+        const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "lockfile-validation-"));
+
+        try {
+            fs.writeFileSync(
+                path.join(tempDir, "package.json"),
+                JSON.stringify({name: "portable-lockfile"})
+            );
+            fs.writeFileSync(
+                path.join(tempDir, "package-lock.json"),
+                JSON.stringify({
+                    name: "portable-lockfile",
+                    lockfileVersion: 3,
+                    packages: {
+                        "": {},
+                        "node_modules/platform-parent": {
+                            optionalDependencies: {
+                                "platform-binding": "1.0.0"
+                            }
+                        }
+                    }
+                })
+            );
+
+            const result = spawnSync(process.execPath, [scriptPath], {
+                cwd: tempDir,
+                encoding: "utf8"
+            });
+
+            expect(result.status).not.toBe(0);
+            expect(result.stderr).toMatch(/references missing optionalDependencies\.platform-binding/);
+        } finally {
+            fs.rmSync(tempDir, {force: true, recursive: true});
+        }
+    });
 });

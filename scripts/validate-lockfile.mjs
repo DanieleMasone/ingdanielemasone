@@ -9,8 +9,8 @@ const publicRegistryPrefix = "https://registry.npmjs.org/";
 
 /**
  * Validates the committed npm lockfile before CI performs a frozen install.
- * The checks catch common lockfile drift, private registry leaks and missing
- * package nodes for platform-specific optional dependencies.
+ * The checks catch root-manifest drift, private registry leaks and any
+ * dependency reference whose package node is absent from the portable lockfile.
  */
 const forbiddenResolvedPatterns = [
     /^file:/i,
@@ -79,30 +79,6 @@ for (const [nodePath, metadata] of Object.entries(packages)) {
             if (!packages[dependencyNode] && !packages[hoistedNode]) {
                 fail(`${nodePath || "<root>"} references missing ${dependencySection}.${dependencyName}.`);
             }
-        }
-    }
-}
-
-const requiredOptionalFamilies = [
-    "node_modules/@rolldown/binding-linux-x64-gnu",
-    "node_modules/@rolldown/binding-win32-x64-msvc",
-    "node_modules/@rolldown/binding-darwin-arm64",
-    "node_modules/lightningcss-linux-x64-gnu",
-    "node_modules/lightningcss-win32-x64-msvc",
-    "node_modules/lightningcss-darwin-arm64",
-    "node_modules/fsevents"
-];
-
-for (const nodePath of requiredOptionalFamilies) {
-    if (!packages[nodePath]) fail(`Expected portable optional dependency entry is missing: ${nodePath}.`);
-}
-
-const wasmRuntime = packages["node_modules/@napi-rs/wasm-runtime"];
-
-if (wasmRuntime) {
-    for (const dependencyName of ["@emnapi/core", "@emnapi/runtime"]) {
-        if (!packages[`node_modules/${dependencyName}`]) {
-            fail(`@napi-rs/wasm-runtime references ${dependencyName}, but the lockfile is missing its package node.`);
         }
     }
 }
