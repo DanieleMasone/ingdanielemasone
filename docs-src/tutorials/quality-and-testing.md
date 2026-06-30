@@ -64,7 +64,7 @@ npx playwright install --with-deps --only-shell chromium
 npm run test:e2e
 ```
 
-The E2E runner starts the repository-installed Vite preview through its Node API, uses `/ingdanielemasone/` as the base URL, and closes the server after Playwright exits. Playwright runs one worker for deterministic browser teardown on local Windows and CI Linux environments. CI installs the Chromium headless shell because the suite runs headlessly without a branded browser channel.
+The E2E runner starts the repository-installed Vite preview through its Node API, resolves the Playwright CLI through the package's public `@playwright/test/cli` export, uses `/ingdanielemasone/` as the base URL, and closes the server after Playwright exits. Playwright runs one worker for deterministic browser teardown on local Windows and CI Linux environments. CI installs the Chromium headless shell because the suite runs headlessly without a branded browser channel.
 
 CI runs `npm run test:e2e:run` after the production build so Playwright checks the exact application files that are later packaged. The all-in-one `npm run test:e2e` command remains the convenient local entry point.
 

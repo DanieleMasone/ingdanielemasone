@@ -17,12 +17,20 @@ import {githubProjects} from "@/mock/githubProjects";
  */
 
 /**
- * Simulates a small loading delay for static portfolio datasets.
+ * Shared delay used by every asynchronous portfolio data loader.
  *
- * @param {number} ms - Milliseconds to wait before resolving.
- * @returns {Promise<void>} Promise resolved after the given delay.
+ * @type {number}
  */
-const delay = (ms) => new Promise(res => setTimeout(res, ms));
+const SIMULATED_NETWORK_DELAY_MS = 300;
+
+/**
+ * Simulates the asynchronous boundary of a remote portfolio data source.
+ *
+ * @returns {Promise<void>} Promise resolved after the shared simulated delay.
+ */
+const simulateNetworkLatency = () => new Promise(
+    (resolve) => setTimeout(resolve, SIMULATED_NETWORK_DELAY_MS)
+);
 
 /**
  * Loads static course entries for the Courses page.
@@ -30,7 +38,7 @@ const delay = (ms) => new Promise(res => setTimeout(res, ms));
  * @returns {Promise<Array<object>>} Promise resolving to the courses' dataset.
  */
 export async function getCourses() {
-    await delay(300);
+    await simulateNetworkLatency();
     return courses;
 }
 
@@ -40,7 +48,7 @@ export async function getCourses() {
  * @returns {Promise<Array<object>>} Promise resolving to the certifications' dataset.
  */
 export async function getCertifications() {
-    await delay(300);
+    await simulateNetworkLatency();
     return certifications;
 }
 
@@ -50,7 +58,7 @@ export async function getCertifications() {
  * @returns {Promise<Array<object>>} Promise resolving to the experiences' dataset.
  */
 export async function getExperiences() {
-    await delay(300);
+    await simulateNetworkLatency();
     return experiences;
 }
 
@@ -60,7 +68,7 @@ export async function getExperiences() {
  * @returns {Promise<Array<object>>} Promise resolving to the projects' dataset.
  */
 export async function getProjects() {
-    await delay(300);
+    await simulateNetworkLatency();
     return projects;
 }
 
@@ -70,7 +78,7 @@ export async function getProjects() {
  * @returns {Promise<Array<object>>} Promise resolving to the GitHub projects dataset.
  */
 export async function getGithubProjects() {
-    await delay(300);
+    await simulateNetworkLatency();
     return githubProjects;
 }
 
@@ -80,7 +88,7 @@ export async function getGithubProjects() {
  * @returns {Promise<Array<object>>} Promise resolving to the testimonials' dataset.
  */
 export async function getTestimonials() {
-    await delay(300);
+    await simulateNetworkLatency();
     return testimonials;
 }
 
@@ -90,6 +98,6 @@ export async function getTestimonials() {
  * @returns {Promise<Object>} Promise resolving to the trading performance dataset.
  */
 export async function getTradingPerformance() {
-    await delay(300);
+    await simulateNetworkLatency();
     return tradingPerformance;
 }

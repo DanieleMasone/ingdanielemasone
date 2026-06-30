@@ -40,7 +40,7 @@ Page-specific card structures remain inside their route pages when extracting th
 
 ## Data boundary
 
-Static datasets live in `src/mock`. The service boundary in `src/services/portfolioService.jsx` returns promises to mimic asynchronous loading without coupling route pages to future transport details.
+Static datasets live in `src/mock`. The service boundary in `src/services/portfolioService.jsx` returns promises to mimic asynchronous loading without coupling route pages to future transport details. One private latency helper owns the shared simulated delay used by all domain-specific loaders; tests use fake timers and assert the asynchronous boundary without treating the exact delay duration as a public contract.
 
 This boundary is intentionally fake. It lets route pages exercise loading and error states while keeping the published site fully static. The shared hook in `src/hooks/usePortfolioData.js` consumes those service functions while deliberately leaving sorting, filtering and pagination visible in each page. The global Footer imports its bundled social links synchronously: simulating a remote request there would delay persistent navigation without representing a real failure mode.
 

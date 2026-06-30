@@ -1,4 +1,5 @@
 import {spawn} from "node:child_process";
+import {createRequire} from "node:module";
 import path from "node:path";
 import {fileURLToPath, pathToFileURL} from "node:url";
 import {preview} from "vite";
@@ -15,11 +16,12 @@ import {preview} from "vite";
 const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const previewHost = "127.0.0.1";
 const requestedPreviewPort = Number(process.env.PLAYWRIGHT_PORT ?? 0);
+const playwrightCliPath = createRequire(import.meta.url).resolve("@playwright/test/cli");
 
 const runPlaywrightProcess = (argumentsList, previewPort) => new Promise((resolve, reject) => {
     const playwright = spawn(
         process.execPath,
-        [path.join(repositoryRoot, "node_modules", "@playwright", "test", "cli.js"), "test", ...argumentsList],
+        [playwrightCliPath, "test", ...argumentsList],
         {
             cwd: repositoryRoot,
             env: {...process.env, PLAYWRIGHT_PORT: String(previewPort)},

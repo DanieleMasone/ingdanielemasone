@@ -4,7 +4,7 @@ import {Quote} from "lucide-react";
 import {Card} from "@/components/ui/card/Card";
 import {PageSection} from "@/components/ui/pageSection/PageSection";
 import {SeoHead} from "@/components/seoHead/SeoHead";
-import {linkedinIcon} from "@/consts/Consts";
+import {linkedinIcon} from "@/config/brandIcons";
 import {PageGrid} from "@/components/ui/pageGrid/PageGrid";
 import {ExpandableText} from "@/components/ui/expandableText/ExpandableText";
 import {CardContent} from "@/components/ui/cardContent/CardContent";

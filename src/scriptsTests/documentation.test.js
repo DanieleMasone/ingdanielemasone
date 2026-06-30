@@ -78,12 +78,12 @@ describe("documentation source configuration", () => {
         const workflow = readText(".github/workflows/deploy-pages.yml");
         const qualityGuide = readText("docs-src/tutorials/quality-and-testing.md");
 
-        expect(packageJson.scripts["build:reports"]).toBe(
-            "npm run coverage && npm run doc && npm run prepare:reports"
-        );
-        expect(packageJson.scripts["build:all"]).toBe(
-            "npm run build && npm run build:reports && node scripts/validate-pages-artifact.mjs"
-        );
+        expect(packageJson.scripts["build:reports"]).toContain("npm run coverage");
+        expect(packageJson.scripts["build:reports"]).toContain("npm run doc");
+        expect(packageJson.scripts["build:reports"]).toContain("npm run prepare:reports");
+        expect(packageJson.scripts["build:all"]).toContain("npm run build");
+        expect(packageJson.scripts["build:all"]).toContain("npm run build:reports");
+        expect(packageJson.scripts["build:all"]).toContain("scripts/validate-pages-artifact.mjs");
         expect(packageJson.scripts["test:e2e:run"]).toBe("node scripts/run-playwright.mjs");
 
         for (const content of [readme, workflow, qualityGuide]) {

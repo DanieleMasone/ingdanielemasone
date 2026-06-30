@@ -1,11 +1,12 @@
 /**
- * Shared constants for custom portfolio icon definitions.
+ * Local brand icon definitions that are unavailable from the installed
+ * Simple Icons package.
  *
- * @module consts/Consts
+ * @module config/brandIcons
  */
 
 /**
- * Inline LinkedIn SVG used where a Simple Icons definition is not available.
+ * LinkedIn SVG path shared by portfolio surfaces.
  *
  * @type {{path: string}}
  */

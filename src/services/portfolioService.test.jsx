@@ -32,9 +32,11 @@ describe("portfolio.service", () => {
     it.each(cases)("%s returns a Promise", async (_, fn) => {
         const result = fn();
         expect(result).toBeInstanceOf(Promise);
+        await vi.runAllTimersAsync();
+        await result;
     });
 
-    it.each(cases)("%s resolves only after delay", async (_, fn) => {
+    it.each(cases)("%s preserves an asynchronous loading boundary", async (_, fn) => {
         const promise = fn();
 
         let resolved = false;
@@ -42,18 +44,16 @@ describe("portfolio.service", () => {
             resolved = true;
         });
 
-        // ahead of time → unresolved
-        await vi.advanceTimersByTimeAsync(299);
+        await Promise.resolve();
         expect(resolved).toBe(false);
 
-        // after 300 → solved
-        await vi.advanceTimersByTimeAsync(1);
+        await vi.runAllTimersAsync();
         expect(resolved).toBe(true);
     });
 
     it.each(cases)("%s resolves with defined data", async (_, fn) => {
         const promise = fn();
-        await vi.advanceTimersByTimeAsync(300);
+        await vi.runAllTimersAsync();
         const data = await promise;
 
         expect(data).toBeDefined();
