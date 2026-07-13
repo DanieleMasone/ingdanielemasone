@@ -8,14 +8,14 @@
     "@headlessui/react": "^2.2.10",
     "chart.js": "^4.5.1",
     "clsx": "^2.1.1",
-    "framer-motion": "^12.42.0",
-    "i18next": "^26.3.4",
+    "framer-motion": "^12.42.2",
+    "i18next": "^26.3.6",
     "i18next-browser-languagedetector": "^8.2.1",
     "lucide-react": "^1.22.0",
     "react": "^19.2.7",
     "react-chartjs-2": "^5.3.1",
     "react-dom": "^19.2.7",
-    "react-i18next": "^17.0.8",
+    "react-i18next": "^17.0.9",
     "react-router": "^7.18.1",
     "react-router-dom": "^7.18.1",
     "simple-icons": "^16.24.1"
@@ -66,14 +66,14 @@
     "@types/react": "^19.2.10",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.3",
-    "@vitest/coverage-v8": "4.1.9",
+    "@vitest/coverage-v8": "4.1.10",
     "autoprefixer": "^10.5.2",
     "docdash": "^2.0.2",
     "jsdoc": "^4.0.4",
     "jsdom": "^29.1.1",
-    "postcss": "8.5.16",
+    "postcss": "8.5.18",
     "tailwindcss": "^3.4.19",
-    "vite": "8.1.0",
-    "vitest": "4.1.9"
+    "vite": "8.1.4",
+    "vitest": "4.1.10"
   }
 }
