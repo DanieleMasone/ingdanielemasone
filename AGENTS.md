@@ -136,8 +136,13 @@ Before considering any task complete, always evaluate and apply, when needed:
 - Do not add Sass unless a recurring need exists for compile-time functions, parameterized mixins, generated selectors, substantial legacy Sass or non-trivial stylesheet modules. Nesting alone does not justify it.
 - Preserve focus visibility, reduced-motion behavior, contrast, responsive readability and no horizontal overflow whenever styles change.
 
-## Dependency Policy
+## Dependency Maintenance
 
+- This repository does not use scheduled Dependabot version-update pull requests.
+- Review dependency updates manually during explicit maintenance tasks, before meaningful releases, or when a security alert requires action.
+- Do not reintroduce `.github/dependabot.yml` unless the owner explicitly requests scheduled dependency pull requests again.
+- For broad maintenance or final audits, inspect dependency state with `npm outdated --long` and `npm audit`, then review official release notes and migration guides before changing versions.
+- Never run `npm audit fix` blindly.
 - During normal bugfix work, do not update dependencies unless required for the bug, a security fix, or a compatibility problem.
 - During explicit dependency-maintenance work, check stable package metadata from npm or trusted official sources before changing versions.
 - Prefer stable releases over prerelease, beta, alpha, RC, canary, or experimental versions unless the user explicitly asks otherwise.

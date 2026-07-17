@@ -44,6 +44,36 @@ npm ci --include=optional
 
 The validation script checks the lockfile structure, public registry URLs, root dependency alignment and referenced dependency nodes, including optional dependencies. It does not encode package-specific native bindings and does not replace `npm ci`, which remains the authoritative frozen install check used by CI.
 
+## Dependency maintenance
+
+Scheduled Dependabot version-update pull requests are disabled. Routine dependency updates are owner-triggered and reviewed manually during explicit maintenance tasks, before meaningful portfolio releases or major toolchain upgrades, and when a security alert requires action. GitHub security alerts may still be reviewed through the repository security settings where available; they are separate from scheduled version-update pull requests.
+
+Start a maintenance review with:
+
+```bash
+npm outdated --long
+npm audit
+```
+
+Review official release notes, migration guides, peer dependencies and engine constraints before changing versions. Major updates must not be merged blindly, and `npm audit fix` must not be run blindly.
+
+After intentionally changing package versions, rebuild and verify the lockfile from a clean dependency state:
+
+```bash
+rm -rf node_modules
+npm install --include=optional
+rm -rf node_modules
+npm ci --include=optional
+npm run deps:validate
+npm test -- --run
+npm run build:all
+npm run test:e2e
+```
+
+For a broad lockfile regeneration, remove `package-lock.json` before the first install and let the pinned npm version recreate it. Never edit `package-lock.json` manually. Validate material dependency or lockfile changes on Linux or through the documented Docker verification path, especially when optional native or WASM packages are involved.
+
+This portfolio remains `private` in `package.json`; dependency maintenance must not introduce npm registry publishing.
+
 ## Playwright
 
 Playwright is intentionally small. It is used for deployment-confidence E2E tests that are hard to prove in jsdom:

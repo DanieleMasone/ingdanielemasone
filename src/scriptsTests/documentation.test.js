@@ -97,6 +97,19 @@ describe("documentation source configuration", () => {
         expect(workflow).not.toContain("run: npm run build:all");
     });
 
+    test("documents manual dependency maintenance without scheduled Dependabot updates", () => {
+        const agents = readText("AGENTS.md");
+        const qualityGuide = readText("docs-src/tutorials/quality-and-testing.md");
+
+        expect(fs.existsSync(path.join(rootDir, ".github", "dependabot.yml"))).toBe(false);
+        expect(agents).toContain("does not use scheduled Dependabot version-update pull requests");
+        expect(agents).toContain("Do not reintroduce `.github/dependabot.yml`");
+        expect(qualityGuide).toContain("Scheduled Dependabot version-update pull requests are disabled");
+        expect(qualityGuide).toContain("npm outdated --long");
+        expect(qualityGuide).toContain("npm audit");
+        expect(qualityGuide).not.toContain("auto-merge");
+    });
+
     test("uses the generated coverage endpoint instead of a manual percentage badge", () => {
         const readme = readText("README.md");
 
