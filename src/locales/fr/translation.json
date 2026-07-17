@@ -157,6 +157,14 @@
           "delivery": "Vite, Vitest, Playwright, TypeDoc, GitHub Pages, coverage et package npm form-schema-runtime rendent l'API publique et les quality gates inspectables."
         }
       },
+      "ui_headless_runtime": {
+        "summary": "Bibliothèque TypeScript framework-agnostique pour contrôleurs UI headless accessibles, avec état contrôlable, snapshots immuables, lifecycle events, keyboard interaction, focus management, overlay coordination, documentation API, coverage et publication npm.",
+        "highlights": {
+          "runtime": "Package sans dépendance runtime ni CSS runtime: la bibliothèque gère l'état, les événements, le cleanup, le focus, la sélection et le positionnement, tandis que l'application garde le markup, le style et le rendu.",
+          "accessibility": "Des composants comme Dialog, Popover, Tabs, Listbox, Combobox, Tooltip et Navigation Menu suivent les patterns WAI-ARIA, le comportement clavier, les relations sémantiques et un teardown idempotent.",
+          "delivery": "Pipeline qualité avec TypeScript strict, Vitest, real-browser tests, Playwright, axe checks, API Extractor, TypeDoc, package verification, GitHub Pages et release npm via Trusted Publishing OIDC."
+        }
+      },
       "saas_analytics_dashboard": {
         "summary": "Dashboard de gestion SaaS en Next.js 16 montrant une architecture frontend orientée produit, des mock APIs typées, des états de route, des analytics accessibles et un déploiement GitHub Pages.",
         "highlights": {

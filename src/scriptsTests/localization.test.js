@@ -3,6 +3,7 @@ import path from "node:path";
 import {fileURLToPath} from "node:url";
 import {describe, expect, test} from "vitest";
 import {projects} from "@/mock/projects";
+import {githubProjects} from "@/mock/githubProjects";
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const localeCodes = ["it", "en", "fr", "de", "es"];
@@ -179,6 +180,25 @@ describe("localized portfolio content", () => {
             expect(interpolationVariables(locale.header.home_aria)).toContain("name");
             expect(interpolationVariables(locale.footer_copyright)).toEqual(["name", "year"]);
             expect(interpolationVariables(locale.footer_external_profile_label)).toEqual(["label", "name"]);
+        }
+    });
+
+    test("keeps GitHub project translation keys available across languages", () => {
+        const keyPaths = githubProjects.flatMap((project) => [
+            project.summaryKey,
+            ...project.highlightsKeys
+        ]);
+
+        for (const localeCode of localeCodes) {
+            const locale = readLocale(localeCode);
+
+            for (const keyPath of keyPaths) {
+                const value = getValue(locale, keyPath);
+
+                expect(value, `${localeCode}:${keyPath}`).toEqual(expect.any(String));
+                expect(value.trim(), `${localeCode}:${keyPath}`).not.toBe("");
+                expect(value, `${localeCode}:${keyPath}`).not.toBe(keyPath);
+            }
         }
     });
 

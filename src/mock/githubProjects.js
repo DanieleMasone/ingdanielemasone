@@ -276,6 +276,41 @@ export const githubProjects = [
         ]
     },
     {
+        id: "ui-headless-runtime",
+        name: "UI Headless Runtime",
+        category: "frontend",
+        year: "2026",
+        summaryKey: "github_projects_page.projects.ui_headless_runtime.summary",
+        highlightsKeys: [
+            "github_projects_page.projects.ui_headless_runtime.highlights.runtime",
+            "github_projects_page.projects.ui_headless_runtime.highlights.accessibility",
+            "github_projects_page.projects.ui_headless_runtime.highlights.delivery"
+        ],
+        tech: "TypeScript, Vite, npm, Headless UI Runtime, WAI-ARIA patterns, controllable state, immutable snapshots, lifecycle events, focus management, roving focus, active descendant, overlay coordination, positioning, SSR-safe imports, API Extractor, TypeDoc, Vitest, Playwright, axe accessibility checks, GitHub Actions, GitHub Pages",
+        links: [
+            {
+                type: "repository",
+                href: "https://github.com/DanieleMasone/ui-headless-runtime"
+            },
+            {
+                type: "live",
+                href: "https://danielemasone.github.io/ui-headless-runtime/"
+            },
+            {
+                type: "package",
+                href: "https://www.npmjs.com/package/ui-headless-runtime"
+            },
+            {
+                type: "documentation",
+                href: "https://danielemasone.github.io/ui-headless-runtime/api/"
+            },
+            {
+                type: "coverage",
+                href: "https://danielemasone.github.io/ui-headless-runtime/coverage/"
+            }
+        ]
+    },
+    {
         id: "saas-analytics-dashboard",
         name: "SaaS Analytics Dashboard",
         category: "frontend",

@@ -27,6 +27,12 @@ const FORM_SCHEMA_RUNTIME_LIVE_URL = "https://danielemasone.github.io/form-schem
 const FORM_SCHEMA_RUNTIME_NPM_URL = "https://www.npmjs.com/package/form-schema-runtime";
 const FORM_SCHEMA_RUNTIME_API_DOCS_URL = "https://danielemasone.github.io/form-schema-runtime/api/";
 const FORM_SCHEMA_RUNTIME_COVERAGE_URL = "https://danielemasone.github.io/form-schema-runtime/coverage/";
+const UI_HEADLESS_RUNTIME_PROJECT_ID = "ui-headless-runtime";
+const UI_HEADLESS_RUNTIME_REPOSITORY_URL = "https://github.com/DanieleMasone/ui-headless-runtime";
+const UI_HEADLESS_RUNTIME_LIVE_URL = "https://danielemasone.github.io/ui-headless-runtime/";
+const UI_HEADLESS_RUNTIME_NPM_URL = "https://www.npmjs.com/package/ui-headless-runtime";
+const UI_HEADLESS_RUNTIME_API_DOCS_URL = "https://danielemasone.github.io/ui-headless-runtime/api/";
+const UI_HEADLESS_RUNTIME_COVERAGE_URL = "https://danielemasone.github.io/ui-headless-runtime/coverage/";
 
 vi.mock("react-i18next", () => ({
     useTranslation: () => ({
@@ -66,6 +72,10 @@ vi.mock("react-i18next", () => ({
                 "github_projects_page.projects.form_schema_runtime.highlights.runtime": "Framework-agnostic runtime.",
                 "github_projects_page.projects.form_schema_runtime.highlights.accessibility": "Accessible native form controls.",
                 "github_projects_page.projects.form_schema_runtime.highlights.delivery": "npm package and public API docs.",
+                "github_projects_page.projects.ui_headless_runtime.summary": "UI headless runtime summary.",
+                "github_projects_page.projects.ui_headless_runtime.highlights.runtime": "Headless controller runtime.",
+                "github_projects_page.projects.ui_headless_runtime.highlights.accessibility": "WAI-ARIA keyboard behavior.",
+                "github_projects_page.projects.ui_headless_runtime.highlights.delivery": "npm package and API docs quality gates.",
                 "github_projects_page.projects.identity_service.summary": "Identity backend summary.",
                 "github_projects_page.projects.identity_service.highlights.contract": "OpenAPI contract.",
                 "github_projects_page.projects.identity_service.highlights.architecture": "Layered Spring architecture.",
@@ -365,6 +375,45 @@ describe("GithubProjects", () => {
         expect(coverage).toHaveClass("sm:col-span-2");
     });
 
+    test("renders UI Headless Runtime from production data with npm and published resource links", async () => {
+        const uiHeadlessRuntimeProject = githubProjects.find((project) => project.id === UI_HEADLESS_RUNTIME_PROJECT_ID);
+
+        expect(uiHeadlessRuntimeProject).toMatchObject({
+            name: "UI Headless Runtime",
+            category: "frontend",
+            year: "2026",
+            summaryKey: "github_projects_page.projects.ui_headless_runtime.summary",
+            highlightsKeys: [
+                "github_projects_page.projects.ui_headless_runtime.highlights.runtime",
+                "github_projects_page.projects.ui_headless_runtime.highlights.accessibility",
+                "github_projects_page.projects.ui_headless_runtime.highlights.delivery"
+            ]
+        });
+
+        vi.spyOn(service, "getGithubProjects").mockResolvedValueOnce([uiHeadlessRuntimeProject]);
+
+        renderGithubProjects();
+
+        expect(await screen.findByRole("heading", {name: "UI Headless Runtime"})).toBeInTheDocument();
+        expect(screen.getByText("UI headless runtime summary.")).toBeInTheDocument();
+        expect(screen.getByText("Headless controller runtime.")).toBeInTheDocument();
+        expect(screen.getByText("WAI-ARIA keyboard behavior.")).toBeInTheDocument();
+        expect(screen.getByText("npm package and API docs quality gates.")).toBeInTheDocument();
+        expect(screen.queryByText(/ui_headless_runtime/)).not.toBeInTheDocument();
+
+        expect(screen.getByRole("link", {name: "Repository: UI Headless Runtime"}))
+            .toHaveAttribute("href", UI_HEADLESS_RUNTIME_REPOSITORY_URL);
+        expect(screen.getByRole("link", {name: "Live: UI Headless Runtime"}))
+            .toHaveAttribute("href", UI_HEADLESS_RUNTIME_LIVE_URL);
+        expect(screen.getByRole("link", {name: "npm package: UI Headless Runtime"}))
+            .toHaveAttribute("href", UI_HEADLESS_RUNTIME_NPM_URL);
+        expect(screen.getByRole("link", {name: "Docs: UI Headless Runtime"}))
+            .toHaveAttribute("href", UI_HEADLESS_RUNTIME_API_DOCS_URL);
+        const coverage = screen.getByRole("link", {name: "Coverage: UI Headless Runtime"});
+        expect(coverage).toHaveAttribute("href", UI_HEADLESS_RUNTIME_COVERAGE_URL);
+        expect(coverage).toHaveClass("sm:col-span-2");
+    });
+
     test("keeps public resource links aligned with published repository READMEs", () => {
         const byType = (projectId, type) =>
             githubProjects.find((project) => project.id === projectId)
@@ -405,6 +454,16 @@ describe("GithubProjects", () => {
             .toBe(FORM_SCHEMA_RUNTIME_API_DOCS_URL);
         expect(byType("form-schema-runtime", "coverage"))
             .toBe(FORM_SCHEMA_RUNTIME_COVERAGE_URL);
+        expect(byType("ui-headless-runtime", "repository"))
+            .toBe(UI_HEADLESS_RUNTIME_REPOSITORY_URL);
+        expect(byType("ui-headless-runtime", "live"))
+            .toBe(UI_HEADLESS_RUNTIME_LIVE_URL);
+        expect(byType("ui-headless-runtime", "package"))
+            .toBe(UI_HEADLESS_RUNTIME_NPM_URL);
+        expect(byType("ui-headless-runtime", "documentation"))
+            .toBe(UI_HEADLESS_RUNTIME_API_DOCS_URL);
+        expect(byType("ui-headless-runtime", "coverage"))
+            .toBe(UI_HEADLESS_RUNTIME_COVERAGE_URL);
         expect(byType("modular-monolith-ecommerce", "live"))
             .toBe("https://danielemasone.github.io/modular-monolith-ecommerce/");
         expect(byType("modular-monolith-ecommerce", "documentation"))
@@ -458,6 +517,9 @@ describe("GithubProjects", () => {
         expect(techByProject("enterprise-ux-motion-lab")).toContain("reduced motion");
         expect(techByProject("form-schema-runtime")).toContain("npm");
         expect(techByProject("form-schema-runtime")).toContain("DOM APIs");
+        expect(techByProject("ui-headless-runtime")).toContain("Headless UI Runtime");
+        expect(techByProject("ui-headless-runtime")).toContain("API Extractor");
+        expect(techByProject("ui-headless-runtime")).toContain("SSR-safe imports");
         expect(techByProject("order-events-service")).toContain("Kafka");
         expect(techByProject("enterprise-data-workbench")).toContain("Playwright");
         expect(techByProject("portfolio-online-cv")).toContain("Playwright");
@@ -475,6 +537,25 @@ describe("GithubProjects", () => {
         await waitFor(() => {
             expect(screen.getByText("Identity Service API")).toBeInTheDocument();
             expect(screen.queryByText("Portfolio & Online CV")).not.toBeInTheDocument();
+        });
+    });
+
+    test("includes UI Headless Runtime when filtering production data by frontend category", async () => {
+        const identityServiceProject = githubProjects.find((project) => project.id === "identity-service");
+        const uiHeadlessRuntimeProject = githubProjects.find((project) => project.id === UI_HEADLESS_RUNTIME_PROJECT_ID);
+
+        vi.spyOn(service, "getGithubProjects")
+            .mockResolvedValueOnce([identityServiceProject, uiHeadlessRuntimeProject]);
+
+        renderGithubProjects();
+
+        await screen.findByText("Identity Service API");
+
+        fireEvent.click(screen.getByRole("button", {name: "Frontend"}));
+
+        await waitFor(() => {
+            expect(screen.getByText("UI Headless Runtime")).toBeInTheDocument();
+            expect(screen.queryByText("Identity Service API")).not.toBeInTheDocument();
         });
     });
 
