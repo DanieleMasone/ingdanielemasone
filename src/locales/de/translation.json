@@ -742,10 +742,12 @@
     ]
   },
   "trading_title": "Meine Trading-Aktivität",
-  "trading_intro": "Parallel zu meiner Tech-Karriere investiere ich langfristig und methodisch.",
-  "trading_description": "Auf eToro stelle ich einen persönlichen langfristigen Ansatz mit Fokus auf Dividendenaktien und diversifizierte ETFs sowie Dividendenreinvestition dar.",
+  "trading_status": "eToro Pro Investor Cadet",
+  "trading_affiliation": "Danieles X-Profil weist eine verifizierte Zugehörigkeit zu eToro Pro Investor aus.",
+  "trading_intro": "Parallel zu meiner Tech-Karriere verfolge ich einen persönlichen, langfristigen Anlageansatz mit Disziplin und ohne Hebelwirkung.",
+  "trading_description": "Auf eToro stelle ich einen monatlichen Sparplan (DCA) mit globalen ETFs und Anleihen sowie einer kleinen BTC-Allokation dar.",
   "trading_cta": "Mein eToro-Profil",
-  "disclaimer_text": "Historische Daten dienen nur Informationszwecken. Vergangene Wertentwicklungen sind kein verlässlicher Indikator für zukünftige Ergebnisse. Investitionen sind mit Risiken bis hin zum Kapitalverlust verbunden. Diese Website bietet keine persönliche Beratung oder Anlageempfehlungen.",
+  "disclaimer_text": "Historische Daten dienen nur Informationszwecken. Vergangene Wertentwicklungen sind kein verlässlicher Indikator für zukünftige Ergebnisse. Das eingesetzte Kapital ist Verlustrisiken ausgesetzt. Diese Inhalte sind weder Anlageberatung noch eine persönliche Empfehlung.",
   "performance_title": "Performance",
   "performance_dataset_label": "Rendite (%)",
   "performance_view_selector_aria": "Diagrammansicht wählen",
@@ -1064,7 +1066,7 @@
     },
     "trading": {
       "title": "Trading - Daniele Masone",
-      "description": "Analysen, Studien und Gedanken von Daniele Masone zur Welt des Tradings und der Finanzmärkte."
+      "description": "Trading-Seite von Daniele Masone: eToro Pro Investor Cadet-Profil, persönlicher langfristiger Ansatz und historische Daten nur zu Informationszwecken."
     },
     "privacy": {
       "title": "Datenschutzerklärung - Daniele Masone",

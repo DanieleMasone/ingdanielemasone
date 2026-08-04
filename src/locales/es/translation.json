@@ -742,10 +742,12 @@
     ]
   },
   "trading_title": "Mi actividad de Trading",
-  "trading_intro": "En paralelo a mi trabajo en tecnología, invierto en bolsa con método y disciplina.",
-  "trading_description": "En eToro presento un enfoque personal a largo plazo centrado en acciones con dividendos y ETF diversificados, con reinversión de dividendos.",
+  "trading_status": "eToro Pro Investor Cadet",
+  "trading_affiliation": "El perfil de Daniele en X muestra una afiliación verificada con eToro Pro Investor.",
+  "trading_intro": "En paralelo a mi trabajo en tecnología, sigo un enfoque de inversión personal a largo plazo, metódico y sin apalancamiento.",
+  "trading_description": "En eToro presento un plan de aportaciones mensuales (DCA) con ETF globales y bonos, además de una pequeña asignación a BTC.",
   "trading_cta": "Mi perfil de eToro",
-  "disclaimer_text": "Los datos históricos se presentan solo con fines informativos. Los resultados pasados no son un indicador fiable de resultados futuros. Invertir implica riesgos, incluida la pérdida de capital. Este sitio no ofrece asesoramiento personalizado ni recomendaciones de inversión.",
+  "disclaimer_text": "Los datos históricos se presentan solo con fines informativos. Los resultados pasados no son un indicador fiable de resultados futuros. El capital está en riesgo, incluida la posibilidad de pérdida. Este contenido no constituye asesoramiento de inversión ni una recomendación personalizada.",
   "performance_title": "Rendimiento",
   "performance_dataset_label": "Rendimiento (%)",
   "performance_view_selector_aria": "Seleccionar vista del gráfico",
@@ -1064,7 +1066,7 @@
     },
     "trading": {
       "title": "Trading - Daniele Masone",
-      "description": "Análisis, estudios y reflexiones de Daniele Masone sobre el mundo del trading y los mercados financieros."
+      "description": "Página de trading de Daniele Masone: perfil eToro Pro Investor Cadet, enfoque personal a largo plazo y datos históricos solo con fines informativos."
     },
     "privacy": {
       "title": "Política de privacidad - Daniele Masone",

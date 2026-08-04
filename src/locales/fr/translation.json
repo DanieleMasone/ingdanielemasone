@@ -742,10 +742,12 @@
     ]
   },
   "trading_title": "Mon activité de trading",
-  "trading_intro": "En parallèle de mon travail dans la tech, j’investis en bourse avec méthode et discipline.",
-  "trading_description": "Sur eToro, je présente une approche personnelle à long terme axée sur les actions à dividendes et les ETF diversifiés, avec réinvestissement des dividendes.",
+  "trading_status": "eToro Pro Investor Cadet",
+  "trading_affiliation": "Le profil X de Daniele affiche une affiliation vérifiée à eToro Pro Investor.",
+  "trading_intro": "En parallèle de mon travail dans la tech, j’adopte une approche d’investissement personnelle à long terme, méthodique et sans effet de levier.",
+  "trading_description": "Sur eToro, je présente un investissement programmé mensuel (DCA) réparti entre ETF mondiaux et obligations, avec une faible allocation en BTC.",
   "trading_cta": "Mon profil eToro",
-  "disclaimer_text": "Les données historiques sont présentées uniquement à titre informatif. Les performances passées ne constituent pas un indicateur fiable des résultats futurs. Investir comporte des risques, notamment la perte de capital. Ce site ne fournit ni conseil personnalisé ni recommandation d'investissement.",
+  "disclaimer_text": "Les données historiques sont présentées uniquement à titre informatif. Les performances passées ne constituent pas un indicateur fiable des résultats futurs. Le capital est exposé à un risque de perte. Ces contenus ne constituent ni un conseil en investissement ni une recommandation personnalisée.",
   "performance_title": "Performance",
   "performance_dataset_label": "Rendement (%)",
   "performance_view_selector_aria": "Sélectionner la vue du graphique",
@@ -1064,7 +1066,7 @@
     },
     "trading": {
       "title": "Trading - Daniele Masone",
-      "description": "Analyses, études et réflexions de Daniele Masone sur le monde du trading et les marchés financiers."
+      "description": "Page trading de Daniele Masone : profil eToro Pro Investor Cadet, approche personnelle à long terme et données historiques fournies à titre informatif."
     },
     "privacy": {
       "title": "Politique de confidentialité - Daniele Masone",

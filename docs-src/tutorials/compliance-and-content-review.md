@@ -52,6 +52,8 @@ WCAG 2.2 AA is the engineering target, not a certification claim. The maintained
 
 The eToro short URL redirects through affiliate parameters (`A=11`, `ref=26113157`, `utm_medium=RAF`) and sets third-party attribution cookies only after the visitor follows it. Udemy purchase URLs contain `referralCode`. Both relationships are disclosed close to their actions. The repository cannot establish compensation terms, contractual relationships, or whether the Trading content is a regulated recommendation. Do not add buy/sell/hold language, target prices, expected returns, urgency, safety claims, copy-trading invitations, or new broker links without qualified review.
 
+Profile-status copy may describe `eToro Pro Investor Cadet` and a verified X affiliation with eToro Pro Investor only while those public profile facts remain current. The affiliation must not be presented as evidence of investment performance, regulatory authorization, suitability, strategy approval, or guaranteed results.
+
 The historical dataset begins in January 2022. Before treating it as a performance record, the owner must document its source, calculation formula, update date, whether values are net or gross, and treatment of fees, deposits, withdrawals, currency effects, dividends, and taxes.
 
 ## Testimonial governance

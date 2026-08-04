@@ -11,9 +11,11 @@ vi.mock("react-i18next", () => ({
         t: (key) => {
             const translations = {
                 trading_title: "Trading Performance",
+                trading_status: "eToro Pro Investor Cadet",
+                trading_affiliation: "Daniele's X profile shows a verified affiliation with eToro Pro Investor.",
                 trading_intro: "Welcome to my trading performance overview.",
                 trading_description: "Here you can find detailed metrics about my trading results.",
-                disclaimer_text: "Trading involves risk. Past performance is not indicative of future results.",
+                disclaimer_text: "This is not investment advice. Capital is at risk.",
                 trading_cta: "My eToro profile",
                 trading_signup: "Sign up on eToro",
                 trading_referral_disclosure: "The registration link is a referral link.",
@@ -94,9 +96,12 @@ describe("Trading component", () => {
         expect(title).toBeInTheDocument();
 
         // intro, description, disclaimer
+        expect(await screen.findByText("eToro Pro Investor Cadet")).toBeInTheDocument();
+        expect(await screen.findByText(/verified affiliation with etoro pro investor/i)).toBeInTheDocument();
         expect(await screen.findByText(/welcome to my trading performance overview/i)).toBeInTheDocument();
         expect(await screen.findByText(/here you can find detailed metrics/i)).toBeInTheDocument();
-        expect(await screen.findByText(/trading involves risk/i)).toBeInTheDocument();
+        expect(await screen.findByText(/not investment advice/i)).toBeInTheDocument();
+        expect(await screen.findByText(/capital is at risk/i)).toBeInTheDocument();
         expect(await screen.findByText(/historical monthly percentages from january 2022/i)).toBeInTheDocument();
 
         // TradingPerformanceChart

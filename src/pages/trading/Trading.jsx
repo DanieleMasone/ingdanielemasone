@@ -15,8 +15,8 @@ const TradingPerformanceChart = lazy(() =>
 );
 
 /**
- * Trading component renders a section with trading introduction text,
- * description, disclaimer, call-to-action links, and a trading performance chart.
+ * Trading component renders a section with profile status, trading introduction
+ * text, description, disclaimer, call-to-action links, and a trading performance chart.
  * The copy and actions use a responsive layout so CTAs stack on mobile and sit
  * beside the text on wider screens.
  *
@@ -45,6 +45,14 @@ export default function Trading() {
             <PageSection title={t("trading_title")}>
                 <div className={layoutClasses.tradingIntroLayout} data-testid="trading-intro-layout">
                     <div className={layoutClasses.tradingIntroCopy}>
+                        <div className="space-y-1">
+                            <p className="text-sm font-semibold text-gray-900 dark:text-gray-100">
+                                {t("trading_status")}
+                            </p>
+                            <p className="text-sm leading-6 text-gray-600 dark:text-gray-400">
+                                {t("trading_affiliation")}
+                            </p>
+                        </div>
                         <p className="text-base leading-7 text-gray-700 dark:text-gray-300 sm:text-lg">
                             {t("trading_intro")}
                         </p>

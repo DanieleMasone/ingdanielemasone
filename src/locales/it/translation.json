@@ -742,10 +742,12 @@
     ]
   },
   "trading_title": "La mia attività di Trading",
-  "trading_intro": "Parallelamente al mio lavoro tech, investo in borsa con metodo e disciplina.",
-  "trading_description": "Su eToro presento un approccio personale di lungo termine, orientato ad azioni a dividendo ed ETF diversificati con reinvestimento dei dividendi.",
+  "trading_status": "eToro Pro Investor Cadet",
+  "trading_affiliation": "Il profilo X di Daniele mostra un'affiliazione verificata con eToro Pro Investor.",
+  "trading_intro": "Parallelamente al mio lavoro tech, seguo un approccio personale di lungo periodo con metodo e senza leva finanziaria.",
+  "trading_description": "Su eToro presento un piano di accumulo mensile (DCA) su ETF globali e obbligazioni, con una piccola esposizione a BTC.",
   "trading_cta": "Il mio profilo eToro",
-  "disclaimer_text": "I dati storici sono presentati solo a scopo informativo. I risultati passati non sono un indicatore affidabile di quelli futuri. Investire comporta rischi, inclusa la perdita di capitale. Questo sito non fornisce consulenza personalizzata né raccomandazioni di investimento.",
+  "disclaimer_text": "I dati storici sono presentati solo a scopo informativo. I risultati passati non sono un indicatore affidabile di quelli futuri. Il capitale è a rischio, inclusa la possibilità di perdita. Questi contenuti non costituiscono consulenza in materia di investimenti né una raccomandazione personalizzata.",
   "performance_title": "Performance",
   "performance_dataset_label": "Rendimento (%)",
   "performance_view_selector_aria": "Seleziona vista grafico",
@@ -1064,7 +1066,7 @@
     },
     "trading": {
       "title": "Trading - Daniele Masone",
-      "description": "Approfondimenti, studi e riflessioni di Daniele Masone sul mondo del trading e dei mercati finanziari."
+      "description": "Pagina Trading di Daniele Masone: profilo eToro Pro Investor Cadet, approccio personale di lungo periodo e dati storici esclusivamente a scopo informativo."
     },
     "privacy": {
       "title": "Privacy Policy - Daniele Masone",

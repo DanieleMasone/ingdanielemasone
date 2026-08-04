@@ -742,10 +742,12 @@
     ]
   },
   "trading_title": "My Trading Activity",
-  "trading_intro": "Alongside my tech work, I invest in the stock market with discipline and long-term vision.",
-  "trading_description": "On eToro I present a personal long-term approach focused on dividend-paying stocks and diversified ETFs, with dividend reinvestment.",
+  "trading_status": "eToro Pro Investor Cadet",
+  "trading_affiliation": "Daniele's X profile shows a verified affiliation with eToro Pro Investor.",
+  "trading_intro": "Alongside my tech work, I follow a personal long-term investment approach with discipline and no leverage.",
+  "trading_description": "On eToro I present a monthly DCA approach across global ETFs and bonds, with a small BTC allocation.",
   "trading_cta": "My eToro profile",
-  "disclaimer_text": "Historical data is presented for information only. Past performance is not a reliable indicator of future results. Investing involves risk, including loss of capital. This site does not provide personalized advice or investment recommendations.",
+  "disclaimer_text": "Historical data is presented for information only. Past performance is not a reliable indicator of future results. Capital is at risk, including possible loss. This content is not investment advice or a personalized recommendation.",
   "performance_title": "Performance",
   "performance_dataset_label": "Return (%)",
   "performance_view_selector_aria": "Select chart view",
@@ -1064,7 +1066,7 @@
     },
     "trading": {
       "title": "Trading - Daniele Masone",
-      "description": "Insights, studies and thoughts from Daniele Masone on trading and financial markets."
+      "description": "Daniele Masone's Trading page: eToro Pro Investor Cadet profile, personal long-term approach and historical data provided for information only."
     },
     "privacy": {
       "title": "Privacy Policy - Daniele Masone",
