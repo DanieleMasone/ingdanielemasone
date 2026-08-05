@@ -94,7 +94,7 @@
     },
     "projects": {
       "spring_modulith_order_platform": {
-        "summary": "Production-oriented modular monolith for order management with Spring Boot, Spring Modulith, PostgreSQL, OpenAPI-first contracts and Testcontainers, designed to show strong module boundaries without distributed-system overhead.",
+        "summary": "Modular order-management monolith with Spring Boot, Spring Modulith, PostgreSQL and OpenAPI-first contracts, demonstrating enforced module boundaries without distributed infrastructure.",
         "highlights": {
           "architecture": "Single Spring Boot deployable with customers, pricing, orders, payments and notifications modules governed by Spring Modulith and verified with ApplicationModules.verify().",
           "contract": "OpenAPI-first REST contract, PostgreSQL persistence with Flyway and RFC 7807 ProblemDetail responses keep API and data behavior explicit.",
@@ -106,7 +106,7 @@
         "highlights": {
           "architecture": "Maven multi-module Spring Boot application with catalog, orders, payment and shared-kernel boundaries enforced by ArchUnit.",
           "integration": "PostgreSQL, Redis, Flyway and Docker Compose support realistic local runtime and Testcontainers integration tests.",
-          "quality": "CI publishes dashboard, documentation, OpenAPI UI/JSON, JavaDoc, coverage and test reports through GitHub Pages."
+          "quality": "CI publishes dashboard, documentation, OpenAPI UI/JSON, Javadoc, coverage and test reports through GitHub Pages."
         }
       },
       "identity_service": {
@@ -118,7 +118,7 @@
         }
       },
       "order_events_service": {
-        "summary": "Event-driven Spring Boot microservice for creating orders, publishing Kafka events, consuming them idempotently and publishing technical documentation on GitHub Pages.",
+        "summary": "Focused Spring Boot service for an at-least-once order flow: PostgreSQL persistence, Kafka publication, idempotent consumption, bounded retries and DLT routing.",
         "highlights": {
           "event_flow": "Focused order flow with REST API, PostgreSQL persistence, Kafka order.created.v1 events and a dead-letter topic for exhausted failures.",
           "idempotency": "Idempotent consumer processing through a processed_events table, fixed-backoff retries and duplicate delivery handling without repeated side effects.",
@@ -129,7 +129,7 @@
         "summary": "Backend for Frontend for React dashboards that centralizes JWT authentication, downstream aggregation, response adaptation and operational resilience.",
         "highlights": {
           "bff_boundary": "Exposes one stable frontend API while hiding downstream topology, contracts and failure modes from the browser.",
-          "security_resilience": "Spring Security JWT Resource Server, WebClient and Resilience4j protect the boundary and return stable fallbacks.",
+          "security_resilience": "JWT Resource Server protects the API; WebClient and Resilience4j return a guest profile or empty recommendations when downstream services fail.",
           "quality": "CI runs Maven verify, JaCoCo, Javadoc, generated OpenAPI/Swagger UI, Docker Compose checks and GitHub Pages publication."
         }
       },
@@ -146,23 +146,23 @@
         "highlights": {
           "motion": "Shared motion tokens and reduced-motion support govern short transitions for state changes, disclosure and feedback.",
           "workflow": "Risk dashboard workflows include command palette, filters, dark mode, density controls, loading, empty and degraded telemetry states.",
-          "quality": "Vitest, Testing Library, focused Playwright journeys, TypeDoc, coverage and GitHub Pages publication document the project without backend or routing overhead."
+          "quality": "Vitest, Testing Library and focused Playwright journeys verify the dashboard; TypeDoc, coverage, User Guide and Engineering Guide ship with the Pages artifact."
         }
       },
       "form_schema_runtime": {
-        "summary": "Framework-agnostic TypeScript runtime for rendering accessible HTML forms from declarative JSON schemas, with typed schemas, validation, state hooks, safe DOM rendering, API docs, coverage and npm publication.",
+        "summary": "Framework-agnostic TypeScript runtime that renders accessible HTML forms from declarative schemas, with typed extension points and a published npm package.",
         "highlights": {
-          "runtime": "Framework-agnostic core exposes createForm, typed schemas, validators, renderers and form instances without React, Angular, Vue or Svelte dependencies.",
+          "runtime": "The core exposes createForm, typed schemas, validators, renderers and form instances without framework dependencies.",
           "accessibility": "Native controls, associated labels, aria-invalid, aria-describedby, required-state communication and focused error summaries keep generated forms usable.",
           "delivery": "Vite, Vitest, Playwright, TypeDoc, GitHub Pages, coverage and the form-schema-runtime npm package make the public API and quality gates inspectable."
         }
       },
       "ui_headless_runtime": {
-        "summary": "Framework-agnostic TypeScript library for accessible headless UI controllers, with controllable state, immutable snapshots, lifecycle events, keyboard interaction, focus management, overlay coordination, API documentation, coverage and npm publication.",
+        "summary": "Framework-agnostic TypeScript library of accessible headless UI controllers, separating state, keyboard and focus behavior, and lifecycle from consumer markup and styling.",
         "highlights": {
           "runtime": "Zero-runtime-dependency and no-runtime-CSS package: the library owns state, events, cleanup, focus, selection and positioning while the application owns markup, styling and rendering.",
           "accessibility": "Components such as Dialog, Popover, Tabs, Listbox, Combobox, Tooltip and Navigation Menu follow WAI-ARIA patterns, keyboard behavior, semantic relationships and idempotent teardown.",
-          "delivery": "Quality pipeline with strict TypeScript, Vitest, real-browser tests, Playwright, axe checks, API Extractor, TypeDoc, package verification, GitHub Pages and npm release through Trusted Publishing OIDC."
+          "delivery": "Strict TypeScript, Vitest browser tests, Playwright and axe checks, API Extractor, TypeDoc and package verification support Pages delivery and OIDC-based npm releases."
         }
       },
       "saas_analytics_dashboard": {

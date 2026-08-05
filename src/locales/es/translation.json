@@ -94,7 +94,7 @@
     },
     "projects": {
       "spring_modulith_order_platform": {
-        "summary": "Monolito modular orientado a producción para gestión de pedidos con Spring Boot, Spring Modulith, PostgreSQL, contratos OpenAPI-first y Testcontainers, diseñado para mostrar límites de módulo sólidos sin sobrecarga distribuida innecesaria.",
+        "summary": "Monolito modular para gestión de pedidos con Spring Boot, Spring Modulith, PostgreSQL y contratos OpenAPI-first, con límites de módulo verificados sin infraestructura distribuida.",
         "highlights": {
           "architecture": "Un único desplegable Spring Boot con módulos customers, pricing, orders, payments y notifications gobernados por Spring Modulith y verificados con ApplicationModules.verify().",
           "contract": "Contrato REST OpenAPI-first, persistencia PostgreSQL con Flyway y respuestas RFC 7807 ProblemDetail hacen explícitos el API y el comportamiento de datos.",
@@ -106,7 +106,7 @@
         "highlights": {
           "architecture": "Aplicación Spring Boot Maven multi-módulo con límites catalog, orders, payment y shared-kernel verificados por ArchUnit.",
           "integration": "PostgreSQL, Redis, Flyway y Docker Compose hacen realistas el runtime local y los tests de integración con Testcontainers.",
-          "quality": "La CI publica dashboard, documentación, OpenAPI UI/JSON, JavaDoc, coverage y test reports en GitHub Pages."
+          "quality": "La CI publica dashboard, documentación, OpenAPI UI/JSON, Javadoc, coverage y test reports en GitHub Pages."
         }
       },
       "identity_service": {
@@ -118,7 +118,7 @@
         }
       },
       "order_events_service": {
-        "summary": "Microservicio Spring Boot event-driven para crear pedidos, publicar eventos Kafka, consumirlos de forma idempotente y publicar documentación técnica en GitHub Pages.",
+        "summary": "Servicio Spring Boot centrado en un flujo de pedidos at-least-once: persistencia PostgreSQL, publicación Kafka, consumo idempotente, reintentos acotados y envío a la DLT.",
         "highlights": {
           "event_flow": "Flujo de pedidos enfocado con API REST, persistencia PostgreSQL, eventos Kafka order.created.v1 y dead-letter topic para fallos agotados.",
           "idempotency": "Consumer idempotente mediante tabla processed_events, reintentos con backoff fijo y gestión de entregas duplicadas sin efectos secundarios repetidos.",
@@ -129,7 +129,7 @@
         "summary": "Backend for Frontend para dashboards React que centraliza autenticación JWT, agregación downstream, adaptación de respuestas y resiliencia operativa.",
         "highlights": {
           "bff_boundary": "Expone una API frontend estable y oculta al navegador la topología, los contratos y los modos de fallo downstream.",
-          "security_resilience": "Spring Security JWT Resource Server, WebClient y Resilience4j protegen la boundary y devuelven fallbacks estables.",
+          "security_resilience": "JWT Resource Server protege la API; WebClient y Resilience4j devuelven un perfil invitado o recomendaciones vacías ante fallos downstream.",
           "quality": "CI con Maven verify, JaCoCo, Javadoc, OpenAPI/Swagger UI generados, validaciones Docker Compose y publicación en GitHub Pages."
         }
       },
@@ -146,23 +146,23 @@
         "highlights": {
           "motion": "Motion tokens compartidos y soporte reduced-motion gobiernan transiciones breves para cambios de estado, disclosure y feedback.",
           "workflow": "Los workflows del dashboard risk incluyen command palette, filtros, dark mode, controles de densidad y estados loading, empty y degraded telemetry.",
-          "quality": "Vitest, Testing Library, recorridos Playwright enfocados, TypeDoc, cobertura y publicación GitHub Pages documentan el proyecto sin backend ni routing innecesarios."
+          "quality": "Vitest, Testing Library y recorridos Playwright enfocados verifican el dashboard; TypeDoc, cobertura, User Guide y Engineering Guide se incluyen en el artefacto Pages."
         }
       },
       "form_schema_runtime": {
-        "summary": "Runtime TypeScript framework-agnostic para renderizar formularios HTML accesibles desde esquemas JSON declarativos, con esquemas tipados, validación, hooks de estado, renderizado DOM seguro, docs API, coverage y publicación npm.",
+        "summary": "Runtime TypeScript framework-agnostic que renderiza formularios HTML accesibles desde esquemas declarativos, con puntos de extensión tipados y un paquete npm público.",
         "highlights": {
-          "runtime": "El core sin dependencias React, Angular, Vue o Svelte expone createForm, esquemas tipados, validadores, renderers e instancias de formulario.",
+          "runtime": "El core expone createForm, esquemas tipados, validadores, renderers e instancias de formulario sin dependencias de frameworks.",
           "accessibility": "Controles nativos, labels asociadas, aria-invalid, aria-describedby, comunicación de campos requeridos y resumen de errores con focus mantienen los formularios utilizables.",
           "delivery": "Vite, Vitest, Playwright, TypeDoc, GitHub Pages, coverage y el paquete npm form-schema-runtime hacen inspeccionables la API pública y los quality gates."
         }
       },
       "ui_headless_runtime": {
-        "summary": "Biblioteca TypeScript framework-agnostic para controladores UI headless accesibles, con estado controlable, snapshots inmutables, lifecycle events, keyboard interaction, focus management, overlay coordination, documentación API, coverage y publicación npm.",
+        "summary": "Biblioteca TypeScript framework-agnostic de controladores UI headless accesibles, que separa estado, comportamiento de teclado y focus, y lifecycle del markup y estilo del consumidor.",
         "highlights": {
           "runtime": "Paquete sin dependencias runtime y sin CSS runtime: la biblioteca gobierna estado, eventos, cleanup, focus, selección y posicionamiento, mientras la aplicación mantiene markup, estilo y renderizado.",
           "accessibility": "Componentes como Dialog, Popover, Tabs, Listbox, Combobox, Tooltip y Navigation Menu siguen patrones WAI-ARIA, comportamiento de teclado, relaciones semánticas y teardown idempotente.",
-          "delivery": "Pipeline de calidad con TypeScript strict, Vitest, real-browser tests, Playwright, axe checks, API Extractor, TypeDoc, package verification, GitHub Pages y release npm mediante Trusted Publishing OIDC."
+          "delivery": "TypeScript strict, tests de navegador con Vitest, controles Playwright y axe, API Extractor, TypeDoc y verificación del paquete respaldan Pages y releases npm mediante OIDC."
         }
       },
       "saas_analytics_dashboard": {

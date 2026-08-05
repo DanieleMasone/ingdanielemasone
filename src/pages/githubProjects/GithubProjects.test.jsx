@@ -33,6 +33,29 @@ const UI_HEADLESS_RUNTIME_LIVE_URL = "https://danielemasone.github.io/ui-headles
 const UI_HEADLESS_RUNTIME_NPM_URL = "https://www.npmjs.com/package/ui-headless-runtime";
 const UI_HEADLESS_RUNTIME_API_DOCS_URL = "https://danielemasone.github.io/ui-headless-runtime/api/";
 const UI_HEADLESS_RUNTIME_COVERAGE_URL = "https://danielemasone.github.io/ui-headless-runtime/coverage/";
+const EXPECTED_PROJECT_IDS = [
+    "spring-modulith-order-platform",
+    "modular-monolith-ecommerce",
+    "identity-service",
+    "order-events-service",
+    "react-bff-gateway",
+    "frontend-performance-lab",
+    "enterprise-ux-motion-lab",
+    "form-schema-runtime",
+    "ui-headless-runtime",
+    "saas-analytics-dashboard",
+    "headless-commerce",
+    "enterprise-data-workbench",
+    "portfolio-online-cv"
+];
+const SUPPORTED_RESOURCE_TYPES = new Set([
+    "repository",
+    "live",
+    "package",
+    "documentation",
+    "coverage"
+]);
+const EXPECTED_PACKAGE_PROJECT_IDS = ["form-schema-runtime", "ui-headless-runtime"];
 
 vi.mock("react-i18next", () => ({
     useTranslation: () => ({
@@ -208,6 +231,36 @@ function renderGithubProjects() {
 describe("GithubProjects", () => {
     afterEach(() => {
         vi.restoreAllMocks();
+    });
+
+    test("keeps the curated production dataset ordered and structurally valid", () => {
+        const projectIds = githubProjects.map((project) => project.id);
+
+        expect(projectIds).toEqual(EXPECTED_PROJECT_IDS);
+        expect(new Set(projectIds).size).toBe(projectIds.length);
+
+        for (const project of githubProjects) {
+            expect(project.name.trim()).not.toBe("");
+            expect(["frontend", "backend"]).toContain(project.category);
+            expect(project.year).toMatch(/^\d{4}$/);
+            expect(project.summaryKey).toMatch(/^github_projects_page\.projects\..+\.summary$/);
+            expect(project.highlightsKeys).toHaveLength(3);
+            expect(new Set(project.highlightsKeys).size).toBe(3);
+            expect(project.tech.trim()).not.toBe("");
+            expect(project.links.some((link) => link.type === "repository")).toBe(true);
+            expect(new Set(project.links.map((link) => link.type)).size).toBe(project.links.length);
+
+            for (const link of project.links) {
+                expect(SUPPORTED_RESOURCE_TYPES.has(link.type)).toBe(true);
+                expect(new URL(link.href).protocol).toBe("https:");
+            }
+        }
+
+        expect(
+            githubProjects
+                .filter((project) => project.links.some((link) => link.type === "package"))
+                .map((project) => project.id)
+        ).toEqual(EXPECTED_PACKAGE_PROJECT_IDS);
     });
 
     test("shows loading while repositories are fetched", () => {
@@ -511,17 +564,20 @@ describe("GithubProjects", () => {
         expect(techByProject("saas-analytics-dashboard")).toContain("Playwright");
         expect(techByProject("spring-modulith-order-platform")).toContain("Spring Modulith");
         expect(techByProject("spring-modulith-order-platform")).toContain("PostgreSQL 17");
-        expect(techByProject("frontend-performance-lab")).toContain("Performance Engineering");
+        expect(techByProject("frontend-performance-lab")).toContain("TypeScript 6");
         expect(techByProject("frontend-performance-lab")).toContain("Browser Performance API");
-        expect(techByProject("enterprise-ux-motion-lab")).toContain("Motion");
+        expect(techByProject("enterprise-ux-motion-lab")).toContain("Motion 12");
         expect(techByProject("enterprise-ux-motion-lab")).toContain("reduced motion");
         expect(techByProject("form-schema-runtime")).toContain("npm");
         expect(techByProject("form-schema-runtime")).toContain("DOM APIs");
-        expect(techByProject("ui-headless-runtime")).toContain("Headless UI Runtime");
+        expect(techByProject("ui-headless-runtime")).toContain("zero runtime dependencies");
         expect(techByProject("ui-headless-runtime")).toContain("API Extractor");
-        expect(techByProject("ui-headless-runtime")).toContain("SSR-safe imports");
+        expect(techByProject("ui-headless-runtime")).toContain("WAI-ARIA interaction patterns");
         expect(techByProject("order-events-service")).toContain("Kafka");
+        expect(techByProject("order-events-service")).toContain("Spring Boot 3.4.5");
+        expect(techByProject("order-events-service")).toContain("RFC 9457");
         expect(techByProject("enterprise-data-workbench")).toContain("Playwright");
+        expect(techByProject("enterprise-data-workbench")).toContain("dnd-kit");
         expect(techByProject("portfolio-online-cv")).toContain("Playwright");
     });
 

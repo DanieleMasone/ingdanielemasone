@@ -34,7 +34,7 @@ export const githubProjects = [
             "github_projects_page.projects.spring_modulith_order_platform.highlights.contract",
             "github_projects_page.projects.spring_modulith_order_platform.highlights.quality"
         ],
-        tech: "Java 21, Spring Boot 4.x, Spring Modulith 2.x, Spring Web MVC, Spring Data JPA, PostgreSQL 17, Flyway, OpenAPI Generator, RFC 7807 ProblemDetail, Testcontainers, JUnit 5, JaCoCo, Javadoc, Maven, Docker, Docker Compose, GitHub Actions, GitHub Pages",
+        tech: "Java 21, Spring Boot 4.1.0, Spring Modulith 2.1.0, Spring Web MVC, Spring Data JPA, PostgreSQL 17, Flyway, OpenAPI Generator, RFC 7807 ProblemDetail, Testcontainers, JUnit 5, JaCoCo, Javadoc, Maven, Docker Compose, GitHub Actions, GitHub Pages",
         links: [
             {
                 type: "repository",
@@ -65,7 +65,7 @@ export const githubProjects = [
             "github_projects_page.projects.modular_monolith_ecommerce.highlights.integration",
             "github_projects_page.projects.modular_monolith_ecommerce.highlights.quality"
         ],
-        tech: "Java 21, Spring Boot 4.x, Spring Web MVC, Spring Data JPA, Hibernate, PostgreSQL, Redis, Flyway, Maven multi-module, JUnit 5, AssertJ, Testcontainers, ArchUnit, MapStruct, springdoc-openapi, JaCoCo, Maven JavaDoc, Docker Compose, GitHub Actions, GitHub Pages",
+        tech: "Java 21, Spring Boot 4.x, Spring Web MVC, Spring Data JPA, PostgreSQL, Redis, Flyway, Maven multi-module, Testcontainers, ArchUnit, MapStruct, springdoc-openapi, JaCoCo, Javadoc, Docker Compose, GitHub Actions, GitHub Pages",
         links: [
             {
                 type: "repository",
@@ -96,7 +96,7 @@ export const githubProjects = [
             "github_projects_page.projects.identity_service.highlights.architecture",
             "github_projects_page.projects.identity_service.highlights.quality"
         ],
-        tech: "Java 21, Spring Boot 4.0.6, Spring Web MVC, Spring Data JPA, Hibernate, PostgreSQL, Flyway, OpenAPI Generator, MapStruct, RFC 7807 ProblemDetail, Testcontainers, Docker Compose, JaCoCo, Maven, GitHub Actions, GitHub Pages",
+        tech: "Java 21, Spring Boot 4.0.6, Spring Web MVC, Spring Data JPA, PostgreSQL, Flyway, OpenAPI Generator, MapStruct, BCrypt, RFC 7807 ProblemDetail, Testcontainers, JaCoCo, Maven, Docker Compose, GitHub Actions, GitHub Pages",
         links: [
             {
                 type: "repository",
@@ -127,7 +127,7 @@ export const githubProjects = [
             "github_projects_page.projects.order_events_service.highlights.idempotency",
             "github_projects_page.projects.order_events_service.highlights.quality"
         ],
-        tech: "Java 21, Spring Boot, Spring Web MVC, Spring Data JPA, PostgreSQL, Flyway, Kafka, Spring Kafka, Maven Wrapper, Docker Compose, JUnit 5, Mockito, Spring Boot Test, Testcontainers, JaCoCo, OpenAPI Generator, GitHub Actions, GitHub Pages",
+        tech: "Java 21, Spring Boot 3.4.5, Spring Web MVC, Spring Data JPA, PostgreSQL, Flyway, Spring Kafka, Maven Wrapper, Testcontainers, JaCoCo, OpenAPI, RFC 9457 Problem Details, Docker Compose, GitHub Actions, GitHub Pages",
         links: [
             {
                 type: "repository",
@@ -158,7 +158,7 @@ export const githubProjects = [
             "github_projects_page.projects.react_bff_gateway.highlights.security_resilience",
             "github_projects_page.projects.react_bff_gateway.highlights.quality"
         ],
-        tech: "Java 21, Spring Boot WebFlux, WebClient, Spring Security JWT Resource Server, Resilience4j, Springdoc OpenAPI 3, Actuator, JUnit 5, WebTestClient, Reactor Test, MockWebServer, WireMock, ArchUnit, JaCoCo, Javadoc, Docker Compose, GitHub Actions, GitHub Pages",
+        tech: "Java 21, Spring Boot 3.4.7, WebFlux, WebClient, Spring Security JWT, Resilience4j, Actuator, OpenAPI 3, JUnit 5, WebTestClient, Reactor Test, MockWebServer, WireMock, ArchUnit, JaCoCo, Javadoc, Docker Compose, GitHub Actions, GitHub Pages",
         links: [
             {
                 type: "repository",
@@ -189,7 +189,7 @@ export const githubProjects = [
             "github_projects_page.projects.frontend_performance_lab.highlights.optimization",
             "github_projects_page.projects.frontend_performance_lab.highlights.quality"
         ],
-        tech: "React 19, TypeScript, Vite, Performance Engineering, deterministic data generation, React Profiler, Browser Performance API, virtualization, lazy chart loading, debounced search, Vitest, Testing Library, Playwright, TypeDoc, GitHub Pages",
+        tech: "React 19, TypeScript 6, Vite 8, React Profiler, Browser Performance API, virtualization, Vitest 4, Testing Library, Playwright, TypeDoc, GitHub Actions, GitHub Pages",
         links: [
             {
                 type: "repository",
@@ -220,7 +220,7 @@ export const githubProjects = [
             "github_projects_page.projects.enterprise_ux_motion_lab.highlights.workflow",
             "github_projects_page.projects.enterprise_ux_motion_lab.highlights.quality"
         ],
-        tech: "React 19, TypeScript, Vite, Motion, UX Architecture, functional micro-interactions, accessibility, reduced motion, command palette, dark mode, density controls, Vitest, Testing Library, Playwright, TypeDoc, GitHub Pages",
+        tech: "React 19, TypeScript 6, Vite 8, Motion 12, functional micro-interactions, reduced motion, command palette, Vitest 4, Testing Library, Playwright, TypeDoc, GitHub Actions, GitHub Pages",
         links: [
             {
                 type: "repository",
@@ -251,7 +251,7 @@ export const githubProjects = [
             "github_projects_page.projects.form_schema_runtime.highlights.accessibility",
             "github_projects_page.projects.form_schema_runtime.highlights.delivery"
         ],
-        tech: "TypeScript, Vite, npm, Accessibility, declarative JSON schemas, HTML forms, DOM APIs, validation, state hooks, custom validators, custom renderers, Vitest, Playwright, TypeDoc, GitHub Pages",
+        tech: "TypeScript 6, Vite 8 library mode, npm, declarative schemas, DOM APIs, native form controls, custom validators, custom renderers, Vitest 4, Playwright, TypeDoc, GitHub Actions, GitHub Pages",
         links: [
             {
                 type: "repository",
@@ -286,7 +286,7 @@ export const githubProjects = [
             "github_projects_page.projects.ui_headless_runtime.highlights.accessibility",
             "github_projects_page.projects.ui_headless_runtime.highlights.delivery"
         ],
-        tech: "TypeScript, Vite, npm, Headless UI Runtime, WAI-ARIA patterns, controllable state, immutable snapshots, lifecycle events, focus management, roving focus, active descendant, overlay coordination, positioning, SSR-safe imports, API Extractor, TypeDoc, Vitest, Playwright, axe accessibility checks, GitHub Actions, GitHub Pages",
+        tech: "TypeScript 6, Vite 8 library mode, npm, zero runtime dependencies, WAI-ARIA interaction patterns, focus and overlay management, API Extractor, Vitest 4, browser tests, Playwright, axe, TypeDoc, GitHub Actions, GitHub Pages",
         links: [
             {
                 type: "repository",
@@ -352,7 +352,7 @@ export const githubProjects = [
             "github_projects_page.projects.headless_commerce.highlights.commerce_ux",
             "github_projects_page.projects.headless_commerce.highlights.quality"
         ],
-        tech: "Next.js App Router, React, strict TypeScript, Tailwind CSS, localStorage, Vitest, React Testing Library, Playwright, TypeDoc, ESLint, Prettier, GitHub Actions, GitHub Pages",
+        tech: "Next.js 16, React 19, TypeScript 6, Tailwind CSS 4, localStorage, Vitest 4, Testing Library, Playwright, TypeDoc, ESLint, Prettier, GitHub Actions, GitHub Pages",
         links: [
             {
                 type: "repository",
@@ -383,7 +383,7 @@ export const githubProjects = [
             "github_projects_page.projects.enterprise_data_workbench.highlights.workspace_ux",
             "github_projects_page.projects.enterprise_data_workbench.highlights.delivery"
         ],
-        tech: "React, TypeScript, Vite, Zustand, Dexie, IndexedDB, Vitest, Testing Library, Playwright, V8 coverage, TypeDoc, ESLint, Prettier, GitHub Actions, GitHub Pages",
+        tech: "React 19, TypeScript 6, Vite 8, Zustand, Dexie, IndexedDB, dnd-kit, Vitest 4, Testing Library, Playwright, TypeDoc, ESLint, Prettier, GitHub Actions, GitHub Pages",
         links: [
             {
                 type: "repository",

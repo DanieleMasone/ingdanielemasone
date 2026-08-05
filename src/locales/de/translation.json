@@ -94,7 +94,7 @@
     },
     "projects": {
       "spring_modulith_order_platform": {
-        "summary": "Produktionsorientierter modularer Monolith für Order Management mit Spring Boot, Spring Modulith, PostgreSQL, OpenAPI-first-Verträgen und Testcontainers, ausgelegt auf starke Modulgrenzen ohne unnötigen Distributed-System-Overhead.",
+        "summary": "Modularer Monolith für die Auftragsverwaltung mit Spring Boot, Spring Modulith, PostgreSQL und OpenAPI-first-Verträgen, mit geprüften Modulgrenzen ohne verteilte Infrastruktur.",
         "highlights": {
           "architecture": "Ein einzelnes Spring-Boot-Deployable mit customers-, pricing-, orders-, payments- und notifications-Modulen, gesteuert durch Spring Modulith und geprüft mit ApplicationModules.verify().",
           "contract": "OpenAPI-first-REST-Vertrag, PostgreSQL-Persistenz mit Flyway und RFC-7807-ProblemDetail-Antworten machen API- und Datenverhalten explizit.",
@@ -106,7 +106,7 @@
         "highlights": {
           "architecture": "Maven-Multi-Modul-Spring-Boot-Anwendung mit durch ArchUnit geprüften Grenzen für catalog, orders, payment und shared-kernel.",
           "integration": "PostgreSQL, Redis, Flyway und Docker Compose ermöglichen realistische lokale Laufzeit und Testcontainers-Integrationstests.",
-          "quality": "Die CI veröffentlicht Dashboard, Dokumentation, OpenAPI UI/JSON, JavaDoc, Coverage und Testberichte über GitHub Pages."
+          "quality": "Die CI veröffentlicht Dashboard, Dokumentation, OpenAPI UI/JSON, Javadoc, Coverage und Testberichte über GitHub Pages."
         }
       },
       "identity_service": {
@@ -118,7 +118,7 @@
         }
       },
       "order_events_service": {
-        "summary": "Event-driven Spring-Boot-Microservice zum Erstellen von Bestellungen, Publizieren von Kafka-Events, idempotenten Konsumieren und Veröffentlichen technischer Dokumentation auf GitHub Pages.",
+        "summary": "Fokussierter Spring-Boot-Service für einen At-least-once-Auftragsfluss: PostgreSQL-Persistenz, Kafka-Publikation, idempotenter Konsum, begrenzte Wiederholungsversuche und DLT-Routing.",
         "highlights": {
           "event_flow": "Fokussierter Bestellfluss mit REST API, PostgreSQL-Persistenz, Kafka-Events order.created.v1 und Dead-Letter-Topic für ausgeschöpfte Fehler.",
           "idempotency": "Idempotente Consumer-Verarbeitung über eine processed_events-Tabelle, Fixed-Backoff-Retries und Behandlung doppelter Zustellungen ohne wiederholte Seiteneffekte.",
@@ -129,7 +129,7 @@
         "summary": "Backend for Frontend für React-Dashboards mit zentraler JWT-Authentifizierung, Downstream-Aggregation, Response-Anpassung und operativer Resilienz.",
         "highlights": {
           "bff_boundary": "Stellt eine stabile Frontend-API bereit und verbirgt Downstream-Topologie, Verträge und Fehlerfälle vor dem Browser.",
-          "security_resilience": "Spring Security JWT Resource Server, WebClient und Resilience4j schützen die Boundary und liefern stabile Fallbacks.",
+          "security_resilience": "JWT Resource Server schützt die API; WebClient und Resilience4j liefern bei Downstream-Ausfällen ein Gastprofil oder leere Empfehlungen.",
           "quality": "CI mit Maven verify, JaCoCo, Javadoc, generiertem OpenAPI/Swagger UI, Docker-Compose-Checks und GitHub-Pages-Veröffentlichung."
         }
       },
@@ -146,23 +146,23 @@
         "highlights": {
           "motion": "Geteilte Motion Tokens und Reduced-Motion-Support steuern kurze Übergänge für Statuswechsel, Disclosure und Feedback.",
           "workflow": "Risk-Dashboard-Workflows umfassen Command Palette, Filter, Dark Mode, Density Controls sowie Loading-, Empty- und Degraded-Telemetry-Zustände.",
-          "quality": "Vitest, Testing Library, fokussierte Playwright-Journeys, TypeDoc, Coverage und GitHub-Pages-Veröffentlichung dokumentieren das Projekt ohne Backend- oder Routing-Overhead."
+          "quality": "Vitest, Testing Library und fokussierte Playwright-Journeys prüfen das Dashboard; TypeDoc, Coverage, User Guide und Engineering Guide werden im Pages-Artefakt ausgeliefert."
         }
       },
       "form_schema_runtime": {
-        "summary": "Framework-agnostische TypeScript-Runtime zum Rendern zugänglicher HTML-Formulare aus deklarativen JSON-Schemas, mit typisierten Schemas, Validierung, State Hooks, sicherem DOM-Rendering, API-Doku, Coverage und npm-Veröffentlichung.",
+        "summary": "Framework-agnostische TypeScript-Runtime zum Rendern zugänglicher HTML-Formulare aus deklarativen Schemas, mit typisierten Erweiterungspunkten und veröffentlichtem npm-Paket.",
         "highlights": {
-          "runtime": "Der Core ohne React-, Angular-, Vue- oder Svelte-Abhängigkeiten stellt createForm, typisierte Schemas, Validatoren, Renderer und Form-Instanzen bereit.",
+          "runtime": "Der Core stellt createForm, typisierte Schemas, Validatoren, Renderer und Form-Instanzen ohne Framework-Abhängigkeiten bereit.",
           "accessibility": "Native Controls, verknüpfte Labels, aria-invalid, aria-describedby, Pflichtfeld-Kommunikation und fokussierte Fehlerzusammenfassungen halten generierte Formulare nutzbar.",
           "delivery": "Vite, Vitest, Playwright, TypeDoc, GitHub Pages, Coverage und das npm-Paket form-schema-runtime machen Public API und Quality Gates überprüfbar."
         }
       },
       "ui_headless_runtime": {
-        "summary": "Framework-agnostische TypeScript-Bibliothek für zugängliche Headless-UI-Controller, mit kontrollierbarem State, unveränderlichen Snapshots, Lifecycle Events, Keyboard Interaction, Focus Management, Overlay Coordination, API-Dokumentation, Coverage und npm-Veröffentlichung.",
+        "summary": "Framework-agnostische TypeScript-Bibliothek für zugängliche Headless-UI-Controller, die State, Tastatur- und Fokusverhalten sowie Lifecycle von Markup und Styling trennt.",
         "highlights": {
           "runtime": "Package ohne Runtime-Abhängigkeiten und ohne Runtime-CSS: Die Bibliothek steuert State, Events, Cleanup, Focus, Auswahl und Positionierung, während die Anwendung Markup, Styling und Rendering besitzt.",
           "accessibility": "Komponenten wie Dialog, Popover, Tabs, Listbox, Combobox, Tooltip und Navigation Menu folgen WAI-ARIA-Patterns, Tastaturverhalten, semantischen Beziehungen und idempotentem Teardown.",
-          "delivery": "Quality Pipeline mit strict TypeScript, Vitest, Real-Browser-Tests, Playwright, axe Checks, API Extractor, TypeDoc, Package Verification, GitHub Pages und npm Release über Trusted Publishing OIDC."
+          "delivery": "Strict TypeScript, Vitest-Browsertests, Playwright- und axe-Checks, API Extractor, TypeDoc und Package Verification unterstützen Pages und npm-Releases über OIDC."
         }
       },
       "saas_analytics_dashboard": {
