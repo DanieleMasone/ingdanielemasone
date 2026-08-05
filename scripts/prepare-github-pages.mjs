@@ -132,7 +132,6 @@ export const buildSeoBlock = ({config, route, translations}) => {
         `    <title ${staticSeoAttribute}>${escapeHtml(title)}</title>`,
         `    <meta name="description" ${staticSeoAttribute} content="${escapeHtml(description)}"/>`,
         `    <meta name="author" ${staticSeoAttribute} content="${escapeHtml(config.author)}"/>`,
-        `    <meta name="keywords" ${staticSeoAttribute} content="${escapeHtml(config.keywords)}"/>`,
         `    <meta name="robots" ${staticSeoAttribute} content="${escapeHtml(route.robots || "index, follow")}"/>`,
         `    <link rel="canonical" ${staticSeoAttribute} href="${escapeHtml(url)}"/>`,
         `    <meta property="og:title" ${staticSeoAttribute} content="${escapeHtml(title)}"/>`,

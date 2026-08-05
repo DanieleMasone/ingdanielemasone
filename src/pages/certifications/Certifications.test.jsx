@@ -190,7 +190,7 @@ describe("Certifications component", () => {
         expect(claudeCodeCertificate).toMatchObject({
             nameKey: "Claude Code - The Practical Guide",
             issuer: "Udemy",
-            date: "June 2026",
+            date: "2026",
             descriptionKey: "Udemy_Claude_Code_Practical_Guide",
             link: UDEMY_CLAUDE_CODE_CERTIFICATE_URL
         });
@@ -201,7 +201,7 @@ describe("Certifications component", () => {
 
         expect(await screen.findByRole("heading", {name: "Claude Code - The Practical Guide"})).toBeInTheDocument();
         expect(screen.getByText("Issuer: Udemy")).toBeInTheDocument();
-        expect(screen.getByText("Issued on: June 2026")).toBeInTheDocument();
+        expect(screen.getByText("Issued on: 2026")).toBeInTheDocument();
         expect(screen.getByText(/practical Claude Code workflows/i)).toBeInTheDocument();
         expect(screen.queryByText("Udemy_Claude_Code_Practical_Guide")).not.toBeInTheDocument();
         expect(screen.getByRole("link", {name: "View certificate: Claude Code - The Practical Guide"}))

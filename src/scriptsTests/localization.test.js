@@ -216,4 +216,13 @@ describe("localized portfolio content", () => {
         expect(projects.find((project) => project.type === "intesa.exp_ai_as400")?.name)
             .toBe(approvedProjectTitle);
     });
+
+    test("keeps professional project names and technology lists normalized", () => {
+        for (const project of projects) {
+            expect(project.name).toBe(project.name.trim());
+            expect(project.tech).toBe(project.tech.trim());
+            expect(project.tech).not.toContain("·");
+            expect(project.tech.split(",").every((technology) => technology.trim().length > 0)).toBe(true);
+        }
+    });
 });

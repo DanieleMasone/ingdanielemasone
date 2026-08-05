@@ -11,9 +11,10 @@ import {interactiveClasses, layoutClasses} from "@/styles/commonClasses";
  *
  * Shows the active language code, opens an accessible group of native language
  * names, marks the current choice with `aria-pressed`, closes on outside click
- * or Escape, and persists the chosen language through the shared i18next
- * instance. The selector intentionally uses text labels instead of remote flag
- * assets so language choice remains clear and privacy-friendly.
+ * or Escape, restores focus to its trigger after Escape, and persists the
+ * chosen language through the shared i18next instance. The selector
+ * intentionally uses text labels instead of remote flag assets so language
+ * choice remains clear and privacy-friendly.
  *
  * @component
  * @module components/ui/languageSwitcher/LanguageSwitcher
@@ -23,6 +24,7 @@ export function LanguageSwitcher() {
     const {i18n, t} = useTranslation();
     const [open, setOpen] = useState(false);
     const dropdownRef = useRef(null);
+    const triggerRef = useRef(null);
     const menuId = useId();
 
     const normalizedLanguage = i18n.language?.split("-")[0] ?? "en";
@@ -46,7 +48,10 @@ export function LanguageSwitcher() {
         };
 
         const handleEscape = (event) => {
-            if (event.key === "Escape") setOpen(false);
+            if (event.key === "Escape") {
+                setOpen(false);
+                triggerRef.current?.focus();
+            }
         };
 
         if (open) {
@@ -63,6 +68,7 @@ export function LanguageSwitcher() {
     return (
         <div ref={dropdownRef} className="relative z-20 inline-block text-left">
             <button
+                ref={triggerRef}
                 onClick={toggleDropdown}
                 aria-expanded={open}
                 aria-controls={menuId}

@@ -18,7 +18,6 @@ const config = {
     jobTitle: "Senior Software Engineer",
     defaultLanguage: "it-IT",
     defaultLocale: "it_IT",
-    keywords: "Daniele Masone, portfolio, CV online, software engineer, frontend architect, React, Angular, JavaScript",
     twitterCreator: "@masone_daniele",
     image: {
         url: "https://danielemasone.github.io/ingdanielemasone/social-preview.png",
@@ -255,6 +254,7 @@ describe("prepare-github-pages", () => {
         expect(html).toContain(
             '<meta name="twitter:creator" data-static-seo="true" content="@masone_daniele"/>'
         );
+        expect(html).not.toContain('name="keywords"');
         expect(html).toContain('"@context":"https://schema.org"');
         expect(html).toContain('"jobTitle":"Senior Software Engineer"');
         expect(html).toContain('"inLanguage":"it-IT"');

@@ -19,7 +19,7 @@ export const certifications = [
     {
         nameKey: "Claude Code - The Practical Guide",
         issuer: "Udemy",
-        date: "June 2026",
+        date: "2026",
         descriptionKey: "Udemy_Claude_Code_Practical_Guide",
         link: "https://www.udemy.com/certificate/UC-a05c4d7c-549d-412e-95c4-a9f9b1628560/"
     },

@@ -71,7 +71,7 @@ Ownership is split as follows:
 - `tailwind.config.js` is the source of compile-time design tokens when a color, spacing, radius, shadow or breakpoint becomes a genuinely shared application value.
 - Native CSS custom properties are reserved for values that need runtime theme switching, inheritance, contextual overrides, non-Tailwind interoperability or JavaScript updates.
 
-`@layer base` is used for document-level behavior, including reduced-motion handling. `@layer utilities` contains the cross-browser scrollbar utility. There is currently no `@layer components` block because reusable component patterns are represented more clearly by React components and shared class presets.
+`@layer base` is used for document-level behavior, including reduced-motion handling for CSS transitions. The root `MotionConfig` applies the same user preference to Framer Motion components. `@layer utilities` contains the cross-browser scrollbar utility. There is currently no `@layer components` block because reusable component patterns are represented more clearly by React components and shared class presets.
 
 CSS Modules are an escape hatch for an isolated component with complex selectors or third-party DOM that cannot be expressed clearly with Tailwind. They are not a second default styling system. Sass should be reconsidered only when there is a recurring need for compile-time functions, parameterized mixins, generated selector families, substantial legacy Sass integration or non-trivial stylesheet modules. Nesting alone is not sufficient justification; standards-oriented native CSS is preferred when compatible with the supported browsers.
 

@@ -65,8 +65,8 @@ export const projects = [
         period: "09/2021 - 02/2022"
     },
     {
-        name: "Area Clienti ",
-        tech: " MySQL, REST APIs, SQL, JSON, Hibernate, JBoss Application Server, HTML, Docker, Node.js, HTML5, JEE, AngularJS, Git, Java, Maven, OOP, JavaScript, Tomcat, Machine learning, CSS, Framework Spring, XML",
+        name: "Area Clienti",
+        tech: "MySQL, REST APIs, SQL, JSON, Hibernate, JBoss Application Server, HTML, Docker, Node.js, HTML5, JEE, AngularJS, Git, Java, Maven, OOP, JavaScript, Tomcat, Machine learning, CSS, Framework Spring, XML",
         type: "italiaonline.areaClienti",
         company: "Italiaonline",
         period: "05/2019 - 09/2021"
@@ -101,28 +101,28 @@ export const projects = [
     },
     {
         name: "io.T Tecno",
-        tech: "MySQL, REST APIs, SQL, JSON, Hibernate, JBoss Application Server, HTML, Node.js, HTML5, JEE· AngularJS, Git, Maven, OOP, JavaScript, Tomcat, CSS, jQuery, Spring, XML",
+        tech: "MySQL, REST APIs, SQL, JSON, Hibernate, JBoss Application Server, HTML, Node.js, HTML5, JEE, AngularJS, Git, Maven, OOP, JavaScript, Tomcat, CSS, jQuery, Spring, XML",
         type: "teoresi.tecno",
         company: "Teoresi",
         period: "10/2017 - 07/2018"
     },
     {
         name: "OSS Trasformation",
-        tech: "MySQL, REST APIs, JSON, JBoss Application Server, HTML, Node.js, HTML5, JEE, AngularJS, Git· OOP, JavaScript, CSS, jQuery, XML",
+        tech: "MySQL, REST APIs, JSON, JBoss Application Server, HTML, Node.js, HTML5, JEE, AngularJS, Git, OOP, JavaScript, CSS, jQuery, XML",
         type: "fastweb.OSSTrasformation",
         company: "Fastweb",
         period: "09/2016 - 10/2017"
     },
     {
         name: "OLO Gateway (metroweb, flash fiber)",
-        tech: "MySQL, REST APIs, JSON, JBoss Application Server, HTML, Node.js, HTML5, JEE, AngularJS, Git· OOP, JavaScript, CSS, jQuery, XML",
+        tech: "MySQL, REST APIs, JSON, JBoss Application Server, HTML, Node.js, HTML5, JEE, AngularJS, Git, OOP, JavaScript, CSS, jQuery, XML",
         type: "fastweb.oloGatewayFisso",
         company: "Fastweb",
         period: "09/2016 - 10/2017"
     },
     {
         name: "OLO Gateway mobile",
-        tech: "MySQL, REST APIs, JSON, JBoss Application Server, HTML, Node.js, HTML5, JEE, AngularJS, Git· OOP, JavaScript, CSS, jQuery, XML",
+        tech: "MySQL, REST APIs, JSON, JBoss Application Server, HTML, Node.js, HTML5, JEE, AngularJS, Git, OOP, JavaScript, CSS, jQuery, XML",
         type: "fastweb.oloGatewayMobile",
         company: "Fastweb",
         period: "09/2016 - 10/2017"

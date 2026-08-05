@@ -33,6 +33,7 @@
     "test:e2e:headed": "npm run build && node scripts/run-playwright.mjs --headed",
     "test:e2e:report": "playwright show-report",
     "coverage": "vitest --coverage",
+    "predoc": "node -e \"require('node:fs').rmSync('docs',{recursive:true,force:true})\"",
     "doc": "jsdoc -c jsdoc.json -d docs",
     "prepare:reports": "node scripts/prepare-published-reports.mjs",
     "build:reports": "npm run coverage && npm run doc && npm run prepare:reports",
@@ -71,7 +72,7 @@
     "docdash": "^2.0.2",
     "jsdoc": "^4.0.4",
     "jsdom": "^29.1.1",
-    "postcss": "8.5.18",
+    "postcss": "8.5.25",
     "tailwindcss": "^3.4.19",
     "vite": "8.1.4",
     "vitest": "4.1.10"

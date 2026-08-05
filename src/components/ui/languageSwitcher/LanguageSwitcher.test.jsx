@@ -158,11 +158,14 @@ describe('LanguageSwitcher', () => {
     test('closes dropdown when pressing Escape', async () => {
         render(<LanguageSwitcher/>);
 
+        const toggleButton = screen.getByRole('button', {name: /select language/i});
         openLanguageGroup();
+        screen.getByRole('button', {name: /italiano/i}).focus();
         fireEvent.keyDown(document, {key: 'Escape'});
 
         await waitForElementToBeRemoved(() => screen.queryByRole('group', {name: /available languages/i}));
-        expect(screen.getByRole('button', {name: /select language/i})).toHaveAttribute('aria-expanded', 'false');
+        expect(toggleButton).toHaveAttribute('aria-expanded', 'false');
+        expect(toggleButton).toHaveFocus();
     });
 
     test('closes dropdown when clicking outside and cleans up event listener', async () => {

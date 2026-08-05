@@ -182,7 +182,6 @@ const applySeoMetadata = ({title, description, url, locale, language, robots, st
 
     appendRouteSeoElement("meta", {name: "description", content: description});
     appendRouteSeoElement("meta", {name: "author", content: seoConfig.author});
-    appendRouteSeoElement("meta", {name: "keywords", content: seoConfig.keywords});
     appendRouteSeoElement("meta", {name: "robots", content: robots});
     appendRouteSeoElement("link", {rel: "canonical", href: url});
 

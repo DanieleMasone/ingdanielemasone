@@ -223,6 +223,8 @@ describe('<SeoHead />', () => {
                 'summary_large_image'
             );
         });
+
+        expect(document.querySelector('meta[name="keywords"]')).not.toBeInTheDocument();
     });
 
     test('marks legal pages as noindex', async () => {

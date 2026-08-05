@@ -81,6 +81,7 @@ describe("documentation source configuration", () => {
         expect(packageJson.scripts["build:reports"]).toContain("npm run coverage");
         expect(packageJson.scripts["build:reports"]).toContain("npm run doc");
         expect(packageJson.scripts["build:reports"]).toContain("npm run prepare:reports");
+        expect(packageJson.scripts.predoc).toContain("rmSync('docs'");
         expect(packageJson.scripts["build:all"]).toContain("npm run build");
         expect(packageJson.scripts["build:all"]).toContain("npm run build:reports");
         expect(packageJson.scripts["build:all"]).toContain("scripts/validate-pages-artifact.mjs");

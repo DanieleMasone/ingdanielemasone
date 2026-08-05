@@ -15,7 +15,7 @@ describe("Card component", () => {
         expect(cardDiv).toHaveClass("flex", "flex-col", "w-full", "rounded-xl", "bg-white/70", "dark:bg-gray-800/50");
         expect(cardDiv).toHaveClass("border", "border-gray-200/60", "dark:border-gray-700/60");
         expect(cardDiv).toHaveClass("p-4", "sm:p-5");
-        expect(cardDiv).toHaveClass("focus-visible:ring-2", "focus-visible:ring-blue-500/70", "focus-visible:ring-offset-2");
+        expect(cardDiv).not.toHaveClass("focus-visible:ring-2");
     });
 
     it("accepts additional className and applies it", () => {

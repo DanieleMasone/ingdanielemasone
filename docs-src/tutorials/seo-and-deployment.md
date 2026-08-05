@@ -49,6 +49,8 @@ Indexable portfolio routes receive:
 - social preview image metadata;
 - JSON-LD structured data.
 
+The obsolete `meta keywords` tag is intentionally omitted; visible content, titles, descriptions and canonical URLs remain the SEO sources of truth.
+
 `SeoHead` applies route metadata at runtime and removes static fallback tags after React mounts, so the document keeps one canonical metadata set.
 
 ## Sitemap and robots

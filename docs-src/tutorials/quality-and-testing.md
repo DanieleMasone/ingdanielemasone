@@ -120,7 +120,7 @@ Source reference and tutorials are generated with:
 npm run doc
 ```
 
-The output folder is `docs/`. It is generated output and must not be committed.
+The `predoc` lifecycle hook removes any previous `docs/` output before JSDoc runs, so reused local checkouts and clean CI jobs generate the same report set. The output folder is generated and must not be committed.
 
 ## Publishing build
 
