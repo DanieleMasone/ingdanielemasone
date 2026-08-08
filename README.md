@@ -117,8 +117,6 @@ Generated developer documentation and coverage are published for transparency, b
 
 ## License
 
-The source code is released under the MIT License. See [LICENSE](LICENSE).
-
-The licence does not relicense personal portfolio content, photographs, testimonials, certificates, course artwork, or third-party names and marks. Those materials remain subject to their respective rights and authorizations.
+Released under the MIT License. See [LICENSE](LICENSE).
 
 Copyright (c) 2026 Daniele Masone.
