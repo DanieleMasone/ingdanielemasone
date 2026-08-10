@@ -16,6 +16,7 @@ describe("Card component", () => {
         expect(cardDiv).toHaveClass("border", "border-gray-200/60", "dark:border-gray-700/60");
         expect(cardDiv).toHaveClass("p-4", "sm:p-5");
         expect(cardDiv).not.toHaveClass("focus-visible:ring-2");
+        expect(cardDiv).not.toHaveClass("hover:shadow-lg");
     });
 
     it("accepts additional className and applies it", () => {

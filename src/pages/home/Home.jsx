@@ -40,7 +40,9 @@ const focusItems = [
  * Landing page for the portfolio and online CV.
  *
  * Presents the primary professional positioning, calls to action, profile card,
- * source-backed proof metrics, and focus areas shown in the first viewport.
+ * source-backed proof metrics, and focus areas. Narrow viewports keep identity
+ * and next actions ahead of supporting profile and proof content, while desktop
+ * preserves the split hero layout.
  *
  * @component
  * @module pages/home/Home
@@ -58,9 +60,9 @@ export default function Home() {
                 aria-labelledby="home-title"
             >
                 <div
-                    className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.8fr)]">
+                    className="mx-auto grid max-w-7xl grid-cols-1 items-start gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.8fr)] lg:items-center lg:gap-x-10 lg:gap-y-6">
                     <div
-                        className="order-2 flex flex-col gap-6 text-center md:text-left lg:order-1"
+                        className="flex flex-col gap-6 text-center md:text-left lg:col-start-1 lg:row-start-1"
                         data-testid="home-copy"
                     >
                         <div
@@ -132,6 +134,16 @@ export default function Home() {
                             </a>
                         </div>
 
+                    </div>
+
+                    <div
+                        className="flex justify-center lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:justify-end lg:self-center"
+                        data-testid="page-grid"
+                    >
+                        <AvatarCard/>
+                    </div>
+
+                    <div className="flex flex-col gap-6 lg:col-start-1 lg:row-start-2">
                         <dl className="grid grid-cols-2 gap-3 lg:grid-cols-4" data-testid="home-metrics">
                             {heroMetrics.map(({valueKey, labelKey}) => (
                                 <div
@@ -162,10 +174,6 @@ export default function Home() {
                                 </li>
                             ))}
                         </ul>
-                    </div>
-
-                    <div className="order-1 flex justify-center lg:order-2 lg:justify-end" data-testid="page-grid">
-                        <AvatarCard/>
                     </div>
                 </div>
             </section>

@@ -45,6 +45,14 @@ test('home proof content reflows with reduced motion and 200% text', async ({pag
     expect(overflow).toBeLessThanOrEqual(1);
   }
 
+  const primaryActionBox = await page.getByRole('link', {name: /Esplora i progetti GitHub/i}).boundingBox();
+  const profileBox = await page.getByTestId('page-grid').boundingBox();
+
+  expect(primaryActionBox).not.toBeNull();
+  expect(profileBox).not.toBeNull();
+  expect(primaryActionBox!.y).toBeLessThan(profileBox!.y);
+  expect(primaryActionBox!.y + primaryActionBox!.height).toBeLessThanOrEqual(844);
+
   await page.setViewportSize({width: 1280, height: 800});
   await page.goto('./');
   await page.addStyleTag({content: 'html { font-size: 200% !important; }'});
@@ -69,8 +77,10 @@ test.describe('mobile keyboard navigation', () => {
     await expect(page.getByRole('navigation', {name: /Navigazione mobile/i})).toBeVisible();
     await expect(page.getByRole('button', {name: /Chiudi menu di navigazione/i})).toBeFocused();
 
-    await page.keyboard.press('Enter');
+    await page.getByRole('link', {name: 'Home', exact: true}).focus();
+    await page.keyboard.press('Escape');
     await expect(page.getByRole('navigation', {name: /Navigazione mobile/i})).toBeHidden();
+    await expect(page.getByRole('button', {name: /Apri menu di navigazione/i})).toBeFocused();
   });
 });
 

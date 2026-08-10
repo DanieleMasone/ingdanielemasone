@@ -6,9 +6,10 @@ import {surfaceClasses} from "@/styles/commonClasses";
  * Reusable card surface for portfolio content blocks.
  *
  * Applies the shared card surface from commonClasses. The shared surface keeps
- * portfolio list pages compact and consistent across desktop and mobile.
- * Interactive controls inside the card own their keyboard focus indicators.
- * Additional props are forwarded to the underlying section element.
+ * portfolio list pages compact and consistent across desktop and mobile. The
+ * section remains visually static so only its nested controls communicate an
+ * interaction affordance and own keyboard focus indicators. Additional props
+ * are forwarded to the underlying section element.
  *
  * @component
  * @module components/ui/card/Card

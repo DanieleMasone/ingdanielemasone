@@ -24,8 +24,9 @@ const getComparablePath = (path) => (path === "/" ? "/" : path.replace(/\/+$/g, 
  *
  * Supports desktop navigation, a mobile menu, active route states, and a
  * portfolio dropdown that closes when the route changes, the user clicks
- * outside the desktop dropdown, or presses Escape. Accessible names are
- * localized so the navigation remains clear across supported languages.
+ * outside the desktop dropdown, or presses Escape. Escape restores focus to
+ * the trigger that owns the dismissed desktop or mobile navigation surface.
+ * Accessible names are localized across supported languages.
  *
  * @component
  * @module components/header/Header
@@ -39,6 +40,7 @@ export function Header() {
     const [portfolioOpen, setPortfolioOpen] = useState(false);
     const portfolioRef = useRef(null);
     const portfolioButtonRef = useRef(null);
+    const mobileMenuButtonRef = useRef(null);
 
     const navPortfolio = [
         {to: '/experience/', label: t('experience')},
@@ -76,7 +78,10 @@ export function Header() {
     useEffect(() => {
         const handleEscape = (event) => {
             if (event.key === "Escape") {
-                setMenuOpen(false);
+                if (menuOpen) {
+                    setMenuOpen(false);
+                    mobileMenuButtonRef.current?.focus();
+                }
                 if (portfolioOpen) {
                     setPortfolioOpen(false);
                     portfolioButtonRef.current?.focus();
@@ -184,6 +189,7 @@ export function Header() {
 
                 {/* Mobile menu toggle */}
                 <button
+                    ref={mobileMenuButtonRef}
                     className={clsx("inline-flex h-11 w-11 shrink-0 items-center justify-center rounded transition hover:bg-gray-200 dark:hover:bg-gray-800 md:hidden", interactiveClasses.focusRing)}
                     onClick={() => setMenuOpen(!menuOpen)}
                     aria-label={mobileMenuLabel}

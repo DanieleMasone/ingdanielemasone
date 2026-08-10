@@ -219,10 +219,13 @@ describe("Header", () => {
         test("mobile menu closes with Escape", () => {
             renderHeader("/");
 
-            openMobileMenu();
+            const toggle = screen.getByRole("button", {name: /open navigation menu/i});
+            const menu = openMobileMenu();
+            within(menu).getByText("Home").focus();
 
             fireEvent.keyDown(document, {key: "Escape"});
             expect(screen.queryByTestId("mobile-menu")).not.toBeInTheDocument();
+            expect(toggle).toHaveFocus();
         });
 
         test("mobile Home link closes menu", () => {

@@ -82,6 +82,15 @@ describe('Home component', () => {
         expect(avatarSection).toContainElement(screen.getByTestId('avatar-card'));
     });
 
+    test('keeps the narrow-screen reading order focused on identity and actions', () => {
+        const copy = screen.getByTestId('home-copy');
+        const avatarSection = screen.getByTestId('page-grid');
+        const metrics = screen.getByTestId('home-metrics');
+
+        expect(copy.compareDocumentPosition(avatarSection) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+        expect(avatarSection.compareDocumentPosition(metrics) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    });
+
     test('renders LinkedIn button with correct text', () => {
         const linkedinButton = screen.getByRole('link', {name: /Follow on LinkedIn/i});
         expect(linkedinButton).toBeInTheDocument();

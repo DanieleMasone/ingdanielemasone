@@ -94,7 +94,7 @@ export const layoutClasses = {
  * Surface class presets for reusable content containers.
  *
  * @typedef {Object} SurfaceClasses
- * @property {string} card - Responsive card surface with border, shadow, backdrop blur, and dark-mode styles.
+ * @property {string} card - Static responsive card surface without whole-card interaction affordance.
  * @property {string} insetText - Compact inset surface for descriptive text inside cards.
  * @property {string} metaBadge - Compact badge for card metadata such as category, period, or publication state.
  * @property {string} mutedMetaBadge - Compact neutral badge for secondary card metadata.
@@ -118,7 +118,7 @@ export const layoutClasses = {
  */
 export const surfaceClasses = {
   card:
-      "flex w-full flex-col rounded-xl border border-gray-200/60 bg-white/70 p-4 shadow-md backdrop-blur-md transition-all duration-300 hover:shadow-lg dark:border-gray-700/60 dark:bg-gray-800/50 sm:p-5",
+      "flex w-full flex-col rounded-xl border border-gray-200/60 bg-white/70 p-4 shadow-md backdrop-blur-md dark:border-gray-700/60 dark:bg-gray-800/50 sm:p-5",
   insetText:
       "rounded-lg bg-white/50 px-3 py-2 text-sm text-gray-800 shadow-inner dark:bg-gray-900/50 dark:text-gray-200",
   metaBadge:
