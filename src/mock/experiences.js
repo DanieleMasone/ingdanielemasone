@@ -20,7 +20,7 @@ export const experiences = [
         company: "RGI Group",
         period: "09/2021 – 12/2025",
         description: "exp_rgi_description",
-        tech: "Enterprise architecture, MySQL, JavaScript, Docker, JSON, REST APIs, HTML5, Node.js, XML, CSS, HTML, OOP, Openapi, AngularJS, Git, Mapstruct"
+        tech: "Enterprise architecture, MySQL, JavaScript, Docker, JSON, REST APIs, HTML5, Node.js, XML, CSS, HTML, OOP, OpenAPI, AngularJS, Git, MapStruct"
     },
     {
         role: "exp_iol_role",

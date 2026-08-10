@@ -5,6 +5,7 @@ import {describe, expect, test} from "vitest";
 import {projects} from "@/mock/projects";
 import {githubProjects} from "@/mock/githubProjects";
 import {courses} from "@/mock/courses";
+import {experiences} from "@/mock/experiences";
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const localeCodes = ["it", "en", "fr", "de", "es"];
@@ -25,6 +26,39 @@ const structuredDescriptionKeys = [
 ];
 const listMarkerPattern = /^\s*[-*•–]\s+/;
 const forbiddenStructuredFormattingPattern = /\n|<\/?[a-z][^>]*>|^\s*[-*•–]\s+/i;
+const forbiddenTechnologyCasingPattern = /\b(?:Github|NPM|Npm|Linkedin|Javascript|Typescript|NodeJS|Etoro|Openapi|Mapstruct|Php)\b/;
+const expectedHomeMetricLabels = {
+    it: [
+        "Anni di esperienza",
+        "Progetti GitHub selezionati",
+        "Librerie npm pubbliche",
+        "Corsi online di programmazione"
+    ],
+    en: [
+        "Years of experience",
+        "Selected GitHub projects",
+        "Public npm libraries",
+        "Online programming courses"
+    ],
+    fr: [
+        "Années d'expérience",
+        "Projets GitHub sélectionnés",
+        "Bibliothèques npm publiques",
+        "Cours de programmation en ligne"
+    ],
+    de: [
+        "Jahre Berufserfahrung",
+        "Ausgewählte GitHub-Projekte",
+        "Öffentliche npm-Bibliotheken",
+        "Online-Programmierkurse"
+    ],
+    es: [
+        "Años de experiencia",
+        "Proyectos GitHub seleccionados",
+        "Bibliotecas npm públicas",
+        "Cursos online de programación"
+    ]
+};
 
 const readLocale = (locale) => JSON.parse(
     fs.readFileSync(path.join(rootDir, "src", "locales", locale, "translation.json"), "utf8")
@@ -242,6 +276,28 @@ describe("localized portfolio content", () => {
             for (const [key, expectedValue] of Object.entries(expectedValues)) {
                 expect(translations[key], `${locale}.${key}`).toBe(expectedValue);
             }
+        }
+    });
+
+    test("keeps Home metric labels polished in every supported language", () => {
+        for (const localeCode of localeCodes) {
+            const translations = readLocale(localeCode);
+
+            expect([
+                translations.home_metric_years_label,
+                translations.home_metric_github_label,
+                translations.home_metric_packages_label,
+                translations.home_metric_courses_label
+            ]).toEqual(expectedHomeMetricLabels[localeCode]);
+        }
+    });
+
+    test("keeps visible technology names in their canonical casing", () => {
+        const visibleTechnologyLists = [projects, githubProjects, courses, experiences]
+            .flatMap((entries) => entries.map((entry) => entry.tech));
+
+        for (const technologyList of visibleTechnologyLists) {
+            expect(technologyList).not.toMatch(forbiddenTechnologyCasingPattern);
         }
     });
 });

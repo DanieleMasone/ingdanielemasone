@@ -148,10 +148,10 @@ export default function Home() {
                             {heroMetrics.map(({valueKey, labelKey}) => (
                                 <div
                                     key={valueKey}
-                                    className="min-w-0 rounded-lg border border-gray-200 bg-white/75 p-4 text-left shadow-sm dark:border-gray-800 dark:bg-gray-900/70"
+                                    className="flex min-w-0 flex-col rounded-lg border border-gray-200 bg-white/75 p-4 text-left shadow-sm dark:border-gray-800 dark:bg-gray-900/70"
                                 >
                                     <dt className="text-xs leading-5 text-gray-600 dark:text-gray-400 sm:text-sm">{t(labelKey)}</dt>
-                                    <dd className="mt-1 text-2xl font-bold text-gray-950 dark:text-white">{t(valueKey)}</dd>
+                                    <dd className="mt-auto pt-1 text-2xl font-bold text-gray-950 dark:text-white">{t(valueKey)}</dd>
                                 </div>
                             ))}
                         </dl>

@@ -48,7 +48,7 @@ export const courses = [
         nameKey: "courses_page.typescript.title",
         descKey: "courses_page.typescript.description",
         durationKey: "courses_page.typescript.duration",
-        tech: "Typescript, data types, module, OOP",
+        tech: "TypeScript, data types, module, OOP",
         link: "https://www.udemy.com/course/typescript-da-zero/",
         payLink: "https://www.udemy.com/course/typescript-da-zero/?referralCode=28EC7F597E0EAA2240A2",
         image: typescriptPhoto
@@ -66,7 +66,7 @@ export const courses = [
         nameKey: "courses_page.php.title",
         descKey: "courses_page.php.description",
         durationKey: "courses_page.php.duration",
-        tech: "Php, data types, Control flow statements, iterations, Regular expressions, Arrays, OOP, HTTP calls, File system",
+        tech: "PHP, data types, Control flow statements, iterations, Regular expressions, Arrays, OOP, HTTP calls, File system",
         link: "https://www.udemy.com/course/corso-di-programmazione-php/",
         payLink: "https://www.udemy.com/course/corso-di-programmazione-php/?referralCode=75C511DE366A15CB45C1",
         image: phpPhoto
@@ -111,7 +111,7 @@ export const courses = [
         nameKey: "courses_page.javascript.title",
         descKey: "courses_page.javascript.description",
         durationKey: "courses_page.javascript.duration",
-        tech: "Javascript, control flow statements, iterations, arrays, DOM, Design patterns, Arrow function",
+        tech: "JavaScript, control flow statements, iterations, arrays, DOM, Design patterns, Arrow function",
         link: "https://www.udemy.com/course/corso-di-programmazione-javascript/",
         payLink: "https://www.udemy.com/course/corso-di-programmazione-javascript/?referralCode=782D21BE08B1AEFC8118",
         image: javascriptPhoto

@@ -15,13 +15,13 @@ vi.mock('react-i18next', () => ({
                 home_cta_github_projects: 'Explore GitHub projects',
                 home_cta_experience: 'Experience',
                 home_metric_years_value: '10+',
-                home_metric_years_label: 'years of experience',
+                home_metric_years_label: 'Years of experience',
                 home_metric_github_value: '13',
-                home_metric_github_label: 'selected GitHub projects',
+                home_metric_github_label: 'Selected GitHub projects',
                 home_metric_packages_value: '2',
-                home_metric_packages_label: 'public npm libraries',
+                home_metric_packages_label: 'Public npm libraries',
                 home_metric_courses_value: '15',
-                home_metric_courses_label: 'online programming courses',
+                home_metric_courses_label: 'Online programming courses',
                 home_focus_label: 'Focus areas',
                 home_focus_architecture: 'Enterprise architecture & regulated financial systems',
                 home_focus_frontend: 'Front-end architecture & accessible enterprise UI',
@@ -118,10 +118,16 @@ describe('Home component', () => {
     });
 
     test('renders portfolio metrics', () => {
-        expect(screen.getByTestId('home-metrics')).toHaveTextContent('10+');
-        expect(screen.getByTestId('home-metrics')).toHaveTextContent('13');
-        expect(screen.getByTestId('home-metrics')).toHaveTextContent('2');
-        expect(screen.getByTestId('home-metrics')).toHaveTextContent('15');
+        const metrics = screen.getByTestId('home-metrics');
+
+        expect(metrics).toHaveTextContent('10+');
+        expect(metrics).toHaveTextContent('13');
+        expect(metrics).toHaveTextContent('2');
+        expect(metrics).toHaveTextContent('15');
+        expect(metrics).toHaveTextContent('Years of experience');
+        expect(metrics).toHaveTextContent('Selected GitHub projects');
+        expect(metrics).toHaveTextContent('Public npm libraries');
+        expect(metrics).toHaveTextContent('Online programming courses');
     });
 
     test('renders home eyebrow', () => {

@@ -39,6 +39,24 @@ test('home proof content reflows with reduced motion and 200% text', async ({pag
     await expect(page.getByRole('heading', {level: 1, name: 'Daniele Masone'})).toBeVisible();
     await expect(page.locator('main dd')).toHaveCount(4);
 
+    const valueOffsetsByRow = await page.getByTestId('home-metrics')
+      .locator(':scope > div')
+      .evaluateAll((cards) => {
+        const rows = new Map<number, number[]>();
+
+        for (const card of cards) {
+          const rowTop = Math.round(card.getBoundingClientRect().top);
+          const valueTop = card.querySelector('dd')?.getBoundingClientRect().top;
+
+          if (valueTop === undefined) continue;
+          rows.set(rowTop, [...(rows.get(rowTop) ?? []), valueTop]);
+        }
+
+        return [...rows.values()].map((positions) => Math.max(...positions) - Math.min(...positions));
+      });
+
+    expect(valueOffsetsByRow.every((offset) => offset <= 1)).toBe(true);
+
     const overflow = await page.evaluate(() => (
       document.documentElement.scrollWidth - document.documentElement.clientWidth
     ));
