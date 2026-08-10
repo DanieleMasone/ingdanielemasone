@@ -3,6 +3,7 @@ import {render} from '@testing-library/react';
 import {waitFor} from '@testing-library/dom';
 import {SeoHead} from './SeoHead';
 import seoConfig from '../../config/seo.json';
+import {buildStructuredData} from '../../seo/structuredData.mjs';
 import {vi} from 'vitest';
 
 vi.mock('react-i18next', () => ({
@@ -256,19 +257,25 @@ describe('<SeoHead />', () => {
             const structuredData = JSON.parse(
                 document.querySelector('script[type="application/ld+json"]').textContent
             );
-            expect(structuredData['@graph']).toEqual(
-                expect.arrayContaining([
-                    expect.objectContaining({
-                        '@type': 'Person',
-                        name: 'Daniele Masone',
-                        jobTitle: seoConfig.jobTitle
-                    }),
-                    expect.objectContaining({
-                        '@type': 'WebPage',
-                        url: 'https://danielemasone.github.io/ingdanielemasone/projects/'
-                    })
-                ])
-            );
+            expect(structuredData).toEqual(buildStructuredData({
+                config: seoConfig,
+                title: 'Projects | Daniele Masone',
+                description: 'Discover software projects and case studies by Daniele Masone.',
+                url: 'https://danielemasone.github.io/ingdanielemasone/projects/',
+                language: 'it'
+            }));
+            expect(structuredData['@graph']).toEqual(expect.arrayContaining([
+                expect.objectContaining({
+                    '@type': 'Person',
+                    name: 'Daniele Masone',
+                    jobTitle: seoConfig.person.jobTitle,
+                    worksFor: {"@type": "Organization", name: "Intesa Sanpaolo"}
+                }),
+                expect.objectContaining({
+                    '@type': 'WebPage',
+                    url: 'https://danielemasone.github.io/ingdanielemasone/projects/'
+                })
+            ]));
         });
     });
 });

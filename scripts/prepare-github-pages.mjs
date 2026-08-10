@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import {fileURLToPath, pathToFileURL} from "node:url";
+import {buildStructuredData} from "../src/seo/structuredData.mjs";
 
 /**
  * Generates GitHub Pages-friendly route files and SEO artifacts after Vite builds the portfolio.
@@ -62,57 +63,6 @@ export const getRouteUrl = (siteUrl, routePath) => {
 };
 
 /**
- * Creates JSON-LD structured data for a static route entry.
- *
- * @param {{config: object, title: string, description: string, url: string}} params - Route metadata inputs.
- * @returns {{'@context': string, '@graph': Array<object>}} Schema.org graph for the rendered route.
- */
-const buildStructuredData = ({config, title, description, url}) => ({
-    "@context": "https://schema.org",
-    "@graph": [
-        {
-            "@type": "Person",
-            "@id": `${config.siteUrl}/#person`,
-            "name": config.author,
-            "url": `${config.siteUrl}/`,
-            "image": config.image.url,
-            "jobTitle": config.jobTitle,
-            "sameAs": config.sameAs
-        },
-        {
-            "@type": "WebSite",
-            "@id": `${config.siteUrl}/#website`,
-            "url": `${config.siteUrl}/`,
-            "name": config.siteName,
-            "publisher": {
-                "@id": `${config.siteUrl}/#person`
-            },
-            "inLanguage": config.defaultLanguage
-        },
-        {
-            "@type": "WebPage",
-            "@id": `${url}#webpage`,
-            "url": url,
-            "name": title,
-            "description": description,
-            "isPartOf": {
-                "@id": `${config.siteUrl}/#website`
-            },
-            "about": {
-                "@id": `${config.siteUrl}/#person`
-            },
-            "primaryImageOfPage": {
-                "@type": "ImageObject",
-                "url": config.image.url,
-                "width": config.image.width,
-                "height": config.image.height
-            },
-            "inLanguage": config.defaultLanguage
-        }
-    ]
-});
-
-/**
  * Builds the full SEO head block for a static route.
  *
  * Generated tags are marked as static fallbacks so SeoHead can remove them at
@@ -126,12 +76,18 @@ export const buildSeoBlock = ({config, route, translations}) => {
     const url = getRouteUrl(config.siteUrl, route.path);
     const title = pageSeo.title;
     const description = pageSeo.description;
-    const structuredData = buildStructuredData({config, title, description, url});
+    const structuredData = buildStructuredData({
+        config,
+        title,
+        description,
+        url,
+        language: config.defaultLanguage
+    });
 
     return [
         `    <title ${staticSeoAttribute}>${escapeHtml(title)}</title>`,
         `    <meta name="description" ${staticSeoAttribute} content="${escapeHtml(description)}"/>`,
-        `    <meta name="author" ${staticSeoAttribute} content="${escapeHtml(config.author)}"/>`,
+        `    <meta name="author" ${staticSeoAttribute} content="${escapeHtml(config.person.name)}"/>`,
         `    <meta name="robots" ${staticSeoAttribute} content="${escapeHtml(route.robots || "index, follow")}"/>`,
         `    <link rel="canonical" ${staticSeoAttribute} href="${escapeHtml(url)}"/>`,
         `    <meta property="og:title" ${staticSeoAttribute} content="${escapeHtml(title)}"/>`,

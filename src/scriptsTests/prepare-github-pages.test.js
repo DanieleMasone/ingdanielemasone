@@ -9,13 +9,26 @@ import {
     normalizePath,
     prepareGithubPages
 } from "../../scripts/prepare-github-pages.mjs";
+import {buildStructuredData} from "../seo/structuredData.mjs";
 import fs from "node:fs/promises";
 
 const config = {
     siteUrl: "https://danielemasone.github.io/ingdanielemasone",
     siteName: "Daniele Masone Portfolio",
-    author: "Daniele Masone",
-    jobTitle: "Senior Software Engineer",
+    person: {
+        name: "Daniele Masone",
+        jobTitle: "Technical Architect and Senior Software Engineer",
+        description: "Technical Architect and Senior Software Engineer focused on enterprise software.",
+        worksFor: "Intesa Sanpaolo",
+        alumniOf: "Politecnico di Milano",
+        knowsAbout: ["Software Architecture", "TypeScript"],
+        sameAs: [
+            "https://www.linkedin.com/in/ingdanielemasone/",
+            "https://github.com/DanieleMasone",
+            "https://www.udemy.com/user/daniele-masone/",
+            "https://twitter.com/masone_daniele"
+        ]
+    },
     defaultLanguage: "it-IT",
     defaultLocale: "it_IT",
     twitterCreator: "@masone_daniele",
@@ -26,12 +39,6 @@ const config = {
         height: 630,
         alt: "Daniele Masone portfolio social preview"
     },
-    sameAs: [
-        "https://www.linkedin.com/in/ingdanielemasone/",
-        "https://github.com/DanieleMasone",
-        "https://www.udemy.com/user/daniele-masone/",
-        "https://twitter.com/masone_daniele"
-    ],
     locales: {
         it: "it_IT",
         en: "en_US",
@@ -256,7 +263,25 @@ describe("prepare-github-pages", () => {
         );
         expect(html).not.toContain('name="keywords"');
         expect(html).toContain('"@context":"https://schema.org"');
-        expect(html).toContain('"jobTitle":"Senior Software Engineer"');
+        const structuredData = JSON.parse(
+            html.match(/<script type="application\/ld\+json" data-static-seo="true">(.+)<\/script>/)[1]
+        );
+
+        expect(structuredData).toEqual(buildStructuredData({
+            config,
+            title: translations.seo.home.title,
+            description: translations.seo.home.description,
+            url: `${config.siteUrl}/`,
+            language: config.defaultLanguage
+        }));
+        expect(structuredData["@graph"]).toEqual(expect.arrayContaining([
+            expect.objectContaining({
+                "@type": "Person",
+                "jobTitle": "Technical Architect and Senior Software Engineer",
+                "worksFor": {"@type": "Organization", "name": "Intesa Sanpaolo"},
+                "alumniOf": {"@type": "CollegeOrUniversity", "name": "Politecnico di Milano"}
+            })
+        ]));
         expect(html).toContain('"inLanguage":"it-IT"');
     });
 

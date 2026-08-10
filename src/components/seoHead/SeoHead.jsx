@@ -1,6 +1,7 @@
 import {useEffect} from 'react';
 import {useTranslation} from "react-i18next";
 import seoConfig from "../../config/seo.json";
+import {buildStructuredData} from "../../seo/structuredData.mjs";
 
 const ROUTE_SEO_ATTRIBUTE = "data-route-seo";
 const ROUTE_SEO_SELECTOR = `[${ROUTE_SEO_ATTRIBUTE}="true"]`;
@@ -63,57 +64,6 @@ const getCanonicalUrl = (path) => {
  * @returns {string} Base language code used to resolve Open Graph locale metadata.
  */
 const getLanguageCode = (language) => (language || seoConfig.defaultLanguage).split("-")[0];
-
-/**
- * Creates JSON-LD structured data for the portfolio owner, website, and page.
- *
- * @param {{title: string, description: string, url: string, language: string}} params - Structured data inputs.
- * @returns {{'@context': string, '@graph': Array<object>}} Schema.org graph rendered in the document head.
- */
-const buildStructuredData = ({title, description, url, language}) => ({
-    "@context": "https://schema.org",
-    "@graph": [
-        {
-            "@type": "Person",
-            "@id": `${seoConfig.siteUrl}/#person`,
-            "name": seoConfig.author,
-            "url": `${seoConfig.siteUrl}/`,
-            "image": seoConfig.image.url,
-            "jobTitle": seoConfig.jobTitle,
-            "sameAs": seoConfig.sameAs
-        },
-        {
-            "@type": "WebSite",
-            "@id": `${seoConfig.siteUrl}/#website`,
-            "url": `${seoConfig.siteUrl}/`,
-            "name": seoConfig.siteName,
-            "publisher": {
-                "@id": `${seoConfig.siteUrl}/#person`
-            },
-            "inLanguage": language
-        },
-        {
-            "@type": "WebPage",
-            "@id": `${url}#webpage`,
-            "url": url,
-            "name": title,
-            "description": description,
-            "isPartOf": {
-                "@id": `${seoConfig.siteUrl}/#website`
-            },
-            "about": {
-                "@id": `${seoConfig.siteUrl}/#person`
-            },
-            "primaryImageOfPage": {
-                "@type": "ImageObject",
-                "url": seoConfig.image.url,
-                "width": seoConfig.image.width,
-                "height": seoConfig.image.height
-            },
-            "inLanguage": language
-        }
-    ]
-});
 
 /**
  * Removes static SEO fallback tags after React has mounted route-level tags.
@@ -181,7 +131,7 @@ const applySeoMetadata = ({title, description, url, locale, language, robots, st
     document.title = title;
 
     appendRouteSeoElement("meta", {name: "description", content: description});
-    appendRouteSeoElement("meta", {name: "author", content: seoConfig.author});
+    appendRouteSeoElement("meta", {name: "author", content: seoConfig.person.name});
     appendRouteSeoElement("meta", {name: "robots", content: robots});
     appendRouteSeoElement("link", {rel: "canonical", href: url});
 
@@ -243,6 +193,7 @@ export function SeoHead({pageKey, path}) {
     const routeConfig = getRouteConfig(pageKey, path);
     const robots = routeConfig.robots || "index, follow";
     const structuredData = buildStructuredData({
+        config: seoConfig,
         title,
         description,
         url,

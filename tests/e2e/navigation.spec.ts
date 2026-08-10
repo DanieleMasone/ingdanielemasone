@@ -7,7 +7,7 @@ test('home page loads from the GitHub Pages base path', async ({page}) => {
 
   await expect(page).toHaveURL(/\/ingdanielemasone\/$/);
   await expect(page.getByRole('heading', {level: 1, name: 'Daniele Masone'})).toBeVisible();
-  await expect(page.getByRole('link', {name: /Guarda i progetti/i})).toBeVisible();
+  await expect(page.getByRole('link', {name: /Esplora i progetti GitHub/i})).toBeVisible();
 });
 
 test('desktop portfolio navigation reaches major public pages without raw i18n keys', async ({page}) => {

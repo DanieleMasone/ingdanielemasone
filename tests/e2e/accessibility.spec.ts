@@ -25,6 +25,37 @@ test('desktop header controls are keyboard reachable', async ({page}) => {
   await expect(page.getByRole('button', {name: 'Portfolio'})).toBeFocused();
 });
 
+test('home proof content reflows with reduced motion and 200% text', async ({page}) => {
+  await page.emulateMedia({reducedMotion: 'reduce'});
+
+  for (const viewport of [
+    {width: 1440, height: 900},
+    {width: 768, height: 1024},
+    {width: 390, height: 844},
+  ]) {
+    await page.setViewportSize(viewport);
+    await page.goto('./');
+
+    await expect(page.getByRole('heading', {level: 1, name: 'Daniele Masone'})).toBeVisible();
+    await expect(page.locator('main dd')).toHaveCount(4);
+
+    const overflow = await page.evaluate(() => (
+      document.documentElement.scrollWidth - document.documentElement.clientWidth
+    ));
+    expect(overflow).toBeLessThanOrEqual(1);
+  }
+
+  await page.setViewportSize({width: 1280, height: 800});
+  await page.goto('./');
+  await page.addStyleTag({content: 'html { font-size: 200% !important; }'});
+
+  const enlargedTextOverflow = await page.evaluate(() => (
+    document.documentElement.scrollWidth - document.documentElement.clientWidth
+  ));
+  expect(enlargedTextOverflow).toBeLessThanOrEqual(1);
+  await expect(page.getByRole('link', {name: /Esplora i progetti GitHub/i})).toBeVisible();
+});
+
 test.describe('mobile keyboard navigation', () => {
   test.use({viewport: {width: 390, height: 844}, isMobile: true});
 

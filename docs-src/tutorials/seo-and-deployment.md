@@ -28,7 +28,7 @@ The script reads:
 - Italian SEO translations from `src/locales/it/translation.json`;
 - the built `dist/index.html` template.
 
-Build-time author identity, professional role, public URL, social image and route policy are owned by `src/config/seo.json`. The script derives the project path from that public URL instead of duplicating `/ingdanielemasone/` internally.
+Build-time professional identity, public URL, social image and route policy are owned by `src/config/seo.json`. The script derives the project path from that public URL instead of duplicating `/ingdanielemasone/` internally.
 
 It writes route-specific `index.html` files for configured portfolio routes, then writes `dist/sitemap.xml` and `dist/robots.txt`.
 
@@ -52,6 +52,16 @@ Indexable portfolio routes receive:
 The obsolete `meta keywords` tag is intentionally omitted; visible content, titles, descriptions and canonical URLs remain the SEO sources of truth.
 
 `SeoHead` applies route metadata at runtime and removes static fallback tags after React mounts, so the document keeps one canonical metadata set.
+
+Home proof points are intentionally evidence-based. Selected GitHub project, public npm package and course counts are checked against the repository datasets by localization contract tests; volatile platform totals such as followers, learners or ratings are not presented as durable Home metrics.
+
+## Structured data ownership
+
+`src/seo/structuredData.mjs` is the single pure builder for the `Person`, `WebSite` and route-level `WebPage` graph. Runtime `SeoHead` and static GitHub Pages generation pass their localized route metadata to that same module, preventing the two JSON-LD paths from drifting.
+
+Stable `#person` and `#website` identifiers link the graph. The `Person` entity contains the public professional description, role, employer, education, curated software topics and canonical LinkedIn, GitHub, Udemy and X profiles. Private contact, demographic and financial fields are intentionally excluded.
+
+Structured data helps search engines understand the visible portfolio content; it does not guarantee a rich result or ranking improvement.
 
 ## Sitemap and robots
 

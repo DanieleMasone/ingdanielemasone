@@ -2,36 +2,37 @@ import {useTranslation} from 'react-i18next';
 import {SeoHead} from "@/components/seoHead/SeoHead"
 import {AvatarCard} from "@/components/ui/avatarCard/AvatarCard";
 import {Link} from "react-router-dom";
-import {ArrowRight, BriefcaseBusiness, FolderGit2, Sparkles} from "lucide-react";
+import {BriefcaseBusiness, ExternalLink, FolderGit2, Sparkles} from "lucide-react";
 import {BrandIcon} from "@/components/ui/brandIcon/BrandIcon";
 import React from "react";
 import {layoutClasses, surfaceClasses} from "@/styles/commonClasses";
 import {siteIdentity} from "@/config/siteIdentity";
 import {linkedinIcon} from "@/config/brandIcons";
 
-const highlightedActionClasses = `inline-flex min-h-12 items-center justify-center gap-2 rounded-lg
-    border border-[#0A66C2] bg-[#0A66C2] px-5 py-3
+const primaryActionClasses = `inline-flex min-h-12 items-center justify-center gap-2 rounded-lg
+    border border-blue-700 bg-blue-700 px-5 py-3
     text-base font-semibold text-white shadow-md transition
-    hover:border-[#004182] hover:bg-[#004182]
+    hover:border-blue-800 hover:bg-blue-800
     active:scale-[0.98]
-    focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0A66C2]
+    focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600
     focus-visible:ring-offset-2
-    dark:border-[#5AA7E8] dark:bg-[#0A66C2]
+    dark:border-blue-500 dark:bg-blue-600
     dark:text-white dark:shadow-blue-950/30
-    dark:hover:border-[#7DBDF0] dark:hover:bg-[#0B75DD]
-    dark:focus-visible:ring-[#5AA7E8]
+    dark:hover:border-blue-400 dark:hover:bg-blue-500
+    dark:focus-visible:ring-blue-400
     dark:focus-visible:ring-offset-gray-900`;
 const heroMetrics = [
     {valueKey: "home_metric_years_value", labelKey: "home_metric_years_label"},
-    {valueKey: "home_metric_projects_value", labelKey: "home_metric_projects_label"},
-    {valueKey: "home_metric_testimonials_value", labelKey: "home_metric_testimonials_label"},
+    {valueKey: "home_metric_github_value", labelKey: "home_metric_github_label"},
+    {valueKey: "home_metric_packages_value", labelKey: "home_metric_packages_label"},
+    {valueKey: "home_metric_courses_value", labelKey: "home_metric_courses_label"},
 ];
 
 const focusItems = [
+    "home_focus_architecture",
     "home_focus_frontend",
-    "home_focus_leadership",
-    "home_focus_enterprise",
-    "home_focus_accessibility",
+    "home_focus_modernization",
+    "home_focus_quality",
     "home_focus_training",
 ];
 
@@ -39,7 +40,7 @@ const focusItems = [
  * Landing page for the portfolio and online CV.
  *
  * Presents the primary professional positioning, calls to action, profile card,
- * credibility metrics, and focus areas shown in the first viewport.
+ * source-backed proof metrics, and focus areas shown in the first viewport.
  *
  * @component
  * @module pages/home/Home
@@ -83,18 +84,15 @@ export default function Home() {
                             </p>
                         </div>
 
-                        <div className="flex flex-col gap-3 sm:flex-row sm:justify-center md:justify-start">
-
-                            {/* PRIMARY */}
+                        <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center md:justify-start">
                             <Link
-                                to="/projects/"
-                                className={highlightedActionClasses}
+                                to="/github-projects/"
+                                className={primaryActionClasses}
                             >
                                 <FolderGit2 className="h-5 w-5" aria-hidden="true"/>
-                                {t("home_cta_projects")}
+                                {t("home_cta_github_projects")}
                             </Link>
 
-                            {/* SECONDARY */}
                             <Link
                                 to="/experience/"
                                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg
@@ -111,12 +109,17 @@ export default function Home() {
                                 {t("home_cta_experience")}
                             </Link>
 
-                            {/* LINKEDIN */}
                             <a
                                 href={siteIdentity.profiles.linkedin}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className={highlightedActionClasses}
+                                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg px-4 py-3
+                                           text-base font-semibold text-[#0A66C2] transition-colors
+                                           hover:bg-blue-50 hover:text-[#004182]
+                                           focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0A66C2]
+                                           focus-visible:ring-offset-2
+                                           dark:text-[#7DBDF0] dark:hover:bg-blue-950/40 dark:hover:text-blue-200
+                                           dark:focus-visible:ring-[#5AA7E8] dark:focus-visible:ring-offset-gray-900"
                             >
                                 <BrandIcon
                                     icon={linkedinIcon}
@@ -125,17 +128,17 @@ export default function Home() {
                                     size={24}
                                 />
                                 {t("follow_linkedin")}
-                                <ArrowRight className="h-4 w-4" aria-hidden="true"/>
+                                <ExternalLink className="h-4 w-4" aria-hidden="true"/>
                             </a>
                         </div>
 
-                        <dl className="grid grid-cols-1 gap-3 sm:grid-cols-3" data-testid="home-metrics">
+                        <dl className="grid grid-cols-2 gap-3 lg:grid-cols-4" data-testid="home-metrics">
                             {heroMetrics.map(({valueKey, labelKey}) => (
                                 <div
                                     key={valueKey}
-                                    className="rounded-lg border border-gray-200 bg-white/75 p-4 text-left shadow-sm dark:border-gray-800 dark:bg-gray-900/70"
+                                    className="min-w-0 rounded-lg border border-gray-200 bg-white/75 p-4 text-left shadow-sm dark:border-gray-800 dark:bg-gray-900/70"
                                 >
-                                    <dt className="text-sm text-gray-600 dark:text-gray-400">{t(labelKey)}</dt>
+                                    <dt className="text-xs leading-5 text-gray-600 dark:text-gray-400 sm:text-sm">{t(labelKey)}</dt>
                                     <dd className="mt-1 text-2xl font-bold text-gray-950 dark:text-white">{t(valueKey)}</dd>
                                 </div>
                             ))}

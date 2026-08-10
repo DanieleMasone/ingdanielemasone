@@ -110,6 +110,7 @@ Before considering any task complete, always evaluate and apply, when needed:
 - Treat `npm run build:all` as the authoritative publishing build: it must leave a validated `dist` ready for GitHub Pages, including required docs and coverage reports.
 - In CI, use `npm run test:e2e:run` after `npm run build` so Playwright checks the same application build that is packaged; prepare reports and run `npm run artifact:validate` before upload.
 - Keep translations aligned across all currently supported languages (Italian, English, French, German, Spanish).
+- Build JSON-LD only through `src/seo/structuredData.mjs`; runtime `SeoHead` and static GitHub Pages generation must share the same graph builder.
 - Keep immutable owner identity and public profile destinations in `src/config/siteIdentity.js`; keep professional positioning and accessible label templates localized.
 - Preserve a clear identity hierarchy: persistent brand, Home H1, profile card, and copyright may repeat the name only when each occurrence has a distinct visible responsibility.
 - Render bundled persistent-shell data synchronously; do not add fake loading or error states for local Header or Footer configuration.

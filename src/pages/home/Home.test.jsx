@@ -11,24 +11,23 @@ vi.mock('react-i18next', () => ({
             const translations = {
                 home_eyebrow: 'Portfolio and online CV',
                 home_subtitle: 'Technical Architect, Senior Software Engineer, and Tech Trainer.',
-                home_description: 'I design software solutions for enterprise and regulated domains.',
-                home_cta_projects: 'View projects',
+                home_description: 'I design and modernize enterprise systems in regulated domains.',
+                home_cta_github_projects: 'Explore GitHub projects',
                 home_cta_experience: 'Experience',
                 home_metric_years_value: '10+',
                 home_metric_years_label: 'years of experience',
-                home_metric_projects_value: '20+',
-                home_metric_projects_label: 'enterprise projects',
-                home_metric_testimonials_value: '25+',
-                home_metric_testimonials_label: 'testimonials',
+                home_metric_github_value: '13',
+                home_metric_github_label: 'selected GitHub projects',
+                home_metric_packages_value: '2',
+                home_metric_packages_label: 'public npm libraries',
+                home_metric_courses_value: '15',
+                home_metric_courses_label: 'online programming courses',
                 home_focus_label: 'Focus areas',
-                home_focus_frontend: 'Front-end architecture & enterprise UI',
-                home_focus_leadership: 'Technical architecture & team leadership',
-                home_focus_enterprise: 'Financial, legacy & regulated domains',
-                home_focus_accessibility: 'Code quality, accessibility & performance',
-                home_focus_training: 'Tech training, mentoring & career support',
-                about_title: 'About Me',
-                about_intro: 'Hello, I am a software engineer.',
-                about_experience: 'I have 10 years of experience in frontend development.',
+                home_focus_architecture: 'Enterprise architecture & regulated financial systems',
+                home_focus_frontend: 'Front-end architecture & accessible enterprise UI',
+                home_focus_modernization: 'Back-end integration & legacy modernization',
+                home_focus_quality: 'Code quality, testing, documentation & CI/CD',
+                home_focus_training: 'Technical training & public knowledge sharing',
                 follow_linkedin: 'Follow on LinkedIn'
             };
             return translations[key] || key;
@@ -65,39 +64,22 @@ describe('Home component', () => {
         );
     });
 
-    test('renders about title, intro and experience texts', () => {
+    test('renders the professional identity and positioning', () => {
         expect(screen.getByRole('heading', {level: 1})).toHaveTextContent('Daniele Masone');
         expect(screen.getAllByText('Daniele Masone')).toHaveLength(1);
         expect(screen.getByText('Technical Architect, Senior Software Engineer, and Tech Trainer.')).toBeInTheDocument();
-        expect(screen.getByText('I design software solutions for enterprise and regulated domains.')).toBeInTheDocument();
+        expect(screen.getByText('I design and modernize enterprise systems in regulated domains.')).toBeInTheDocument();
     });
 
     test('renders SeoHead component', () => {
         expect(screen.getByTestId('seo-head')).toBeInTheDocument();
     });
 
-    test('renders AvatarCard component', () => {
-        const avatar = screen.getByTestId('avatar-card');
-        expect(avatar).toBeInTheDocument();
-    });
-
-    test('renders avatar section', () => {
+    test('renders the profile card inside its visual region', () => {
         const avatarSection = screen.getByTestId('page-grid');
 
         expect(avatarSection).toBeInTheDocument();
         expect(avatarSection).toContainElement(screen.getByTestId('avatar-card'));
-    });
-
-    test('text section has responsive alignment classes', () => {
-        const textSection = screen.getByTestId('home-copy');
-        expect(textSection).toHaveClass('text-center');
-        expect(textSection).toHaveClass('md:text-left');
-    });
-
-    test('avatar wrapper contains AvatarCard', () => {
-        expect(screen.getByTestId('page-grid')).toContainElement(
-            screen.getByTestId('avatar-card')
-        );
     });
 
     test('renders LinkedIn button with correct text', () => {
@@ -115,24 +97,22 @@ describe('Home component', () => {
         expect(linkedinButton).toHaveAttribute('rel', 'noopener noreferrer');
     });
 
-    test('LinkedIn button has proper Tailwind classes', () => {
+    test('LinkedIn remains a supporting action rather than the primary CTA', () => {
         const linkedinButton = screen.getByRole('link', {name: /Follow on LinkedIn/i});
-        expect(linkedinButton).toHaveClass(
-            'inline-flex', 'min-h-12', 'items-center', 'justify-center',
-            'rounded-lg', 'bg-[#0A66C2]',
-            'text-white', 'text-base', 'font-semibold'
-        );
+        expect(linkedinButton).toHaveClass('text-[#0A66C2]');
+        expect(linkedinButton).not.toHaveClass('bg-[#0A66C2]');
     });
 
-    test('renders project and experience calls to action', () => {
-        expect(screen.getByRole('link', {name: /View projects/i})).toHaveAttribute('href', '/projects/');
+    test('prioritizes GitHub proof and keeps experience as the secondary path', () => {
+        expect(screen.getByRole('link', {name: /Explore GitHub projects/i})).toHaveAttribute('href', '/github-projects/');
         expect(screen.getByRole('link', {name: /Experience/i})).toHaveAttribute('href', '/experience/');
     });
 
     test('renders portfolio metrics', () => {
         expect(screen.getByTestId('home-metrics')).toHaveTextContent('10+');
-        expect(screen.getByTestId('home-metrics')).toHaveTextContent('20+');
-        expect(screen.getByTestId('home-metrics')).toHaveTextContent('25+');
+        expect(screen.getByTestId('home-metrics')).toHaveTextContent('13');
+        expect(screen.getByTestId('home-metrics')).toHaveTextContent('2');
+        expect(screen.getByTestId('home-metrics')).toHaveTextContent('15');
     });
 
     test('renders home eyebrow', () => {
@@ -140,35 +120,17 @@ describe('Home component', () => {
     });
 
     test('renders focus areas', () => {
-        expect(screen.getByText('Front-end architecture & enterprise UI')).toBeInTheDocument();
-        expect(screen.getByText('Technical architecture & team leadership')).toBeInTheDocument();
-        expect(screen.getByText('Financial, legacy & regulated domains')).toBeInTheDocument();
-        expect(screen.getByText('Code quality, accessibility & performance')).toBeInTheDocument();
-        expect(screen.getByText('Tech training, mentoring & career support')).toBeInTheDocument();
+        expect(screen.getByText('Enterprise architecture & regulated financial systems')).toBeInTheDocument();
+        expect(screen.getByText('Front-end architecture & accessible enterprise UI')).toBeInTheDocument();
+        expect(screen.getByText('Back-end integration & legacy modernization')).toBeInTheDocument();
+        expect(screen.getByText('Code quality, testing, documentation & CI/CD')).toBeInTheDocument();
+        expect(screen.getByText('Technical training & public knowledge sharing')).toBeInTheDocument();
     });
 
-    test('renders focus areas as a mobile-friendly list without horizontal scrolling', () => {
+    test('renders focus areas as a semantic list', () => {
         const focusList = screen.getByTestId('home-focus-list');
-        expect(focusList).toHaveClass('grid', 'grid-cols-1', 'gap-2');
-        expect(focusList).toHaveClass('md:flex', 'md:flex-wrap');
-        expect(focusList).not.toHaveClass('overflow-x-auto');
-
-        const focusItems = screen.getAllByRole('listitem');
-        expect(focusItems).toHaveLength(5);
-        focusItems.forEach((item) => {
-            expect(item).toHaveClass('w-full', 'rounded-lg', 'text-sm', 'leading-snug');
-            expect(item).toHaveClass('md:w-auto', 'md:rounded-full');
-
-            const marker = item.querySelector('span[aria-hidden="true"]');
-            expect(marker).toHaveClass('mt-[0.42em]', 'md:mt-0');
-        });
-    });
-
-    test('renders avatar section with AvatarCard', () => {
-        const avatarSection = screen.getByTestId('page-grid');
-
-        expect(avatarSection).toBeInTheDocument();
-        expect(avatarSection).toContainElement(screen.getByTestId('avatar-card'));
+        expect(focusList).toHaveAttribute('aria-label', 'Focus areas');
+        expect(screen.getAllByRole('listitem')).toHaveLength(5);
     });
 
 });

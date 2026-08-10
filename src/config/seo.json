@@ -1,8 +1,37 @@
 {
   "siteUrl": "https://danielemasone.github.io/ingdanielemasone",
   "siteName": "Daniele Masone Portfolio",
-  "author": "Daniele Masone",
-  "jobTitle": "Technical Architect and Senior Software Engineer",
+  "person": {
+    "name": "Daniele Masone",
+    "jobTitle": "Technical Architect and Senior Software Engineer",
+    "description": "Technical Architect and Senior Software Engineer focused on enterprise and regulated financial systems, legacy modernization, frontend and backend architecture, Java/Spring, and TypeScript.",
+    "worksFor": "Intesa Sanpaolo",
+    "alumniOf": "Politecnico di Milano",
+    "knowsAbout": [
+      "Software Architecture",
+      "Enterprise Software Engineering",
+      "Regulated Financial Systems",
+      "Legacy Modernization",
+      "Frontend Architecture",
+      "Backend Architecture",
+      "Java and Spring",
+      "TypeScript",
+      "React",
+      "Angular",
+      "Event-Driven Architecture",
+      "Modular Monoliths",
+      "Enterprise Integration",
+      "Software Quality, Accessibility and CI/CD",
+      "Technical Training",
+      "AI-assisted Software Engineering"
+    ],
+    "sameAs": [
+      "https://www.linkedin.com/in/ingdanielemasone/",
+      "https://github.com/DanieleMasone",
+      "https://www.udemy.com/user/daniele-masone/",
+      "https://twitter.com/masone_daniele"
+    ]
+  },
   "defaultLanguage": "it-IT",
   "defaultLocale": "it_IT",
   "twitterCreator": "@masone_daniele",
@@ -13,12 +42,6 @@
     "height": 630,
     "alt": "Daniele Masone portfolio social preview"
   },
-  "sameAs": [
-    "https://www.linkedin.com/in/ingdanielemasone/",
-    "https://github.com/DanieleMasone",
-    "https://www.udemy.com/user/daniele-masone/",
-    "https://twitter.com/masone_daniele"
-  ],
   "locales": {
     "it": "it_IT",
     "en": "en_US",

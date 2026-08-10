@@ -4,6 +4,7 @@ import {fileURLToPath} from "node:url";
 import {describe, expect, test} from "vitest";
 import {projects} from "@/mock/projects";
 import {githubProjects} from "@/mock/githubProjects";
+import {courses} from "@/mock/courses";
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const localeCodes = ["it", "en", "fr", "de", "es"];
@@ -223,6 +224,24 @@ describe("localized portfolio content", () => {
             expect(project.tech).toBe(project.tech.trim());
             expect(project.tech).not.toContain("·");
             expect(project.tech.split(",").every((technology) => technology.trim().length > 0)).toBe(true);
+        }
+    });
+
+    test("keeps Home proof metrics aligned with published portfolio data", () => {
+        const expectedValues = {
+            home_metric_github_value: String(githubProjects.length),
+            home_metric_packages_value: String(
+                githubProjects.flatMap((project) => project.links).filter((link) => link.type === "package").length
+            ),
+            home_metric_courses_value: String(courses.length)
+        };
+
+        for (const locale of localeCodes) {
+            const translations = readLocale(locale);
+
+            for (const [key, expectedValue] of Object.entries(expectedValues)) {
+                expect(translations[key], `${locale}.${key}`).toBe(expectedValue);
+            }
         }
     });
 });
