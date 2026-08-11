@@ -3,7 +3,8 @@ import path from "node:path";
 import {fileURLToPath, pathToFileURL} from "node:url";
 
 /**
- * Adds robots metadata to generated report pages and copies them into the GitHub Pages artifact.
+ * Adds robots metadata and accessibility safeguards to generated report pages,
+ * then copies them into the GitHub Pages artifact.
  *
  * The portfolio links to source documentation and coverage as developer resources,
  * but those generated pages are not portfolio landing pages and should not compete
@@ -21,6 +22,8 @@ const reportDirs = [
 const robotsMeta = '<meta name="robots" content="noindex, nofollow"/>';
 const coverageSummaryName = "coverage-summary.json";
 const coverageBadgeName = "coverage-badge.json";
+const coverageResponsiveStylesPath = path.join(rootDir, "scripts", "assets", "coverage-responsive.css");
+const coverageResponsiveScriptPath = path.join(rootDir, "scripts", "assets", "coverage-responsive.js");
 
 /**
  * Injects or replaces a robots meta tag in an HTML document.
@@ -44,6 +47,21 @@ export const addNoindexRobotsMeta = (html) => {
 };
 
 /**
+ * Makes generated Istanbul coverage tables keyboard-focusable so their
+ * responsive horizontal scrolling is available without overflowing the page.
+ *
+ * @param {string} html - Generated coverage HTML document.
+ * @returns {string} HTML with accessible coverage tables.
+ */
+export const makeCoverageTablesScrollable = (html) => html.replace(
+    /<pre>\s*<table\b[^>]*\bclass=(["'])coverage\1[^>]*>[\s\S]*?<\/table>\s*<\/pre>/gi,
+    (table) => `<div class="portfolio-coverage-scroll" role="region" aria-label="Scrollable coverage data" tabindex="0">\n${table}\n</div>`
+).replace(
+    /<table\b[^>]*\bclass=(["'])coverage-summary\1[^>]*>[\s\S]*?<\/table>/gi,
+    (table) => `<div class="portfolio-coverage-scroll" role="region" aria-label="Scrollable coverage data" tabindex="0">\n${table}\n</div>`
+);
+
+/**
  * Recursively lists HTML files inside a directory.
  *
  * @param {string} directory - Absolute directory path.
@@ -64,12 +82,15 @@ const listHtmlFiles = async (directory) => {
 };
 
 /**
- * Adds noindex metadata to all generated HTML files in a report directory.
+ * Adds publishing metadata and optional coverage-table accessibility to every
+ * generated HTML file in a report directory.
  *
  * @param {string} directory - Absolute report directory path.
+ * @param {object} [options] - Report-specific preparation options.
+ * @param {boolean} [options.coverage=false] - Whether to enhance Istanbul coverage tables.
  * @returns {Promise<number>} Number of processed HTML files.
  */
-const prepareReportDirectory = async (directory) => {
+const prepareReportDirectory = async (directory, {coverage = false} = {}) => {
     const files = await listHtmlFiles(directory);
 
     if (files.length === 0) {
@@ -79,7 +100,11 @@ const prepareReportDirectory = async (directory) => {
     await Promise.all(files.map(async (filePath) => {
         const html = await fs.readFile(filePath, "utf8");
 
-        await fs.writeFile(filePath, addNoindexRobotsMeta(html), "utf8");
+        const preparedHtml = addNoindexRobotsMeta(
+            coverage ? makeCoverageTablesScrollable(html) : html
+        );
+
+        await fs.writeFile(filePath, preparedHtml, "utf8");
     }));
 
     return files.length;
@@ -117,18 +142,44 @@ export const createCoverageBadge = (summary) => {
  * @throws {Error} When a required report, HTML output, or coverage summary is missing or invalid.
  */
 export const preparePublishedReports = async () => {
+    await Promise.all(reportDirs.map(({source}) => fs.access(path.join(rootDir, source))));
+
+    const [coverageResponsiveStyles, coverageResponsiveScript] = await Promise.all([
+        fs.readFile(coverageResponsiveStylesPath, "utf8"),
+        fs.readFile(coverageResponsiveScriptPath, "utf8")
+    ]);
     const reports = await Promise.all(reportDirs.map(async ({source, target}) => {
         const sourceDir = path.join(rootDir, source);
-        await fs.access(sourceDir);
-
         const targetDir = path.join(distDir, target);
 
         await fs.rm(targetDir, {recursive: true, force: true});
         await fs.cp(sourceDir, targetDir, {recursive: true});
 
+        if (target === "test-coverage") {
+            const targetStylesPath = path.join(targetDir, "base.css");
+            const targetScriptPath = path.join(targetDir, "block-navigation.js");
+
+            await Promise.all([
+                fs.access(targetStylesPath),
+                fs.access(targetScriptPath)
+            ]);
+            await Promise.all([
+                fs.appendFile(
+                    targetStylesPath,
+                    `\n${coverageResponsiveStyles.trim()}\n`,
+                    "utf8"
+                ),
+                fs.appendFile(
+                    targetScriptPath,
+                    `\n${coverageResponsiveScript.trim()}\n`,
+                    "utf8"
+                )
+            ]);
+        }
+
         return {
             target,
-            htmlFiles: await prepareReportDirectory(targetDir)
+            htmlFiles: await prepareReportDirectory(targetDir, {coverage: target === "test-coverage"})
         };
     }));
 

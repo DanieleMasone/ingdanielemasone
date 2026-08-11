@@ -117,6 +117,6 @@ Generated developer documentation and coverage are published for transparency, b
 
 ## License
 
-Released under the MIT License. See [LICENSE](LICENSE).
+The MIT License applies to the repository source code. Portfolio content and personal or third-party assets remain subject to their respective rights and permissions. See [LICENSE](LICENSE).
 
 Copyright (c) 2026 Daniele Masone.

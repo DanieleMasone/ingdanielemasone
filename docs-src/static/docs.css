@@ -1,0 +1,8 @@
+@media only screen and (max-width: 680px) {
+  /* Reserve the fixed Docdash menu trigger area so page titles cannot sit beneath it. */
+  #main article > h1:first-child,
+  #main > h1.page-title {
+    box-sizing: border-box;
+    padding-right: 4.5rem;
+  }
+}

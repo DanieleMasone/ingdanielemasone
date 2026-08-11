@@ -1,0 +1,18 @@
+@media only screen and (max-width: 640px) {
+  .portfolio-coverage-scroll {
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .portfolio-coverage-scroll table.coverage-summary {
+    min-width: 100%;
+    width: max-content;
+  }
+
+  .portfolio-coverage-scroll:focus-visible {
+    outline: 2px solid #1f6feb;
+    outline-offset: 2px;
+  }
+}

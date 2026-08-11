@@ -37,6 +37,9 @@ describe("documentation source configuration", () => {
         expect(config.opts.readme).toBe("docs-src/source-docs-home.md");
         expect(config.opts.tutorials).toBe("docs-src/tutorials");
         expect(config.opts.template).toBe("node_modules/docdash");
+        expect(config.templates.default.staticFiles.include).toContain("docs-src/static");
+        expect(config.docdash.scripts).toContain("docs.css");
+        expect(readText("docs-src/static/docs.css")).toContain("padding-right: 4.5rem");
     });
 
     test("keeps the expected tutorial hierarchy and source files", () => {

@@ -108,7 +108,7 @@ Coverage uses Vitest with the V8 provider:
 npm run coverage
 ```
 
-The HTML report and machine-readable summary are generated in `coverage/`. `npm run build:all` publishes them into `dist/test-coverage/`, applies `noindex, nofollow` to the published HTML, and generates the Shields endpoint payload used by the README badge.
+The HTML report and machine-readable summary are generated in `coverage/`. `npm run build:all` publishes them into `dist/test-coverage/`, applies `noindex, nofollow` to the published HTML, confines wide coverage tables to keyboard-focusable horizontal scrollers on mobile, and generates the Shields endpoint payload used by the README badge.
 
 There is no configured coverage threshold. Use the report to catch meaningful gaps, not as a reason to add low-value assertions.
 

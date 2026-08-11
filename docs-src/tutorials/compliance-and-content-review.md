@@ -42,7 +42,7 @@ Primary references:
 | Hosting requests | GitHub Pages | Request and visitor IP data; GitHub states IPs are logged for security | Every published resource; GitHub controls retention | Covered by GitHub's own notice |
 | Correspondence | Email/social provider and recipient | Address, account, and message chosen by the visitor | Only after following a link and sending a message | Owner confirmation and legal review |
 
-No application analytics, advertising, pixels, fingerprinting, telemetry, remote fonts, embedded media, iframes, API calls, forms, authentication, IndexedDB, Cache API, or service worker are present. External services are contacted only after a user follows an external link. Language flags are rendered locally and no longer contact Flagcdn.
+No application analytics, advertising, pixels, fingerprinting, telemetry, remote fonts, embedded media, iframes, API calls, forms, authentication, IndexedDB, Cache API, or service worker are present. External services are contacted only after a user follows an external link. The language selector uses native-language text labels and makes no remote flag request.
 
 ## Accessibility baseline
 

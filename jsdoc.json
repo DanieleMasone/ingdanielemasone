@@ -19,7 +19,13 @@
     "cleverLinks": true,
     "monospaceLinks": true,
     "default": {
-      "outputSourceFiles": true
+      "outputSourceFiles": true,
+      "staticFiles": {
+        "include": ["docs-src/static"]
+      }
     }
+  },
+  "docdash": {
+    "scripts": ["docs.css"]
   }
 }

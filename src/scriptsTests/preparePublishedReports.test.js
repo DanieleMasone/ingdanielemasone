@@ -4,6 +4,7 @@ import {beforeEach, describe, expect, test, vi} from "vitest";
 vi.mock("node:fs/promises", () => ({
     default: {
         access: vi.fn(),
+        appendFile: vi.fn(),
         cp: vi.fn(),
         readdir: vi.fn(),
         readFile: vi.fn(),
@@ -15,6 +16,7 @@ vi.mock("node:fs/promises", () => ({
 import {
     addNoindexRobotsMeta,
     createCoverageBadge,
+    makeCoverageTablesScrollable,
     preparePublishedReports
 } from "../../scripts/prepare-published-reports.mjs";
 
@@ -27,6 +29,7 @@ describe("prepare-published-reports", () => {
     beforeEach(() => {
         vi.clearAllMocks();
         fs.access.mockResolvedValue(undefined);
+        fs.appendFile.mockResolvedValue(undefined);
         fs.cp.mockResolvedValue(undefined);
         fs.rm.mockResolvedValue(undefined);
     });
@@ -93,6 +96,20 @@ describe("prepare-published-reports", () => {
         expect(() => createCoverageBadge({total: {}})).toThrow(/total\.lines\.pct/);
     });
 
+    test("makes generated coverage tables keyboard-scrollable", () => {
+        const html = [
+            '<table class="coverage-summary"><tbody></tbody></table>',
+            "<pre><table class='coverage'><tbody></tbody></table></pre>"
+        ].join("");
+
+        const result = makeCoverageTablesScrollable(html);
+
+        expect(result.match(/class="portfolio-coverage-scroll"/g)).toHaveLength(2);
+        expect(result.match(/tabindex="0"/g)).toHaveLength(2);
+        expect(result.match(/aria-label="Scrollable coverage data"/g)).toHaveLength(2);
+        expect(result).toContain('<div class="portfolio-coverage-scroll" role="region"');
+    });
+
     test("adds noindex metadata to html files and publishes docs and coverage into dist", async () => {
         fs.readdir.mockImplementation(async (directory) => {
             const normalizedPath = directory.toString().replaceAll("\\", "/");
@@ -128,6 +145,14 @@ describe("prepare-published-reports", () => {
                 return JSON.stringify({total: {lines: {pct: 97.56}}});
             }
 
+            if (normalizedPath.endsWith("/coverage-responsive.css")) {
+                return "table.coverage-summary { display: block; overflow-x: auto; }";
+            }
+
+            if (normalizedPath.endsWith("/coverage-responsive.js")) {
+                return 'document.addEventListener("keydown", () => {});';
+            }
+
             return "<html><head><title>Report</title></head><body></body></html>";
         });
 
@@ -140,8 +165,19 @@ describe("prepare-published-reports", () => {
             ],
             coverage: 97.56
         });
-        expect(fs.readFile).toHaveBeenCalledTimes(5);
+        expect(fs.readFile).toHaveBeenCalledTimes(7);
         expect(fs.writeFile).toHaveBeenCalledTimes(5);
+
+        expect(fs.appendFile).toHaveBeenCalledWith(
+            expect.stringMatching(/dist[/\\]test-coverage[/\\]base\.css$/),
+            expect.stringContaining("overflow-x: auto"),
+            "utf8"
+        );
+        expect(fs.appendFile).toHaveBeenCalledWith(
+            expect.stringMatching(/dist[/\\]test-coverage[/\\]block-navigation\.js$/),
+            expect.stringContaining('addEventListener("keydown"'),
+            "utf8"
+        );
 
         expect(fs.writeFile).toHaveBeenCalledWith(
             expect.stringMatching(/docs[/\\]index\.html$/),
