@@ -24,8 +24,6 @@
  * @property {string} filterSidebar - Width-constrained sticky desktop sidebar wrapper for route-level filters.
  * @property {string} horizontalFilterBar - Horizontal filter controls with compact scrolling on small screens.
  * @property {string} sidebarFilterBar - Sidebar filter controls that switch from horizontal scrolling to a vertical desktop rail.
- * @property {string} timelineList - Semantic vertical timeline list with a decorative progress rail.
- * @property {string} timelineItem - Timeline item wrapper that reserves space for the rail marker.
  * @property {string} focusList - Responsive list layout for compact portfolio focus items.
  * @property {string} focusMarker - Decorative marker aligned with the first text line of portfolio focus items.
  * @property {string} tradingIntroLayout - Responsive trading intro layout with CTA actions beside the copy on desktop.
@@ -64,9 +62,6 @@ export const layoutClasses = {
       "flex flex-row gap-2 overflow-x-auto pb-2 scrollbar-hide sm:flex-wrap sm:justify-center sm:overflow-visible sm:pb-0",
   sidebarFilterBar:
       "flex min-w-0 max-w-full flex-row gap-2 overflow-x-auto snap-x pb-2 scrollbar-hide md:flex-col md:overflow-visible md:snap-none md:pb-0",
-  timelineList:
-      "relative flex flex-col gap-4 before:absolute before:bottom-4 before:left-3 before:top-4 before:w-px before:bg-gray-200 dark:before:bg-gray-700 sm:before:left-4",
-  timelineItem: "relative pl-8 sm:pl-10",
   focusList:
       "grid grid-cols-1 gap-2 text-left sm:grid-cols-3 md:flex md:flex-wrap md:justify-start",
   focusMarker: "mt-[0.42em] h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500 dark:bg-blue-300 md:mt-0",
@@ -98,11 +93,9 @@ export const layoutClasses = {
  * @property {string} insetText - Compact inset surface for descriptive text inside cards.
  * @property {string} metaBadge - Compact badge for card metadata such as category, period, or publication state.
  * @property {string} mutedMetaBadge - Compact neutral badge for secondary card metadata.
- * @property {string} statusBadgeBase - Base status badge for current-role timeline states.
- * @property {string} statusBadgeOngoing - Current-role timeline badge color.
- * @property {string} timelineMarker - Decorative marker used by the Experience page timeline.
- * @property {string} timelineMarkerActive - Highlighted marker for the current role in the Experience timeline.
- * @property {string} activeTimelineCard - Current-role card accent used in the Experience timeline.
+ * @property {string} statusBadgeBase - Base status badge for active collection states.
+ * @property {string} statusBadgeOngoing - Current-item status badge color.
+ * @property {string} activeTimelineCard - Active card accent used by Experience and Projects.
  * @property {string} credentialIcon - Compact icon surface used by certification cards.
  * @property {string} initialAvatar - Local initials avatar used when a real portrait is not available.
  * @property {string} mediaFrame - Responsive 16:9 media surface for course cover thumbnails.
@@ -129,10 +122,6 @@ export const surfaceClasses = {
       "inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold",
   statusBadgeOngoing:
       "bg-sky-50 text-sky-700 dark:bg-sky-500/15 dark:text-sky-200",
-  timelineMarker:
-      "absolute left-1.5 top-5 h-3 w-3 rounded-full border-2 border-white bg-gray-300 shadow-sm dark:border-gray-900 dark:bg-gray-600 sm:left-2.5",
-  timelineMarkerActive:
-      "bg-sky-500 ring-4 ring-sky-100 dark:bg-sky-300 dark:ring-sky-400/20",
   activeTimelineCard:
       "border-sky-200/80 bg-sky-50/70 dark:border-sky-400/30 dark:bg-sky-500/10",
   credentialIcon:

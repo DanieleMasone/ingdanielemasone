@@ -1,9 +1,9 @@
 import React from "react";
 import {fireEvent, render, screen, within} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import Experience, {
     formatExperiencePeriod,
     getExperienceStatus,
-    getExperienceYears,
     sortExperiencesByRecency
 } from "./Experience";
 import {MemoryRouter} from "react-router-dom";
@@ -48,13 +48,23 @@ vi.mock("react-i18next", () => ({
                 exp_teoresi_description: "Java work",
                 exp_hpe_role: "Older Engineer",
                 exp_hpe_description: "Older work",
+                exp_digiCamere_role: "Systems Engineer",
+                exp_digiCamere_description: "Systems work",
+                exp_piksel_role: "Platform Engineer",
+                exp_piksel_description: "Platform work",
+                exp_coach_role: "Private Tutor",
+                exp_coach_description: "Technical mentoring",
+                exp_polimi_role: "Computer Engineering Degree",
+                exp_polimi_description: "University education",
+                exp_salesiani_role: "Computer Science Student",
+                exp_salesiani_description: "Technical education",
                 experience_title: "Professional Experience",
                 experience_intro: "Career timeline",
                 "collection.range_summary": `${options.start}–${options.end} of ${options.total} ${options.label}`,
                 "collection.range_announcement": `Showing items ${options.start} to ${options.end} of ${options.total} ${options.label}.`,
-                experience_collection_label_one: "timeline entry",
-                experience_collection_label_many: "timeline entries",
-                experience_timeline_label: "Professional timeline",
+                experience_collection_label_one: "experience",
+                experience_collection_label_many: "experiences",
+                experience_timeline_label: "Professional experience in chronological order",
                 experience_empty: "No experience entries available.",
                 experience_present: "Present",
                 show_technologies: "Show technologies",
@@ -100,37 +110,72 @@ const mockExperiences = [
     {
         role: "exp_rgi_role",
         company: "RGI",
-        period: "2020 - 2022",
+        period: "09/2021 - 12/2025",
         description: "exp_rgi_description",
         tech: "Angular",
     },
     {
         role: "exp_iol_role",
         company: "IOL",
-        period: "2018 - 2020",
+        period: "05/2019 - 09/2021",
         description: "exp_iol_description",
         tech: "React",
     },
     {
         role: "exp_tecnavia_role",
         company: "Tecnavia",
-        period: "2017 - 2018",
+        period: "07/2018 - 05/2019",
         description: "exp_tecnavia_description",
         tech: "React Native",
     },
     {
         role: "exp_teoresi_role",
         company: "Teoresi",
-        period: "2016 - 2017",
+        period: "10/2017 - 07/2018",
         description: "exp_teoresi_description",
         tech: "Java",
     },
     {
         role: "exp_hpe_role",
         company: "HPE",
-        period: "2014 - 2016",
+        period: "09/2016 - 10/2017",
         description: "exp_hpe_description",
         tech: "Java",
+    },
+    {
+        role: "exp_digiCamere_role",
+        company: "DigiCamere",
+        period: "06/2016 - 09/2016",
+        description: "exp_digiCamere_description",
+        tech: "Linux",
+    },
+    {
+        role: "exp_piksel_role",
+        company: "Piksel",
+        period: "10/2015 - 04/2016",
+        description: "exp_piksel_description",
+        tech: "Tomcat",
+    },
+    {
+        role: "exp_coach_role",
+        company: "-",
+        period: "01/2009 - 10/2015",
+        description: "exp_coach_description",
+        tech: "C++",
+    },
+    {
+        role: "exp_polimi_role",
+        company: "Politecnico di Milano",
+        period: "2010 - 2014",
+        description: "exp_polimi_description",
+        tech: "Java",
+    },
+    {
+        role: "exp_salesiani_role",
+        company: "Salesiani Sesto San Giovanni",
+        period: "2005 - 2010",
+        description: "exp_salesiani_description",
+        tech: "C",
     },
 ];
 
@@ -169,7 +214,7 @@ describe("Experience component", () => {
         ).toBeInTheDocument();
     });
 
-    test("renders compact summary and first timeline page", async () => {
+    test("renders compact summary and first chronological page", async () => {
         vi.spyOn(service, "getExperiences")
             .mockResolvedValueOnce(mockExperiences);
 
@@ -178,14 +223,34 @@ describe("Experience component", () => {
         await screen.findByRole("heading", {name: /professional experience/i});
 
         expect(screen.getByText("Career timeline")).toBeInTheDocument();
-        expect(screen.getByText("1–5 of 6 timeline entries")).toBeInTheDocument();
+        expect(screen.getByText("1–7 of 11 experiences")).toBeInTheDocument();
         expect(screen.getAllByTestId("pagination-info")).toHaveLength(1);
         expect(screen.getByTestId("pagination-info")).toHaveTextContent("1 / 2");
-        expect(screen.getAllByTestId("experience-card")).toHaveLength(5);
-        expect(screen.getByRole("list", {name: "Professional timeline"})).toBeInTheDocument();
+        expect(screen.getAllByTestId("experience-card")).toHaveLength(7);
+        expect(screen.getByRole("list", {
+            name: "Professional experience in chronological order"
+        })).toBeInTheDocument();
     });
 
-    test("sorts visible timeline cards from newest to oldest", async () => {
+    test("uses a responsive chronological grid and features the current role", async () => {
+        vi.spyOn(service, "getExperiences")
+            .mockResolvedValueOnce(mockExperiences);
+
+        renderPage();
+
+        const list = await screen.findByRole("list", {
+            name: "Professional experience in chronological order"
+        });
+        const cards = screen.getAllByTestId("experience-card");
+
+        expect(list).toHaveClass("grid", "grid-cols-1", "md:grid-cols-2");
+        expect(cards[0].closest("li")).toHaveClass("md:col-span-2");
+        expect(cards[0]).toHaveClass("min-w-0", "self-start");
+        expect(cards[1].closest("li")).not.toHaveClass("md:col-span-2");
+        expect(cards[0]).not.toHaveClass("h-full");
+    });
+
+    test("sorts visible experience cards from newest to oldest", async () => {
         vi.spyOn(service, "getExperiences")
             .mockResolvedValueOnce([...mockExperiences].reverse());
 
@@ -199,11 +264,13 @@ describe("Experience component", () => {
             "Developer",
             "Engineer",
             "Mobile Engineer",
-            "Java Engineer"
+            "Java Engineer",
+            "Older Engineer",
+            "Systems Engineer"
         ]);
     });
 
-    test("paginates older timeline entries", async () => {
+    test("paginates older experience entries", async () => {
         vi.spyOn(service, "getExperiences")
             .mockResolvedValueOnce(mockExperiences);
 
@@ -212,10 +279,16 @@ describe("Experience component", () => {
         const nextButtons = await screen.findAllByRole("button", {name: "Next"});
         fireEvent.click(nextButtons[0]);
 
-        expect(screen.getByText("6–6 of 6 timeline entries")).toBeInTheDocument();
+        expect(screen.getByText("8–11 of 11 experiences")).toBeInTheDocument();
         expect(screen.getByTestId("pagination-info")).toHaveTextContent("2 / 2");
-        expect(screen.getAllByTestId("experience-card")).toHaveLength(1);
-        expect(screen.getByRole("heading", {name: "Older Engineer"})).toBeInTheDocument();
+        expect(screen.getAllByTestId("experience-card")).toHaveLength(4);
+        expect(screen.getAllByRole("heading", {level: 2}).map((heading) => heading.textContent))
+            .toEqual([
+                "Platform Engineer",
+                "Private Tutor",
+                "Computer Engineering Degree",
+                "Computer Science Student"
+            ]);
     });
 
     test("renders current-role badge and localized current period", async () => {
@@ -227,7 +300,24 @@ describe("Experience component", () => {
         await screen.findByText("Current role");
 
         expect(screen.getByText("2025 - Present")).toBeInTheDocument();
-        expect(screen.getAllByRole("button", {name: "Show technologies"})).toHaveLength(5);
+        expect(screen.getAllByRole("button", {name: "Show technologies"})).toHaveLength(7);
+    });
+
+    test("opens a technology disclosure from the keyboard", async () => {
+        const user = userEvent.setup();
+        vi.spyOn(service, "getExperiences")
+            .mockResolvedValueOnce(mockExperiences);
+
+        renderPage();
+
+        const currentCard = (await screen.findAllByTestId("experience-card"))[0];
+        const disclosure = within(currentCard).getByRole("button", {name: "Show technologies"});
+
+        disclosure.focus();
+        await user.keyboard("{Enter}");
+
+        expect(disclosure).toHaveAttribute("aria-expanded", "true");
+        expect(within(currentCard).getByText("Java")).toBeInTheDocument();
     });
 
     test("renders the current Intesa experience as semantic paragraphs and focus items", async () => {
@@ -318,14 +408,6 @@ describe("Experience component", () => {
 describe("Experience helpers", () => {
 
     const t = (key) => key;
-
-    test("expands full and ongoing year ranges", () => {
-        expect(getExperienceYears("2020 - 2022", 2026))
-            .toEqual(["2020", "2021", "2022"]);
-
-        expect(getExperienceYears("12/2025 - Present", 2026))
-            .toEqual(["2025", "2026"]);
-    });
 
     test("sorts experiences by recency without mutating input", () => {
         const unsorted = [mockExperiences[2], mockExperiences[1], mockExperiences[0]];

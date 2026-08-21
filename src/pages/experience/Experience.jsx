@@ -24,7 +24,7 @@ import {usePortfolioData} from "@/hooks/usePortfolioData";
 
 const YEAR_PATTERN = /\b(20\d{2}|19\d{2})\b/g;
 const PRESENT_PATTERN = /\bpresent\b/i;
-const ITEMS_PER_PAGE = 5;
+const ITEMS_PER_PAGE = 7;
 
 /**
  * Parses the year boundaries from an experience period string.
@@ -50,24 +50,6 @@ const parseExperiencePeriod = (period, currentYear) => {
         end: Math.max(start, end),
         isOngoing
     };
-};
-
-/**
- * Expands a period into every calendar year covered by the experience.
- *
- * @param {string} period - Experience period containing one or two years.
- * @param {number} [currentYear=new Date().getFullYear()] - Current year used for ongoing roles.
- * @returns {string[]} Covered years in ascending order.
- */
-export const getExperienceYears = (period, currentYear = new Date().getFullYear()) => {
-    const parsedPeriod = parseExperiencePeriod(period, currentYear);
-
-    if (!parsedPeriod) return [];
-
-    return Array.from(
-        {length: parsedPeriod.end - parsedPeriod.start + 1},
-        (_, index) => String(parsedPeriod.start + index)
-    );
 };
 
 /**
@@ -120,16 +102,17 @@ export const getExperienceStatus = (period, t, currentYear = new Date().getFullY
 };
 
 /**
- * Experience component renders a paginated professional timeline.
+ * Experience component renders a paginated chronological career collection.
  *
- * The page favors portfolio scanning: it presents recent roles first, keeps
- * the page height controlled with pagination, and lets each entry expose role,
- * company, period, description, and a collapsible technology stack.
+ * The page presents recent roles first, features the current role across the
+ * desktop content width, and uses a two-column collection for earlier roles.
+ * Its ordered-list semantics preserve career progression while pagination and
+ * expandable descriptions keep the page practical on narrow viewports.
  *
  * Uses i18next for translations.
  *
  * @component
- * @returns {JSX.Element} The rendered experience section with filtering and animated transitions.
+ * @returns {JSX.Element} The rendered chronological experience collection.
  */
 export default function Experience() {
     const {t} = useTranslation();
@@ -180,7 +163,10 @@ export default function Experience() {
                             itemLabelPlural={t("experience_collection_label_many")}
                         />
 
-                        <ol className={layoutClasses.timelineList} aria-label={t("experience_timeline_label")}>
+                        <ol
+                            className={clsx(layoutClasses.pageGrid, "grid-cols-1 md:grid-cols-2")}
+                            aria-label={t("experience_timeline_label")}
+                        >
                             {displayedExperiences.map((exp) => {
                                 const role = t(exp.role);
                                 const titleId = `experience-${exp.role.replace(/\W+/g, "-")}`;
@@ -191,24 +177,25 @@ export default function Experience() {
                                     : null;
 
                                 return (
-                                    <li key={exp.role} className={layoutClasses.timelineItem}>
-                                        <span
-                                            aria-hidden="true"
-                                            className={clsx(
-                                                surfaceClasses.timelineMarker,
-                                                isOngoing && surfaceClasses.timelineMarkerActive
-                                            )}
-                                        />
-
+                                    <li
+                                        key={exp.role}
+                                        className={clsx(
+                                            "min-w-0 self-start",
+                                            isOngoing && "md:col-span-2"
+                                        )}
+                                    >
                                         <Card
                                             data-testid="experience-card"
                                             aria-labelledby={titleId}
-                                            className={clsx("h-full", isOngoing && surfaceClasses.activeTimelineCard)}
+                                            className={clsx(
+                                                "min-w-0 self-start",
+                                                isOngoing && surfaceClasses.activeTimelineCard
+                                            )}
                                         >
-                                            <CardContent>
+                                            <CardContent className="min-w-0">
                                                 <header
                                                     className="flex flex-col gap-3 border-b border-gray-200/60 pb-3 dark:border-gray-700/60">
-                                                    <div className="flex flex-wrap items-center gap-2">
+                                                    <div className="flex min-w-0 flex-wrap items-center gap-2">
                                                         {status && (
                                                             <span
                                                                 className={clsx(
@@ -220,37 +207,46 @@ export default function Experience() {
                                                             </span>
                                                         )}
 
+                                                        {exp.company && exp.company !== "-" && (
+                                                            <span
+                                                                className={clsx(
+                                                                    surfaceClasses.metaBadge,
+                                                                    "min-w-0 max-w-full gap-1.5"
+                                                                )}
+                                                            >
+                                                                <Building2 className="h-3.5 w-3.5 shrink-0"
+                                                                           aria-hidden="true"/>
+                                                                <span className="min-w-0 break-words">{exp.company}</span>
+                                                            </span>
+                                                        )}
+
                                                         <span
-                                                            className={clsx(surfaceClasses.mutedMetaBadge, "gap-1.5")}>
-                                                            <CalendarDays className="h-3.5 w-3.5" aria-hidden="true"/>
-                                                            <span>{formatExperiencePeriod(exp.period, t)}</span>
+                                                            className={clsx(
+                                                                surfaceClasses.mutedMetaBadge,
+                                                                "min-w-0 max-w-full gap-1.5"
+                                                            )}>
+                                                            <CalendarDays className="h-3.5 w-3.5 shrink-0"
+                                                                          aria-hidden="true"/>
+                                                            <span className="min-w-0 break-words">
+                                                                {formatExperiencePeriod(exp.period, t)}
+                                                            </span>
                                                         </span>
                                                     </div>
 
-                                                    <div className="flex flex-col gap-2">
-                                                        <h2
-                                                            id={titleId}
-                                                            className="text-lg font-semibold leading-snug text-gray-900 dark:text-gray-100 md:text-xl"
-                                                        >
-                                                            {role}
-                                                        </h2>
-
-                                                        {exp.company && exp.company !== "-" && (
-                                                            <p className="flex items-center gap-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                                                                <Building2 className="h-4 w-4 shrink-0"
-                                                                           aria-hidden="true"/>
-                                                                <span>{exp.company}</span>
-                                                            </p>
-                                                        )}
-                                                    </div>
+                                                    <h2
+                                                        id={titleId}
+                                                        className="break-words text-lg font-semibold leading-snug text-gray-900 dark:text-gray-100 md:text-xl"
+                                                    >
+                                                        {role}
+                                                    </h2>
                                                 </header>
 
                                                 {exp.description && (
                                                     <StructuredDescription
                                                         description={description}
                                                         titleId={titleId}
-                                                        maxLines={isOngoing ? 9 : 4}
-                                                        className="text-left text-sm leading-relaxed text-gray-700 dark:text-gray-300"
+                                                        maxLines={4}
+                                                        className="max-w-4xl text-left text-sm leading-relaxed text-gray-700 dark:text-gray-300"
                                                     />
                                                 )}
 

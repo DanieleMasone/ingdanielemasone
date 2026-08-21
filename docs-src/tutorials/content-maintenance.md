@@ -148,10 +148,10 @@ Check:
 
 - period format;
 - current role ordering;
-- timeline density;
+- chronological collection density and featured-current-role layout;
 - long translated descriptions;
 - paragraph and section-list semantics for structured descriptions;
-- accessibility of status badges and timeline structure.
+- accessibility of status badges and ordered career-history structure.
 
 For long translations, verify expand/collapse after changing language and at
 mobile and desktop widths. `ExpandableText` remeasures content after content,
