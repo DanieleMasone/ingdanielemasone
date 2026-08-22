@@ -107,4 +107,28 @@ describe("DarkModeToggle component", () => {
         fireEvent.click(button);
         expect(button).toHaveAttribute("aria-label", "Switch to dark mode");
     });
+
+    it("keeps multiple responsive toggle instances synchronized", () => {
+        render(
+            <>
+                <DarkModeToggle/>
+                <DarkModeToggle/>
+            </>
+        );
+        const [desktopToggle, mobileToggle] = screen.getAllByRole("button");
+
+        fireEvent.click(mobileToggle);
+
+        expect(document.documentElement).toHaveClass("dark");
+        expect(desktopToggle).toHaveAccessibleName("Switch to light mode");
+        expect(desktopToggle).toHaveAttribute("aria-pressed", "true");
+        expect(mobileToggle).toHaveAccessibleName("Switch to light mode");
+
+        fireEvent.click(desktopToggle);
+
+        expect(document.documentElement).not.toHaveClass("dark");
+        expect(desktopToggle).toHaveAccessibleName("Switch to dark mode");
+        expect(mobileToggle).toHaveAccessibleName("Switch to dark mode");
+        expect(mobileToggle).toHaveAttribute("aria-pressed", "false");
+    });
 });

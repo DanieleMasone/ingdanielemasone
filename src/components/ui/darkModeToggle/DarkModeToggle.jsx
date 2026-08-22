@@ -5,6 +5,7 @@ import clsx from "clsx";
 import {interactiveClasses} from "@/styles/commonClasses";
 
 const THEME_STORAGE_KEY = "theme";
+const THEME_CHANGE_EVENT = "portfolio-theme-change";
 
 /**
  * Reads the persisted theme preference when browser storage is available.
@@ -52,7 +53,8 @@ function getInitialDarkMode() {
  *
  * It uses a saved preference before the operating-system colour scheme, writes
  * browser storage only after an explicit toggle action, updates the root
- * `dark` class, and exposes the current pressed state to assistive technologies.
+ * `dark` class, synchronizes the desktop and mobile toggle instances, and
+ * exposes the current pressed state to assistive technologies.
  *
  * @component
  * @module components/ui/darkModeToggle/DarkModeToggle
@@ -72,11 +74,26 @@ export function DarkModeToggle() {
         }
     }, [darkMode]);
 
+    useEffect(() => {
+        const syncTheme = (event) => {
+            if (typeof event.detail?.darkMode === "boolean") {
+                setDarkMode(event.detail.darkMode);
+            }
+        };
+
+        window.addEventListener(THEME_CHANGE_EVENT, syncTheme);
+
+        return () => window.removeEventListener(THEME_CHANGE_EVENT, syncTheme);
+    }, []);
+
     const handleToggle = () => {
-        const nextDarkMode = !darkMode;
+        const nextDarkMode = !window.document.documentElement.classList.contains("dark");
 
         setStoredTheme(nextDarkMode ? "dark" : "light");
         setDarkMode(nextDarkMode);
+        window.dispatchEvent(new CustomEvent(THEME_CHANGE_EVENT, {
+            detail: {darkMode: nextDarkMode}
+        }));
     };
 
     return (

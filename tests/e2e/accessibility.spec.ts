@@ -102,6 +102,28 @@ test.describe('mobile keyboard navigation', () => {
   });
 });
 
+test('theme control remains synchronized across responsive header layouts', async ({page}) => {
+  await page.setViewportSize({width: 390, height: 844});
+  await page.goto('experience/');
+
+  await page.getByRole('button', {name: 'Apri menu di navigazione'}).click();
+  await page.getByRole('button', {name: 'Passa alla modalità scura'}).click();
+
+  await expect(page.locator('html')).toHaveClass(/dark/);
+  await page.getByRole('button', {name: 'Chiudi menu di navigazione'}).click();
+
+  await page.setViewportSize({width: 768, height: 1024});
+  const desktopThemeToggle = page.getByRole('button', {name: 'Passa alla modalità chiara'});
+
+  await expect(desktopThemeToggle).toHaveAttribute('aria-pressed', 'true');
+  await desktopThemeToggle.click();
+  await expect(page.locator('html')).not.toHaveClass(/dark/);
+  const updatedDesktopThemeToggle = page.getByRole('button', {
+    name: 'Passa alla modalità scura',
+  });
+  await expect(updatedDesktopThemeToggle).toHaveAttribute('aria-pressed', 'false');
+});
+
 test('trading chart exposes a non-visual data table fallback', async ({page}) => {
   await page.goto('trading/');
 
