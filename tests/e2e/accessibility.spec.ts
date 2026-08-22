@@ -178,6 +178,43 @@ test('trading chart exposes a non-visual data table fallback', async ({page}) =>
   await expect(page.getByRole('table', {name: /Performance - Vista Mensile/i})).toBeAttached();
 });
 
+test('trading year selector stays visually connected to the monthly summary on desktop', async ({page}) => {
+  await page.setViewportSize({width: 1366, height: 768});
+  await page.goto('trading/');
+
+  const periodSelector = page.getByRole('group', {name: 'Periodo'});
+  const selectedYear = periodSelector.getByRole('button', {name: '2026'});
+  await expect(periodSelector).toBeVisible();
+  await expect(selectedYear).toHaveAttribute('aria-pressed', 'true');
+
+  const selectorBox = await periodSelector.boundingBox();
+  const monthlySummaryBox = await page.getByText('Gen', {exact: true}).evaluateAll((labels) => {
+    const visibleLabel = labels.find((label) => {
+      const {height, width} = label.getBoundingClientRect();
+      return height > 0 && width > 0;
+    });
+    const summary = visibleLabel?.parentElement?.parentElement;
+    const box = summary?.getBoundingClientRect();
+
+    return box ? {x: box.x, y: box.y, width: box.width, height: box.height} : null;
+  });
+
+  expect(selectorBox).not.toBeNull();
+  expect(monthlySummaryBox).not.toBeNull();
+  const verticalGap = monthlySummaryBox!.y - (selectorBox!.y + selectorBox!.height);
+  expect(verticalGap).toBeGreaterThanOrEqual(12);
+  expect(verticalGap).toBeLessThanOrEqual(24);
+
+  await periodSelector.getByRole('button', {name: '2025'}).click();
+  await expect(periodSelector.getByRole('button', {name: '2025'}))
+    .toHaveAttribute('aria-pressed', 'true');
+
+  const overflow = await page.evaluate(() => (
+    document.documentElement.scrollWidth - document.documentElement.clientWidth
+  ));
+  expect(overflow).toBeLessThanOrEqual(1);
+});
+
 test('structured experience and project descriptions expand with semantic lists', async ({page}) => {
   await page.goto('experience/');
 

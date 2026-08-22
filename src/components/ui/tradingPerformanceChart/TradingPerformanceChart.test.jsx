@@ -98,9 +98,25 @@ describe('TradingPerformanceChart', () => {
         const viewSelector = screen.getByRole('group', {name: /view selector/i});
         const monthlyButton = within(viewSelector).getByRole('button', {name: /monthly/i});
         const annualButton = within(viewSelector).getByRole('button', {name: /annual/i});
+        const periodSelector = screen.getByRole('group', {name: /period/i});
 
         expect(monthlyButton).toHaveAttribute('aria-pressed', 'true');
         expect(annualButton).toHaveAttribute('aria-pressed', 'false');
+        expect(within(periodSelector).getAllByRole('button')).toHaveLength(5);
+        expect(within(periodSelector).getByRole('button', {name: '2026'}))
+            .toHaveAttribute('aria-pressed', 'true');
+    });
+
+    test('updates the selected year and its monthly summary', () => {
+        const periodSelector = screen.getByRole('group', {name: /period/i});
+        const latestYear = within(periodSelector).getByRole('button', {name: '2026'});
+        const previousYear = within(periodSelector).getByRole('button', {name: '2025'});
+
+        fireEvent.click(previousYear);
+
+        expect(previousYear).toHaveAttribute('aria-pressed', 'true');
+        expect(latestYear).toHaveAttribute('aria-pressed', 'false');
+        expect(screen.getAllByText('+1,87%').length).toBeGreaterThan(0);
     });
 
     test('uses text labels rather than skipped heading levels for summary periods', () => {

@@ -92,7 +92,9 @@ const getCumulativeReturns = (returns) => {
  * and negative bars, and moves below the chart on small screens to preserve readable
  * axis spacing.
  * Monthly and annual summary periods are text labels rather than headings, so
- * the page keeps a continuous `h1` to `h2` hierarchy.
+ * the page keeps a continuous `h1` to `h2` hierarchy. The monthly year buttons
+ * form a localized accessible group, with compact desktop spacing between the
+ * selector and its return cards.
  *
  * Translations are provided by `react-i18next`.
  *
@@ -385,23 +387,23 @@ export function TradingPerformanceChart({
         if (isMonthly) {
             return (
                 <div className="space-y-4">
-                    <div className="mb-4">
-                        <div
-                            className="relative flex flex-row gap-2 overflow-x-auto px-2 pb-3 snap-x snap-mandatory sm:flex-wrap sm:justify-center sm:gap-3 sm:overflow-visible sm:px-0 sm:pb-0 sm:snap-none"
-                        >
-                            {[...availableYears].reverse().map((year) => (
-                                <div key={year} className="shrink-0 snap-start sm:shrink">
-                                    <SelectableButton
-                                        label={year}
-                                        isSelected={selectedYear === String(year)}
-                                        onClick={() => setSelectedYear(String(year))}
-                                    />
-                                </div>
-                            ))}
-                        </div>
+                    <div
+                        className="relative flex flex-row gap-2 overflow-x-auto px-2 pb-3 snap-x snap-mandatory sm:flex-wrap sm:justify-center sm:gap-3 sm:overflow-visible sm:px-0 sm:pb-0 sm:snap-none"
+                        role="group"
+                        aria-label={t('performance_period_label')}
+                    >
+                        {[...availableYears].reverse().map((year) => (
+                            <div key={year} className="shrink-0 snap-start sm:shrink">
+                                <SelectableButton
+                                    label={year}
+                                    isSelected={selectedYear === String(year)}
+                                    onClick={() => setSelectedYear(String(year))}
+                                />
+                            </div>
+                        ))}
                     </div>
 
-                    <div className="p-4">
+                    <div className="p-4 sm:pt-0">
                         <div className="hidden grid-cols-12 gap-3 sm:grid">
                             {selectedYearReturns.map((value, index) => {
                                 const monthLabel = months[index] || `M${index + 1}`;
