@@ -91,6 +91,8 @@ const getCumulativeReturns = (returns) => {
  * filled markers, keeps cumulative returns blue to distinguish them from positive
  * and negative bars, and moves below the chart on small screens to preserve readable
  * axis spacing.
+ * Monthly and annual summary periods are text labels rather than headings, so
+ * the page keeps a continuous `h1` to `h2` hierarchy.
  *
  * Translations are provided by `react-i18next`.
  *
@@ -406,9 +408,9 @@ export function TradingPerformanceChart({
 
                                 return (
                                     <div key={monthLabel} className={getReturnCardClass(value)}>
-                                        <h4 className="mb-1 text-center text-sm font-bold text-gray-900 dark:text-gray-100">
+                                        <p className="mb-1 text-center text-sm font-bold text-gray-900 dark:text-gray-100">
                                             {monthLabel}
-                                        </h4>
+                                        </p>
                                         <p className={clsx(getReturnTextClass(value), "text-xs")}>
                                             {t("performance_return_label")}
                                         </p>
@@ -428,9 +430,9 @@ export function TradingPerformanceChart({
                                     return (
                                         <div key={monthLabel}
                                              className={clsx(getReturnCardClass(value), "w-36 shrink-0")}>
-                                            <h4 className="mb-1 text-center text-sm font-bold text-gray-900 dark:text-gray-100">
+                                            <p className="mb-1 text-center text-sm font-bold text-gray-900 dark:text-gray-100">
                                                 {monthLabel}
-                                            </h4>
+                                            </p>
                                             <p className={clsx(getReturnTextClass(value), "text-xs")}>
                                                 {t("performance_return_label")}
                                             </p>
@@ -455,9 +457,9 @@ export function TradingPerformanceChart({
 
                         return (
                             <div key={year} className={clsx(getReturnCardClass(value), "w-36 shrink-0 sm:w-auto")}>
-                                <h4 className="mb-2 text-center text-lg font-bold text-gray-900 dark:text-gray-100">
+                                <p className="mb-2 text-center text-lg font-bold text-gray-900 dark:text-gray-100">
                                     {year}
-                                </h4>
+                                </p>
                                 <p className={clsx(getReturnTextClass(value), "text-sm")}>
                                     {t("performance_return_label")}
                                 </p>

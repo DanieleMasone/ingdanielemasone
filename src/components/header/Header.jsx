@@ -24,9 +24,13 @@ const getComparablePath = (path) => (path === "/" ? "/" : path.replace(/\/+$/g, 
  *
  * Supports desktop navigation, a mobile menu, active route states, and a
  * portfolio dropdown that closes when the route changes, the user clicks
- * outside the desktop dropdown, or presses Escape. Escape restores focus to
- * the trigger that owns the dismissed desktop or mobile navigation surface.
- * Accessible names are localized across supported languages.
+ * outside the desktop dropdown, presses Escape, or crosses the desktop
+ * breakpoint. Escape restores focus to the trigger that owns the dismissed
+ * desktop or mobile navigation surface. A breakpoint change also prevents a
+ * hidden navigation surface from reopening when the viewport returns to its
+ * previous size; when the focused header control becomes hidden, focus moves
+ * to the navigation trigger available in the new layout. Accessible names are
+ * localized across supported languages.
  *
  * @component
  * @module components/header/Header
@@ -38,9 +42,13 @@ export function Header() {
     const currentPath = getComparablePath(pathname);
     const [menuOpen, setMenuOpen] = useState(false);
     const [portfolioOpen, setPortfolioOpen] = useState(false);
+    const menuOpenRef = useRef(menuOpen);
+    const portfolioOpenRef = useRef(portfolioOpen);
     const portfolioRef = useRef(null);
     const portfolioButtonRef = useRef(null);
     const mobileMenuButtonRef = useRef(null);
+    const desktopToolbarRef = useRef(null);
+    const mobileNavigationRef = useRef(null);
 
     const navPortfolio = [
         {to: '/experience/', label: t('experience')},
@@ -54,10 +62,54 @@ export function Header() {
     const isPortfolioRoute = navPortfolio.some((item) => getComparablePath(item.to) === currentPath);
     const mobileMenuLabel = menuOpen ? t("header.close_mobile_menu") : t("header.open_mobile_menu");
 
+    menuOpenRef.current = menuOpen;
+    portfolioOpenRef.current = portfolioOpen;
+
     useEffect(() => {
         setMenuOpen(false);
         setPortfolioOpen(false);
     }, [pathname]);
+
+    useEffect(() => {
+        const desktopMedia = window.matchMedia?.("(min-width: 768px)");
+        if (!desktopMedia?.addEventListener) return undefined;
+
+        let pendingFocusFrame;
+        const handleBreakpointChange = ({matches}) => {
+            const focusedElement = document.activeElement;
+            const responsiveSurfaceWasOpen = menuOpenRef.current || portfolioOpenRef.current;
+            const focusWasInResponsiveSurface = focusedElement instanceof HTMLElement
+                && (
+                    mobileMenuButtonRef.current === focusedElement
+                    || mobileNavigationRef.current?.contains(focusedElement)
+                    || portfolioRef.current?.contains(focusedElement)
+                    || desktopToolbarRef.current?.contains(focusedElement)
+                );
+
+            setMenuOpen(false);
+            setPortfolioOpen(false);
+
+            if (responsiveSurfaceWasOpen || focusWasInResponsiveSurface) {
+                if (pendingFocusFrame !== undefined) {
+                    window.cancelAnimationFrame(pendingFocusFrame);
+                }
+                pendingFocusFrame = window.requestAnimationFrame(() => {
+                    pendingFocusFrame = window.requestAnimationFrame(() => {
+                        const visibleTrigger = matches ? portfolioButtonRef : mobileMenuButtonRef;
+                        visibleTrigger.current?.focus({preventScroll: true});
+                        pendingFocusFrame = undefined;
+                    });
+                });
+            }
+        };
+
+        desktopMedia.addEventListener("change", handleBreakpointChange);
+
+        return () => {
+            desktopMedia.removeEventListener("change", handleBreakpointChange);
+            if (pendingFocusFrame !== undefined) window.cancelAnimationFrame(pendingFocusFrame);
+        };
+    }, []);
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -182,7 +234,7 @@ export function Header() {
                 </nav>
 
                 {/* Desktop Lang + Theme */}
-                <div className="hidden md:flex items-center space-x-4">
+                <div ref={desktopToolbarRef} className="hidden md:flex items-center space-x-4">
                     <LanguageSwitcher/>
                     <DarkModeToggle/>
                 </div>
@@ -206,6 +258,7 @@ export function Header() {
             <AnimatePresence>
                 {menuOpen && (
                     <motion.div
+                        ref={mobileNavigationRef}
                         key="mobile-menu"
                         data-testid="mobile-menu"
                         initial={{opacity: 0, y: -16}}

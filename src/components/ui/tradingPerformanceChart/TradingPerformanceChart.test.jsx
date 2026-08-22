@@ -103,6 +103,15 @@ describe('TradingPerformanceChart', () => {
         expect(annualButton).toHaveAttribute('aria-pressed', 'false');
     });
 
+    test('uses text labels rather than skipped heading levels for summary periods', () => {
+        expect(screen.queryByRole('heading', {level: 4})).not.toBeInTheDocument();
+        expect(screen.getAllByText('Jan', {exact: true}).every((label) => label.tagName === 'P')).toBe(true);
+
+        fireEvent.click(screen.getByRole('button', {name: /annual/i}));
+
+        expect(screen.queryByRole('heading', {level: 4})).not.toBeInTheDocument();
+    });
+
     test('toggles view between monthly and annual', () => {
         const viewSelector = screen.getByRole('group', {name: /view selector/i});
         const annualButton = within(viewSelector).getByRole('button', {name: /annual/i});

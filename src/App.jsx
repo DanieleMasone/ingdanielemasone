@@ -1,5 +1,5 @@
-import React, {lazy, Suspense} from 'react';
-import {Route, Routes} from 'react-router-dom';
+import React, {lazy, Suspense, useEffect, useRef} from 'react';
+import {Route, Routes, useLocation} from 'react-router-dom';
 import './i18n/i18n';
 import {Header} from './components/header/Header';
 import {Footer} from './components/footer/Footer';
@@ -23,8 +23,10 @@ const CookiePolicy = lazy(() => import('./pages/cookiePolicy/CookiePolicy'));
  * Root layout for the portfolio application.
  *
  * Provides the persistent header, footer, route-level lazy loading,
- * a keyboard-accessible skip link to the main page content, and a shared
- * reduced-motion policy for Framer Motion components.
+ * a keyboard-accessible skip link to the main page content, route-change
+ * scroll and focus management, and a shared reduced-motion policy for Framer
+ * Motion components. Initial page loads preserve the browser's normal focus
+ * order; only client-side pathname changes focus the main landmark.
  *
  * @component
  * @module App
@@ -32,6 +34,17 @@ const CookiePolicy = lazy(() => import('./pages/cookiePolicy/CookiePolicy'));
  */
 export default function App() {
     const {t} = useTranslation();
+    const {pathname} = useLocation();
+    const mainRef = useRef(null);
+    const previousPathnameRef = useRef(pathname);
+
+    useEffect(() => {
+        if (previousPathnameRef.current === pathname) return;
+
+        previousPathnameRef.current = pathname;
+        window.scrollTo({top: 0, left: 0, behavior: "auto"});
+        mainRef.current?.focus({preventScroll: true});
+    }, [pathname]);
 
     return (
         <MotionConfig reducedMotion="user">
@@ -43,7 +56,7 @@ export default function App() {
                     {t("skip_to_content")}
                 </a>
                 <Header/>
-                <main id="main-content" className="flex-grow overflow-auto" tabIndex={-1}>
+                <main ref={mainRef} id="main-content" className="flex-grow overflow-auto" tabIndex={-1}>
                     <Suspense fallback={<Loading/>}>
                         <Routes>
                             <Route path="/" element={<Home/>}/>

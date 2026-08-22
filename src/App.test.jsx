@@ -1,6 +1,6 @@
-import {render, screen} from '@testing-library/react';
+import {fireEvent, render, screen, waitFor} from '@testing-library/react';
 import App from './App';
-import {MemoryRouter} from 'react-router-dom';
+import {MemoryRouter, useNavigate} from 'react-router-dom';
 import {vi} from 'vitest';
 
 vi.mock('@/components/header/Header', () => ({
@@ -80,6 +80,12 @@ const renderWithRouter = (initialEntries = ['/']) => {
     );
 };
 
+function RouteTestControls() {
+    const navigate = useNavigate();
+
+    return <button onClick={() => navigate('/projects/')}>Open projects</button>;
+}
+
 describe('App.jsx', () => {
     beforeEach(() => {
         vi.clearAllMocks();
@@ -101,6 +107,30 @@ describe('App.jsx', () => {
         renderWithRouter(['/']);
 
         expect(await screen.findByTestId('home')).toBeInTheDocument();
+    });
+
+    test('moves scroll and focus to the main landmark after a client-side route change', async () => {
+        const scrollTo = vi.fn();
+        vi.stubGlobal('scrollTo', scrollTo);
+
+        render(
+            <MemoryRouter initialEntries={['/']}>
+                <RouteTestControls/>
+                <App/>
+            </MemoryRouter>
+        );
+
+        await screen.findByTestId('home');
+        const main = screen.getByRole('main');
+        expect(main).not.toHaveFocus();
+
+        fireEvent.click(screen.getByRole('button', {name: 'Open projects'}));
+
+        await screen.findByTestId('projects');
+        await waitFor(() => expect(main).toHaveFocus());
+        expect(scrollTo).toHaveBeenCalledWith({top: 0, left: 0, behavior: 'auto'});
+
+        vi.unstubAllGlobals();
     });
 
     test('renders portfolio routes', async () => {

@@ -124,6 +124,52 @@ test('theme control remains synchronized across responsive header layouts', asyn
   await expect(updatedDesktopThemeToggle).toHaveAttribute('aria-pressed', 'false');
 });
 
+test('responsive navigation surfaces close when crossing the desktop breakpoint', async ({page}) => {
+  await page.setViewportSize({width: 390, height: 844});
+  await page.goto('./');
+
+  const mobileMenuButton = page.getByRole('button', {name: 'Apri menu di navigazione'});
+  await mobileMenuButton.click();
+  await expect(page.getByRole('navigation', {name: 'Navigazione mobile'})).toBeVisible();
+
+  await page.setViewportSize({width: 768, height: 1024});
+  await expect(page.getByRole('navigation', {name: 'Navigazione mobile'})).toBeHidden();
+  await expect(page.getByRole('button', {name: 'Portfolio'})).toBeFocused();
+
+  await page.setViewportSize({width: 390, height: 844});
+  await expect(page.getByRole('navigation', {name: 'Navigazione mobile'})).toBeHidden();
+  await expect(mobileMenuButton).toHaveAttribute('aria-expanded', 'false');
+
+  await page.setViewportSize({width: 768, height: 1024});
+  const portfolioButton = page.getByRole('button', {name: 'Portfolio'});
+  await portfolioButton.click();
+  await expect(page.getByRole('group', {name: 'Navigazione portfolio'})).toBeVisible();
+
+  await page.setViewportSize({width: 390, height: 844});
+  await expect(page.getByRole('button', {name: 'Apri menu di navigazione'})).toBeFocused();
+  await page.setViewportSize({width: 768, height: 1024});
+  await expect(page.getByRole('group', {name: 'Navigazione portfolio'})).toBeHidden();
+  await expect(portfolioButton).toHaveAttribute('aria-expanded', 'false');
+});
+
+test('client-side route changes reset scroll and focus the main landmark', async ({page}) => {
+  await page.goto('experience/');
+  await expect(page.getByRole('heading', {level: 1, name: 'Esperienza e formazione'})).toBeVisible();
+
+  await page.getByRole('contentinfo').scrollIntoViewIfNeeded();
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(0);
+
+  await page.getByRole('button', {name: 'Portfolio'}).click();
+  await page.getByRole('group', {name: 'Navigazione portfolio'})
+    .getByRole('link', {name: 'Progetti', exact: true})
+    .click();
+
+  await expect(page).toHaveURL(/\/ingdanielemasone\/projects\/$/);
+  await expect(page.locator('#main-content')).toBeFocused();
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+  await expect(page.getByRole('heading', {level: 1, name: 'Progetti'})).toBeVisible();
+});
+
 test('trading chart exposes a non-visual data table fallback', async ({page}) => {
   await page.goto('trading/');
 

@@ -1,5 +1,5 @@
 import React from "react";
-import {fireEvent, render, screen, within} from "@testing-library/react";
+import {act, fireEvent, render, screen, within} from "@testing-library/react";
 import {MemoryRouter} from "react-router";
 import {Header} from "./Header";
 import {vi} from 'vitest';
@@ -154,6 +154,34 @@ describe("Header", () => {
         expect(screen.queryByText("Experience")).not.toBeInTheDocument();
         expect(btn).toHaveAttribute("aria-expanded", "false");
         expect(btn).toHaveFocus();
+    });
+
+    test("closes responsive navigation surfaces when the desktop breakpoint changes", () => {
+        let breakpointListener;
+        const removeEventListener = vi.fn();
+
+        vi.stubGlobal("matchMedia", vi.fn(() => ({
+            matches: false,
+            addEventListener: (_event, listener) => {
+                breakpointListener = listener;
+            },
+            removeEventListener
+        })));
+
+        renderHeader("/");
+        openMobileMenu();
+        expect(screen.getByTestId("mobile-menu")).toBeInTheDocument();
+
+        act(() => breakpointListener({matches: true}));
+        expect(screen.queryByTestId("mobile-menu")).not.toBeInTheDocument();
+
+        const portfolioButton = screen.getAllByRole("button", {name: /portfolio/i})[0];
+        fireEvent.click(portfolioButton);
+        expect(screen.getByRole("group", {name: "Portfolio navigation"})).toBeInTheDocument();
+
+        act(() => breakpointListener({matches: false}));
+        expect(screen.queryByRole("group", {name: "Portfolio navigation"})).not.toBeInTheDocument();
+        vi.unstubAllGlobals();
     });
 
     describe("mobile menu behavior", () => {
