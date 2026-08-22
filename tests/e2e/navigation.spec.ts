@@ -12,7 +12,7 @@ test('home page loads from the GitHub Pages base path', async ({page}) => {
 
 test('desktop portfolio navigation reaches major public pages without raw i18n keys', async ({page}) => {
   const routes = [
-    {link: 'Esperienza', heading: 'Esperienze professionali', path: 'experience'},
+    {link: 'Esperienza', heading: 'Esperienza e formazione', path: 'experience'},
     {link: 'Progetti', heading: 'Progetti', path: 'projects'},
     {link: 'Progetti GitHub', heading: 'Progetti GitHub', path: 'github-projects'},
     {link: 'Corsi', heading: 'I miei corsi online', path: 'courses'},

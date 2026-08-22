@@ -53,7 +53,7 @@ export async function getCertifications() {
 }
 
 /**
- * Loads static professional experience entries for the Experience page.
+ * Loads static professional and education entries for the Experience page.
  *
  * @returns {Promise<Array<object>>} Promise resolving to the experiences' dataset.
  */

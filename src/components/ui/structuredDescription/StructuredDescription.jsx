@@ -59,10 +59,17 @@ export const isStructuredDescription = (description) => (
  * @param {string | LocalizedStructuredDescription} props.description - Localized content.
  * @param {string} props.titleId - Card heading id used to derive section ids.
  * @param {number} props.maxLines - Maximum collapsed lines.
+ * @param {3 | 4 | 5 | 6} [props.sectionHeadingLevel=3] - Heading level for labelled lists.
  * @param {string} [props.className] - Additional text styling.
  * @returns {React.JSX.Element | null} Expandable semantic content or null for invalid data.
  */
-export function StructuredDescription({description, titleId, maxLines, className = ""}) {
+export function StructuredDescription({
+    description,
+    titleId,
+    maxLines,
+    sectionHeadingLevel = 3,
+    className = ""
+}) {
     if (typeof description === "string") {
         return (
             <ExpandableText
@@ -74,6 +81,11 @@ export function StructuredDescription({description, titleId, maxLines, className
     }
 
     if (!isStructuredDescription(description)) return null;
+
+    const normalizedHeadingLevel = [3, 4, 5, 6].includes(sectionHeadingLevel)
+        ? sectionHeadingLevel
+        : 3;
+    const SectionHeading = `h${normalizedHeadingLevel}`;
 
     return (
         <ExpandableText maxLines={maxLines} className={clsx(className, "space-y-3")}>
@@ -104,12 +116,12 @@ export function StructuredDescription({description, titleId, maxLines, className
                         className="space-y-2"
                         aria-labelledby={sectionId}
                     >
-                        <h3
+                        <SectionHeading
                             id={sectionId}
                             className="text-sm font-semibold text-gray-900 dark:text-gray-100"
                         >
                             {section.label}
-                        </h3>
+                        </SectionHeading>
                         {list}
                     </section>
                 );

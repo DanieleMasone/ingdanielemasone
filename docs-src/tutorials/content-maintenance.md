@@ -112,6 +112,20 @@ Source data:
 - `src/mock/experiences.js`
 - localized experience descriptions and labels near the root translation keys
 
+Every entry must declare one of the two section-owning categories:
+
+- `professional` for employment, consulting, tutoring, teaching or other work
+  performed by the portfolio owner;
+- `education` for formal academic or technical education received by the
+  portfolio owner.
+
+Do not infer a category from an institution name or translation key. Future
+training belongs to `professional` when it describes training delivered as an
+activity, and to `education` when it describes a substantial learning path.
+Short credentials and courses should normally remain in the existing
+Certifications or Courses datasets instead of creating a third Experience
+category.
+
 Experience descriptions and the detailed AI-assisted RPG project use the
 shared localized structure:
 
@@ -147,8 +161,10 @@ line breaks as portfolio-authored document structure.
 Check:
 
 - period format;
-- current role ordering;
-- chronological collection density and featured-current-role layout;
+- reverse-chronological ordering inside each semantic section;
+- professional history before education and every record rendered exactly once;
+- featured-current-role layout across the full desktop grid;
+- complete `9 + 2` collection without pagination while those counts remain compact;
 - long translated descriptions;
 - paragraph and section-list semantics for structured descriptions;
 - accessibility of status badges and ordered career-history structure.

@@ -1,7 +1,6 @@
 import {expect, test} from '@playwright/test';
 
 const collectionPages = [
-  {path: 'experience/', heading: 'Esperienze professionali', summary: /1\u20137 di \d+ esperienze/},
   {path: 'projects/', heading: 'Progetti', summary: /1\u20136 di \d+ progetti/},
   {path: 'github-projects/', heading: 'Progetti GitHub', summary: /1\u20133 di \d+ repository/},
   {path: 'courses/', heading: 'I miei corsi online', summary: /1\u20136 di \d+ corsi/},

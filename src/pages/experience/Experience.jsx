@@ -1,13 +1,11 @@
 import {useTranslation} from "react-i18next";
-import React, {useMemo, useState} from "react";
+import React, {useMemo} from "react";
 import {Card} from "@/components/ui/card/Card";
 import {CardContent} from "@/components/ui/cardContent/CardContent";
 import {PageSection} from "@/components/ui/pageSection/PageSection";
 import {StructuredDescription} from "@/components/ui/structuredDescription/StructuredDescription";
 import {SeoHead} from "@/components/seoHead/SeoHead";
 import TechDisclosure from "@/components/ui/techDisclosure/TechDisclosure";
-import {CollectionToolbar} from "@/components/ui/collectionToolbar/CollectionToolbar";
-import {getCollectionPaginationState} from "@/components/ui/collectionToolbar/collectionPagination";
 import {getExperiences} from "@/services/portfolioService";
 import {Loading} from "@/components/loading/Loading";
 import {ErrorState} from "@/components/errorState/ErrorState";
@@ -17,14 +15,13 @@ import {Building2, CalendarDays} from "lucide-react";
 import {usePortfolioData} from "@/hooks/usePortfolioData";
 
 /**
- * Experience route for the portfolio timeline.
+ * Experience route for professional history and formal education.
  *
  * @module pages/experience/Experience
  */
 
 const YEAR_PATTERN = /\b(20\d{2}|19\d{2})\b/g;
 const PRESENT_PATTERN = /\bpresent\b/i;
-const ITEMS_PER_PAGE = 7;
 
 /**
  * Parses the year boundaries from an experience period string.
@@ -102,12 +99,147 @@ export const getExperienceStatus = (period, t, currentYear = new Date().getFullY
 };
 
 /**
- * Experience component renders a paginated chronological career collection.
+ * Renders one career-history record with shared card semantics.
  *
- * The page presents recent roles first, features the current role across the
- * desktop content width, and uses a two-column collection for earlier roles.
- * Its ordered-list semantics preserve career progression while pagination and
- * expandable descriptions keep the page practical on narrow viewports.
+ * Role headings are level three because every card belongs to a named level-two
+ * Experience section. Structured-description headings continue the hierarchy
+ * at level four.
+ *
+ * @param {Object} props - Component props.
+ * @param {Object} props.experience - Career or education entry to render.
+ * @param {function} props.t - Translation function for visible content.
+ * @param {number} props.currentYear - Current year used to identify ongoing roles.
+ * @returns {React.JSX.Element} One ordered-list item containing an experience card.
+ */
+function ExperienceCard({experience: exp, t, currentYear}) {
+    const role = t(exp.role);
+    const titleId = `experience-${exp.role.replace(/\W+/g, "-")}`;
+    const status = getExperienceStatus(exp.period, t, currentYear);
+    const isOngoing = status?.type === "ongoing";
+    const description = exp.description
+        ? t(exp.description, {returnObjects: true})
+        : null;
+
+    return (
+        <li className={clsx("min-w-0 self-start", isOngoing && "md:col-span-2")}>
+            <Card
+                data-testid="experience-card"
+                aria-labelledby={titleId}
+                className={clsx(
+                    "min-w-0 self-start",
+                    isOngoing && surfaceClasses.activeTimelineCard
+                )}
+            >
+                <CardContent className="min-w-0">
+                    <header className="flex flex-col gap-3 border-b border-gray-200/60 pb-3 dark:border-gray-700/60">
+                        <div className="flex min-w-0 flex-wrap items-center gap-2">
+                            {status && (
+                                <span
+                                    className={clsx(
+                                        surfaceClasses.statusBadgeBase,
+                                        surfaceClasses.statusBadgeOngoing
+                                    )}
+                                >
+                                    {status.label}
+                                </span>
+                            )}
+
+                            {exp.company && exp.company !== "-" && (
+                                <span
+                                    className={clsx(
+                                        surfaceClasses.metaBadge,
+                                        "min-w-0 max-w-full gap-1.5"
+                                    )}
+                                >
+                                    <Building2 className="h-3.5 w-3.5 shrink-0" aria-hidden="true"/>
+                                    <span className="min-w-0 break-words">{exp.company}</span>
+                                </span>
+                            )}
+
+                            <span
+                                className={clsx(
+                                    surfaceClasses.mutedMetaBadge,
+                                    "min-w-0 max-w-full gap-1.5"
+                                )}
+                            >
+                                <CalendarDays className="h-3.5 w-3.5 shrink-0" aria-hidden="true"/>
+                                <span className="min-w-0 break-words">
+                                    {formatExperiencePeriod(exp.period, t)}
+                                </span>
+                            </span>
+                        </div>
+
+                        <h3
+                            id={titleId}
+                            className="break-words text-lg font-semibold leading-snug text-gray-900 dark:text-gray-100 md:text-xl"
+                        >
+                            {role}
+                        </h3>
+                    </header>
+
+                    {exp.description && (
+                        <StructuredDescription
+                            description={description}
+                            titleId={titleId}
+                            maxLines={4}
+                            sectionHeadingLevel={4}
+                            className="max-w-4xl text-left text-sm leading-relaxed text-gray-700 dark:text-gray-300"
+                        />
+                    )}
+
+                    <div className="mt-auto">
+                        <TechDisclosure techList={exp.tech} label={t("show_technologies")}/>
+                    </div>
+                </CardContent>
+            </Card>
+        </li>
+    );
+}
+
+/**
+ * Renders one named semantic section of the Experience page.
+ *
+ * @param {Object} props - Component props.
+ * @param {string} props.headingId - Stable id connecting the section and heading.
+ * @param {string} props.title - Localized section title.
+ * @param {Array<Object>} props.experiences - Ordered records in this section.
+ * @param {function} props.t - Translation function for card content.
+ * @param {number} props.currentYear - Current year used to identify ongoing roles.
+ * @returns {React.JSX.Element | null} Named section or null when it has no records.
+ */
+function ExperienceCollection({headingId, title, experiences, t, currentYear}) {
+    if (experiences.length === 0) return null;
+
+    return (
+        <section className="flex min-w-0 flex-col gap-4" aria-labelledby={headingId}>
+            <h2
+                id={headingId}
+                className="text-xl font-bold leading-tight text-gray-900 dark:text-white sm:text-2xl"
+            >
+                {title}
+            </h2>
+
+            <ol className={clsx(layoutClasses.pageGrid, "grid-cols-1 md:grid-cols-2")}>
+                {experiences.map((experience) => (
+                    <ExperienceCard
+                        key={experience.role}
+                        experience={experience}
+                        t={t}
+                        currentYear={currentYear}
+                    />
+                ))}
+            </ol>
+        </section>
+    );
+}
+
+/**
+ * Experience component separates professional history from formal education.
+ *
+ * Both semantic sections remain visible on the same route. Professional work
+ * stays dominant and reverse chronological, the current role spans the desktop
+ * width, and education follows as a concise supporting history. All cards reuse
+ * the same rendering and disclosure behavior.
  *
  * Uses i18next for translations.
  *
@@ -117,25 +249,19 @@ export const getExperienceStatus = (period, t, currentYear = new Date().getFullY
 export default function Experience() {
     const {t} = useTranslation();
     const currentYear = useMemo(() => new Date().getFullYear(), []);
-
-    const [page, setPage] = useState(1);
     const {data: experiences, loading, error, retry} = usePortfolioData(getExperiences, []);
 
-    const timelineExperiences = useMemo(
+    const orderedExperiences = useMemo(
         () => sortExperiencesByRecency(experiences, currentYear),
         [currentYear, experiences]
     );
-    const pagination = getCollectionPaginationState({
-        page,
-        totalItems: timelineExperiences.length,
-        pageSize: ITEMS_PER_PAGE
-    });
-    const displayedExperiences = useMemo(
-        () => timelineExperiences.slice(
-            pagination.startIndex,
-            pagination.endIndex
-        ),
-        [pagination.endIndex, pagination.startIndex, timelineExperiences]
+    const professionalExperiences = useMemo(
+        () => orderedExperiences.filter(({category}) => category === "professional"),
+        [orderedExperiences]
+    );
+    const educationExperiences = useMemo(
+        () => orderedExperiences.filter(({category}) => category === "education"),
+        [orderedExperiences]
     );
 
     if (loading) return <Loading/>;
@@ -153,114 +279,23 @@ export default function Experience() {
                 {experiences.length === 0 ? (
                     <p className={surfaceClasses.insetText}>{t("experience_empty")}</p>
                 ) : (
-                    <>
-                        <CollectionToolbar
-                            page={page}
-                            totalItems={timelineExperiences.length}
-                            pageSize={ITEMS_PER_PAGE}
-                            onPageChange={setPage}
-                            itemLabel={t("experience_collection_label_one")}
-                            itemLabelPlural={t("experience_collection_label_many")}
+                    <div className="flex flex-col gap-8 pt-2">
+                        <ExperienceCollection
+                            headingId="professional-experience-heading"
+                            title={t("experience_professional_title")}
+                            experiences={professionalExperiences}
+                            t={t}
+                            currentYear={currentYear}
                         />
 
-                        <ol
-                            className={clsx(layoutClasses.pageGrid, "grid-cols-1 md:grid-cols-2")}
-                            aria-label={t("experience_timeline_label")}
-                        >
-                            {displayedExperiences.map((exp) => {
-                                const role = t(exp.role);
-                                const titleId = `experience-${exp.role.replace(/\W+/g, "-")}`;
-                                const status = getExperienceStatus(exp.period, t, currentYear);
-                                const isOngoing = status?.type === "ongoing";
-                                const description = exp.description
-                                    ? t(exp.description, {returnObjects: true})
-                                    : null;
-
-                                return (
-                                    <li
-                                        key={exp.role}
-                                        className={clsx(
-                                            "min-w-0 self-start",
-                                            isOngoing && "md:col-span-2"
-                                        )}
-                                    >
-                                        <Card
-                                            data-testid="experience-card"
-                                            aria-labelledby={titleId}
-                                            className={clsx(
-                                                "min-w-0 self-start",
-                                                isOngoing && surfaceClasses.activeTimelineCard
-                                            )}
-                                        >
-                                            <CardContent className="min-w-0">
-                                                <header
-                                                    className="flex flex-col gap-3 border-b border-gray-200/60 pb-3 dark:border-gray-700/60">
-                                                    <div className="flex min-w-0 flex-wrap items-center gap-2">
-                                                        {status && (
-                                                            <span
-                                                                className={clsx(
-                                                                    surfaceClasses.statusBadgeBase,
-                                                                    surfaceClasses.statusBadgeOngoing
-                                                                )}
-                                                            >
-                                                                {status.label}
-                                                            </span>
-                                                        )}
-
-                                                        {exp.company && exp.company !== "-" && (
-                                                            <span
-                                                                className={clsx(
-                                                                    surfaceClasses.metaBadge,
-                                                                    "min-w-0 max-w-full gap-1.5"
-                                                                )}
-                                                            >
-                                                                <Building2 className="h-3.5 w-3.5 shrink-0"
-                                                                           aria-hidden="true"/>
-                                                                <span className="min-w-0 break-words">{exp.company}</span>
-                                                            </span>
-                                                        )}
-
-                                                        <span
-                                                            className={clsx(
-                                                                surfaceClasses.mutedMetaBadge,
-                                                                "min-w-0 max-w-full gap-1.5"
-                                                            )}>
-                                                            <CalendarDays className="h-3.5 w-3.5 shrink-0"
-                                                                          aria-hidden="true"/>
-                                                            <span className="min-w-0 break-words">
-                                                                {formatExperiencePeriod(exp.period, t)}
-                                                            </span>
-                                                        </span>
-                                                    </div>
-
-                                                    <h2
-                                                        id={titleId}
-                                                        className="break-words text-lg font-semibold leading-snug text-gray-900 dark:text-gray-100 md:text-xl"
-                                                    >
-                                                        {role}
-                                                    </h2>
-                                                </header>
-
-                                                {exp.description && (
-                                                    <StructuredDescription
-                                                        description={description}
-                                                        titleId={titleId}
-                                                        maxLines={4}
-                                                        className="max-w-4xl text-left text-sm leading-relaxed text-gray-700 dark:text-gray-300"
-                                                    />
-                                                )}
-
-                                                <div className="mt-auto">
-                                                    <TechDisclosure techList={exp.tech} label={t("show_technologies")}/>
-                                                </div>
-                                            </CardContent>
-                                        </Card>
-                                    </li>
-                                );
-                            })}
-                        </ol>
-
-                    </>
+                        <ExperienceCollection
+                            headingId="education-heading"
+                            title={t("experience_education_title")}
+                            experiences={educationExperiences}
+                            t={t}
+                            currentYear={currentYear}
+                        />
+                    </div>
                 )}
             </PageSection>
         </>

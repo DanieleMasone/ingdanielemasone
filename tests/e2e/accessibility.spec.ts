@@ -118,7 +118,7 @@ test('structured experience and project descriptions expand with semantic lists'
   await experienceToggle.click();
   await expect(currentExperience.getByRole('button', {name: 'Mostra meno'}))
     .toHaveAttribute('aria-expanded', 'true');
-  await expect(currentExperience.getByRole('heading', {level: 3, name: 'Focus principali'})).toBeVisible();
+  await expect(currentExperience.getByRole('heading', {level: 4, name: 'Focus principali'})).toBeVisible();
   await expect(currentExperience.getByRole('listitem')).toHaveCount(8);
 
   await page.goto('projects/');
@@ -130,6 +130,76 @@ test('structured experience and project descriptions expand with semantic lists'
     .toHaveAttribute('aria-expanded', 'true');
   await expect(currentProject.getByRole('heading', {level: 3, name: 'Responsabilità principali'})).toBeVisible();
   await expect(currentProject.getByRole('listitem')).toHaveCount(7);
+});
+
+test('experience exposes professional history and education as visible semantic sections', async ({page}) => {
+  await page.goto('experience/');
+
+  await expect(page.getByRole('heading', {level: 1, name: 'Esperienza e formazione'})).toBeVisible();
+
+  const professionalSection = page.locator(
+    'section[aria-labelledby="professional-experience-heading"]',
+  );
+  const educationSection = page.locator('section[aria-labelledby="education-heading"]');
+
+  await expect(professionalSection.getByRole('heading', {
+    level: 2,
+    name: 'Esperienze professionali',
+  })).toBeVisible();
+  await expect(educationSection.getByRole('heading', {level: 2, name: 'Formazione'})).toBeVisible();
+  await expect(professionalSection.locator(':scope > ol > li')).toHaveCount(9);
+  await expect(educationSection.locator(':scope > ol > li')).toHaveCount(2);
+  await expect(page.getByRole('navigation', {name: 'Paginazione'})).toHaveCount(0);
+});
+
+test('experience reflows at 320 CSS pixels with long translated content and usable targets', async ({page}) => {
+  await page.goto('experience/');
+
+  await page.getByRole('button', {name: 'Seleziona lingua: Italiano'}).click();
+  await page.getByRole('button', {name: 'Deutsch', exact: true}).click();
+  await page.setViewportSize({width: 320, height: 800});
+
+  await expect(page.getByRole('heading', {
+    level: 1,
+    name: 'Berufserfahrung und Ausbildung',
+  })).toBeVisible();
+  await expect(page.getByTestId('experience-card')).toHaveCount(11);
+
+  const metrics = await page.evaluate(() => ({
+    clientWidth: document.documentElement.clientWidth,
+    scrollWidth: document.documentElement.scrollWidth,
+  }));
+  expect(metrics.scrollWidth).toBeLessThanOrEqual(metrics.clientWidth + 1);
+
+  const targetSizes = await page.getByRole('button', {
+    name: /Mehr anzeigen|Technologien anzeigen/,
+  }).evaluateAll((buttons) => buttons.map((button) => {
+    const {height, width} = button.getBoundingClientRect();
+    return {height, width};
+  }));
+
+  expect(targetSizes.length).toBeGreaterThan(0);
+  expect(targetSizes.every(({height, width}) => height >= 24 && width >= 24)).toBe(true);
+
+  const educationDisclosure = page
+    .locator('section[aria-labelledby="education-heading"]')
+    .getByRole('button', {name: 'Technologien anzeigen'})
+    .last();
+  await educationDisclosure.scrollIntoViewIfNeeded();
+  await educationDisclosure.focus();
+  await expect(educationDisclosure).toBeFocused();
+
+  const [controlBox, headerBox] = await Promise.all([
+    educationDisclosure.boundingBox(),
+    page.getByRole('banner').boundingBox(),
+  ]);
+  expect(controlBox).not.toBeNull();
+  expect(headerBox).not.toBeNull();
+  expect(controlBox!.y).toBeGreaterThanOrEqual(headerBox!.y + headerBox!.height);
+  expect(controlBox!.y + controlBox!.height).toBeLessThanOrEqual(800);
+
+  await page.keyboard.press('Enter');
+  await expect(educationDisclosure).toHaveAttribute('aria-expanded', 'true');
 });
 
 test('changed legal and disclosure surfaces reflow without horizontal overflow', async ({page}) => {

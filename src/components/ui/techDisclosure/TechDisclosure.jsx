@@ -7,7 +7,8 @@ import {interactiveClasses} from "@/styles/commonClasses";
  * Collapsible technology list used by experience and project cards.
  *
  * Converts a comma-separated technology string into compact badges inside a
- * Headless UI disclosure panel.
+ * Headless UI disclosure panel. Its standalone toggle preserves a 24 CSS pixel
+ * minimum target height for touch and pointer input.
  *
  * @component
  * @module components/ui/techDisclosure/TechDisclosure
@@ -24,7 +25,7 @@ export default function TechDisclosure({techList, label}) {
                 <div className="pt-3 border-t border-gray-200/60 dark:border-gray-700/60">
                     <Disclosure.Button
                         className={clsx(
-                            "flex items-center rounded text-sm text-blue-600 hover:underline dark:text-blue-400",
+                            "flex min-h-6 items-center rounded text-sm text-blue-600 hover:underline dark:text-blue-400",
                             interactiveClasses.focusRing
                         )}
                     >

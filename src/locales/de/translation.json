@@ -278,11 +278,10 @@
       }
     }
   },
-  "experience_title": "Berufserfahrung",
-  "experience_intro": "Eine chronologische Ansicht meiner Rollen in Enterprise-Software, Frontend-Architektur, Full-Stack-Delivery, System Engineering und technischem Mentoring.",
-  "experience_collection_label_one": "beruflichen Station",
-  "experience_collection_label_many": "beruflichen Stationen",
-  "experience_timeline_label": "Berufliche Stationen in chronologischer Reihenfolge",
+  "experience_title": "Berufserfahrung und Ausbildung",
+  "experience_intro": "Ein Überblick über meine berufliche Entwicklung in Enterprise-Software, Architektur und System Engineering, gefolgt von der technischen Ausbildung, die dafür die Grundlage geschaffen hat.",
+  "experience_professional_title": "Berufserfahrung",
+  "experience_education_title": "Ausbildung",
   "experience_empty": "Keine Einträge verfügbar.",
   "experience_present": "Heute",
   "exp_label_ongoing": "Aktuelle Rolle",

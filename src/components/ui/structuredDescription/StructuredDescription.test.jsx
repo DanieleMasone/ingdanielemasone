@@ -47,6 +47,23 @@ describe("StructuredDescription", () => {
         expect(screen.getByText("Unlabelled supporting item").closest("li")).toBeInTheDocument();
     });
 
+    test("supports a deeper heading level inside nested card sections", () => {
+        render(
+            <StructuredDescription
+                description={{
+                    paragraphs: ["Professional context"],
+                    sections: [{label: "Main focus", items: ["Architecture"]}]
+                }}
+                titleId="nested-experience-title"
+                maxLines={4}
+                sectionHeadingLevel={4}
+            />
+        );
+
+        expect(screen.getByRole("heading", {level: 4, name: "Main focus"}))
+            .toBeInTheDocument();
+    });
+
     test("rejects malformed object values without exposing implementation text", () => {
         const {container} = render(
             <StructuredDescription

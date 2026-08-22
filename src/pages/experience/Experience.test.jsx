@@ -9,6 +9,7 @@ import Experience, {
 import {MemoryRouter} from "react-router-dom";
 import {vi} from "vitest";
 import * as service from "@/services/portfolioService";
+import {experiences as experienceDataset} from "@/mock/experiences";
 
 vi.mock("react-i18next", () => ({
     useTranslation: () => ({
@@ -58,13 +59,10 @@ vi.mock("react-i18next", () => ({
                 exp_polimi_description: "University education",
                 exp_salesiani_role: "Computer Science Student",
                 exp_salesiani_description: "Technical education",
-                experience_title: "Professional Experience",
-                experience_intro: "Career timeline",
-                "collection.range_summary": `${options.start}–${options.end} of ${options.total} ${options.label}`,
-                "collection.range_announcement": `Showing items ${options.start} to ${options.end} of ${options.total} ${options.label}.`,
-                experience_collection_label_one: "experience",
-                experience_collection_label_many: "experiences",
-                experience_timeline_label: "Professional experience in chronological order",
+                experience_title: "Experience and Education",
+                experience_intro: "Career history and technical foundations",
+                experience_professional_title: "Professional Experience",
+                experience_education_title: "Education",
                 experience_empty: "No experience entries available.",
                 experience_present: "Present",
                 show_technologies: "Show technologies",
@@ -106,6 +104,7 @@ const mockExperiences = [
         period: "2025 - Present",
         description: "exp_intesa_description",
         tech: "Java",
+        category: "professional",
     },
     {
         role: "exp_rgi_role",
@@ -113,6 +112,7 @@ const mockExperiences = [
         period: "09/2021 - 12/2025",
         description: "exp_rgi_description",
         tech: "Angular",
+        category: "professional",
     },
     {
         role: "exp_iol_role",
@@ -120,6 +120,7 @@ const mockExperiences = [
         period: "05/2019 - 09/2021",
         description: "exp_iol_description",
         tech: "React",
+        category: "professional",
     },
     {
         role: "exp_tecnavia_role",
@@ -127,6 +128,7 @@ const mockExperiences = [
         period: "07/2018 - 05/2019",
         description: "exp_tecnavia_description",
         tech: "React Native",
+        category: "professional",
     },
     {
         role: "exp_teoresi_role",
@@ -134,6 +136,7 @@ const mockExperiences = [
         period: "10/2017 - 07/2018",
         description: "exp_teoresi_description",
         tech: "Java",
+        category: "professional",
     },
     {
         role: "exp_hpe_role",
@@ -141,6 +144,7 @@ const mockExperiences = [
         period: "09/2016 - 10/2017",
         description: "exp_hpe_description",
         tech: "Java",
+        category: "professional",
     },
     {
         role: "exp_digiCamere_role",
@@ -148,6 +152,7 @@ const mockExperiences = [
         period: "06/2016 - 09/2016",
         description: "exp_digiCamere_description",
         tech: "Linux",
+        category: "professional",
     },
     {
         role: "exp_piksel_role",
@@ -155,6 +160,7 @@ const mockExperiences = [
         period: "10/2015 - 04/2016",
         description: "exp_piksel_description",
         tech: "Tomcat",
+        category: "professional",
     },
     {
         role: "exp_coach_role",
@@ -162,6 +168,7 @@ const mockExperiences = [
         period: "01/2009 - 10/2015",
         description: "exp_coach_description",
         tech: "C++",
+        category: "professional",
     },
     {
         role: "exp_polimi_role",
@@ -169,6 +176,7 @@ const mockExperiences = [
         period: "2010 - 2014",
         description: "exp_polimi_description",
         tech: "Java",
+        category: "education",
     },
     {
         role: "exp_salesiani_role",
@@ -176,6 +184,7 @@ const mockExperiences = [
         period: "2005 - 2010",
         description: "exp_salesiani_description",
         tech: "C",
+        category: "education",
     },
 ];
 
@@ -203,92 +212,104 @@ describe("Experience component", () => {
         expect(screen.getByRole("status")).toBeInTheDocument();
     });
 
-    test("renders the professional timeline title after load", async () => {
+    test("renders the page and semantic section headings after load", async () => {
         vi.spyOn(service, "getExperiences")
             .mockResolvedValueOnce(mockExperiences);
 
         renderPage();
 
-        expect(
-            await screen.findByRole("heading", {name: /professional experience/i})
-        ).toBeInTheDocument();
-    });
-
-    test("renders compact summary and first chronological page", async () => {
-        vi.spyOn(service, "getExperiences")
-            .mockResolvedValueOnce(mockExperiences);
-
-        renderPage();
-
-        await screen.findByRole("heading", {name: /professional experience/i});
-
-        expect(screen.getByText("Career timeline")).toBeInTheDocument();
-        expect(screen.getByText("1–7 of 11 experiences")).toBeInTheDocument();
-        expect(screen.getAllByTestId("pagination-info")).toHaveLength(1);
-        expect(screen.getByTestId("pagination-info")).toHaveTextContent("1 / 2");
-        expect(screen.getAllByTestId("experience-card")).toHaveLength(7);
-        expect(screen.getByRole("list", {
-            name: "Professional experience in chronological order"
+        expect(await screen.findByRole("heading", {
+            level: 1,
+            name: "Experience and Education"
         })).toBeInTheDocument();
+        expect(screen.getByRole("heading", {
+            level: 2,
+            name: "Professional Experience"
+        })).toBeInTheDocument();
+        expect(screen.getByRole("heading", {level: 2, name: "Education"})).toBeInTheDocument();
     });
 
-    test("uses a responsive chronological grid and features the current role", async () => {
+    test("separates all professional and education records without pagination", async () => {
         vi.spyOn(service, "getExperiences")
             .mockResolvedValueOnce(mockExperiences);
 
         renderPage();
 
-        const list = await screen.findByRole("list", {
-            name: "Professional experience in chronological order"
+        await screen.findByRole("heading", {level: 1, name: "Experience and Education"});
+
+        const professionalSection = screen.getByRole("heading", {
+            level: 2,
+            name: "Professional Experience"
+        }).closest("section");
+        const educationSection = screen.getByRole("heading", {
+            level: 2,
+            name: "Education"
+        }).closest("section");
+
+        expect(screen.getByText("Career history and technical foundations")).toBeInTheDocument();
+        expect(within(professionalSection).getAllByTestId("experience-card")).toHaveLength(9);
+        expect(within(educationSection).getAllByTestId("experience-card")).toHaveLength(2);
+        expect(screen.getAllByTestId("experience-card")).toHaveLength(mockExperiences.length);
+        expect(screen.queryByRole("navigation", {name: "Pagination"})).not.toBeInTheDocument();
+    });
+
+    test("uses responsive ordered grids and features the current role", async () => {
+        vi.spyOn(service, "getExperiences")
+            .mockResolvedValueOnce(mockExperiences);
+
+        renderPage();
+
+        const professionalHeading = await screen.findByRole("heading", {
+            level: 2,
+            name: "Professional Experience"
         });
+        const professionalList = professionalHeading.closest("section").querySelector("ol");
+        const educationList = screen.getByRole("heading", {
+            level: 2,
+            name: "Education"
+        }).closest("section").querySelector("ol");
         const cards = screen.getAllByTestId("experience-card");
 
-        expect(list).toHaveClass("grid", "grid-cols-1", "md:grid-cols-2");
+        expect(professionalList).toHaveClass("grid", "grid-cols-1", "md:grid-cols-2");
+        expect(educationList).toHaveClass("grid", "grid-cols-1", "md:grid-cols-2");
         expect(cards[0].closest("li")).toHaveClass("md:col-span-2");
         expect(cards[0]).toHaveClass("min-w-0", "self-start");
         expect(cards[1].closest("li")).not.toHaveClass("md:col-span-2");
         expect(cards[0]).not.toHaveClass("h-full");
     });
 
-    test("sorts visible experience cards from newest to oldest", async () => {
+    test("sorts each semantic section from newest to oldest", async () => {
         vi.spyOn(service, "getExperiences")
             .mockResolvedValueOnce([...mockExperiences].reverse());
 
         renderPage();
 
-        await screen.findByRole("heading", {name: /professional experience/i});
+        const professionalSection = (await screen.findByRole("heading", {
+            level: 2,
+            name: "Professional Experience"
+        })).closest("section");
+        const educationSection = screen.getByRole("heading", {
+            level: 2,
+            name: "Education"
+        }).closest("section");
 
-        const headings = screen.getAllByRole("heading", {level: 2}).map((heading) => heading.textContent);
-        expect(headings).toEqual([
+        expect(within(professionalSection).getAllByRole("heading", {level: 3})
+            .map((heading) => heading.textContent)).toEqual([
             "Expert Software Engineer – Group Technology & Services",
             "Developer",
             "Engineer",
             "Mobile Engineer",
             "Java Engineer",
             "Older Engineer",
-            "Systems Engineer"
+            "Systems Engineer",
+            "Platform Engineer",
+            "Private Tutor"
         ]);
-    });
-
-    test("paginates older experience entries", async () => {
-        vi.spyOn(service, "getExperiences")
-            .mockResolvedValueOnce(mockExperiences);
-
-        renderPage();
-
-        const nextButtons = await screen.findAllByRole("button", {name: "Next"});
-        fireEvent.click(nextButtons[0]);
-
-        expect(screen.getByText("8–11 of 11 experiences")).toBeInTheDocument();
-        expect(screen.getByTestId("pagination-info")).toHaveTextContent("2 / 2");
-        expect(screen.getAllByTestId("experience-card")).toHaveLength(4);
-        expect(screen.getAllByRole("heading", {level: 2}).map((heading) => heading.textContent))
-            .toEqual([
-                "Platform Engineer",
-                "Private Tutor",
-                "Computer Engineering Degree",
-                "Computer Science Student"
-            ]);
+        expect(within(educationSection).getAllByRole("heading", {level: 3})
+            .map((heading) => heading.textContent)).toEqual([
+            "Computer Engineering Degree",
+            "Computer Science Student"
+        ]);
     });
 
     test("renders current-role badge and localized current period", async () => {
@@ -300,7 +321,7 @@ describe("Experience component", () => {
         await screen.findByText("Current role");
 
         expect(screen.getByText("2025 - Present")).toBeInTheDocument();
-        expect(screen.getAllByRole("button", {name: "Show technologies"})).toHaveLength(7);
+        expect(screen.getAllByRole("button", {name: "Show technologies"})).toHaveLength(11);
     });
 
     test("opens a technology disclosure from the keyboard", async () => {
@@ -335,7 +356,7 @@ describe("Experience component", () => {
         expect(screen.getByText(/introducing Artificial Intelligence/i).tagName).toBe("P");
         expect(screen.getByText(/AI-assisted reverse engineering/i).tagName).toBe("P");
 
-        const focusHeading = screen.getByRole("heading", {level: 3, name: "Main focus areas"});
+        const focusHeading = screen.getByRole("heading", {level: 4, name: "Main focus areas"});
         const focusSection = focusHeading.closest("section");
 
         expect(focusSection).toBeInTheDocument();
@@ -351,7 +372,7 @@ describe("Experience component", () => {
 
         renderPage();
 
-        await screen.findByText(/professional experience/i);
+        await screen.findByRole("heading", {level: 1, name: "Experience and Education"});
 
         expect(document.title.toLowerCase())
             .toContain("experience");
@@ -376,7 +397,7 @@ describe("Experience component", () => {
         const retry = await screen.findByRole("button", {name: /retry/i});
         fireEvent.click(retry);
 
-        await screen.findByRole("heading", {name: /professional experience/i});
+        await screen.findByRole("heading", {level: 1, name: "Experience and Education"});
 
         expect(spy).toHaveBeenCalledTimes(2);
     });
@@ -387,7 +408,7 @@ describe("Experience component", () => {
 
         renderPage();
 
-        await screen.findByRole("heading", {name: /professional experience/i});
+        await screen.findByRole("heading", {level: 1, name: "Experience and Education"});
 
         expect(screen.queryAllByTestId("experience-card")).toHaveLength(0);
         expect(screen.getByText("No experience entries available.")).toBeInTheDocument();
@@ -399,7 +420,7 @@ describe("Experience component", () => {
 
         renderPage();
 
-        await screen.findByText(/professional experience/i);
+        await screen.findByRole("heading", {level: 1, name: "Experience and Education"});
 
         expect(spy).toHaveBeenCalledTimes(1);
     });
@@ -416,6 +437,24 @@ describe("Experience helpers", () => {
         expect(sorted.map((experience) => experience.role))
             .toEqual(["exp_intesa_role", "exp_rgi_role", "exp_iol_role"]);
         expect(unsorted[0].role).toBe("exp_iol_role");
+    });
+
+    test("classifies every source record explicitly and exactly once", () => {
+        const professionalRoles = experienceDataset
+            .filter(({category}) => category === "professional")
+            .map(({role}) => role);
+        const educationRoles = experienceDataset
+            .filter(({category}) => category === "education")
+            .map(({role}) => role);
+
+        expect(new Set(experienceDataset.map(({category}) => category)))
+            .toEqual(new Set(["professional", "education"]));
+        expect(new Set(experienceDataset.map(({role}) => role)).size)
+            .toBe(experienceDataset.length);
+        expect(professionalRoles).toHaveLength(9);
+        expect(professionalRoles).toContain("exp_coach_role");
+        expect(educationRoles).toEqual(["exp_salesiani_role", "exp_polimi_role"]);
+        expect(professionalRoles.length + educationRoles.length).toBe(experienceDataset.length);
     });
 
     test("returns current status only for ongoing roles", () => {

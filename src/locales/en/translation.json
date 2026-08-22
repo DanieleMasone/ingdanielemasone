@@ -278,11 +278,10 @@
       }
     }
   },
-  "experience_title": "Professional Experience",
-  "experience_intro": "A chronological view of my roles across enterprise software, frontend architecture, full-stack delivery, systems engineering and technical mentoring.",
-  "experience_collection_label_one": "experience",
-  "experience_collection_label_many": "experiences",
-  "experience_timeline_label": "Professional experience in chronological order",
+  "experience_title": "Experience and Education",
+  "experience_intro": "A clear view of my professional progression across enterprise software, architecture and systems engineering, followed by the technical education that established its foundations.",
+  "experience_professional_title": "Professional Experience",
+  "experience_education_title": "Education",
   "experience_empty": "No experience entries available.",
   "experience_present": "Present",
   "exp_label_ongoing": "Current role",

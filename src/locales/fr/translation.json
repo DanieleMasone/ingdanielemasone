@@ -278,11 +278,10 @@
       }
     }
   },
-  "experience_title": "Expérience professionnelle",
-  "experience_intro": "Une vue chronologique de mes rôles entre logiciel d'entreprise, architecture frontend, delivery full-stack, ingénierie système et mentorat technique.",
-  "experience_collection_label_one": "expérience",
-  "experience_collection_label_many": "expériences",
-  "experience_timeline_label": "Expériences professionnelles par ordre chronologique",
+  "experience_title": "Expérience et formation",
+  "experience_intro": "Un parcours qui met en avant mon évolution professionnelle dans le logiciel d'entreprise, l'architecture et l'ingénierie système, puis la formation technique qui en a posé les bases.",
+  "experience_professional_title": "Expérience professionnelle",
+  "experience_education_title": "Formation",
   "experience_empty": "Aucune expérience disponible.",
   "experience_present": "Aujourd'hui",
   "exp_label_ongoing": "Poste actuel",

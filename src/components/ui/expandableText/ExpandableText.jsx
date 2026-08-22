@@ -9,8 +9,9 @@ import {interactiveClasses} from "@/styles/commonClasses";
  *
  * Limits the visible text to a configurable number of lines and reveals a
  * localized expand/collapse button only when the content overflows. The toggle
- * button is linked to the expandable region with `aria-controls`. Measurements
- * are refreshed when content, fonts, zoom or the available width changes.
+ * button is linked to the expandable region with `aria-controls` and preserves
+ * a 24 CSS pixel minimum target height. Measurements are refreshed when content,
+ * fonts, zoom or the available width changes.
  *
  * @component
  * @module components/ui/expandableText/ExpandableText
@@ -103,7 +104,7 @@ export function ExpandableText({value = "", children, maxLines = 3, className = 
                         aria-expanded={expanded}
                         aria-controls={contentId}
                         className={clsx(
-                            "flex items-center gap-1 rounded text-xs text-blue-600 hover:underline dark:text-blue-400",
+                            "flex min-h-6 items-center gap-1 rounded text-xs text-blue-600 hover:underline dark:text-blue-400",
                             interactiveClasses.focusRing
                         )}
                     >
