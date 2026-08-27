@@ -12,7 +12,7 @@ vi.mock("react-i18next", () => ({
             const translations = {
                 trading_title: "Trading Performance",
                 trading_status: "eToro Pro Investor Cadet",
-                trading_affiliation: "Daniele's X profile shows a verified affiliation with eToro Pro Investor.",
+                trading_affiliation: "My X profile shows a verified affiliation with eToro Pro Investor.",
                 trading_intro: "Welcome to my trading performance overview.",
                 trading_description: "Here you can find detailed metrics about my trading results.",
                 disclaimer_text: "This is not investment advice. Capital is at risk.",

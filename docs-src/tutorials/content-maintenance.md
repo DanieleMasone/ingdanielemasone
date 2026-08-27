@@ -14,6 +14,12 @@ Update all supported locale files whenever visible copy or SEO copy changes:
 
 Avoid leaving raw i18n keys visible in the UI. Prefer concise professional wording over keyword stuffing.
 
+## Editorial voice
+
+Use first person for personal narrative and owner-authored portfolio copy. Keep
+the explicit name or third person only for external attribution, quotations,
+SEO entity identification, accessible destination names, or legal clarity.
+
 ## GitHub projects
 
 Source data:

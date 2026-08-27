@@ -27,6 +27,29 @@ const structuredDescriptionKeys = [
 const listMarkerPattern = /^\s*[-*•–]\s+/;
 const forbiddenStructuredFormattingPattern = /\n|<\/?[a-z][^>]*>|^\s*[-*•–]\s+/i;
 const forbiddenTechnologyCasingPattern = /\b(?:Github|NPM|Npm|Linkedin|Javascript|Typescript|NodeJS|Etoro|Openapi|Mapstruct|Php)\b/;
+const ownerNarrativeKeyPaths = [
+    "trading_affiliation",
+    "trading_referral_disclosure",
+    "courses_page.commercial_disclosure",
+    "privacy.hosting_data_text",
+    "privacy.preference_data_text",
+    "privacy.rights_2",
+    "privacy.changes_text"
+];
+const ownerFirstPersonPatterns = {
+    it: /\b(?:mio|miei|me|ricevo|potrei)\b|generarmi|\bmi vengono\b/i,
+    en: /\b(?:i|my|me)\b/i,
+    fr: /\b(?:je|mon|mes|moi|me)\b/i,
+    de: /\b(?:ich|mein(?:e)?|mir|mich)\b/i,
+    es: /\b(?:mi|mis|conmigo|recibo|podría)\b|generarme|\bse me\b/i
+};
+const thirdPersonOwnerPatterns = {
+    it: /\bDaniele(?: Masone)?\b|l['’]autore/i,
+    en: /\bDaniele(?: Masone)?(?:'s|’s)?\b|\bthe author\b/i,
+    fr: /\bDaniele(?: Masone)?\b|l['’]auteur/i,
+    de: /\bDaniele(?:s| Masone)?\b|\bdem Autor\b/i,
+    es: /\bDaniele(?: Masone)?\b|\bel autor\b/i
+};
 const expectedHomeMetricLabels = {
     it: [
         "Anni di esperienza",
@@ -215,6 +238,19 @@ describe("localized portfolio content", () => {
             expect(interpolationVariables(locale.header.home_aria)).toContain("name");
             expect(interpolationVariables(locale.footer_copyright)).toEqual(["name", "year"]);
             expect(interpolationVariables(locale.footer_external_profile_label)).toEqual(["label", "name"]);
+        }
+    });
+
+    test("keeps owner-authored disclosures in first-person voice", () => {
+        for (const localeCode of localeCodes) {
+            const locale = readLocale(localeCode);
+
+            for (const keyPath of ownerNarrativeKeyPaths) {
+                const value = getValue(locale, keyPath);
+
+                expect(value, `${localeCode}:${keyPath}`).toMatch(ownerFirstPersonPatterns[localeCode]);
+                expect(value, `${localeCode}:${keyPath}`).not.toMatch(thirdPersonOwnerPatterns[localeCode]);
+            }
         }
     });
 

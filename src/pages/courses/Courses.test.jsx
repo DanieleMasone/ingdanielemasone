@@ -11,7 +11,7 @@ vi.mock('react-i18next', () => ({
             const map = {
                 "courses_page.title": "Courses",
                 "courses_page.description": "Practical Udemy courses for software development skills.",
-                "courses_page.commercial_disclosure": "Buy links may generate a direct financial benefit for the author.",
+                "courses_page.commercial_disclosure": "Buy links may generate a direct financial benefit for me.",
                 "courses_page.empty": "No courses are available.",
                 "collection.range_summary": `${options.start}–${options.end} of ${options.total} ${options.label}`,
                 "collection.range_announcement": `Showing items ${options.start} to ${options.end} of ${options.total} ${options.label}.`,
@@ -107,7 +107,7 @@ describe('Courses component', () => {
 
         renderPage();
 
-        expect(await screen.findByText(/direct financial benefit for the author/i)).toBeInTheDocument();
+        expect(await screen.findByText(/direct financial benefit for me/i)).toBeInTheDocument();
     });
 
     test("renders 6 course cards per page", async () => {
