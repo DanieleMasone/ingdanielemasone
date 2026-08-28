@@ -1,6 +1,6 @@
 # Privacy, Accessibility and Content Review
 
-This document records the technical compliance baseline reviewed on 21 June 2026. It is an engineering inventory, not a legal opinion or certification. Italian is the reference language for the public legal notices; English, French, German, and Spanish legal copy requires human legal review.
+This document records the technical compliance baseline reviewed on 28 August 2026. It is an engineering inventory, not a legal opinion or certification. Italian is the reference language for the public legal notices; English, French, German, and Spanish legal copy requires human legal review.
 
 ## Scope and official references
 

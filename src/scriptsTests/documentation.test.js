@@ -62,6 +62,19 @@ describe("documentation source configuration", () => {
         }
     });
 
+    test("keeps every focused tutorial discoverable from the documentation entry points", () => {
+        const tutorials = readJson("docs-src/tutorials/tutorials.json");
+        const docsHome = readText("docs-src/source-docs-home.md");
+        const engineeringGuide = readText("docs-src/tutorials/engineering-guide.md");
+
+        for (const id of tutorials["engineering-guide"].children) {
+            const tutorialLink = `{@tutorial ${id}}`;
+
+            expect(docsHome).toContain(tutorialLink);
+            expect(engineeringGuide).toContain(tutorialLink);
+        }
+    });
+
     test("README links to the published documentation entry points", () => {
         const readme = readText("README.md");
 

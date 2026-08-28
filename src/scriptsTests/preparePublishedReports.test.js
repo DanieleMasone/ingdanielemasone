@@ -16,6 +16,8 @@ vi.mock("node:fs/promises", () => ({
 import {
     addNoindexRobotsMeta,
     createCoverageBadge,
+    enhanceCoverageAccessibility,
+    enhanceDocdashAccessibility,
     makeCoverageTablesScrollable,
     preparePublishedReports
 } from "../../scripts/prepare-published-reports.mjs";
@@ -108,6 +110,52 @@ describe("prepare-published-reports", () => {
         expect(result.match(/tabindex="0"/g)).toHaveLength(2);
         expect(result.match(/aria-label="Scrollable coverage data"/g)).toHaveLength(2);
         expect(result).toContain('<div class="portfolio-coverage-scroll" role="region"');
+    });
+
+    test("adds landmarks and usable navigation semantics to Docdash pages", () => {
+        const html = [
+            '<input type="checkbox" id="nav-trigger" class="nav-trigger" />',
+            '<label for="nav-trigger" class="navicon-button x"></label>',
+            '<nav ><a href="index.html">Home</a></nav>',
+            '<div id="main">',
+            '<h1 class="page-title">Tutorial: Engineering Guide</h1>',
+            '<article>\n<h1>Engineering Guide</h1><h2>Ownership</h2></article>',
+            '</div>\n<br class="clear">'
+        ].join("");
+
+        const result = enhanceDocdashAccessibility(html);
+
+        expect(result).toContain('aria-label="Documentation navigation"');
+        expect(result).toContain('aria-controls="documentation-navigation"');
+        expect(result).toContain('<nav id="documentation-navigation" aria-label="Documentation">');
+        expect(result).toContain('<main id="main">');
+        expect(result).toContain('</main>\n<br class="clear">');
+        expect(result.match(/<h1(?:\s|>)/g)).toHaveLength(1);
+        expect(result).not.toContain('<article>\n<h1>Engineering Guide</h1>');
+    });
+
+    test("preserves a non-tutorial article heading in Docdash output", () => {
+        const html = '<div id="main"><article>\n<h1>Component reference</h1></article></div>\n<br class="clear">';
+
+        const result = enhanceDocdashAccessibility(html);
+
+        expect(result).toContain('<article>\n<h1>Component reference</h1>');
+    });
+
+    test("adds coverage landmarks and an accessible file filter", () => {
+        const html = [
+            "<div class='wrapper'>",
+            '<template><input type="search" id="fileSearch"></template>',
+            '<table class="coverage-summary"><tbody></tbody></table>',
+            '</div><!-- /wrapper -->'
+        ].join("");
+
+        const result = enhanceCoverageAccessibility(html);
+
+        expect(result).toContain('<main class="wrapper">');
+        expect(result).toContain('</main><!-- /wrapper -->');
+        expect(result).toContain('id="fileSearch" aria-label="Filter coverage files"');
+        expect(result).toContain('class="portfolio-coverage-scroll"');
     });
 
     test("adds noindex metadata to html files and publishes docs and coverage into dist", async () => {

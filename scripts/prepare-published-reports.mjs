@@ -62,6 +62,59 @@ export const makeCoverageTablesScrollable = (html) => html.replace(
 );
 
 /**
+ * Adds stable landmarks and control semantics to generated Docdash pages.
+ *
+ * The source Markdown keeps its own level-one heading for direct readability;
+ * the duplicate rendered article heading is removed only from published tutorial
+ * HTML because Docdash already supplies the page-level heading.
+ *
+ * @param {string} html - Generated Docdash HTML document.
+ * @returns {string} HTML with a main landmark, named navigation toggle, and one tutorial H1.
+ */
+export const enhanceDocdashAccessibility = (html) => {
+    const tutorialTitle = html.match(/<h1\s+class=["']page-title["']>Tutorial:\s*([^<]+)<\/h1>/i)?.[1]?.trim();
+    let preparedHtml = html
+        .replace(
+            '<input type="checkbox" id="nav-trigger" class="nav-trigger" />',
+            '<input type="checkbox" id="nav-trigger" class="nav-trigger" aria-label="Documentation navigation" aria-controls="documentation-navigation" />'
+        )
+        .replace(
+            /<nav\s*>/i,
+            '<nav id="documentation-navigation" aria-label="Documentation">'
+        )
+        .replace('<div id="main">', '<main id="main">')
+        .replace(/<\/div>(\s*<br\s+class=["']clear["']>)/i, '</main>$1');
+
+    if (tutorialTitle) {
+        preparedHtml = preparedHtml.replace(
+            /(<article>\s*)<h1>([^<]+)<\/h1>/i,
+            (heading, articleStart, articleTitle) => (
+                articleTitle.trim() === tutorialTitle ? articleStart : heading
+            )
+        );
+    }
+
+    return preparedHtml;
+};
+
+/**
+ * Adds landmarks and an accessible file-filter name to generated coverage pages.
+ *
+ * @param {string} html - Generated Istanbul coverage HTML document.
+ * @returns {string} Coverage HTML with accessible structure and controls.
+ */
+export const enhanceCoverageAccessibility = (html) => makeCoverageTablesScrollable(html)
+    .replace(/<div\s+class=(["'])wrapper\1\s*>/i, '<main class="wrapper">')
+    .replace(/<\/div>(\s*<!--\s*\/wrapper\s*-->)/i, '</main>$1')
+    .replace(/<input\b[^>]*\bid=["']fileSearch["'][^>]*>/gi, (input) => {
+        if (/\baria-label=/i.test(input)) return input;
+
+        return input.endsWith('/>')
+            ? input.replace(/\s*\/>$/, ' aria-label="Filter coverage files" />')
+            : input.replace(/>$/, ' aria-label="Filter coverage files">');
+    });
+
+/**
  * Recursively lists HTML files inside a directory.
  *
  * @param {string} directory - Absolute directory path.
@@ -88,9 +141,10 @@ const listHtmlFiles = async (directory) => {
  * @param {string} directory - Absolute report directory path.
  * @param {object} [options] - Report-specific preparation options.
  * @param {boolean} [options.coverage=false] - Whether to enhance Istanbul coverage tables.
+ * @param {boolean} [options.docdash=false] - Whether to enhance Docdash landmarks and controls.
  * @returns {Promise<number>} Number of processed HTML files.
  */
-const prepareReportDirectory = async (directory, {coverage = false} = {}) => {
+const prepareReportDirectory = async (directory, {coverage = false, docdash = false} = {}) => {
     const files = await listHtmlFiles(directory);
 
     if (files.length === 0) {
@@ -100,9 +154,10 @@ const prepareReportDirectory = async (directory, {coverage = false} = {}) => {
     await Promise.all(files.map(async (filePath) => {
         const html = await fs.readFile(filePath, "utf8");
 
-        const preparedHtml = addNoindexRobotsMeta(
-            coverage ? makeCoverageTablesScrollable(html) : html
-        );
+        const accessibleHtml = coverage
+            ? enhanceCoverageAccessibility(html)
+            : docdash ? enhanceDocdashAccessibility(html) : html;
+        const preparedHtml = addNoindexRobotsMeta(accessibleHtml);
 
         await fs.writeFile(filePath, preparedHtml, "utf8");
     }));
@@ -179,7 +234,10 @@ export const preparePublishedReports = async () => {
 
         return {
             target,
-            htmlFiles: await prepareReportDirectory(targetDir, {coverage: target === "test-coverage"})
+            htmlFiles: await prepareReportDirectory(targetDir, {
+                coverage: target === "test-coverage",
+                docdash: target === "docs"
+            })
         };
     }));
 

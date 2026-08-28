@@ -5,6 +5,12 @@ import {afterEach, describe, expect, test} from "vitest";
 import {validatePagesArtifact} from "../../scripts/validate-pages-artifact.mjs";
 
 const temporaryDirectories = [];
+const reportHtml = [
+    '<!doctype html><html lang="en"><head>',
+    '<meta name="robots" content="noindex, nofollow"/>',
+    '<meta name="viewport" content="width=device-width, initial-scale=1">',
+    '</head><body><main></main></body></html>'
+].join("");
 
 const writeFixture = (rootDirectory, relativePath, content = "fixture") => {
     const filePath = path.join(rootDirectory, relativePath);
@@ -37,8 +43,8 @@ const createArtifactFixture = () => {
     writeFixture(rootDirectory, "dist/404.html", '<meta name="robots" content="noindex, follow">');
     writeFixture(rootDirectory, "dist/sitemap.xml", "<loc>https://example.test/repo/</loc>");
     writeFixture(rootDirectory, "dist/robots.txt", "Allow: /repo/\nSitemap: https://example.test/repo/sitemap.xml\n");
-    writeFixture(rootDirectory, "dist/docs/index.html", '<meta name="robots" content="noindex, nofollow"/>');
-    writeFixture(rootDirectory, "dist/test-coverage/index.html", '<meta name="robots" content="noindex, nofollow"/>');
+    writeFixture(rootDirectory, "dist/docs/index.html", reportHtml);
+    writeFixture(rootDirectory, "dist/test-coverage/index.html", reportHtml);
     writeFixture(rootDirectory, "dist/coverage-badge.json", JSON.stringify({schemaVersion: 1, label: "coverage", message: "97.56%"}));
     writeFixture(rootDirectory, "dist/logo.png");
     writeFixture(rootDirectory, "dist/social-preview.png");
@@ -78,5 +84,23 @@ describe("validate-pages-artifact", () => {
         writeFixture(rootDirectory, "dist/assets/app.js.map");
 
         await expect(validatePagesArtifact({rootDirectory})).rejects.toThrow(/source map/);
+    });
+
+    test("rejects invalid nested report HTML", async () => {
+        const rootDirectory = createArtifactFixture();
+        writeFixture(
+            rootDirectory,
+            "dist/docs/tutorial-example.html",
+            reportHtml.replace('<meta name="robots" content="noindex, nofollow"/>', "")
+        );
+
+        await expect(validatePagesArtifact({rootDirectory})).rejects.toThrow(/noindex, nofollow/);
+    });
+
+    test("rejects source maps in published developer reports", async () => {
+        const rootDirectory = createArtifactFixture();
+        writeFixture(rootDirectory, "dist/test-coverage/source.js.map");
+
+        await expect(validatePagesArtifact({rootDirectory})).rejects.toThrow(/developer report/);
     });
 });

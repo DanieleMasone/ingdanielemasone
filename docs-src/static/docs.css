@@ -5,4 +5,22 @@
     box-sizing: border-box;
     padding-right: 4.5rem;
   }
+
+  /* Keep long source paths and public URLs inside the narrow documentation viewport. */
+  #main a {
+    overflow-wrap: anywhere;
+  }
+
+  /* Surface keyboard focus on the visible label for Docdash's clipped checkbox. */
+  .nav-trigger:focus-visible + .navicon-button {
+    outline: 3px solid #005fcc;
+    outline-offset: -3px;
+  }
+}
+
+@media only screen and (min-width: 681px) {
+  /* The mobile-only Docdash trigger must not create an invisible desktop tab stop. */
+  .nav-trigger {
+    display: none;
+  }
 }

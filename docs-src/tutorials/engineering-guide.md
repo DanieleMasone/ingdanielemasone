@@ -49,5 +49,6 @@ docs-src/        Source Markdown for generated engineering tutorials
 - {@tutorial content-maintenance} explains how to update portfolio content and translations.
 - {@tutorial quality-and-testing} explains unit, integration, coverage and E2E responsibilities.
 - {@tutorial seo-and-deployment} explains GitHub Pages, static SEO generation, Search Console and publication.
+- {@tutorial compliance-and-content-review} records the technical privacy, accessibility and public-content review baseline.
 
 The generated symbol reference is available from the `/docs/` navigation. The coverage report is published at `/test-coverage/`.

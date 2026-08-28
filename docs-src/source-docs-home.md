@@ -15,6 +15,7 @@ Start with the {@tutorial engineering-guide}, then use the focused tutorials whe
 - {@tutorial content-maintenance}
 - {@tutorial quality-and-testing}
 - {@tutorial seo-and-deployment}
+- {@tutorial compliance-and-content-review}
 
 Related public resources:
 

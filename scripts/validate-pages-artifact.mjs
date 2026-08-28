@@ -49,6 +49,12 @@ const requireContent = (content, expected, filePath) => {
     }
 };
 
+const requirePattern = (content, pattern, description, filePath) => {
+    if (!pattern.test(content)) {
+        throw new Error(`${filePath} is missing ${description}.`);
+    }
+};
+
 /**
  * Checks route HTML, SEO files, reports, public assets and build output in `dist`.
  *
@@ -61,10 +67,11 @@ export const validatePagesArtifact = async ({rootDirectory = repositoryRoot} = {
     const config = await readJson(path.join(rootDirectory, "src", "config", "seo.json"));
     const sitemapPath = path.join(distDir, "sitemap.xml");
     const robotsPath = path.join(distDir, "robots.txt");
-    const reportIndexes = [
-        path.join(distDir, "docs", "index.html"),
-        path.join(distDir, "test-coverage", "index.html")
+    const reportDirectories = [
+        path.join(distDir, "docs"),
+        path.join(distDir, "test-coverage")
     ];
+    const reportIndexes = reportDirectories.map((directory) => path.join(directory, "index.html"));
 
     await Promise.all([
         requireFile(path.join(distDir, "index.html")),
@@ -111,9 +118,24 @@ export const validatePagesArtifact = async ({rootDirectory = repositoryRoot} = {
     requireContent(robots, `Allow: ${sitePath}`, robotsPath);
     requireContent(robots, `Sitemap: ${config.siteUrl}/sitemap.xml`, robotsPath);
 
-    for (const reportIndex of reportIndexes) {
-        const html = await fs.readFile(reportIndex, "utf8");
-        requireContent(html, '<meta name="robots" content="noindex, nofollow"/>', reportIndex);
+    const reportFileGroups = await Promise.all(reportDirectories.map(listFiles));
+    const reportFiles = reportFileGroups.flat();
+    const reportHtmlFiles = reportFiles.filter((filePath) => filePath.endsWith(".html"));
+
+    for (const reportHtmlFile of reportHtmlFiles) {
+        const html = await fs.readFile(reportHtmlFile, "utf8");
+        requireContent(html, '<meta name="robots" content="noindex, nofollow"/>', reportHtmlFile);
+        requirePattern(html, /<html\b[^>]*\blang=["'][^"']+["']/i, "an HTML language", reportHtmlFile);
+        requirePattern(html, /<meta\b[^>]*\bname=["']viewport["']/i, "viewport metadata", reportHtmlFile);
+        requirePattern(html, /<main(?:\s|>)/i, "a main landmark", reportHtmlFile);
+
+        if (/<link\b[^>]*\brel=["']canonical["']/i.test(html)) {
+            throw new Error(`${reportHtmlFile} unexpectedly declares a canonical URL.`);
+        }
+    }
+
+    if (reportFiles.some((filePath) => filePath.endsWith(".map"))) {
+        throw new Error("Unexpected source map found in a published developer report.");
     }
 
     const coverageBadge = await readJson(path.join(distDir, "coverage-badge.json"));
