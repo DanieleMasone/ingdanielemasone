@@ -334,7 +334,8 @@ describe("Experience component", () => {
         const currentCard = (await screen.findAllByTestId("experience-card"))[0];
         const disclosure = within(currentCard).getByRole("button", {name: "Show technologies"});
 
-        disclosure.focus();
+        await user.tab();
+        expect(disclosure).toHaveFocus();
         await user.keyboard("{Enter}");
 
         expect(disclosure).toHaveAttribute("aria-expanded", "true");
