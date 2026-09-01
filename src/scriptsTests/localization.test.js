@@ -50,6 +50,21 @@ const thirdPersonOwnerPatterns = {
     de: /\bDaniele(?:s| Masone)?\b|\bdem Autor\b/i,
     es: /\bDaniele(?: Masone)?\b|\bel autor\b/i
 };
+const requiredTradingKeys = [
+    "trading_title",
+    "trading_status",
+    "trading_affiliation",
+    "trading_intro",
+    "trading_description",
+    "disclaimer_text",
+    "trading_cta",
+    "trading_signup",
+    "trading_referral_disclosure",
+    "trading_data_period"
+];
+const tradingCoreTickers = ["SWDA.L", "IS3N.DE", "AGGU.L"];
+const tradingTickerPattern = /\b[A-Z0-9]+\.[A-Z]+\b/g;
+const staleCurrentTradingAssetPattern = /\b(?:BTC|Bitcoin|crypto|cryptocurrency|criptovaluta|criptovalute|cryptomonnaie|crypto-monnaie|Krypto|Kryptowährung|cripto|criptomoneda)\b/i;
 const expectedHomeMetricLabels = {
     it: [
         "Anni di esperienza",
@@ -251,6 +266,24 @@ describe("localized portfolio content", () => {
                 expect(value, `${localeCode}:${keyPath}`).toMatch(ownerFirstPersonPatterns[localeCode]);
                 expect(value, `${localeCode}:${keyPath}`).not.toMatch(thirdPersonOwnerPatterns[localeCode]);
             }
+        }
+    });
+
+    test("keeps the current three-ETF Trading strategy aligned across languages", () => {
+        for (const localeCode of localeCodes) {
+            const locale = readLocale(localeCode);
+
+            for (const key of requiredTradingKeys) {
+                expect(locale[key], `${localeCode}:${key}`).toEqual(expect.any(String));
+                expect(locale[key].trim(), `${localeCode}:${key}`).not.toBe("");
+            }
+
+            expect(locale.trading_description.match(tradingTickerPattern), localeCode)
+                .toEqual(tradingCoreTickers);
+            expect(locale.trading_description, localeCode)
+                .not.toMatch(staleCurrentTradingAssetPattern);
+            expect(locale.trading_description, localeCode)
+                .not.toMatch(thirdPersonOwnerPatterns[localeCode]);
         }
     });
 
