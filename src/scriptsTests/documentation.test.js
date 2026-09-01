@@ -135,6 +135,15 @@ describe("documentation source configuration", () => {
         expect(readme).not.toMatch(/img\.shields\.io\/badge\/coverage-\d/);
     });
 
+    test("keeps README project-health badges dynamic", () => {
+        const readme = readText("README.md");
+
+        expect(readme).toContain("actions/workflows/deploy-pages.yml/badge.svg?branch=main");
+        expect(readme).not.toMatch(
+            /img\.shields\.io\/badge\/(?:license|React|Vite|Vitest|Node|npm)-/i
+        );
+    });
+
     test("tracked Markdown local links resolve", () => {
         const markdownLinkPattern = /!?\[[^\]]*]\(([^)#][^)]+)\)/g;
 

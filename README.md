@@ -1,11 +1,7 @@
 # Daniele Masone - Portfolio & Online CV
 
 [![Portfolio CI/CD](https://github.com/DanieleMasone/ingdanielemasone/actions/workflows/deploy-pages.yml/badge.svg?branch=main)](https://github.com/DanieleMasone/ingdanielemasone/actions/workflows/deploy-pages.yml)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Coverage](https://img.shields.io/endpoint?url=https%3A%2F%2Fdanielemasone.github.io%2Fingdanielemasone%2Fcoverage-badge.json)](https://danielemasone.github.io/ingdanielemasone/test-coverage/)
-[![React](https://img.shields.io/badge/React-19-20232A?logo=react&logoColor=61DAFB)](https://react.dev/)
-[![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=fff)](https://vite.dev/)
-[![Vitest](https://img.shields.io/badge/Vitest-4-6E9F18?logo=vitest&logoColor=fff)](https://vitest.dev/)
 
 Personal portfolio and online CV for **Daniele Masone**, built as a production-minded React application rather than a static resume page.
 
