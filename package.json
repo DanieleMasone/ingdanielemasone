@@ -3,7 +3,7 @@
   "homepage": "https://danielemasone.github.io/ingdanielemasone",
   "version": "1.0.0",
   "private": true,
-  "packageManager": "npm@11.18.0",
+  "packageManager": "npm@11.20.0",
   "dependencies": {
     "@headlessui/react": "^2.2.10",
     "chart.js": "^4.5.1",
@@ -42,8 +42,8 @@
     "deps:validate": "node scripts/validate-lockfile.mjs"
   },
   "engines": {
-    "node": "24.18.0",
-    "npm": "11.18.0"
+    "node": "24.21.0",
+    "npm": "11.20.0"
   },
   "browserslist": {
     "production": [
@@ -67,7 +67,7 @@
     "@types/react": "^19.2.10",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.3",
-    "@vitest/coverage-v8": "4.1.10",
+    "@vitest/coverage-v8": "4.1.11",
     "autoprefixer": "^10.5.2",
     "docdash": "^2.0.2",
     "jsdoc": "^4.0.4",
@@ -75,6 +75,6 @@
     "postcss": "8.5.25",
     "tailwindcss": "^3.4.19",
     "vite": "8.1.4",
-    "vitest": "4.1.10"
+    "vitest": "4.1.11"
   }
 }
