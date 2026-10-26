@@ -11,6 +11,9 @@
 # Editor-based HTTP Client requests
 /httpRequests/
 
+# Local npm configuration
+/.npmrc
+
 /.idea
 
 # dependencies
