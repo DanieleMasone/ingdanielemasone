@@ -33,7 +33,7 @@ jobs:
 
       - name: Ensure npm version
         run: |
-          npm install --global npm@11.20.0
+          npm install --global npm@11.21.2
           node --version
           npm --version
           expected_node="v$(cat .nvmrc)"

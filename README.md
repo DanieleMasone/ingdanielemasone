@@ -50,7 +50,7 @@ The app uses React Router 7 with the Vite base path `/ingdanielemasone/`. Shared
 
 ## Quick Start
 
-Use Node.js `24.21.0` and npm `11.20.0` as pinned by `.nvmrc` and `package.json`.
+Use Node.js `24.22.2` and npm `11.21.2` as pinned by `.nvmrc` and `package.json`.
 
 ```bash
 git clone https://github.com/DanieleMasone/ingdanielemasone.git
