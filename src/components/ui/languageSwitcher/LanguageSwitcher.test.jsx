@@ -43,7 +43,7 @@ describe('LanguageSwitcher', () => {
 
     test('renders current language button without remote flag images', () => {
         render(<LanguageSwitcher/>);
-        const button = screen.getByRole('button', {name: /select language: english/i});
+        const button = screen.getByRole('button', {name: 'EN. Select language: English'});
         expect(button).toBeInTheDocument();
         expect(button).toHaveTextContent(/EN/i);
         expect(button.querySelector('img')).not.toBeInTheDocument();
@@ -112,7 +112,7 @@ describe('LanguageSwitcher', () => {
 
         render(<LanguageSwitcher/>);
 
-        const button = screen.getByRole('button', {name: /select language: english/i});
+        const button = screen.getByRole('button', {name: 'EN. Select language: English'});
         expect(button).toHaveTextContent(/EN/i);
     });
 

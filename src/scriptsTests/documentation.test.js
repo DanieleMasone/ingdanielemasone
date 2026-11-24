@@ -119,9 +119,9 @@ describe("documentation source configuration", () => {
         const qualityGuide = readText("docs-src/tutorials/quality-and-testing.md");
 
         expect(fs.existsSync(path.join(rootDir, ".github", "dependabot.yml"))).toBe(false);
-        expect(agents).toContain("does not use scheduled Dependabot version-update pull requests");
+        expect(agents).toContain("Keep Dependabot alerts, security updates, and version updates disabled");
         expect(agents).toContain("Do not reintroduce `.github/dependabot.yml`");
-        expect(qualityGuide).toContain("Scheduled Dependabot version-update pull requests are disabled");
+        expect(qualityGuide).toContain("Dependabot alerts, security updates, and version updates are outside the maintenance workflow");
         expect(qualityGuide).toContain("npm outdated --long");
         expect(qualityGuide).toContain("npm audit");
         expect(qualityGuide).not.toContain("auto-merge");

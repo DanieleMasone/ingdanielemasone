@@ -18,7 +18,7 @@ test('language switcher updates visible content and document language for every 
 
   for (const targetLanguage of [...languages.slice(1), languages[0]]) {
     await page.getByRole('button', {
-      name: `${currentLanguage.selectLabel}: ${currentLanguage.nativeLabel}`,
+      name: `${currentLanguage.code.toUpperCase()}. ${currentLanguage.selectLabel}: ${currentLanguage.nativeLabel}`,
     }).click();
     await page.getByRole('button', {name: targetLanguage.nativeLabel, exact: true}).click();
 

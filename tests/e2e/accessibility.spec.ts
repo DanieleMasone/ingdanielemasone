@@ -260,7 +260,7 @@ test('experience exposes professional history and education as visible semantic 
 test('experience reflows at 320 CSS pixels with long translated content and usable targets', async ({page}) => {
   await page.goto('experience/');
 
-  await page.getByRole('button', {name: 'Seleziona lingua: Italiano'}).click();
+  await page.getByRole('button', {name: 'IT. Seleziona lingua: Italiano'}).click();
   await page.getByRole('button', {name: 'Deutsch', exact: true}).click();
   await page.setViewportSize({width: 320, height: 800});
 

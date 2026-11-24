@@ -139,7 +139,7 @@ Before considering any task complete, always evaluate and apply, when needed:
 
 ## Dependency Maintenance
 
-- This repository does not use scheduled Dependabot version-update pull requests.
+- Keep Dependabot alerts, security updates, and version updates disabled. All dependency checks and updates are owner-triggered.
 - Review dependency updates manually during explicit maintenance tasks, before meaningful releases, or when a security alert requires action.
 - Do not reintroduce `.github/dependabot.yml` unless the owner explicitly requests scheduled dependency pull requests again.
 - For broad maintenance or final audits, inspect dependency state with `npm outdated --long` and `npm audit`, then review official release notes and migration guides before changing versions.
@@ -166,6 +166,7 @@ Before considering any task complete, always evaluate and apply, when needed:
 - Always preserve and verify the `/ingdanielemasone/` GitHub Pages base path.
 - In GitHub Actions, install only the Chromium headless shell with `npx playwright install --with-deps --only-shell chromium` unless the config explicitly requires a headed browser, a browser channel, or full Chromium.
 - Focus E2E coverage on route smoke tests, GitHub Pages deep links, critical navigation, responsive/mobile behavior, SEO metadata, i18n smoke checks, and keyboard accessibility.
+- Keep Axe scans limited to representative rendered states. Investigate reported nodes before changing markup or styles and preserve behavioral accessibility tests.
 - Add or update E2E tests only when a change affects real browser behavior.
 - Prefer stable semantic selectors: roles, labels, landmarks, headings, metadata, and URLs.
 - Avoid brittle DOM selectors, broad visual snapshots, and unnecessary `data-testid` attributes.

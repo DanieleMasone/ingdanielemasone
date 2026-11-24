@@ -178,7 +178,7 @@ export const interactiveClasses = {
   paginationButton:
       "min-w-[110px] rounded-md border border-gray-300 bg-white px-4 py-2 text-center text-sm font-medium text-gray-800 transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800",
   selectedButton:
-      "border bg-blue-600 text-white shadow-md hover:shadow-lg dark:bg-blue-500",
+      "border bg-blue-600 text-white shadow-md hover:shadow-lg",
   unselectedButton:
       "border bg-gray-200 text-gray-800 shadow-sm hover:bg-gray-300 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700",
   linkButtonBase:

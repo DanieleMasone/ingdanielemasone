@@ -136,6 +136,8 @@ The workflow:
 
 The deployment artifact is only `dist`.
 
+The quality job disables Git credential persistence after checkout. Dependency installation, tests, and artifact assembly use the checked-out files without authenticated Git operations. The dedicated deploy job uses scoped Pages and OIDC permissions.
+
 ## Local inspection
 
 Useful commands:

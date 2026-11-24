@@ -9,7 +9,8 @@ import {interactiveClasses, layoutClasses} from "@/styles/commonClasses";
 /**
  * Language selector for the portfolio.
  *
- * Shows the active language code, opens an accessible group of native language
+ * Includes the visible language code in the trigger's accessible name for
+ * voice control. Opens an accessible group of native language
  * names, marks the current choice with `aria-pressed`, closes on outside click
  * or Escape, restores focus to its trigger after Escape, and persists the
  * chosen language through the shared i18next instance. The selector
@@ -32,6 +33,7 @@ export function LanguageSwitcher() {
         ? normalizedLanguage
         : "en";
     const currentLanguageLabel = supportedLanguageMap[currentLang].nativeLabel;
+    const currentLanguageCode = currentLang.toUpperCase();
     const selectLanguageLabel = t("language_switcher.select_language");
     const optionsLabel = t("language_switcher.options_label");
     const currentLanguageText = t("language_switcher.current_language");
@@ -72,7 +74,7 @@ export function LanguageSwitcher() {
                 onClick={toggleDropdown}
                 aria-expanded={open}
                 aria-controls={menuId}
-                aria-label={`${selectLanguageLabel}: ${currentLanguageLabel}`}
+                aria-label={`${currentLanguageCode}. ${selectLanguageLabel}: ${currentLanguageLabel}`}
                 className={clsx(
                     interactiveClasses.toolbarButton,
                     "min-w-[6rem] justify-between gap-2 px-3 py-2",
@@ -81,7 +83,7 @@ export function LanguageSwitcher() {
                 type="button"
             >
                 <Languages className="h-5 w-5" aria-hidden="true"/>
-                <span className="uppercase">{currentLang}</span>
+                <span>{currentLanguageCode}</span>
                 <ChevronDown
                     aria-hidden="true"
                     className={`h-4 w-4 text-gray-500 transition-transform dark:text-gray-300 ${open ? "rotate-180" : "rotate-0"}`}

@@ -46,7 +46,7 @@ The validation script checks the lockfile structure, public registry URLs, root 
 
 ## Dependency maintenance
 
-Scheduled Dependabot version-update pull requests are disabled. Routine dependency updates are owner-triggered and reviewed manually during explicit maintenance tasks, before meaningful portfolio releases or major toolchain upgrades, and when a security alert requires action. GitHub security alerts may still be reviewed through the repository security settings where available; they are separate from scheduled version-update pull requests.
+Dependabot alerts, security updates, and version updates are outside the maintenance workflow. The owner checks and updates dependencies manually during explicit maintenance tasks, before meaningful portfolio releases or major toolchain upgrades, and when an advisory warrants review.
 
 Start a maintenance review with:
 
@@ -100,6 +100,8 @@ The E2E runner starts the repository-installed Vite preview through its Node API
 CI runs `npm run test:e2e:run` after the production build so Playwright checks the exact application files that are later packaged. The all-in-one `npm run test:e2e` command remains the convenient local entry point.
 
 Do not add Playwright tests for every static card. Prefer semantic selectors such as roles, headings, labels, landmarks, metadata and URLs.
+
+Axe scans the desktop Home in light mode, GitHub Projects in dark mode, and the open mobile navigation. The scans run in the existing Chromium quality job on pull requests, pushes to main, and manual runs. A violation fails E2E and blocks artifact upload. After building, run `npm run test:e2e:run -- tests/e2e/axe.spec.ts` to reproduce locally. Use the rule link, selector, and failure summary to investigate. Review scan behavior when manually updating Axe. The supported WCAG 2.2 A/AA rules cover only automatically detectable issues in the sampled states. Keep the keyboard and reflow checks and manually review interactions.
 
 ## Coverage
 
